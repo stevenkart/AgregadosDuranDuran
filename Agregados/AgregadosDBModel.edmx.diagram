@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cf6c5740cc75466e830b64cfb74ae4c2" Name="Diagram1">
+        <EntityTypeShape EntityType="AgregadosModel.CierreCaja" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Cliente" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.CorreoNotificacion" Width="2.25" PointX="5.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.DetalleFact" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Estado" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Factura" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Material" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Provedor" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.TipoFactura" Width="1.625" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Usuario" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Vehiculo" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <AssociationConnector Association="AgregadosModel.FKCierreCaja738389" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKClientes514688" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKFacturas133865" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKDetalleFac373618" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKDetalleFac814862" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKFacturas372875" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKMateriales845007" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKProvedores830006" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKUsuarios144656" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKVehiculos460868" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKFacturas199007" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKFacturas362625" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKFacturas849510" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
