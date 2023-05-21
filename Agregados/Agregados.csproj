@@ -248,6 +248,7 @@
     <Content Include="Images\agregadosIcon.ico" />
     <Content Include="Images\eye.ico" />
     <Content Include="Images\IconsMenuMant\add.png" />
+    <Content Include="Images\IconsMenuMant\addCar.png" />
     <Content Include="Images\IconsMenuMant\addUser.png" />
     <Content Include="Images\IconsMenuMant\clean.png" />
     <Content Include="Images\IconsMenuMant\delete.png" />

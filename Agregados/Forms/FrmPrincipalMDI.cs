@@ -27,6 +27,10 @@ namespace Agregados.Forms
             Globals.MyGlobalUser = null;
             FrmLogin frmLogin = new Forms.Login.FrmLogin();
             frmLogin.Show();
+            if (!Globals.MifrmInfo.IsDisposed)
+            {
+                Globals.MifrmInfo.Hide();
+            }
             this.Hide();
         }
 
@@ -39,6 +43,7 @@ namespace Agregados.Forms
         {
             Globals.MifrmNotifications = new Notifications.FrmNotifications();
             Globals.MifrmNotifications.Show();
+            this.Hide();
         }
 
         private void acercaDeToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -50,6 +55,8 @@ namespace Agregados.Forms
         private void vehiculosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Globals.MifrmVehiclesManage = new Vehicles.FrmVehiclesManage();
+            Globals.MifrmVehiclesManage.Show();
+            this.Hide();
         }
 
        
@@ -58,17 +65,8 @@ namespace Agregados.Forms
         {
             Globals.MifrmUser = new Users.FrmUserManage();
             Globals.MifrmUser.Show();
+            this.Hide();
         }
-
-
-
-
-
-
-
-
-
-
 
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -76,17 +74,29 @@ namespace Agregados.Forms
             Globals.MyGlobalUser = null;
             FrmLogin frmLogin = new Forms.Login.FrmLogin();
             frmLogin.Show();
+            if (!Globals.MifrmInfo.IsDisposed)
+            {
+                Globals.MifrmInfo.Hide();
+            }
             this.Hide();
         }
 
         private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             //cierra completamente la app
-            Application.Exit();
+            System.Environment.Exit(0);
         }
 
-
-
-
+        private void FrmPrincipalMDI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Globals.MyGlobalUser = null;
+            FrmLogin frmLogin = new Forms.Login.FrmLogin();
+            frmLogin.Show();
+            if (!Globals.MifrmInfo.IsDisposed)
+            {
+                Globals.MifrmInfo.Hide();
+            }
+            this.Hide();
+        }
     }
 }

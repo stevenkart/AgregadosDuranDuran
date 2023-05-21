@@ -41,7 +41,7 @@ namespace Agregados.Forms.Login
         private void btnExit_Click(object sender, EventArgs e)
         {
             //cierra completamente la app
-            Application.Exit();
+            System.Environment.Exit(0);
         }
 
         //tiempo login
@@ -124,6 +124,12 @@ namespace Agregados.Forms.Login
             FrmForgetPass frmForgetPass = new FrmForgetPass();
             frmForgetPass.Show();
             this.Hide();
+        }
+
+        private void FrmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //cierra completamente la app
+            System.Environment.Exit(0);
         }
     }
 }

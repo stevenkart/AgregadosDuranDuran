@@ -52,6 +52,8 @@ namespace Agregados.Forms.Notifications
         //exit form
         private void btnExit_Click(object sender, EventArgs e)
         {
+            FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
+            frmPrincipalMDI.Show();
             this.Hide();
         }
 
@@ -148,7 +150,11 @@ namespace Agregados.Forms.Notifications
             e.Handled = Validaciones.CaracteresTexto(e, false, true);
         }
 
-
-
+        private void FrmNotifications_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
+            frmPrincipalMDI.Show();
+            this.Hide();
+        }
     }
 }

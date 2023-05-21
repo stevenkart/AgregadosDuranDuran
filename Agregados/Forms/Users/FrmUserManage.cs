@@ -39,12 +39,29 @@ namespace Agregados.Forms.Users
             CargarEstadosUsuario();
             CargarTiposUsuarios();
             ActivarAdd();
-            dgvUsers.DataSource = DB.Usuarios.Where(x => x.IdEstado == 1).ToList();
+            //solicitud linq simple
+            //dgvUsers.DataSource = DB.Usuarios.Where(x => x.IdEstado == 1).ToList();
+            //nueva solicitud linq para validar y disenar mejor la DataGridView al usuario // empezando la informacion con usuarios ACTIVOS y lo unico que se necesita obtener
+            //para agilizar la respuesta y no obtener tantas columnas de datos
+            var result = from us in DB.Usuarios
+                         join es in DB.Estados
+                         on us.IdEstado equals es.IdEstado
+                         where (us.IdEstado == 1)
+                         select new
+                         {
+                             us.IdUsuario, us.NombreUsuario, us.NombreEmpleado,
+                             us.Identificacion, us.Correo, IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                             TipoUsuario = (us.TipoUsuario == 1) ? "Administrador" : (us.TipoUsuario == 2) ? "Cajero/a" : "Error", //Lambda Expresion para validar tipo de usuario
+                         };
+            dgvUsers.DataSource = result.ToList();
+
+            /*
             dgvUsers.Columns["Pin"].Visible = false;
             dgvUsers.Columns["CierreCajas"].Visible = false;
             dgvUsers.Columns["Estado"].Visible = false;
             dgvUsers.Columns["Facturas"].Visible = false;
             dgvUsers.Columns["Contrasennia"].Visible = false;
+            */
         }
 
         //si se selecciona un elemento de la lista se va a cargar la informacion en el item
@@ -104,7 +121,7 @@ namespace Agregados.Forms.Users
             DataTable dt = new DataTable();
             dt.Columns.AddRange(new DataColumn[] { new DataColumn("Id", typeof(int)), new DataColumn("D", typeof(string)) });
             dt.Rows.Add(1, "Administrador");
-            dt.Rows.Add(2, "Cajero");
+            dt.Rows.Add(2, "Cajero/a");
 
             CboxUserType.DataSource = dt;
             CboxUserType.ValueMember = "Id";
@@ -112,7 +129,7 @@ namespace Agregados.Forms.Users
             CboxUserType.SelectedIndex = -1;
             
         }//Carga Cbox Tipos
-        //tiempo login
+        //tiempo loading
         void Wait()
         {
             for (int i = 0; i < 100; i++)
@@ -120,6 +137,8 @@ namespace Agregados.Forms.Users
                 Thread.Sleep(5);
             }
         }
+        //metodo que permite realizar validaciones de los espacion / campos del form no se toma en cuenta
+        // la contrasennia ya que esta se valida en el momento que se desee cambiar o no
         private bool ValidarCamposRequeridos()
         {
             bool R = false;
@@ -179,7 +198,7 @@ namespace Agregados.Forms.Users
                 }
                 if (CboxStates.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Debe Seleccionar un tipo de Usuario", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe Seleccionar un estado de Usuario", "Error de Validación!", MessageBoxButtons.OK);
                     CboxUserType.Focus();
                     return false;
                 }
@@ -225,34 +244,66 @@ namespace Agregados.Forms.Users
                         {
                             try
                             {
+                                //validamos que los datos ingresados sean unicos, como nombre de usuario, identificacion o correo
+                                Usuario usuarioTemp = new Usuario();
                                 if (Validaciones.IsValidPass(txtPassword.Text.Trim()) && Validaciones.IsValidEmail2(txtEmail.Text.Trim()))
                                 {
-                                    user = new Usuario
+                                    usuarioTemp = DB.Usuarios.Where((x) => x.NombreUsuario == txtUsername.Text.Trim()).FirstOrDefault();
+                                    if (usuarioTemp == null)
                                     {
-                                        NombreUsuario = txtUsername.Text.Trim(),
-                                        Contrasennia = encriptar.EncriptarEnUnSentido(txtPassword.Text.Trim()),
-                                        Correo = txtEmail.Text.Trim(),
-                                        NombreEmpleado = txtEmployer.Text.Trim(),
-                                        Identificacion = txtIdent.Text.Trim(),
-                                        TipoUsuario = Convert.ToInt32(CboxUserType.SelectedValue),
-                                        IdEstado = Convert.ToInt32(CboxStates.SelectedValue)
-                                    };
+                                        usuarioTemp = DB.Usuarios.Where((x) => x.Correo == txtEmail.Text.Trim()).FirstOrDefault();
 
-                                    //metodo para anadir el usuario
-                                    DB.Usuarios.Add(user);
+                                        if (usuarioTemp == null)
+                                        {
+                                            usuarioTemp = DB.Usuarios.Where((x) => x.Identificacion == txtIdent.Text.Trim()).FirstOrDefault();
 
-                                    if (DB.SaveChanges() > 0)
-                                    {
-                                        CheckChange();
-                                        limpiarBusqueda();
-                                        MessageBox.Show("Usuario Agregado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK);
-                                        user = null;
+                                            if (usuarioTemp == null)
+                                            {
+                                                user = new Usuario
+                                                {
+                                                    NombreUsuario = txtUsername.Text.Trim(),
+                                                    Contrasennia = encriptar.EncriptarEnUnSentido(txtPassword.Text.Trim()),
+                                                    Correo = txtEmail.Text.Trim(),
+                                                    NombreEmpleado = txtEmployer.Text.Trim(),
+                                                    Identificacion = txtIdent.Text.Trim(),
+                                                    TipoUsuario = Convert.ToInt32(CboxUserType.SelectedValue),
+                                                    IdEstado = Convert.ToInt32(CboxStates.SelectedValue)
+                                                };
+
+                                                //metodo para anadir el usuario
+                                                DB.Usuarios.Add(user);
+
+                                                if (DB.SaveChanges() > 0)
+                                                {
+                                                    CheckChange();
+                                                    limpiarBusqueda();
+                                                    MessageBox.Show("Usuario Agregado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK);
+                                                    user = null;
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Usuario No fue agregado", "Error Registro de Usuarios", MessageBoxButtons.OK);
+                                                    user = null;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Ya hay un usuario con esa misma identificación, registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                                txtIdent.Focus();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Ya hay un usuario con ese mismo correo registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                            txtEmail.Focus();
+                                        }
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Usuario No fue agregado", "Error Registro de Usuarios", MessageBoxButtons.OK);
-                                        user = null;
+                                        MessageBox.Show("Ya hay un usuario con ese mismo nombre de usuario registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                        txtUsername.Focus();
                                     }
+                                    
                                 }
                             }
                             catch (Exception)
@@ -287,26 +338,66 @@ namespace Agregados.Forms.Users
                         {
                             if (Validaciones.IsValidEmail2(txtEmail.Text.Trim()))
                             {
-                                user.NombreUsuario = txtUsername.Text.Trim();
-                                //user.Contrasennia = encriptar.EncriptarEnUnSentido(txtPassword.Text.Trim());
-                                user.Correo = txtEmail.Text.Trim();
-                                user.NombreEmpleado = txtEmployer.Text.Trim();
-                                user.Identificacion = txtIdent.Text.Trim();
-                                user.TipoUsuario = Convert.ToInt32(CboxUserType.SelectedValue);
-                                user.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
-                                DB.Entry(user).State = EntityState.Modified;
-                                if (DB.SaveChanges() > 0)
+                                using (FrmLoading frmLoading = new FrmLoading(Wait))
                                 {
-                                    CheckChange();
-                                    limpiarBusqueda();
-                                    MessageBox.Show("Usuario Modificado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK);
-                                    user = null;
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Usuario No fue Modificado, por favor valide", "Error Registro de Usuarios", MessageBoxButtons.OK);
-                                    user = null;
-                                }
+                                    try
+                                    {
+                                        Usuario usuarioTemp = new Usuario();
+
+                                        usuarioTemp = DB.Usuarios.Where((x) => x.NombreUsuario == txtUsername.Text.Trim()).FirstOrDefault();
+                                        if (usuarioTemp == null || usuarioTemp.IdUsuario == user.IdUsuario)
+                                        {
+                                            usuarioTemp = DB.Usuarios.Where((x) => x.Correo == txtEmail.Text.Trim()).FirstOrDefault();
+                                            if (usuarioTemp == null || usuarioTemp.IdUsuario == user.IdUsuario)
+                                            {
+                                                usuarioTemp = DB.Usuarios.Where((x) => x.Identificacion == txtIdent.Text.Trim()).FirstOrDefault();
+                                                if (usuarioTemp == null || usuarioTemp.IdUsuario == user.IdUsuario)
+                                                {
+                                                    user.NombreUsuario = txtUsername.Text.Trim();
+                                                    //user.Contrasennia = encriptar.EncriptarEnUnSentido(txtPassword.Text.Trim());
+                                                    user.Correo = txtEmail.Text.Trim();
+                                                    user.NombreEmpleado = txtEmployer.Text.Trim();
+                                                    user.Identificacion = txtIdent.Text.Trim();
+                                                    user.TipoUsuario = Convert.ToInt32(CboxUserType.SelectedValue);
+                                                    user.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
+                                                    DB.Entry(user).State = EntityState.Modified;
+                                                    if (DB.SaveChanges() > 0)
+                                                    {
+                                                        CheckChange();
+                                                        limpiarBusqueda();
+                                                        MessageBox.Show("Usuario Modificado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK);
+                                                        user = null;
+                                                    }
+                                                    else
+                                                    {
+                                                        MessageBox.Show("Usuario No fue Modificado, por favor valide", "Error Registro de Usuarios", MessageBoxButtons.OK);
+                                                        user = null;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Ya hay un usuario con esa misma identificación, registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                                    txtIdent.Focus();
+                                                }
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Ya hay un usuario con ese mismo correo registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                                txtEmail.Focus();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Ya hay un usuario con ese mismo nombre de usuario registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                            txtUsername.Focus();
+                                        }
+                                    }
+                                    catch (Exception)
+                                    {
+
+                                        throw;
+                                    }
+                                }  
                             }
                             else
                             {
@@ -331,25 +422,65 @@ namespace Agregados.Forms.Users
                             {
                                 if (Validaciones.IsValidPass(txtPassword.Text.Trim()))
                                 {
-                                    user.NombreUsuario = txtUsername.Text.Trim();
-                                    user.Contrasennia = encriptar.EncriptarEnUnSentido(txtPassword.Text.Trim());
-                                    user.Correo = txtEmail.Text.Trim();
-                                    user.NombreEmpleado = txtEmployer.Text.Trim();
-                                    user.Identificacion = txtIdent.Text.Trim();
-                                    user.TipoUsuario = Convert.ToInt32(CboxUserType.SelectedValue);
-                                    user.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
-                                    DB.Entry(user).State = EntityState.Modified;
-                                    if (DB.SaveChanges() > 0)
+                                    using (FrmLoading frmLoading = new FrmLoading(Wait))
                                     {
-                                        CheckChange();
-                                        limpiarBusqueda();
-                                        MessageBox.Show("Usuario Modificado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK);
-                                        user = null;
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Usuario No fue Modificado, por favor valide", "Registro de Usuarios", MessageBoxButtons.OK);
-                                        user = null;
+                                        try
+                                        {
+                                            Usuario usuarioTemp = new Usuario();
+
+                                            usuarioTemp = DB.Usuarios.Where((x) => x.NombreUsuario == txtUsername.Text.Trim()).FirstOrDefault();
+                                            if (usuarioTemp == null || usuarioTemp.IdUsuario == user.IdUsuario)
+                                            {
+                                                usuarioTemp = DB.Usuarios.Where((x) => x.Correo == txtEmail.Text.Trim()).FirstOrDefault();
+                                                if (usuarioTemp == null || usuarioTemp.IdUsuario == user.IdUsuario)
+                                                {
+                                                    usuarioTemp = DB.Usuarios.Where((x) => x.Identificacion == txtIdent.Text.Trim()).FirstOrDefault();
+                                                    if (usuarioTemp == null || usuarioTemp.IdUsuario == user.IdUsuario)
+                                                    {
+                                                        user.NombreUsuario = txtUsername.Text.Trim();
+                                                        user.Contrasennia = encriptar.EncriptarEnUnSentido(txtPassword.Text.Trim());
+                                                        user.Correo = txtEmail.Text.Trim();
+                                                        user.NombreEmpleado = txtEmployer.Text.Trim();
+                                                        user.Identificacion = txtIdent.Text.Trim();
+                                                        user.TipoUsuario = Convert.ToInt32(CboxUserType.SelectedValue);
+                                                        user.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
+                                                        DB.Entry(user).State = EntityState.Modified;
+                                                        if (DB.SaveChanges() > 0)
+                                                        {
+                                                            CheckChange();
+                                                            limpiarBusqueda();
+                                                            MessageBox.Show("Usuario Modificado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK);
+                                                            user = null;
+                                                        }
+                                                        else
+                                                        {
+                                                            MessageBox.Show("Usuario No fue Modificado, por favor valide", "Error Registro de Usuarios", MessageBoxButtons.OK);
+                                                            user = null;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        MessageBox.Show("Ya hay un usuario con esa misma identificación, registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                                        txtIdent.Focus();
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Ya hay un usuario con ese mismo correo registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                                    txtEmail.Focus();
+                                                }
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Ya hay un usuario con ese mismo nombre de usuario registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                                txtUsername.Focus();
+                                            }
+                                        }
+                                        catch (Exception)
+                                        {
+
+                                            throw;
+                                        }
                                     }
                                 } 
                             }
@@ -437,7 +568,10 @@ namespace Agregados.Forms.Users
         //metodo salir
         private void imgExit_Click(object sender, EventArgs e)
         {
+            FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
+            frmPrincipalMDI.Show();
             this.Hide();
+
         } //cierra ventana y vuelve a la Principal
         //limpiar el form, ventana
         private void limpiar()
@@ -449,6 +583,8 @@ namespace Agregados.Forms.Users
             txtIdent.Text = null;
             CboxUserType.SelectedValue = -1;
             CboxStates.SelectedValue = -1;
+
+            ActivarAdd();
            
         }
         private void limpiarBusqueda()
@@ -463,8 +599,7 @@ namespace Agregados.Forms.Users
             limpiarBusqueda();
 
 
-        } //TODO; Limpiar DataGrid
-        //observa la contrasennia que se esta ingresando
+        } 
         private void SeePass_Click(object sender, EventArgs e)
         {
             if (txtPassword.UseSystemPasswordChar == true)
@@ -481,12 +616,47 @@ namespace Agregados.Forms.Users
         {
             if (checkBox1.Checked)
             {
-                dgvUsers.DataSource = DB.Usuarios.Where(x => x.IdEstado == 1).ToList();
+                //dgvUsers.DataSource = DB.Usuarios.Where(x => x.IdEstado == 1).ToList();
+
+                //nueva solicitud linq para validar y disenar mejor la DataGridView al usuario // empezando la informacion con usuarios ACTIVOS y lo unico que se necesita obtener
+                //para agilizar la respuesta y no obtener tantas columnas de datos
+                var result = from us in DB.Usuarios
+                             join es in DB.Estados
+                             on us.IdEstado equals es.IdEstado
+                             where (us.IdEstado == 1)
+                             select new
+                             {
+                                 us.IdUsuario,
+                                 us.NombreUsuario,
+                                 us.NombreEmpleado,
+                                 us.Identificacion,
+                                 us.Correo,
+                                 IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                 TipoUsuario = (us.TipoUsuario == 1) ? "Administrador" : (us.TipoUsuario == 2) ? "Cajero/a" : "Error", //Lambda Expresion para validar tipo de usuario
+                             };
+                dgvUsers.DataSource = result.ToList();
                 limpiar();
             }
             else
             {
-                dgvUsers.DataSource = DB.Usuarios.Where(x => x.IdEstado == 2).ToList();
+                //dgvUsers.DataSource = DB.Usuarios.Where(x => x.IdEstado == 2).ToList();
+                //nueva solicitud linq para validar y disenar mejor la DataGridView al usuario // empezando la informacion con usuarios ACTIVOS y lo unico que se necesita obtener
+                //para agilizar la respuesta y no obtener tantas columnas de datos
+                var result = from us in DB.Usuarios
+                             join es in DB.Estados
+                             on us.IdEstado equals es.IdEstado
+                             where (us.IdEstado == 2)
+                             select new
+                             {
+                                 us.IdUsuario,
+                                 us.NombreUsuario,
+                                 us.NombreEmpleado,
+                                 us.Identificacion,
+                                 us.Correo,
+                                 IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                 TipoUsuario = (us.TipoUsuario == 1) ? "Administrador" : (us.TipoUsuario == 2) ? "Cajero/a" : "Error", //Lambda Expresion para validar tipo de usuario
+                             };
+                dgvUsers.DataSource = result.ToList();
                 limpiar();
             }
         }
@@ -496,7 +666,6 @@ namespace Agregados.Forms.Users
         }
 
   
-
         //Busquedas x ID
         private void txtIdUserSearch_TextChanged(object sender, EventArgs e)
         {
@@ -586,7 +755,12 @@ namespace Agregados.Forms.Users
             e.Handled = Validaciones.CaracteresNumeros(e, true);
         }
 
-
-
+        //cuando cierre el formulario
+        private void FrmUserManage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
+            frmPrincipalMDI.Show();
+            this.Hide();
+        }
     }
 }
