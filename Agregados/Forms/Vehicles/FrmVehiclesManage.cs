@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Agregados.Forms.Loading;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -131,7 +133,7 @@ namespace Agregados.Forms.Vehicles
             CboxMes.DisplayMember = "D";
             CboxMes.SelectedIndex = -1;
 
-        }//Carga Cbox Tipos
+        }//Carga Cbox meses
         //tiempo loading
         void Wait()
         {
@@ -159,7 +161,6 @@ namespace Agregados.Forms.Vehicles
 
 
         //metodo que permite realizar validaciones de los espacion / campos del form no se toma en cuenta
-        // la contrasennia ya que esta se valida en el momento que se desee cambiar o no
         private bool ValidarCamposRequeridos()
         {
             bool R = false;
@@ -245,7 +246,7 @@ namespace Agregados.Forms.Vehicles
             limpiarBusqueda();
         }
 
-        //change de los check boxes
+        //change de los checkBoxes
         private void CheckChange()
         {
             if (ChBuenEstado.Checked == true && ChMalEstado.Checked == false && ChReparacion.Checked == false)
@@ -474,6 +475,8 @@ namespace Agregados.Forms.Vehicles
         {
             if (!string.IsNullOrEmpty(txtIdVehicleSearch.Text.Trim()) && txtIdVehicleSearch.Text.Count() > 0)
             {
+                txtAnnioSearch.Enabled = false;
+                txtPlacaSearch.Enabled = false;
                 int num = Convert.ToInt32(txtIdVehicleSearch.Text.Trim());
                 if (ChBuenEstado.Checked == true && ChMalEstado.Checked == false && ChReparacion.Checked == false)
                 {
@@ -681,31 +684,621 @@ namespace Agregados.Forms.Vehicles
                     }
                 }
             }
+            else if (string.IsNullOrEmpty(txtIdVehicleSearch.Text.Trim()) && txtIdVehicleSearch.Text.Count() == 0)
+            {
+                CheckChange();
+                txtAnnioSearch.Enabled = true;
+                txtPlacaSearch.Enabled = true;
+            }
+        }
+
+        //bsuquedas x Placa
+        private void txtPlacaSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtPlacaSearch.Text.Trim()) && txtPlacaSearch.Text.Count() > 0)
+            {
+                txtAnnioSearch.Enabled = false;
+                txtIdVehicleSearch.Enabled = false;
+
+                string num = txtPlacaSearch.Text.Trim();
+                if (ChBuenEstado.Checked == true && ChMalEstado.Checked == false && ChReparacion.Checked == false)
+                {
+                    var result = from ve in DB.Vehiculos
+                                 join es in DB.Estados
+                                 on ve.IdEstado equals es.IdEstado
+                                 where (ve.IdEstado == 6 && ve.Placa.Contains(num))
+                                 select new
+                                 {
+                                     ve.IdVehiculo,
+                                     ve.Placa,
+                                     ve.Marca,
+                                     ve.Modelo,
+                                     ve.Annio,
+                                     IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                 //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                     MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                     (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                     (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                     (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                 };
+                    dgvVehicles.DataSource = result.ToList();
+                    limpiar();
+                }
+                else
+                {
+                    if (ChBuenEstado.Checked == true && ChMalEstado.Checked == true && ChReparacion.Checked == false)
+                    {
+                        var result = from ve in DB.Vehiculos
+                                     join es in DB.Estados
+                                     on ve.IdEstado equals es.IdEstado
+                                     where ((ve.IdEstado == 6 || ve.IdEstado == 7) && ve.Placa.Contains(num))
+                                     select new
+                                     {
+                                         ve.IdVehiculo,
+                                         ve.Placa,
+                                         ve.Marca,
+                                         ve.Modelo,
+                                         ve.Annio,
+                                         IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                     //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                         MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                         (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                         (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                         (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                     };
+                        dgvVehicles.DataSource = result.ToList();
+                        limpiar();
+                    }
+                    else
+                    {
+                        if (ChBuenEstado.Checked == true && ChMalEstado.Checked == true && ChReparacion.Checked == true)
+                        {
+                            var result = from ve in DB.Vehiculos
+                                         join es in DB.Estados
+                                         on ve.IdEstado equals es.IdEstado
+                                         where ((ve.IdEstado == 6 || ve.IdEstado == 7 || ve.IdEstado == 8) && ve.Placa.Contains(num))
+                                         select new
+                                         {
+                                             ve.IdVehiculo,
+                                             ve.Placa,
+                                             ve.Marca,
+                                             ve.Modelo,
+                                             ve.Annio,
+                                             IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                         //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                             MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                             (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                             (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                             (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                         };
+                            dgvVehicles.DataSource = result.ToList();
+                            limpiar();
+                        }
+                        else
+                        {
+                            if (ChBuenEstado.Checked == false && ChMalEstado.Checked == false && ChReparacion.Checked == false)
+                            {
+                                var result = from ve in DB.Vehiculos
+                                             join es in DB.Estados
+                                             on ve.IdEstado equals es.IdEstado
+                                             where ((ve.IdEstado != 6 && ve.IdEstado != 7 && ve.IdEstado != 8) && ve.Placa.Contains(num))
+                                             select new
+                                             {
+                                                 ve.IdVehiculo,
+                                                 ve.Placa,
+                                                 ve.Marca,
+                                                 ve.Modelo,
+                                                 ve.Annio,
+                                                 IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                             //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                                 MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                                 (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                                 (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                                 (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                             };
+                                dgvVehicles.DataSource = result.ToList();
+                                limpiar();
+                            }
+                            else
+                            {
+                                if (ChBuenEstado.Checked == false && ChMalEstado.Checked == true && ChReparacion.Checked == false)
+                                {
+                                    var result = from ve in DB.Vehiculos
+                                                 join es in DB.Estados
+                                                 on ve.IdEstado equals es.IdEstado
+                                                 where (ve.IdEstado == 7 && ve.Placa.Contains(num))
+                                                 select new
+                                                 {
+                                                     ve.IdVehiculo,
+                                                     ve.Placa,
+                                                     ve.Marca,
+                                                     ve.Modelo,
+                                                     ve.Annio,
+                                                     IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                                 //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                                     MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                                     (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                                     (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                                     (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                 };
+                                    dgvVehicles.DataSource = result.ToList();
+                                    limpiar();
+                                }
+                                else
+                                {
+                                    if (ChBuenEstado.Checked == false && ChMalEstado.Checked == false && ChReparacion.Checked == true)
+                                    {
+                                        var result = from ve in DB.Vehiculos
+                                                     join es in DB.Estados
+                                                     on ve.IdEstado equals es.IdEstado
+                                                     where (ve.IdEstado == 8 && ve.Placa.Contains(num))
+                                                     select new
+                                                     {
+                                                         ve.IdVehiculo,
+                                                         ve.Placa,
+                                                         ve.Marca,
+                                                         ve.Modelo,
+                                                         ve.Annio,
+                                                         IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                                     //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                                         MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                                         (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                                         (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                                         (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                     };
+                                        dgvVehicles.DataSource = result.ToList();
+                                        limpiar();
+                                    }
+                                    else
+                                    {
+                                        if (ChBuenEstado.Checked == false && ChMalEstado.Checked == true && ChReparacion.Checked == true)
+                                        {
+                                            var result = from ve in DB.Vehiculos
+                                                         join es in DB.Estados
+                                                         on ve.IdEstado equals es.IdEstado
+                                                         where ((ve.IdEstado == 8 || ve.IdEstado == 7) && ve.Placa.Contains(num))
+                                                         select new
+                                                         {
+                                                             ve.IdVehiculo,
+                                                             ve.Placa,
+                                                             ve.Marca,
+                                                             ve.Modelo,
+                                                             ve.Annio,
+                                                             IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                                         //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                                             MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                                             (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                                             (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                                             (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                         };
+                                            dgvVehicles.DataSource = result.ToList();
+                                            limpiar();
+                                        }
+                                        else
+                                        {
+                                            if (ChBuenEstado.Checked == true && ChMalEstado.Checked == false && ChReparacion.Checked == true)
+                                            {
+                                                var result = from ve in DB.Vehiculos
+                                                             join es in DB.Estados
+                                                             on ve.IdEstado equals es.IdEstado
+                                                             where ((ve.IdEstado == 8 || ve.IdEstado == 6) && ve.Placa.Contains(num))
+                                                             select new
+                                                             {
+                                                                 ve.IdVehiculo,
+                                                                 ve.Placa,
+                                                                 ve.Marca,
+                                                                 ve.Modelo,
+                                                                 ve.Annio,
+                                                                 IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                                             //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                                                 MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                                                 (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                                                 (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                                                 (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                             };
+                                                dgvVehicles.DataSource = result.ToList();
+                                                limpiar();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             else if (string.IsNullOrEmpty(txtIdVehicleSearch.Text.Trim()))
             {
                 CheckChange();
+                txtAnnioSearch.Enabled = true;
+                txtIdVehicleSearch.Enabled = true;
+            }
+        }
+
+        //busqueda por Annio
+        private void txtAnnioSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtAnnioSearch.Text.Trim()) && txtAnnioSearch.Text.Count() > 0)
+            {
+                txtPlacaSearch.Enabled = false;
+                txtIdVehicleSearch.Enabled = false;
+                int num = Convert.ToInt32(txtAnnioSearch.Text.Trim());
+                if (ChBuenEstado.Checked == true && ChMalEstado.Checked == false && ChReparacion.Checked == false)
+                {
+                    var result = from ve in DB.Vehiculos
+                                 join es in DB.Estados
+                                 on ve.IdEstado equals es.IdEstado
+                                 where (ve.IdEstado == 6 && ve.Annio.Equals(num))
+                                 select new
+                                 {
+                                     ve.IdVehiculo,
+                                     ve.Placa,
+                                     ve.Marca,
+                                     ve.Modelo,
+                                     ve.Annio,
+                                     IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                 //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                     MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                     (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                     (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                     (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                 };
+                    dgvVehicles.DataSource = result.ToList();
+                    limpiar();
+                }
+                else
+                {
+                    if (ChBuenEstado.Checked == true && ChMalEstado.Checked == true && ChReparacion.Checked == false)
+                    {
+                        var result = from ve in DB.Vehiculos
+                                     join es in DB.Estados
+                                     on ve.IdEstado equals es.IdEstado
+                                     where ((ve.IdEstado == 6 || ve.IdEstado == 7) && ve.Annio.Equals(num))
+                                     select new
+                                     {
+                                         ve.IdVehiculo,
+                                         ve.Placa,
+                                         ve.Marca,
+                                         ve.Modelo,
+                                         ve.Annio,
+                                         IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                     //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                         MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                         (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                         (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                         (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                     };
+                        dgvVehicles.DataSource = result.ToList();
+                        limpiar();
+                    }
+                    else
+                    {
+                        if (ChBuenEstado.Checked == true && ChMalEstado.Checked == true && ChReparacion.Checked == true)
+                        {
+                            var result = from ve in DB.Vehiculos
+                                         join es in DB.Estados
+                                         on ve.IdEstado equals es.IdEstado
+                                         where ((ve.IdEstado == 6 || ve.IdEstado == 7 || ve.IdEstado == 8) && ve.Annio.Equals(num))
+                                         select new
+                                         {
+                                             ve.IdVehiculo,
+                                             ve.Placa,
+                                             ve.Marca,
+                                             ve.Modelo,
+                                             ve.Annio,
+                                             IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                         //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                             MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                             (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                             (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                             (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                         };
+                            dgvVehicles.DataSource = result.ToList();
+                            limpiar();
+                        }
+                        else
+                        {
+                            if (ChBuenEstado.Checked == false && ChMalEstado.Checked == false && ChReparacion.Checked == false)
+                            {
+                                var result = from ve in DB.Vehiculos
+                                             join es in DB.Estados
+                                             on ve.IdEstado equals es.IdEstado
+                                             where ((ve.IdEstado != 6 && ve.IdEstado != 7 && ve.IdEstado != 8) && ve.Annio.Equals(num))
+                                             select new
+                                             {
+                                                 ve.IdVehiculo,
+                                                 ve.Placa,
+                                                 ve.Marca,
+                                                 ve.Modelo,
+                                                 ve.Annio,
+                                                 IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                             //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                                 MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                                 (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                                 (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                                 (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                             };
+                                dgvVehicles.DataSource = result.ToList();
+                                limpiar();
+                            }
+                            else
+                            {
+                                if (ChBuenEstado.Checked == false && ChMalEstado.Checked == true && ChReparacion.Checked == false)
+                                {
+                                    var result = from ve in DB.Vehiculos
+                                                 join es in DB.Estados
+                                                 on ve.IdEstado equals es.IdEstado
+                                                 where (ve.IdEstado == 7 && ve.Annio.Equals(num))
+                                                 select new
+                                                 {
+                                                     ve.IdVehiculo,
+                                                     ve.Placa,
+                                                     ve.Marca,
+                                                     ve.Modelo,
+                                                     ve.Annio,
+                                                     IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                                 //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                                     MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                                     (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                                     (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                                     (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                 };
+                                    dgvVehicles.DataSource = result.ToList();
+                                    limpiar();
+                                }
+                                else
+                                {
+                                    if (ChBuenEstado.Checked == false && ChMalEstado.Checked == false && ChReparacion.Checked == true)
+                                    {
+                                        var result = from ve in DB.Vehiculos
+                                                     join es in DB.Estados
+                                                     on ve.IdEstado equals es.IdEstado
+                                                     where (ve.IdEstado == 8 && ve.Annio.Equals(num))
+                                                     select new
+                                                     {
+                                                         ve.IdVehiculo,
+                                                         ve.Placa,
+                                                         ve.Marca,
+                                                         ve.Modelo,
+                                                         ve.Annio,
+                                                         IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                                     //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                                         MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                                         (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                                         (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                                         (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                     };
+                                        dgvVehicles.DataSource = result.ToList();
+                                        limpiar();
+                                    }
+                                    else
+                                    {
+                                        if (ChBuenEstado.Checked == false && ChMalEstado.Checked == true && ChReparacion.Checked == true)
+                                        {
+                                            var result = from ve in DB.Vehiculos
+                                                         join es in DB.Estados
+                                                         on ve.IdEstado equals es.IdEstado
+                                                         where ((ve.IdEstado == 8 || ve.IdEstado == 7) && ve.Annio.Equals(num))
+                                                         select new
+                                                         {
+                                                             ve.IdVehiculo,
+                                                             ve.Placa,
+                                                             ve.Marca,
+                                                             ve.Modelo,
+                                                             ve.Annio,
+                                                             IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                                         //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                                             MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                                             (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                                             (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                                             (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                         };
+                                            dgvVehicles.DataSource = result.ToList();
+                                            limpiar();
+                                        }
+                                        else
+                                        {
+                                            if (ChBuenEstado.Checked == true && ChMalEstado.Checked == false && ChReparacion.Checked == true)
+                                            {
+                                                var result = from ve in DB.Vehiculos
+                                                             join es in DB.Estados
+                                                             on ve.IdEstado equals es.IdEstado
+                                                             where ((ve.IdEstado == 8 || ve.IdEstado == 6) && ve.Annio.Equals(num))
+                                                             select new
+                                                             {
+                                                                 ve.IdVehiculo,
+                                                                 ve.Placa,
+                                                                 ve.Marca,
+                                                                 ve.Modelo,
+                                                                 ve.Annio,
+                                                                 IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
+                                                                                             //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
+                                                                 MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
+                                                                 (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
+                                                                 (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
+                                                                 (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                             };
+                                                dgvVehicles.DataSource = result.ToList();
+                                                limpiar();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (string.IsNullOrEmpty(txtIdVehicleSearch.Text.Trim()))
+            {
+                CheckChange();
+                txtPlacaSearch.Enabled = true;
+                txtIdVehicleSearch.Enabled = true;
+            }
+        }
+
+        
+        
+        //ADD
+        private void imgAdd_Click(object sender, EventArgs e)
+        {
+            if (ValidarCamposRequeridos())
+            {
+                DialogResult respuesta = MessageBox.Show("¿Deseas agregar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
+                    "Registro de Vehículos", MessageBoxButtons.YesNo);
+                if (respuesta == DialogResult.Yes)
+                {
+                    using (FrmLoading frmLoading = new FrmLoading(Wait))
+                    {
+                        try
+                        {
+                            vehiculo = new Vehiculo
+                            {
+                                Placa = txtPlaca.Text.Trim(),
+                                Marca = txtMarca.Text.Trim(),
+                                Modelo = txtModelo.Text.Trim(),
+                                Annio = Convert.ToInt32(txtAnnio.Text.Trim()),
+                                MesRevision = Convert.ToInt32(CboxMes.SelectedValue),
+                                IdEstado = Convert.ToInt32(CboxStates.SelectedValue)
+                            };
+
+                            DB.Vehiculos.Add(vehiculo);
+
+                            if (DB.SaveChanges() > 0)
+                            {
+                                CheckChange();
+                                limpiar();
+                                limpiarBusqueda();
+                                MessageBox.Show("Vehículo agregado correctamente!", "Registro de Vehículos", MessageBoxButtons.OK);
+                                vehiculo = null;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Vehículo No fue agregado", "Error Registro de Vehículos", MessageBoxButtons.OK);
+                                vehiculo = null;
+                            }
+
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+                    }
+                }
+            }
+        }
+
+        //UPDATE
+        private void imgUpdate_Click(object sender, EventArgs e)
+        {
+            if (ValidarCamposRequeridos())
+            {
+                DialogResult respuesta = MessageBox.Show("¿Deseas modificar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
+                    "Registro de Vehículos", MessageBoxButtons.YesNo);
+                if (respuesta == DialogResult.Yes)
+                {
+                    using (FrmLoading frmLoading = new FrmLoading(Wait))
+                    {
+                        try
+                        {
+
+                            vehiculo.Placa = txtPlaca.Text.Trim();
+                            vehiculo.Marca = txtMarca.Text.Trim();
+                            vehiculo.Modelo = txtModelo.Text.Trim();
+                            vehiculo.Annio = Convert.ToInt32(txtAnnio.Text.Trim());
+                            vehiculo.MesRevision = Convert.ToInt32(CboxMes.SelectedValue);
+                            vehiculo.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
+
+                            DB.Entry(vehiculo).State = EntityState.Modified;
+
+                            if (DB.SaveChanges() > 0)
+                            {
+                                CheckChange();
+                                limpiar();
+                                limpiarBusqueda();
+                                MessageBox.Show("Vehículo modificado correctamente!", "Registro de Vehículos", MessageBoxButtons.OK);
+                                vehiculo = null;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Vehículo No fue modificado", "Error Registro de Vehículos", MessageBoxButtons.OK);
+                                vehiculo = null;
+                            }
+
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+                    }
+                }
+            }
+        }
+
+        //DELETE
+        private void imgDelete_Click(object sender, EventArgs e)
+        {
+            if (ValidarCamposRequeridos())
+            {
+                DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?" + 
+                    Environment.NewLine + "Si lo eliminas, no prodras recuperar nuevamente sus datos...",
+                    "Registro de Vehículos", MessageBoxButtons.YesNo);
+                if (respuesta == DialogResult.Yes)
+                {
+                    using (FrmLoading frmLoading = new FrmLoading(Wait))
+                    {
+                        try
+                        {
+                            if (vehiculo == null)
+                            {
+                                MessageBox.Show("Vehículo No existe, o no ha sido seleccionado de la lista", "Error Registro de Vehículos", MessageBoxButtons.OK);
+                            }
+                            else
+                            {
+                                DB.Vehiculos.Remove(vehiculo); // metodo para eliminar el vehiculo, dato de la BD
+                                if (DB.SaveChanges() > 0)
+                                {
+                                    CheckChange();
+                                    limpiarBusqueda();
+                                    MessageBox.Show("Vehículo Eliminado Correctamente!", "Registro de Vehículos", MessageBoxButtons.OK);
+                                    vehiculo = null;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Vehículo No fue Eliminado, por favor valide", "Error Registro de Vehículos", MessageBoxButtons.OK);
+                                    vehiculo = null;
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+                    }
+                }
             }
         }
 
 
 
-        //Todo: bsuquedas x Placa
+        //Validaciones de campos
+        private void txtIdVehicleSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresNumeros(e, true);
+        }
 
-        //Todo: busqueda por Annio
+        private void txtPlacaSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e, true, false);
+        }
 
-
-        //ADD
-
-        //UPDATE
-
-        //DELETE
-    
-
-
-
-
-
-
+        private void txtAnnioSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresNumeros(e, true);
+        }
 
         //cuando cierre el formulario o salir 
         private void imgExit_Click(object sender, EventArgs e)
@@ -720,6 +1313,11 @@ namespace Agregados.Forms.Vehicles
             FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
             frmPrincipalMDI.Show();
             this.Hide();
+        }
+
+        private void txtAnnio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresNumeros(e, true);
         }
     }
 }

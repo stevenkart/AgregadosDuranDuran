@@ -104,6 +104,12 @@
     <Compile Include="Factura.cs">
       <DependentUpon>AgregadosDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Customers\FrmCustomersManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customers\FrmCustomersManage.Designer.cs">
+      <DependentUpon>FrmCustomersManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmPrincipalMDI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     <Compile Include="Vehiculo.cs">
       <DependentUpon>AgregadosDBModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\Customers\FrmCustomersManage.resx">
+      <DependentUpon>FrmCustomersManage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPrincipalMDI.resx">
       <DependentUpon>FrmPrincipalMDI.cs</DependentUpon>
     </EmbeddedResource>
@@ -251,6 +260,9 @@
     <Content Include="Images\IconsMenuMant\addCar.png" />
     <Content Include="Images\IconsMenuMant\addUser.png" />
     <Content Include="Images\IconsMenuMant\clean.png" />
+    <Content Include="Images\IconsMenuMant\Customers\addCustomer.png" />
+    <Content Include="Images\IconsMenuMant\Customers\deleteCustomer.png" />
+    <Content Include="Images\IconsMenuMant\Customers\updateCustomer.png" />
     <Content Include="Images\IconsMenuMant\delete.png" />
     <Content Include="Images\IconsMenuMant\deleteUser.png" />
     <Content Include="Images\IconsMenuMant\exit.png" />

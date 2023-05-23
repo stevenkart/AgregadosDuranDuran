@@ -1,6 +1,6 @@
-﻿namespace Agregados.Forms.Vehicles
+﻿namespace Agregados.Forms.Customers
 {
-    partial class FrmVehiclesManage
+    partial class FrmCustomersManage
     {
         /// <summary>
         /// Required designer variable.
@@ -29,14 +29,12 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVehiclesManage));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCustomersManage));
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
-            this.ChBuenEstado = new System.Windows.Forms.CheckBox();
-            this.ChMalEstado = new System.Windows.Forms.CheckBox();
-            this.ChReparacion = new System.Windows.Forms.CheckBox();
+            this.ChActivos = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -44,36 +42,45 @@
             this.label12 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtIdVehicleSearch = new System.Windows.Forms.TextBox();
-            this.txtPlacaSearch = new System.Windows.Forms.TextBox();
-            this.txtAnnioSearch = new System.Windows.Forms.TextBox();
+            this.txtIdCustomerSearch = new System.Windows.Forms.TextBox();
+            this.txtIdentSearch = new System.Windows.Forms.TextBox();
+            this.txtNameSearch = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvVehicles = new System.Windows.Forms.DataGridView();
-            this.CIdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPlaca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CAnnio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CMesRevision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvClientes = new System.Windows.Forms.DataGridView();
+            this.CIdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIdentificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CTipoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CTelefono2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CDetalles = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtPlaca = new System.Windows.Forms.TextBox();
+            this.CboxCustomerType = new System.Windows.Forms.ComboBox();
+            this.txtDetails = new System.Windows.Forms.RichTextBox();
+            this.txtAddress = new System.Windows.Forms.RichTextBox();
+            this.txtIdent = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtAnnio = new System.Windows.Forms.TextBox();
-            this.txtModelo = new System.Windows.Forms.TextBox();
+            this.txtMainPhone = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtSecondPhone = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.CboxStates = new System.Windows.Forms.ComboBox();
-            this.CboxMes = new System.Windows.Forms.ComboBox();
-            this.txtMarca = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.imgAdd = new System.Windows.Forms.PictureBox();
             this.imgUpdate = new System.Windows.Forms.PictureBox();
@@ -90,7 +97,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVehicles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -108,7 +115,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1276, 42);
-            this.panel1.TabIndex = 21;
+            this.panel1.TabIndex = 22;
             // 
             // tableLayoutPanel1
             // 
@@ -125,16 +132,12 @@
             // 
             // tableLayoutPanel8
             // 
-            this.tableLayoutPanel8.ColumnCount = 5;
+            this.tableLayoutPanel8.ColumnCount = 3;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.88469F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 134F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.ChBuenEstado, 2, 0);
-            this.tableLayoutPanel8.Controls.Add(this.ChMalEstado, 3, 0);
-            this.tableLayoutPanel8.Controls.Add(this.ChReparacion, 4, 0);
+            this.tableLayoutPanel8.Controls.Add(this.ChActivos, 2, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -150,54 +153,26 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(3, 6);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(276, 24);
+            this.label8.Size = new System.Drawing.Size(258, 24);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Mantenimiento de Vehículos";
+            this.label8.Text = "Mantenimiento de Clientes";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ChBuenEstado
+            // ChActivos
             // 
-            this.ChBuenEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChBuenEstado.AutoSize = true;
-            this.ChBuenEstado.Checked = true;
-            this.ChBuenEstado.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChBuenEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChBuenEstado.Location = new System.Drawing.Point(862, 7);
-            this.ChBuenEstado.Name = "ChBuenEstado";
-            this.ChBuenEstado.Size = new System.Drawing.Size(141, 22);
-            this.ChBuenEstado.TabIndex = 0;
-            this.ChBuenEstado.Text = "Buen Estado";
-            this.ChBuenEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ChBuenEstado.UseVisualStyleBackColor = true;
-            this.ChBuenEstado.CheckedChanged += new System.EventHandler(this.ChBuenEstado_CheckedChanged);
-            // 
-            // ChMalEstado
-            // 
-            this.ChMalEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChMalEstado.AutoSize = true;
-            this.ChMalEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChMalEstado.Location = new System.Drawing.Point(1009, 7);
-            this.ChMalEstado.Name = "ChMalEstado";
-            this.ChMalEstado.Size = new System.Drawing.Size(123, 22);
-            this.ChMalEstado.TabIndex = 1;
-            this.ChMalEstado.Text = "Mal Estado";
-            this.ChMalEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ChMalEstado.UseVisualStyleBackColor = true;
-            this.ChMalEstado.CheckedChanged += new System.EventHandler(this.ChMalEstado_CheckedChanged);
-            // 
-            // ChReparacion
-            // 
-            this.ChReparacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChReparacion.AutoSize = true;
-            this.ChReparacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChReparacion.Location = new System.Drawing.Point(1138, 7);
-            this.ChReparacion.Name = "ChReparacion";
-            this.ChReparacion.Size = new System.Drawing.Size(129, 22);
-            this.ChReparacion.TabIndex = 2;
-            this.ChReparacion.Text = "Reparación";
-            this.ChReparacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ChReparacion.UseVisualStyleBackColor = true;
-            this.ChReparacion.CheckedChanged += new System.EventHandler(this.ChReparacion_CheckedChanged);
+            this.ChActivos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChActivos.AutoSize = true;
+            this.ChActivos.Checked = true;
+            this.ChActivos.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ChActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChActivos.Location = new System.Drawing.Point(1052, 7);
+            this.ChActivos.Name = "ChActivos";
+            this.ChActivos.Size = new System.Drawing.Size(215, 22);
+            this.ChActivos.TabIndex = 0;
+            this.ChActivos.Text = "Clientes Activos";
+            this.ChActivos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ChActivos.UseVisualStyleBackColor = true;
+            this.ChActivos.CheckedChanged += new System.EventHandler(this.ChActivos_CheckedChanged);
             // 
             // panel2
             // 
@@ -207,7 +182,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 42);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1276, 72);
-            this.panel2.TabIndex = 22;
+            this.panel2.TabIndex = 23;
             // 
             // panel5
             // 
@@ -254,8 +229,8 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(489, 25);
             this.label12.TabIndex = 0;
-            this.label12.Text = "Datos del Vehículo";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label12.Text = "Datos del Cliente";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel4
             // 
@@ -272,9 +247,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.4053F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.31818F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.4127F));
-            this.tableLayoutPanel2.Controls.Add(this.txtIdVehicleSearch, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.txtPlacaSearch, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.txtAnnioSearch, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtIdCustomerSearch, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtIdentSearch, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtNameSearch, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label10, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label11, 2, 0);
@@ -287,36 +262,35 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(627, 72);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // txtIdVehicleSearch
+            // txtIdCustomerSearch
             // 
-            this.txtIdVehicleSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtIdVehicleSearch.Location = new System.Drawing.Point(3, 44);
-            this.txtIdVehicleSearch.MaxLength = 255;
-            this.txtIdVehicleSearch.Name = "txtIdVehicleSearch";
-            this.txtIdVehicleSearch.Size = new System.Drawing.Size(149, 20);
-            this.txtIdVehicleSearch.TabIndex = 0;
-            this.txtIdVehicleSearch.TextChanged += new System.EventHandler(this.txtIdVehicleSearch_TextChanged);
-            this.txtIdVehicleSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdVehicleSearch_KeyPress);
+            this.txtIdCustomerSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtIdCustomerSearch.Location = new System.Drawing.Point(3, 44);
+            this.txtIdCustomerSearch.MaxLength = 255;
+            this.txtIdCustomerSearch.Name = "txtIdCustomerSearch";
+            this.txtIdCustomerSearch.Size = new System.Drawing.Size(149, 20);
+            this.txtIdCustomerSearch.TabIndex = 0;
+            this.txtIdCustomerSearch.TextChanged += new System.EventHandler(this.txtIdCustomerSearch_TextChanged);
+            this.txtIdCustomerSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdCustomerSearch_KeyPress);
             // 
-            // txtPlacaSearch
+            // txtIdentSearch
             // 
-            this.txtPlacaSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPlacaSearch.Location = new System.Drawing.Point(158, 44);
-            this.txtPlacaSearch.Name = "txtPlacaSearch";
-            this.txtPlacaSearch.Size = new System.Drawing.Size(235, 20);
-            this.txtPlacaSearch.TabIndex = 1;
-            this.txtPlacaSearch.TextChanged += new System.EventHandler(this.txtPlacaSearch_TextChanged);
-            this.txtPlacaSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlacaSearch_KeyPress);
+            this.txtIdentSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtIdentSearch.Location = new System.Drawing.Point(158, 44);
+            this.txtIdentSearch.Name = "txtIdentSearch";
+            this.txtIdentSearch.Size = new System.Drawing.Size(235, 20);
+            this.txtIdentSearch.TabIndex = 1;
+            this.txtIdentSearch.TextChanged += new System.EventHandler(this.txtIdentSearch_TextChanged);
+            this.txtIdentSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdentSearch_KeyPress);
             // 
-            // txtAnnioSearch
+            // txtNameSearch
             // 
-            this.txtAnnioSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAnnioSearch.Location = new System.Drawing.Point(399, 44);
-            this.txtAnnioSearch.Name = "txtAnnioSearch";
-            this.txtAnnioSearch.Size = new System.Drawing.Size(225, 20);
-            this.txtAnnioSearch.TabIndex = 2;
-            this.txtAnnioSearch.TextChanged += new System.EventHandler(this.txtAnnioSearch_TextChanged);
-            this.txtAnnioSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAnnioSearch_KeyPress);
+            this.txtNameSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNameSearch.Location = new System.Drawing.Point(399, 44);
+            this.txtNameSearch.Name = "txtNameSearch";
+            this.txtNameSearch.Size = new System.Drawing.Size(225, 20);
+            this.txtNameSearch.TabIndex = 2;
+            this.txtNameSearch.TextChanged += new System.EventHandler(this.txtNameSearch_TextChanged);
             // 
             // label9
             // 
@@ -327,7 +301,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(149, 16);
             this.label9.TabIndex = 0;
-            this.label9.Text = "Buscar ID Vehículo";
+            this.label9.Text = "Buscar # Cliente";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label10
@@ -339,7 +313,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(235, 16);
             this.label10.TabIndex = 2;
-            this.label10.Text = "Buscar por Placa";
+            this.label10.Text = "Buscar por Identificación";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label11
@@ -351,7 +325,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(225, 16);
             this.label11.TabIndex = 4;
-            this.label11.Text = "Buscar por Año";
+            this.label11.Text = "Buscar por Nombre";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel3
@@ -361,14 +335,14 @@
             this.panel3.Location = new System.Drawing.Point(0, 114);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1276, 519);
-            this.panel3.TabIndex = 23;
+            this.panel3.TabIndex = 24;
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0774F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.9226F));
-            this.tableLayoutPanel3.Controls.Add(this.dgvVehicles, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dgvClientes, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
@@ -378,12 +352,12 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1276, 519);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // dgvVehicles
+            // dgvClientes
             // 
-            this.dgvVehicles.AllowUserToAddRows = false;
-            this.dgvVehicles.AllowUserToDeleteRows = false;
-            this.dgvVehicles.AllowUserToOrderColumns = true;
-            this.dgvVehicles.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgvClientes.AllowUserToAddRows = false;
+            this.dgvClientes.AllowUserToDeleteRows = false;
+            this.dgvClientes.AllowUserToOrderColumns = true;
+            this.dgvClientes.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -391,91 +365,123 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvVehicles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvVehicles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVehicles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CIdVehiculo,
-            this.CPlaca,
-            this.CMarca,
-            this.CModelo,
-            this.CAnnio,
-            this.CMesRevision,
+            this.dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CIdCliente,
+            this.CIdentificacion,
+            this.CNombre,
+            this.CTipoCliente,
+            this.CTelefono,
+            this.CTelefono2,
+            this.CCorreo,
+            this.CDireccion,
+            this.CDetalles,
             this.CIdEstado});
-            this.dgvVehicles.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dgvVehicles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvVehicles.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvVehicles.Location = new System.Drawing.Point(3, 3);
-            this.dgvVehicles.MultiSelect = false;
-            this.dgvVehicles.Name = "dgvVehicles";
-            this.dgvVehicles.ReadOnly = true;
-            this.dgvVehicles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVehicles.Size = new System.Drawing.Size(632, 513);
-            this.dgvVehicles.TabIndex = 0;
-            this.dgvVehicles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVehicles_CellClick);
+            this.dgvClientes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dgvClientes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvClientes.GridColor = System.Drawing.SystemColors.Control;
+            this.dgvClientes.Location = new System.Drawing.Point(3, 3);
+            this.dgvClientes.MultiSelect = false;
+            this.dgvClientes.Name = "dgvClientes";
+            this.dgvClientes.ReadOnly = true;
+            this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvClientes.Size = new System.Drawing.Size(632, 513);
+            this.dgvClientes.TabIndex = 0;
+            this.dgvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellClick);
             // 
-            // CIdVehiculo
+            // CIdCliente
             // 
-            this.CIdVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CIdVehiculo.DataPropertyName = "IdVehiculo";
-            this.CIdVehiculo.FillWeight = 50F;
-            this.CIdVehiculo.Frozen = true;
-            this.CIdVehiculo.HeaderText = "ID";
-            this.CIdVehiculo.MinimumWidth = 40;
-            this.CIdVehiculo.Name = "CIdVehiculo";
-            this.CIdVehiculo.ReadOnly = true;
-            this.CIdVehiculo.Width = 45;
+            this.CIdCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CIdCliente.DataPropertyName = "IdCliente";
+            this.CIdCliente.FillWeight = 50F;
+            this.CIdCliente.Frozen = true;
+            this.CIdCliente.HeaderText = "ID";
+            this.CIdCliente.MinimumWidth = 40;
+            this.CIdCliente.Name = "CIdCliente";
+            this.CIdCliente.ReadOnly = true;
+            this.CIdCliente.Width = 45;
             // 
-            // CPlaca
+            // CIdentificacion
             // 
-            this.CPlaca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.CPlaca.DataPropertyName = "Placa";
-            this.CPlaca.FillWeight = 150F;
-            this.CPlaca.Frozen = true;
-            this.CPlaca.HeaderText = "Placa";
-            this.CPlaca.MinimumWidth = 110;
-            this.CPlaca.Name = "CPlaca";
-            this.CPlaca.ReadOnly = true;
-            this.CPlaca.Width = 110;
+            this.CIdentificacion.DataPropertyName = "Identificacion";
+            this.CIdentificacion.FillWeight = 150F;
+            this.CIdentificacion.Frozen = true;
+            this.CIdentificacion.HeaderText = "Identificación";
+            this.CIdentificacion.MinimumWidth = 110;
+            this.CIdentificacion.Name = "CIdentificacion";
+            this.CIdentificacion.ReadOnly = true;
+            this.CIdentificacion.Width = 110;
             // 
-            // CMarca
+            // CNombre
             // 
-            this.CMarca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CMarca.DataPropertyName = "Marca";
-            this.CMarca.FillWeight = 180F;
-            this.CMarca.HeaderText = "Marca";
-            this.CMarca.MinimumWidth = 150;
-            this.CMarca.Name = "CMarca";
-            this.CMarca.ReadOnly = true;
+            this.CNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CNombre.DataPropertyName = "Nombre";
+            this.CNombre.FillWeight = 180F;
+            this.CNombre.HeaderText = "Nombre";
+            this.CNombre.MinimumWidth = 150;
+            this.CNombre.Name = "CNombre";
+            this.CNombre.ReadOnly = true;
             // 
-            // CModelo
+            // CTipoCliente
             // 
-            this.CModelo.DataPropertyName = "Modelo";
-            this.CModelo.FillWeight = 140F;
-            this.CModelo.HeaderText = "Modelo";
-            this.CModelo.MinimumWidth = 100;
-            this.CModelo.Name = "CModelo";
-            this.CModelo.ReadOnly = true;
-            this.CModelo.Width = 110;
+            this.CTipoCliente.DataPropertyName = "TipoCliente";
+            this.CTipoCliente.FillWeight = 140F;
+            this.CTipoCliente.HeaderText = "Tipo Cliente";
+            this.CTipoCliente.MinimumWidth = 100;
+            this.CTipoCliente.Name = "CTipoCliente";
+            this.CTipoCliente.ReadOnly = true;
+            this.CTipoCliente.Width = 110;
             // 
-            // CAnnio
+            // CTelefono
             // 
-            this.CAnnio.DataPropertyName = "Annio";
-            this.CAnnio.FillWeight = 170F;
-            this.CAnnio.HeaderText = "Año";
-            this.CAnnio.MinimumWidth = 140;
-            this.CAnnio.Name = "CAnnio";
-            this.CAnnio.ReadOnly = true;
-            this.CAnnio.Width = 140;
+            this.CTelefono.DataPropertyName = "Telefono";
+            this.CTelefono.FillWeight = 170F;
+            this.CTelefono.HeaderText = "Teléfono Principal";
+            this.CTelefono.MinimumWidth = 140;
+            this.CTelefono.Name = "CTelefono";
+            this.CTelefono.ReadOnly = true;
+            this.CTelefono.Width = 140;
             // 
-            // CMesRevision
+            // CTelefono2
             // 
-            this.CMesRevision.DataPropertyName = "MesRevision";
-            this.CMesRevision.FillWeight = 170F;
-            this.CMesRevision.HeaderText = "Mes Revisión Técnica";
-            this.CMesRevision.MinimumWidth = 160;
-            this.CMesRevision.Name = "CMesRevision";
-            this.CMesRevision.ReadOnly = true;
-            this.CMesRevision.Width = 160;
+            this.CTelefono2.DataPropertyName = "Telefono2";
+            this.CTelefono2.FillWeight = 170F;
+            this.CTelefono2.HeaderText = "Teléfono Secundario";
+            this.CTelefono2.MinimumWidth = 160;
+            this.CTelefono2.Name = "CTelefono2";
+            this.CTelefono2.ReadOnly = true;
+            this.CTelefono2.Width = 160;
+            // 
+            // CCorreo
+            // 
+            this.CCorreo.DataPropertyName = "Correo";
+            this.CCorreo.FillWeight = 170F;
+            this.CCorreo.HeaderText = "Correo";
+            this.CCorreo.MinimumWidth = 100;
+            this.CCorreo.Name = "CCorreo";
+            this.CCorreo.ReadOnly = true;
+            this.CCorreo.Width = 120;
+            // 
+            // CDireccion
+            // 
+            this.CDireccion.DataPropertyName = "Direccion";
+            this.CDireccion.FillWeight = 200F;
+            this.CDireccion.HeaderText = "Dirección";
+            this.CDireccion.MinimumWidth = 100;
+            this.CDireccion.Name = "CDireccion";
+            this.CDireccion.ReadOnly = true;
+            this.CDireccion.Width = 150;
+            // 
+            // CDetalles
+            // 
+            this.CDetalles.DataPropertyName = "Detalles";
+            this.CDetalles.FillWeight = 200F;
+            this.CDetalles.HeaderText = "Detalles";
+            this.CDetalles.MinimumWidth = 100;
+            this.CDetalles.Name = "CDetalles";
+            this.CDetalles.ReadOnly = true;
+            this.CDetalles.Width = 150;
             // 
             // CIdEstado
             // 
@@ -505,54 +511,103 @@
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.42324F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.57677F));
-            this.tableLayoutPanel6.Controls.Add(this.txtPlaca, 1, 0);
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.90224F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.09776F));
+            this.tableLayoutPanel6.Controls.Add(this.CboxCustomerType, 1, 2);
+            this.tableLayoutPanel6.Controls.Add(this.txtDetails, 1, 7);
+            this.tableLayoutPanel6.Controls.Add(this.txtAddress, 1, 6);
+            this.tableLayoutPanel6.Controls.Add(this.txtIdent, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.label4, 0, 3);
             this.tableLayoutPanel6.Controls.Add(this.label5, 0, 4);
-            this.tableLayoutPanel6.Controls.Add(this.txtAnnio, 1, 3);
-            this.tableLayoutPanel6.Controls.Add(this.txtModelo, 1, 2);
+            this.tableLayoutPanel6.Controls.Add(this.txtMainPhone, 1, 3);
             this.tableLayoutPanel6.Controls.Add(this.label7, 0, 5);
-            this.tableLayoutPanel6.Controls.Add(this.CboxStates, 1, 5);
-            this.tableLayoutPanel6.Controls.Add(this.CboxMes, 1, 4);
-            this.tableLayoutPanel6.Controls.Add(this.txtMarca, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.txtName, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.label14, 0, 6);
+            this.tableLayoutPanel6.Controls.Add(this.label6, 0, 7);
+            this.tableLayoutPanel6.Controls.Add(this.txtSecondPhone, 1, 4);
+            this.tableLayoutPanel6.Controls.Add(this.txtEmail, 1, 5);
+            this.tableLayoutPanel6.Controls.Add(this.CboxStates, 1, 8);
+            this.tableLayoutPanel6.Controls.Add(this.label15, 0, 8);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 7;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel6.RowCount = 9;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(491, 507);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
-            // txtPlaca
+            // CboxCustomerType
             // 
-            this.txtPlaca.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPlaca.Location = new System.Drawing.Point(142, 25);
-            this.txtPlaca.MaxLength = 255;
-            this.txtPlaca.Name = "txtPlaca";
-            this.txtPlaca.Size = new System.Drawing.Size(346, 22);
-            this.txtPlaca.TabIndex = 0;
+            this.CboxCustomerType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CboxCustomerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboxCustomerType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboxCustomerType.FormattingEnabled = true;
+            this.CboxCustomerType.Location = new System.Drawing.Point(140, 128);
+            this.CboxCustomerType.Name = "CboxCustomerType";
+            this.CboxCustomerType.Size = new System.Drawing.Size(348, 24);
+            this.CboxCustomerType.TabIndex = 2;
+            // 
+            // txtDetails
+            // 
+            this.txtDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDetails.Location = new System.Drawing.Point(140, 395);
+            this.txtDetails.MaxLength = 1000;
+            this.txtDetails.Name = "txtDetails";
+            this.txtDetails.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtDetails.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.txtDetails.Size = new System.Drawing.Size(348, 50);
+            this.txtDetails.TabIndex = 7;
+            this.txtDetails.Text = "";
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddress.Location = new System.Drawing.Point(140, 339);
+            this.txtAddress.MaxLength = 1000;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtAddress.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.txtAddress.Size = new System.Drawing.Size(348, 50);
+            this.txtAddress.TabIndex = 6;
+            this.txtAddress.Text = "";
+            // 
+            // txtIdent
+            // 
+            this.txtIdent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtIdent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdent.Location = new System.Drawing.Point(140, 17);
+            this.txtIdent.MaxLength = 255;
+            this.txtIdent.Name = "txtIdent";
+            this.txtIdent.Size = new System.Drawing.Size(348, 22);
+            this.txtIdent.TabIndex = 0;
+            this.txtIdent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdent_KeyPress);
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 28);
+            this.label1.Location = new System.Drawing.Point(3, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 16);
+            this.label1.Size = new System.Drawing.Size(131, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Placa:";
+            this.label1.Text = "Identificación:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -560,11 +615,11 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 100);
+            this.label2.Location = new System.Drawing.Point(3, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 16);
+            this.label2.Size = new System.Drawing.Size(131, 16);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Marca:";
+            this.label2.Text = "Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3
@@ -572,11 +627,11 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 172);
+            this.label3.Location = new System.Drawing.Point(3, 132);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(133, 16);
+            this.label3.Size = new System.Drawing.Size(131, 16);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Modelo:";
+            this.label3.Text = "Tipo Cliente:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label4
@@ -584,11 +639,11 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 244);
+            this.label4.Location = new System.Drawing.Point(3, 180);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(133, 16);
+            this.label4.Size = new System.Drawing.Size(131, 32);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Año:";
+            this.label4.Text = "Teléfono Principal:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
@@ -596,45 +651,91 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 316);
+            this.label5.Location = new System.Drawing.Point(3, 236);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(133, 16);
+            this.label5.Size = new System.Drawing.Size(131, 32);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Mes Revisión:";
+            this.label5.Text = "Teléfono Secundario:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtAnnio
+            // txtMainPhone
             // 
-            this.txtAnnio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAnnio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAnnio.Location = new System.Drawing.Point(142, 241);
-            this.txtAnnio.MaxLength = 4;
-            this.txtAnnio.Name = "txtAnnio";
-            this.txtAnnio.Size = new System.Drawing.Size(346, 22);
-            this.txtAnnio.TabIndex = 2;
-            this.txtAnnio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAnnio_KeyPress);
-            // 
-            // txtModelo
-            // 
-            this.txtModelo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtModelo.Location = new System.Drawing.Point(142, 169);
-            this.txtModelo.MaxLength = 255;
-            this.txtModelo.Name = "txtModelo";
-            this.txtModelo.Size = new System.Drawing.Size(346, 22);
-            this.txtModelo.TabIndex = 1;
+            this.txtMainPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMainPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMainPhone.Location = new System.Drawing.Point(140, 185);
+            this.txtMainPhone.MaxLength = 255;
+            this.txtMainPhone.Name = "txtMainPhone";
+            this.txtMainPhone.Size = new System.Drawing.Size(348, 22);
+            this.txtMainPhone.TabIndex = 3;
+            this.txtMainPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMainPhone_KeyPress);
             // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 388);
+            this.label7.Location = new System.Drawing.Point(3, 300);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(133, 16);
+            this.label7.Size = new System.Drawing.Size(131, 16);
             this.label7.TabIndex = 12;
-            this.label7.Text = "Estado:";
+            this.label7.Text = "Correo:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtName
+            // 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.Location = new System.Drawing.Point(140, 73);
+            this.txtName.MaxLength = 255;
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(348, 22);
+            this.txtName.TabIndex = 1;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(3, 356);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(131, 16);
+            this.label14.TabIndex = 14;
+            this.label14.Text = "Dirección:";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(3, 412);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(131, 16);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Detalles:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtSecondPhone
+            // 
+            this.txtSecondPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSecondPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSecondPhone.Location = new System.Drawing.Point(140, 241);
+            this.txtSecondPhone.MaxLength = 255;
+            this.txtSecondPhone.Name = "txtSecondPhone";
+            this.txtSecondPhone.Size = new System.Drawing.Size(348, 22);
+            this.txtSecondPhone.TabIndex = 4;
+            this.txtSecondPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecondPhone_KeyPress);
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(140, 297);
+            this.txtEmail.MaxLength = 255;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(348, 22);
+            this.txtEmail.TabIndex = 5;
+            this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmail_KeyPress);
             // 
             // CboxStates
             // 
@@ -642,31 +743,22 @@
             this.CboxStates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboxStates.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboxStates.FormattingEnabled = true;
-            this.CboxStates.Location = new System.Drawing.Point(142, 384);
+            this.CboxStates.Location = new System.Drawing.Point(140, 465);
             this.CboxStates.Name = "CboxStates";
-            this.CboxStates.Size = new System.Drawing.Size(346, 24);
-            this.CboxStates.TabIndex = 4;
+            this.CboxStates.Size = new System.Drawing.Size(348, 24);
+            this.CboxStates.TabIndex = 8;
             // 
-            // CboxMes
+            // label15
             // 
-            this.CboxMes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.CboxMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboxMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CboxMes.FormattingEnabled = true;
-            this.CboxMes.Location = new System.Drawing.Point(142, 312);
-            this.CboxMes.Name = "CboxMes";
-            this.CboxMes.Size = new System.Drawing.Size(346, 24);
-            this.CboxMes.TabIndex = 3;
-            // 
-            // txtMarca
-            // 
-            this.txtMarca.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMarca.Location = new System.Drawing.Point(142, 97);
-            this.txtMarca.MaxLength = 16;
-            this.txtMarca.Name = "txtMarca";
-            this.txtMarca.Size = new System.Drawing.Size(346, 22);
-            this.txtMarca.TabIndex = 0;
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(3, 461);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(131, 32);
+            this.label15.TabIndex = 15;
+            this.label15.Text = "Estado de Cliente:";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel7
             // 
@@ -693,7 +785,7 @@
             // 
             this.imgAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.imgAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imgAdd.Image = global::Agregados.Properties.Resources.addCar;
+            this.imgAdd.Image = global::Agregados.Properties.Resources.addCustomer;
             this.imgAdd.Location = new System.Drawing.Point(3, 3);
             this.imgAdd.Name = "imgAdd";
             this.imgAdd.Size = new System.Drawing.Size(123, 95);
@@ -707,7 +799,7 @@
             this.imgUpdate.BackColor = System.Drawing.SystemColors.Control;
             this.imgUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.imgUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imgUpdate.Image = global::Agregados.Properties.Resources.update;
+            this.imgUpdate.Image = global::Agregados.Properties.Resources.updateCustomer;
             this.imgUpdate.Location = new System.Drawing.Point(3, 104);
             this.imgUpdate.Name = "imgUpdate";
             this.imgUpdate.Size = new System.Drawing.Size(123, 95);
@@ -720,7 +812,7 @@
             // 
             this.imgDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.imgDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imgDelete.Image = global::Agregados.Properties.Resources.delete1;
+            this.imgDelete.Image = global::Agregados.Properties.Resources.deleteCustomer;
             this.imgDelete.Location = new System.Drawing.Point(3, 205);
             this.imgDelete.Name = "imgDelete";
             this.imgDelete.Size = new System.Drawing.Size(123, 95);
@@ -755,7 +847,7 @@
             this.imgExit.TabStop = false;
             this.imgExit.Click += new System.EventHandler(this.imgExit_Click);
             // 
-            // FrmVehiclesManage
+            // FrmCustomersManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -765,10 +857,10 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmVehiclesManage";
-            this.Text = "Mantenimiento de Vehículos";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmVehiclesManage_FormClosing);
-            this.Load += new System.EventHandler(this.FrmVehiclesManage_Load);
+            this.Name = "FrmCustomersManage";
+            this.Text = "Mantenimiento de Clientes";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCustomersManage_FormClosing);
+            this.Load += new System.EventHandler(this.FrmCustomersManage_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
@@ -782,7 +874,7 @@
             this.tableLayoutPanel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVehicles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
@@ -802,9 +894,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.CheckBox ChMalEstado;
-        private System.Windows.Forms.CheckBox ChBuenEstado;
-        private System.Windows.Forms.CheckBox ChReparacion;
+        private System.Windows.Forms.CheckBox ChActivos;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
@@ -812,41 +902,50 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TextBox txtIdVehicleSearch;
-        private System.Windows.Forms.TextBox txtPlacaSearch;
-        private System.Windows.Forms.TextBox txtAnnioSearch;
+        private System.Windows.Forms.TextBox txtIdCustomerSearch;
+        private System.Windows.Forms.TextBox txtIdentSearch;
+        private System.Windows.Forms.TextBox txtNameSearch;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.DataGridView dgvVehicles;
+        private System.Windows.Forms.DataGridView dgvClientes;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.TextBox txtPlaca;
+        private System.Windows.Forms.TextBox txtIdent;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox CboxStates;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtMainPhone;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtAnnio;
-        private System.Windows.Forms.TextBox txtModelo;
-        private System.Windows.Forms.TextBox txtMarca;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtSecondPhone;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.ComboBox CboxStates;
+        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.PictureBox imgAdd;
         private System.Windows.Forms.PictureBox imgUpdate;
         private System.Windows.Forms.PictureBox imgDelete;
         private System.Windows.Forms.PictureBox imgClean;
         private System.Windows.Forms.PictureBox imgExit;
-        private System.Windows.Forms.ComboBox CboxMes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CIdVehiculo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CPlaca;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CMarca;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CModelo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CAnnio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CMesRevision;
+        private System.Windows.Forms.RichTextBox txtDetails;
+        private System.Windows.Forms.RichTextBox txtAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CIdCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CIdentificacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CTipoCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CTelefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CTelefono2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CCorreo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CDireccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CDetalles;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdEstado;
+        private System.Windows.Forms.ComboBox CboxCustomerType;
     }
 }

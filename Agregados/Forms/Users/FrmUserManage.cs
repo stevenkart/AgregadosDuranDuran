@@ -246,7 +246,7 @@ namespace Agregados.Forms.Users
                             {
                                 //validamos que los datos ingresados sean unicos, como nombre de usuario, identificacion o correo
                                 Usuario usuarioTemp = new Usuario();
-                                if (Validaciones.IsValidPass(txtPassword.Text.Trim()) && Validaciones.IsValidEmail2(txtEmail.Text.Trim()))
+                                if (Validaciones.IsValidPass(txtPassword.Text.Trim()) && Validaciones.IsValidEmail(txtEmail.Text.Trim()))
                                 {
                                     usuarioTemp = DB.Usuarios.Where((x) => x.NombreUsuario == txtUsername.Text.Trim()).FirstOrDefault();
                                     if (usuarioTemp == null)
@@ -336,7 +336,7 @@ namespace Agregados.Forms.Users
                         }
                         else
                         {
-                            if (Validaciones.IsValidEmail2(txtEmail.Text.Trim()))
+                            if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
                             {
                                 using (FrmLoading frmLoading = new FrmLoading(Wait))
                                 {
@@ -671,6 +671,8 @@ namespace Agregados.Forms.Users
         {
             if (!string.IsNullOrEmpty(txtIdUserSearch.Text.Trim()) && txtIdUserSearch.Text.Count() > 0)
             {
+                txtIdentUserSearch.Enabled = false;
+                txtNameUserSearch.Enabled = false;
                 int num = Convert.ToInt32(txtIdUserSearch.Text.Trim());
                 if (checkBox1.Checked)
                 {
@@ -686,30 +688,41 @@ namespace Agregados.Forms.Users
             else if (string.IsNullOrEmpty(txtIdUserSearch.Text.Trim()))
             {
                 CheckChange();
+                txtIdentUserSearch.Enabled = true;
+                txtNameUserSearch.Enabled = true;
             }
         }
         //Busquedas x Nombre
         private void txtNameUserSearch_TextChanged(object sender, EventArgs e)
         {
-            // se comeinza a buscar a partir de 4 caracteres paea no relentelizar el sistema en ejecucion
-            if (!string.IsNullOrEmpty(txtNameUserSearch.Text.Trim()) && txtNameUserSearch.Text.Count() > 3) 
+            if (!string.IsNullOrEmpty(txtNameUserSearch.Text.Trim()) && txtNameUserSearch.Text.Count() > 0)
             {
-                string text = txtNameUserSearch.Text.Trim();
-                if (checkBox1.Checked)
+                txtIdUserSearch.Enabled = false;
+                txtIdentUserSearch.Enabled = false;
+                // se comeinza a buscar a partir de 4 caracteres paea no relentelizar el sistema en ejecucion
+                if (!string.IsNullOrEmpty(txtNameUserSearch.Text.Trim()) && txtNameUserSearch.Text.Count() > 3)
                 {
-                    dgvUsers.DataSource = DB.Usuarios.Where((x) => x.IdEstado == 1 && x.NombreUsuario.Contains(text)).ToList();
-                    limpiar();
-                }
-                else
-                {
-                    dgvUsers.DataSource = DB.Usuarios.Where((x) => x.IdEstado == 2 && x.NombreUsuario.Contains(text)).ToList();
-                    limpiar();
+                    
+                    string text = txtNameUserSearch.Text.Trim();
+                    if (checkBox1.Checked)
+                    {
+                        dgvUsers.DataSource = DB.Usuarios.Where((x) => x.IdEstado == 1 && x.NombreUsuario.Contains(text)).ToList();
+                        limpiar();
+                    }
+                    else
+                    {
+                        dgvUsers.DataSource = DB.Usuarios.Where((x) => x.IdEstado == 2 && x.NombreUsuario.Contains(text)).ToList();
+                        limpiar();
+                    }
                 }
             }
             else if (string.IsNullOrEmpty(txtIdUserSearch.Text.Trim()))
             {
                 CheckChange();
+                txtIdUserSearch.Enabled = true;
+                txtIdentUserSearch.Enabled = true;
             }
+
         }
         //Busqueda x Identificacion
         private void txtIdentUserSearch_TextChanged(object sender, EventArgs e)
@@ -717,6 +730,8 @@ namespace Agregados.Forms.Users
             // se comeinza a buscar a partir de 4 caracteres paea no relentelizar el sistema en ejecucion
             if (!string.IsNullOrEmpty(txtIdentUserSearch.Text.Trim()) && txtIdentUserSearch.Text.Count() > 0)
             {
+                txtIdUserSearch.Enabled = false;
+                txtNameUserSearch.Enabled = false;
                 string text = txtIdentUserSearch.Text.Trim();
                 if (checkBox1.Checked)
                 {
@@ -732,11 +747,13 @@ namespace Agregados.Forms.Users
             else if (string.IsNullOrEmpty(txtIdUserSearch.Text.Trim()))
             {
                 CheckChange();
+                txtIdUserSearch.Enabled = true;
+                txtNameUserSearch.Enabled = true;
             }
         }
 
-        //TODO 
-        //Validaciones de campos, y usuarios unicos, y de que sea amigable
+     
+        //Validaciones de campos
 
         private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
         {

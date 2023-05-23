@@ -59,7 +59,13 @@ namespace Agregados.Forms
             this.Hide();
         }
 
-       
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmCustomers = new Customers.FrmCustomersManage();
+            Globals.MifrmCustomers.Show();
+            this.Hide();
+        }
+
 
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -98,5 +104,7 @@ namespace Agregados.Forms
             }
             this.Hide();
         }
+
+        
     }
 }

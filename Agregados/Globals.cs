@@ -28,6 +28,8 @@ namespace Agregados
 
         public static Forms.Users.FrmUserManage MifrmUser = new Forms.Users.FrmUserManage();
 
+        public static Forms.Customers.FrmCustomersManage MifrmCustomers = new Forms.Customers.FrmCustomersManage();
+
 
 
 
