@@ -74,6 +74,13 @@ namespace Agregados.Forms
             this.Hide();
         }
 
+        private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmProviders = new Providers.FrmProvidersManage();
+            Globals.MifrmProviders.Show();
+            this.Hide();
+        }
+
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -105,6 +112,11 @@ namespace Agregados.Forms
             this.Hide();
         }
 
-        
+        private void materialesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmMaterials = new Materials.FrmMaterialsManage();
+            Globals.MifrmMaterials.Show();
+            this.Hide();
+        }
     }
 }

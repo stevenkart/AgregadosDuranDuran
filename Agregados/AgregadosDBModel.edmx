@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CierreCaja">
           <Key>
             <PropertyRef Name="IdCierre" />
@@ -87,7 +87,7 @@
             <PropertyRef Name="IdProveedor" />
           </Key>
           <Property Name="IdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Identificacion" Type="int" />
+          <Property Name="Identificacion" Type="varchar" MaxLength="255" />
           <Property Name="Nombre" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="TipoProveedor" Type="int" Nullable="false" />
           <Property Name="Telefono" Type="varchar" MaxLength="255" Nullable="false" />
@@ -351,8 +351,7 @@
             <End Role="Vehiculos" EntitySet="Vehiculos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AgregadosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -457,7 +456,7 @@
             <PropertyRef Name="IdProveedor" />
           </Key>
           <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Identificacion" Type="Int32" />
+          <Property Name="Identificacion" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TipoProveedor" Type="Int32" Nullable="false" />
           <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
@@ -884,8 +883,8 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>

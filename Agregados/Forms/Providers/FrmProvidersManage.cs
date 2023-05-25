@@ -11,60 +11,73 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Agregados.Forms.Customers
+namespace Agregados.Forms.Providers
 {
-    public partial class FrmCustomersManage : Form
+    public partial class FrmProvidersManage : Form
     {
         //variables del form
         AgregadosEntities DB;
-        Cliente cliente;
-
-        public FrmCustomersManage()
+        Provedor proveedor;
+        public FrmProvidersManage()
         {
             InitializeComponent();
             DB = new AgregadosEntities();
-            cliente = new Cliente();
+            proveedor = new Provedor();
         }
 
-        private void FrmCustomersManage_Load(object sender, EventArgs e)
+        //cuando se cierre el form op presion el boton salir
+        private void FrmProvidersManage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
+            frmPrincipalMDI.Show();
+            this.Hide();
+        }
+
+        private void imgExit_Click(object sender, EventArgs e)
+        {
+            FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
+            frmPrincipalMDI.Show();
+            this.Hide();
+        }
+        //cuando se abra el form
+        private void FrmProvidersManage_Load(object sender, EventArgs e)
         {
             CargarEstadosClientes();
             CargarTipos();
- 
+
             // linq para validar y disenar mejor la DataGridView al usuario // empezando la informacion con Estado ACTIVO y lo unico que se necesita obtener
             //para agilizar la respuesta y no obtener tantas columnas de datos
-            var result = from cl in DB.Clientes
+            var result = from pr in DB.Provedors
                          join es in DB.Estados
-                         on cl.IdEstado equals es.IdEstado
-                         where (cl.IdEstado == 1)
+                         on pr.IdEstado equals es.IdEstado
+                         where (pr.IdEstado == 1)
                          select new
                          {
-                             cl.IdCliente,
-                             cl.Identificacion,
-                             cl.Nombre,
+                             pr.IdProveedor,
+                             pr.Identificacion,
+                             pr.Nombre,
                              //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                             TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
-                             cl.Telefono,
-                             cl.Telefono2,
-                             cl.Correo,
-                             cl.Direccion,
-                             cl.Detalles,
+                             TipoProveedor = (pr.TipoProveedor == 1) ? "Físico" : (pr.TipoProveedor == 2) ? "Júridico" : "",
+                             pr.Telefono,
+                             pr.Telefono2,
+                             pr.Correo,
+                             pr.Direccion,
+                             pr.Detalles,
                              IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                          };
-            dgvClientes.DataSource = result.ToList();
+            dgvProveedores.DataSource = result.ToList();
             limpiar();
         }
-
-
-        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        //cuando se seleccione un elemento de datagrid
+        private void dgvProveedores_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvClientes.SelectedRows.Count == 1)
+            if (dgvProveedores.SelectedRows.Count == 1)
             {
-                cliente = new Cliente();
+                proveedor = new Provedor();
 
-                DataGridViewRow MiFila = dgvClientes.SelectedRows[0];
+                DataGridViewRow MiFila = dgvProveedores.SelectedRows[0];
 
-                int IdCliente = Convert.ToInt32(MiFila.Cells["CIdCliente"].Value);
+                int IdProveedor = Convert.ToInt32(MiFila.Cells["CIdProveedor"].Value);
 
                 //una vez tenemos el valor del ID, se llama a una funcion 
                 //de consultar por ID que entrega como retorno un objeto de tipo cliente
@@ -73,26 +86,27 @@ namespace Agregados.Forms.Customers
 
 
                 //ESTE METODO de consultor RETORNA UN OBJETO de tipo Empleado
-                cliente = DB.Clientes.FirstOrDefault(x => x.IdCliente == IdCliente);
+                proveedor = DB.Provedors.FirstOrDefault(x => x.IdProveedor == IdProveedor);
 
-                if (cliente != null && cliente.IdCliente > 0)
+                if (proveedor != null && proveedor.IdProveedor > 0)
                 {
                     //una vez me asegure que el objeto posee datos, entonces se procede a representar
                     //en pantalla
-                    txtIdent.Text = cliente.Identificacion.ToString();
-                    txtName.Text = cliente.Nombre.ToString();
-                    CboxCustomerType.SelectedValue = cliente.TipoCliente;
-                    txtMainPhone.Text = cliente.Telefono.ToString();
-                    txtSecondPhone.Text = cliente.Telefono2.ToString();
-                    txtEmail.Text = cliente.Correo.ToString();
-                    txtAddress.Text = cliente.Direccion.ToString();
-                    txtDetails.Text = cliente.Detalles.ToString();
-                    CboxStates.SelectedValue = cliente.IdEstado;
+                    txtIdent.Text = proveedor.Identificacion.ToString();
+                    txtName.Text = proveedor.Nombre.ToString();
+                    CboxProviderType.SelectedValue = proveedor.TipoProveedor;
+                    txtMainPhone.Text = proveedor.Telefono.ToString();
+                    txtSecondPhone.Text = proveedor.Telefono2.ToString();
+                    txtEmail.Text = proveedor.Correo.ToString();
+                    txtAddress.Text = proveedor.Direccion.ToString();
+                    txtDetails.Text = proveedor.Detalles.ToString();
+                    CboxStates.SelectedValue = proveedor.IdEstado;
 
                     ActivarUpdateDelete();
                 }
             }
         }
+
 
         //carga Cbox Estados
         private void CargarEstadosClientes()
@@ -117,10 +131,10 @@ namespace Agregados.Forms.Customers
             dt.Rows.Add(1, "Físico");
             dt.Rows.Add(2, "Júridico");
 
-            CboxCustomerType.DataSource = dt;
-            CboxCustomerType.ValueMember = "Id";
-            CboxCustomerType.DisplayMember = "D";
-            CboxCustomerType.SelectedIndex = -1;
+            CboxProviderType.DataSource = dt;
+            CboxProviderType.ValueMember = "Id";
+            CboxProviderType.DisplayMember = "D";
+            CboxProviderType.SelectedIndex = -1;
 
         }
 
@@ -139,39 +153,8 @@ namespace Agregados.Forms.Customers
             imgDelete.Enabled = true;
         }
 
-        //limpiar el form, ventana
-        private void limpiar()
-        {
-            txtIdent.Text = null;
-            txtName.Text = null;
-            txtMainPhone.Text = null;
-            txtSecondPhone.Text = null;
-            txtEmail.Text = null;
-            txtAddress.Text = null;
-            txtDetails.Text = null;
-            CboxCustomerType.SelectedValue = -1;
-            CboxStates.SelectedValue = -1;
 
-            ActivarAdd();
-
-        }
-        private void limpiarBusqueda()
-        {
-            txtIdCustomerSearch.Text = null;
-            txtIdentSearch.Text = null;
-            txtNameSearch.Text = null;
-
-            txtIdCustomerSearch.Enabled = true;
-            txtIdentSearch.Enabled = true;
-            txtNameSearch.Enabled = true;
-        }
-
-
-        private void imgClean_Click(object sender, EventArgs e)
-        {
-            limpiar();
-            limpiarBusqueda();
-        }
+       
 
         //tiempo loading
         void Wait()
@@ -182,6 +165,39 @@ namespace Agregados.Forms.Customers
             }
         }
 
+        //limpiar el form, ventana
+        private void limpiar()
+        {
+            txtIdent.Text = null;
+            txtName.Text = null;
+            txtMainPhone.Text = null;
+            txtSecondPhone.Text = null;
+            txtEmail.Text = null;
+            txtAddress.Text = null;
+            txtDetails.Text = null;
+            CboxProviderType.SelectedValue = -1;
+            CboxStates.SelectedValue = -1;
+
+            ActivarAdd();
+
+        }
+        private void limpiarBusqueda()
+        {
+            txtIdProviderSearch.Text = null;
+            txtIdentSearch.Text = null;
+            txtNameSearch.Text = null;
+
+            txtIdProviderSearch.Enabled = true;
+            txtIdentSearch.Enabled = true;
+            txtNameSearch.Enabled = true;
+        }
+
+        private void imgClean_Click(object sender, EventArgs e)
+        {
+            limpiar();
+            limpiarBusqueda();
+        }
+
 
         //metodo que permite realizar validaciones de los espacion / campos del form no se toma en cuenta
         private bool ValidarCamposRequeridos()
@@ -189,7 +205,7 @@ namespace Agregados.Forms.Customers
             bool R = false;
 
             if (!string.IsNullOrEmpty(txtName.Text.Trim()) &&
-                CboxCustomerType.SelectedIndex != -1 &&
+                CboxProviderType.SelectedIndex != -1 &&
                 !string.IsNullOrEmpty(txtMainPhone.Text.Trim()) &&
                 CboxStates.SelectedIndex != -1
                 )
@@ -202,7 +218,7 @@ namespace Agregados.Forms.Customers
 
                 if (string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
-                    MessageBox.Show("Nombre de Cliente es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Nombre de Proveedor es Requerido", "Error de Validación!", MessageBoxButtons.OK);
                     txtName.Focus();
                     return false;
                 }
@@ -212,15 +228,15 @@ namespace Agregados.Forms.Customers
                     txtMainPhone.Focus();
                     return false;
                 }
-                if (CboxCustomerType.SelectedIndex == -1)
+                if (CboxProviderType.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Tipo de Cliente debe ser ingresado", "Error de Validación!", MessageBoxButtons.OK);
-                    CboxCustomerType.Focus();
+                    MessageBox.Show("Tipo de Proveedor debe ser ingresado", "Error de Validación!", MessageBoxButtons.OK);
+                    CboxProviderType.Focus();
                     return false;
                 }
                 if (CboxStates.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Debe Seleccionar un estado del Cliente", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe Seleccionar un estado del Proveedor", "Error de Validación!", MessageBoxButtons.OK);
                     CboxStates.Focus();
                     return false;
                 }
@@ -228,23 +244,22 @@ namespace Agregados.Forms.Customers
             return R;
         }
 
-
         //check BOX
         private void CheckChange()
         {
             if (ChActivos.Checked == true)
             {
-                var result = from cl in DB.Clientes
+                var result = from cl in DB.Provedors
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1)
                              select new
                              {
-                                 cl.IdCliente,
+                                 cl.IdProveedor,
                                  cl.Identificacion,
                                  cl.Nombre,
-                                 //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                 //Lambda Expresion IF -ELSE para validar tipo de proveedor y proceder a indicarlo en modo texto
+                                 TipoProveedor = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -252,24 +267,24 @@ namespace Agregados.Forms.Customers
                                  cl.Detalles,
                                  IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                              };
-                dgvClientes.DataSource = result.ToList();
+                dgvProveedores.DataSource = result.ToList();
                 limpiar();
             }
             else
             {
                 if (ChActivos.Checked == false)
                 {
-                    var result = from cl in DB.Clientes
+                    var result = from cl in DB.Provedors
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2)
                                  select new
                                  {
-                                     cl.IdCliente,
+                                     cl.IdProveedor,
                                      cl.Identificacion,
                                      cl.Nombre,
-                                     //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                     //Lambda Expresion IF -ELSE para validar tipo de proveedor y proceder a indicarlo en modo texto
+                                     TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -277,16 +292,16 @@ namespace Agregados.Forms.Customers
                                      cl.Detalles,
                                      IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                                  };
-                    dgvClientes.DataSource = result.ToList();
+                    dgvProveedores.DataSource = result.ToList();
                     limpiar();
                 }
             }
         }
+
         private void ChActivos_CheckedChanged(object sender, EventArgs e)
         {
             CheckChange();
         }
-
         //metodo add, delete & update
         private void imgAdd_Click(object sender, EventArgs e)
         {
@@ -294,19 +309,19 @@ namespace Agregados.Forms.Customers
             {
                 if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
                 {
-                    DialogResult respuesta = MessageBox.Show("¿Deseas agregar la empresa o cliente/a " + $"{txtName.Text.Trim()} ?",
-                                       "Registro de Clientes", MessageBoxButtons.YesNo);
+                    DialogResult respuesta = MessageBox.Show("¿Deseas agregar el proveedor " + $"{txtName.Text.Trim()} ?",
+                                       "Registro de Proveedores", MessageBoxButtons.YesNo);
                     if (respuesta == DialogResult.Yes)
                     {
                         using (FrmLoading frmLoading = new FrmLoading(Wait))
                         {
                             try
                             {
-                                cliente = new Cliente
+                                proveedor = new Provedor
                                 {
                                     Identificacion = txtIdent.Text.Trim(),
                                     Nombre = txtName.Text.Trim(),
-                                    TipoCliente = Convert.ToInt32(CboxCustomerType.SelectedValue),
+                                    TipoProveedor = Convert.ToInt32(CboxProviderType.SelectedValue),
                                     Telefono = txtMainPhone.Text.Trim(),
                                     Telefono2 = txtSecondPhone.Text.Trim(),
                                     Correo = txtEmail.Text.Trim(),
@@ -315,20 +330,20 @@ namespace Agregados.Forms.Customers
                                     IdEstado = Convert.ToInt32(CboxStates.SelectedValue)
                                 };
 
-                                DB.Clientes.Add(cliente);
+                                DB.Provedors.Add(proveedor);
 
                                 if (DB.SaveChanges() > 0)
                                 {
                                     CheckChange();
                                     limpiar();
                                     limpiarBusqueda();
-                                    MessageBox.Show("Cliente agregado correctamente!", "Registro de Clientes", MessageBoxButtons.OK);
-                                    cliente = null;
+                                    MessageBox.Show("Proveedor agregado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK);
+                                    proveedor = null;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Cliente No fue agregado", "Error Registro de Clientes", MessageBoxButtons.OK);
-                                    cliente = null;
+                                    MessageBox.Show("Proveedor No fue agregado", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                                    proveedor = null;
                                 }
 
                             }
@@ -342,7 +357,7 @@ namespace Agregados.Forms.Customers
                 }
                 else
                 {
-                    MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Clientes", MessageBoxButtons.OK);
+                    MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Proveedores", MessageBoxButtons.OK);
                 }
             }
         }
@@ -353,8 +368,8 @@ namespace Agregados.Forms.Customers
             {
                 if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
                 {
-                    DialogResult respuesta = MessageBox.Show("¿Deseas Modificar la empresa o cliente/a " + $"{txtName.Text.Trim()} ?",
-                                       "Registro de Clientes", MessageBoxButtons.YesNo);
+                    DialogResult respuesta = MessageBox.Show("¿Deseas Modificar el Proveedor " + $"{txtName.Text.Trim()} ?",
+                                       "Registro de Proveedores", MessageBoxButtons.YesNo);
                     if (respuesta == DialogResult.Yes)
                     {
                         using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -362,32 +377,32 @@ namespace Agregados.Forms.Customers
                             try
                             {
 
-                                cliente.Identificacion = txtIdent.Text.Trim();
-                                cliente.Nombre = txtName.Text.Trim();
-                                cliente.TipoCliente = Convert.ToInt32(CboxCustomerType.SelectedValue);
-                                cliente.Telefono = txtMainPhone.Text.Trim();
-                                cliente.Telefono2 = txtSecondPhone.Text.Trim();
-                                cliente.Correo = txtEmail.Text.Trim();
-                                cliente.Direccion = txtAddress.Text.Trim();
-                                cliente.Detalles = txtDetails.Text.Trim();
-                                cliente.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
+                                proveedor.Identificacion = txtIdent.Text.Trim();
+                                proveedor.Nombre = txtName.Text.Trim();
+                                proveedor.TipoProveedor = Convert.ToInt32(CboxProviderType.SelectedValue);
+                                proveedor.Telefono = txtMainPhone.Text.Trim();
+                                proveedor.Telefono2 = txtSecondPhone.Text.Trim();
+                                proveedor.Correo = txtEmail.Text.Trim();
+                                proveedor.Direccion = txtAddress.Text.Trim();
+                                proveedor.Detalles = txtDetails.Text.Trim();
+                                proveedor.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
 
 
 
-                                 DB.Entry(cliente).State = EntityState.Modified;
+                                DB.Entry(proveedor).State = EntityState.Modified;
 
                                 if (DB.SaveChanges() > 0)
                                 {
                                     CheckChange();
                                     limpiar();
                                     limpiarBusqueda();
-                                    MessageBox.Show("Cliente modificado correctamente!", "Registro de Clientes", MessageBoxButtons.OK);
-                                    cliente = null;
+                                    MessageBox.Show("Proveedor modificado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK);
+                                    proveedor = null;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Cliente No fue modificado", "Error Registro de Clientes", MessageBoxButtons.OK);
-                                    cliente = null;
+                                    MessageBox.Show("Proveedor No fue modificado", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                                    proveedor = null;
                                 }
 
                             }
@@ -401,7 +416,7 @@ namespace Agregados.Forms.Customers
                 }
                 else
                 {
-                    MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Clientes", MessageBoxButtons.OK);
+                    MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Proveedores", MessageBoxButtons.OK);
                 }
             }
         }
@@ -411,33 +426,33 @@ namespace Agregados.Forms.Customers
             //todo se debe de validar que cliente no tenga facturas, sino entonces no se puede eliminar y proceder a inactivarlo si usuario desea
             if (ValidarCamposRequeridos())
             {
-                DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el cliente " + $"{txtName.Text.Trim()} ?" +
+                DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el Proveedor " + $"{txtName.Text.Trim()} ?" +
                     Environment.NewLine + "Si lo eliminas, no prodras recuperar nuevamente sus datos...",
-                    "Registro de Clientes", MessageBoxButtons.YesNo);
+                    "Registro de Proveedores", MessageBoxButtons.YesNo);
                 if (respuesta == DialogResult.Yes)
                 {
                     using (FrmLoading frmLoading = new FrmLoading(Wait))
                     {
                         try
                         {
-                            if (cliente == null)
+                            if (proveedor == null)
                             {
-                                MessageBox.Show("Cliente No existe, o no ha sido seleccionado de la lista", "Error Registro de Clientes", MessageBoxButtons.OK);
+                                MessageBox.Show("Proveedor No existe, o no ha sido seleccionado de la lista", "Error Registro de Proveedores", MessageBoxButtons.OK);
                             }
                             else
                             {
-                                DB.Clientes.Remove(cliente); // metodo para eliminar el cliente, dato de la BD
+                                DB.Provedors.Remove(proveedor); // metodo para eliminar el cliente, dato de la BD
                                 if (DB.SaveChanges() > 0)
                                 {
                                     CheckChange();
                                     limpiarBusqueda();
-                                    MessageBox.Show("Cliente Eliminado Correctamente!", "Registro de Clientes", MessageBoxButtons.OK);
-                                    cliente = null;
+                                    MessageBox.Show("Proveedor Eliminado Correctamente!", "Registro de Proveedores", MessageBoxButtons.OK);
+                                    proveedor = null;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Cliente No fue Eliminado, por favor valide", "Error Registro de Clientes", MessageBoxButtons.OK);
-                                    cliente = null;
+                                    MessageBox.Show("Proveedor No fue Eliminado, por favor valide", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                                    proveedor = null;
                                 }
                             }
                         }
@@ -450,10 +465,10 @@ namespace Agregados.Forms.Customers
                 }
                 else
                 {
-                    if (cliente != null && cliente.IdEstado == 1)
+                    if (proveedor != null && proveedor.IdEstado == 1)
                     {
-                        DialogResult respuesta2 = MessageBox.Show("¿Deseas inactivar el cliente " + $"{txtName.Text.Trim()} ?",
-                        "Registro de Clientes", MessageBoxButtons.YesNo);
+                        DialogResult respuesta2 = MessageBox.Show("¿Deseas inactivar el proveedor " + $"{txtName.Text.Trim()} ?",
+                        "Registro de Proveedores", MessageBoxButtons.YesNo);
 
                         if (respuesta2 == DialogResult.Yes)
                         {
@@ -462,30 +477,30 @@ namespace Agregados.Forms.Customers
                                 try
                                 {
 
-                                    cliente.Identificacion = txtIdent.Text.Trim();
-                                    cliente.Nombre = txtName.Text.Trim();
-                                    cliente.TipoCliente = Convert.ToInt32(CboxCustomerType.SelectedValue);
-                                    cliente.Telefono = txtMainPhone.Text.Trim();
-                                    cliente.Telefono2 = txtSecondPhone.Text.Trim();
-                                    cliente.Correo = txtEmail.Text.Trim();
-                                    cliente.Direccion = txtAddress.Text.Trim();
-                                    cliente.Detalles = txtDetails.Text.Trim();
-                                    cliente.IdEstado = 2; // 2 es inactivo
+                                    proveedor.Identificacion = txtIdent.Text.Trim();
+                                    proveedor.Nombre = txtName.Text.Trim();
+                                    proveedor.TipoProveedor = Convert.ToInt32(CboxProviderType.SelectedValue);
+                                    proveedor.Telefono = txtMainPhone.Text.Trim();
+                                    proveedor.Telefono2 = txtSecondPhone.Text.Trim();
+                                    proveedor.Correo = txtEmail.Text.Trim();
+                                    proveedor.Direccion = txtAddress.Text.Trim();
+                                    proveedor.Detalles = txtDetails.Text.Trim();
+                                    proveedor.IdEstado = 2; // 2 es inactivo
 
-                                    DB.Entry(cliente).State = EntityState.Modified;
+                                    DB.Entry(proveedor).State = EntityState.Modified;
 
                                     if (DB.SaveChanges() > 0)
                                     {
                                         CheckChange();
                                         limpiar();
                                         limpiarBusqueda();
-                                        MessageBox.Show("Cliente modificado correctamente!", "Registro de Clientes", MessageBoxButtons.OK);
-                                        cliente = null;
+                                        MessageBox.Show("Proveedor modificado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK);
+                                        proveedor = null;
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Cliente No fue modificado", "Error Registro de Clientes", MessageBoxButtons.OK);
-                                        cliente = null;
+                                        MessageBox.Show("Proveedor No fue modificado", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                                        proveedor = null;
                                     }
 
                                 }
@@ -496,33 +511,25 @@ namespace Agregados.Forms.Customers
                                 }
                             }
                         }
-                    }  
+                    }
                 }
             }
-
         }
 
-
-        //al cerrar el form
-        private void FrmCustomersManage_FormClosing(object sender, FormClosingEventArgs e)
+        private void txtIdProviderSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
-            frmPrincipalMDI.Show();
-            this.Hide();
-        }
-
-        private void imgExit_Click(object sender, EventArgs e)
-        {
-            FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
-            frmPrincipalMDI.Show();
-            this.Hide();
+            e.Handled = Validaciones.CaracteresNumeros(e, true);
         }
 
         //Validaciones de Ingreso de Datos en los TXT
-
-        private void txtIdent_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtIdentSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = Validaciones.CaracteresTexto(e, true, false);
+        }
+
+        private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Validaciones.CaracteresTexto(e, false, true);
         }
 
         private void txtMainPhone_KeyPress(object sender, KeyPressEventArgs e)
@@ -535,40 +542,29 @@ namespace Agregados.Forms.Customers
             e.Handled = Validaciones.CaracteresNumeros(e, true);
         }
 
-        private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtNameSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = Validaciones.CaracteresTexto(e, false, true);
-        }
 
-        private void txtIdCustomerSearch_KeyPress(object sender, KeyPressEventArgs e)
+        }
+        //EN CASO DE QUE SE LLEGUE A INGRESAR ALGUN DATOS EN LOS TXT DE BUSQUEDA FILTRO
+        private void txtIdProviderSearch_TextChanged(object sender, EventArgs e)
         {
-            e.Handled = Validaciones.CaracteresNumeros(e, true);
-        }
-
-        private void txtIdentSearch_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = Validaciones.CaracteresTexto(e, true, false);
-        }
-
-        private void txtIdCustomerSearch_TextChanged(object sender, EventArgs e)
-        {          
-           
-            if (ChActivos.Checked == true && !string.IsNullOrEmpty(txtIdCustomerSearch.Text.Trim()) && txtIdCustomerSearch.Text.Count() > 0)
+            if (ChActivos.Checked == true && !string.IsNullOrEmpty(txtIdProviderSearch.Text.Trim()) && txtIdProviderSearch.Text.Count() > 0)
             {
                 txtIdentSearch.Enabled = false;
                 txtNameSearch.Enabled = false;
-                int num = Convert.ToInt32(txtIdCustomerSearch.Text.Trim());
-                var result = from cl in DB.Clientes
+                int num = Convert.ToInt32(txtIdProviderSearch.Text.Trim());
+                var result = from cl in DB.Provedors
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
-                             where (cl.IdEstado == 1 && cl.IdCliente == num)
+                             where (cl.IdEstado == 1 && cl.IdProveedor == num)
                              select new
                              {
-                                 cl.IdCliente,
+                                 cl.IdProveedor,
                                  cl.Identificacion,
                                  cl.Nombre,
-                                 //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                 //Lambda Expresion IF -ELSE para validar tipo de Proveedor y proceder a indicarlo en modo texto
+                                 TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -576,27 +572,27 @@ namespace Agregados.Forms.Customers
                                  cl.Detalles,
                                  IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                              };
-                dgvClientes.DataSource = result.ToList();
+                dgvProveedores.DataSource = result.ToList();
                 limpiar();
             }
             else
             {
-                if (ChActivos.Checked == false && !string.IsNullOrEmpty(txtIdCustomerSearch.Text.Trim()) && txtIdCustomerSearch.Text.Count() > 0)
+                if (ChActivos.Checked == false && !string.IsNullOrEmpty(txtIdProviderSearch.Text.Trim()) && txtIdProviderSearch.Text.Count() > 0)
                 {
                     txtIdentSearch.Enabled = false;
                     txtNameSearch.Enabled = false;
-                    int num = Convert.ToInt32(txtIdCustomerSearch.Text.Trim());
-                    var result = from cl in DB.Clientes
+                    int num = Convert.ToInt32(txtIdProviderSearch.Text.Trim());
+                    var result = from cl in DB.Provedors
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
-                                 where (cl.IdEstado == 2 && cl.IdCliente == num)
+                                 where (cl.IdEstado == 2 && cl.IdProveedor == num)
                                  select new
                                  {
-                                     cl.IdCliente,
+                                     cl.IdProveedor,
                                      cl.Identificacion,
                                      cl.Nombre,
-                                     //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                     //Lambda Expresion IF -ELSE para validar tipo de pROVEEDOR y proceder a indicarlo en modo texto
+                                     TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -604,40 +600,39 @@ namespace Agregados.Forms.Customers
                                      cl.Detalles,
                                      IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                                  };
-                    dgvClientes.DataSource = result.ToList();
+                    dgvProveedores.DataSource = result.ToList();
                     limpiar();
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(txtIdCustomerSearch.Text.Trim()) && txtIdCustomerSearch.Text.Count() == 0)
+                    if (string.IsNullOrEmpty(txtIdProviderSearch.Text.Trim()) && txtIdProviderSearch.Text.Count() == 0)
                     {
                         txtIdentSearch.Enabled = true;
                         txtNameSearch.Enabled = true;
                         CheckChange();
-                    }   
+                    }
                 }
             }
         }
 
         private void txtIdentSearch_TextChanged(object sender, EventArgs e)
         {
-           
             if (ChActivos.Checked == true && !string.IsNullOrEmpty(txtIdentSearch.Text.Trim()) && txtIdentSearch.Text.Count() > 0)
             {
-                txtIdCustomerSearch.Enabled = false;
+                txtIdProviderSearch.Enabled = false;
                 txtNameSearch.Enabled = false;
                 string num = txtIdentSearch.Text.Trim();
-                var result = from cl in DB.Clientes
+                var result = from cl in DB.Provedors
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1 && cl.Identificacion.Contains(num))
                              select new
                              {
-                                 cl.IdCliente,
+                                 cl.IdProveedor,
                                  cl.Identificacion,
                                  cl.Nombre,
                                  //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                 TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -645,27 +640,27 @@ namespace Agregados.Forms.Customers
                                  cl.Detalles,
                                  IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                              };
-                dgvClientes.DataSource = result.ToList();
+                dgvProveedores.DataSource = result.ToList();
                 limpiar();
             }
             else
             {
                 if (ChActivos.Checked == false && !string.IsNullOrEmpty(txtIdentSearch.Text.Trim()) && txtIdentSearch.Text.Count() > 0)
                 {
-                    txtIdCustomerSearch.Enabled = false;
+                    txtIdProviderSearch.Enabled = false;
                     txtNameSearch.Enabled = false;
                     string num = txtIdentSearch.Text.Trim();
-                    var result = from cl in DB.Clientes
+                    var result = from cl in DB.Provedors
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2 && cl.Identificacion.Contains(num))
                                  select new
                                  {
-                                     cl.IdCliente,
+                                     cl.IdProveedor,
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                     TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -673,14 +668,14 @@ namespace Agregados.Forms.Customers
                                      cl.Detalles,
                                      IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                                  };
-                    dgvClientes.DataSource = result.ToList();
+                    dgvProveedores.DataSource = result.ToList();
                     limpiar();
                 }
                 else
                 {
                     if (string.IsNullOrEmpty(txtIdentSearch.Text.Trim()) && txtIdentSearch.Text.Count() == 0)
                     {
-                        txtIdCustomerSearch.Enabled = true;
+                        txtIdProviderSearch.Enabled = true;
                         txtNameSearch.Enabled = true;
                         CheckChange();
                     }
@@ -690,23 +685,22 @@ namespace Agregados.Forms.Customers
 
         private void txtNameSearch_TextChanged(object sender, EventArgs e)
         {
-           
             if (ChActivos.Checked == true && !string.IsNullOrEmpty(txtNameSearch.Text.Trim()) && txtNameSearch.Text.Count() > 0)
             {
                 txtIdentSearch.Enabled = false;
-                txtIdCustomerSearch.Enabled = false;
+                txtIdProviderSearch.Enabled = false;
                 string num = txtNameSearch.Text.Trim();
-                var result = from cl in DB.Clientes
+                var result = from cl in DB.Provedors
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1 && cl.Nombre.Contains(num))
                              select new
                              {
-                                 cl.IdCliente,
+                                 cl.IdProveedor,
                                  cl.Identificacion,
                                  cl.Nombre,
                                  //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                 TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -714,7 +708,7 @@ namespace Agregados.Forms.Customers
                                  cl.Detalles,
                                  IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                              };
-                dgvClientes.DataSource = result.ToList();
+                dgvProveedores.DataSource = result.ToList();
                 limpiar();
             }
             else
@@ -722,19 +716,19 @@ namespace Agregados.Forms.Customers
                 if (ChActivos.Checked == false && !string.IsNullOrEmpty(txtNameSearch.Text.Trim()) && txtNameSearch.Text.Count() > 0)
                 {
                     txtIdentSearch.Enabled = false;
-                    txtIdCustomerSearch.Enabled = false;
+                    txtIdProviderSearch.Enabled = false;
                     string num = txtNameSearch.Text.Trim();
-                    var result = from cl in DB.Clientes
+                    var result = from cl in DB.Provedors
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2 && cl.Nombre.Contains(num))
                                  select new
                                  {
-                                     cl.IdCliente,
+                                     cl.IdProveedor,
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                     TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -742,7 +736,7 @@ namespace Agregados.Forms.Customers
                                      cl.Detalles,
                                      IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                                  };
-                    dgvClientes.DataSource = result.ToList();
+                    dgvProveedores.DataSource = result.ToList();
                     limpiar();
                 }
                 else
@@ -750,12 +744,17 @@ namespace Agregados.Forms.Customers
                     if (string.IsNullOrEmpty(txtNameSearch.Text.Trim()) && txtNameSearch.Text.Count() == 0)
                     {
                         txtIdentSearch.Enabled = true;
-                        txtIdCustomerSearch.Enabled = true;
+                        txtIdProviderSearch.Enabled = true;
                         CheckChange();
                     }
                 }
             }
+
         }
 
+      
+    
+    
+    
     }
 }

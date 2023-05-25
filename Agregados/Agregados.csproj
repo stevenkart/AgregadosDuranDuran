@@ -116,6 +116,18 @@
     <Compile Include="Forms\FrmPrincipalMDI.Designer.cs">
       <DependentUpon>FrmPrincipalMDI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Materials\FrmMaterialsManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Materials\FrmMaterialsManage.Designer.cs">
+      <DependentUpon>FrmMaterialsManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Providers\FrmProvidersManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Providers\FrmProvidersManage.Designer.cs">
+      <DependentUpon>FrmProvidersManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Users\FrmUserManage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +194,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPrincipalMDI.resx">
       <DependentUpon>FrmPrincipalMDI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Materials\FrmMaterialsManage.resx">
+      <DependentUpon>FrmMaterialsManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Providers\FrmProvidersManage.resx">
+      <DependentUpon>FrmProvidersManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Users\FrmUserManage.resx">
       <DependentUpon>FrmUserManage.cs</DependentUpon>
@@ -266,6 +284,9 @@
     <Content Include="Images\IconsMenuMant\delete.png" />
     <Content Include="Images\IconsMenuMant\deleteUser.png" />
     <Content Include="Images\IconsMenuMant\exit.png" />
+    <Content Include="Images\IconsMenuMant\Materials\expedienteAdd.png" />
+    <Content Include="Images\IconsMenuMant\Materials\expedienteDelete.png" />
+    <Content Include="Images\IconsMenuMant\Materials\expedienteUpdate.png" />
     <Content Include="Images\IconsMenuMant\update.png" />
     <Content Include="Images\MDIPrincipal.jpg" />
   </ItemGroup>

@@ -134,6 +134,7 @@
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
             this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.proveedoresToolStripMenuItem.Text = "Proveedores";
+            this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -145,6 +146,7 @@
             this.materialesToolStripMenuItem.Name = "materialesToolStripMenuItem";
             this.materialesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.materialesToolStripMenuItem.Text = "Materiales";
+            this.materialesToolStripMenuItem.Click += new System.EventHandler(this.materialesToolStripMenuItem_Click);
             // 
             // vehiculosToolStripMenuItem
             // 
@@ -176,7 +178,7 @@
             // facturaciónToolStripMenuItem
             // 
             this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
-            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.facturaciónToolStripMenuItem.Text = "Facturación";
             // 
             // reportesToolStripMenuItem

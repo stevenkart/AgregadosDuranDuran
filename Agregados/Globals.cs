@@ -30,8 +30,9 @@ namespace Agregados
 
         public static Forms.Customers.FrmCustomersManage MifrmCustomers = new Forms.Customers.FrmCustomersManage();
 
+        public static Forms.Providers.FrmProvidersManage MifrmProviders = new Forms.Providers.FrmProvidersManage();
 
-
+        public static Forms.Materials.FrmMaterialsManage MifrmMaterials = new Forms.Materials.FrmMaterialsManage();
 
     }
 }
