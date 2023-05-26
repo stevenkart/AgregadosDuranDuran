@@ -118,5 +118,12 @@ namespace Agregados.Forms
             Globals.MifrmMaterials.Show();
             this.Hide();
         }
+
+        private void facturaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmBillAdd = new Bills.FrmBillAdd();
+            Globals.MifrmBillAdd.Show();
+            this.Hide();
+        }
     }
 }

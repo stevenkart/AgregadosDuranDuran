@@ -43,8 +43,43 @@ namespace Agregados.Forms.Materials
         private void CargarEstadosMateriales()
         {
 
-            //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
+            //Metodo que permite llamar y obtener los datos filtrados de los materiales y mostrarlos en el comboBox
             var dt = DB.Estados.Where(x => x.IdEstado == 9 || x.IdEstado == 10 || x.IdEstado == 11).ToList();
+
+            CboxStates.ValueMember = "IdEstado";
+            CboxStates.DisplayMember = "NombreEstado";
+            CboxStates.DataSource = dt;
+            CboxStates.SelectedIndex = -1;
+        }
+
+        private void CargarEstadosMaterialesBuena()
+        {
+
+            //Metodo que permite llamar y obtener los datos filtrados de los materiales y mostrarlos en el comboBox
+            var dt = DB.Estados.Where(x => x.IdEstado == 11).ToList();
+
+            CboxStates.ValueMember = "IdEstado";
+            CboxStates.DisplayMember = "NombreEstado";
+            CboxStates.DataSource = dt;
+            CboxStates.SelectedIndex = -1;
+        }
+        private void CargarEstadosMaterialesRegular()
+        {
+
+            //Metodo que permite llamar y obtener los datos filtrados de los materiales y mostrarlos en el comboBox
+            var dt = DB.Estados.Where(x => x.IdEstado == 10).ToList();
+
+            CboxStates.ValueMember = "IdEstado";
+            CboxStates.DisplayMember = "NombreEstado";
+            CboxStates.DataSource = dt;
+            CboxStates.SelectedIndex = -1;
+        }
+
+        private void CargarEstadosMaterialesSinMaterial()
+        {
+
+            //Metodo que permite llamar y obtener los datos filtrados de los materiales y mostrarlos en el comboBox
+            var dt = DB.Estados.Where(x => x.IdEstado == 9).ToList();
 
             CboxStates.ValueMember = "IdEstado";
             CboxStates.DisplayMember = "NombreEstado";
@@ -988,6 +1023,65 @@ namespace Agregados.Forms.Materials
             FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
             frmPrincipalMDI.Show();
             this.Hide();
+        }
+        
+        //define la informacion de estado en el Cbox de estados
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCantidad.Text.Trim()) && txtCantidad.Text.Count() > 0 &&
+                !string.IsNullOrEmpty(txtMinimos.Text.Trim()) && txtMinimos.Text.Count() > 0)
+            {
+                if (Convert.ToDouble(txtCantidad.Text.Trim()) > ((Convert.ToDouble(txtMinimos.Text.Trim())) + 2))
+                {
+                    CargarEstadosMaterialesBuena();
+                }
+                else
+                {// segun negocio la arena fina es el minimo mas bajo 12m3, por eso se indica que si tiene 14m3 indique que regular, y asi con las demas...
+                    //y se mantiene si es mayor a 0
+                    if (Convert.ToDouble(txtCantidad.Text.Trim()) <= ((Convert.ToDouble(txtMinimos.Text.Trim())) + 2) && 
+                        Convert.ToDouble(txtCantidad.Text.Trim()) > 0)
+                    {
+                        CargarEstadosMaterialesRegular();
+                    }
+                    // segun negocio si llega a 0 entonces se indica que no hay material.Y no deja ser escogido por el usuario para facturarlo
+                    else
+                    {
+                        if (Convert.ToDouble(txtCantidad.Text.Trim()) == 0)
+                        {
+                            CargarEstadosMaterialesSinMaterial();
+                        }
+                    }
+                }
+            }
+        }
+        //define la informacion de estado en el Cbox de estados
+        private void txtMinimos_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCantidad.Text.Trim()) && txtCantidad.Text.Count() > 0 &&
+                !string.IsNullOrEmpty(txtMinimos.Text.Trim()) && txtMinimos.Text.Count() > 0)
+            {
+                if (Convert.ToDouble(txtCantidad.Text.Trim()) > ((Convert.ToDouble(txtMinimos.Text.Trim())) + 2))
+                {
+                    CargarEstadosMaterialesBuena();
+                }
+                else
+                {// segun negocio la arena fina es el minimo mas bajo 12m3, por eso se indica que si tiene 14m3 indique que regular, y asi con las demas...
+                    //y se mantiene si es mayor a 0
+                    if (Convert.ToDouble(txtCantidad.Text.Trim()) <= ((Convert.ToDouble(txtMinimos.Text.Trim())) + 2) &&
+                        Convert.ToDouble(txtCantidad.Text.Trim()) > 0)
+                    {
+                        CargarEstadosMaterialesRegular();
+                    }
+                    // segun negocio si llega a 0 entonces se indica que no hay material.Y no deja ser escogido por el usuario para facturarlo
+                    else
+                    {
+                        if (Convert.ToDouble(txtCantidad.Text.Trim()) == 0)
+                        {
+                            CargarEstadosMaterialesSinMaterial();
+                        }
+                    }
+                }
+            }
         }
     }
 }
