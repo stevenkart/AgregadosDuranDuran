@@ -12,7 +12,7 @@ namespace Agregados
     using System;
     using System.Collections.Generic;
     
-    public partial class Vehiculo
+    public partial class Vehiculos
     {
         public int IdVehiculo { get; set; }
         public string Placa { get; set; }
@@ -22,6 +22,6 @@ namespace Agregados
         public int MesRevision { get; set; }
         public int IdEstado { get; set; }
     
-        public virtual Estado Estado { get; set; }
+        public virtual Estados Estados { get; set; }
     }
 }

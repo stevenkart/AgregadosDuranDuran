@@ -12,27 +12,28 @@ namespace Agregados
     using System;
     using System.Collections.Generic;
     
-    public partial class Cliente
+    public partial class Clientes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cliente()
+        public Clientes()
         {
-            this.Facturas = new HashSet<Factura>();
+            this.Facturas = new HashSet<Facturas>();
         }
     
         public int IdCliente { get; set; }
         public string Identificacion { get; set; }
         public string Nombre { get; set; }
-        public int TipoCliente { get; set; }
         public string Telefono { get; set; }
         public string Telefono2 { get; set; }
         public string Correo { get; set; }
         public string Direccion { get; set; }
         public string Detalles { get; set; }
         public int IdEstado { get; set; }
+        public int IdTipoCliente { get; set; }
     
-        public virtual Estado Estado { get; set; }
+        public virtual Estados Estados { get; set; }
+        public virtual TipoClientes TipoClientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Factura> Facturas { get; set; }
+        public virtual ICollection<Facturas> Facturas { get; set; }
     }
 }

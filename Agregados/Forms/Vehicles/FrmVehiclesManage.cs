@@ -18,13 +18,13 @@ namespace Agregados.Forms.Vehicles
     {
         //variables del form
         AgregadosEntities DB;
-        Vehiculo vehiculo;
+        Vehiculos vehiculo;
 
         public FrmVehiclesManage()
         {
             InitializeComponent();
             DB = new AgregadosEntities();
-            vehiculo = new Vehiculo(); //vehiculo local
+            vehiculo = new Vehiculos(); //vehiculo local
             
         }
 
@@ -64,7 +64,7 @@ namespace Agregados.Forms.Vehicles
         {
             if (dgvVehicles.SelectedRows.Count == 1)
             {
-                vehiculo = new Vehiculo();
+                vehiculo = new Vehiculos();
 
                 DataGridViewRow MiFila = dgvVehicles.SelectedRows[0];
 
@@ -1152,7 +1152,7 @@ namespace Agregados.Forms.Vehicles
                     {
                         try
                         {
-                            vehiculo = new Vehiculo
+                            vehiculo = new Vehiculos
                             {
                                 Placa = txtPlaca.Text.Trim(),
                                 Marca = txtMarca.Text.Trim(),

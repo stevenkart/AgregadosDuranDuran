@@ -15,12 +15,12 @@ namespace Agregados.Forms.Customers
     {
         //variables del form
         AgregadosEntities DB;
-        Cliente cliente;
+        Clientes cliente;
         public FrmCustomerSearch()
         {
             InitializeComponent();
             DB = new AgregadosEntities();
-            cliente = new Cliente();
+            cliente = new Clientes();
         }
 
         //limpiar el form, ventana
@@ -46,7 +46,7 @@ namespace Agregados.Forms.Customers
                                  cl.Identificacion,
                                  cl.Nombre,
                                  //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                 TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -92,7 +92,7 @@ namespace Agregados.Forms.Customers
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                     TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -135,7 +135,7 @@ namespace Agregados.Forms.Customers
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                     TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,

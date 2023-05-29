@@ -18,7 +18,7 @@ namespace Agregados
 
         public static Form MyPrincipalForm = new Forms.FrmPrincipalMDI();
 
-        public static Agregados.Usuario MyGlobalUser = new Agregados.Usuario();
+        public static Usuarios MyGlobalUser = new Agregados.Usuarios();
 
         public static Forms.Notifications.FrmNotifications MifrmNotifications = new Forms.Notifications.FrmNotifications();
 

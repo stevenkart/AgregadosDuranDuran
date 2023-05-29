@@ -4,15 +4,20 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="CierreCaja">
+      <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CierreApertCajas">
           <Key>
-            <PropertyRef Name="IdCierre" />
+            <PropertyRef Name="IdCierreApert" />
           </Key>
-          <Property Name="IdCierre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCierreApert" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Hora" Type="time" Precision="7" Nullable="false" />
           <Property Name="Detalles" Type="varchar" MaxLength="1000" />
+          <Property Name="MontoEfectivo" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="MontoTransf" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="MontoSinpe" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="MontoCheque" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="MontoCredito" Type="numeric" Precision="10" Scale="2" Nullable="false" />
           <Property Name="IdUsuario" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Clientes">
@@ -22,13 +27,13 @@
           <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Identificacion" Type="varchar" MaxLength="255" />
           <Property Name="Nombre" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="TipoCliente" Type="int" Nullable="false" />
           <Property Name="Telefono" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Telefono2" Type="varchar" MaxLength="255" />
           <Property Name="Correo" Type="varchar" MaxLength="255" />
           <Property Name="Direccion" Type="varchar" MaxLength="1000" />
           <Property Name="Detalles" Type="varchar" MaxLength="1000" />
           <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="IdTipoCliente" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CorreoNotificaciones">
           <Key>
@@ -38,7 +43,7 @@
           <Property Name="Correo" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Contrasennia" Type="varchar" MaxLength="1500" Nullable="false" />
         </EntityType>
-        <EntityType Name="DetalleFact">
+        <EntityType Name="DetalleFacts">
           <Key>
             <PropertyRef Name="IdDetalle" />
           </Key>
@@ -70,6 +75,7 @@
           <Property Name="IdEstado" Type="int" Nullable="false" />
           <Property Name="IdCliente" Type="int" />
           <Property Name="IdProveedor" Type="int" />
+          <Property Name="IdTipoPago" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Materiales">
           <Key>
@@ -82,6 +88,13 @@
           <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="IdEstado" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="MetodosPagos">
+          <Key>
+            <PropertyRef Name="IdTipoPago" />
+          </Key>
+          <Property Name="IdTipoPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoPago" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <EntityType Name="Provedores">
           <Key>
             <PropertyRef Name="IdProveedor" />
@@ -89,13 +102,20 @@
           <Property Name="IdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Identificacion" Type="varchar" MaxLength="255" />
           <Property Name="Nombre" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="TipoProveedor" Type="int" Nullable="false" />
           <Property Name="Telefono" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Telefono2" Type="varchar" MaxLength="255" />
           <Property Name="Correo" Type="varchar" MaxLength="255" />
           <Property Name="Direccion" Type="varchar" MaxLength="1000" />
           <Property Name="Detalles" Type="varchar" MaxLength="1000" />
           <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="IdTipoProveedor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoClientes">
+          <Key>
+            <PropertyRef Name="IdTipoCliente" />
+          </Key>
+          <Property Name="IdTipoCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoCliente" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="TiposFacturas">
           <Key>
@@ -103,6 +123,13 @@
           </Key>
           <Property Name="IdTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposProveedores">
+          <Key>
+            <PropertyRef Name="IdTipoProveedor" />
+          </Key>
+          <Property Name="IdTipoProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoProveedor" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -130,14 +157,14 @@
           <Property Name="MesRevision" Type="int" Nullable="false" />
           <Property Name="IdEstado" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FKCierreCaja738389">
+        <Association Name="FKCierreAper920025">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
-          <End Role="CierreCaja" Type="Self.CierreCaja" Multiplicity="*" />
+          <End Role="CierreApertCajas" Type="Self.CierreApertCajas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuarios">
               <PropertyRef Name="IdUsuario" />
             </Principal>
-            <Dependent Role="CierreCaja">
+            <Dependent Role="CierreApertCajas">
               <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
@@ -154,26 +181,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKDetalleFac373618">
+        <Association Name="FKClientes935966">
+          <End Role="TipoClientes" Type="Self.TipoClientes" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoClientes">
+              <PropertyRef Name="IdTipoCliente" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdTipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDetalleFac524254">
           <End Role="Facturas" Type="Self.Facturas" Multiplicity="1" />
-          <End Role="DetalleFact" Type="Self.DetalleFact" Multiplicity="*" />
+          <End Role="DetalleFacts" Type="Self.DetalleFacts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Facturas">
               <PropertyRef Name="IdFactura" />
             </Principal>
-            <Dependent Role="DetalleFact">
+            <Dependent Role="DetalleFacts">
               <PropertyRef Name="IdFactura" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKDetalleFac814862">
+        <Association Name="FKDetalleFac664226">
           <End Role="Materiales" Type="Self.Materiales" Multiplicity="1" />
-          <End Role="DetalleFact" Type="Self.DetalleFact" Multiplicity="*" />
+          <End Role="DetalleFacts" Type="Self.DetalleFacts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Materiales">
               <PropertyRef Name="IdMaterial" />
             </Principal>
-            <Dependent Role="DetalleFact">
+            <Dependent Role="DetalleFacts">
               <PropertyRef Name="IdMaterial" />
             </Dependent>
           </ReferentialConstraint>
@@ -226,6 +265,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKFacturas574480">
+          <End Role="MetodosPagos" Type="Self.MetodosPagos" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetodosPagos">
+              <PropertyRef Name="IdTipoPago" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdTipoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKFacturas849510">
           <End Role="TiposFacturas" Type="Self.TiposFacturas" Multiplicity="1" />
           <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
@@ -235,6 +286,419 @@
             </Principal>
             <Dependent Role="Facturas">
               <PropertyRef Name="IdTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKMateriales845007">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Materiales" Type="Self.Materiales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Materiales">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKProvedores413712">
+          <End Role="TiposProveedores" Type="Self.TiposProveedores" Multiplicity="1" />
+          <End Role="Provedores" Type="Self.Provedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProveedores">
+              <PropertyRef Name="IdTipoProveedor" />
+            </Principal>
+            <Dependent Role="Provedores">
+              <PropertyRef Name="IdTipoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKProvedores830006">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Provedores" Type="Self.Provedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Provedores">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKUsuarios144656">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKVehiculos460868">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Vehiculos">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AgregadosModelStoreContainer">
+          <EntitySet Name="CierreApertCajas" EntityType="Self.CierreApertCajas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CorreoNotificaciones" EntityType="Self.CorreoNotificaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleFacts" EntityType="Self.DetalleFacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facturas" EntityType="Self.Facturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materiales" EntityType="Self.Materiales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MetodosPagos" EntityType="Self.MetodosPagos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provedores" EntityType="Self.Provedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoClientes" EntityType="Self.TipoClientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposFacturas" EntityType="Self.TiposFacturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposProveedores" EntityType="Self.TiposProveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FKCierreAper920025" Association="Self.FKCierreAper920025">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
+          </AssociationSet>
+          <AssociationSet Name="FKClientes514688" Association="Self.FKClientes514688">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FKClientes935966" Association="Self.FKClientes935966">
+            <End Role="TipoClientes" EntitySet="TipoClientes" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FKDetalleFac524254" Association="Self.FKDetalleFac524254">
+            <End Role="Facturas" EntitySet="Facturas" />
+            <End Role="DetalleFacts" EntitySet="DetalleFacts" />
+          </AssociationSet>
+          <AssociationSet Name="FKDetalleFac664226" Association="Self.FKDetalleFac664226">
+            <End Role="Materiales" EntitySet="Materiales" />
+            <End Role="DetalleFacts" EntitySet="DetalleFacts" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturas133865" Association="Self.FKFacturas133865">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturas199007" Association="Self.FKFacturas199007">
+            <End Role="Provedores" EntitySet="Provedores" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturas362625" Association="Self.FKFacturas362625">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturas372875" Association="Self.FKFacturas372875">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturas574480" Association="Self.FKFacturas574480">
+            <End Role="MetodosPagos" EntitySet="MetodosPagos" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturas849510" Association="Self.FKFacturas849510">
+            <End Role="TiposFacturas" EntitySet="TiposFacturas" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKMateriales845007" Association="Self.FKMateriales845007">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Materiales" EntitySet="Materiales" />
+          </AssociationSet>
+          <AssociationSet Name="FKProvedores413712" Association="Self.FKProvedores413712">
+            <End Role="TiposProveedores" EntitySet="TiposProveedores" />
+            <End Role="Provedores" EntitySet="Provedores" />
+          </AssociationSet>
+          <AssociationSet Name="FKProvedores830006" Association="Self.FKProvedores830006">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Provedores" EntitySet="Provedores" />
+          </AssociationSet>
+          <AssociationSet Name="FKUsuarios144656" Association="Self.FKUsuarios144656">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FKVehiculos460868" Association="Self.FKVehiculos460868">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AgregadosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CierreApertCajas">
+          <Key>
+            <PropertyRef Name="IdCierreApert" />
+          </Key>
+          <Property Name="IdCierreApert" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Hora" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Detalles" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="MontoEfectivo" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="MontoTransf" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="MontoSinpe" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="MontoCheque" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="MontoCredito" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FKCierreAper920025" FromRole="CierreApertCajas" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Detalles" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoCliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FKClientes514688" FromRole="Clientes" ToRole="Estados" />
+          <NavigationProperty Name="TipoClientes" Relationship="Self.FKClientes935966" FromRole="Clientes" ToRole="TipoClientes" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturas133865" FromRole="Clientes" ToRole="Facturas" />
+        </EntityType>
+        <EntityType Name="CorreoNotificaciones">
+          <Key>
+            <PropertyRef Name="IdCorreo" />
+          </Key>
+          <Property Name="IdCorreo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contrasennia" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleFacts">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="Decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdFactura" Type="Int32" Nullable="false" />
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKDetalleFac524254" FromRole="DetalleFacts" ToRole="Facturas" />
+          <NavigationProperty Name="Materiales" Relationship="Self.FKDetalleFac664226" FromRole="DetalleFacts" ToRole="Materiales" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreEstado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FKClientes514688" FromRole="Estados" ToRole="Clientes" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturas372875" FromRole="Estados" ToRole="Facturas" />
+          <NavigationProperty Name="Materiales" Relationship="Self.FKMateriales845007" FromRole="Estados" ToRole="Materiales" />
+          <NavigationProperty Name="Provedores" Relationship="Self.FKProvedores830006" FromRole="Estados" ToRole="Provedores" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FKUsuarios144656" FromRole="Estados" ToRole="Usuarios" />
+          <NavigationProperty Name="Vehiculos" Relationship="Self.FKVehiculos460868" FromRole="Estados" ToRole="Vehiculos" />
+        </EntityType>
+        <EntityType Name="Facturas">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CostoTransporte" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IVA" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CostoTotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FechaFactura" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaLimiteP" Type="DateTime" Precision="0" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdTipo" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="IdCliente" Type="Int32" />
+          <Property Name="IdProveedor" Type="Int32" />
+          <Property Name="IdTipoPago" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FKFacturas133865" FromRole="Facturas" ToRole="Clientes" />
+          <NavigationProperty Name="DetalleFacts" Relationship="Self.FKDetalleFac524254" FromRole="Facturas" ToRole="DetalleFacts" />
+          <NavigationProperty Name="Estados" Relationship="Self.FKFacturas372875" FromRole="Facturas" ToRole="Estados" />
+          <NavigationProperty Name="Provedores" Relationship="Self.FKFacturas199007" FromRole="Facturas" ToRole="Provedores" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FKFacturas362625" FromRole="Facturas" ToRole="Usuarios" />
+          <NavigationProperty Name="MetodosPagos" Relationship="Self.FKFacturas574480" FromRole="Facturas" ToRole="MetodosPagos" />
+          <NavigationProperty Name="TiposFacturas" Relationship="Self.FKFacturas849510" FromRole="Facturas" ToRole="TiposFacturas" />
+        </EntityType>
+        <EntityType Name="Materiales">
+          <Key>
+            <PropertyRef Name="IdMaterial" />
+          </Key>
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreMaterial" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CantidadMaterial" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Minimos" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetalleFacts" Relationship="Self.FKDetalleFac664226" FromRole="Materiales" ToRole="DetalleFacts" />
+          <NavigationProperty Name="Estados" Relationship="Self.FKMateriales845007" FromRole="Materiales" ToRole="Estados" />
+        </EntityType>
+        <EntityType Name="MetodosPagos">
+          <Key>
+            <PropertyRef Name="IdTipoPago" />
+          </Key>
+          <Property Name="IdTipoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoPago" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturas574480" FromRole="MetodosPagos" ToRole="Facturas" />
+        </EntityType>
+        <EntityType Name="Provedores">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Detalles" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoProveedor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FKProvedores830006" FromRole="Provedores" ToRole="Estados" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturas199007" FromRole="Provedores" ToRole="Facturas" />
+          <NavigationProperty Name="TiposProveedores" Relationship="Self.FKProvedores413712" FromRole="Provedores" ToRole="TiposProveedores" />
+        </EntityType>
+        <EntityType Name="TipoClientes">
+          <Key>
+            <PropertyRef Name="IdTipoCliente" />
+          </Key>
+          <Property Name="IdTipoCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoCliente" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FKClientes935966" FromRole="TipoClientes" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="TiposFacturas">
+          <Key>
+            <PropertyRef Name="IdTipo" />
+          </Key>
+          <Property Name="IdTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturas849510" FromRole="TiposFacturas" ToRole="Facturas" />
+        </EntityType>
+        <EntityType Name="TiposProveedores">
+          <Key>
+            <PropertyRef Name="IdTipoProveedor" />
+          </Key>
+          <Property Name="IdTipoProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoProveedor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Provedores" Relationship="Self.FKProvedores413712" FromRole="TiposProveedores" ToRole="Provedores" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contrasennia" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pin" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="NombreEmpleado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Identificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CierreApertCajas" Relationship="Self.FKCierreAper920025" FromRole="Usuarios" ToRole="CierreApertCajas" />
+          <NavigationProperty Name="Estados" Relationship="Self.FKUsuarios144656" FromRole="Usuarios" ToRole="Estados" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturas362625" FromRole="Usuarios" ToRole="Facturas" />
+        </EntityType>
+        <EntityType Name="Vehiculos">
+          <Key>
+            <PropertyRef Name="IdVehiculo" />
+          </Key>
+          <Property Name="IdVehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Placa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Marca" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Modelo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Annio" Type="Int32" Nullable="false" />
+          <Property Name="MesRevision" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FKVehiculos460868" FromRole="Vehiculos" ToRole="Estados" />
+        </EntityType>
+        <Association Name="FKCierreAper920025">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="CierreApertCajas" Type="Self.CierreApertCajas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="CierreApertCajas">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKClientes514688">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKClientes935966">
+          <End Role="TipoClientes" Type="Self.TipoClientes" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoClientes">
+              <PropertyRef Name="IdTipoCliente" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdTipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturas133865">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDetalleFac524254">
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="1" />
+          <End Role="DetalleFacts" Type="Self.DetalleFacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facturas">
+              <PropertyRef Name="IdFactura" />
+            </Principal>
+            <Dependent Role="DetalleFacts">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDetalleFac664226">
+          <End Role="Materiales" Type="Self.Materiales" Multiplicity="1" />
+          <End Role="DetalleFacts" Type="Self.DetalleFacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materiales">
+              <PropertyRef Name="IdMaterial" />
+            </Principal>
+            <Dependent Role="DetalleFacts">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturas372875">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdEstado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -286,349 +750,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AgregadosModelStoreContainer">
-          <EntitySet Name="CierreCaja" EntityType="Self.CierreCaja" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CorreoNotificaciones" EntityType="Self.CorreoNotificaciones" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DetalleFact" EntityType="Self.DetalleFact" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Facturas" EntityType="Self.Facturas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Materiales" EntityType="Self.Materiales" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Provedores" EntityType="Self.Provedores" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TiposFacturas" EntityType="Self.TiposFacturas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FKCierreCaja738389" Association="Self.FKCierreCaja738389">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="CierreCaja" EntitySet="CierreCaja" />
-          </AssociationSet>
-          <AssociationSet Name="FKClientes514688" Association="Self.FKClientes514688">
-            <End Role="Estados" EntitySet="Estados" />
-            <End Role="Clientes" EntitySet="Clientes" />
-          </AssociationSet>
-          <AssociationSet Name="FKDetalleFac373618" Association="Self.FKDetalleFac373618">
-            <End Role="Facturas" EntitySet="Facturas" />
-            <End Role="DetalleFact" EntitySet="DetalleFact" />
-          </AssociationSet>
-          <AssociationSet Name="FKDetalleFac814862" Association="Self.FKDetalleFac814862">
-            <End Role="Materiales" EntitySet="Materiales" />
-            <End Role="DetalleFact" EntitySet="DetalleFact" />
-          </AssociationSet>
-          <AssociationSet Name="FKFacturas133865" Association="Self.FKFacturas133865">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="Facturas" EntitySet="Facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FKFacturas199007" Association="Self.FKFacturas199007">
-            <End Role="Provedores" EntitySet="Provedores" />
-            <End Role="Facturas" EntitySet="Facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FKFacturas362625" Association="Self.FKFacturas362625">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="Facturas" EntitySet="Facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FKFacturas372875" Association="Self.FKFacturas372875">
-            <End Role="Estados" EntitySet="Estados" />
-            <End Role="Facturas" EntitySet="Facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FKFacturas849510" Association="Self.FKFacturas849510">
-            <End Role="TiposFacturas" EntitySet="TiposFacturas" />
-            <End Role="Facturas" EntitySet="Facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FKMateriales845007" Association="Self.FKMateriales845007">
-            <End Role="Estados" EntitySet="Estados" />
-            <End Role="Materiales" EntitySet="Materiales" />
-          </AssociationSet>
-          <AssociationSet Name="FKProvedores830006" Association="Self.FKProvedores830006">
-            <End Role="Estados" EntitySet="Estados" />
-            <End Role="Provedores" EntitySet="Provedores" />
-          </AssociationSet>
-          <AssociationSet Name="FKUsuarios144656" Association="Self.FKUsuarios144656">
-            <End Role="Estados" EntitySet="Estados" />
-            <End Role="Usuarios" EntitySet="Usuarios" />
-          </AssociationSet>
-          <AssociationSet Name="FKVehiculos460868" Association="Self.FKVehiculos460868">
-            <End Role="Estados" EntitySet="Estados" />
-            <End Role="Vehiculos" EntitySet="Vehiculos" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="AgregadosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="CierreCaja">
-          <Key>
-            <PropertyRef Name="IdCierre" />
-          </Key>
-          <Property Name="IdCierre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Hora" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="Detalles" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FKCierreCaja738389" FromRole="CierreCaja" ToRole="Usuarios" />
-        </EntityType>
-        <EntityType Name="Cliente">
-          <Key>
-            <PropertyRef Name="IdCliente" />
-          </Key>
-          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Identificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TipoCliente" Type="Int32" Nullable="false" />
-          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telefono2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Direccion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="Detalles" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="IdEstado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Estado" Relationship="Self.FKClientes514688" FromRole="Clientes" ToRole="Estados" />
-          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturas133865" FromRole="Clientes" ToRole="Facturas" />
-        </EntityType>
-        <EntityType Name="CorreoNotificacion">
-          <Key>
-            <PropertyRef Name="IdCorreo" />
-          </Key>
-          <Property Name="IdCorreo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Contrasennia" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DetalleFact">
-          <Key>
-            <PropertyRef Name="IdDetalle" />
-          </Key>
-          <Property Name="IdDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Cantidad" Type="Decimal" Precision="10" Scale="5" Nullable="false" />
-          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="IdFactura" Type="Int32" Nullable="false" />
-          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Factura" Relationship="Self.FKDetalleFac373618" FromRole="DetalleFact" ToRole="Facturas" />
-          <NavigationProperty Name="Material" Relationship="Self.FKDetalleFac814862" FromRole="DetalleFact" ToRole="Materiales" />
-        </EntityType>
-        <EntityType Name="Estado">
-          <Key>
-            <PropertyRef Name="IdEstado" />
-          </Key>
-          <Property Name="IdEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombreEstado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Clientes" Relationship="Self.FKClientes514688" FromRole="Estados" ToRole="Clientes" />
-          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturas372875" FromRole="Estados" ToRole="Facturas" />
-          <NavigationProperty Name="Materiales" Relationship="Self.FKMateriales845007" FromRole="Estados" ToRole="Materiales" />
-          <NavigationProperty Name="Provedores" Relationship="Self.FKProvedores830006" FromRole="Estados" ToRole="Provedores" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FKUsuarios144656" FromRole="Estados" ToRole="Usuarios" />
-          <NavigationProperty Name="Vehiculos" Relationship="Self.FKVehiculos460868" FromRole="Estados" ToRole="Vehiculos" />
-        </EntityType>
-        <EntityType Name="Factura">
-          <Key>
-            <PropertyRef Name="IdFactura" />
-          </Key>
-          <Property Name="IdFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CostoTransporte" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="IVA" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="CostoTotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="FechaFactura" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FechaLimiteP" Type="DateTime" Precision="0" />
-          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-          <Property Name="IdTipo" Type="Int32" Nullable="false" />
-          <Property Name="IdEstado" Type="Int32" Nullable="false" />
-          <Property Name="IdCliente" Type="Int32" />
-          <Property Name="IdProveedor" Type="Int32" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FKFacturas133865" FromRole="Facturas" ToRole="Clientes" />
-          <NavigationProperty Name="DetalleFacts" Relationship="Self.FKDetalleFac373618" FromRole="Facturas" ToRole="DetalleFact" />
-          <NavigationProperty Name="Estado" Relationship="Self.FKFacturas372875" FromRole="Facturas" ToRole="Estados" />
-          <NavigationProperty Name="Provedor" Relationship="Self.FKFacturas199007" FromRole="Facturas" ToRole="Provedores" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FKFacturas362625" FromRole="Facturas" ToRole="Usuarios" />
-          <NavigationProperty Name="TipoFactura" Relationship="Self.FKFacturas849510" FromRole="Facturas" ToRole="TiposFacturas" />
-        </EntityType>
-        <EntityType Name="Material">
-          <Key>
-            <PropertyRef Name="IdMaterial" />
-          </Key>
-          <Property Name="IdMaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombreMaterial" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CantidadMaterial" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="Minimos" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="IdEstado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DetalleFacts" Relationship="Self.FKDetalleFac814862" FromRole="Materiales" ToRole="DetalleFact" />
-          <NavigationProperty Name="Estado" Relationship="Self.FKMateriales845007" FromRole="Materiales" ToRole="Estados" />
-        </EntityType>
-        <EntityType Name="Provedor">
-          <Key>
-            <PropertyRef Name="IdProveedor" />
-          </Key>
-          <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Identificacion" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TipoProveedor" Type="Int32" Nullable="false" />
-          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telefono2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Direccion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="Detalles" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="IdEstado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Estado" Relationship="Self.FKProvedores830006" FromRole="Provedores" ToRole="Estados" />
-          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturas199007" FromRole="Provedores" ToRole="Facturas" />
-        </EntityType>
-        <EntityType Name="TipoFactura">
-          <Key>
-            <PropertyRef Name="IdTipo" />
-          </Key>
-          <Property Name="IdTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Tipo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturas849510" FromRole="TiposFacturas" ToRole="Facturas" />
-        </EntityType>
-        <EntityType Name="Usuario">
-          <Key>
-            <PropertyRef Name="IdUsuario" />
-          </Key>
-          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombreUsuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Contrasennia" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Pin" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="NombreEmpleado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Identificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TipoUsuario" Type="Int32" Nullable="false" />
-          <Property Name="IdEstado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CierreCajas" Relationship="Self.FKCierreCaja738389" FromRole="Usuarios" ToRole="CierreCaja" />
-          <NavigationProperty Name="Estado" Relationship="Self.FKUsuarios144656" FromRole="Usuarios" ToRole="Estados" />
-          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturas362625" FromRole="Usuarios" ToRole="Facturas" />
-        </EntityType>
-        <EntityType Name="Vehiculo">
-          <Key>
-            <PropertyRef Name="IdVehiculo" />
-          </Key>
-          <Property Name="IdVehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Placa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Marca" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Modelo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Annio" Type="Int32" Nullable="false" />
-          <Property Name="MesRevision" Type="Int32" Nullable="false" />
-          <Property Name="IdEstado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Estado" Relationship="Self.FKVehiculos460868" FromRole="Vehiculos" ToRole="Estados" />
-        </EntityType>
-        <Association Name="FKCierreCaja738389">
-          <End Role="Usuarios" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="CierreCaja" Type="Self.CierreCaja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuarios">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="CierreCaja">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKClientes514688">
-          <End Role="Estados" Type="Self.Estado" Multiplicity="1" />
-          <End Role="Clientes" Type="Self.Cliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados">
-              <PropertyRef Name="IdEstado" />
-            </Principal>
-            <Dependent Role="Clientes">
-              <PropertyRef Name="IdEstado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKFacturas133865">
-          <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
-          <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="IdCliente" />
-            </Principal>
-            <Dependent Role="Facturas">
-              <PropertyRef Name="IdCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKDetalleFac373618">
-          <End Role="Facturas" Type="Self.Factura" Multiplicity="1" />
-          <End Role="DetalleFact" Type="Self.DetalleFact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Facturas">
-              <PropertyRef Name="IdFactura" />
-            </Principal>
-            <Dependent Role="DetalleFact">
-              <PropertyRef Name="IdFactura" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKDetalleFac814862">
-          <End Role="Materiales" Type="AgregadosModel.Material" Multiplicity="1" />
-          <End Role="DetalleFact" Type="Self.DetalleFact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Materiales">
-              <PropertyRef Name="IdMaterial" />
-            </Principal>
-            <Dependent Role="DetalleFact">
-              <PropertyRef Name="IdMaterial" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKFacturas372875">
-          <End Role="Estados" Type="Self.Estado" Multiplicity="1" />
-          <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados">
-              <PropertyRef Name="IdEstado" />
-            </Principal>
-            <Dependent Role="Facturas">
-              <PropertyRef Name="IdEstado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKMateriales845007">
-          <End Role="Estados" Type="Self.Estado" Multiplicity="1" />
-          <End Role="Materiales" Type="AgregadosModel.Material" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados">
-              <PropertyRef Name="IdEstado" />
-            </Principal>
-            <Dependent Role="Materiales">
-              <PropertyRef Name="IdEstado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKProvedores830006">
-          <End Role="Estados" Type="Self.Estado" Multiplicity="1" />
-          <End Role="Provedores" Type="AgregadosModel.Provedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados">
-              <PropertyRef Name="IdEstado" />
-            </Principal>
-            <Dependent Role="Provedores">
-              <PropertyRef Name="IdEstado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKUsuarios144656">
-          <End Role="Estados" Type="Self.Estado" Multiplicity="1" />
-          <End Role="Usuarios" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados">
-              <PropertyRef Name="IdEstado" />
-            </Principal>
-            <Dependent Role="Usuarios">
-              <PropertyRef Name="IdEstado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKVehiculos460868">
-          <End Role="Estados" Type="Self.Estado" Multiplicity="1" />
-          <End Role="Vehiculos" Type="Self.Vehiculo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados">
-              <PropertyRef Name="IdEstado" />
-            </Principal>
-            <Dependent Role="Vehiculos">
-              <PropertyRef Name="IdEstado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FKFacturas199007">
-          <End Role="Provedores" Type="AgregadosModel.Provedor" Multiplicity="0..1" />
-          <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+          <End Role="Provedores" Type="Self.Provedores" Multiplicity="0..1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Provedores">
               <PropertyRef Name="IdProveedor" />
@@ -639,8 +763,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FKFacturas362625">
-          <End Role="Usuarios" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuarios">
               <PropertyRef Name="IdUsuario" />
@@ -650,9 +774,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKFacturas574480">
+          <End Role="MetodosPagos" Type="Self.MetodosPagos" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetodosPagos">
+              <PropertyRef Name="IdTipoPago" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdTipoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKFacturas849510">
-          <End Role="TiposFacturas" Type="AgregadosModel.TipoFactura" Multiplicity="1" />
-          <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+          <End Role="TiposFacturas" Type="Self.TiposFacturas" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TiposFacturas">
               <PropertyRef Name="IdTipo" />
@@ -662,37 +798,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKProvedores413712">
+          <End Role="TiposProveedores" Type="Self.TiposProveedores" Multiplicity="1" />
+          <End Role="Provedores" Type="Self.Provedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProveedores">
+              <PropertyRef Name="IdTipoProveedor" />
+            </Principal>
+            <Dependent Role="Provedores">
+              <PropertyRef Name="IdTipoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="AgregadosEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CierreCajas" EntityType="Self.CierreCaja" />
-          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
-          <EntitySet Name="CorreoNotificacions" EntityType="AgregadosModel.CorreoNotificacion" />
-          <EntitySet Name="DetalleFacts" EntityType="Self.DetalleFact" />
-          <EntitySet Name="Estados" EntityType="Self.Estado" />
-          <EntitySet Name="Facturas" EntityType="Self.Factura" />
-          <EntitySet Name="Materials" EntityType="AgregadosModel.Material" />
-          <EntitySet Name="Provedors" EntityType="AgregadosModel.Provedor" />
-          <EntitySet Name="TipoFacturas" EntityType="AgregadosModel.TipoFactura" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
-          <EntitySet Name="Vehiculos" EntityType="Self.Vehiculo" />
-          <AssociationSet Name="FKCierreCaja738389" Association="Self.FKCierreCaja738389">
+          <EntitySet Name="CierreApertCajas" EntityType="Self.CierreApertCajas" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+          <EntitySet Name="CorreoNotificaciones" EntityType="Self.CorreoNotificaciones" />
+          <EntitySet Name="DetalleFacts" EntityType="Self.DetalleFacts" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" />
+          <EntitySet Name="Facturas" EntityType="Self.Facturas" />
+          <EntitySet Name="Materiales" EntityType="Self.Materiales" />
+          <EntitySet Name="MetodosPagos" EntityType="Self.MetodosPagos" />
+          <EntitySet Name="Provedores" EntityType="Self.Provedores" />
+          <EntitySet Name="TipoClientes" EntityType="Self.TipoClientes" />
+          <EntitySet Name="TiposFacturas" EntityType="Self.TiposFacturas" />
+          <EntitySet Name="TiposProveedores" EntityType="Self.TiposProveedores" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" />
+          <AssociationSet Name="FKCierreAper920025" Association="Self.FKCierreAper920025">
             <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="CierreCaja" EntitySet="CierreCajas" />
+            <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
           </AssociationSet>
           <AssociationSet Name="FKClientes514688" Association="Self.FKClientes514688">
             <End Role="Estados" EntitySet="Estados" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FKClientes935966" Association="Self.FKClientes935966">
+            <End Role="TipoClientes" EntitySet="TipoClientes" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
           <AssociationSet Name="FKFacturas133865" Association="Self.FKFacturas133865">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Facturas" EntitySet="Facturas" />
           </AssociationSet>
-          <AssociationSet Name="FKDetalleFac373618" Association="Self.FKDetalleFac373618">
+          <AssociationSet Name="FKDetalleFac524254" Association="Self.FKDetalleFac524254">
             <End Role="Facturas" EntitySet="Facturas" />
-            <End Role="DetalleFact" EntitySet="DetalleFacts" />
+            <End Role="DetalleFacts" EntitySet="DetalleFacts" />
           </AssociationSet>
-          <AssociationSet Name="FKDetalleFac814862" Association="Self.FKDetalleFac814862">
-            <End Role="Materiales" EntitySet="Materials" />
-            <End Role="DetalleFact" EntitySet="DetalleFacts" />
+          <AssociationSet Name="FKDetalleFac664226" Association="Self.FKDetalleFac664226">
+            <End Role="Materiales" EntitySet="Materiales" />
+            <End Role="DetalleFacts" EntitySet="DetalleFacts" />
           </AssociationSet>
           <AssociationSet Name="FKFacturas372875" Association="Self.FKFacturas372875">
             <End Role="Estados" EntitySet="Estados" />
@@ -700,11 +855,11 @@
           </AssociationSet>
           <AssociationSet Name="FKMateriales845007" Association="Self.FKMateriales845007">
             <End Role="Estados" EntitySet="Estados" />
-            <End Role="Materiales" EntitySet="Materials" />
+            <End Role="Materiales" EntitySet="Materiales" />
           </AssociationSet>
           <AssociationSet Name="FKProvedores830006" Association="Self.FKProvedores830006">
             <End Role="Estados" EntitySet="Estados" />
-            <End Role="Provedores" EntitySet="Provedors" />
+            <End Role="Provedores" EntitySet="Provedores" />
           </AssociationSet>
           <AssociationSet Name="FKUsuarios144656" Association="Self.FKUsuarios144656">
             <End Role="Estados" EntitySet="Estados" />
@@ -715,16 +870,24 @@
             <End Role="Vehiculos" EntitySet="Vehiculos" />
           </AssociationSet>
           <AssociationSet Name="FKFacturas199007" Association="Self.FKFacturas199007">
-            <End Role="Provedores" EntitySet="Provedors" />
+            <End Role="Provedores" EntitySet="Provedores" />
             <End Role="Facturas" EntitySet="Facturas" />
           </AssociationSet>
           <AssociationSet Name="FKFacturas362625" Association="Self.FKFacturas362625">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Facturas" EntitySet="Facturas" />
           </AssociationSet>
-          <AssociationSet Name="FKFacturas849510" Association="Self.FKFacturas849510">
-            <End Role="TiposFacturas" EntitySet="TipoFacturas" />
+          <AssociationSet Name="FKFacturas574480" Association="Self.FKFacturas574480">
+            <End Role="MetodosPagos" EntitySet="MetodosPagos" />
             <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturas849510" Association="Self.FKFacturas849510">
+            <End Role="TiposFacturas" EntitySet="TiposFacturas" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKProvedores413712" Association="Self.FKProvedores413712">
+            <End Role="TiposProveedores" EntitySet="TiposProveedores" />
+            <End Role="Provedores" EntitySet="Provedores" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -733,35 +896,40 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AgregadosModelStoreContainer" CdmEntityContainer="AgregadosEntities">
-          <EntitySetMapping Name="CierreCajas">
-            <EntityTypeMapping TypeName="AgregadosModel.CierreCaja">
-              <MappingFragment StoreEntitySet="CierreCaja">
-                <ScalarProperty Name="IdCierre" ColumnName="IdCierre" />
+          <EntitySetMapping Name="CierreApertCajas">
+            <EntityTypeMapping TypeName="AgregadosModel.CierreApertCajas">
+              <MappingFragment StoreEntitySet="CierreApertCajas">
+                <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Hora" ColumnName="Hora" />
                 <ScalarProperty Name="Detalles" ColumnName="Detalles" />
+                <ScalarProperty Name="MontoEfectivo" ColumnName="MontoEfectivo" />
+                <ScalarProperty Name="MontoTransf" ColumnName="MontoTransf" />
+                <ScalarProperty Name="MontoSinpe" ColumnName="MontoSinpe" />
+                <ScalarProperty Name="MontoCheque" ColumnName="MontoCheque" />
+                <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Clientes">
-            <EntityTypeMapping TypeName="AgregadosModel.Cliente">
+            <EntityTypeMapping TypeName="AgregadosModel.Clientes">
               <MappingFragment StoreEntitySet="Clientes">
                 <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
                 <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Detalles" ColumnName="Detalles" />
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="IdTipoCliente" ColumnName="IdTipoCliente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CorreoNotificacions">
-            <EntityTypeMapping TypeName="AgregadosModel.CorreoNotificacion">
+          <EntitySetMapping Name="CorreoNotificaciones">
+            <EntityTypeMapping TypeName="AgregadosModel.CorreoNotificaciones">
               <MappingFragment StoreEntitySet="CorreoNotificaciones">
                 <ScalarProperty Name="IdCorreo" ColumnName="IdCorreo" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
@@ -770,8 +938,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DetalleFacts">
-            <EntityTypeMapping TypeName="AgregadosModel.DetalleFact">
-              <MappingFragment StoreEntitySet="DetalleFact">
+            <EntityTypeMapping TypeName="AgregadosModel.DetalleFacts">
+              <MappingFragment StoreEntitySet="DetalleFacts">
                 <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
@@ -781,7 +949,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Estados">
-            <EntityTypeMapping TypeName="AgregadosModel.Estado">
+            <EntityTypeMapping TypeName="AgregadosModel.Estados">
               <MappingFragment StoreEntitySet="Estados">
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
                 <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
@@ -789,7 +957,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Facturas">
-            <EntityTypeMapping TypeName="AgregadosModel.Factura">
+            <EntityTypeMapping TypeName="AgregadosModel.Facturas">
               <MappingFragment StoreEntitySet="Facturas">
                 <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
                 <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
@@ -802,11 +970,12 @@
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
                 <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
                 <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="IdTipoPago" ColumnName="IdTipoPago" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Materials">
-            <EntityTypeMapping TypeName="AgregadosModel.Material">
+          <EntitySetMapping Name="Materiales">
+            <EntityTypeMapping TypeName="AgregadosModel.Materiales">
               <MappingFragment StoreEntitySet="Materiales">
                 <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
                 <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
@@ -817,32 +986,56 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Provedors">
-            <EntityTypeMapping TypeName="AgregadosModel.Provedor">
+          <EntitySetMapping Name="MetodosPagos">
+            <EntityTypeMapping TypeName="AgregadosModel.MetodosPagos">
+              <MappingFragment StoreEntitySet="MetodosPagos">
+                <ScalarProperty Name="IdTipoPago" ColumnName="IdTipoPago" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provedores">
+            <EntityTypeMapping TypeName="AgregadosModel.Provedores">
               <MappingFragment StoreEntitySet="Provedores">
                 <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
                 <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="TipoProveedor" ColumnName="TipoProveedor" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Detalles" ColumnName="Detalles" />
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="IdTipoProveedor" ColumnName="IdTipoProveedor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TipoFacturas">
-            <EntityTypeMapping TypeName="AgregadosModel.TipoFactura">
+          <EntitySetMapping Name="TipoClientes">
+            <EntityTypeMapping TypeName="AgregadosModel.TipoClientes">
+              <MappingFragment StoreEntitySet="TipoClientes">
+                <ScalarProperty Name="IdTipoCliente" ColumnName="IdTipoCliente" />
+                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposFacturas">
+            <EntityTypeMapping TypeName="AgregadosModel.TiposFacturas">
               <MappingFragment StoreEntitySet="TiposFacturas">
                 <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TiposProveedores">
+            <EntityTypeMapping TypeName="AgregadosModel.TiposProveedores">
+              <MappingFragment StoreEntitySet="TiposProveedores">
+                <ScalarProperty Name="IdTipoProveedor" ColumnName="IdTipoProveedor" />
+                <ScalarProperty Name="TipoProveedor" ColumnName="TipoProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="AgregadosModel.Usuario">
+            <EntityTypeMapping TypeName="AgregadosModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
@@ -857,7 +1050,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Vehiculos">
-            <EntityTypeMapping TypeName="AgregadosModel.Vehiculo">
+            <EntityTypeMapping TypeName="AgregadosModel.Vehiculos">
               <MappingFragment StoreEntitySet="Vehiculos">
                 <ScalarProperty Name="IdVehiculo" ColumnName="IdVehiculo" />
                 <ScalarProperty Name="Placa" ColumnName="Placa" />
@@ -883,10 +1076,10 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

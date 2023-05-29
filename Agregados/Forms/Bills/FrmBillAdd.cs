@@ -15,15 +15,15 @@ namespace Agregados.Forms.Bills
     {
         //variables del form
         AgregadosEntities DB;
-        Factura factura;
-        DetalleFact detalleFact;
+        Facturas factura;
+        DetalleFacts detalleFact;
         public DataTable DtLista { get; set; }
         public FrmBillAdd()
         {
             InitializeComponent();
             DB = new AgregadosEntities();
-            factura = new Factura();    
-            detalleFact = new DetalleFact();
+            factura = new Facturas();    
+            detalleFact = new DetalleFacts();
 
             DtLista = new DataTable();
         }
@@ -43,7 +43,7 @@ namespace Agregados.Forms.Bills
         {
 
             //Metodo que permite llamar y obtener los datos filtrados de los materiales y mostrarlos en el comboBox
-            var dt = DB.TipoFacturas.ToList();
+            var dt = DB.TiposFacturas.ToList();
 
             CboxTypeBill.ValueMember = "IdTipo";
             CboxTypeBill.DisplayMember = "Tipo";

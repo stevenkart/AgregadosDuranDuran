@@ -17,12 +17,12 @@ namespace Agregados.Forms.Providers
     {
         //variables del form
         AgregadosEntities DB;
-        Provedor proveedor;
+        Provedores proveedor;
         public FrmProvidersManage()
         {
             InitializeComponent();
             DB = new AgregadosEntities();
-            proveedor = new Provedor();
+            proveedor = new Provedores();
         }
 
         //cuando se cierre el form op presion el boton salir
@@ -47,7 +47,7 @@ namespace Agregados.Forms.Providers
 
             // linq para validar y disenar mejor la DataGridView al usuario // empezando la informacion con Estado ACTIVO y lo unico que se necesita obtener
             //para agilizar la respuesta y no obtener tantas columnas de datos
-            var result = from pr in DB.Provedors
+            var result = from pr in DB.Provedores
                          join es in DB.Estados
                          on pr.IdEstado equals es.IdEstado
                          where (pr.IdEstado == 1)
@@ -57,7 +57,7 @@ namespace Agregados.Forms.Providers
                              pr.Identificacion,
                              pr.Nombre,
                              //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                             TipoProveedor = (pr.TipoProveedor == 1) ? "Físico" : (pr.TipoProveedor == 2) ? "Júridico" : "",
+                             TipoProveedor = (pr.IdTipoProveedor == 1) ? "Físico" : (pr.IdTipoProveedor == 2) ? "Júridico" : "",
                              pr.Telefono,
                              pr.Telefono2,
                              pr.Correo,
@@ -73,7 +73,7 @@ namespace Agregados.Forms.Providers
         {
             if (dgvProveedores.SelectedRows.Count == 1)
             {
-                proveedor = new Provedor();
+                proveedor = new Provedores();
 
                 DataGridViewRow MiFila = dgvProveedores.SelectedRows[0];
 
@@ -86,7 +86,7 @@ namespace Agregados.Forms.Providers
 
 
                 //ESTE METODO de consultor RETORNA UN OBJETO de tipo Empleado
-                proveedor = DB.Provedors.FirstOrDefault(x => x.IdProveedor == IdProveedor);
+                proveedor = DB.Provedores.FirstOrDefault(x => x.IdProveedor == IdProveedor);
 
                 if (proveedor != null && proveedor.IdProveedor > 0)
                 {
@@ -94,7 +94,7 @@ namespace Agregados.Forms.Providers
                     //en pantalla
                     txtIdent.Text = proveedor.Identificacion.ToString();
                     txtName.Text = proveedor.Nombre.ToString();
-                    CboxProviderType.SelectedValue = proveedor.TipoProveedor;
+                    CboxProviderType.SelectedValue = proveedor.IdTipoProveedor;
                     txtMainPhone.Text = proveedor.Telefono.ToString();
                     txtSecondPhone.Text = proveedor.Telefono2.ToString();
                     txtEmail.Text = proveedor.Correo.ToString();
@@ -124,6 +124,7 @@ namespace Agregados.Forms.Providers
         //Carga Cbox Tipos
         private void CargarTipos()
         {
+            /*
             //Metodo para crear un DataTable manual sin sentencia SQL a la Base de datos y asi disenar un modelo al comboBox que permita seleccionar los meses 
             //y entonces guarde pero un valor int, y mostrando un valor string 
             DataTable dt = new DataTable();
@@ -134,6 +135,15 @@ namespace Agregados.Forms.Providers
             CboxProviderType.DataSource = dt;
             CboxProviderType.ValueMember = "Id";
             CboxProviderType.DisplayMember = "D";
+            CboxProviderType.SelectedIndex = -1;
+            */
+
+            //Metodo que permite llamar y obtener los datos filtrados y mostrarlos en el comboBox
+            var dt = DB.TiposProveedores.Where(x => x.IdTipoProveedor == 1 || x.IdTipoProveedor == 2).ToList();
+
+            CboxProviderType.ValueMember = "IdTipoProveedor";
+            CboxProviderType.DisplayMember = "TipoProveedor";
+            CboxProviderType.DataSource = dt;
             CboxProviderType.SelectedIndex = -1;
 
         }
@@ -249,7 +259,7 @@ namespace Agregados.Forms.Providers
         {
             if (ChActivos.Checked == true)
             {
-                var result = from cl in DB.Provedors
+                var result = from cl in DB.Provedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1)
@@ -259,7 +269,7 @@ namespace Agregados.Forms.Providers
                                  cl.Identificacion,
                                  cl.Nombre,
                                  //Lambda Expresion IF -ELSE para validar tipo de proveedor y proceder a indicarlo en modo texto
-                                 TipoProveedor = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
+                                 TipoProveedor = (cl.IdTipoProveedor == 1) ? "Físico" : (cl.IdTipoProveedor == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -274,7 +284,7 @@ namespace Agregados.Forms.Providers
             {
                 if (ChActivos.Checked == false)
                 {
-                    var result = from cl in DB.Provedors
+                    var result = from cl in DB.Provedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2)
@@ -284,7 +294,7 @@ namespace Agregados.Forms.Providers
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de proveedor y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
+                                     TipoProveedor = (cl.IdTipoProveedor == 1) ? "Físico" : (cl.IdTipoProveedor == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -317,11 +327,11 @@ namespace Agregados.Forms.Providers
                         {
                             try
                             {
-                                proveedor = new Provedor
+                                proveedor = new Provedores
                                 {
                                     Identificacion = txtIdent.Text.Trim(),
                                     Nombre = txtName.Text.Trim(),
-                                    TipoProveedor = Convert.ToInt32(CboxProviderType.SelectedValue),
+                                    IdTipoProveedor = Convert.ToInt32(CboxProviderType.SelectedValue),
                                     Telefono = txtMainPhone.Text.Trim(),
                                     Telefono2 = txtSecondPhone.Text.Trim(),
                                     Correo = txtEmail.Text.Trim(),
@@ -330,7 +340,7 @@ namespace Agregados.Forms.Providers
                                     IdEstado = Convert.ToInt32(CboxStates.SelectedValue)
                                 };
 
-                                DB.Provedors.Add(proveedor);
+                                DB.Provedores.Add(proveedor);
 
                                 if (DB.SaveChanges() > 0)
                                 {
@@ -379,7 +389,7 @@ namespace Agregados.Forms.Providers
 
                                 proveedor.Identificacion = txtIdent.Text.Trim();
                                 proveedor.Nombre = txtName.Text.Trim();
-                                proveedor.TipoProveedor = Convert.ToInt32(CboxProviderType.SelectedValue);
+                                proveedor.IdTipoProveedor = Convert.ToInt32(CboxProviderType.SelectedValue);
                                 proveedor.Telefono = txtMainPhone.Text.Trim();
                                 proveedor.Telefono2 = txtSecondPhone.Text.Trim();
                                 proveedor.Correo = txtEmail.Text.Trim();
@@ -441,7 +451,7 @@ namespace Agregados.Forms.Providers
                             }
                             else
                             {
-                                DB.Provedors.Remove(proveedor); // metodo para eliminar el cliente, dato de la BD
+                                DB.Provedores.Remove(proveedor); // metodo para eliminar el cliente, dato de la BD
                                 if (DB.SaveChanges() > 0)
                                 {
                                     CheckChange();
@@ -479,7 +489,7 @@ namespace Agregados.Forms.Providers
 
                                     proveedor.Identificacion = txtIdent.Text.Trim();
                                     proveedor.Nombre = txtName.Text.Trim();
-                                    proveedor.TipoProveedor = Convert.ToInt32(CboxProviderType.SelectedValue);
+                                    proveedor.IdTipoProveedor = Convert.ToInt32(CboxProviderType.SelectedValue);
                                     proveedor.Telefono = txtMainPhone.Text.Trim();
                                     proveedor.Telefono2 = txtSecondPhone.Text.Trim();
                                     proveedor.Correo = txtEmail.Text.Trim();
@@ -554,7 +564,7 @@ namespace Agregados.Forms.Providers
                 txtIdentSearch.Enabled = false;
                 txtNameSearch.Enabled = false;
                 int num = Convert.ToInt32(txtIdProviderSearch.Text.Trim());
-                var result = from cl in DB.Provedors
+                var result = from cl in DB.Provedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1 && cl.IdProveedor == num)
@@ -564,7 +574,7 @@ namespace Agregados.Forms.Providers
                                  cl.Identificacion,
                                  cl.Nombre,
                                  //Lambda Expresion IF -ELSE para validar tipo de Proveedor y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
+                                 TipoProveedor = (cl.IdTipoProveedor == 1) ? "Físico" : (cl.IdTipoProveedor == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -582,7 +592,7 @@ namespace Agregados.Forms.Providers
                     txtIdentSearch.Enabled = false;
                     txtNameSearch.Enabled = false;
                     int num = Convert.ToInt32(txtIdProviderSearch.Text.Trim());
-                    var result = from cl in DB.Provedors
+                    var result = from cl in DB.Provedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2 && cl.IdProveedor == num)
@@ -592,7 +602,7 @@ namespace Agregados.Forms.Providers
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de pROVEEDOR y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
+                                     TipoProveedor = (cl.IdTipoProveedor == 1) ? "Físico" : (cl.IdTipoProveedor == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -622,7 +632,7 @@ namespace Agregados.Forms.Providers
                 txtIdProviderSearch.Enabled = false;
                 txtNameSearch.Enabled = false;
                 string num = txtIdentSearch.Text.Trim();
-                var result = from cl in DB.Provedors
+                var result = from cl in DB.Provedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1 && cl.Identificacion.Contains(num))
@@ -632,7 +642,7 @@ namespace Agregados.Forms.Providers
                                  cl.Identificacion,
                                  cl.Nombre,
                                  //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
+                                 TipoProveedor = (cl.IdTipoProveedor == 1) ? "Físico" : (cl.IdTipoProveedor == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -650,7 +660,7 @@ namespace Agregados.Forms.Providers
                     txtIdProviderSearch.Enabled = false;
                     txtNameSearch.Enabled = false;
                     string num = txtIdentSearch.Text.Trim();
-                    var result = from cl in DB.Provedors
+                    var result = from cl in DB.Provedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2 && cl.Identificacion.Contains(num))
@@ -660,7 +670,7 @@ namespace Agregados.Forms.Providers
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
+                                     TipoProveedor = (cl.IdTipoProveedor == 1) ? "Físico" : (cl.IdTipoProveedor == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -690,7 +700,7 @@ namespace Agregados.Forms.Providers
                 txtIdentSearch.Enabled = false;
                 txtIdProviderSearch.Enabled = false;
                 string num = txtNameSearch.Text.Trim();
-                var result = from cl in DB.Provedors
+                var result = from cl in DB.Provedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1 && cl.Nombre.Contains(num))
@@ -700,7 +710,7 @@ namespace Agregados.Forms.Providers
                                  cl.Identificacion,
                                  cl.Nombre,
                                  //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
+                                 TipoProveedor = (cl.IdTipoProveedor == 1) ? "Físico" : (cl.IdTipoProveedor == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -718,7 +728,7 @@ namespace Agregados.Forms.Providers
                     txtIdentSearch.Enabled = false;
                     txtIdProviderSearch.Enabled = false;
                     string num = txtNameSearch.Text.Trim();
-                    var result = from cl in DB.Provedors
+                    var result = from cl in DB.Provedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2 && cl.Nombre.Contains(num))
@@ -728,7 +738,7 @@ namespace Agregados.Forms.Providers
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoProveedor == 1) ? "Físico" : (cl.TipoProveedor == 2) ? "Júridico" : "",
+                                     TipoProveedor = (cl.IdTipoProveedor == 1) ? "Físico" : (cl.IdTipoProveedor == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -752,9 +762,67 @@ namespace Agregados.Forms.Providers
 
         }
 
-      
     
-    
-    
+
+        private void txtIdent_TextChanged(object sender, EventArgs e)
+        {
+            if (txtIdent.Text.Length >= 4)
+            {
+                string[] tipoClases = {"2-100","2-200", "2-300", "2-400", "3-002", "3-003", "3-004", "3-005", "3-006", "3-007", "3-008", "3-009", "3-010", "3-011", "3-012", "3-013",
+            "3-014","3-101","3-102","3-103","3-104","3-105","3-106","3-107","3-108","3-109","3-110","4-000","5-001",
+            "2100","2200", "2300", "2400", "3002", "3003", "3004", "3005", "3006", "3007", "3008", "3009", "3010", "3011", "3012", "3013",
+            "3014","3101","3102","3103","3104","3105","3106","3107","3108","3109","3110","4000","5001"};
+
+                if (txtIdent.Text.Length == 12)
+                {
+                    string identificacion = txtIdent.Text.Trim();
+
+                    string existe = tipoClases.Where((x) => x.Contains(identificacion.Substring(0, 4)) || x.StartsWith(identificacion.Substring(0, 4))).FirstOrDefault();
+
+                    if (existe != null)
+                    {
+                        //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
+                        var dt = DB.TiposProveedores.Where(x => x.IdTipoProveedor == 2).ToList();
+
+                        CboxProviderType.ValueMember = "IdTipoProveedor";
+                        CboxProviderType.DisplayMember = "TipoProveedor";
+                        CboxProviderType.DataSource = dt;
+                        CboxProviderType.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
+                        var dt = DB.TiposProveedores.Where(x => x.IdTipoProveedor == 1).ToList();
+
+                        CboxProviderType.ValueMember = "IdTipoProveedor";
+                        CboxProviderType.DisplayMember = "TipoProveedor";
+                        CboxProviderType.DataSource = dt;
+                        CboxProviderType.SelectedIndex = -1;
+
+                    }
+                }
+                else
+                {
+                    //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
+                    var dt = DB.TiposProveedores.Where(x => x.IdTipoProveedor == 1).ToList();
+
+                    CboxProviderType.ValueMember = "IdTipoProveedor";
+                    CboxProviderType.DisplayMember = "TipoProveedor";
+                    CboxProviderType.DataSource = dt;
+                    CboxProviderType.SelectedIndex = -1;
+                }
+                
+            }
+            else
+            {
+                //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
+                var dt = DB.TiposProveedores.Where(x => x.IdTipoProveedor == 1).ToList();
+
+                CboxProviderType.ValueMember = "IdTipoProveedor";
+                CboxProviderType.DisplayMember = "TipoProveedor";
+                CboxProviderType.DataSource = dt;
+                CboxProviderType.SelectedIndex = -1;
+            }
+        }
     }
 }

@@ -68,7 +68,13 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.SeePass = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.imgAdd = new System.Windows.Forms.PictureBox();
+            this.imgUpdate = new System.Windows.Forms.PictureBox();
+            this.imgDelete = new System.Windows.Forms.PictureBox();
+            this.imgClean = new System.Windows.Forms.PictureBox();
+            this.imgExit = new System.Windows.Forms.PictureBox();
             this.CidUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNombreUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNombreEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,12 +82,6 @@
             this.CCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CTipoUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SeePass = new System.Windows.Forms.PictureBox();
-            this.imgAdd = new System.Windows.Forms.PictureBox();
-            this.imgUpdate = new System.Windows.Forms.PictureBox();
-            this.imgDelete = new System.Windows.Forms.PictureBox();
-            this.imgClean = new System.Windows.Forms.PictureBox();
-            this.imgExit = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -96,8 +96,8 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SeePass)).BeginInit();
+            this.tableLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgUpdate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgDelete)).BeginInit();
@@ -325,7 +325,7 @@
             this.tableLayoutPanel8.ColumnCount = 3;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.88469F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 199F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.checkBox1, 2, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -355,9 +355,9 @@
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(1107, 7);
+            this.checkBox1.Location = new System.Drawing.Point(1105, 7);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(192, 22);
+            this.checkBox1.Size = new System.Drawing.Size(194, 22);
             this.checkBox1.TabIndex = 1;
             this.checkBox1.Text = "Usuarios Activos";
             this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -605,6 +605,19 @@
             this.tableLayoutPanel9.Size = new System.Drawing.Size(357, 66);
             this.tableLayoutPanel9.TabIndex = 3;
             // 
+            // SeePass
+            // 
+            this.SeePass.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SeePass.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SeePass.Image = global::Agregados.Properties.Resources.eye;
+            this.SeePass.Location = new System.Drawing.Point(302, 3);
+            this.SeePass.Name = "SeePass";
+            this.SeePass.Size = new System.Drawing.Size(52, 60);
+            this.SeePass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.SeePass.TabIndex = 8;
+            this.SeePass.TabStop = false;
+            this.SeePass.Click += new System.EventHandler(this.SeePass_Click);
+            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 1;
@@ -625,93 +638,6 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(129, 507);
             this.tableLayoutPanel7.TabIndex = 0;
-            // 
-            // CidUsuario
-            // 
-            this.CidUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CidUsuario.DataPropertyName = "IdUsuario";
-            this.CidUsuario.FillWeight = 50F;
-            this.CidUsuario.Frozen = true;
-            this.CidUsuario.HeaderText = "ID";
-            this.CidUsuario.MinimumWidth = 40;
-            this.CidUsuario.Name = "CidUsuario";
-            this.CidUsuario.ReadOnly = true;
-            this.CidUsuario.Width = 45;
-            // 
-            // CNombreUsuario
-            // 
-            this.CNombreUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.CNombreUsuario.DataPropertyName = "NombreUsuario";
-            this.CNombreUsuario.FillWeight = 150F;
-            this.CNombreUsuario.HeaderText = "Nombre Usuario";
-            this.CNombreUsuario.MinimumWidth = 140;
-            this.CNombreUsuario.Name = "CNombreUsuario";
-            this.CNombreUsuario.ReadOnly = true;
-            this.CNombreUsuario.Width = 140;
-            // 
-            // CNombreEmpleado
-            // 
-            this.CNombreEmpleado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.CNombreEmpleado.DataPropertyName = "NombreEmpleado";
-            this.CNombreEmpleado.FillWeight = 180F;
-            this.CNombreEmpleado.HeaderText = "Empleado";
-            this.CNombreEmpleado.MinimumWidth = 150;
-            this.CNombreEmpleado.Name = "CNombreEmpleado";
-            this.CNombreEmpleado.ReadOnly = true;
-            this.CNombreEmpleado.Width = 150;
-            // 
-            // CIdentificacion
-            // 
-            this.CIdentificacion.DataPropertyName = "Identificacion";
-            this.CIdentificacion.FillWeight = 140F;
-            this.CIdentificacion.HeaderText = "Identificación";
-            this.CIdentificacion.MinimumWidth = 100;
-            this.CIdentificacion.Name = "CIdentificacion";
-            this.CIdentificacion.ReadOnly = true;
-            this.CIdentificacion.Width = 110;
-            // 
-            // CCorreo
-            // 
-            this.CCorreo.DataPropertyName = "Correo";
-            this.CCorreo.FillWeight = 170F;
-            this.CCorreo.HeaderText = "Correo";
-            this.CCorreo.MinimumWidth = 140;
-            this.CCorreo.Name = "CCorreo";
-            this.CCorreo.ReadOnly = true;
-            this.CCorreo.Width = 140;
-            // 
-            // CTipoUsuario
-            // 
-            this.CTipoUsuario.DataPropertyName = "TipoUsuario";
-            this.CTipoUsuario.FillWeight = 130F;
-            this.CTipoUsuario.HeaderText = "Tipo Usuario";
-            this.CTipoUsuario.MinimumWidth = 110;
-            this.CTipoUsuario.Name = "CTipoUsuario";
-            this.CTipoUsuario.ReadOnly = true;
-            this.CTipoUsuario.Width = 110;
-            // 
-            // CIdEstado
-            // 
-            this.CIdEstado.DataPropertyName = "IdEstado";
-            this.CIdEstado.FillWeight = 120F;
-            this.CIdEstado.HeaderText = "Estado";
-            this.CIdEstado.MinimumWidth = 80;
-            this.CIdEstado.Name = "CIdEstado";
-            this.CIdEstado.ReadOnly = true;
-            this.CIdEstado.Width = 80;
-            // 
-            // SeePass
-            // 
-            this.SeePass.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SeePass.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SeePass.Image = global::Agregados.Properties.Resources.eye;
-            this.SeePass.Location = new System.Drawing.Point(302, 3);
-            this.SeePass.Name = "SeePass";
-            this.SeePass.Size = new System.Drawing.Size(52, 60);
-            this.SeePass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.SeePass.TabIndex = 8;
-            this.SeePass.TabStop = false;
-            this.SeePass.Click += new System.EventHandler(this.SeePass_Click);
             // 
             // imgAdd
             // 
@@ -779,6 +705,81 @@
             this.imgExit.TabStop = false;
             this.imgExit.Click += new System.EventHandler(this.imgExit_Click);
             // 
+            // CidUsuario
+            // 
+            this.CidUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CidUsuario.DataPropertyName = "IdUsuario";
+            this.CidUsuario.FillWeight = 50F;
+            this.CidUsuario.Frozen = true;
+            this.CidUsuario.HeaderText = "ID";
+            this.CidUsuario.MinimumWidth = 40;
+            this.CidUsuario.Name = "CidUsuario";
+            this.CidUsuario.ReadOnly = true;
+            this.CidUsuario.Width = 45;
+            // 
+            // CNombreUsuario
+            // 
+            this.CNombreUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CNombreUsuario.DataPropertyName = "NombreUsuario";
+            this.CNombreUsuario.FillWeight = 150F;
+            this.CNombreUsuario.Frozen = true;
+            this.CNombreUsuario.HeaderText = "Nombre Usuario";
+            this.CNombreUsuario.MinimumWidth = 140;
+            this.CNombreUsuario.Name = "CNombreUsuario";
+            this.CNombreUsuario.ReadOnly = true;
+            this.CNombreUsuario.Width = 140;
+            // 
+            // CNombreEmpleado
+            // 
+            this.CNombreEmpleado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CNombreEmpleado.DataPropertyName = "NombreEmpleado";
+            this.CNombreEmpleado.FillWeight = 180F;
+            this.CNombreEmpleado.HeaderText = "Empleado";
+            this.CNombreEmpleado.MinimumWidth = 150;
+            this.CNombreEmpleado.Name = "CNombreEmpleado";
+            this.CNombreEmpleado.ReadOnly = true;
+            this.CNombreEmpleado.Width = 150;
+            // 
+            // CIdentificacion
+            // 
+            this.CIdentificacion.DataPropertyName = "Identificacion";
+            this.CIdentificacion.FillWeight = 140F;
+            this.CIdentificacion.HeaderText = "Identificación";
+            this.CIdentificacion.MinimumWidth = 100;
+            this.CIdentificacion.Name = "CIdentificacion";
+            this.CIdentificacion.ReadOnly = true;
+            this.CIdentificacion.Width = 110;
+            // 
+            // CCorreo
+            // 
+            this.CCorreo.DataPropertyName = "Correo";
+            this.CCorreo.FillWeight = 170F;
+            this.CCorreo.HeaderText = "Correo";
+            this.CCorreo.MinimumWidth = 140;
+            this.CCorreo.Name = "CCorreo";
+            this.CCorreo.ReadOnly = true;
+            this.CCorreo.Width = 140;
+            // 
+            // CTipoUsuario
+            // 
+            this.CTipoUsuario.DataPropertyName = "TipoUsuario";
+            this.CTipoUsuario.FillWeight = 130F;
+            this.CTipoUsuario.HeaderText = "Tipo Usuario";
+            this.CTipoUsuario.MinimumWidth = 110;
+            this.CTipoUsuario.Name = "CTipoUsuario";
+            this.CTipoUsuario.ReadOnly = true;
+            this.CTipoUsuario.Width = 110;
+            // 
+            // CIdEstado
+            // 
+            this.CIdEstado.DataPropertyName = "IdEstado";
+            this.CIdEstado.FillWeight = 120F;
+            this.CIdEstado.HeaderText = "Estado";
+            this.CIdEstado.MinimumWidth = 80;
+            this.CIdEstado.Name = "CIdEstado";
+            this.CIdEstado.ReadOnly = true;
+            this.CIdEstado.Width = 80;
+            // 
             // FrmUserManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -814,8 +815,8 @@
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
-            this.tableLayoutPanel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SeePass)).EndInit();
+            this.tableLayoutPanel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgUpdate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgDelete)).EndInit();

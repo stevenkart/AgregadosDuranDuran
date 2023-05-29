@@ -22,14 +22,14 @@ namespace Agregados.Forms.Users
     {
         //variables del form
         AgregadosEntities DB;
-        Usuario user;
+        Usuarios user;
         Crypto encriptar;
 
         public FrmUserManage() // constructor del Form
         {
             InitializeComponent();
             DB = new AgregadosEntities();
-            user = new Usuario();
+            user = new Usuarios();
             encriptar = new Crypto();
 
         }
@@ -70,7 +70,7 @@ namespace Agregados.Forms.Users
         {
             if (dgvUsers.SelectedRows.Count == 1)
             {
-                user = new Usuario();
+                user = new Usuarios();
 
                 DataGridViewRow MiFila = dgvUsers.SelectedRows[0];
 
@@ -245,7 +245,7 @@ namespace Agregados.Forms.Users
                             try
                             {
                                 //validamos que los datos ingresados sean unicos, como nombre de usuario, identificacion o correo
-                                Usuario usuarioTemp = new Usuario();
+                                Usuarios usuarioTemp = new Usuarios();
                                 if (Validaciones.IsValidPass(txtPassword.Text.Trim()) && Validaciones.IsValidEmail(txtEmail.Text.Trim()))
                                 {
                                     usuarioTemp = DB.Usuarios.Where((x) => x.NombreUsuario == txtUsername.Text.Trim()).FirstOrDefault();
@@ -259,7 +259,7 @@ namespace Agregados.Forms.Users
 
                                             if (usuarioTemp == null)
                                             {
-                                                user = new Usuario
+                                                user = new Usuarios
                                                 {
                                                     NombreUsuario = txtUsername.Text.Trim(),
                                                     Contrasennia = encriptar.EncriptarEnUnSentido(txtPassword.Text.Trim()),
@@ -342,7 +342,7 @@ namespace Agregados.Forms.Users
                                 {
                                     try
                                     {
-                                        Usuario usuarioTemp = new Usuario();
+                                        Usuarios usuarioTemp = new Usuarios();
 
                                         usuarioTemp = DB.Usuarios.Where((x) => x.NombreUsuario == txtUsername.Text.Trim()).FirstOrDefault();
                                         if (usuarioTemp == null || usuarioTemp.IdUsuario == user.IdUsuario)
@@ -426,7 +426,7 @@ namespace Agregados.Forms.Users
                                     {
                                         try
                                         {
-                                            Usuario usuarioTemp = new Usuario();
+                                            Usuarios usuarioTemp = new Usuarios();
 
                                             usuarioTemp = DB.Usuarios.Where((x) => x.NombreUsuario == txtUsername.Text.Trim()).FirstOrDefault();
                                             if (usuarioTemp == null || usuarioTemp.IdUsuario == user.IdUsuario)

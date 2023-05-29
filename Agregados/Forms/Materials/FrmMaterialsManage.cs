@@ -17,12 +17,12 @@ namespace Agregados.Forms.Materials
     {
         //variables del form
         AgregadosEntities DB;
-        Material material;
+        Materiales material;
         public FrmMaterialsManage()
         {
             InitializeComponent();
             DB = new AgregadosEntities();
-            material = new Material();
+            material = new Materiales();
         }
 
         //cuando se cierre el form op presion el boton salir
@@ -108,7 +108,7 @@ namespace Agregados.Forms.Materials
             CargarEstadosMateriales();
             // linq para validar y disenar mejor la DataGridView al usuario // empezando la informacion con Estado ACTIVO y lo unico que se necesita obtener
             //para agilizar la respuesta y no obtener tantas columnas de datos
-            var result = from ma in DB.Materials
+            var result = from ma in DB.Materiales
                          join es in DB.Estados
                          on ma.IdEstado equals es.IdEstado
                          where (ma.IdEstado == 11)
@@ -223,7 +223,7 @@ namespace Agregados.Forms.Materials
         {
             if (ChCantBuena.Checked == true && chCantRegular.Checked == false && chVacia.Checked == false)
             {
-                var result = from ma in DB.Materials
+                var result = from ma in DB.Materiales
                              join es in DB.Estados
                              on ma.IdEstado equals es.IdEstado
                              where (ma.IdEstado == 11)
@@ -245,7 +245,7 @@ namespace Agregados.Forms.Materials
             {
                 if (ChCantBuena.Checked == true && chCantRegular.Checked == true && chVacia.Checked == false)
                 {
-                    var result = from ma in DB.Materials
+                    var result = from ma in DB.Materiales
                                  join es in DB.Estados
                                  on ma.IdEstado equals es.IdEstado
                                  where (ma.IdEstado == 11 || ma.IdEstado == 10)
@@ -267,7 +267,7 @@ namespace Agregados.Forms.Materials
                 {
                     if (ChCantBuena.Checked == true && chCantRegular.Checked == true && chVacia.Checked == true)
                     {
-                        var result = from ma in DB.Materials
+                        var result = from ma in DB.Materiales
                                      join es in DB.Estados
                                      on ma.IdEstado equals es.IdEstado
                                      where (ma.IdEstado == 11 || ma.IdEstado == 10 || ma.IdEstado == 9)
@@ -289,10 +289,10 @@ namespace Agregados.Forms.Materials
                     {
                         if (ChCantBuena.Checked == false && chCantRegular.Checked == false && chVacia.Checked == false)
                         {
-                            var result = from ma in DB.Materials
+                            var result = from ma in DB.Materiales
                                          join es in DB.Estados
                                          on ma.IdEstado equals es.IdEstado
-                                         where (ma.IdEstado != 11 || ma.IdEstado != 10 || ma.IdEstado != 9)
+                                         where (ma.IdEstado != 11 && ma.IdEstado != 10 && ma.IdEstado != 9)
                                          select new
                                          {
                                              ma.IdMaterial,
@@ -311,7 +311,7 @@ namespace Agregados.Forms.Materials
                         {
                             if (ChCantBuena.Checked == false && chCantRegular.Checked == true && chVacia.Checked == false)
                             {
-                                var result = from ma in DB.Materials
+                                var result = from ma in DB.Materiales
                                              join es in DB.Estados
                                              on ma.IdEstado equals es.IdEstado
                                              where (ma.IdEstado == 10)
@@ -333,7 +333,7 @@ namespace Agregados.Forms.Materials
                             {
                                 if (ChCantBuena.Checked == false && chCantRegular.Checked == false && chVacia.Checked == true)
                                 {
-                                    var result = from ma in DB.Materials
+                                    var result = from ma in DB.Materiales
                                                  join es in DB.Estados
                                                  on ma.IdEstado equals es.IdEstado
                                                  where (ma.IdEstado == 9)
@@ -355,7 +355,7 @@ namespace Agregados.Forms.Materials
                                 {
                                     if (ChCantBuena.Checked == false && chCantRegular.Checked == true && chVacia.Checked == true)
                                     {
-                                        var result = from ma in DB.Materials
+                                        var result = from ma in DB.Materiales
                                                      join es in DB.Estados
                                                      on ma.IdEstado equals es.IdEstado
                                                      where (ma.IdEstado == 9 || ma.IdEstado == 10)
@@ -377,7 +377,7 @@ namespace Agregados.Forms.Materials
                                     {
                                         if (ChCantBuena.Checked == true && chCantRegular.Checked == false && chVacia.Checked == true)
                                         {
-                                            var result = from ma in DB.Materials
+                                            var result = from ma in DB.Materiales
                                                          join es in DB.Estados
                                                          on ma.IdEstado equals es.IdEstado
                                                          where (ma.IdEstado == 9 || ma.IdEstado == 11)
@@ -438,7 +438,7 @@ namespace Agregados.Forms.Materials
                             }
                             else
                             {
-                                DB.Materials.Remove(material); // metodo para eliminar el material, dato de la BD
+                                DB.Materiales.Remove(material); // metodo para eliminar el material, dato de la BD
                                 if (DB.SaveChanges() > 0)
                                 {
                                     CheckChange();
@@ -523,7 +523,7 @@ namespace Agregados.Forms.Materials
                     {
                         try
                         {
-                            material = new Material
+                            material = new Materiales
                             {
                                 NombreMaterial = txtName.Text.Trim(),
                                 CantidadMaterial = Convert.ToDecimal(Convert.ToDouble(txtCantidad.Text.Trim())), //DOBLE CAST PARA EVITAR PROBLEMAS CON DECIMAL
@@ -532,7 +532,7 @@ namespace Agregados.Forms.Materials
                                 IdEstado = Convert.ToInt32(CboxStates.SelectedValue)
                             };
 
-                            DB.Materials.Add(material);
+                            DB.Materiales.Add(material);
 
                             if (DB.SaveChanges() > 0)
                             {
@@ -564,7 +564,7 @@ namespace Agregados.Forms.Materials
 
             if (dgvMaterials.SelectedRows.Count == 1)
             {
-                material = new Material();
+                material = new Materiales();
 
                 DataGridViewRow MiFila = dgvMaterials.SelectedRows[0];
 
@@ -577,7 +577,7 @@ namespace Agregados.Forms.Materials
 
 
                 //ESTE METODO de consultor RETORNA UN OBJETO de tipo material
-                material = DB.Materials.FirstOrDefault(x => x.IdMaterial == IdMaterial);
+                material = DB.Materiales.FirstOrDefault(x => x.IdMaterial == IdMaterial);
 
                 if (material != null && material.IdMaterial > 0)
                 {
@@ -614,7 +614,7 @@ namespace Agregados.Forms.Materials
 
                 if (ChCantBuena.Checked == true && chCantRegular.Checked == false && chVacia.Checked == false)
                 {
-                    var result = from ma in DB.Materials
+                    var result = from ma in DB.Materiales
                                  join es in DB.Estados
                                  on ma.IdEstado equals es.IdEstado
                                  where (ma.IdEstado == 11 && ma.IdMaterial == num)
@@ -636,7 +636,7 @@ namespace Agregados.Forms.Materials
                 {
                     if (ChCantBuena.Checked == true && chCantRegular.Checked == true && chVacia.Checked == false)
                     {
-                        var result = from ma in DB.Materials
+                        var result = from ma in DB.Materiales
                                      join es in DB.Estados
                                      on ma.IdEstado equals es.IdEstado
                                      where ((ma.IdEstado == 11 || ma.IdEstado == 10) && ma.IdMaterial == num)
@@ -658,7 +658,7 @@ namespace Agregados.Forms.Materials
                     {
                         if (ChCantBuena.Checked == true && chCantRegular.Checked == true && chVacia.Checked == true)
                         {
-                            var result = from ma in DB.Materials
+                            var result = from ma in DB.Materiales
                                          join es in DB.Estados
                                          on ma.IdEstado equals es.IdEstado
                                          where ((ma.IdEstado == 11 || ma.IdEstado == 10 || ma.IdEstado == 9) && ma.IdMaterial == num)
@@ -680,7 +680,7 @@ namespace Agregados.Forms.Materials
                         {
                             if (ChCantBuena.Checked == false && chCantRegular.Checked == false && chVacia.Checked == false)
                             {
-                                var result = from ma in DB.Materials
+                                var result = from ma in DB.Materiales
                                              join es in DB.Estados
                                              on ma.IdEstado equals es.IdEstado
                                              where ((ma.IdEstado != 11 || ma.IdEstado != 10 || ma.IdEstado != 9) && ma.IdMaterial == num)
@@ -702,7 +702,7 @@ namespace Agregados.Forms.Materials
                             {
                                 if (ChCantBuena.Checked == false && chCantRegular.Checked == true && chVacia.Checked == false)
                                 {
-                                    var result = from ma in DB.Materials
+                                    var result = from ma in DB.Materiales
                                                  join es in DB.Estados
                                                  on ma.IdEstado equals es.IdEstado
                                                  where (ma.IdEstado == 10 && ma.IdMaterial == num)
@@ -724,7 +724,7 @@ namespace Agregados.Forms.Materials
                                 {
                                     if (ChCantBuena.Checked == false && chCantRegular.Checked == false && chVacia.Checked == true)
                                     {
-                                        var result = from ma in DB.Materials
+                                        var result = from ma in DB.Materiales
                                                      join es in DB.Estados
                                                      on ma.IdEstado equals es.IdEstado
                                                      where (ma.IdEstado == 9 && ma.IdMaterial == num)
@@ -746,7 +746,7 @@ namespace Agregados.Forms.Materials
                                     {
                                         if (ChCantBuena.Checked == false && chCantRegular.Checked == true && chVacia.Checked == true)
                                         {
-                                            var result = from ma in DB.Materials
+                                            var result = from ma in DB.Materiales
                                                          join es in DB.Estados
                                                          on ma.IdEstado equals es.IdEstado
                                                          where ((ma.IdEstado == 9 || ma.IdEstado == 10) && ma.IdMaterial == num)
@@ -768,7 +768,7 @@ namespace Agregados.Forms.Materials
                                         {
                                             if (ChCantBuena.Checked == true && chCantRegular.Checked == false && chVacia.Checked == true)
                                             {
-                                                var result = from ma in DB.Materials
+                                                var result = from ma in DB.Materiales
                                                              join es in DB.Estados
                                                              on ma.IdEstado equals es.IdEstado
                                                              where ((ma.IdEstado == 9 || ma.IdEstado == 11) && ma.IdMaterial == num)
@@ -813,7 +813,7 @@ namespace Agregados.Forms.Materials
 
                 if (ChCantBuena.Checked == true && chCantRegular.Checked == false && chVacia.Checked == false)
                 {
-                    var result = from ma in DB.Materials
+                    var result = from ma in DB.Materiales
                                  join es in DB.Estados
                                  on ma.IdEstado equals es.IdEstado
                                  where (ma.IdEstado == 11 && ma.NombreMaterial.Contains(num))
@@ -835,7 +835,7 @@ namespace Agregados.Forms.Materials
                 {
                     if (ChCantBuena.Checked == true && chCantRegular.Checked == true && chVacia.Checked == false)
                     {
-                        var result = from ma in DB.Materials
+                        var result = from ma in DB.Materiales
                                      join es in DB.Estados
                                      on ma.IdEstado equals es.IdEstado
                                      where ((ma.IdEstado == 11 || ma.IdEstado == 10) && ma.NombreMaterial.Contains(num))
@@ -857,7 +857,7 @@ namespace Agregados.Forms.Materials
                     {
                         if (ChCantBuena.Checked == true && chCantRegular.Checked == true && chVacia.Checked == true)
                         {
-                            var result = from ma in DB.Materials
+                            var result = from ma in DB.Materiales
                                          join es in DB.Estados
                                          on ma.IdEstado equals es.IdEstado
                                          where ((ma.IdEstado == 11 || ma.IdEstado == 10 || ma.IdEstado == 9) && ma.NombreMaterial.Contains(num))
@@ -879,7 +879,7 @@ namespace Agregados.Forms.Materials
                         {
                             if (ChCantBuena.Checked == false && chCantRegular.Checked == false && chVacia.Checked == false)
                             {
-                                var result = from ma in DB.Materials
+                                var result = from ma in DB.Materiales
                                              join es in DB.Estados
                                              on ma.IdEstado equals es.IdEstado
                                              where ((ma.IdEstado != 11 || ma.IdEstado != 10 || ma.IdEstado != 9) && ma.NombreMaterial.Contains(num))
@@ -901,7 +901,7 @@ namespace Agregados.Forms.Materials
                             {
                                 if (ChCantBuena.Checked == false && chCantRegular.Checked == true && chVacia.Checked == false)
                                 {
-                                    var result = from ma in DB.Materials
+                                    var result = from ma in DB.Materiales
                                                  join es in DB.Estados
                                                  on ma.IdEstado equals es.IdEstado
                                                  where (ma.IdEstado == 10 && ma.NombreMaterial.Contains(num))
@@ -923,7 +923,7 @@ namespace Agregados.Forms.Materials
                                 {
                                     if (ChCantBuena.Checked == false && chCantRegular.Checked == false && chVacia.Checked == true)
                                     {
-                                        var result = from ma in DB.Materials
+                                        var result = from ma in DB.Materiales
                                                      join es in DB.Estados
                                                      on ma.IdEstado equals es.IdEstado
                                                      where (ma.IdEstado == 9 && ma.NombreMaterial.Contains(num))
@@ -945,7 +945,7 @@ namespace Agregados.Forms.Materials
                                     {
                                         if (ChCantBuena.Checked == false && chCantRegular.Checked == true && chVacia.Checked == true)
                                         {
-                                            var result = from ma in DB.Materials
+                                            var result = from ma in DB.Materiales
                                                          join es in DB.Estados
                                                          on ma.IdEstado equals es.IdEstado
                                                          where ((ma.IdEstado == 9 || ma.IdEstado == 10) && ma.NombreMaterial.Contains(num))
@@ -967,7 +967,7 @@ namespace Agregados.Forms.Materials
                                         {
                                             if (ChCantBuena.Checked == true && chCantRegular.Checked == false && chVacia.Checked == true)
                                             {
-                                                var result = from ma in DB.Materials
+                                                var result = from ma in DB.Materiales
                                                              join es in DB.Estados
                                                              on ma.IdEstado equals es.IdEstado
                                                              where ((ma.IdEstado == 9 || ma.IdEstado == 11) && ma.NombreMaterial.Contains(num))

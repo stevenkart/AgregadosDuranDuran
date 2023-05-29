@@ -17,8 +17,8 @@ namespace Agregados.Forms.Login
     {
         AgregadosEntities context;
         Crypto encriptar;
-        Usuario usuario;
-        CorreoNotificacion email;
+        Usuarios usuario;
+        CorreoNotificaciones email;
 
 
         public FrmForgetPass()
@@ -27,8 +27,8 @@ namespace Agregados.Forms.Login
 
             context = new AgregadosEntities();
             encriptar = new Crypto();
-            usuario = new Usuario();
-            email = new CorreoNotificacion();
+            usuario = new Usuarios();
+            email = new CorreoNotificaciones();
         }
         //metodo que se encarga de que en el momento de abrir el form, cargue la informacion que corresponda
         protected override void OnLoad(EventArgs e)
@@ -88,7 +88,7 @@ namespace Agregados.Forms.Login
                                 //si sale bien, se procede a enviar correo
                                 if (context.SaveChanges() > 0)
                                 {
-                                    email = context.CorreoNotificacions.FirstOrDefault();
+                                    email = context.CorreoNotificaciones.FirstOrDefault();
                                     if (email.SendEmail(email.Correo, "Prueba",
                                         "Este es el código PIN para que puedas cambiar la contraseña " +
                                         $"{usuario.Pin}")) //sentto quemado //TODO cambiar a que obtenga el correo del usuario
@@ -228,7 +228,7 @@ namespace Agregados.Forms.Login
                                 context.Entry(usuario).State = EntityState.Modified;
                                 if (context.SaveChanges() > 0)
                                 {
-                                    email = context.CorreoNotificacions.FirstOrDefault();
+                                    email = context.CorreoNotificaciones.FirstOrDefault();
                                     if (email.SendEmail(email.Correo, "Cambio de contraseña",
                                         "Haz Cambiado la contraseña correctamente. Por favor intenta ingresar. ")) //sentto quemado //TODO cambiar a que obtenga el correo del usuario
                                     {

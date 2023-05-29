@@ -138,6 +138,7 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(184, 21);
             this.txtPass.TabIndex = 8;
+            this.txtPass.UseSystemPasswordChar = true;
             // 
             // txtConfirmPass
             // 
@@ -148,6 +149,7 @@
             this.txtConfirmPass.Name = "txtConfirmPass";
             this.txtConfirmPass.Size = new System.Drawing.Size(184, 21);
             this.txtConfirmPass.TabIndex = 9;
+            this.txtConfirmPass.UseSystemPasswordChar = true;
             // 
             // label5
             // 
@@ -228,7 +230,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 94.96982F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.030181F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 204F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 205F));
             this.tableLayoutPanel1.Controls.Add(this.txtEmailActual, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
@@ -244,10 +246,10 @@
             // 
             this.txtEmailActual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmailActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmailActual.Location = new System.Drawing.Point(611, 12);
+            this.txtEmailActual.Location = new System.Drawing.Point(610, 12);
             this.txtEmailActual.Name = "txtEmailActual";
             this.txtEmailActual.ReadOnly = true;
-            this.txtEmailActual.Size = new System.Drawing.Size(199, 21);
+            this.txtEmailActual.Size = new System.Drawing.Size(200, 21);
             this.txtEmailActual.TabIndex = 1;
             // 
             // label1
@@ -266,7 +268,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(496, 14);
+            this.label2.Location = new System.Drawing.Point(495, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 16);
             this.label2.TabIndex = 1;
@@ -333,7 +335,7 @@
             this.MinimumSize = new System.Drawing.Size(835, 292);
             this.Name = "FrmNotifications";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Correo Notificaciones";
+            this.Text = "Correo de Notificaciones";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmNotifications_FormClosing);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);

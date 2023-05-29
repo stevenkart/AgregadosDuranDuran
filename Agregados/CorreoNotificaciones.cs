@@ -12,7 +12,7 @@ namespace Agregados
     using System;
     using System.Collections.Generic;
     
-    public partial class CorreoNotificacion
+    public partial class CorreoNotificaciones
     {
         public int IdCorreo { get; set; }
         public string Correo { get; set; }
@@ -44,8 +44,10 @@ namespace Agregados
                     server.EnableSsl = true;
                     server.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
 
+                    
                     Crypto crypto = new Crypto();
                     string pass = crypto.DesEncriptarPassword(this.Contrasennia);
+                    
 
                     server.Credentials = new System.Net.NetworkCredential(this.Correo, pass);
                     server.Send(email);

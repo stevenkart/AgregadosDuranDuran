@@ -12,7 +12,7 @@ namespace Agregados
     using System;
     using System.Collections.Generic;
     
-    public partial class DetalleFact
+    public partial class DetalleFacts
     {
         public int IdDetalle { get; set; }
         public decimal Cantidad { get; set; }
@@ -20,7 +20,7 @@ namespace Agregados
         public int IdFactura { get; set; }
         public int IdMaterial { get; set; }
     
-        public virtual Factura Factura { get; set; }
-        public virtual Material Material { get; set; }
+        public virtual Facturas Facturas { get; set; }
+        public virtual Materiales Materiales { get; set; }
     }
 }
