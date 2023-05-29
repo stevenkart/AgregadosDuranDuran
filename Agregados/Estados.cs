@@ -12,33 +12,33 @@ namespace Agregados
     using System;
     using System.Collections.Generic;
     
-    public partial class Estado
+    public partial class Estados
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Estado()
+        public Estados()
         {
-            this.Clientes = new HashSet<Cliente>();
-            this.Facturas = new HashSet<Factura>();
-            this.Materiales = new HashSet<Material>();
-            this.Provedores = new HashSet<Provedor>();
-            this.Usuarios = new HashSet<Usuario>();
-            this.Vehiculos = new HashSet<Vehiculo>();
+            this.Clientes = new HashSet<Clientes>();
+            this.Facturas = new HashSet<Facturas>();
+            this.Materiales = new HashSet<Materiales>();
+            this.Provedores = new HashSet<Provedores>();
+            this.Usuarios = new HashSet<Usuarios>();
+            this.Vehiculos = new HashSet<Vehiculos>();
         }
     
         public int IdEstado { get; set; }
         public string NombreEstado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cliente> Clientes { get; set; }
+        public virtual ICollection<Clientes> Clientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Factura> Facturas { get; set; }
+        public virtual ICollection<Facturas> Facturas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Material> Materiales { get; set; }
+        public virtual ICollection<Materiales> Materiales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Provedor> Provedores { get; set; }
+        public virtual ICollection<Provedores> Provedores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual ICollection<Usuarios> Usuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Vehiculo> Vehiculos { get; set; }
+        public virtual ICollection<Vehiculos> Vehiculos { get; set; }
     }
 }

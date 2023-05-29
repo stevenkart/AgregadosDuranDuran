@@ -12,14 +12,19 @@ namespace Agregados
     using System;
     using System.Collections.Generic;
     
-    public partial class CierreCaja
+    public partial class CierreApertCajas
     {
-        public int IdCierre { get; set; }
+        public int IdCierreApert { get; set; }
         public System.DateTime Fecha { get; set; }
         public System.TimeSpan Hora { get; set; }
         public string Detalles { get; set; }
+        public decimal MontoEfectivo { get; set; }
+        public decimal MontoTransf { get; set; }
+        public decimal MontoSinpe { get; set; }
+        public decimal MontoCheque { get; set; }
+        public decimal MontoCredito { get; set; }
         public int IdUsuario { get; set; }
     
-        public virtual Usuario Usuario { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
     }
 }

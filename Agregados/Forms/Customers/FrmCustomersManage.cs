@@ -17,13 +17,13 @@ namespace Agregados.Forms.Customers
     {
         //variables del form
         AgregadosEntities DB;
-        Cliente cliente;
+        Clientes cliente;
 
         public FrmCustomersManage()
         {
             InitializeComponent();
             DB = new AgregadosEntities();
-            cliente = new Cliente();
+            cliente = new Clientes();
         }
 
         private void FrmCustomersManage_Load(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace Agregados.Forms.Customers
                              cl.Identificacion,
                              cl.Nombre,
                              //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                             TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                             TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
                              cl.Telefono,
                              cl.Telefono2,
                              cl.Correo,
@@ -60,7 +60,7 @@ namespace Agregados.Forms.Customers
         {
             if (dgvClientes.SelectedRows.Count == 1)
             {
-                cliente = new Cliente();
+                cliente = new Clientes();
 
                 DataGridViewRow MiFila = dgvClientes.SelectedRows[0];
 
@@ -81,7 +81,7 @@ namespace Agregados.Forms.Customers
                     //en pantalla
                     txtIdent.Text = cliente.Identificacion.ToString();
                     txtName.Text = cliente.Nombre.ToString();
-                    CboxCustomerType.SelectedValue = cliente.TipoCliente;
+                    CboxCustomerType.SelectedValue = cliente.IdTipoCliente;
                     txtMainPhone.Text = cliente.Telefono.ToString();
                     txtSecondPhone.Text = cliente.Telefono2.ToString();
                     txtEmail.Text = cliente.Correo.ToString();
@@ -110,6 +110,7 @@ namespace Agregados.Forms.Customers
         //Carga Cbox Tipos
         private void CargarTipos()
         {
+            /*
             //Metodo para crear un DataTable manual sin sentencia SQL a la Base de datos y asi disenar un modelo al comboBox que permita seleccionar los meses 
             //y entonces guarde pero un valor int, y mostrando un valor string 
             DataTable dt = new DataTable();
@@ -120,6 +121,16 @@ namespace Agregados.Forms.Customers
             CboxCustomerType.DataSource = dt;
             CboxCustomerType.ValueMember = "Id";
             CboxCustomerType.DisplayMember = "D";
+            CboxCustomerType.SelectedIndex = -1;
+            */
+
+
+            //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
+            var dt = DB.TipoClientes.Where(x => x.IdTipoCliente == 1 || x.IdTipoCliente == 2).ToList();
+
+            CboxCustomerType.ValueMember = "IdTipoCliente";
+            CboxCustomerType.DisplayMember = "TipoCliente";
+            CboxCustomerType.DataSource = dt;
             CboxCustomerType.SelectedIndex = -1;
 
         }
@@ -244,7 +255,7 @@ namespace Agregados.Forms.Customers
                                  cl.Identificacion,
                                  cl.Nombre,
                                  //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                 TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -269,7 +280,7 @@ namespace Agregados.Forms.Customers
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                     TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -302,11 +313,11 @@ namespace Agregados.Forms.Customers
                         {
                             try
                             {
-                                cliente = new Cliente
+                                cliente = new Clientes
                                 {
                                     Identificacion = txtIdent.Text.Trim(),
                                     Nombre = txtName.Text.Trim(),
-                                    TipoCliente = Convert.ToInt32(CboxCustomerType.SelectedValue),
+                                    IdTipoCliente = Convert.ToInt32(CboxCustomerType.SelectedValue),
                                     Telefono = txtMainPhone.Text.Trim(),
                                     Telefono2 = txtSecondPhone.Text.Trim(),
                                     Correo = txtEmail.Text.Trim(),
@@ -364,7 +375,7 @@ namespace Agregados.Forms.Customers
 
                                 cliente.Identificacion = txtIdent.Text.Trim();
                                 cliente.Nombre = txtName.Text.Trim();
-                                cliente.TipoCliente = Convert.ToInt32(CboxCustomerType.SelectedValue);
+                                cliente.IdTipoCliente = Convert.ToInt32(CboxCustomerType.SelectedValue);
                                 cliente.Telefono = txtMainPhone.Text.Trim();
                                 cliente.Telefono2 = txtSecondPhone.Text.Trim();
                                 cliente.Correo = txtEmail.Text.Trim();
@@ -464,7 +475,7 @@ namespace Agregados.Forms.Customers
 
                                     cliente.Identificacion = txtIdent.Text.Trim();
                                     cliente.Nombre = txtName.Text.Trim();
-                                    cliente.TipoCliente = Convert.ToInt32(CboxCustomerType.SelectedValue);
+                                    cliente.IdTipoCliente = Convert.ToInt32(CboxCustomerType.SelectedValue);
                                     cliente.Telefono = txtMainPhone.Text.Trim();
                                     cliente.Telefono2 = txtSecondPhone.Text.Trim();
                                     cliente.Correo = txtEmail.Text.Trim();
@@ -568,7 +579,7 @@ namespace Agregados.Forms.Customers
                                  cl.Identificacion,
                                  cl.Nombre,
                                  //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                 TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -596,7 +607,7 @@ namespace Agregados.Forms.Customers
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                     TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -637,7 +648,7 @@ namespace Agregados.Forms.Customers
                                  cl.Identificacion,
                                  cl.Nombre,
                                  //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                 TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -665,7 +676,7 @@ namespace Agregados.Forms.Customers
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                     TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -706,7 +717,7 @@ namespace Agregados.Forms.Customers
                                  cl.Identificacion,
                                  cl.Nombre,
                                  //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                 TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -734,7 +745,7 @@ namespace Agregados.Forms.Customers
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.TipoCliente == 1) ? "Físico" : (cl.TipoCliente == 2) ? "Júridico" : "",
+                                     TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -757,5 +768,68 @@ namespace Agregados.Forms.Customers
             }
         }
 
+        private void txtIdent_TextChanged(object sender, EventArgs e)
+        {
+            if (txtIdent.Text.Length >= 4)
+            {
+                string[] tipoClases = {"2-100","2-200", "2-300", "2-400", "3-002", "3-003", "3-004", "3-005", "3-006", "3-007", "3-008", "3-009", "3-010", "3-011", "3-012", "3-013",
+            "3-014","3-101","3-102","3-103","3-104","3-105","3-106","3-107","3-108","3-109","3-110","4-000","5-001",
+            "2100","2200", "2300", "2400", "3002", "3003", "3004", "3005", "3006", "3007", "3008", "3009", "3010", "3011", "3012", "3013",
+            "3014","3101","3102","3103","3104","3105","3106","3107","3108","3109","3110","4000","5001"};
+
+                if (txtIdent.Text.Length == 12)
+                {
+                    string identificacion = txtIdent.Text.Trim();
+
+                    string existe = tipoClases.Where((x) => x.Contains(identificacion.Substring(0, 4)) || x.StartsWith(identificacion.Substring(0, 4))).FirstOrDefault();
+
+                    if (existe != null)
+                    {
+                        //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
+                        var dt = DB.TipoClientes.Where(x => x.IdTipoCliente == 2).ToList();
+
+                        CboxCustomerType.ValueMember = "IdTipoCliente";
+                        CboxCustomerType.DisplayMember = "TipoCliente";
+                        CboxCustomerType.DataSource = dt;
+                        CboxCustomerType.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
+                        var dt = DB.TipoClientes.Where(x => x.IdTipoCliente == 1).ToList();
+
+                        CboxCustomerType.ValueMember = "IdTipoCliente";
+                        CboxCustomerType.DisplayMember = "TipoCliente";
+                        CboxCustomerType.DataSource = dt;
+                        CboxCustomerType.SelectedIndex = -1;
+
+                    }
+                }
+                else
+                {
+                    //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
+                    var dt = DB.TipoClientes.Where(x => x.IdTipoCliente == 1).ToList();
+
+                    CboxCustomerType.ValueMember = "IdTipoCliente";
+                    CboxCustomerType.DisplayMember = "TipoCliente";
+                    CboxCustomerType.DataSource = dt;
+                    CboxCustomerType.SelectedIndex = -1;
+                }
+                
+            }
+            else
+            {
+                //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
+                var dt = DB.TipoClientes.Where(x => x.IdTipoCliente == 1).ToList();
+
+                CboxCustomerType.ValueMember = "IdTipoCliente";
+                CboxCustomerType.DisplayMember = "TipoCliente";
+                CboxCustomerType.DataSource = dt;
+                CboxCustomerType.SelectedIndex = -1;
+            }
+            
+          
+
+        }
     }
 }

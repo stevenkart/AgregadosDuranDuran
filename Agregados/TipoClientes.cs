@@ -12,18 +12,18 @@ namespace Agregados
     using System;
     using System.Collections.Generic;
     
-    public partial class TipoFactura
+    public partial class TipoClientes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TipoFactura()
+        public TipoClientes()
         {
-            this.Facturas = new HashSet<Factura>();
+            this.Clientes = new HashSet<Clientes>();
         }
     
-        public int IdTipo { get; set; }
-        public string Tipo { get; set; }
+        public int IdTipoCliente { get; set; }
+        public string TipoCliente { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Factura> Facturas { get; set; }
+        public virtual ICollection<Clientes> Clientes { get; set; }
     }
 }

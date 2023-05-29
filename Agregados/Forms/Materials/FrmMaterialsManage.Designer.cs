@@ -125,7 +125,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 148F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 149F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChCantBuena, 2, 0);
             this.tableLayoutPanel8.Controls.Add(this.chCantRegular, 3, 0);
@@ -157,7 +157,7 @@
             this.ChCantBuena.Checked = true;
             this.ChCantBuena.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChCantBuena.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChCantBuena.Location = new System.Drawing.Point(813, 7);
+            this.ChCantBuena.Location = new System.Drawing.Point(812, 7);
             this.ChCantBuena.Name = "ChCantBuena";
             this.ChCantBuena.Size = new System.Drawing.Size(147, 22);
             this.ChCantBuena.TabIndex = 0;
@@ -171,7 +171,7 @@
             this.chCantRegular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chCantRegular.AutoSize = true;
             this.chCantRegular.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chCantRegular.Location = new System.Drawing.Point(966, 7);
+            this.chCantRegular.Location = new System.Drawing.Point(965, 7);
             this.chCantRegular.Name = "chCantRegular";
             this.chCantRegular.Size = new System.Drawing.Size(152, 22);
             this.chCantRegular.TabIndex = 1;
@@ -185,9 +185,9 @@
             this.chVacia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chVacia.AutoSize = true;
             this.chVacia.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chVacia.Location = new System.Drawing.Point(1124, 7);
+            this.chVacia.Location = new System.Drawing.Point(1123, 7);
             this.chVacia.Name = "chVacia";
-            this.chVacia.Size = new System.Drawing.Size(143, 22);
+            this.chVacia.Size = new System.Drawing.Size(144, 22);
             this.chVacia.TabIndex = 2;
             this.chVacia.Text = "Sin Material";
             this.chVacia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -647,13 +647,15 @@
             // 
             // CNombreMaterial
             // 
-            this.CNombreMaterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CNombreMaterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.CNombreMaterial.DataPropertyName = "NombreMaterial";
             this.CNombreMaterial.FillWeight = 180F;
+            this.CNombreMaterial.Frozen = true;
             this.CNombreMaterial.HeaderText = "Nombre";
             this.CNombreMaterial.MinimumWidth = 150;
             this.CNombreMaterial.Name = "CNombreMaterial";
             this.CNombreMaterial.ReadOnly = true;
+            this.CNombreMaterial.Width = 150;
             // 
             // CCantidadMaterial
             // 

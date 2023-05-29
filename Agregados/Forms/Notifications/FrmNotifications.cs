@@ -19,14 +19,14 @@ namespace Agregados.Forms.Notifications
 
         AgregadosEntities context;
         Crypto encriptar;
-        CorreoNotificacion email;
+        CorreoNotificaciones email;
 
         public FrmNotifications()
         {
             InitializeComponent();
             context = new AgregadosEntities();
             encriptar = new Crypto();
-            email = new CorreoNotificacion();
+            email = new CorreoNotificaciones();
 
         }
 
@@ -35,7 +35,7 @@ namespace Agregados.Forms.Notifications
         {
             base.OnLoad(e);
 
-            email = context.CorreoNotificacions.FirstOrDefault();
+            email = context.CorreoNotificaciones.FirstOrDefault();
             txtEmailActual.Text = email.Correo.ToString();
 
         }

@@ -12,12 +12,12 @@ namespace Agregados
     using System;
     using System.Collections.Generic;
     
-    public partial class Factura
+    public partial class Facturas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Factura()
+        public Facturas()
         {
-            this.DetalleFacts = new HashSet<DetalleFact>();
+            this.DetalleFacts = new HashSet<DetalleFacts>();
         }
     
         public int IdFactura { get; set; }
@@ -31,13 +31,15 @@ namespace Agregados
         public int IdEstado { get; set; }
         public Nullable<int> IdCliente { get; set; }
         public Nullable<int> IdProveedor { get; set; }
+        public int IdTipoPago { get; set; }
     
-        public virtual Cliente Cliente { get; set; }
+        public virtual Clientes Clientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetalleFact> DetalleFacts { get; set; }
-        public virtual Estado Estado { get; set; }
-        public virtual Provedor Provedor { get; set; }
-        public virtual Usuario Usuario { get; set; }
-        public virtual TipoFactura TipoFactura { get; set; }
+        public virtual ICollection<DetalleFacts> DetalleFacts { get; set; }
+        public virtual Estados Estados { get; set; }
+        public virtual Provedores Provedores { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
+        public virtual MetodosPagos MetodosPagos { get; set; }
+        public virtual TiposFacturas TiposFacturas { get; set; }
     }
 }

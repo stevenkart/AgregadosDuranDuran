@@ -12,13 +12,13 @@ namespace Agregados
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class Usuarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
+        public Usuarios()
         {
-            this.CierreCajas = new HashSet<CierreCaja>();
-            this.Facturas = new HashSet<Factura>();
+            this.CierreApertCajas = new HashSet<CierreApertCajas>();
+            this.Facturas = new HashSet<Facturas>();
         }
     
         public int IdUsuario { get; set; }
@@ -32,9 +32,9 @@ namespace Agregados
         public int IdEstado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CierreCaja> CierreCajas { get; set; }
-        public virtual Estado Estado { get; set; }
+        public virtual ICollection<CierreApertCajas> CierreApertCajas { get; set; }
+        public virtual Estados Estados { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Factura> Facturas { get; set; }
+        public virtual ICollection<Facturas> Facturas { get; set; }
     }
 }

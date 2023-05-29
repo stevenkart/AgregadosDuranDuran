@@ -12,12 +12,12 @@ namespace Agregados
     using System;
     using System.Collections.Generic;
     
-    public partial class Material
+    public partial class Materiales
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Material()
+        public Materiales()
         {
-            this.DetalleFacts = new HashSet<DetalleFact>();
+            this.DetalleFacts = new HashSet<DetalleFacts>();
         }
     
         public int IdMaterial { get; set; }
@@ -28,7 +28,7 @@ namespace Agregados
         public int IdEstado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetalleFact> DetalleFacts { get; set; }
-        public virtual Estado Estado { get; set; }
+        public virtual ICollection<DetalleFacts> DetalleFacts { get; set; }
+        public virtual Estados Estados { get; set; }
     }
 }
