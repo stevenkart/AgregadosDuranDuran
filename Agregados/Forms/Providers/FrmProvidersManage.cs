@@ -17,12 +17,12 @@ namespace Agregados.Forms.Providers
     {
         //variables del form
         AgregadosEntities DB;
-        Provedores proveedor;
+        Proveedores proveedor;
         public FrmProvidersManage()
         {
             InitializeComponent();
             DB = new AgregadosEntities();
-            proveedor = new Provedores();
+            proveedor = new Proveedores();
         }
 
         //cuando se cierre el form op presion el boton salir
@@ -47,7 +47,7 @@ namespace Agregados.Forms.Providers
 
             // linq para validar y disenar mejor la DataGridView al usuario // empezando la informacion con Estado ACTIVO y lo unico que se necesita obtener
             //para agilizar la respuesta y no obtener tantas columnas de datos
-            var result = from pr in DB.Provedores
+            var result = from pr in DB.Proveedores
                          join es in DB.Estados
                          on pr.IdEstado equals es.IdEstado
                          where (pr.IdEstado == 1)
@@ -73,7 +73,7 @@ namespace Agregados.Forms.Providers
         {
             if (dgvProveedores.SelectedRows.Count == 1)
             {
-                proveedor = new Provedores();
+                proveedor = new Proveedores();
 
                 DataGridViewRow MiFila = dgvProveedores.SelectedRows[0];
 
@@ -86,7 +86,7 @@ namespace Agregados.Forms.Providers
 
 
                 //ESTE METODO de consultor RETORNA UN OBJETO de tipo Empleado
-                proveedor = DB.Provedores.FirstOrDefault(x => x.IdProveedor == IdProveedor);
+                proveedor = DB.Proveedores.FirstOrDefault(x => x.IdProveedor == IdProveedor);
 
                 if (proveedor != null && proveedor.IdProveedor > 0)
                 {
@@ -259,7 +259,7 @@ namespace Agregados.Forms.Providers
         {
             if (ChActivos.Checked == true)
             {
-                var result = from cl in DB.Provedores
+                var result = from cl in DB.Proveedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1)
@@ -284,7 +284,7 @@ namespace Agregados.Forms.Providers
             {
                 if (ChActivos.Checked == false)
                 {
-                    var result = from cl in DB.Provedores
+                    var result = from cl in DB.Proveedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2)
@@ -327,7 +327,7 @@ namespace Agregados.Forms.Providers
                         {
                             try
                             {
-                                proveedor = new Provedores
+                                proveedor = new Proveedores
                                 {
                                     Identificacion = txtIdent.Text.Trim(),
                                     Nombre = txtName.Text.Trim(),
@@ -340,7 +340,7 @@ namespace Agregados.Forms.Providers
                                     IdEstado = Convert.ToInt32(CboxStates.SelectedValue)
                                 };
 
-                                DB.Provedores.Add(proveedor);
+                                DB.Proveedores.Add(proveedor);
 
                                 if (DB.SaveChanges() > 0)
                                 {
@@ -451,7 +451,7 @@ namespace Agregados.Forms.Providers
                             }
                             else
                             {
-                                DB.Provedores.Remove(proveedor); // metodo para eliminar el cliente, dato de la BD
+                                DB.Proveedores.Remove(proveedor); // metodo para eliminar el cliente, dato de la BD
                                 if (DB.SaveChanges() > 0)
                                 {
                                     CheckChange();
@@ -564,7 +564,7 @@ namespace Agregados.Forms.Providers
                 txtIdentSearch.Enabled = false;
                 txtNameSearch.Enabled = false;
                 int num = Convert.ToInt32(txtIdProviderSearch.Text.Trim());
-                var result = from cl in DB.Provedores
+                var result = from cl in DB.Proveedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1 && cl.IdProveedor == num)
@@ -592,7 +592,7 @@ namespace Agregados.Forms.Providers
                     txtIdentSearch.Enabled = false;
                     txtNameSearch.Enabled = false;
                     int num = Convert.ToInt32(txtIdProviderSearch.Text.Trim());
-                    var result = from cl in DB.Provedores
+                    var result = from cl in DB.Proveedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2 && cl.IdProveedor == num)
@@ -632,7 +632,7 @@ namespace Agregados.Forms.Providers
                 txtIdProviderSearch.Enabled = false;
                 txtNameSearch.Enabled = false;
                 string num = txtIdentSearch.Text.Trim();
-                var result = from cl in DB.Provedores
+                var result = from cl in DB.Proveedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1 && cl.Identificacion.Contains(num))
@@ -660,7 +660,7 @@ namespace Agregados.Forms.Providers
                     txtIdProviderSearch.Enabled = false;
                     txtNameSearch.Enabled = false;
                     string num = txtIdentSearch.Text.Trim();
-                    var result = from cl in DB.Provedores
+                    var result = from cl in DB.Proveedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2 && cl.Identificacion.Contains(num))
@@ -700,7 +700,7 @@ namespace Agregados.Forms.Providers
                 txtIdentSearch.Enabled = false;
                 txtIdProviderSearch.Enabled = false;
                 string num = txtNameSearch.Text.Trim();
-                var result = from cl in DB.Provedores
+                var result = from cl in DB.Proveedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1 && cl.Nombre.Contains(num))
@@ -728,7 +728,7 @@ namespace Agregados.Forms.Providers
                     txtIdentSearch.Enabled = false;
                     txtIdProviderSearch.Enabled = false;
                     string num = txtNameSearch.Text.Trim();
-                    var result = from cl in DB.Provedores
+                    var result = from cl in DB.Proveedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2 && cl.Nombre.Contains(num))

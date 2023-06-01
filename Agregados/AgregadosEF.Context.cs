@@ -33,7 +33,7 @@ namespace Agregados
         public virtual DbSet<Facturas> Facturas { get; set; }
         public virtual DbSet<Materiales> Materiales { get; set; }
         public virtual DbSet<MetodosPagos> MetodosPagos { get; set; }
-        public virtual DbSet<Provedores> Provedores { get; set; }
+        public virtual DbSet<Proveedores> Proveedores { get; set; }
         public virtual DbSet<TipoClientes> TipoClientes { get; set; }
         public virtual DbSet<TiposFacturas> TiposFacturas { get; set; }
         public virtual DbSet<TiposProveedores> TiposProveedores { get; set; }

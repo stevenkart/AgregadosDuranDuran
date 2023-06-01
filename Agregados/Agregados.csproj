@@ -70,39 +70,39 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgregadosModel.Context.cs">
+    <Compile Include="AgregadosEF.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AgregadosModel.Context.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="AgregadosModel.cs">
+    <Compile Include="AgregadosEF.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="AgregadosModel.Designer.cs">
+    <Compile Include="AgregadosEF.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AgregadosModel.edmx</DependentUpon>
+      <DependentUpon>AgregadosEF.edmx</DependentUpon>
     </Compile>
     <Compile Include="CierreApertCajas.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Clientes.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="CorreoNotificaciones.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Crypto.cs" />
     <Compile Include="DetalleFacts.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Estados.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Facturas.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\Bills\FrmBillAdd.cs">
       <SubType>Form</SubType>
@@ -184,31 +184,31 @@
     </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Materiales.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="MetodosPagos.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Provedores.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+    <Compile Include="Proveedores.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoClientes.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="TiposFacturas.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="TiposProveedores.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Validaciones.cs" />
     <Compile Include="Vehiculos.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\Bills\FrmBillAdd.resx">
       <DependentUpon>FrmBillAdd.cs</DependentUpon>
@@ -259,12 +259,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EntityDeploy Include="AgregadosModel.edmx">
+    <EntityDeploy Include="AgregadosEF.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AgregadosModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>AgregadosEF.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AgregadosModel.edmx.diagram">
-      <DependentUpon>AgregadosModel.edmx</DependentUpon>
+    <None Include="AgregadosEF.edmx.diagram">
+      <DependentUpon>AgregadosEF.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -284,15 +284,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AgregadosModel.Context.tt">
+    <Content Include="AgregadosEF.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AgregadosModel.edmx</DependentUpon>
-      <LastGenOutput>AgregadosModel.Context.cs</LastGenOutput>
+      <DependentUpon>AgregadosEF.edmx</DependentUpon>
+      <LastGenOutput>AgregadosEF.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="AgregadosModel.tt">
+    <Content Include="AgregadosEF.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AgregadosModel.edmx</DependentUpon>
-      <LastGenOutput>AgregadosModel.cs</LastGenOutput>
+      <DependentUpon>AgregadosEF.edmx</DependentUpon>
+      <LastGenOutput>AgregadosEF.cs</LastGenOutput>
     </Content>
     <Content Include="Images\agregadoImg.ico" />
     <Content Include="Images\agregadoImg.jpg" />

@@ -14,17 +14,29 @@ namespace Agregados
     
     public partial class CierreApertCajas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CierreApertCajas()
+        {
+            this.Facturas = new HashSet<Facturas>();
+        }
+    
         public int IdCierreApert { get; set; }
         public System.DateTime Fecha { get; set; }
         public System.TimeSpan Hora { get; set; }
         public string Detalles { get; set; }
-        public decimal MontoEfectivo { get; set; }
+        public decimal MontoEfectivoInicio { get; set; }
+        public decimal MontoEfectivoFinal { get; set; }
         public decimal MontoTransf { get; set; }
         public decimal MontoSinpe { get; set; }
         public decimal MontoCheque { get; set; }
         public decimal MontoCredito { get; set; }
+        public decimal Faltante { get; set; }
+        public decimal Sobrante { get; set; }
+        public int Accion { get; set; }
         public int IdUsuario { get; set; }
     
         public virtual Usuarios Usuarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Facturas> Facturas { get; set; }
     }
 }
