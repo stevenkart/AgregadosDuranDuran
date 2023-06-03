@@ -35,6 +35,8 @@ namespace Agregados
         public Nullable<decimal> MontoPendiente { get; set; }
         public string ReferenciaPago { get; set; }
         public int IdCierreApert { get; set; }
+        public int Consecutivo { get; set; }
+        public decimal Subtotal { get; set; }
     
         public virtual Clientes Clientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

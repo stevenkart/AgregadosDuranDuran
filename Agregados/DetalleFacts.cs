@@ -19,6 +19,8 @@ namespace Agregados
         public decimal Precio { get; set; }
         public int IdFactura { get; set; }
         public int IdMaterial { get; set; }
+        public decimal IVA { get; set; }
+        public decimal Total { get; set; }
     
         public virtual Facturas Facturas { get; set; }
         public virtual Materiales Materiales { get; set; }

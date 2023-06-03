@@ -54,6 +54,8 @@
           <Property Name="IdDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cantidad" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IVA" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IdFactura" Type="int" Nullable="false" />
           <Property Name="IdMaterial" Type="int" Nullable="false" />
         </EntityType>
@@ -69,7 +71,9 @@
             <PropertyRef Name="IdFactura" />
           </Key>
           <Property Name="IdFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Consecutivo" Type="int" Nullable="false" />
           <Property Name="CostoTransporte" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Subtotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IVA" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CostoTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="FechaFactura" Type="date" Nullable="false" />
@@ -514,6 +518,8 @@
           <Property Name="IdMaterial" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Facturas" Relationship="Self.FKDetalleFac524254" FromRole="DetalleFacts" ToRole="Facturas" />
           <NavigationProperty Name="Materiales" Relationship="Self.FKDetalleFac664226" FromRole="DetalleFacts" ToRole="Materiales" />
+          <Property Name="IVA" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Estados">
           <Key>
@@ -555,6 +561,8 @@
           <Property Name="ReferenciaPago" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="IdCierreApert" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CierreApertCajas" Relationship="AgregadosModel.FKFacturas448726" FromRole="Facturas" ToRole="CierreApertCajas" />
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" />
+          <Property Name="Subtotal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Materiales">
           <Key>
@@ -991,6 +999,8 @@
           <EntitySetMapping Name="DetalleFacts">
             <EntityTypeMapping TypeName="AgregadosModel.DetalleFacts">
               <MappingFragment StoreEntitySet="DetalleFacts">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
                 <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
@@ -1010,6 +1020,8 @@
           <EntitySetMapping Name="Facturas">
             <EntityTypeMapping TypeName="AgregadosModel.Facturas">
               <MappingFragment StoreEntitySet="Facturas">
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
                 <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
                 <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
                 <ScalarProperty Name="MontoPendiente" ColumnName="MontoPendiente" />

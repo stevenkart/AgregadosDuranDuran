@@ -11,8 +11,7 @@ namespace Agregados
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
-
+    
     public partial class Materiales
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -31,8 +30,5 @@ namespace Agregados
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleFacts> DetalleFacts { get; set; }
         public virtual Estados Estados { get; set; }
-
-
-
     }
 }
