@@ -53,6 +53,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -127,6 +128,12 @@
     </Compile>
     <Compile Include="Forms\FrmPrincipalMDI.Designer.cs">
       <DependentUpon>FrmPrincipalMDI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Materials\FrmMaterialSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Materials\FrmMaterialSearch.Designer.cs">
+      <DependentUpon>FrmMaterialSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Materials\FrmMaterialsManage.cs">
       <SubType>Form</SubType>
@@ -221,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPrincipalMDI.resx">
       <DependentUpon>FrmPrincipalMDI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Materials\FrmMaterialSearch.resx">
+      <DependentUpon>FrmMaterialSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Materials\FrmMaterialsManage.resx">
       <DependentUpon>FrmMaterialsManage.cs</DependentUpon>

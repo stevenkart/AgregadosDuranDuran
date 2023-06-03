@@ -28,8 +28,14 @@ namespace Agregados.Forms.Customers
         {
             txtBuscarId.Text = null;
             txtName.Text = null;
+            txtBuscarId.Enabled = true;
+            txtName.Enabled = true;
         }
-
+        private void imgClean_Click(object sender, EventArgs e)
+        {
+            limpiar();
+        }
+        //llena la lista de datos de cliente
         private void LlenarLista()
         {
             try
@@ -63,17 +69,20 @@ namespace Agregados.Forms.Customers
                 throw;
             }
         }
-
+        //valida que sea numero
         private void txtBuscarId_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = Validaciones.CaracteresNumeros(e, true);
         }
 
+        //cuando inicia el form, llama la funcion Llenar Lista
         private void FrmCustomerSearch_Load(object sender, EventArgs e)
         {
             LlenarLista();
         }
 
+        
+        //filtros de busqueda
         private void txtBuscarId_TextChanged(object sender, EventArgs e)
         {
             try
@@ -161,16 +170,19 @@ namespace Agregados.Forms.Customers
             }
         }
 
+
+
+        //cancela el form, vuelve a la factura
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
-
+        //cuando se cierra el form
         private void FrmCustomerSearch_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
-
+        //selecciona un elemento de la lista y obtiene el dato
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
             try
@@ -204,5 +216,7 @@ namespace Agregados.Forms.Customers
                 throw;
             }
         }
+
+       
     }
 }
