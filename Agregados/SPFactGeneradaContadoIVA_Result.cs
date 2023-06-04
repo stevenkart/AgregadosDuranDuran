@@ -10,20 +10,23 @@
 namespace Agregados
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class DetalleFacts
+    public partial class SPFactGeneradaContadoIVA_Result
     {
-        public int IdDetalle { get; set; }
+        public int Consecutivo { get; set; }
+        public decimal Transporte { get; set; }
+        public System.DateTime Fecha { get; set; }
+        public string Estado { get; set; }
+        public string Metodo { get; set; }
+        public string Empleado { get; set; }
+        public string Cliente { get; set; }
+        public string Tipo { get; set; }
         public decimal Cantidad { get; set; }
         public decimal Precio { get; set; }
-        public int IdFactura { get; set; }
-        public int IdMaterial { get; set; }
+        public decimal Subtotal { get; set; }
         public decimal IVA { get; set; }
         public decimal Total { get; set; }
-        public decimal Subtotal { get; set; }
-    
-        public virtual Facturas Facturas { get; set; }
-        public virtual Materiales Materiales { get; set; }
+        public string Material { get; set; }
+        public int CodigoM { get; set; }
     }
 }

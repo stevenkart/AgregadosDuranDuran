@@ -12,6 +12,8 @@ namespace Agregados
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class AgregadosEntities : DbContext
     {
@@ -39,5 +41,14 @@ namespace Agregados
         public virtual DbSet<TiposProveedores> TiposProveedores { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Vehiculos> Vehiculos { get; set; }
+    
+        public virtual ObjectResult<SPFactGeneradaContadoIVA_Result> SPFactGeneradaContadoIVA(Nullable<int> idFactura)
+        {
+            var idFacturaParameter = idFactura.HasValue ?
+                new ObjectParameter("IdFactura", idFactura) :
+                new ObjectParameter("IdFactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactGeneradaContadoIVA_Result>("SPFactGeneradaContadoIVA", idFacturaParameter);
+        }
     }
 }

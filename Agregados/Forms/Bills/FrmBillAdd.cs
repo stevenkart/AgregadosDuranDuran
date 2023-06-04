@@ -1,15 +1,21 @@
 ﻿using Agregados.Forms.Customers;
+using Agregados.Forms.Loading;
 using Agregados.Forms.Materials;
+using Agregados.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Agregados.Forms.Bills
 {
@@ -191,18 +197,22 @@ namespace Agregados.Forms.Bills
            {
                lblTypeFact.Visible = false;
                dateFinal.Visible = false;
-           }
+                //carga Cbox Tipo Factua
+                CargarTiposPagosNoCredito();
+            }
            else
            {
                if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 2)
                {
                    lblTypeFact.Visible = true;
                    dateFinal.Visible = true;
-               }
+
+                    CargarTiposPagosCredito();
+                }
            }
        }
 
-       //carga Cbox Tipo Pago
+       //carga Cbox Tipo Pago// todos
        private void CargarTiposPagos()
        {
 
@@ -214,19 +224,47 @@ namespace Agregados.Forms.Bills
            CboxMetodoPago.DataSource = dt;
            CboxMetodoPago.SelectedIndex = -1;
        }
-       //cambio tipo pago, muestra la info de pago
 
-       private void CboxMetodoPago_SelectedValueChanged(object sender, EventArgs e)
+        //carga Cbox Tipo Pago// como credito seleccionado
+        private void CargarTiposPagosCredito()
+        {
+
+            //Metodo que permite llamar y obtener los datos filtrados de  metodo de pago y mostrarlos en el comboBox
+            var dt = DB.MetodosPagos.Where((x) => x.IdTipoPago == 5).ToList();
+
+            CboxMetodoPago.ValueMember = "IdTipoPago";
+            CboxMetodoPago.DisplayMember = "TipoPago";
+            CboxMetodoPago.DataSource = dt;
+            CboxMetodoPago.SelectedIndex = -1;
+        }
+
+        //carga Cbox Tipo Pago// como credito seleccionado
+        private void CargarTiposPagosNoCredito()
+        {
+
+            //Metodo que permite llamar y obtener los datos filtrados de los metodo de pago y mostrarlos en el comboBox
+            var dt = DB.MetodosPagos.Where((x) => x.IdTipoPago != 5).ToList();
+
+            CboxMetodoPago.ValueMember = "IdTipoPago";
+            CboxMetodoPago.DisplayMember = "TipoPago";
+            CboxMetodoPago.DataSource = dt;
+            CboxMetodoPago.SelectedIndex = -1;
+        }
+
+        //cambio tipo pago, muestra la info de pago
+        private void CboxMetodoPago_SelectedValueChanged(object sender, EventArgs e)
        {
-           if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 1)
+           if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 1 || Convert.ToInt32(CboxMetodoPago.SelectedValue) == 5)
            {
                lblReferencia.Visible = false;
                txtReferencia.Visible = false;
+                txtReferencia.Text = null;
            }
            else
            {
                lblReferencia.Visible = true;
                txtReferencia.Visible = true;
+                txtReferencia.Text = null;
            }
        }
 
@@ -270,12 +308,25 @@ namespace Agregados.Forms.Bills
                {
                    txtClient.Text = name.ToString();
                }
-           }
+            }
+            else
+            {
+                txtClient.Text = "Selecciona un Cliente";
+            }
        }
 
-       //asignar al label de fecha y hora el valor en formato extendido de la fecha 
-       // y ademas la hora
-       private void tmrFechaHora_Tick(object sender, EventArgs e)
+        //tiempo loading
+        void Wait()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                Thread.Sleep(5);
+            }
+        }
+
+        //asignar al label de fecha y hora el valor en formato extendido de la fecha 
+        // y ademas la hora
+        private void tmrFechaHora_Tick(object sender, EventArgs e)
        {
 
 
@@ -385,6 +436,232 @@ namespace Agregados.Forms.Bills
             lblLineas.Text = Convert.ToString(valor);
         }
 
+        //metodo que permite realizar validaciones a tomar en cuenta para generar registro de factura
+        private bool ValidarCamposRequeridos()
+        {
+            bool R = false;
 
+            if (!string.IsNullOrEmpty(txtNumClient.Text.Trim()) &&
+                txtTransporte.Value >= 0 &&
+                !string.IsNullOrEmpty(TxtSubTotal.Text.Trim()) &&
+                !string.IsNullOrEmpty(TxtIVA.Text.Trim()) &&
+                !string.IsNullOrEmpty(TxtTotal.Text.Trim()) &&
+                CboxTypeBill.SelectedIndex != -1 &&
+                CboxMetodoPago.SelectedIndex != -1
+                )
+            {
+                R = true;
+            }
+            else
+            {
+                //estas validaciones deben ser puntuales para informar al usuario que falla 
+
+                if (string.IsNullOrEmpty(txtNumClient.Text.Trim()))
+                {
+                    MessageBox.Show("Cliente es requerido, favor seleccionar un cliente de la lista, presionando la lupa de busqueda de clientes.", 
+                        "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtNumClient.Focus();
+                    return false;
+                }
+                if (txtTransporte.Value < 0)
+                {
+                    MessageBox.Show("Costo Transporte debe ser igual a 0 o mayor", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtTransporte.Focus();
+                    return false;
+                }
+                if (string.IsNullOrEmpty(TxtSubTotal.Text.Trim()))
+                {
+                    MessageBox.Show("Valor de subtotal es requerido, favor validar que se haya seleccionado material de la lista para generar factura correctamente.",
+                        "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TxtSubTotal.Focus();
+                    return false;
+                }
+                if (string.IsNullOrEmpty(TxtIVA.Text.Trim()))
+                {
+                    MessageBox.Show("IVA es requerido, favor validar que se haya seleccionado material de la lista para generar factura correctamente.",
+                        "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TxtIVA.Focus();
+                    return false;
+                }
+                if (string.IsNullOrEmpty(TxtTotal.Text.Trim()))
+                {
+                    MessageBox.Show("Valor Total requerido, favor validar que se haya seleccionado material de la lista para generar factura correctamente.",
+                        "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TxtTotal.Focus();
+                    return false;
+                }
+                if (CboxTypeBill.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Tipo de Factura debe ser ingresado, selecciona contado o a crédito", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CboxTypeBill.Focus();
+                    return false;
+                }
+                if (CboxMetodoPago.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Método de Pago debe ser ingresado, selecciona uno en la lista." + Environment.NewLine +
+                        "Si seleccionas como método de pago a crédito, debes seleccionar Método de Pago (Pendiente)",
+                        "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CboxTypeBill.Focus();
+                    return false;
+                }
+            }
+            return R;
+        }
+
+        //busca el id maximo de factura generado para 
+        public int MaxIdConsecutivo()
+        {
+            int result = 0;
+            try
+            {
+                factura = DB.Facturas.FirstOrDefault();
+                if (factura != null)
+                {
+                    result = DB.Facturas.Where((x) => x.IdCliente > 0).Select((X) => X.Consecutivo).Max();
+                }
+                factura = null;
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }  
+        }
+
+        //limpiar
+        public void limpiar()
+        {
+            txtNumClient = null;
+            CboxTypeBill.SelectedIndex = -1;
+            CboxMetodoPago.SelectedIndex = -1;
+            txtTransporte.Value = 0;
+            DtLista = new DataTable();
+            dgvMaterials.DataSource = DtLista;
+            validateLinesFact();
+            Totalizar();
+            txtReferencia.Text = null;
+
+        }
+
+        private void btnFacturar_Click(object sender, EventArgs e)
+        {
+            if (ValidarCamposRequeridos())
+            {
+                if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 1)
+                {
+                    try
+                    {
+                        int result = MaxIdConsecutivo();
+
+                        int consecutivo = 0;
+                        if (result == 0)
+                        {
+                            consecutivo = 1;
+                        }
+                        else
+                        {
+                            consecutivo = (result + 1);
+                        }
+
+                        DialogResult respuesta = MessageBox.Show("¿Deseas generar la factura ?",
+                                               "Registro Factura", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (respuesta == DialogResult.Yes)
+                        {
+                            using (FrmLoading frmLoading = new FrmLoading(Wait))
+                            {
+                                try
+                                {
+                                    factura = new Facturas
+                                    {
+                                        Consecutivo = consecutivo,
+                                        CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
+                                        Subtotal = SubTotal,
+                                        IVA = TasaImpuesto,
+                                        CostoTotal = Total,
+                                        
+                                        FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
+                                        MontoPendiente = null,
+                                        FechaLimiteP = null,
+                                        ReferenciaPago = null,
+                                        
+                                        IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                        IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
+                                        IdEstado = 4,
+                                        IdCliente = Convert.ToInt32(txtNumClient.Text.Trim()),
+                                        IdProveedor = null,
+                                        IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
+                                        IdCierreApert = 0
+                                    };
+
+                                    DB.Facturas.Add(factura);
+
+                                    if (DB.SaveChanges() > 0)
+                                    {
+
+                                        
+                                        int IdFact = DB.Facturas.Select((x) => x.IdFactura).Max();
+
+                                        foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
+                                        {
+                                            detalleFact = new DetalleFacts
+                                            {
+                                                Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
+                                                Precio = Convert.ToDecimal(Row["Precio"]),
+                                                Subtotal = Convert.ToDecimal(Row["Subtotal"]),
+                                                IVA = Convert.ToDecimal(Row["IVA"]),
+                                                Total = Convert.ToDecimal(Row["PrecioFinal"]),
+                                                IdFactura = IdFact,
+                                                IdMaterial = Convert.ToInt32(Row["IdMaterial"])
+                                            };
+
+                                            DB.DetalleFacts.Add(detalleFact);
+                                            if (DB.SaveChanges() > 0)
+                                            {
+                                                int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
+                                                materiales = DB.Materiales.Find(IdMaterial);
+                                                materiales.CantidadMaterial = materiales.CantidadMaterial - Convert.ToDecimal(Row["CantidadMaterial"]);
+
+                                                DB.Entry(materiales).State = EntityState.Modified;
+
+                                                if (DB.SaveChanges() > 0)
+                                                {
+                                                    detalleFact = null;
+                                                }
+                                            }
+                                        }
+                                        limpiar();
+                                        MessageBox.Show("Factura agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                        {
+                                            frm.ShowDialog();
+                                        };
+                                            factura = null;
+
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Factura no se pudo procesada.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        factura = null;
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    throw;
+                                }
+                            }
+                        }
+                    }
+                    catch (NullReferenceException)
+                    {
+
+                        throw;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se selecciono Contado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

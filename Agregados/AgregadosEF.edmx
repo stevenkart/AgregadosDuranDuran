@@ -54,6 +54,7 @@
           <Property Name="IdDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cantidad" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Subtotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IVA" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IdFactura" Type="int" Nullable="false" />
@@ -372,6 +373,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SPFactGeneradaContadoIVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdFactura" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="AgregadosModelStoreContainer">
           <EntitySet Name="CierreApertCajas" EntityType="Self.CierreApertCajas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
@@ -520,6 +524,7 @@
           <NavigationProperty Name="Materiales" Relationship="Self.FKDetalleFac664226" FromRole="DetalleFacts" ToRole="Materiales" />
           <Property Name="IVA" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Subtotal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Estados">
           <Key>
@@ -932,6 +937,9 @@
             <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
             <End Role="Facturas" EntitySet="Facturas" />
           </AssociationSet>
+          <FunctionImport Name="SPFactGeneradaContadoIVA" ReturnType="Collection(AgregadosModel.SPFactGeneradaContadoIVA_Result)">
+          <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <Association Name="FKFacturas448726">
           <End Type="AgregadosModel.CierreApertCajas" Role="CierreApertCajas" Multiplicity="1" />
@@ -945,6 +953,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SPFactGeneradaContadoIVA_Result">
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="Transporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Metodo" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Empleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Cliente" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="Material" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="CodigoM" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -999,6 +1024,7 @@
           <EntitySetMapping Name="DetalleFacts">
             <EntityTypeMapping TypeName="AgregadosModel.DetalleFacts">
               <MappingFragment StoreEntitySet="DetalleFacts">
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="IVA" ColumnName="IVA" />
                 <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
@@ -1128,6 +1154,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPFactGeneradaContadoIVA" FunctionName="AgregadosModel.Store.SPFactGeneradaContadoIVA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactGeneradaContadoIVA_Result">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="Transporte" ColumnName="Transporte" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Metodo" ColumnName="Metodo" />
+                <ScalarProperty Name="Empleado" ColumnName="Empleado" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="CodigoM" ColumnName="CodigoM" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1143,7 +1190,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
