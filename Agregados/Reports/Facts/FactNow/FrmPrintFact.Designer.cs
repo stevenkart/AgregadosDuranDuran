@@ -1,4 +1,6 @@
-﻿namespace Agregados.Reports
+﻿using Agregados.Reports.Facts.FactNow;
+
+namespace Agregados.Reports
 {
     partial class FrmPrintFact
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.RptFactCreated1 = new Agregados.Reports.RptFactCreated();
+            this.RptFactCreated1 = new Agregados.Reports.Facts.FactNow.RptFactCreated();
             this.SuspendLayout();
             // 
             // crystalReportViewer1

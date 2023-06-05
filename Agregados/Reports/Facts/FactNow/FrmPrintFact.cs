@@ -1,4 +1,5 @@
-﻿using CrystalDecisions.Windows.Forms;
+﻿using Agregados.Reports.Facts.FactNow;
+using CrystalDecisions.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,22 +14,6 @@ namespace Agregados.Reports
 {
     public partial class FrmPrintFact : Form
     {
-        Facturas fact;
-
-       
-        private decimal Subtotal;
-        private decimal IVA;
-        private decimal Total;
-        private string NombreCliente;
-        private int MaterialCod;
-        private string Material;
-        private string TipoFact;
-        private string Metodo;
-        private string Empleado;
-        private string Estado;
-
-
-
         int IdFact;
 
         public FrmPrintFact(int id)

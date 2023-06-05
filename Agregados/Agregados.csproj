@@ -153,6 +153,12 @@
     <Compile Include="Forms\Providers\FrmProvidersManage.Designer.cs">
       <DependentUpon>FrmProvidersManage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Reports\FrmFactsReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\FrmFactsReports.Designer.cs">
+      <DependentUpon>FrmFactsReports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Users\FrmUserManage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,19 +213,25 @@
     <Compile Include="Proveedores.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Reports\FrmPrintFact.cs">
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\FrmPrintFact.Designer.cs">
-      <DependentUpon>FrmPrintFact.cs</DependentUpon>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilter.Designer.cs">
+      <DependentUpon>FrmPrintFactFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RptFactCreated - Copy.cs">
-      <DependentUpon>RptFactCreated - Copy.rpt</DependentUpon>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactFiltered.cs">
+      <DependentUpon>RptFactFiltered.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\RptFactCreated.cs">
+    <Compile Include="Reports\Facts\FactNow\FrmPrintFact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintFact.Designer.cs">
+      <DependentUpon>FrmPrintFact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\RptFactCreated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RptFactCreated.rpt</DependentUpon>
@@ -265,6 +277,9 @@
     <EmbeddedResource Include="Forms\Providers\FrmProvidersManage.resx">
       <DependentUpon>FrmProvidersManage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\FrmFactsReports.resx">
+      <DependentUpon>FrmFactsReports.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Users\FrmUserManage.resx">
       <DependentUpon>FrmUserManage.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,14 +311,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reports\FrmPrintFact.resx">
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilter.resx">
+      <DependentUpon>FrmPrintFactFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactFiltered.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactFiltered.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintFact.resx">
       <DependentUpon>FrmPrintFact.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RptFactCreated - Copy.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptFactCreated - Copy.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RptFactCreated.rpt">
+    <EmbeddedResource Include="Reports\Facts\FactNow\RptFactCreated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptFactCreated.cs</LastGenOutput>
     </EmbeddedResource>

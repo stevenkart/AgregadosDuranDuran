@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Agregados.Reports {
+namespace Agregados.Reports.Facts.FactNow {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace Agregados.Reports {
         
         public override string FullResourceName {
             get {
-                return "Agregados.Reports.RptFactCreated.rpt";
+                return "Agregados.Reports.Facts.FactNow.RptFactCreated.rpt";
             }
             set {
                 // Do nothing

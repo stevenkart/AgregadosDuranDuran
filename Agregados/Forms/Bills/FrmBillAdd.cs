@@ -35,6 +35,10 @@ namespace Agregados.Forms.Bills
         public decimal SubTotal { get; set; } // subtotal
         public decimal TasaImpuesto { get; set; } //tasa aplicada al 13%
         public decimal Total { get; set; } // total aplicado con el el IVA 13%
+
+        bool aplicarIva;
+
+
         #endregion
 
 
@@ -58,17 +62,21 @@ namespace Agregados.Forms.Bills
             lblDate.Text = DateTime.Now.Date.ToLongDateString();
             CargarTiposFactura();
             CargarTiposPagos();
+            /*
             lblReferencia.Visible = false;
             txtReferencia.Visible = false;
+            */
 
             //List<Materiales> materialesDT = new List<Materiales>();
 
             ActivarAdd();
             DtLista = makeDataTableSchema();
 
+            aplicarIva = CboxIVA.Checked;
 
 
-       }
+
+        }
 
         //validaciones de botones para evitar errores
         private void ActivarAdd()
@@ -140,7 +148,7 @@ namespace Agregados.Forms.Bills
        }
         */
 
-        //calcular datos del datatable
+        //calcular datos del datatable con IVA
         private void Totalizar()
         {
             //Este método calcula los valores de
@@ -158,9 +166,14 @@ namespace Agregados.Forms.Bills
             {
                 foreach (DataRow Row in DtLista.Rows)
                 {
+                    //valida que si IVA es sero, se aplique nuevamente
+                    if (Convert.ToDecimal(Row["IVA"]) == 0)
+                    {
+                        Row["IVA"] = Convert.ToDecimal(Convert.ToDouble(Row["Subtotal"]) * Convert.ToDouble(0.13));
+                    }
                     SubtotalTemp += Convert.ToDecimal(Row["Subtotal"]);
                     TasaImpuestoTemp += Convert.ToDecimal(Row["IVA"]);
-                    TotalTemp += Convert.ToDecimal(Row["PrecioFinal"]);
+                    TotalTemp += Convert.ToDecimal(Row["PrecioFinal"]); 
                 }
                 SubTotal = SubtotalTemp + Convert.ToDecimal(txtTransporte.Value);
                 TasaImpuesto = TasaImpuestoTemp + Convert.ToDecimal((Convert.ToDouble(txtTransporte.Value) * 0.13));
@@ -176,6 +189,44 @@ namespace Agregados.Forms.Bills
             TxtIVA.Text = string.Format("¢ {0:N2}", TasaImpuesto);
             TxtTotal.Text = string.Format("¢ {0:N2}", Total);
             
+        }
+
+        //calcular datos del datatable sin IVA
+        private void TotalizarSinIVA()
+        {
+            //Este método calcula los valores de
+            //subtotal, impuesto y total para la línea 
+            //no supere el 100%
+
+            decimal SubtotalTemp = 0;
+            decimal TasaImpuestoTemp = 0;
+            decimal TotalTemp = 0;
+            SubTotal = 0;
+            TasaImpuesto = 0;
+            Total = 0;
+
+            if (DtLista.Rows != null)
+            {
+                foreach (DataRow Row in DtLista.Rows)
+                {
+                    SubtotalTemp += Convert.ToDecimal(Row["Subtotal"]);
+                    Row["IVA"] = 0;
+                    //TasaImpuestoTemp += Convert.ToDecimal(Row["IVA"]);
+                    TotalTemp += Convert.ToDecimal(Row["PrecioFinal"]);
+                }
+                SubTotal = SubtotalTemp + Convert.ToDecimal(txtTransporte.Value);
+                //TasaImpuesto = TasaImpuestoTemp + Convert.ToDecimal((Convert.ToDouble(txtTransporte.Value) * 0.13));
+                Total = SubTotal;
+            }
+            else
+            {
+                SubTotal = 0;
+                TasaImpuesto = 0;
+                Total = 0;
+            }
+            TxtSubTotal.Text = string.Format("¢ {0:N2}", SubTotal);
+            TxtIVA.Text = string.Format("¢ {0:N2}", TasaImpuesto);
+            TxtTotal.Text = string.Format("¢ {0:N2}", Total);
         }
 
         //carga Cbox Tipo Factua
@@ -256,15 +307,19 @@ namespace Agregados.Forms.Bills
        {
            if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 1 || Convert.ToInt32(CboxMetodoPago.SelectedValue) == 5)
            {
+                /*
                lblReferencia.Visible = false;
                txtReferencia.Visible = false;
                 txtReferencia.Text = null;
+                */
            }
            else
            {
+                /*
                lblReferencia.Visible = true;
                txtReferencia.Visible = true;
                 txtReferencia.Text = null;
+                */
            }
        }
 
@@ -350,7 +405,14 @@ namespace Agregados.Forms.Bills
                     dgvMaterials.DataSource = DtLista;
                     dgvMaterials.ClearSelection();
 
-                    Totalizar();
+                    if (CboxIVA.Checked)
+                    {
+                        Totalizar();
+                    }
+                    else
+                    {
+                        TotalizarSinIVA();
+                    }
                     CantidadItem = 0;
                     validateLinesFact();
                     //MessageBox.Show("Se obtuvo el ID", "Éxito", MessageBoxButtons.OK);
@@ -389,7 +451,14 @@ namespace Agregados.Forms.Bills
                     dgvMaterials.DataSource = DtLista;
                     dgvMaterials.ClearSelection();
                     CantidadItem = 0;
-                    Totalizar();                 
+                    if (CboxIVA.Checked)
+                    {
+                        Totalizar();
+                    }
+                    else
+                    {
+                        TotalizarSinIVA();
+                    }
                     validateLinesFact();
                     ActivarAdd();
                 }
@@ -416,7 +485,14 @@ namespace Agregados.Forms.Bills
         {
             if (txtTransporte.Value >= 0)
             {
-                Totalizar();
+                if (CboxIVA.Checked)
+                {
+                    Totalizar();
+                }
+                else
+                {
+                    TotalizarSinIVA();
+                }
             }
             else
             {
@@ -508,6 +584,36 @@ namespace Agregados.Forms.Bills
             return R;
         }
 
+        //valida que la fecha limite pago sea mayor al día actual
+
+        private bool ValidarFechaLimite()
+        {
+            bool R;
+            int dias = 0;
+            DateTime fechaActual = Convert.ToDateTime(DateTime.Now);
+            DateTime fechaProxima = Convert.ToDateTime(dateFinal.Value);
+            TimeSpan tiempo = fechaProxima.Subtract(fechaActual);
+            dias = Convert.ToInt32(tiempo.Days);
+            if (dias == 0)
+            {
+                R = false;
+                dateFinal.Focus();
+            }
+            else
+            {
+                if (dias >= 0)
+                {
+                    R = true;
+                }
+                else
+                {
+                    R = false;
+                    dateFinal.Focus();
+                }
+            }
+            return R;
+        }
+
         //busca el id maximo de factura generado para 
         public int MaxIdConsecutivo()
         {
@@ -563,7 +669,7 @@ namespace Agregados.Forms.Bills
                             consecutivo = (result + 1);
                         }
 
-                        DialogResult respuesta = MessageBox.Show("¿Deseas generar la factura ?",
+                        DialogResult respuesta = MessageBox.Show("¿Deseas generar la factura de contado?",
                                                "Registro Factura", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (respuesta == DialogResult.Yes)
                         {
@@ -582,7 +688,7 @@ namespace Agregados.Forms.Bills
                                         FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
                                         MontoPendiente = null,
                                         FechaLimiteP = null,
-                                        ReferenciaPago = null,
+                                        ReferenciaPago = txtReferencia.Text.Trim(),
                                         
                                         IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                         IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
@@ -598,7 +704,6 @@ namespace Agregados.Forms.Bills
                                     if (DB.SaveChanges() > 0)
                                     {
 
-                                        
                                         int IdFact = DB.Facturas.Select((x) => x.IdFactura).Max();
 
                                         foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
@@ -658,9 +763,139 @@ namespace Agregados.Forms.Bills
                     }
                 }
                 else
-                {
-                    MessageBox.Show("No se selecciono Contado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                {   
+                    if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 2)
+                    {
+                        if (ValidarFechaLimite())
+                        {
+                            try
+                            {
+                                int result = MaxIdConsecutivo();
+
+                                int consecutivo = 0;
+                                if (result == 0)
+                                {
+                                    consecutivo = 1;
+                                }
+                                else
+                                {
+                                    consecutivo = (result + 1);
+                                }
+
+                                DialogResult respuesta = MessageBox.Show("¿Deseas generar la factura a Crédito?",
+                                                       "Registro Factura", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (respuesta == DialogResult.Yes)
+                                {
+                                    using (FrmLoading frmLoading = new FrmLoading(Wait))
+                                    {
+                                        try
+                                        {
+                                            factura = new Facturas
+                                            {
+                                                Consecutivo = consecutivo,
+                                                CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
+                                                Subtotal = SubTotal,
+                                                IVA = TasaImpuesto,
+                                                CostoTotal = Total,
+
+                                                FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
+                                                MontoPendiente = Total,
+                                                FechaLimiteP = Convert.ToDateTime(dateFinal.Value),
+                                                ReferenciaPago = txtReferencia.Text.Trim(),
+
+                                                IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                                IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
+                                                IdEstado = 3,
+                                                IdCliente = Convert.ToInt32(txtNumClient.Text.Trim()),
+                                                IdProveedor = null,
+                                                IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
+                                                IdCierreApert = 0
+                                            };
+
+                                            DB.Facturas.Add(factura);
+
+                                            if (DB.SaveChanges() > 0)
+                                            {
+
+                                                int IdFact = DB.Facturas.Select((x) => x.IdFactura).Max();
+
+                                                foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
+                                                {
+                                                    detalleFact = new DetalleFacts
+                                                    {
+                                                        Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
+                                                        Precio = Convert.ToDecimal(Row["Precio"]),
+                                                        Subtotal = Convert.ToDecimal(Row["Subtotal"]),
+                                                        IVA = Convert.ToDecimal(Row["IVA"]),
+                                                        Total = Convert.ToDecimal(Row["PrecioFinal"]),
+                                                        IdFactura = IdFact,
+                                                        IdMaterial = Convert.ToInt32(Row["IdMaterial"])
+                                                    };
+
+                                                    DB.DetalleFacts.Add(detalleFact);
+                                                    if (DB.SaveChanges() > 0)
+                                                    {
+                                                        int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
+                                                        materiales = DB.Materiales.Find(IdMaterial);
+                                                        materiales.CantidadMaterial = materiales.CantidadMaterial - Convert.ToDecimal(Row["CantidadMaterial"]);
+
+                                                        DB.Entry(materiales).State = EntityState.Modified;
+
+                                                        if (DB.SaveChanges() > 0)
+                                                        {
+                                                            detalleFact = null;
+                                                        }
+                                                    }
+                                                }
+                                                limpiar();
+                                                MessageBox.Show("Factura agregada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                                {
+                                                    frm.ShowDialog();
+                                                };
+                                                factura = null;
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Factura no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                factura = null;
+                                            }
+                                        }
+                                        catch (Exception)
+                                        {
+                                            throw;
+                                        }
+                                    }
+                                }
+                            }
+                            catch (NullReferenceException)
+                            {
+
+                                throw;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se selecciono una fecha mayor al 2 días del actual, favor validar.", "Error Factura a Crédito.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }    
+
+
+
+
                 }
+            }
+        }
+
+        private void CboxIVA_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CboxIVA.Checked)
+            {
+                Totalizar();
+            }
+            else
+            {
+                TotalizarSinIVA();
             }
         }
     }
