@@ -438,18 +438,36 @@ namespace Agregados.Forms.Materials
                             }
                             else
                             {
-                                DB.Materiales.Remove(material); // metodo para eliminar el material, dato de la BD
-                                if (DB.SaveChanges() > 0)
+                                //linq que consulta si hay relacion con alguna tabla.
+                                var list = from de in DB.DetalleFacts
+                                           join ma in DB.Materiales
+                                           on de.IdMaterial equals ma.IdMaterial
+                                           where (ma.IdMaterial == material.IdMaterial)
+                                           select new
+                                           {
+                                               de.IdDetalle,
+                                           };
+
+                                if (list.ToList().Count <= 0)
                                 {
-                                    CheckChange();
-                                    limpiarBusqueda();
-                                    MessageBox.Show("Material Eliminado Correctamente!", "Registro de Materiales", MessageBoxButtons.OK);
-                                    material = null;
+                                    DB.Materiales.Remove(material); // metodo para eliminar el material, dato de la BD
+                                    if (DB.SaveChanges() > 0)
+                                    {
+                                        CheckChange();
+                                        limpiarBusqueda();
+                                        MessageBox.Show("Material Eliminado Correctamente!", "Registro de Materiales", MessageBoxButtons.OK);
+                                        material = null;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Material No fue Eliminado, por favor valide", "Error Registro de Materiales", MessageBoxButtons.OK);
+                                        material = null;
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Material No fue Eliminado, por favor valide", "Error Registro de Materiales", MessageBoxButtons.OK);
-                                    material = null;
+                                    MessageBox.Show("Material No fue Eliminado, este ya se encuentra relacionado a una factura que se emitió anteriormente.",
+                                        "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                         }
@@ -1083,5 +1101,7 @@ namespace Agregados.Forms.Materials
                 }
             }
         }
+
+  
     }
 }

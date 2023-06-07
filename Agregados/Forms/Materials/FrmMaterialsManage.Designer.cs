@@ -51,30 +51,30 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvMaterials = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtPrecio = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtMinimos = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.CboxStates = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.imgAdd = new System.Windows.Forms.PictureBox();
-            this.imgUpdate = new System.Windows.Forms.PictureBox();
-            this.imgDelete = new System.Windows.Forms.PictureBox();
-            this.imgClean = new System.Windows.Forms.PictureBox();
-            this.imgExit = new System.Windows.Forms.PictureBox();
             this.CIdMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNombreMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCantidadMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CMinimos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.CboxStates = new System.Windows.Forms.ComboBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.txtMinimos = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.imgAdd = new System.Windows.Forms.PictureBox();
+            this.imgUpdate = new System.Windows.Forms.PictureBox();
+            this.imgDelete = new System.Windows.Forms.PictureBox();
+            this.imgClean = new System.Windows.Forms.PictureBox();
+            this.imgExit = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -125,7 +125,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 149F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChCantBuena, 2, 0);
             this.tableLayoutPanel8.Controls.Add(this.chCantRegular, 3, 0);
@@ -157,7 +157,7 @@
             this.ChCantBuena.Checked = true;
             this.ChCantBuena.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChCantBuena.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChCantBuena.Location = new System.Drawing.Point(812, 7);
+            this.ChCantBuena.Location = new System.Drawing.Point(809, 7);
             this.ChCantBuena.Name = "ChCantBuena";
             this.ChCantBuena.Size = new System.Drawing.Size(147, 22);
             this.ChCantBuena.TabIndex = 0;
@@ -171,7 +171,7 @@
             this.chCantRegular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chCantRegular.AutoSize = true;
             this.chCantRegular.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chCantRegular.Location = new System.Drawing.Point(965, 7);
+            this.chCantRegular.Location = new System.Drawing.Point(962, 7);
             this.chCantRegular.Name = "chCantRegular";
             this.chCantRegular.Size = new System.Drawing.Size(152, 22);
             this.chCantRegular.TabIndex = 1;
@@ -185,9 +185,9 @@
             this.chVacia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chVacia.AutoSize = true;
             this.chVacia.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chVacia.Location = new System.Drawing.Point(1123, 7);
+            this.chVacia.Location = new System.Drawing.Point(1120, 7);
             this.chVacia.Name = "chVacia";
-            this.chVacia.Size = new System.Drawing.Size(144, 22);
+            this.chVacia.Size = new System.Drawing.Size(147, 22);
             this.chVacia.TabIndex = 2;
             this.chVacia.Text = "Sin Material";
             this.chVacia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -321,7 +321,7 @@
             this.txtNameSearch.Location = new System.Drawing.Point(190, 44);
             this.txtNameSearch.Name = "txtNameSearch";
             this.txtNameSearch.Size = new System.Drawing.Size(231, 20);
-            this.txtNameSearch.TabIndex = 2;
+            this.txtNameSearch.TabIndex = 1;
             this.txtNameSearch.TextChanged += new System.EventHandler(this.txtNameSearch_TextChanged);
             this.txtNameSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNameSearch_KeyPress);
             // 
@@ -383,6 +383,70 @@
             this.dgvMaterials.TabIndex = 0;
             this.dgvMaterials.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaterials_CellClick);
             // 
+            // CIdMaterial
+            // 
+            this.CIdMaterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CIdMaterial.DataPropertyName = "IdMaterial";
+            this.CIdMaterial.FillWeight = 50F;
+            this.CIdMaterial.Frozen = true;
+            this.CIdMaterial.HeaderText = "Cod.";
+            this.CIdMaterial.MinimumWidth = 40;
+            this.CIdMaterial.Name = "CIdMaterial";
+            this.CIdMaterial.ReadOnly = true;
+            this.CIdMaterial.Width = 60;
+            // 
+            // CNombreMaterial
+            // 
+            this.CNombreMaterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CNombreMaterial.DataPropertyName = "NombreMaterial";
+            this.CNombreMaterial.FillWeight = 180F;
+            this.CNombreMaterial.Frozen = true;
+            this.CNombreMaterial.HeaderText = "Nombre";
+            this.CNombreMaterial.MinimumWidth = 150;
+            this.CNombreMaterial.Name = "CNombreMaterial";
+            this.CNombreMaterial.ReadOnly = true;
+            this.CNombreMaterial.Width = 150;
+            // 
+            // CCantidadMaterial
+            // 
+            this.CCantidadMaterial.DataPropertyName = "CantidadMaterial";
+            this.CCantidadMaterial.FillWeight = 160F;
+            this.CCantidadMaterial.HeaderText = "Cantidad Material  m³";
+            this.CCantidadMaterial.MinimumWidth = 160;
+            this.CCantidadMaterial.Name = "CCantidadMaterial";
+            this.CCantidadMaterial.ReadOnly = true;
+            this.CCantidadMaterial.Width = 160;
+            // 
+            // CMinimos
+            // 
+            this.CMinimos.DataPropertyName = "Minimos";
+            this.CMinimos.FillWeight = 170F;
+            this.CMinimos.HeaderText = "Mínimos";
+            this.CMinimos.MinimumWidth = 140;
+            this.CMinimos.Name = "CMinimos";
+            this.CMinimos.ReadOnly = true;
+            this.CMinimos.Width = 140;
+            // 
+            // CPrecio
+            // 
+            this.CPrecio.DataPropertyName = "Precio";
+            this.CPrecio.FillWeight = 170F;
+            this.CPrecio.HeaderText = "Precio";
+            this.CPrecio.MinimumWidth = 160;
+            this.CPrecio.Name = "CPrecio";
+            this.CPrecio.ReadOnly = true;
+            this.CPrecio.Width = 160;
+            // 
+            // CIdEstado
+            // 
+            this.CIdEstado.DataPropertyName = "IdEstado";
+            this.CIdEstado.FillWeight = 130F;
+            this.CIdEstado.HeaderText = "Estado";
+            this.CIdEstado.MinimumWidth = 120;
+            this.CIdEstado.Name = "CIdEstado";
+            this.CIdEstado.ReadOnly = true;
+            this.CIdEstado.Width = 120;
+            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
@@ -401,18 +465,18 @@
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.08554F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.91446F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.75153F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.24847F));
             this.tableLayoutPanel6.Controls.Add(this.label7, 0, 4);
             this.tableLayoutPanel6.Controls.Add(this.txtPrecio, 1, 4);
-            this.tableLayoutPanel6.Controls.Add(this.label5, 0, 3);
-            this.tableLayoutPanel6.Controls.Add(this.txtMinimos, 1, 3);
-            this.tableLayoutPanel6.Controls.Add(this.label4, 0, 2);
-            this.tableLayoutPanel6.Controls.Add(this.txtCantidad, 1, 2);
             this.tableLayoutPanel6.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.txtName, 1, 1);
             this.tableLayoutPanel6.Controls.Add(this.label15, 0, 5);
             this.tableLayoutPanel6.Controls.Add(this.CboxStates, 1, 5);
+            this.tableLayoutPanel6.Controls.Add(this.txtCantidad, 1, 3);
+            this.tableLayoutPanel6.Controls.Add(this.txtMinimos, 1, 2);
+            this.tableLayoutPanel6.Controls.Add(this.label5, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.label4, 0, 3);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -434,103 +498,62 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 244);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(3, 232);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(181, 16);
+            this.label7.Size = new System.Drawing.Size(199, 40);
             this.label7.TabIndex = 12;
             this.label7.Text = "Precio por Metro Cúbico:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtPrecio
             // 
+            this.txtPrecio.AllowDrop = true;
             this.txtPrecio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecio.Location = new System.Drawing.Point(190, 241);
-            this.txtPrecio.MaxLength = 8;
+            this.txtPrecio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrecio.Location = new System.Drawing.Point(208, 239);
+            this.txtPrecio.MaxLength = 10;
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(298, 22);
-            this.txtPrecio.TabIndex = 5;
+            this.txtPrecio.Size = new System.Drawing.Size(280, 26);
+            this.txtPrecio.TabIndex = 3;
             this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 188);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(181, 16);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Mínimos de m³ :";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtMinimos
-            // 
-            this.txtMinimos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMinimos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMinimos.Location = new System.Drawing.Point(190, 185);
-            this.txtMinimos.MaxLength = 4;
-            this.txtMinimos.Name = "txtMinimos";
-            this.txtMinimos.Size = new System.Drawing.Size(298, 22);
-            this.txtMinimos.TabIndex = 4;
-            this.txtMinimos.TextChanged += new System.EventHandler(this.txtMinimos_TextChanged);
-            this.txtMinimos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinimos_KeyPress);
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 131);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(181, 18);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Cantidad Material  m³ :";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidad.Location = new System.Drawing.Point(190, 129);
-            this.txtCantidad.MaxLength = 4;
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(298, 22);
-            this.txtCantidad.TabIndex = 3;
-            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
-            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 76);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(3, 74);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(181, 16);
+            this.label2.Size = new System.Drawing.Size(199, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtName
             // 
+            this.txtName.AllowDrop = true;
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(190, 73);
+            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.Location = new System.Drawing.Point(208, 71);
             this.txtName.MaxLength = 255;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(298, 22);
-            this.txtName.TabIndex = 1;
+            this.txtName.Size = new System.Drawing.Size(280, 26);
+            this.txtName.TabIndex = 0;
             // 
             // label15
             // 
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(3, 300);
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label15.Location = new System.Drawing.Point(3, 298);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(181, 16);
+            this.label15.Size = new System.Drawing.Size(199, 20);
             this.label15.TabIndex = 15;
             this.label15.Text = "Estado del Material:";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -539,12 +562,66 @@
             // 
             this.CboxStates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.CboxStates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboxStates.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboxStates.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboxStates.FormattingEnabled = true;
-            this.CboxStates.Location = new System.Drawing.Point(190, 296);
+            this.CboxStates.Location = new System.Drawing.Point(208, 294);
             this.CboxStates.Name = "CboxStates";
-            this.CboxStates.Size = new System.Drawing.Size(298, 24);
-            this.CboxStates.TabIndex = 8;
+            this.CboxStates.Size = new System.Drawing.Size(280, 28);
+            this.CboxStates.TabIndex = 4;
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.AllowDrop = true;
+            this.txtCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCantidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidad.Location = new System.Drawing.Point(208, 183);
+            this.txtCantidad.MaxLength = 10;
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(280, 26);
+            this.txtCantidad.TabIndex = 2;
+            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
+            // 
+            // txtMinimos
+            // 
+            this.txtMinimos.AllowDrop = true;
+            this.txtMinimos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMinimos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMinimos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMinimos.Location = new System.Drawing.Point(208, 127);
+            this.txtMinimos.MaxLength = 10;
+            this.txtMinimos.Name = "txtMinimos";
+            this.txtMinimos.Size = new System.Drawing.Size(280, 26);
+            this.txtMinimos.TabIndex = 1;
+            this.txtMinimos.TextChanged += new System.EventHandler(this.txtMinimos_TextChanged);
+            this.txtMinimos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMinimos_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(3, 130);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(199, 20);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Mínimos de m³ :";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label4.Location = new System.Drawing.Point(3, 186);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(199, 20);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Cantidad Material  m³ :";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel7
             // 
@@ -632,70 +709,6 @@
             this.imgExit.TabIndex = 21;
             this.imgExit.TabStop = false;
             this.imgExit.Click += new System.EventHandler(this.imgExit_Click);
-            // 
-            // CIdMaterial
-            // 
-            this.CIdMaterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CIdMaterial.DataPropertyName = "IdMaterial";
-            this.CIdMaterial.FillWeight = 50F;
-            this.CIdMaterial.Frozen = true;
-            this.CIdMaterial.HeaderText = "Cod.";
-            this.CIdMaterial.MinimumWidth = 40;
-            this.CIdMaterial.Name = "CIdMaterial";
-            this.CIdMaterial.ReadOnly = true;
-            this.CIdMaterial.Width = 60;
-            // 
-            // CNombreMaterial
-            // 
-            this.CNombreMaterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.CNombreMaterial.DataPropertyName = "NombreMaterial";
-            this.CNombreMaterial.FillWeight = 180F;
-            this.CNombreMaterial.Frozen = true;
-            this.CNombreMaterial.HeaderText = "Nombre";
-            this.CNombreMaterial.MinimumWidth = 150;
-            this.CNombreMaterial.Name = "CNombreMaterial";
-            this.CNombreMaterial.ReadOnly = true;
-            this.CNombreMaterial.Width = 150;
-            // 
-            // CCantidadMaterial
-            // 
-            this.CCantidadMaterial.DataPropertyName = "CantidadMaterial";
-            this.CCantidadMaterial.FillWeight = 160F;
-            this.CCantidadMaterial.HeaderText = "Cantidad Material  m³";
-            this.CCantidadMaterial.MinimumWidth = 160;
-            this.CCantidadMaterial.Name = "CCantidadMaterial";
-            this.CCantidadMaterial.ReadOnly = true;
-            this.CCantidadMaterial.Width = 160;
-            // 
-            // CMinimos
-            // 
-            this.CMinimos.DataPropertyName = "Minimos";
-            this.CMinimos.FillWeight = 170F;
-            this.CMinimos.HeaderText = "Mínimos";
-            this.CMinimos.MinimumWidth = 140;
-            this.CMinimos.Name = "CMinimos";
-            this.CMinimos.ReadOnly = true;
-            this.CMinimos.Width = 140;
-            // 
-            // CPrecio
-            // 
-            this.CPrecio.DataPropertyName = "Precio";
-            this.CPrecio.FillWeight = 170F;
-            this.CPrecio.HeaderText = "Precio";
-            this.CPrecio.MinimumWidth = 160;
-            this.CPrecio.Name = "CPrecio";
-            this.CPrecio.ReadOnly = true;
-            this.CPrecio.Width = 160;
-            // 
-            // CIdEstado
-            // 
-            this.CIdEstado.DataPropertyName = "IdEstado";
-            this.CIdEstado.FillWeight = 130F;
-            this.CIdEstado.HeaderText = "Estado";
-            this.CIdEstado.MinimumWidth = 120;
-            this.CIdEstado.Name = "CIdEstado";
-            this.CIdEstado.ReadOnly = true;
-            this.CIdEstado.Width = 120;
             // 
             // FrmMaterialsManage
             // 

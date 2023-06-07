@@ -144,5 +144,12 @@ namespace Agregados.Forms
             Globals.MifrmFactsReports.Show();
             this.Hide();
         }
+
+        private void facturaciónComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmBillProviderAdd = new Bills.FrmBillProviderAdd();
+            Globals.MifrmBillProviderAdd.Show();
+            this.Hide();
+        }
     }
 }

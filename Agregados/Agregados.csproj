@@ -117,6 +117,12 @@
     <Compile Include="Forms\Bills\FrmBillAdd.Designer.cs">
       <DependentUpon>FrmBillAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Bills\FrmBillProviderAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmBillProviderAdd.Designer.cs">
+      <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Customers\FrmCustomerSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,12 @@
     </Compile>
     <Compile Include="Forms\Materials\FrmMaterialsManage.Designer.cs">
       <DependentUpon>FrmMaterialsManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Providers\FrmProviderSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Providers\FrmProviderSearch.Designer.cs">
+      <DependentUpon>FrmProviderSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Providers\FrmProvidersManage.cs">
       <SubType>Form</SubType>
@@ -259,6 +271,9 @@
     <EmbeddedResource Include="Forms\Bills\FrmBillAdd.resx">
       <DependentUpon>FrmBillAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmBillProviderAdd.resx">
+      <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customers\FrmCustomerSearch.resx">
       <DependentUpon>FrmCustomerSearch.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Materials\FrmMaterialsManage.resx">
       <DependentUpon>FrmMaterialsManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Providers\FrmProviderSearch.resx">
+      <DependentUpon>FrmProviderSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Providers\FrmProvidersManage.resx">
       <DependentUpon>FrmProvidersManage.cs</DependentUpon>

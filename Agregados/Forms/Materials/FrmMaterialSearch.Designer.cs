@@ -28,32 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvListaMateriales = new System.Windows.Forms.DataGridView();
-            this.txtBuscarId = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSeleccionar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.imgClean = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.TxtTotal = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.TxtPrecioUnitario = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TxtIVA = new System.Windows.Forms.TextBox();
-            this.NudCantidad = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
             this.CIdMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNombreMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCantidadMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CMinimos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtBuscarId = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.imgClean = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.TxtSubTotal = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TxtTotal = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxtIVA = new System.Windows.Forms.TextBox();
+            this.NudCantidad = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TxtPrecioUnitario = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaMateriales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgClean)).BeginInit();
             this.panel1.SuspendLayout();
@@ -94,14 +94,14 @@
             this.CPrecio,
             this.CIdEstado});
             this.dgvListaMateriales.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListaMateriales.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaMateriales.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvListaMateriales.Location = new System.Drawing.Point(12, 107);
             this.dgvListaMateriales.MultiSelect = false;
             this.dgvListaMateriales.Name = "dgvListaMateriales";
@@ -112,6 +112,68 @@
             this.dgvListaMateriales.TabIndex = 1;
             this.dgvListaMateriales.VirtualMode = true;
             this.dgvListaMateriales.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaMateriales_CellClick);
+            // 
+            // CIdMaterial
+            // 
+            this.CIdMaterial.DataPropertyName = "IdMaterial";
+            this.CIdMaterial.FillWeight = 80F;
+            this.CIdMaterial.HeaderText = "Cod.";
+            this.CIdMaterial.MinimumWidth = 80;
+            this.CIdMaterial.Name = "CIdMaterial";
+            this.CIdMaterial.ReadOnly = true;
+            this.CIdMaterial.Width = 80;
+            // 
+            // CNombreMaterial
+            // 
+            this.CNombreMaterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CNombreMaterial.DataPropertyName = "NombreMaterial";
+            this.CNombreMaterial.FillWeight = 200F;
+            this.CNombreMaterial.HeaderText = "Nombre";
+            this.CNombreMaterial.MinimumWidth = 120;
+            this.CNombreMaterial.Name = "CNombreMaterial";
+            this.CNombreMaterial.ReadOnly = true;
+            // 
+            // CCantidadMaterial
+            // 
+            this.CCantidadMaterial.DataPropertyName = "CantidadMaterial";
+            this.CCantidadMaterial.FillWeight = 160F;
+            this.CCantidadMaterial.HeaderText = "Cantidad Disponible";
+            this.CCantidadMaterial.MaxInputLength = 100;
+            this.CCantidadMaterial.MinimumWidth = 160;
+            this.CCantidadMaterial.Name = "CCantidadMaterial";
+            this.CCantidadMaterial.ReadOnly = true;
+            this.CCantidadMaterial.Width = 160;
+            // 
+            // CMinimos
+            // 
+            this.CMinimos.DataPropertyName = "Minimos";
+            this.CMinimos.FillWeight = 120F;
+            this.CMinimos.HeaderText = "Mínimos";
+            this.CMinimos.MinimumWidth = 120;
+            this.CMinimos.Name = "CMinimos";
+            this.CMinimos.ReadOnly = true;
+            this.CMinimos.Width = 120;
+            // 
+            // CPrecio
+            // 
+            this.CPrecio.DataPropertyName = "Precio";
+            this.CPrecio.FillWeight = 130F;
+            this.CPrecio.HeaderText = "Precio por m³";
+            this.CPrecio.MinimumWidth = 130;
+            this.CPrecio.Name = "CPrecio";
+            this.CPrecio.ReadOnly = true;
+            this.CPrecio.Width = 130;
+            // 
+            // CIdEstado
+            // 
+            this.CIdEstado.DataPropertyName = "IdEstado";
+            this.CIdEstado.FillWeight = 120F;
+            this.CIdEstado.HeaderText = "Estado";
+            this.CIdEstado.MinimumWidth = 120;
+            this.CIdEstado.Name = "CIdEstado";
+            this.CIdEstado.ReadOnly = true;
+            this.CIdEstado.Visible = false;
+            this.CIdEstado.Width = 120;
             // 
             // txtBuscarId
             // 
@@ -178,12 +240,12 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.TxtPrecioUnitario);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.TxtSubTotal);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.TxtTotal);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.TxtPrecioUnitario);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.TxtIVA);
             this.panel1.Controls.Add(this.NudCantidad);
@@ -192,6 +254,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(771, 123);
             this.panel1.TabIndex = 30;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(291, 34);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "SubTotal";
+            // 
+            // TxtSubTotal
+            // 
+            this.TxtSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSubTotal.ForeColor = System.Drawing.Color.ForestGreen;
+            this.TxtSubTotal.Location = new System.Drawing.Point(285, 63);
+            this.TxtSubTotal.MaxLength = 10;
+            this.TxtSubTotal.Name = "TxtSubTotal";
+            this.TxtSubTotal.ReadOnly = true;
+            this.TxtSubTotal.Size = new System.Drawing.Size(134, 26);
+            this.TxtSubTotal.TabIndex = 10;
+            this.TxtSubTotal.Text = "0";
+            this.TxtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
@@ -209,6 +295,7 @@
             this.TxtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtTotal.ForeColor = System.Drawing.Color.ForestGreen;
             this.TxtTotal.Location = new System.Drawing.Point(622, 62);
+            this.TxtTotal.MaxLength = 10;
             this.TxtTotal.Name = "TxtTotal";
             this.TxtTotal.ReadOnly = true;
             this.TxtTotal.Size = new System.Drawing.Size(134, 26);
@@ -227,18 +314,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "PRECIO UNIT.";
             // 
-            // TxtPrecioUnitario
-            // 
-            this.TxtPrecioUnitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPrecioUnitario.ForeColor = System.Drawing.Color.ForestGreen;
-            this.TxtPrecioUnitario.Location = new System.Drawing.Point(130, 61);
-            this.TxtPrecioUnitario.Name = "TxtPrecioUnitario";
-            this.TxtPrecioUnitario.ReadOnly = true;
-            this.TxtPrecioUnitario.Size = new System.Drawing.Size(134, 26);
-            this.TxtPrecioUnitario.TabIndex = 6;
-            this.TxtPrecioUnitario.Text = "0";
-            this.TxtPrecioUnitario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -255,6 +330,7 @@
             this.TxtIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtIVA.ForeColor = System.Drawing.Color.ForestGreen;
             this.TxtIVA.Location = new System.Drawing.Point(454, 63);
+            this.TxtIVA.MaxLength = 10;
             this.TxtIVA.Name = "TxtIVA";
             this.TxtIVA.ReadOnly = true;
             this.TxtIVA.Size = new System.Drawing.Size(134, 26);
@@ -297,90 +373,17 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "CANTIDAD";
             // 
-            // CIdMaterial
+            // TxtPrecioUnitario
             // 
-            this.CIdMaterial.DataPropertyName = "IdMaterial";
-            this.CIdMaterial.FillWeight = 80F;
-            this.CIdMaterial.HeaderText = "Cod.";
-            this.CIdMaterial.MinimumWidth = 80;
-            this.CIdMaterial.Name = "CIdMaterial";
-            this.CIdMaterial.ReadOnly = true;
-            this.CIdMaterial.Width = 80;
-            // 
-            // CNombreMaterial
-            // 
-            this.CNombreMaterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CNombreMaterial.DataPropertyName = "NombreMaterial";
-            this.CNombreMaterial.FillWeight = 200F;
-            this.CNombreMaterial.HeaderText = "Nombre";
-            this.CNombreMaterial.MinimumWidth = 120;
-            this.CNombreMaterial.Name = "CNombreMaterial";
-            this.CNombreMaterial.ReadOnly = true;
-            // 
-            // CCantidadMaterial
-            // 
-            this.CCantidadMaterial.DataPropertyName = "CantidadMaterial";
-            this.CCantidadMaterial.FillWeight = 160F;
-            this.CCantidadMaterial.HeaderText = "Cantidad Disponible";
-            this.CCantidadMaterial.MaxInputLength = 100;
-            this.CCantidadMaterial.MinimumWidth = 160;
-            this.CCantidadMaterial.Name = "CCantidadMaterial";
-            this.CCantidadMaterial.ReadOnly = true;
-            this.CCantidadMaterial.Width = 160;
-            // 
-            // CMinimos
-            // 
-            this.CMinimos.DataPropertyName = "Minimos";
-            this.CMinimos.FillWeight = 120F;
-            this.CMinimos.HeaderText = "Mínimos";
-            this.CMinimos.MinimumWidth = 120;
-            this.CMinimos.Name = "CMinimos";
-            this.CMinimos.ReadOnly = true;
-            this.CMinimos.Width = 120;
-            // 
-            // CPrecio
-            // 
-            this.CPrecio.DataPropertyName = "Precio";
-            this.CPrecio.FillWeight = 130F;
-            this.CPrecio.HeaderText = "Precio por m³";
-            this.CPrecio.MinimumWidth = 130;
-            this.CPrecio.Name = "CPrecio";
-            this.CPrecio.ReadOnly = true;
-            this.CPrecio.Width = 130;
-            // 
-            // CIdEstado
-            // 
-            this.CIdEstado.DataPropertyName = "IdEstado";
-            this.CIdEstado.FillWeight = 120F;
-            this.CIdEstado.HeaderText = "Estado";
-            this.CIdEstado.MinimumWidth = 120;
-            this.CIdEstado.Name = "CIdEstado";
-            this.CIdEstado.ReadOnly = true;
-            this.CIdEstado.Visible = false;
-            this.CIdEstado.Width = 120;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(291, 34);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 20);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "SubTotal";
-            // 
-            // TxtSubTotal
-            // 
-            this.TxtSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSubTotal.ForeColor = System.Drawing.Color.ForestGreen;
-            this.TxtSubTotal.Location = new System.Drawing.Point(295, 62);
-            this.TxtSubTotal.Name = "TxtSubTotal";
-            this.TxtSubTotal.ReadOnly = true;
-            this.TxtSubTotal.Size = new System.Drawing.Size(134, 26);
-            this.TxtSubTotal.TabIndex = 10;
-            this.TxtSubTotal.Text = "0";
-            this.TxtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtPrecioUnitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPrecioUnitario.ForeColor = System.Drawing.Color.ForestGreen;
+            this.TxtPrecioUnitario.Location = new System.Drawing.Point(121, 62);
+            this.TxtPrecioUnitario.MaxLength = 10;
+            this.TxtPrecioUnitario.Name = "TxtPrecioUnitario";
+            this.TxtPrecioUnitario.Size = new System.Drawing.Size(151, 26);
+            this.TxtPrecioUnitario.TabIndex = 12;
+            this.TxtPrecioUnitario.Text = "0";
+            this.TxtPrecioUnitario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FrmMaterialSearch
             // 
@@ -428,7 +431,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox TxtTotal;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox TxtPrecioUnitario;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxtIVA;
         private System.Windows.Forms.NumericUpDown NudCantidad;
@@ -441,5 +443,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdEstado;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox TxtSubTotal;
+        private System.Windows.Forms.TextBox TxtPrecioUnitario;
     }
 }

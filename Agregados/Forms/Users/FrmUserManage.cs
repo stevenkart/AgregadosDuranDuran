@@ -96,10 +96,23 @@ namespace Agregados.Forms.Users
                     txtEmail.Text = user.Correo.ToString();
                     txtEmployer.Text = user.NombreEmpleado.ToString();
                     txtIdent.Text = user.Identificacion.ToString();
-                    CboxUserType.SelectedValue = user.TipoUsuario;
-                    CboxStates.SelectedValue = user.IdEstado;
-
-                    ActivarUpdateDelete();
+                    if (Globals.MyGlobalUser.IdUsuario == user.IdUsuario)
+                    {
+                        CboxUserType.SelectedValue = user.TipoUsuario;
+                        CboxUserType.Enabled = false;
+                        CboxStates.SelectedValue = user.IdEstado;
+                        CboxStates.Enabled = false;
+                        NoActions();
+                    }
+                    else
+                    {
+                        CboxUserType.SelectedValue = user.TipoUsuario;
+                        CboxUserType.Enabled = true;
+                        CboxStates.SelectedValue = user.IdEstado;
+                        CboxStates.Enabled = true;
+                        ActivarUpdateDelete();
+                    }
+                    
                 }
             }
         }
@@ -212,6 +225,9 @@ namespace Agregados.Forms.Users
             imgAdd.Enabled = true;
             imgUpdate.Enabled = false;
             imgDelete.Enabled = false;
+
+            CboxUserType.Enabled = true;
+            CboxStates.Enabled = true;
         }
         //validaciones de botones para evitar errores
         private void ActivarUpdateDelete() 
@@ -219,6 +235,14 @@ namespace Agregados.Forms.Users
             imgAdd.Enabled = false;
             imgUpdate.Enabled = true;
             imgDelete.Enabled = true;
+        }
+
+        //validaciones de botones para evitar errores
+        private void NoActions()
+        {
+            imgAdd.Enabled = false;
+            imgUpdate.Enabled = false;
+            imgDelete.Enabled = false;
         }
 
         //metodo para anadir usuario
@@ -507,18 +531,36 @@ namespace Agregados.Forms.Users
                 }
                 else
                 {
-                    DB.Usuarios.Remove(user); // metodo para eliminar el usuario, dato de la BD
-                    if (DB.SaveChanges() > 0)
+                    //linq que consulta si hay relacion con alguna tabla.
+                    var list = from fa in DB.Facturas
+                               join us in DB.Usuarios on fa.IdUsuario equals us.IdUsuario
+                               join cj in DB.CierreApertCajas on us.IdUsuario equals cj.IdUsuario
+                               where (fa.IdUsuario == us.IdUsuario || cj.IdUsuario == us.IdUsuario)
+                               select new
+                               {
+                                   us.IdUsuario,
+                               };
+
+                    if (list.ToList().Count <= 0 && user.IdUsuario != 1)
                     {
-                        CheckChange();
-                        limpiarBusqueda();
-                        MessageBox.Show("Usuario Eliminado Correctamente!", "Registro de Usuarios", MessageBoxButtons.OK);
-                        user = null;
+                        DB.Usuarios.Remove(user); // metodo para eliminar el usuario, dato de la BD
+                        if (DB.SaveChanges() > 0)
+                        {
+                            CheckChange();
+                            limpiarBusqueda();
+                            MessageBox.Show("Usuario Eliminado Correctamente!", "Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            user = null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Usuario No fue Eliminado, por favor valide", "Error Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            user = null;
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Usuario No fue Eliminado, por favor valide", "Error Registro de Usuarios", MessageBoxButtons.OK);
-                        user = null;
+                        MessageBox.Show("Usuario No fue Eliminado, este ya se encuentra relacionado a una factura que se emitió anteriormente ó " +
+                            "cierre/apertura caja", "Error Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
