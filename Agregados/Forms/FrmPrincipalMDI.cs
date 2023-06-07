@@ -137,5 +137,12 @@ namespace Agregados.Forms
 
             lblFechaHora.Text = fecha + " / " + hora;
         }
+
+        private void reporteDeFacturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmFactsReports = new Reports.FrmFactsReports();
+            Globals.MifrmFactsReports.Show();
+            this.Hide();
+        }
     }
 }

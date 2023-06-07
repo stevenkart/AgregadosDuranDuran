@@ -170,6 +170,7 @@ namespace Agregados.Forms.Bills
                     if (Convert.ToDecimal(Row["IVA"]) == 0)
                     {
                         Row["IVA"] = Convert.ToDecimal(Convert.ToDouble(Row["Subtotal"]) * Convert.ToDouble(0.13));
+                        Row["PrecioFinal"] = Convert.ToDecimal(Convert.ToDouble(Row["Subtotal"]) + Convert.ToDouble(Row["IVA"]));
                     }
                     SubtotalTemp += Convert.ToDecimal(Row["Subtotal"]);
                     TasaImpuestoTemp += Convert.ToDecimal(Row["IVA"]);
@@ -199,7 +200,7 @@ namespace Agregados.Forms.Bills
             //no supere el 100%
 
             decimal SubtotalTemp = 0;
-            decimal TasaImpuestoTemp = 0;
+            //decimal TasaImpuestoTemp = 0;
             decimal TotalTemp = 0;
             SubTotal = 0;
             TasaImpuesto = 0;
@@ -210,7 +211,8 @@ namespace Agregados.Forms.Bills
                 foreach (DataRow Row in DtLista.Rows)
                 {
                     SubtotalTemp += Convert.ToDecimal(Row["Subtotal"]);
-                    Row["IVA"] = 0;
+                    Row["IVA"] = Convert.ToDecimal(0);
+                    Row["PrecioFinal"] = Convert.ToDecimal(Row["Subtotal"]);
                     //TasaImpuestoTemp += Convert.ToDecimal(Row["IVA"]);
                     TotalTemp += Convert.ToDecimal(Row["PrecioFinal"]);
                 }

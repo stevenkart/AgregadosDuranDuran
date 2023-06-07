@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Agregados.Reports;
+using Agregados.Reports.Facts.FactFiltered;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,25 @@ namespace Agregados.Forms.Reports
         public FrmFactsReports()
         {
             InitializeComponent();
+        }
+
+        private void btnFiltrarFechas_Click(object sender, EventArgs e)
+        {
+
+            string fechaInicio = "2023-06-04";
+            string fechaFin = "2023-06-06";
+
+            using (FrmPrintFactFilter frm = new FrmPrintFactFilter(fechaInicio, fechaFin))
+            {
+                frm.ShowDialog();
+            };
+        }
+
+        private void FrmFactsReports_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
+            frmPrincipalMDI.Show();
+            this.Hide();
         }
     }
 }
