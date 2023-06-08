@@ -60,6 +60,9 @@ namespace Agregados.Forms.Bills
             lblTypeFact.Visible = false;
             dateFinal.Visible = false;
             lblDate.Text = DateTime.Now.Date.ToLongDateString();
+
+            validarConsecutivoLbl();
+
             CargarTiposFactura();
             CargarTiposPagos();
             /*
@@ -74,6 +77,22 @@ namespace Agregados.Forms.Bills
 
             aplicarIva = CboxIVA.Checked;
 
+        }
+        private void validarConsecutivoLbl()
+        {
+            //indica el consecutivo a generar en la factura de compra
+            int result = MaxIdConsecutivo();
+            int consecutivo = 0;
+            if (result == 0)
+            {
+                consecutivo = 1;
+                lblFactNueva.Text = consecutivo.ToString();
+            }
+            else
+            {
+                consecutivo = (result + 1);
+                lblFactNueva.Text = consecutivo.ToString();
+            }
         }
 
         //validaciones de botones para evitar errores
@@ -544,7 +563,7 @@ namespace Agregados.Forms.Bills
             int result = 0;
             try
             {
-                factura = DB.Facturas.FirstOrDefault();
+                factura = DB.Facturas.Where((x) => x.IdProveedor > 0).FirstOrDefault();
                 if (factura != null)
                 {
                     result = DB.Facturas.Where((x) => x.IdProveedor > 0).Select((X) => X.Consecutivo).Max();
@@ -562,6 +581,7 @@ namespace Agregados.Forms.Bills
         //limpiar
         public void limpiar()
         {
+            validarConsecutivoLbl();
             txtNumProve = null;
             CboxTypeBill.SelectedIndex = -1;
             CboxMetodoPago.SelectedIndex = -1;
@@ -598,85 +618,544 @@ namespace Agregados.Forms.Bills
                                                "Registro Factura de Compra", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (respuesta == DialogResult.Yes)
                         {
-                            using (FrmLoading frmLoading = new FrmLoading(Wait))
+                            if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 1) // metodo efectivo   //TODO validar datos para el cierre de caja
                             {
-                                try
+                                using (FrmLoading frmLoading = new FrmLoading(Wait))
                                 {
-                                    factura = new Facturas
+                                    try
                                     {
-                                        Consecutivo = consecutivo,
-                                        CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
-                                        Subtotal = SubTotal,
-                                        IVA = TasaImpuesto,
-                                        CostoTotal = Total,
-
-                                        FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                        MontoPendiente = null,
-                                        FechaLimiteP = null,
-                                        ReferenciaPago = txtReferencia.Text.Trim(),
-
-                                        IdUsuario = Globals.MyGlobalUser.IdUsuario,
-                                        IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
-                                        IdEstado = 4,
-                                        IdCliente = null,
-                                        IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
-                                        IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                        IdCierreApert = 0
-                                    };
-
-                                    DB.Facturas.Add(factura);
-
-                                    if (DB.SaveChanges() > 0)
-                                    {
-
-                                        int IdFact = DB.Facturas.Select((x) => x.IdFactura).Max();
-
-                                        foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
+                                        factura = new Facturas
                                         {
-                                            detalleFact = new DetalleFacts
+                                            Consecutivo = consecutivo,
+                                            CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
+                                            Subtotal = SubTotal,
+                                            IVA = TasaImpuesto,
+                                            CostoTotal = Total,
+
+                                            FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
+                                            MontoPendiente = null,
+                                            FechaLimiteP = null,
+                                            ReferenciaPago = txtReferencia.Text.Trim(),
+
+                                            IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                            IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
+                                            IdEstado = 4,
+                                            IdCliente = null,
+                                            IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
+                                            IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
+                                            IdCierreApert = 0
+                                        };
+
+                                        DB.Facturas.Add(factura);
+
+                                        if (DB.SaveChanges() > 0)
+                                        {
+
+                                            int IdFact = DB.Facturas.Where((x) => x.IdProveedor == factura.IdProveedor).Select((x) => x.IdFactura).Max();
+
+                                            foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
                                             {
-                                                Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
-                                                Precio = Convert.ToDecimal(Row["Precio"]),
-                                                Subtotal = Convert.ToDecimal(Row["Subtotal"]),
-                                                IVA = Convert.ToDecimal(Row["IVA"]),
-                                                Total = Convert.ToDecimal(Row["PrecioFinal"]),
-                                                IdFactura = IdFact,
-                                                IdMaterial = Convert.ToInt32(Row["IdMaterial"])
+                                                detalleFact = new DetalleFacts
+                                                {
+                                                    Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
+                                                    Precio = Convert.ToDecimal(Row["Precio"]),
+                                                    Subtotal = Convert.ToDecimal(Row["Subtotal"]),
+                                                    IVA = Convert.ToDecimal(Row["IVA"]),
+                                                    Total = Convert.ToDecimal(Row["PrecioFinal"]),
+                                                    IdFactura = IdFact,
+                                                    IdMaterial = Convert.ToInt32(Row["IdMaterial"])
+                                                };
+
+                                                DB.DetalleFacts.Add(detalleFact);
+                                                if (DB.SaveChanges() > 0)
+                                                {
+                                                    int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
+                                                    materiales = DB.Materiales.Find(IdMaterial);
+                                                    materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
+                                                    //actualiza el estado
+                                                    if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                    {
+                                                        materiales.IdEstado = 11;
+                                                    }
+                                                    else
+                                                    {
+                                                        if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
+                                                        {
+                                                            materiales.IdEstado = 10;
+                                                        }
+                                                        else
+                                                        {
+                                                            materiales.IdEstado = 9;
+                                                        }
+                                                    }
+
+
+                                                    DB.Entry(materiales).State = EntityState.Modified;
+
+                                                    if (DB.SaveChanges() > 0)
+                                                    {
+                                                        detalleFact = null;
+                                                    }
+                                                }
+                                            }
+                                            limpiar();
+                                            MessageBox.Show("Factura de Compra agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            /*
+                                            using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                            {
+                                                frm.ShowDialog();
+                                            };
+                                            */
+                                            factura = null;
+
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Factura de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            factura = null;
+                                        }
+                                    }
+                                    catch (Exception)
+                                    {
+                                        throw;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 2) // metodo transferencia sinpe
+                                {
+                                    using (FrmLoading frmLoading = new FrmLoading(Wait))
+                                    {
+                                        try
+                                        {
+                                            factura = new Facturas
+                                            {
+                                                Consecutivo = consecutivo,
+                                                CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
+                                                Subtotal = SubTotal,
+                                                IVA = TasaImpuesto,
+                                                CostoTotal = Total,
+
+                                                FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
+                                                MontoPendiente = null,
+                                                FechaLimiteP = null,
+                                                ReferenciaPago = txtReferencia.Text.Trim(),
+
+                                                IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                                IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
+                                                IdEstado = 4,
+                                                IdCliente = null,
+                                                IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
+                                                IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
+                                                IdCierreApert = 0
                                             };
 
-                                            DB.DetalleFacts.Add(detalleFact);
+                                            DB.Facturas.Add(factura);
+
                                             if (DB.SaveChanges() > 0)
                                             {
-                                                int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
-                                                materiales = DB.Materiales.Find(IdMaterial);
-                                                materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
 
-                                                DB.Entry(materiales).State = EntityState.Modified;
+                                                int IdFact = DB.Facturas.Where((x) => x.IdProveedor == factura.IdProveedor).Select((x) => x.IdFactura).Max();
+
+                                                foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
+                                                {
+                                                    detalleFact = new DetalleFacts
+                                                    {
+                                                        Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
+                                                        Precio = Convert.ToDecimal(Row["Precio"]),
+                                                        Subtotal = Convert.ToDecimal(Row["Subtotal"]),
+                                                        IVA = Convert.ToDecimal(Row["IVA"]),
+                                                        Total = Convert.ToDecimal(Row["PrecioFinal"]),
+                                                        IdFactura = IdFact,
+                                                        IdMaterial = Convert.ToInt32(Row["IdMaterial"])
+                                                    };
+
+                                                    DB.DetalleFacts.Add(detalleFact);
+                                                    if (DB.SaveChanges() > 0)
+                                                    {
+                                                        int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
+                                                        materiales = DB.Materiales.Find(IdMaterial);
+                                                        materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
+                                                        //actualiza el estado
+                                                        if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                        {
+                                                            materiales.IdEstado = 11;
+                                                        }
+                                                        else
+                                                        {
+                                                            if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
+                                                            {
+                                                                materiales.IdEstado = 10;
+                                                            }
+                                                            else
+                                                            {
+                                                                materiales.IdEstado = 9;
+                                                            }
+                                                        }
+
+
+                                                        DB.Entry(materiales).State = EntityState.Modified;
+
+                                                        if (DB.SaveChanges() > 0)
+                                                        {
+                                                            detalleFact = null;
+                                                        }
+                                                    }
+                                                }
+                                                limpiar();
+                                                MessageBox.Show("Factura de Compra agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                /*
+                                                using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                                {
+                                                    frm.ShowDialog();
+                                                };
+                                                */
+                                                factura = null;
+
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Factura de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                factura = null;
+                                            }
+                                        }
+                                        catch (Exception)
+                                        {
+                                            throw;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 3) // metodo sinpe movil
+                                    {
+                                        using (FrmLoading frmLoading = new FrmLoading(Wait))
+                                        {
+                                            try
+                                            {
+                                                factura = new Facturas
+                                                {
+                                                    Consecutivo = consecutivo,
+                                                    CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
+                                                    Subtotal = SubTotal,
+                                                    IVA = TasaImpuesto,
+                                                    CostoTotal = Total,
+
+                                                    FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
+                                                    MontoPendiente = null,
+                                                    FechaLimiteP = null,
+                                                    ReferenciaPago = txtReferencia.Text.Trim(),
+
+                                                    IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                                    IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
+                                                    IdEstado = 4,
+                                                    IdCliente = null,
+                                                    IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
+                                                    IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
+                                                    IdCierreApert = 0
+                                                };
+
+                                                DB.Facturas.Add(factura);
 
                                                 if (DB.SaveChanges() > 0)
                                                 {
-                                                    detalleFact = null;
+
+                                                    int IdFact = DB.Facturas.Where((x) => x.IdProveedor == factura.IdProveedor).Select((x) => x.IdFactura).Max();
+
+                                                    foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
+                                                    {
+                                                        detalleFact = new DetalleFacts
+                                                        {
+                                                            Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
+                                                            Precio = Convert.ToDecimal(Row["Precio"]),
+                                                            Subtotal = Convert.ToDecimal(Row["Subtotal"]),
+                                                            IVA = Convert.ToDecimal(Row["IVA"]),
+                                                            Total = Convert.ToDecimal(Row["PrecioFinal"]),
+                                                            IdFactura = IdFact,
+                                                            IdMaterial = Convert.ToInt32(Row["IdMaterial"])
+                                                        };
+
+                                                        DB.DetalleFacts.Add(detalleFact);
+                                                        if (DB.SaveChanges() > 0)
+                                                        {
+                                                            int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
+                                                            materiales = DB.Materiales.Find(IdMaterial);
+                                                            materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
+                                                            //actualiza el estado
+                                                            if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                            {
+                                                                materiales.IdEstado = 11;
+                                                            }
+                                                            else
+                                                            {
+                                                                if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
+                                                                {
+                                                                    materiales.IdEstado = 10;
+                                                                }
+                                                                else
+                                                                {
+                                                                    materiales.IdEstado = 9;
+                                                                }
+                                                            }
+
+
+                                                            DB.Entry(materiales).State = EntityState.Modified;
+
+                                                            if (DB.SaveChanges() > 0)
+                                                            {
+                                                                detalleFact = null;
+                                                            }
+                                                        }
+                                                    }
+                                                    limpiar();
+                                                    MessageBox.Show("Factura de Compra agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    /*
+                                                    using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                                    {
+                                                        frm.ShowDialog();
+                                                    };
+                                                    */
+                                                    factura = null;
+
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Factura de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    factura = null;
                                                 }
                                             }
+                                            catch (Exception)
+                                            {
+                                                throw;
+                                            }
                                         }
-                                        limpiar();
-                                        MessageBox.Show("Factura de Compra agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        using (FrmPrintFact frm = new FrmPrintFact(IdFact))
-                                        {
-                                            frm.ShowDialog();
-                                        };
-                                        factura = null;
-
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Factura de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        factura = null;
+                                        if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 4) // metodo cheque
+                                        {
+                                            using (FrmLoading frmLoading = new FrmLoading(Wait))
+                                            {
+                                                try
+                                                {
+                                                    factura = new Facturas
+                                                    {
+                                                        Consecutivo = consecutivo,
+                                                        CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
+                                                        Subtotal = SubTotal,
+                                                        IVA = TasaImpuesto,
+                                                        CostoTotal = Total,
+
+                                                        FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
+                                                        MontoPendiente = null,
+                                                        FechaLimiteP = null,
+                                                        ReferenciaPago = txtReferencia.Text.Trim(),
+
+                                                        IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                                        IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
+                                                        IdEstado = 4,
+                                                        IdCliente = null,
+                                                        IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
+                                                        IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
+                                                        IdCierreApert = 0
+                                                    };
+
+                                                    DB.Facturas.Add(factura);
+
+                                                    if (DB.SaveChanges() > 0)
+                                                    {
+
+                                                        int IdFact = DB.Facturas.Where((x) => x.IdProveedor == factura.IdProveedor).Select((x) => x.IdFactura).Max();
+
+                                                        foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
+                                                        {
+                                                            detalleFact = new DetalleFacts
+                                                            {
+                                                                Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
+                                                                Precio = Convert.ToDecimal(Row["Precio"]),
+                                                                Subtotal = Convert.ToDecimal(Row["Subtotal"]),
+                                                                IVA = Convert.ToDecimal(Row["IVA"]),
+                                                                Total = Convert.ToDecimal(Row["PrecioFinal"]),
+                                                                IdFactura = IdFact,
+                                                                IdMaterial = Convert.ToInt32(Row["IdMaterial"])
+                                                            };
+
+                                                            DB.DetalleFacts.Add(detalleFact);
+                                                            if (DB.SaveChanges() > 0)
+                                                            {
+                                                                int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
+                                                                materiales = DB.Materiales.Find(IdMaterial);
+                                                                materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
+                                                                //actualiza el estado
+                                                                if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                                {
+                                                                    materiales.IdEstado = 11;
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
+                                                                    {
+                                                                        materiales.IdEstado = 10;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        materiales.IdEstado = 9;
+                                                                    }
+                                                                }
+
+
+                                                                DB.Entry(materiales).State = EntityState.Modified;
+
+                                                                if (DB.SaveChanges() > 0)
+                                                                {
+                                                                    detalleFact = null;
+                                                                }
+                                                            }
+                                                        }
+                                                        limpiar();
+                                                        MessageBox.Show("Factura de Compra agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                        /*
+                                                        using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                                        {
+                                                            frm.ShowDialog();
+                                                        };
+                                                        */
+                                                        factura = null;
+
+                                                    }
+                                                    else
+                                                    {
+                                                        MessageBox.Show("Factura de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                        factura = null;
+                                                    }
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    throw;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 6) // metodo mixto
+                                            {
+                                                if ((Convert.ToDecimal(valorPago1.Value) + Convert.ToDecimal(valorPago2.Value)) == Total
+                                                    && Convert.ToDecimal(valorPago1.Value) > 0
+                                                    && Convert.ToDecimal(valorPago2.Value) > 0)
+                                                {
+                                                    using (FrmLoading frmLoading = new FrmLoading(Wait))
+                                                    {
+                                                        try
+                                                        {
+                                                            factura = new Facturas
+                                                            {
+                                                                Consecutivo = consecutivo,
+                                                                CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
+                                                                Subtotal = SubTotal,
+                                                                IVA = TasaImpuesto,
+                                                                CostoTotal = Total,
+
+                                                                FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
+                                                                MontoPendiente = null,
+                                                                FechaLimiteP = null,
+                                                                ReferenciaPago = txtReferencia.Text.Trim(),
+
+                                                                IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                                                IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
+                                                                IdEstado = 4,
+                                                                IdCliente = null,
+                                                                IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
+                                                                IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
+                                                                IdCierreApert = 0
+                                                            };
+
+                                                            DB.Facturas.Add(factura);
+
+                                                            if (DB.SaveChanges() > 0)
+                                                            {
+
+                                                                int IdFact = DB.Facturas.Where((x) => x.IdProveedor == factura.IdProveedor).Select((x) => x.IdFactura).Max();
+
+                                                                foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
+                                                                {
+                                                                    detalleFact = new DetalleFacts
+                                                                    {
+                                                                        Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
+                                                                        Precio = Convert.ToDecimal(Row["Precio"]),
+                                                                        Subtotal = Convert.ToDecimal(Row["Subtotal"]),
+                                                                        IVA = Convert.ToDecimal(Row["IVA"]),
+                                                                        Total = Convert.ToDecimal(Row["PrecioFinal"]),
+                                                                        IdFactura = IdFact,
+                                                                        IdMaterial = Convert.ToInt32(Row["IdMaterial"])
+                                                                    };
+
+                                                                    DB.DetalleFacts.Add(detalleFact);
+                                                                    if (DB.SaveChanges() > 0)
+                                                                    {
+                                                                        int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
+                                                                        materiales = DB.Materiales.Find(IdMaterial);
+                                                                        materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
+                                                                        //actualiza el estado
+                                                                        if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                                        {
+                                                                            materiales.IdEstado = 11;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
+                                                                            {
+                                                                                materiales.IdEstado = 10;
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                materiales.IdEstado = 9;
+                                                                            }
+                                                                        }
+
+                                                                        DB.Entry(materiales).State = EntityState.Modified;
+
+                                                                        if (DB.SaveChanges() > 0)
+                                                                        {
+                                                                            detalleFact = null;
+                                                                        }
+                                                                    }
+                                                                }
+                                                                limpiar();
+
+                                                                MessageBox.Show("Factura de Compra agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                                /*
+                                                                using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                                                {
+                                                                    frm.ShowDialog();
+                                                                };
+                                                                */
+                                                                factura = null;
+
+                                                            }
+                                                            else
+                                                            {
+                                                                MessageBox.Show("Factura de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                factura = null;
+                                                            }
+                                                        }
+                                                        catch (Exception)
+                                                        {
+                                                            throw;
+                                                        }
+                                                    }
+
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Factura de Compra no se pudo procesar, favor validar que el monto indicado en los metodos de pago " +
+                                                        "sume y de exacto la cantidad, al total que indica la factura de compra a generar, y se haya seleccionado" +
+                                                        "ambos metodos de pago.",
+                                                        "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                }
+                                            }
+                                        }
                                     }
-                                }
-                                catch (Exception)
-                                {
-                                    throw;
                                 }
                             }
                         }
@@ -689,7 +1168,7 @@ namespace Agregados.Forms.Bills
                 }
                 else
                 {
-                    if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 2)
+                    if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 2) // credito => metodo pago pendiente (credito)
                     {
                         if (ValidarFechaLimite())
                         {
@@ -742,9 +1221,9 @@ namespace Agregados.Forms.Bills
                                             if (DB.SaveChanges() > 0)
                                             {
 
-                                                int IdFact = DB.Facturas.Select((x) => x.IdFactura).Max();
+                                                int IdFact = DB.Facturas.Where((x) => x.IdProveedor == factura.IdProveedor).Select((x) => x.IdFactura).Max();
 
-                                                foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
+                                                foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
                                                 {
                                                     detalleFact = new DetalleFacts
                                                     {
@@ -764,6 +1243,22 @@ namespace Agregados.Forms.Bills
                                                         materiales = DB.Materiales.Find(IdMaterial);
                                                         materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
 
+                                                        if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                        {
+                                                            materiales.IdEstado = 11;
+                                                        }
+                                                        else
+                                                        {
+                                                            if ((materiales.Minimos + 2) > materiales.CantidadMaterial && materiales.CantidadMaterial > 0)
+                                                            {
+                                                                materiales.IdEstado = 10;
+                                                            }
+                                                            else
+                                                            {
+                                                                materiales.IdEstado = 9;
+                                                            }
+                                                        }
+
                                                         DB.Entry(materiales).State = EntityState.Modified;
 
                                                         if (DB.SaveChanges() > 0)
@@ -774,10 +1269,12 @@ namespace Agregados.Forms.Bills
                                                 }
                                                 limpiar();
                                                 MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura de Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                /*
                                                 using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                                 {
                                                     frm.ShowDialog();
                                                 };
+                                                */
                                                 factura = null;
                                             }
                                             else
@@ -825,7 +1322,7 @@ namespace Agregados.Forms.Bills
             if (!string.IsNullOrEmpty(txtNumProve.Text.Trim()) && txtNumProve.TextLength > 0)
             {
                 int num = Convert.ToInt32(txtNumProve.Text.Trim());
-                string name = DB.Clientes.Where((x) => x.IdCliente == num).Select((x) => x.Nombre).FirstOrDefault();
+                string name = DB.Proveedores.Where((x) => x.IdProveedor == num).Select((x) => x.Nombre).FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(name))
                 {
@@ -841,6 +1338,178 @@ namespace Agregados.Forms.Bills
         private void txtProveedor_TextChanged(object sender, EventArgs e)
         {
             //
+        }
+
+
+        //validaciones de los radio button para que sea un pago mixto
+
+        private void rbEfectivo1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbEfectivo1.Checked)
+            {
+                valorPago1.Enabled = true;
+                valorPago1.Value = 0;
+
+                rbEfectivo2.Enabled = false;
+                rbEfectivo2.Checked = false;
+            }
+            else
+            {
+                rbEfectivo2.Enabled = true;
+                
+            }
+        }
+
+        private void rbSinpe1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbSinpe1.Checked)
+            {
+                valorPago1.Enabled = true;
+                valorPago1.Value = 0;
+
+                rbSinpe2.Enabled = false;
+                rbSinpe2.Checked = false;
+            }
+            else
+            {
+                rbSinpe2.Enabled = true;
+                
+            }
+        }
+
+        private void rbSinpeMovil1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbSinpeMovil1.Checked)
+            {
+                valorPago1.Enabled = true;
+                valorPago1.Value = 0;
+
+                rbSinpeMovil2.Checked = false;
+                rbSinpeMovil2.Enabled = false;
+            }
+            else
+            {
+                
+                rbSinpeMovil2.Enabled = true;
+
+            }
+        }
+
+        private void rbCheque1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCheque1.Checked)
+            {
+                valorPago1.Enabled = true;
+                valorPago1.Value = 0;
+
+                rbCheque2.Enabled = false;
+                rbCheque2.Checked = false;
+            }
+            else
+            {
+                rbCheque2.Enabled = true;
+               
+            }
+        }
+
+
+        private void rbEfectivo2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbEfectivo2.Checked)
+            {
+                valorPago2.Enabled = true;
+                valorPago2.Value = 0;
+
+                rbEfectivo1.Enabled = false;
+                rbEfectivo1.Checked = false;
+            }
+            else
+            {
+                rbEfectivo1.Enabled = true;
+                
+            }
+        }
+
+        private void rbSinpe2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbSinpe2.Checked)
+            {
+                valorPago2.Enabled = true;
+                valorPago2.Value = 0;
+
+                rbSinpe1.Enabled = false;
+                rbSinpe1.Checked = false;
+            }
+            else
+            {
+                rbSinpe1.Enabled = true;
+               
+            }
+        }
+
+        private void rbSinpeMovil2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbSinpeMovil2.Checked)
+            {
+                valorPago2.Enabled = true;
+                valorPago2.Value = 0;
+
+                rbSinpeMovil1.Checked = false;
+                rbSinpeMovil1.Enabled = false;
+            }
+            else
+            {
+
+               
+                rbSinpeMovil1.Enabled = true;
+
+            }
+        }
+
+        private void rbCheque2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCheque2.Checked)
+            {
+                valorPago2.Enabled = true;
+                valorPago2.Value = 0;
+
+                rbCheque1.Enabled = false;
+                rbCheque1.Checked = false;
+            }
+            else
+            {
+                rbCheque1.Enabled = true;
+                
+            }
+        }
+
+        private void CboxMetodoPago_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 6)
+            {
+                groupBox1.Visible = true;
+                groupBox2.Visible = true;
+                valorPago1.Visible = true;
+                valorPago2.Visible = true;
+            }
+            else
+            {
+                rbEfectivo1.Checked = false;
+                rbEfectivo2.Checked = false;
+                rbSinpe1.Checked = false;
+                rbSinpe2.Checked = false;
+                rbSinpeMovil1.Checked = false;
+                rbSinpeMovil2.Checked = false;
+                rbCheque1.Checked = false;
+                rbCheque2.Checked = false;
+
+                groupBox1.Visible = false;
+                groupBox2.Visible = false;
+                valorPago1.Visible = false;
+                valorPago2.Visible = false;
+                valorPago1.Value = 0;
+                valorPago2.Value = 0;
+            }
         }
     }
 }
