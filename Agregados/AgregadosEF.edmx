@@ -12,13 +12,20 @@
           <Property Name="IdCierreApert" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Hora" Type="time" Precision="7" Nullable="false" />
+          <Property Name="FechaSalida" Type="date" />
+          <Property Name="HoraSalida" Type="time" Precision="7" />
           <Property Name="Detalles" Type="varchar" MaxLength="1000" />
-          <Property Name="MontoEfectivoInicio" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoEfectivoInicio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoEfectivoUsuarioInicio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoEfectivoFinal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="MontoTransf" Type="numeric" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="MontoSinpe" Type="numeric" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="MontoCheque" Type="numeric" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="MontoCredito" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoEfectivoUsuarioFin" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoTransf" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraTransf" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoSinpe" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraSinpe" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCheque" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Faltante" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Sobrante" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Accion" Type="int" Nullable="false" />
@@ -373,9 +380,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="SPFactGeneradaContadoIVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdFactura" Type="int" Mode="In" />
-        </Function>
         <EntityContainer Name="AgregadosModelStoreContainer">
           <EntitySet Name="CierreApertCajas" EntityType="Self.CierreApertCajas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
@@ -484,6 +488,13 @@
           <Property Name="IdUsuario" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FKCierreAper920025" FromRole="CierreApertCajas" ToRole="Usuarios" />
           <NavigationProperty Name="Facturas" Relationship="AgregadosModel.FKFacturas448726" FromRole="CierreApertCajas" ToRole="Facturas" />
+          <Property Name="FechaSalida" Type="DateTime" Precision="0" />
+          <Property Name="HoraSalida" Type="Time" Precision="7" />
+          <Property Name="MontoEfectivoUsuarioInicio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="MontoEfectivoUsuarioFin" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="MontoCompraTransf" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="MontoCompraSinpe" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="MontoCompraCredito" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Clientes">
           <Key>
@@ -979,6 +990,13 @@
           <EntitySetMapping Name="CierreApertCajas">
             <EntityTypeMapping TypeName="AgregadosModel.CierreApertCajas">
               <MappingFragment StoreEntitySet="CierreApertCajas">
+                <ScalarProperty Name="MontoCompraCredito" ColumnName="MontoCompraCredito" />
+                <ScalarProperty Name="MontoCompraSinpe" ColumnName="MontoCompraSinpe" />
+                <ScalarProperty Name="MontoCompraTransf" ColumnName="MontoCompraTransf" />
+                <ScalarProperty Name="MontoEfectivoUsuarioFin" ColumnName="MontoEfectivoUsuarioFin" />
+                <ScalarProperty Name="MontoEfectivoUsuarioInicio" ColumnName="MontoEfectivoUsuarioInicio" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
                 <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Hora" ColumnName="Hora" />
@@ -1154,27 +1172,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SPFactGeneradaContadoIVA" FunctionName="AgregadosModel.Store.SPFactGeneradaContadoIVA">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AgregadosModel.SPFactGeneradaContadoIVA_Result">
-                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
-                <ScalarProperty Name="Transporte" ColumnName="Transporte" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Metodo" ColumnName="Metodo" />
-                <ScalarProperty Name="Empleado" ColumnName="Empleado" />
-                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="Precio" ColumnName="Precio" />
-                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
-                <ScalarProperty Name="IVA" ColumnName="IVA" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="Material" ColumnName="Material" />
-                <ScalarProperty Name="CodigoM" ColumnName="CodigoM" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

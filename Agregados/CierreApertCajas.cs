@@ -34,6 +34,13 @@ namespace Agregados
         public decimal Sobrante { get; set; }
         public int Accion { get; set; }
         public int IdUsuario { get; set; }
+        public Nullable<System.DateTime> FechaSalida { get; set; }
+        public Nullable<System.TimeSpan> HoraSalida { get; set; }
+        public decimal MontoEfectivoUsuarioInicio { get; set; }
+        public decimal MontoEfectivoUsuarioFin { get; set; }
+        public decimal MontoCompraTransf { get; set; }
+        public decimal MontoCompraSinpe { get; set; }
+        public decimal MontoCompraCredito { get; set; }
     
         public virtual Usuarios Usuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
