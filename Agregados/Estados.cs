@@ -20,7 +20,7 @@ namespace Agregados
             this.Clientes = new HashSet<Clientes>();
             this.Facturas = new HashSet<Facturas>();
             this.Materiales = new HashSet<Materiales>();
-            this.Provedores = new HashSet<Provedores>();
+            this.Proveedores = new HashSet<Proveedores>();
             this.Usuarios = new HashSet<Usuarios>();
             this.Vehiculos = new HashSet<Vehiculos>();
         }
@@ -35,7 +35,7 @@ namespace Agregados
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Materiales> Materiales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Provedores> Provedores { get; set; }
+        public virtual ICollection<Proveedores> Proveedores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuarios> Usuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -39,6 +39,10 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -53,9 +57,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,45 +77,51 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgregadosModel.Context.cs">
+    <Compile Include="AgregadosEF.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AgregadosModel.Context.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="AgregadosModel.cs">
+    <Compile Include="AgregadosEF.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="AgregadosModel.Designer.cs">
+    <Compile Include="AgregadosEF.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AgregadosModel.edmx</DependentUpon>
+      <DependentUpon>AgregadosEF.edmx</DependentUpon>
     </Compile>
     <Compile Include="CierreApertCajas.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Clientes.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="CorreoNotificaciones.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Crypto.cs" />
     <Compile Include="DetalleFacts.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Estados.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Facturas.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\Bills\FrmBillAdd.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Bills\FrmBillAdd.Designer.cs">
       <DependentUpon>FrmBillAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmBillProviderAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmBillProviderAdd.Designer.cs">
+      <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Customers\FrmCustomerSearch.cs">
       <SubType>Form</SubType>
@@ -128,17 +141,35 @@
     <Compile Include="Forms\FrmPrincipalMDI.Designer.cs">
       <DependentUpon>FrmPrincipalMDI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Materials\FrmMaterialSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Materials\FrmMaterialSearch.Designer.cs">
+      <DependentUpon>FrmMaterialSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Materials\FrmMaterialsManage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Materials\FrmMaterialsManage.Designer.cs">
       <DependentUpon>FrmMaterialsManage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Providers\FrmProviderSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Providers\FrmProviderSearch.Designer.cs">
+      <DependentUpon>FrmProviderSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Providers\FrmProvidersManage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Providers\FrmProvidersManage.Designer.cs">
       <DependentUpon>FrmProvidersManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\FrmFactsReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\FrmFactsReports.Designer.cs">
+      <DependentUpon>FrmFactsReports.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Users\FrmUserManage.cs">
       <SubType>Form</SubType>
@@ -184,34 +215,64 @@
     </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Materiales.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="MetodosPagos.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Provedores.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+    <Compile Include="Proveedores.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilter.Designer.cs">
+      <DependentUpon>FrmPrintFactFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactFiltered.cs">
+      <DependentUpon>RptFactFiltered.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintFact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintFact.Designer.cs">
+      <DependentUpon>FrmPrintFact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\RptFactCreated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactCreated.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SPFactGeneradaContadoIVA_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoClientes.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="TiposFacturas.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="TiposProveedores.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="Validaciones.cs" />
     <Compile Include="Vehiculos.cs">
-      <DependentUpon>AgregadosModel.tt</DependentUpon>
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\Bills\FrmBillAdd.resx">
       <DependentUpon>FrmBillAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmBillProviderAdd.resx">
+      <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customers\FrmCustomerSearch.resx">
       <DependentUpon>FrmCustomerSearch.cs</DependentUpon>
@@ -222,11 +283,20 @@
     <EmbeddedResource Include="Forms\FrmPrincipalMDI.resx">
       <DependentUpon>FrmPrincipalMDI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Materials\FrmMaterialSearch.resx">
+      <DependentUpon>FrmMaterialSearch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Materials\FrmMaterialsManage.resx">
       <DependentUpon>FrmMaterialsManage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Providers\FrmProviderSearch.resx">
+      <DependentUpon>FrmProviderSearch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Providers\FrmProvidersManage.resx">
       <DependentUpon>FrmProvidersManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\FrmFactsReports.resx">
+      <DependentUpon>FrmFactsReports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Users\FrmUserManage.resx">
       <DependentUpon>FrmUserManage.cs</DependentUpon>
@@ -259,12 +329,26 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EntityDeploy Include="AgregadosModel.edmx">
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilter.resx">
+      <DependentUpon>FrmPrintFactFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactFiltered.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactFiltered.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintFact.resx">
+      <DependentUpon>FrmPrintFact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\RptFactCreated.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactCreated.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="AgregadosEF.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AgregadosModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>AgregadosEF.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AgregadosModel.edmx.diagram">
-      <DependentUpon>AgregadosModel.edmx</DependentUpon>
+    <None Include="AgregadosEF.edmx.diagram">
+      <DependentUpon>AgregadosEF.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -282,17 +366,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AgregadosModel.Context.tt">
+    <Content Include="AgregadosEF.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AgregadosModel.edmx</DependentUpon>
-      <LastGenOutput>AgregadosModel.Context.cs</LastGenOutput>
+      <DependentUpon>AgregadosEF.edmx</DependentUpon>
+      <LastGenOutput>AgregadosEF.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="AgregadosModel.tt">
+    <Content Include="AgregadosEF.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AgregadosModel.edmx</DependentUpon>
-      <LastGenOutput>AgregadosModel.cs</LastGenOutput>
+      <DependentUpon>AgregadosEF.edmx</DependentUpon>
+      <LastGenOutput>AgregadosEF.cs</LastGenOutput>
     </Content>
     <Content Include="Images\agregadoImg.ico" />
     <Content Include="Images\agregadoImg.jpg" />
@@ -319,7 +404,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\Icons\" />
-    <Folder Include="Reports\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

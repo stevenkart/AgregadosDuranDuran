@@ -17,13 +17,13 @@ namespace Agregados
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TiposProveedores()
         {
-            this.Provedores = new HashSet<Provedores>();
+            this.Proveedores = new HashSet<Proveedores>();
         }
     
         public int IdTipoProveedor { get; set; }
         public string TipoProveedor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Provedores> Provedores { get; set; }
+        public virtual ICollection<Proveedores> Proveedores { get; set; }
     }
 }

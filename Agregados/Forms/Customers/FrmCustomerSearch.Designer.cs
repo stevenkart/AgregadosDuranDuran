@@ -41,7 +41,9 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.imgClean = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgClean)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvListaClientes
@@ -129,9 +131,9 @@
             // txtBuscarId
             // 
             this.txtBuscarId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBuscarId.Location = new System.Drawing.Point(417, 20);
+            this.txtBuscarId.Location = new System.Drawing.Point(389, 22);
             this.txtBuscarId.Name = "txtBuscarId";
-            this.txtBuscarId.Size = new System.Drawing.Size(385, 20);
+            this.txtBuscarId.Size = new System.Drawing.Size(351, 20);
             this.txtBuscarId.TabIndex = 15;
             this.txtBuscarId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBuscarId.TextChanged += new System.EventHandler(this.txtBuscarId_TextChanged);
@@ -164,6 +166,7 @@
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -178,9 +181,9 @@
             // txtName
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Location = new System.Drawing.Point(417, 55);
+            this.txtName.Location = new System.Drawing.Point(389, 55);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(385, 20);
+            this.txtName.Size = new System.Drawing.Size(351, 20);
             this.txtName.TabIndex = 18;
             this.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
@@ -191,15 +194,30 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(26, 55);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(358, 20);
+            this.label2.Size = new System.Drawing.Size(357, 20);
             this.label2.TabIndex = 17;
-            this.label2.Text = "Buscar Cliente Por Nombre o Identificación:";
+            this.label2.Text = "Buscar Cliente por Nombre o Identificación:";
+            // 
+            // imgClean
+            // 
+            this.imgClean.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgClean.Image = global::Agregados.Properties.Resources.clean;
+            this.imgClean.Location = new System.Drawing.Point(762, 22);
+            this.imgClean.Name = "imgClean";
+            this.imgClean.Size = new System.Drawing.Size(56, 53);
+            this.imgClean.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgClean.TabIndex = 21;
+            this.imgClean.TabStop = false;
+            this.imgClean.Click += new System.EventHandler(this.imgClean_Click);
             // 
             // FrmCustomerSearch
             // 
+            this.AcceptButton = this.btnSeleccionar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(839, 300);
+            this.Controls.Add(this.imgClean);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvListaClientes);
@@ -215,6 +233,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCustomerSearch_FormClosing);
             this.Load += new System.EventHandler(this.FrmCustomerSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgClean)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,5 +254,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdEstado;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox imgClean;
     }
 }

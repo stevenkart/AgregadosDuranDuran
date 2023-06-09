@@ -12,10 +12,10 @@ namespace Agregados
     using System;
     using System.Collections.Generic;
     
-    public partial class Provedores
+    public partial class Proveedores
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Provedores()
+        public Proveedores()
         {
             this.Facturas = new HashSet<Facturas>();
         }

@@ -36,7 +36,8 @@ namespace Agregados.Forms
 
         private void FrmPrincipalMDI_Load(object sender, EventArgs e)
         {
-            
+            tmrFechaHora.Enabled = true;
+            lblUsuarioLogueado.Text = $"( {Globals.MyGlobalUser.NombreUsuario} )" + $" {Globals.MyGlobalUser.NombreEmpleado} ";
         }
 
         private void notificacionesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -123,6 +124,31 @@ namespace Agregados.Forms
         {
             Globals.MifrmBillAdd = new Bills.FrmBillAdd();
             Globals.MifrmBillAdd.Show();
+            this.Hide();
+        }
+
+        private void tmrFechaHora_Tick(object sender, EventArgs e)
+        {
+            //asignar al label de fecha y hora el valor en formato extendido de la fecha 
+            // y ademas la hora
+
+            string fecha = DateTime.Now.Date.ToLongDateString();
+            string hora = DateTime.Now.ToLongTimeString();
+
+            lblFechaHora.Text = fecha + " / " + hora;
+        }
+
+        private void reporteDeFacturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmFactsReports = new Reports.FrmFactsReports();
+            Globals.MifrmFactsReports.Show();
+            this.Hide();
+        }
+
+        private void facturaciónComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmBillProviderAdd = new Bills.FrmBillProviderAdd();
+            Globals.MifrmBillProviderAdd.Show();
             this.Hide();
         }
     }

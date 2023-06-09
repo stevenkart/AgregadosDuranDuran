@@ -7,20 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
-namespace Agregados.Forms.Customers
+namespace Agregados.Forms.Providers
 {
-    public partial class FrmCustomerSearch : Form
+    public partial class FrmProviderSearch : Form
     {
         //variables del form
         AgregadosEntities DB;
-        Clientes cliente;
-        public FrmCustomerSearch()
+        Proveedores proveedor;
+
+        public FrmProviderSearch()
         {
             InitializeComponent();
+
             DB = new AgregadosEntities();
-            cliente = new Clientes();
+            proveedor = new Proveedores();
+        }
+
+        //load event
+        private void FrmProviderSearch_Load(object sender, EventArgs e)
+        {
+            LlenarLista();
         }
 
         //limpiar el form, ventana
@@ -35,6 +42,8 @@ namespace Agregados.Forms.Customers
         {
             limpiar();
         }
+
+
         //llena la lista de datos de cliente
         private void LlenarLista()
         {
@@ -42,17 +51,17 @@ namespace Agregados.Forms.Customers
             {
                 // linq para validar y disenar mejor la DataGridView al usuario // empezando la informacion con Estado ACTIVO y lo unico que se necesita obtener
                 //para agilizar la respuesta y no obtener tantas columnas de datos
-                var result = from cl in DB.Clientes
+                var result = from cl in DB.Proveedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1)
                              select new
                              {
-                                 cl.IdCliente,
+                                 cl.IdProveedor,
                                  cl.Identificacion,
                                  cl.Nombre,
                                  //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                 TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
+                                 TipoProveedor = (cl.IdTipoProveedor == 1) ? "Físico" : (cl.IdTipoProveedor == 2) ? "Júridico" : "",
                                  cl.Telefono,
                                  cl.Telefono2,
                                  cl.Correo,
@@ -60,7 +69,7 @@ namespace Agregados.Forms.Customers
                                  cl.Detalles,
                                  IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                              };
-                dgvListaClientes.DataSource = result.ToList();
+                dgvListaProveedores.DataSource = result.ToList();
                 limpiar();
             }
             catch (Exception)
@@ -69,20 +78,13 @@ namespace Agregados.Forms.Customers
                 throw;
             }
         }
-        //valida que sea numero
+
+
+        //filtros de busqueda
         private void txtBuscarId_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = Validaciones.CaracteresNumeros(e, true);
         }
-
-        //cuando inicia el form, llama la funcion Llenar Lista
-        private void FrmCustomerSearch_Load(object sender, EventArgs e)
-        {
-            LlenarLista();
-        }
-
-        
-        //filtros de busqueda
         private void txtBuscarId_TextChanged(object sender, EventArgs e)
         {
             try
@@ -91,17 +93,17 @@ namespace Agregados.Forms.Customers
                 {
                     txtName.Enabled = false;
                     int num = Convert.ToInt32(txtBuscarId.Text.Trim());
-                    var result = from cl in DB.Clientes
+                    var result = from cl in DB.Proveedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
-                                 where (cl.IdEstado == 1 && cl.IdCliente == num)
+                                 where (cl.IdEstado == 1 && cl.IdProveedor == num)
                                  select new
                                  {
-                                     cl.IdCliente,
+                                     cl.IdProveedor,
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
+                                     TipoProveedor = (cl.IdProveedor == 1) ? "Físico" : (cl.IdProveedor == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -109,7 +111,7 @@ namespace Agregados.Forms.Customers
                                      cl.Detalles,
                                      IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                                  };
-                    dgvListaClientes.DataSource = result.ToList();
+                    dgvListaProveedores.DataSource = result.ToList();
 
                 }
                 else
@@ -125,7 +127,6 @@ namespace Agregados.Forms.Customers
                 throw;
             }
         }
-
         private void txtName_TextChanged(object sender, EventArgs e)
         {
             try
@@ -134,17 +135,17 @@ namespace Agregados.Forms.Customers
                 {
                     txtBuscarId.Enabled = false;
                     string data = txtName.Text.Trim();
-                    var result = from cl in DB.Clientes
+                    var result = from cl in DB.Proveedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 1 && cl.Identificacion.Contains(data) || cl.Nombre.Contains(data))
                                  select new
                                  {
-                                     cl.IdCliente,
+                                     cl.IdProveedor,
                                      cl.Identificacion,
                                      cl.Nombre,
                                      //Lambda Expresion IF -ELSE para validar tipo de Cliente y proceder a indicarlo en modo texto
-                                     TipoCliente = (cl.IdTipoCliente == 1) ? "Físico" : (cl.IdTipoCliente == 2) ? "Júridico" : "",
+                                     TipoProveedor = (cl.IdProveedor == 1) ? "Físico" : (cl.IdProveedor == 2) ? "Júridico" : "",
                                      cl.Telefono,
                                      cl.Telefono2,
                                      cl.Correo,
@@ -152,7 +153,7 @@ namespace Agregados.Forms.Customers
                                      cl.Detalles,
                                      IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                                  };
-                    dgvListaClientes.DataSource = result.ToList();
+                    dgvListaProveedores.DataSource = result.ToList();
 
                 }
                 else
@@ -171,27 +172,26 @@ namespace Agregados.Forms.Customers
         }
 
 
-
         //cancela el form, vuelve a la factura
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
-        //cuando se cierra el form
-        private void FrmCustomerSearch_FormClosing(object sender, FormClosingEventArgs e)
+
+        private void FrmProviderSearch_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
-        //selecciona un elemento de la lista y obtiene el dato
+
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (dgvListaClientes.SelectedRows.Count == 1)
+                if (dgvListaProveedores.SelectedRows.Count == 1)
                 {
-                    DataGridViewRow FilaSelected = dgvListaClientes.SelectedRows[0];
-                    int IdCliente = Convert.ToInt32(FilaSelected.Cells["CIdCliente"].Value);
-                    Globals.MifrmBillAdd.txtNumClient.Text = Convert.ToString(IdCliente);
+                    DataGridViewRow FilaSelected = dgvListaProveedores.SelectedRows[0];
+                    int IdProveedor = Convert.ToInt32(FilaSelected.Cells["CIdProveedor"].Value);
+                    Globals.MifrmBillProviderAdd.txtNumProve.Text = Convert.ToString(IdProveedor); //todo Fact proveedor ligue
 
                     /*
                     DataRow NuevaFilaEnFacturacion = Globals.MifrmBillAdd.DtLista.NewRow();
@@ -215,8 +215,7 @@ namespace Agregados.Forms.Customers
 
                 throw;
             }
-        }
 
-       
+        }
     }
 }

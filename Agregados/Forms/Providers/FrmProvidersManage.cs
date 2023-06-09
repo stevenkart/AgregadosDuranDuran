@@ -17,12 +17,12 @@ namespace Agregados.Forms.Providers
     {
         //variables del form
         AgregadosEntities DB;
-        Provedores proveedor;
+        Proveedores proveedor;
         public FrmProvidersManage()
         {
             InitializeComponent();
             DB = new AgregadosEntities();
-            proveedor = new Provedores();
+            proveedor = new Proveedores();
         }
 
         //cuando se cierre el form op presion el boton salir
@@ -47,7 +47,7 @@ namespace Agregados.Forms.Providers
 
             // linq para validar y disenar mejor la DataGridView al usuario // empezando la informacion con Estado ACTIVO y lo unico que se necesita obtener
             //para agilizar la respuesta y no obtener tantas columnas de datos
-            var result = from pr in DB.Provedores
+            var result = from pr in DB.Proveedores
                          join es in DB.Estados
                          on pr.IdEstado equals es.IdEstado
                          where (pr.IdEstado == 1)
@@ -73,7 +73,7 @@ namespace Agregados.Forms.Providers
         {
             if (dgvProveedores.SelectedRows.Count == 1)
             {
-                proveedor = new Provedores();
+                proveedor = new Proveedores();
 
                 DataGridViewRow MiFila = dgvProveedores.SelectedRows[0];
 
@@ -86,7 +86,7 @@ namespace Agregados.Forms.Providers
 
 
                 //ESTE METODO de consultor RETORNA UN OBJETO de tipo Empleado
-                proveedor = DB.Provedores.FirstOrDefault(x => x.IdProveedor == IdProveedor);
+                proveedor = DB.Proveedores.FirstOrDefault(x => x.IdProveedor == IdProveedor);
 
                 if (proveedor != null && proveedor.IdProveedor > 0)
                 {
@@ -148,6 +148,33 @@ namespace Agregados.Forms.Providers
 
         }
 
+        private void CargarTiposFisico()
+        {
+
+            //Metodo que permite llamar y obtener los datos filtrados y mostrarlos en el comboBox
+            var dt = DB.TiposProveedores.Where(x => x.IdTipoProveedor == 1).ToList();
+
+            CboxProviderType.ValueMember = "IdTipoProveedor";
+            CboxProviderType.DisplayMember = "TipoProveedor";
+            CboxProviderType.DataSource = dt;
+            CboxProviderType.SelectedIndex = -1;
+
+        }
+
+        private void CargarTiposJuridico()
+        {
+
+            //Metodo que permite llamar y obtener los datos filtrados y mostrarlos en el comboBox
+            var dt = DB.TiposProveedores.Where(x => x.IdTipoProveedor == 2).ToList();
+
+            CboxProviderType.ValueMember = "IdTipoProveedor";
+            CboxProviderType.DisplayMember = "TipoProveedor";
+            CboxProviderType.DataSource = dt;
+            CboxProviderType.SelectedIndex = -1;
+
+        }
+
+
         //validaciones de botones para evitar errores
         private void ActivarAdd()
         {
@@ -162,9 +189,6 @@ namespace Agregados.Forms.Providers
             imgUpdate.Enabled = true;
             imgDelete.Enabled = true;
         }
-
-
-       
 
         //tiempo loading
         void Wait()
@@ -259,7 +283,7 @@ namespace Agregados.Forms.Providers
         {
             if (ChActivos.Checked == true)
             {
-                var result = from cl in DB.Provedores
+                var result = from cl in DB.Proveedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1)
@@ -284,7 +308,7 @@ namespace Agregados.Forms.Providers
             {
                 if (ChActivos.Checked == false)
                 {
-                    var result = from cl in DB.Provedores
+                    var result = from cl in DB.Proveedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2)
@@ -327,7 +351,7 @@ namespace Agregados.Forms.Providers
                         {
                             try
                             {
-                                proveedor = new Provedores
+                                proveedor = new Proveedores
                                 {
                                     Identificacion = txtIdent.Text.Trim(),
                                     Nombre = txtName.Text.Trim(),
@@ -340,7 +364,7 @@ namespace Agregados.Forms.Providers
                                     IdEstado = Convert.ToInt32(CboxStates.SelectedValue)
                                 };
 
-                                DB.Provedores.Add(proveedor);
+                                DB.Proveedores.Add(proveedor);
 
                                 if (DB.SaveChanges() > 0)
                                 {
@@ -447,22 +471,43 @@ namespace Agregados.Forms.Providers
                         {
                             if (proveedor == null)
                             {
-                                MessageBox.Show("Proveedor No existe, o no ha sido seleccionado de la lista", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                                MessageBox.Show("Proveedor No existe, o no ha sido seleccionado de la lista",
+                                    "Error Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else
                             {
-                                DB.Provedores.Remove(proveedor); // metodo para eliminar el cliente, dato de la BD
-                                if (DB.SaveChanges() > 0)
+                                //linq que consulta si hay relacion con alguna tabla.
+                                var list = from fa in DB.Facturas
+                                           join pr in DB.Proveedores
+                                           on fa.IdFactura equals pr.IdProveedor
+                                           where (pr.IdProveedor == proveedor.IdProveedor)
+                                           select new
+                                           {
+                                               fa.IdFactura,
+                                           };
+
+                                if (list.ToList().Count <= 0)
                                 {
-                                    CheckChange();
-                                    limpiarBusqueda();
-                                    MessageBox.Show("Proveedor Eliminado Correctamente!", "Registro de Proveedores", MessageBoxButtons.OK);
-                                    proveedor = null;
+                                    DB.Proveedores.Remove(proveedor); // metodo para eliminar el cliente, dato de la BD
+                                    if (DB.SaveChanges() > 0)
+                                    {
+                                        CheckChange();
+                                        limpiarBusqueda();
+                                        MessageBox.Show("Proveedor Eliminado Correctamente!", 
+                                            "Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        proveedor = null;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Proveedor No fue Eliminado, por favor valide", 
+                                            "Error Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        proveedor = null;
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Proveedor No fue Eliminado, por favor valide", "Error Registro de Proveedores", MessageBoxButtons.OK);
-                                    proveedor = null;
+                                    MessageBox.Show("Proveedor No fue Eliminado, este ya se encuentra relacionado a un que se emitió anteriormente.", 
+                                        "Error Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                         }
@@ -504,12 +549,14 @@ namespace Agregados.Forms.Providers
                                         CheckChange();
                                         limpiar();
                                         limpiarBusqueda();
-                                        MessageBox.Show("Proveedor modificado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK);
+                                        MessageBox.Show("Proveedor modificado correctamente!",
+                                            "Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         proveedor = null;
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Proveedor No fue modificado", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                                        MessageBox.Show("Proveedor No fue modificado",
+                                            "Error Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         proveedor = null;
                                     }
 
@@ -564,7 +611,7 @@ namespace Agregados.Forms.Providers
                 txtIdentSearch.Enabled = false;
                 txtNameSearch.Enabled = false;
                 int num = Convert.ToInt32(txtIdProviderSearch.Text.Trim());
-                var result = from cl in DB.Provedores
+                var result = from cl in DB.Proveedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1 && cl.IdProveedor == num)
@@ -592,7 +639,7 @@ namespace Agregados.Forms.Providers
                     txtIdentSearch.Enabled = false;
                     txtNameSearch.Enabled = false;
                     int num = Convert.ToInt32(txtIdProviderSearch.Text.Trim());
-                    var result = from cl in DB.Provedores
+                    var result = from cl in DB.Proveedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2 && cl.IdProveedor == num)
@@ -632,7 +679,7 @@ namespace Agregados.Forms.Providers
                 txtIdProviderSearch.Enabled = false;
                 txtNameSearch.Enabled = false;
                 string num = txtIdentSearch.Text.Trim();
-                var result = from cl in DB.Provedores
+                var result = from cl in DB.Proveedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1 && cl.Identificacion.Contains(num))
@@ -660,7 +707,7 @@ namespace Agregados.Forms.Providers
                     txtIdProviderSearch.Enabled = false;
                     txtNameSearch.Enabled = false;
                     string num = txtIdentSearch.Text.Trim();
-                    var result = from cl in DB.Provedores
+                    var result = from cl in DB.Proveedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2 && cl.Identificacion.Contains(num))
@@ -700,7 +747,7 @@ namespace Agregados.Forms.Providers
                 txtIdentSearch.Enabled = false;
                 txtIdProviderSearch.Enabled = false;
                 string num = txtNameSearch.Text.Trim();
-                var result = from cl in DB.Provedores
+                var result = from cl in DB.Proveedores
                              join es in DB.Estados
                              on cl.IdEstado equals es.IdEstado
                              where (cl.IdEstado == 1 && cl.Nombre.Contains(num))
@@ -728,7 +775,7 @@ namespace Agregados.Forms.Providers
                     txtIdentSearch.Enabled = false;
                     txtIdProviderSearch.Enabled = false;
                     string num = txtNameSearch.Text.Trim();
-                    var result = from cl in DB.Provedores
+                    var result = from cl in DB.Proveedores
                                  join es in DB.Estados
                                  on cl.IdEstado equals es.IdEstado
                                  where (cl.IdEstado == 2 && cl.Nombre.Contains(num))
@@ -763,65 +810,57 @@ namespace Agregados.Forms.Providers
         }
 
     
-
+        //Validacion de tipo de proveedor
         private void txtIdent_TextChanged(object sender, EventArgs e)
         {
-            if (txtIdent.Text.Length >= 4)
+            if (txtIdent.Text.Length <= 15 && txtIdent.Text.Length >= 7)
             {
                 string[] tipoClases = {"2-100","2-200", "2-300", "2-400", "3-002", "3-003", "3-004", "3-005", "3-006", "3-007", "3-008", "3-009", "3-010", "3-011", "3-012", "3-013",
             "3-014","3-101","3-102","3-103","3-104","3-105","3-106","3-107","3-108","3-109","3-110","4-000","5-001",
             "2100","2200", "2300", "2400", "3002", "3003", "3004", "3005", "3006", "3007", "3008", "3009", "3010", "3011", "3012", "3013",
-            "3014","3101","3102","3103","3104","3105","3106","3107","3108","3109","3110","4000","5001"};
+            "3014","3101","3102","3103","3104","3105","3106","3107","3108","3109","3110","4000","5001",
+            "2-100-","2-200-", "2-300-", "2-400-", "3-002-", "3-003-", "3-004-", "3-005-", "3-006-", "3-007-", "3-008-", "3-009-", "3-010-", "3-011-", "3-012-", "3-013-",
+            "3-014-","3-101-","3-102-","3-103-","3-104-","3-105-","3-106-","3-107-","3-108-","3-109-","3-110-","4-000-","5-001-",
+                };
+                string identificacion = txtIdent.Text.Trim();
 
-                if (txtIdent.Text.Length == 12)
+                string existe = tipoClases.Where((x) => x.Contains(identificacion.Substring(0, 4)) || x.StartsWith(identificacion.Substring(0, 4))).FirstOrDefault();
+
+                if (existe != null)
                 {
-                    string identificacion = txtIdent.Text.Trim();
-
-                    string existe = tipoClases.Where((x) => x.Contains(identificacion.Substring(0, 4)) || x.StartsWith(identificacion.Substring(0, 4))).FirstOrDefault();
-
-                    if (existe != null)
+                    if (identificacion.Length >= 10 && identificacion.Length <= 12)
                     {
-                        //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
-                        var dt = DB.TiposProveedores.Where(x => x.IdTipoProveedor == 2).ToList();
+                        string subString0 = identificacion.Substring(0, 4);
+                        string subString1 = identificacion.Substring(0, 5);
+                        string subString2 = identificacion.Substring(0, 6);
 
-                        CboxProviderType.ValueMember = "IdTipoProveedor";
-                        CboxProviderType.DisplayMember = "TipoProveedor";
-                        CboxProviderType.DataSource = dt;
-                        CboxProviderType.SelectedIndex = -1;
+
+                        string esJuridico0 = tipoClases.Where((x) => x.Contains(subString0) || x.StartsWith(subString0)).FirstOrDefault();
+                        string esJuridico1 = tipoClases.Where((x) => x.Contains(subString1) || x.StartsWith(subString1)).FirstOrDefault();
+                        string esJuridico2 = tipoClases.Where((x) => x.Contains(subString2) || x.StartsWith(subString2)).FirstOrDefault();
+
+                        if (esJuridico1 != null || esJuridico2 != null || esJuridico0 != null)
+                        {
+                            CargarTiposJuridico();
+                        }
+                        else
+                        {
+                            CargarTiposFisico();
+                        }    
                     }
                     else
                     {
-                        //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
-                        var dt = DB.TiposProveedores.Where(x => x.IdTipoProveedor == 1).ToList();
-
-                        CboxProviderType.ValueMember = "IdTipoProveedor";
-                        CboxProviderType.DisplayMember = "TipoProveedor";
-                        CboxProviderType.DataSource = dt;
-                        CboxProviderType.SelectedIndex = -1;
-
-                    }
+                        CargarTiposFisico();
+                    }                      
                 }
                 else
                 {
-                    //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
-                    var dt = DB.TiposProveedores.Where(x => x.IdTipoProveedor == 1).ToList();
-
-                    CboxProviderType.ValueMember = "IdTipoProveedor";
-                    CboxProviderType.DisplayMember = "TipoProveedor";
-                    CboxProviderType.DataSource = dt;
-                    CboxProviderType.SelectedIndex = -1;
-                }
-                
+                    CargarTiposFisico();
+                } 
             }
             else
             {
-                //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
-                var dt = DB.TiposProveedores.Where(x => x.IdTipoProveedor == 1).ToList();
-
-                CboxProviderType.ValueMember = "IdTipoProveedor";
-                CboxProviderType.DisplayMember = "TipoProveedor";
-                CboxProviderType.DataSource = dt;
-                CboxProviderType.SelectedIndex = -1;
+                CargarTiposFisico();
             }
         }
     }

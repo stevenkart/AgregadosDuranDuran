@@ -18,6 +18,7 @@ namespace Agregados
         public string Correo { get; set; }
         public string Contrasennia { get; set; }
 
+
         public bool SendEmail(string SendTo, string Subject, string Message)
         {
             bool R = false;
@@ -44,10 +45,10 @@ namespace Agregados
                     server.EnableSsl = true;
                     server.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
 
-                    
+
                     Crypto crypto = new Crypto();
                     string pass = crypto.DesEncriptarPassword(this.Contrasennia);
-                    
+
 
                     server.Credentials = new System.Net.NetworkCredential(this.Correo, pass);
                     server.Send(email);
@@ -64,7 +65,6 @@ namespace Agregados
             return R;
 
         }
-
 
     }
 }

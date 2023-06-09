@@ -32,14 +32,20 @@ namespace Agregados
         public Nullable<int> IdCliente { get; set; }
         public Nullable<int> IdProveedor { get; set; }
         public int IdTipoPago { get; set; }
+        public Nullable<decimal> MontoPendiente { get; set; }
+        public string ReferenciaPago { get; set; }
+        public int IdCierreApert { get; set; }
+        public int Consecutivo { get; set; }
+        public decimal Subtotal { get; set; }
     
         public virtual Clientes Clientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleFacts> DetalleFacts { get; set; }
         public virtual Estados Estados { get; set; }
-        public virtual Provedores Provedores { get; set; }
         public virtual Usuarios Usuarios { get; set; }
         public virtual MetodosPagos MetodosPagos { get; set; }
         public virtual TiposFacturas TiposFacturas { get; set; }
+        public virtual Proveedores Proveedores { get; set; }
+        public virtual CierreApertCajas CierreApertCajas { get; set; }
     }
 }

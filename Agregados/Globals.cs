@@ -33,6 +33,11 @@ namespace Agregados
         public static Forms.Providers.FrmProvidersManage MifrmProviders = new Forms.Providers.FrmProvidersManage();
 
         public static Forms.Materials.FrmMaterialsManage MifrmMaterials = new Forms.Materials.FrmMaterialsManage();
+
         public static Forms.Bills.FrmBillAdd MifrmBillAdd = new Forms.Bills.FrmBillAdd();
+
+        public static Forms.Bills.FrmBillProviderAdd MifrmBillProviderAdd = new Forms.Bills.FrmBillProviderAdd();
+
+        public static Forms.Reports.FrmFactsReports MifrmFactsReports = new Forms.Reports.FrmFactsReports();
     }
 }
