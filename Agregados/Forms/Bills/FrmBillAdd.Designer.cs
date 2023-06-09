@@ -46,6 +46,8 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.CboxTypeBill = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.FactNum = new System.Windows.Forms.Label();
+            this.lblFactNueva = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
@@ -71,26 +73,40 @@
             this.CPrecioFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.TxtSubTotal = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.TxtIVA = new System.Windows.Forms.TextBox();
-            this.TxtTotal = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblLineas = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnFacturar = new System.Windows.Forms.Button();
-            this.btnVistaPrevia = new System.Windows.Forms.Button();
-            this.pictureExit = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbCheque2 = new System.Windows.Forms.RadioButton();
+            this.rbEfectivo2 = new System.Windows.Forms.RadioButton();
+            this.rbSinpe2 = new System.Windows.Forms.RadioButton();
+            this.rbSinpeMovil2 = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbSinpeMovil1 = new System.Windows.Forms.RadioButton();
+            this.rbEfectivo1 = new System.Windows.Forms.RadioButton();
+            this.rbCheque1 = new System.Windows.Forms.RadioButton();
+            this.rbSinpe1 = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.txtReferencia = new System.Windows.Forms.TextBox();
             this.lblReferencia = new System.Windows.Forms.Label();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblLineas = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.CboxMetodoPago = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.pictureExit = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.TxtSubTotal = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.CboxIVA = new System.Windows.Forms.CheckBox();
+            this.btnFacturar = new System.Windows.Forms.Button();
+            this.btnVistaPrevia = new System.Windows.Forms.Button();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.TxtTotal = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.TxtIVA = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.valorPago2 = new System.Windows.Forms.NumericUpDown();
+            this.valorPago1 = new System.Windows.Forms.NumericUpDown();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblUsuarioLogueado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -99,22 +115,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
-            this.FactNum = new System.Windows.Forms.Label();
-            this.lblFactNueva = new System.Windows.Forms.Label();
-            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
-            this.valorPago1 = new System.Windows.Forms.NumericUpDown();
-            this.valorPago2 = new System.Windows.Forms.NumericUpDown();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbSinpeMovil1 = new System.Windows.Forms.RadioButton();
-            this.rbEfectivo1 = new System.Windows.Forms.RadioButton();
-            this.rbCheque1 = new System.Windows.Forms.RadioButton();
-            this.rbSinpe1 = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.rbCheque2 = new System.Windows.Forms.RadioButton();
-            this.rbEfectivo2 = new System.Windows.Forms.RadioButton();
-            this.rbSinpe2 = new System.Windows.Forms.RadioButton();
-            this.rbSinpeMovil2 = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -130,21 +130,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterials)).BeginInit();
             this.panel6.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureExit)).BeginInit();
             this.tableLayoutPanel7.SuspendLayout();
-            this.tableLayoutPanel10.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.valorPago2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.valorPago1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel5.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
-            this.tableLayoutPanel12.SuspendLayout();
-            this.tableLayoutPanel13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.valorPago1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.valorPago2)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -179,7 +179,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 209F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 168F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 238F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 239F));
             this.tableLayoutPanel8.Controls.Add(this.label3, 2, 0);
             this.tableLayoutPanel8.Controls.Add(this.txtNumClient, 1, 0);
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
@@ -207,7 +207,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(404, 5);
+            this.label3.Location = new System.Drawing.Point(403, 5);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 32);
             this.label3.TabIndex = 6;
@@ -259,7 +259,7 @@
             this.txtClient.Location = new System.Drawing.Point(93, 45);
             this.txtClient.Name = "txtClient";
             this.txtClient.ReadOnly = true;
-            this.txtClient.Size = new System.Drawing.Size(305, 29);
+            this.txtClient.Size = new System.Drawing.Size(304, 29);
             this.txtClient.TabIndex = 1;
             // 
             // pictureSearchClient
@@ -267,7 +267,7 @@
             this.pictureSearchClient.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureSearchClient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureSearchClient.Image = global::Agregados.Properties.Resources.lupa;
-            this.pictureSearchClient.Location = new System.Drawing.Point(472, 3);
+            this.pictureSearchClient.Location = new System.Drawing.Point(471, 3);
             this.pictureSearchClient.Name = "pictureSearchClient";
             this.pictureSearchClient.Size = new System.Drawing.Size(55, 36);
             this.pictureSearchClient.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -280,7 +280,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(910, 13);
+            this.label1.Location = new System.Drawing.Point(909, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 16);
             this.label1.TabIndex = 7;
@@ -292,9 +292,9 @@
             this.lblDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(1049, 13);
+            this.lblDate.Location = new System.Drawing.Point(1048, 13);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(233, 16);
+            this.lblDate.Size = new System.Drawing.Size(234, 16);
             this.lblDate.TabIndex = 8;
             this.lblDate.Text = "Date:";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -305,9 +305,9 @@
             this.CboxTypeBill.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboxTypeBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboxTypeBill.FormattingEnabled = true;
-            this.CboxTypeBill.Location = new System.Drawing.Point(1049, 80);
+            this.CboxTypeBill.Location = new System.Drawing.Point(1048, 80);
             this.CboxTypeBill.Name = "CboxTypeBill";
-            this.CboxTypeBill.Size = new System.Drawing.Size(233, 24);
+            this.CboxTypeBill.Size = new System.Drawing.Size(234, 24);
             this.CboxTypeBill.TabIndex = 10;
             this.CboxTypeBill.SelectedValueChanged += new System.EventHandler(this.CboxTypeBill_SelectedValueChanged);
             // 
@@ -316,12 +316,36 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(910, 86);
+            this.label4.Location = new System.Drawing.Point(909, 86);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(133, 16);
             this.label4.TabIndex = 9;
             this.label4.Text = "Tipo de Factura:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // FactNum
+            // 
+            this.FactNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.FactNum.AutoSize = true;
+            this.FactNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FactNum.Location = new System.Drawing.Point(909, 51);
+            this.FactNum.Name = "FactNum";
+            this.FactNum.Size = new System.Drawing.Size(133, 16);
+            this.FactNum.TabIndex = 13;
+            this.FactNum.Text = "Factura:";
+            this.FactNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblFactNueva
+            // 
+            this.lblFactNueva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFactNueva.AutoSize = true;
+            this.lblFactNueva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFactNueva.Location = new System.Drawing.Point(1048, 49);
+            this.lblFactNueva.Name = "lblFactNueva";
+            this.lblFactNueva.Size = new System.Drawing.Size(234, 20);
+            this.lblFactNueva.TabIndex = 14;
+            this.lblFactNueva.Text = "Fact:";
+            this.lblFactNueva.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -339,7 +363,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.35829F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 506F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 264F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 265F));
             this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.dateFinal, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblTypeFact, 3, 0);
@@ -368,9 +392,9 @@
             // 
             this.dateFinal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dateFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateFinal.Location = new System.Drawing.Point(1029, 13);
+            this.dateFinal.Location = new System.Drawing.Point(1028, 13);
             this.dateFinal.Name = "dateFinal";
-            this.dateFinal.Size = new System.Drawing.Size(259, 21);
+            this.dateFinal.Size = new System.Drawing.Size(260, 21);
             this.dateFinal.TabIndex = 11;
             this.dateFinal.Visible = false;
             // 
@@ -379,7 +403,7 @@
             this.lblTypeFact.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTypeFact.AutoSize = true;
             this.lblTypeFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTypeFact.Location = new System.Drawing.Point(913, 16);
+            this.lblTypeFact.Location = new System.Drawing.Point(912, 16);
             this.lblTypeFact.Name = "lblTypeFact";
             this.lblTypeFact.Size = new System.Drawing.Size(110, 16);
             this.lblTypeFact.TabIndex = 10;
@@ -400,7 +424,7 @@
             0,
             0});
             this.txtTransporte.Name = "txtTransporte";
-            this.txtTransporte.Size = new System.Drawing.Size(234, 26);
+            this.txtTransporte.Size = new System.Drawing.Size(233, 26);
             this.txtTransporte.TabIndex = 12;
             this.txtTransporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTransporte.ThousandsSeparator = true;
@@ -636,7 +660,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.43735F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.56265F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 359F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
             this.tableLayoutPanel5.Controls.Add(this.groupBox2, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.groupBox1, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel10, 0, 1);
@@ -662,162 +686,137 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1285, 236);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
-            // label9
+            // groupBox2
             // 
-            this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(3, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(358, 32);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Subtotal Factura";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.groupBox2.Controls.Add(this.rbCheque2);
+            this.groupBox2.Controls.Add(this.rbEfectivo2);
+            this.groupBox2.Controls.Add(this.rbSinpe2);
+            this.groupBox2.Controls.Add(this.rbSinpeMovil2);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(799, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(353, 44);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Selecciona Método de Pago";
             // 
-            // TxtSubTotal
+            // rbCheque2
             // 
-            this.TxtSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSubTotal.Location = new System.Drawing.Point(3, 35);
-            this.TxtSubTotal.Name = "TxtSubTotal";
-            this.TxtSubTotal.ReadOnly = true;
-            this.TxtSubTotal.Size = new System.Drawing.Size(358, 29);
-            this.TxtSubTotal.TabIndex = 2;
-            this.TxtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.rbCheque2.AutoSize = true;
+            this.rbCheque2.Location = new System.Drawing.Point(275, 21);
+            this.rbCheque2.Name = "rbCheque2";
+            this.rbCheque2.Size = new System.Drawing.Size(62, 17);
+            this.rbCheque2.TabIndex = 3;
+            this.rbCheque2.TabStop = true;
+            this.rbCheque2.Text = "Cheque";
+            this.rbCheque2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbCheque2.UseVisualStyleBackColor = true;
+            this.rbCheque2.CheckedChanged += new System.EventHandler(this.rbCheque2_CheckedChanged);
             // 
-            // label10
+            // rbEfectivo2
             // 
-            this.label10.AutoSize = true;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(3, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(415, 32);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "I.V.A. Factura";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbEfectivo2.AutoSize = true;
+            this.rbEfectivo2.Location = new System.Drawing.Point(6, 21);
+            this.rbEfectivo2.Name = "rbEfectivo2";
+            this.rbEfectivo2.Size = new System.Drawing.Size(64, 17);
+            this.rbEfectivo2.TabIndex = 0;
+            this.rbEfectivo2.TabStop = true;
+            this.rbEfectivo2.Text = "Efectivo";
+            this.rbEfectivo2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbEfectivo2.UseVisualStyleBackColor = true;
+            this.rbEfectivo2.CheckedChanged += new System.EventHandler(this.rbEfectivo2_CheckedChanged);
             // 
-            // TxtIVA
+            // rbSinpe2
             // 
-            this.TxtIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtIVA.Location = new System.Drawing.Point(3, 35);
-            this.TxtIVA.Name = "TxtIVA";
-            this.TxtIVA.ReadOnly = true;
-            this.TxtIVA.Size = new System.Drawing.Size(415, 29);
-            this.TxtIVA.TabIndex = 5;
-            this.TxtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.rbSinpe2.AutoSize = true;
+            this.rbSinpe2.Location = new System.Drawing.Point(76, 21);
+            this.rbSinpe2.Name = "rbSinpe2";
+            this.rbSinpe2.Size = new System.Drawing.Size(85, 17);
+            this.rbSinpe2.TabIndex = 1;
+            this.rbSinpe2.TabStop = true;
+            this.rbSinpe2.Text = "Trans. Sinpe";
+            this.rbSinpe2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbSinpe2.UseVisualStyleBackColor = true;
+            this.rbSinpe2.CheckedChanged += new System.EventHandler(this.rbSinpe2_CheckedChanged);
             // 
-            // TxtTotal
+            // rbSinpeMovil2
             // 
-            this.TxtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTotal.Location = new System.Drawing.Point(3, 35);
-            this.TxtTotal.Name = "TxtTotal";
-            this.TxtTotal.ReadOnly = true;
-            this.TxtTotal.Size = new System.Drawing.Size(347, 29);
-            this.TxtTotal.TabIndex = 6;
-            this.TxtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.rbSinpeMovil2.AutoSize = true;
+            this.rbSinpeMovil2.Location = new System.Drawing.Point(178, 21);
+            this.rbSinpeMovil2.Name = "rbSinpeMovil2";
+            this.rbSinpeMovil2.Size = new System.Drawing.Size(80, 17);
+            this.rbSinpeMovil2.TabIndex = 2;
+            this.rbSinpeMovil2.TabStop = true;
+            this.rbSinpeMovil2.Text = "Sinpe Móvil";
+            this.rbSinpeMovil2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbSinpeMovil2.UseVisualStyleBackColor = true;
+            this.rbSinpeMovil2.CheckedChanged += new System.EventHandler(this.rbSinpeMovil2_CheckedChanged);
             // 
-            // tableLayoutPanel6
+            // groupBox1
             // 
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.8866F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.1134F));
-            this.tableLayoutPanel6.Controls.Add(this.lblLineas, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.label12, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(1159, 3);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(97, 17);
-            this.tableLayoutPanel6.TabIndex = 8;
+            this.groupBox1.Controls.Add(this.rbSinpeMovil1);
+            this.groupBox1.Controls.Add(this.rbEfectivo1);
+            this.groupBox1.Controls.Add(this.rbCheque1);
+            this.groupBox1.Controls.Add(this.rbSinpe1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(373, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(420, 44);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Selecciona Método de Pago";
             // 
-            // lblLineas
+            // rbSinpeMovil1
             // 
-            this.lblLineas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblLineas.AutoSize = true;
-            this.lblLineas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLineas.Location = new System.Drawing.Point(64, 0);
-            this.lblLineas.Name = "lblLineas";
-            this.lblLineas.Size = new System.Drawing.Size(30, 17);
-            this.lblLineas.TabIndex = 8;
-            this.lblLineas.Text = "0";
-            this.lblLineas.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.rbSinpeMovil1.AutoSize = true;
+            this.rbSinpeMovil1.Location = new System.Drawing.Point(213, 21);
+            this.rbSinpeMovil1.Name = "rbSinpeMovil1";
+            this.rbSinpeMovil1.Size = new System.Drawing.Size(80, 17);
+            this.rbSinpeMovil1.TabIndex = 2;
+            this.rbSinpeMovil1.TabStop = true;
+            this.rbSinpeMovil1.Text = "Sinpe Móvil";
+            this.rbSinpeMovil1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbSinpeMovil1.UseVisualStyleBackColor = true;
+            this.rbSinpeMovil1.CheckedChanged += new System.EventHandler(this.rbSinpeMovil1_CheckedChanged);
             // 
-            // label12
+            // rbEfectivo1
             // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(3, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(55, 15);
-            this.label12.TabIndex = 7;
-            this.label12.Text = "Lineas:";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.rbEfectivo1.AutoSize = true;
+            this.rbEfectivo1.Location = new System.Drawing.Point(18, 21);
+            this.rbEfectivo1.Name = "rbEfectivo1";
+            this.rbEfectivo1.Size = new System.Drawing.Size(64, 17);
+            this.rbEfectivo1.TabIndex = 0;
+            this.rbEfectivo1.TabStop = true;
+            this.rbEfectivo1.Text = "Efectivo";
+            this.rbEfectivo1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbEfectivo1.UseVisualStyleBackColor = true;
+            this.rbEfectivo1.CheckedChanged += new System.EventHandler(this.rbEfectivo1_CheckedChanged);
             // 
-            // label11
+            // rbCheque1
             // 
-            this.label11.AutoSize = true;
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(3, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(347, 32);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "Total Factura";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbCheque1.AutoSize = true;
+            this.rbCheque1.Location = new System.Drawing.Point(322, 21);
+            this.rbCheque1.Name = "rbCheque1";
+            this.rbCheque1.Size = new System.Drawing.Size(62, 17);
+            this.rbCheque1.TabIndex = 3;
+            this.rbCheque1.TabStop = true;
+            this.rbCheque1.Text = "Cheque";
+            this.rbCheque1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbCheque1.UseVisualStyleBackColor = true;
+            this.rbCheque1.CheckedChanged += new System.EventHandler(this.rbCheque1_CheckedChanged);
             // 
-            // btnFacturar
+            // rbSinpe1
             // 
-            this.btnFacturar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFacturar.Location = new System.Drawing.Point(800, 193);
-            this.btnFacturar.Name = "btnFacturar";
-            this.btnFacturar.Size = new System.Drawing.Size(353, 38);
-            this.btnFacturar.TabIndex = 9;
-            this.btnFacturar.Text = "Emitir Factura";
-            this.btnFacturar.UseVisualStyleBackColor = true;
-            this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
-            // 
-            // btnVistaPrevia
-            // 
-            this.btnVistaPrevia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVistaPrevia.Location = new System.Drawing.Point(373, 193);
-            this.btnVistaPrevia.Name = "btnVistaPrevia";
-            this.btnVistaPrevia.Size = new System.Drawing.Size(421, 38);
-            this.btnVistaPrevia.TabIndex = 11;
-            this.btnVistaPrevia.Text = "Vista Previa de Factura";
-            this.btnVistaPrevia.UseVisualStyleBackColor = true;
-            // 
-            // pictureExit
-            // 
-            this.pictureExit.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pictureExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureExit.Image = global::Agregados.Properties.Resources.salida;
-            this.pictureExit.Location = new System.Drawing.Point(3, 201);
-            this.pictureExit.Name = "pictureExit";
-            this.pictureExit.Size = new System.Drawing.Size(100, 23);
-            this.pictureExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureExit.TabIndex = 10;
-            this.pictureExit.TabStop = false;
-            this.pictureExit.Click += new System.EventHandler(this.pictureExit_Click);
-            // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Controls.Add(this.TxtSubTotal, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.label9, 0, 0);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 121);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 2;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(364, 65);
-            this.tableLayoutPanel7.TabIndex = 12;
+            this.rbSinpe1.AutoSize = true;
+            this.rbSinpe1.Location = new System.Drawing.Point(104, 21);
+            this.rbSinpe1.Name = "rbSinpe1";
+            this.rbSinpe1.Size = new System.Drawing.Size(85, 17);
+            this.rbSinpe1.TabIndex = 1;
+            this.rbSinpe1.TabStop = true;
+            this.rbSinpe1.Text = "Trans. Sinpe";
+            this.rbSinpe1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbSinpe1.UseVisualStyleBackColor = true;
+            this.rbSinpe1.CheckedChanged += new System.EventHandler(this.rbSinpe1_CheckedChanged);
             // 
             // tableLayoutPanel10
             // 
@@ -858,6 +857,46 @@
             this.lblReferencia.Text = "Detalles:";
             this.lblReferencia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.8866F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.1134F));
+            this.tableLayoutPanel6.Controls.Add(this.lblLineas, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.label12, 0, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(1158, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(97, 17);
+            this.tableLayoutPanel6.TabIndex = 8;
+            // 
+            // lblLineas
+            // 
+            this.lblLineas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLineas.AutoSize = true;
+            this.lblLineas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLineas.Location = new System.Drawing.Point(64, 0);
+            this.lblLineas.Name = "lblLineas";
+            this.lblLineas.Size = new System.Drawing.Size(30, 17);
+            this.lblLineas.TabIndex = 8;
+            this.lblLineas.Text = "0";
+            this.lblLineas.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(3, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(55, 15);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Lineas:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // tableLayoutPanel9
             // 
             this.tableLayoutPanel9.ColumnCount = 2;
@@ -897,6 +936,56 @@
             this.label6.Text = "Método de Pago:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pictureExit
+            // 
+            this.pictureExit.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pictureExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureExit.Image = global::Agregados.Properties.Resources.salida;
+            this.pictureExit.Location = new System.Drawing.Point(3, 201);
+            this.pictureExit.Name = "pictureExit";
+            this.pictureExit.Size = new System.Drawing.Size(100, 23);
+            this.pictureExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureExit.TabIndex = 10;
+            this.pictureExit.TabStop = false;
+            this.pictureExit.Click += new System.EventHandler(this.pictureExit_Click);
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.TxtSubTotal, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.label9, 0, 0);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 121);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 2;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(364, 65);
+            this.tableLayoutPanel7.TabIndex = 12;
+            // 
+            // TxtSubTotal
+            // 
+            this.TxtSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSubTotal.Location = new System.Drawing.Point(3, 35);
+            this.TxtSubTotal.Name = "TxtSubTotal";
+            this.TxtSubTotal.ReadOnly = true;
+            this.TxtSubTotal.Size = new System.Drawing.Size(358, 29);
+            this.TxtSubTotal.TabIndex = 2;
+            this.TxtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(3, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(358, 32);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Subtotal Factura";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // CboxIVA
             // 
             this.CboxIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -904,13 +993,148 @@
             this.CboxIVA.Checked = true;
             this.CboxIVA.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CboxIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CboxIVA.Location = new System.Drawing.Point(1159, 143);
+            this.CboxIVA.Location = new System.Drawing.Point(1158, 143);
             this.CboxIVA.Name = "CboxIVA";
-            this.CboxIVA.Size = new System.Drawing.Size(123, 20);
+            this.CboxIVA.Size = new System.Drawing.Size(124, 20);
             this.CboxIVA.TabIndex = 13;
             this.CboxIVA.Text = "Aplicar I.V.A.";
             this.CboxIVA.UseVisualStyleBackColor = true;
             this.CboxIVA.CheckedChanged += new System.EventHandler(this.CboxIVA_CheckedChanged);
+            // 
+            // btnFacturar
+            // 
+            this.btnFacturar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFacturar.Location = new System.Drawing.Point(799, 193);
+            this.btnFacturar.Name = "btnFacturar";
+            this.btnFacturar.Size = new System.Drawing.Size(353, 38);
+            this.btnFacturar.TabIndex = 9;
+            this.btnFacturar.Text = "Emitir Factura";
+            this.btnFacturar.UseVisualStyleBackColor = true;
+            this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
+            // 
+            // btnVistaPrevia
+            // 
+            this.btnVistaPrevia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVistaPrevia.Location = new System.Drawing.Point(373, 193);
+            this.btnVistaPrevia.Name = "btnVistaPrevia";
+            this.btnVistaPrevia.Size = new System.Drawing.Size(420, 38);
+            this.btnVistaPrevia.TabIndex = 11;
+            this.btnVistaPrevia.Text = "Vista Previa de Factura";
+            this.btnVistaPrevia.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.ColumnCount = 1;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.Controls.Add(this.TxtTotal, 0, 1);
+            this.tableLayoutPanel12.Controls.Add(this.label11, 0, 0);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(799, 121);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 2;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(353, 65);
+            this.tableLayoutPanel12.TabIndex = 14;
+            // 
+            // TxtTotal
+            // 
+            this.TxtTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTotal.Location = new System.Drawing.Point(3, 35);
+            this.TxtTotal.Name = "TxtTotal";
+            this.TxtTotal.ReadOnly = true;
+            this.TxtTotal.Size = new System.Drawing.Size(347, 29);
+            this.TxtTotal.TabIndex = 6;
+            this.TxtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(3, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(347, 32);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "Total Factura";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel13
+            // 
+            this.tableLayoutPanel13.ColumnCount = 1;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel13.Controls.Add(this.TxtIVA, 0, 1);
+            this.tableLayoutPanel13.Controls.Add(this.label10, 0, 0);
+            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(373, 121);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 2;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(420, 65);
+            this.tableLayoutPanel13.TabIndex = 15;
+            // 
+            // TxtIVA
+            // 
+            this.TxtIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIVA.Location = new System.Drawing.Point(3, 35);
+            this.TxtIVA.Name = "TxtIVA";
+            this.TxtIVA.ReadOnly = true;
+            this.TxtIVA.Size = new System.Drawing.Size(414, 29);
+            this.TxtIVA.TabIndex = 5;
+            this.TxtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(3, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(414, 32);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "I.V.A. Factura";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // valorPago2
+            // 
+            this.valorPago2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.valorPago2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.valorPago2.DecimalPlaces = 2;
+            this.valorPago2.Enabled = false;
+            this.valorPago2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valorPago2.Location = new System.Drawing.Point(799, 71);
+            this.valorPago2.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.valorPago2.Name = "valorPago2";
+            this.valorPago2.Size = new System.Drawing.Size(353, 26);
+            this.valorPago2.TabIndex = 20;
+            this.valorPago2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.valorPago2.ThousandsSeparator = true;
+            // 
+            // valorPago1
+            // 
+            this.valorPago1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.valorPago1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.valorPago1.DecimalPlaces = 2;
+            this.valorPago1.Enabled = false;
+            this.valorPago1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valorPago1.Location = new System.Drawing.Point(373, 71);
+            this.valorPago1.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.valorPago1.Name = "valorPago1";
+            this.valorPago1.Size = new System.Drawing.Size(420, 26);
+            this.valorPago1.TabIndex = 19;
+            this.valorPago1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.valorPago1.ThousandsSeparator = true;
             // 
             // statusStrip1
             // 
@@ -985,230 +1209,6 @@
             this.tmrFechaHora.Interval = 1000;
             this.tmrFechaHora.Tick += new System.EventHandler(this.tmrFechaHora_Tick);
             // 
-            // FactNum
-            // 
-            this.FactNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.FactNum.AutoSize = true;
-            this.FactNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FactNum.Location = new System.Drawing.Point(910, 51);
-            this.FactNum.Name = "FactNum";
-            this.FactNum.Size = new System.Drawing.Size(133, 16);
-            this.FactNum.TabIndex = 13;
-            this.FactNum.Text = "Factura:";
-            this.FactNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblFactNueva
-            // 
-            this.lblFactNueva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFactNueva.AutoSize = true;
-            this.lblFactNueva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFactNueva.Location = new System.Drawing.Point(1049, 49);
-            this.lblFactNueva.Name = "lblFactNueva";
-            this.lblFactNueva.Size = new System.Drawing.Size(233, 20);
-            this.lblFactNueva.TabIndex = 14;
-            this.lblFactNueva.Text = "Fact:";
-            this.lblFactNueva.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel12
-            // 
-            this.tableLayoutPanel12.ColumnCount = 1;
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel12.Controls.Add(this.TxtTotal, 0, 1);
-            this.tableLayoutPanel12.Controls.Add(this.label11, 0, 0);
-            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(800, 121);
-            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
-            this.tableLayoutPanel12.RowCount = 2;
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(353, 65);
-            this.tableLayoutPanel12.TabIndex = 14;
-            // 
-            // tableLayoutPanel13
-            // 
-            this.tableLayoutPanel13.ColumnCount = 1;
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.Controls.Add(this.TxtIVA, 0, 1);
-            this.tableLayoutPanel13.Controls.Add(this.label10, 0, 0);
-            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(373, 121);
-            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
-            this.tableLayoutPanel13.RowCount = 2;
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(421, 65);
-            this.tableLayoutPanel13.TabIndex = 15;
-            // 
-            // valorPago1
-            // 
-            this.valorPago1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.valorPago1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.valorPago1.DecimalPlaces = 2;
-            this.valorPago1.Enabled = false;
-            this.valorPago1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valorPago1.Location = new System.Drawing.Point(373, 71);
-            this.valorPago1.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.valorPago1.Name = "valorPago1";
-            this.valorPago1.Size = new System.Drawing.Size(421, 26);
-            this.valorPago1.TabIndex = 19;
-            this.valorPago1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.valorPago1.ThousandsSeparator = true;
-            // 
-            // valorPago2
-            // 
-            this.valorPago2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.valorPago2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.valorPago2.DecimalPlaces = 2;
-            this.valorPago2.Enabled = false;
-            this.valorPago2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valorPago2.Location = new System.Drawing.Point(800, 71);
-            this.valorPago2.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.valorPago2.Name = "valorPago2";
-            this.valorPago2.Size = new System.Drawing.Size(353, 26);
-            this.valorPago2.TabIndex = 20;
-            this.valorPago2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.valorPago2.ThousandsSeparator = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.rbSinpeMovil1);
-            this.groupBox1.Controls.Add(this.rbEfectivo1);
-            this.groupBox1.Controls.Add(this.rbCheque1);
-            this.groupBox1.Controls.Add(this.rbSinpe1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(373, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(421, 44);
-            this.groupBox1.TabIndex = 21;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Selecciona Método de Pago";
-            // 
-            // rbSinpeMovil1
-            // 
-            this.rbSinpeMovil1.AutoSize = true;
-            this.rbSinpeMovil1.Location = new System.Drawing.Point(213, 21);
-            this.rbSinpeMovil1.Name = "rbSinpeMovil1";
-            this.rbSinpeMovil1.Size = new System.Drawing.Size(80, 17);
-            this.rbSinpeMovil1.TabIndex = 2;
-            this.rbSinpeMovil1.TabStop = true;
-            this.rbSinpeMovil1.Text = "Sinpe Móvil";
-            this.rbSinpeMovil1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbSinpeMovil1.UseVisualStyleBackColor = true;
-            this.rbSinpeMovil1.CheckedChanged += new System.EventHandler(this.rbSinpeMovil1_CheckedChanged);
-            // 
-            // rbEfectivo1
-            // 
-            this.rbEfectivo1.AutoSize = true;
-            this.rbEfectivo1.Location = new System.Drawing.Point(18, 21);
-            this.rbEfectivo1.Name = "rbEfectivo1";
-            this.rbEfectivo1.Size = new System.Drawing.Size(64, 17);
-            this.rbEfectivo1.TabIndex = 0;
-            this.rbEfectivo1.TabStop = true;
-            this.rbEfectivo1.Text = "Efectivo";
-            this.rbEfectivo1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbEfectivo1.UseVisualStyleBackColor = true;
-            this.rbEfectivo1.CheckedChanged += new System.EventHandler(this.rbEfectivo1_CheckedChanged);
-            // 
-            // rbCheque1
-            // 
-            this.rbCheque1.AutoSize = true;
-            this.rbCheque1.Location = new System.Drawing.Point(322, 21);
-            this.rbCheque1.Name = "rbCheque1";
-            this.rbCheque1.Size = new System.Drawing.Size(62, 17);
-            this.rbCheque1.TabIndex = 3;
-            this.rbCheque1.TabStop = true;
-            this.rbCheque1.Text = "Cheque";
-            this.rbCheque1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbCheque1.UseVisualStyleBackColor = true;
-            this.rbCheque1.CheckedChanged += new System.EventHandler(this.rbCheque1_CheckedChanged);
-            // 
-            // rbSinpe1
-            // 
-            this.rbSinpe1.AutoSize = true;
-            this.rbSinpe1.Location = new System.Drawing.Point(104, 21);
-            this.rbSinpe1.Name = "rbSinpe1";
-            this.rbSinpe1.Size = new System.Drawing.Size(85, 17);
-            this.rbSinpe1.TabIndex = 1;
-            this.rbSinpe1.TabStop = true;
-            this.rbSinpe1.Text = "Trans. Sinpe";
-            this.rbSinpe1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbSinpe1.UseVisualStyleBackColor = true;
-            this.rbSinpe1.CheckedChanged += new System.EventHandler(this.rbSinpe1_CheckedChanged);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.rbCheque2);
-            this.groupBox2.Controls.Add(this.rbEfectivo2);
-            this.groupBox2.Controls.Add(this.rbSinpe2);
-            this.groupBox2.Controls.Add(this.rbSinpeMovil2);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(800, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(353, 44);
-            this.groupBox2.TabIndex = 22;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Selecciona Método de Pago";
-            // 
-            // rbCheque2
-            // 
-            this.rbCheque2.AutoSize = true;
-            this.rbCheque2.Location = new System.Drawing.Point(275, 21);
-            this.rbCheque2.Name = "rbCheque2";
-            this.rbCheque2.Size = new System.Drawing.Size(62, 17);
-            this.rbCheque2.TabIndex = 3;
-            this.rbCheque2.TabStop = true;
-            this.rbCheque2.Text = "Cheque";
-            this.rbCheque2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbCheque2.UseVisualStyleBackColor = true;
-            this.rbCheque2.CheckedChanged += new System.EventHandler(this.rbCheque2_CheckedChanged);
-            // 
-            // rbEfectivo2
-            // 
-            this.rbEfectivo2.AutoSize = true;
-            this.rbEfectivo2.Location = new System.Drawing.Point(6, 21);
-            this.rbEfectivo2.Name = "rbEfectivo2";
-            this.rbEfectivo2.Size = new System.Drawing.Size(64, 17);
-            this.rbEfectivo2.TabIndex = 0;
-            this.rbEfectivo2.TabStop = true;
-            this.rbEfectivo2.Text = "Efectivo";
-            this.rbEfectivo2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbEfectivo2.UseVisualStyleBackColor = true;
-            this.rbEfectivo2.CheckedChanged += new System.EventHandler(this.rbEfectivo2_CheckedChanged);
-            // 
-            // rbSinpe2
-            // 
-            this.rbSinpe2.AutoSize = true;
-            this.rbSinpe2.Location = new System.Drawing.Point(76, 21);
-            this.rbSinpe2.Name = "rbSinpe2";
-            this.rbSinpe2.Size = new System.Drawing.Size(85, 17);
-            this.rbSinpe2.TabIndex = 1;
-            this.rbSinpe2.TabStop = true;
-            this.rbSinpe2.Text = "Trans. Sinpe";
-            this.rbSinpe2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbSinpe2.UseVisualStyleBackColor = true;
-            this.rbSinpe2.CheckedChanged += new System.EventHandler(this.rbSinpe2_CheckedChanged);
-            // 
-            // rbSinpeMovil2
-            // 
-            this.rbSinpeMovil2.AutoSize = true;
-            this.rbSinpeMovil2.Location = new System.Drawing.Point(178, 21);
-            this.rbSinpeMovil2.Name = "rbSinpeMovil2";
-            this.rbSinpeMovil2.Size = new System.Drawing.Size(80, 17);
-            this.rbSinpeMovil2.TabIndex = 2;
-            this.rbSinpeMovil2.TabStop = true;
-            this.rbSinpeMovil2.Text = "Sinpe Móvil";
-            this.rbSinpeMovil2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbSinpeMovil2.UseVisualStyleBackColor = true;
-            this.rbSinpeMovil2.CheckedChanged += new System.EventHandler(this.rbSinpeMovil2_CheckedChanged);
-            // 
             // FrmBillAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1251,31 +1251,31 @@
             this.panel6.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureExit)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
-            this.tableLayoutPanel10.ResumeLayout(false);
-            this.tableLayoutPanel10.PerformLayout();
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel9.PerformLayout();
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.tableLayoutPanel12.PerformLayout();
+            this.tableLayoutPanel13.ResumeLayout(false);
+            this.tableLayoutPanel13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.valorPago2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.valorPago1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel11.PerformLayout();
-            this.tableLayoutPanel12.ResumeLayout(false);
-            this.tableLayoutPanel12.PerformLayout();
-            this.tableLayoutPanel13.ResumeLayout(false);
-            this.tableLayoutPanel13.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.valorPago1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.valorPago2)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }

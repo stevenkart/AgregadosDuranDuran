@@ -38,6 +38,9 @@ namespace Agregados.Forms
         {
             tmrFechaHora.Enabled = true;
             lblUsuarioLogueado.Text = $"( {Globals.MyGlobalUser.NombreUsuario} )" + $" {Globals.MyGlobalUser.NombreEmpleado} ";
+
+            Globals.MifrmCashierOpen = new Cashiers.FrmCashierOpen();
+            Globals.MifrmCashierOpen.Show();
         }
 
         private void notificacionesToolStripMenuItem_Click(object sender, EventArgs e)

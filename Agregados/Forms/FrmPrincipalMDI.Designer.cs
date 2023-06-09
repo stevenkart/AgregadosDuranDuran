@@ -46,6 +46,7 @@
             this.notificacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.procesosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.facturaciónComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeFacturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +61,8 @@
             this.lblUsuarioLogueado = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFechaHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
-            this.facturaciónComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abrirCajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarCajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -87,6 +89,8 @@
             // archivoToolStripMenuItem
             // 
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.abrirCajaToolStripMenuItem,
+            this.cerrarCajaToolStripMenuItem,
             this.salirToolStripMenuItem,
             this.salirToolStripMenuItem1});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
@@ -96,14 +100,14 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salirToolStripMenuItem.Text = "Cerrar Sesión";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem1
             // 
             this.salirToolStripMenuItem1.Name = "salirToolStripMenuItem1";
-            this.salirToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
+            this.salirToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.salirToolStripMenuItem1.Text = "Salir";
             this.salirToolStripMenuItem1.Click += new System.EventHandler(this.salirToolStripMenuItem1_Click);
             // 
@@ -195,6 +199,13 @@
             this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.facturaciónToolStripMenuItem.Text = "Facturación Ventas";
             this.facturaciónToolStripMenuItem.Click += new System.EventHandler(this.facturaciónToolStripMenuItem_Click);
+            // 
+            // facturaciónComprasToolStripMenuItem
+            // 
+            this.facturaciónComprasToolStripMenuItem.Name = "facturaciónComprasToolStripMenuItem";
+            this.facturaciónComprasToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.facturaciónComprasToolStripMenuItem.Text = "Facturación Compras";
+            this.facturaciónComprasToolStripMenuItem.Click += new System.EventHandler(this.facturaciónComprasToolStripMenuItem_Click);
             // 
             // reportesToolStripMenuItem
             // 
@@ -312,12 +323,17 @@
             // 
             this.tmrFechaHora.Tick += new System.EventHandler(this.tmrFechaHora_Tick);
             // 
-            // facturaciónComprasToolStripMenuItem
+            // abrirCajaToolStripMenuItem
             // 
-            this.facturaciónComprasToolStripMenuItem.Name = "facturaciónComprasToolStripMenuItem";
-            this.facturaciónComprasToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.facturaciónComprasToolStripMenuItem.Text = "Facturación Compras";
-            this.facturaciónComprasToolStripMenuItem.Click += new System.EventHandler(this.facturaciónComprasToolStripMenuItem_Click);
+            this.abrirCajaToolStripMenuItem.Name = "abrirCajaToolStripMenuItem";
+            this.abrirCajaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.abrirCajaToolStripMenuItem.Text = "Abrir Caja";
+            // 
+            // cerrarCajaToolStripMenuItem
+            // 
+            this.cerrarCajaToolStripMenuItem.Name = "cerrarCajaToolStripMenuItem";
+            this.cerrarCajaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cerrarCajaToolStripMenuItem.Text = "Cerrar Caja";
             // 
             // FrmPrincipalMDI
             // 
@@ -381,5 +397,7 @@
         private System.Windows.Forms.Timer tmrFechaHora;
         private System.Windows.Forms.ToolStripMenuItem reporteDeFacturasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem facturaciónComprasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem abrirCajaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cerrarCajaToolStripMenuItem;
     }
 }

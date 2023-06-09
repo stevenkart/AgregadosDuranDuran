@@ -414,7 +414,7 @@ namespace Agregados.Forms.Bills
            string hora = DateTime.Now.ToLongTimeString();
 
            lblFechaHora.Text = fecha + " / " + hora;
-       }
+        }
 
         //Agrega item a la lista
         private void mnuAgregarItem_Click(object sender, EventArgs e)

@@ -22,7 +22,7 @@ namespace Agregados
     
         public int IdCierreApert { get; set; }
         public System.DateTime Fecha { get; set; }
-        public System.TimeSpan Hora { get; set; }
+        public string Hora { get; set; }
         public string Detalles { get; set; }
         public decimal MontoEfectivoInicio { get; set; }
         public decimal MontoEfectivoFinal { get; set; }
@@ -35,7 +35,7 @@ namespace Agregados
         public int Accion { get; set; }
         public int IdUsuario { get; set; }
         public Nullable<System.DateTime> FechaSalida { get; set; }
-        public Nullable<System.TimeSpan> HoraSalida { get; set; }
+        public string HoraSalida { get; set; }
         public decimal MontoEfectivoUsuarioInicio { get; set; }
         public decimal MontoEfectivoUsuarioFin { get; set; }
         public decimal MontoCompraTransf { get; set; }

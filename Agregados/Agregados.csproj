@@ -123,6 +123,12 @@
     <Compile Include="Forms\Bills\FrmBillProviderAdd.Designer.cs">
       <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Cashiers\FrmCashierOpen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Cashiers\FrmCashierOpen.Designer.cs">
+      <DependentUpon>FrmCashierOpen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Customers\FrmCustomerSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,6 +280,9 @@
     <EmbeddedResource Include="Forms\Bills\FrmBillProviderAdd.resx">
       <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Cashiers\FrmCashierOpen.resx">
+      <DependentUpon>FrmCashierOpen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customers\FrmCustomerSearch.resx">
       <DependentUpon>FrmCustomerSearch.cs</DependentUpon>
     </EmbeddedResource>
@@ -384,6 +393,8 @@
     <Content Include="Images\agregados.ico" />
     <Content Include="Images\agregadosIcon.ico" />
     <Content Include="Images\eye.ico" />
+    <Content Include="Images\IconsApertCaja\exit.png" />
+    <Content Include="Images\IconsApertCaja\guardarDatos.png" />
     <Content Include="Images\IconsFacts\lupa.png" />
     <Content Include="Images\IconsFacts\salida.png" />
     <Content Include="Images\IconsMenuMant\add.png" />
