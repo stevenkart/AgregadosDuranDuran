@@ -26,8 +26,10 @@
           <Property Name="MontoCheque" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoCompraCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Faltante" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Sobrante" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FaltanteInicio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SobranteInicio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FaltanteFin" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SobranteFin" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Accion" Type="int" Nullable="false" />
           <Property Name="IdUsuario" Type="int" Nullable="false" />
         </EntityType>
@@ -474,7 +476,7 @@
           </Key>
           <Property Name="IdCierreApert" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Hora" Nullable="false" Type="String" />
+          <Property Name="Hora" Nullable="false" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="Detalles" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="MontoEfectivoInicio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoEfectivoFinal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
@@ -482,19 +484,21 @@
           <Property Name="MontoSinpe" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoCheque" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoCredito" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Faltante" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Sobrante" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Accion" Type="Int32" Nullable="false" />
           <Property Name="IdUsuario" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FKCierreAper920025" FromRole="CierreApertCajas" ToRole="Usuarios" />
           <NavigationProperty Name="Facturas" Relationship="AgregadosModel.FKFacturas448726" FromRole="CierreApertCajas" ToRole="Facturas" />
           <Property Name="FechaSalida" Type="DateTime" Precision="0" />
-          <Property Name="HoraSalida" Type="String" />
+          <Property Name="HoraSalida" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="MontoEfectivoUsuarioInicio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="MontoEfectivoUsuarioFin" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="MontoCompraTransf" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="MontoCompraSinpe" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="MontoCompraCredito" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="FaltanteInicio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SobranteInicio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="FaltanteFin" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SobranteFin" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Clientes">
           <Key>
@@ -990,6 +994,10 @@
           <EntitySetMapping Name="CierreApertCajas">
             <EntityTypeMapping TypeName="AgregadosModel.CierreApertCajas">
               <MappingFragment StoreEntitySet="CierreApertCajas">
+                <ScalarProperty Name="SobranteFin" ColumnName="SobranteFin" />
+                <ScalarProperty Name="FaltanteFin" ColumnName="FaltanteFin" />
+                <ScalarProperty Name="SobranteInicio" ColumnName="SobranteInicio" />
+                <ScalarProperty Name="FaltanteInicio" ColumnName="FaltanteInicio" />
                 <ScalarProperty Name="MontoCompraCredito" ColumnName="MontoCompraCredito" />
                 <ScalarProperty Name="MontoCompraSinpe" ColumnName="MontoCompraSinpe" />
                 <ScalarProperty Name="MontoCompraTransf" ColumnName="MontoCompraTransf" />
@@ -1007,8 +1015,6 @@
                 <ScalarProperty Name="MontoSinpe" ColumnName="MontoSinpe" />
                 <ScalarProperty Name="MontoCheque" ColumnName="MontoCheque" />
                 <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
-                <ScalarProperty Name="Faltante" ColumnName="Faltante" />
-                <ScalarProperty Name="Sobrante" ColumnName="Sobrante" />
                 <ScalarProperty Name="Accion" ColumnName="Accion" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
               </MappingFragment>

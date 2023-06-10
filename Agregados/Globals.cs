@@ -40,6 +40,8 @@ namespace Agregados
 
         public static Forms.Cashiers.FrmCashierOpen MifrmCashierOpen = new Forms.Cashiers.FrmCashierOpen();
 
+        public static Forms.Cashiers.FrmCashierClose MifrmCashierClose = new Forms.Cashiers.FrmCashierClose();
+
         public static Forms.Reports.FrmFactsReports MifrmFactsReports = new Forms.Reports.FrmFactsReports();
     }
 }

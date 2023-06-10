@@ -30,8 +30,6 @@ namespace Agregados
         public decimal MontoSinpe { get; set; }
         public decimal MontoCheque { get; set; }
         public decimal MontoCredito { get; set; }
-        public decimal Faltante { get; set; }
-        public decimal Sobrante { get; set; }
         public int Accion { get; set; }
         public int IdUsuario { get; set; }
         public Nullable<System.DateTime> FechaSalida { get; set; }
@@ -41,6 +39,10 @@ namespace Agregados
         public decimal MontoCompraTransf { get; set; }
         public decimal MontoCompraSinpe { get; set; }
         public decimal MontoCompraCredito { get; set; }
+        public decimal FaltanteInicio { get; set; }
+        public decimal SobranteInicio { get; set; }
+        public decimal FaltanteFin { get; set; }
+        public decimal SobranteFin { get; set; }
     
         public virtual Usuarios Usuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

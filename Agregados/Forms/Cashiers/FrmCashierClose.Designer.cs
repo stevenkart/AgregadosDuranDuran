@@ -1,6 +1,6 @@
 ﻿namespace Agregados.Forms.Cashiers
 {
-    partial class FrmCashierOpen
+    partial class FrmCashierClose
     {
         /// <summary>
         /// Required designer variable.
@@ -40,11 +40,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtUser = new System.Windows.Forms.TextBox();
             this.NumMontInicial = new System.Windows.Forms.NumericUpDown();
-            this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtDetalle = new System.Windows.Forms.TextBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -60,7 +60,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(614, 40);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
@@ -85,7 +85,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(598, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Apertura de Caja";
+            this.label1.Text = "Cierre de Caja";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
@@ -97,9 +97,9 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
             this.groupBox1.Size = new System.Drawing.Size(614, 187);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos Apertura";
+            this.groupBox1.Text = "Datos Cierre";
             // 
             // tableLayoutPanel2
             // 
@@ -156,7 +156,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(296, 16);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Monto Efectivo Inicial";
+            this.label4.Text = "Monto Efectivo Final";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label5
@@ -200,44 +200,6 @@
             this.NumMontInicial.TabIndex = 6;
             this.NumMontInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tmrFechaHora
-            // 
-            this.tmrFechaHora.Interval = 1000;
-            this.tmrFechaHora.Tick += new System.EventHandler(this.tmrFechaHora_Tick);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.Color.MistyRose;
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Image = global::Agregados.Properties.Resources.exit1;
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(346, 335);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(110, 33);
-            this.btnCancelar.TabIndex = 3;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Image = global::Agregados.Properties.Resources.guardarDatos;
-            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAceptar.Location = new System.Drawing.Point(484, 335);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(110, 33);
-            this.btnAceptar.TabIndex = 2;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAceptar.UseVisualStyleBackColor = false;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtDetalle);
@@ -246,7 +208,7 @@
             this.groupBox2.Location = new System.Drawing.Point(0, 227);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(614, 102);
-            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalle";
             // 
@@ -261,24 +223,58 @@
             this.txtDetalle.Size = new System.Drawing.Size(608, 81);
             this.txtDetalle.TabIndex = 0;
             // 
-            // FrmCashierOpen
+            // btnCancelar
             // 
-            this.AcceptButton = this.btnAceptar;
+            this.btnCancelar.BackColor = System.Drawing.Color.MistyRose;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Image = global::Agregados.Properties.Resources.exit1;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(354, 335);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(110, 33);
+            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.Image = global::Agregados.Properties.Resources.guardarDatos;
+            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAceptar.Location = new System.Drawing.Point(492, 335);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(110, 33);
+            this.btnAceptar.TabIndex = 6;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAceptar.UseVisualStyleBackColor = false;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // tmrFechaHora
+            // 
+            this.tmrFechaHora.Tick += new System.EventHandler(this.tmrFechaHora_Tick);
+            // 
+            // FrmCashierClose
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(614, 380);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "FrmCashierOpen";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Apertura de Caja";
-            this.Load += new System.EventHandler(this.FrmCashierOpen_Load);
+            this.Name = "FrmCashierClose";
+            this.Text = "Cierre de Caja";
+            this.Load += new System.EventHandler(this.FrmCashierClose_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -298,17 +294,17 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Timer tmrFechaHora;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TextBox txtFecha;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtUser;
-        private System.Windows.Forms.TextBox txtFecha;
         private System.Windows.Forms.NumericUpDown NumMontInicial;
-        private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtDetalle;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Timer tmrFechaHora;
     }
 }

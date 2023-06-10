@@ -123,6 +123,12 @@
     <Compile Include="Forms\Bills\FrmBillProviderAdd.Designer.cs">
       <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Cashiers\FrmCashierClose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Cashiers\FrmCashierClose.Designer.cs">
+      <DependentUpon>FrmCashierClose.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Cashiers\FrmCashierOpen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmBillProviderAdd.resx">
       <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Cashiers\FrmCashierClose.resx">
+      <DependentUpon>FrmCashierClose.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Cashiers\FrmCashierOpen.resx">
       <DependentUpon>FrmCashierOpen.cs</DependentUpon>

@@ -103,10 +103,20 @@ namespace Agregados.Forms.Cashiers
         {
             if (BuscarCierreAnterior() != null)
             {
+                //si es diferente nulo, busca y continuar la apertura aqui, si encuentra un cierre anterior
+                //procede a validar si existe una apertura de caja
                 if (BuscarAperturaActual() != null)
                 {
-                    MessageBox.Show("Ya hay una caja abierta, no es posible tener otra caja abierta simultaneamente.",
+                    if (apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario) // si hay apertura y es el mismo usuario
+                    {
+                        MessageBox.Show("Ya haz realizado la apertura de caja, no es posible tener otra caja abierta simultaneamente.",
+                       "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ya hay una caja abierta por otro usuario, no es posible tener otra caja abierta simultaneamente.",
                         "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }  
                 }
                 else
                 {
@@ -115,11 +125,62 @@ namespace Agregados.Forms.Cashiers
 
                     if (Faltante != 0 || Sobrante != 0)
                     {
-                        MessageBox.Show("Posee diferencia de efectivo en caja, por favor valide." + Environment.NewLine +
-                            $"Faltante: {Faltante} ." + Environment.NewLine +
-                            $"Sobrante: {Sobrante} ."
-                            , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DialogResult pregunta = MessageBox.Show("Posee diferencia de efectivo en caja, por favor valide." + Environment.NewLine +
+                            $"Faltante: ¢ {Faltante} ." + Environment.NewLine +
+                            $"Sobrante: ¢ {Sobrante} ." + Environment.NewLine +
+                            "¿Deseas continuar y abrir caja con la diferencia?"
+                            , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
 
+                        if (pregunta == DialogResult.Yes)
+                        {
+                            using (FrmLoading frmLoading = new FrmLoading(Wait))
+                            {
+                                try
+                                {
+                                    cierreApertCajas = new CierreApertCajas
+                                    {
+                                        Fecha = Convert.ToDateTime(Fechap),
+                                        Hora = Horap,
+                                        Detalles = txtDetalle.Text.Trim(),
+                                        MontoEfectivoInicio = cierre.MontoEfectivoUsuarioFin,
+                                        MontoEfectivoUsuarioInicio = NumMontInicial.Value,
+                                        MontoEfectivoFinal = NumMontInicial.Value,
+                                        MontoEfectivoUsuarioFin = 0,
+                                        MontoTransf = 0,
+                                        MontoCompraTransf = 0,
+                                        MontoSinpe = 0,
+                                        MontoCompraSinpe = 0,
+                                        MontoCheque = 0,
+                                        MontoCredito = 0,
+                                        MontoCompraCredito = 0,
+                                        FaltanteInicio = Faltante,
+                                        SobranteInicio = Sobrante,
+                                        FaltanteFin = 0,
+                                        SobranteFin = 0,
+                                        Accion = Accionp,
+                                        IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                    };
+                                    DB.CierreApertCajas.Add(cierreApertCajas);
+
+                                    if (DB.SaveChanges() > 0)
+                                    {
+                                        MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        //this.Hide();
+                                        this.DialogResult = DialogResult.OK;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        //this.Hide();
+                                    }
+                                }
+                                catch (Exception)
+                                {
+
+                                    throw;
+                                }
+                            }
+                        }
                     }
                     else
                     {
@@ -134,7 +195,7 @@ namespace Agregados.Forms.Cashiers
                                     Detalles = txtDetalle.Text.Trim(),
                                     MontoEfectivoInicio = cierre.MontoEfectivoUsuarioFin,
                                     MontoEfectivoUsuarioInicio = NumMontInicial.Value,
-                                    MontoEfectivoFinal = 0,
+                                    MontoEfectivoFinal = NumMontInicial.Value,
                                     MontoEfectivoUsuarioFin = 0,
                                     MontoTransf = 0,
                                     MontoCompraTransf = 0,
@@ -143,8 +204,10 @@ namespace Agregados.Forms.Cashiers
                                     MontoCheque = 0,
                                     MontoCredito = 0,
                                     MontoCompraCredito = 0,
-                                    Faltante = (cierre.MontoEfectivoUsuarioFin > NumMontInicial.Value) ? (cierre.MontoEfectivoUsuarioFin - NumMontInicial.Value) : 0,
-                                    Sobrante = (cierre.MontoEfectivoUsuarioFin < NumMontInicial.Value) ? (NumMontInicial.Value - cierre.MontoEfectivoUsuarioFin) : 0,
+                                    FaltanteInicio = Faltante,
+                                    SobranteInicio = Sobrante,
+                                    FaltanteFin = 0,
+                                    SobranteFin = 0,
                                     Accion = Accionp,
                                     IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                 };
@@ -153,12 +216,13 @@ namespace Agregados.Forms.Cashiers
                                 if (DB.SaveChanges() > 0)
                                 {
                                     MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    this.Hide();
+                                    //this.Hide();
+                                    this.DialogResult = DialogResult.OK;
                                 }
                                 else
                                 {
                                     MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    this.Hide();
+                                    //this.Hide();
                                 }
                             }
                             catch (Exception)
@@ -172,55 +236,66 @@ namespace Agregados.Forms.Cashiers
             }
             else
             {
-                if (BuscarAperturaActual() != null)
+                //si es nulo, busca y continuar la apertura aqui, sino encuentra un cierre anterior
+                decimal Faltante = (0 > NumMontInicial.Value) ? (0 - NumMontInicial.Value) : 0;
+                decimal Sobrante = (0 < NumMontInicial.Value) ? (NumMontInicial.Value - 0) : 0;
+
+                if (Faltante != 0 || Sobrante != 0)
                 {
-                    MessageBox.Show("Ya hay una caja abierta, no es posible tener otra caja abierta simultaneamente.",
-                        "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    using (FrmLoading frmLoading = new FrmLoading(Wait))
+                    DialogResult pregunta = MessageBox.Show("Posee diferencia de efectivo en caja, por favor valide." + Environment.NewLine +
+                        $"Faltante: ¢ {Faltante} ." + Environment.NewLine +
+                        $"Sobrante: ¢ {Sobrante} ." + Environment.NewLine +
+                        "¿Deseas continuar y abrir caja con la diferencia?"
+                        , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+
+                    if (pregunta == DialogResult.Yes)
                     {
-                        try
+                        using (FrmLoading frmLoading = new FrmLoading(Wait))
                         {
-                            cierreApertCajas = new CierreApertCajas
+                            try
                             {
-                                Fecha = Convert.ToDateTime(Fechap),
-                                Hora = Horap,
-                                Detalles = txtDetalle.Text.Trim(),
-                                MontoEfectivoInicio = 0,
-                                MontoEfectivoUsuarioInicio = NumMontInicial.Value,
-                                MontoEfectivoFinal = 0,
-                                MontoEfectivoUsuarioFin = 0,
-                                MontoTransf = 0,
-                                MontoCompraTransf = 0,
-                                MontoSinpe = 0,
-                                MontoCompraSinpe = 0,
-                                MontoCheque = 0,
-                                MontoCredito = 0,
-                                MontoCompraCredito = 0,
-                                Faltante = 0,
-                                Sobrante = NumMontInicial.Value,
-                                Accion = Accionp,
-                                IdUsuario = Globals.MyGlobalUser.IdUsuario,
-                            };
-                            DB.CierreApertCajas.Add(cierreApertCajas);
+                                cierreApertCajas = new CierreApertCajas
+                                {
+                                    Fecha = Convert.ToDateTime(Fechap),
+                                    Hora = Horap,
+                                    Detalles = txtDetalle.Text.Trim(),
+                                    MontoEfectivoInicio = 0,
+                                    MontoEfectivoUsuarioInicio = NumMontInicial.Value,
+                                    MontoEfectivoFinal = NumMontInicial.Value,
+                                    MontoEfectivoUsuarioFin = 0,
+                                    MontoTransf = 0,
+                                    MontoCompraTransf = 0,
+                                    MontoSinpe = 0,
+                                    MontoCompraSinpe = 0,
+                                    MontoCheque = 0,
+                                    MontoCredito = 0,
+                                    MontoCompraCredito = 0,
+                                    FaltanteInicio = Faltante,
+                                    SobranteInicio = Sobrante,
+                                    FaltanteFin = 0,
+                                    SobranteFin = 0,
+                                    Accion = Accionp,
+                                    IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                };
+                                DB.CierreApertCajas.Add(cierreApertCajas);
 
-                            if (DB.SaveChanges() > 0)
-                            {
-                                MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                this.Hide();
+                                if (DB.SaveChanges() > 0)
+                                {
+                                    MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //this.Hide();
+                                    this.DialogResult = DialogResult.OK;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //this.Hide();
+                                }
                             }
-                            else
+                            catch (Exception)
                             {
-                                MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                this.Hide();
-                            }
-                        }
-                        catch (Exception)
-                        {
 
-                            throw;
+                                throw;
+                            }
                         }
                     }
                 }
@@ -229,7 +304,8 @@ namespace Agregados.Forms.Cashiers
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
+            this.DialogResult = DialogResult.Cancel;
         }
 
         private void tmrFechaHora_Tick(object sender, EventArgs e)
