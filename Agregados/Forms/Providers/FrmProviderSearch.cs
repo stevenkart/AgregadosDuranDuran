@@ -180,7 +180,7 @@ namespace Agregados.Forms.Providers
 
         private void FrmProviderSearch_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            //this.DialogResult = DialogResult.Cancel;
         }
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
@@ -207,6 +207,7 @@ namespace Agregados.Forms.Providers
                     */
 
                     this.DialogResult = DialogResult.OK;
+                    this.Hide();
 
                 }
             }

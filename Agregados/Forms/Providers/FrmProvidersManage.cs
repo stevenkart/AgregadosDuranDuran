@@ -42,7 +42,7 @@ namespace Agregados.Forms.Providers
         //cuando se abra el form
         private void FrmProvidersManage_Load(object sender, EventArgs e)
         {
-            CargarEstadosClientes();
+            CargarEstadosProveedores();
             CargarTipos();
 
             // linq para validar y disenar mejor la DataGridView al usuario // empezando la informacion con Estado ACTIVO y lo unico que se necesita obtener
@@ -109,10 +109,10 @@ namespace Agregados.Forms.Providers
 
 
         //carga Cbox Estados
-        private void CargarEstadosClientes()
+        private void CargarEstadosProveedores()
         {
 
-            //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
+            //Metodo que permite llamar y obtener los datos filtrados de los proiveedores y mostrarlos en el comboBox
             var dt = DB.Estados.Where(x => x.IdEstado == 1 || x.IdEstado == 2).ToList();
 
             CboxStates.ValueMember = "IdEstado";

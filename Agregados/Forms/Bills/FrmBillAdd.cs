@@ -26,6 +26,10 @@ namespace Agregados.Forms.Bills
         Facturas factura;
         Materiales materiales;
         DetalleFacts detalleFact;
+        CierreApertCajas cierreApertCajas;
+        CierreApertCajas apertura; // valor termporal apertura
+
+
         public DataTable DtLista { get; set; }
 
         //propiedades para validar que item se seleccione y cantidad linea seleccionada
@@ -50,11 +54,14 @@ namespace Agregados.Forms.Bills
             detalleFact = new DetalleFacts();
             materiales = new Materiales();
             DtLista = new DataTable();
-            
+            cierreApertCajas = new CierreApertCajas();
+            apertura = new CierreApertCajas();
         }
 
         private void FrmBillAdd_Load(object sender, EventArgs e)
         {
+            //actualizamos a nivel de sistema la caja
+            cierreApertCajas = BuscarAperturaActual();
             tmrFechaHora.Enabled = true;
             lblUsuarioLogueado.Text = $"( {Globals.MyGlobalUser.NombreUsuario} )" + $" {Globals.MyGlobalUser.NombreEmpleado} "; 
             lblTypeFact.Visible = false;
@@ -90,6 +97,27 @@ namespace Agregados.Forms.Bills
             }
 
 
+        }
+
+        //busca la apertura para actualizar datos
+        public CierreApertCajas BuscarAperturaActual()
+        {
+            apertura = null;
+            try
+            {
+                cierreApertCajas = DB.CierreApertCajas.Where((x) => x.Accion == 1).FirstOrDefault();
+                if (cierreApertCajas != null)
+                {
+                    int id = DB.CierreApertCajas.Where((x) => x.Accion == 1).Select((x) => x.IdCierreApert).Max();
+                    apertura = DB.CierreApertCajas.Find(id);
+                }
+                cierreApertCajas = null;
+                return apertura;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         //validaciones de botones para evitar errores
@@ -543,6 +571,7 @@ namespace Agregados.Forms.Bills
             bool R = false;
 
             if (!string.IsNullOrEmpty(txtNumClient.Text.Trim()) &&
+                Convert.ToInt32(txtNumClient.Text.Trim()) > 0 &&
                 txtTransporte.Value >= 0 &&
                 !string.IsNullOrEmpty(TxtSubTotal.Text.Trim()) &&
                 !string.IsNullOrEmpty(TxtIVA.Text.Trim()) &&
@@ -557,7 +586,8 @@ namespace Agregados.Forms.Bills
             {
                 //estas validaciones deben ser puntuales para informar al usuario que falla 
 
-                if (string.IsNullOrEmpty(txtNumClient.Text.Trim()))
+                if (string.IsNullOrEmpty(txtNumClient.Text.Trim()) || 
+                    Convert.ToInt32(txtNumClient.Text.Trim()) <= 0)
                 {
                     MessageBox.Show("Cliente es requerido, favor seleccionar un cliente de la lista, presionando la lupa de busqueda de clientes.", 
                         "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -662,7 +692,8 @@ namespace Agregados.Forms.Bills
         //limpiar
         public void limpiar()
         {
-            txtNumClient = null;
+            txtNumClient.Text = 0.ToString();
+            txtClient.Text = null;
             CboxTypeBill.SelectedIndex = -1;
             CboxMetodoPago.SelectedIndex = -1;
             txtTransporte.Value = 0;
@@ -672,13 +703,16 @@ namespace Agregados.Forms.Bills
             Totalizar();
             txtReferencia.Text = null;
 
+            FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
+            frmPrincipalMDI.Show();
+            this.Hide();
         }
 
         private void btnFacturar_Click(object sender, EventArgs e)
         {
             if (ValidarCamposRequeridos())
             {
-                if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 1)
+                if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 1) //Contado
                 {
                     try
                     {
@@ -723,7 +757,7 @@ namespace Agregados.Forms.Bills
                                             IdCliente = Convert.ToInt32(txtNumClient.Text.Trim()),
                                             IdProveedor = null,
                                             IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                            IdCierreApert = 0
+                                            IdCierreApert = apertura.IdCierreApert,
                                         };
 
                                         DB.Facturas.Add(factura);
@@ -776,13 +810,24 @@ namespace Agregados.Forms.Bills
                                                     }
                                                 }
                                             }
-                                            limpiar();
-                                            MessageBox.Show("Factura agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            
+                                            apertura.MontoEfectivoFinal += Total;
+                                            DB.Entry(apertura).State = EntityState.Modified;
+                                            if (DB.SaveChanges() <= 0)
+                                            {
+                                                MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                          
+                                            MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            /*
                                             using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                             {
                                                 frm.ShowDialog();
                                             };
+                                            */
                                             factura = null;
+                                            limpiar();
 
                                         }
                                         else
@@ -824,7 +869,7 @@ namespace Agregados.Forms.Bills
                                                 IdCliente = Convert.ToInt32(txtNumClient.Text.Trim()),
                                                 IdProveedor = null,
                                                 IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                                IdCierreApert = 0
+                                                IdCierreApert = apertura.IdCierreApert,
                                             };
 
                                             DB.Facturas.Add(factura);
@@ -877,13 +922,23 @@ namespace Agregados.Forms.Bills
                                                         }
                                                     }
                                                 }
-                                                limpiar();
-                                                MessageBox.Show("Factura agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                                apertura.MontoTransf += Total;
+                                                DB.Entry(apertura).State = EntityState.Modified;
+                                                if (DB.SaveChanges() <= 0)
+                                                {
+                                                    MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                }
+                                                MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                /*
                                                 using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                                 {
                                                     frm.ShowDialog();
                                                 };
+                                                */
                                                 factura = null;
+                                                limpiar();
 
                                             }
                                             else
@@ -925,7 +980,7 @@ namespace Agregados.Forms.Bills
                                                     IdCliente = Convert.ToInt32(txtNumClient.Text.Trim()),
                                                     IdProveedor = null,
                                                     IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                                    IdCierreApert = 0
+                                                    IdCierreApert = apertura.IdCierreApert,
                                                 };
 
                                                 DB.Facturas.Add(factura);
@@ -978,13 +1033,23 @@ namespace Agregados.Forms.Bills
                                                             }
                                                         }
                                                     }
-                                                    limpiar();
-                                                    MessageBox.Show("Factura agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    apertura.MontoSinpe += Total;
+                                                    DB.Entry(apertura).State = EntityState.Modified;
+                                                    if (DB.SaveChanges() <= 0)
+                                                    {
+                                                        MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    }
+
+                                                    MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    /*
                                                     using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                                     {
                                                         frm.ShowDialog();
                                                     };
+                                                    */
                                                     factura = null;
+                                                    limpiar();
 
                                                 }
                                                 else
@@ -1026,7 +1091,7 @@ namespace Agregados.Forms.Bills
                                                         IdCliente = Convert.ToInt32(txtNumClient.Text.Trim()),
                                                         IdProveedor = null,
                                                         IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                                        IdCierreApert = 0
+                                                        IdCierreApert = apertura.IdCierreApert,
                                                     };
 
                                                     DB.Facturas.Add(factura);
@@ -1079,13 +1144,23 @@ namespace Agregados.Forms.Bills
                                                                 }
                                                             }
                                                         }
-                                                        limpiar();
-                                                        MessageBox.Show("Factura agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                                        apertura.MontoCheque += Total;
+                                                        DB.Entry(apertura).State = EntityState.Modified;
+                                                        if (DB.SaveChanges() <= 0)
+                                                        {
+                                                            MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                        }
+                                                        MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                        /*
                                                         using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                                         {
                                                             frm.ShowDialog();
                                                         };
+                                                        */
                                                         factura = null;
+                                                        limpiar();
 
                                                     }
                                                     else
@@ -1131,7 +1206,7 @@ namespace Agregados.Forms.Bills
                                                                 IdCliente = Convert.ToInt32(txtNumClient.Text.Trim()),
                                                                 IdProveedor = null,
                                                                 IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                                                IdCierreApert = 0
+                                                                IdCierreApert = apertura.IdCierreApert,
                                                             };
 
                                                             DB.Facturas.Add(factura);
@@ -1184,13 +1259,184 @@ namespace Agregados.Forms.Bills
                                                                         }
                                                                     }
                                                                 }
-                                                                limpiar();
-                                                                MessageBox.Show("Factura agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                                //validar los campos de pafgo respectivo para actualizar la caja abierta
+
+                                                                if (rbEfectivo1.Checked && rbSinpe2.Checked)
+                                                                {
+                                                                    apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
+                                                                    apertura.MontoTransf += Convert.ToDecimal(valorPago2.Value);
+                                                                    DB.Entry(apertura).State = EntityState.Modified;
+                                                                    if (DB.SaveChanges() <= 0)
+                                                                    {
+                                                                        MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (rbEfectivo1.Checked && rbSinpeMovil2.Checked)
+                                                                    {
+                                                                        apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
+                                                                        apertura.MontoSinpe += Convert.ToDecimal(valorPago2.Value);
+                                                                        DB.Entry(apertura).State = EntityState.Modified;
+                                                                        if (DB.SaveChanges() <= 0)
+                                                                        {
+                                                                            MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (rbEfectivo1.Checked && rbCheque2.Checked)
+                                                                        {
+                                                                            apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
+                                                                            apertura.MontoCheque += Convert.ToDecimal(valorPago2.Value);
+                                                                            DB.Entry(apertura).State = EntityState.Modified;
+                                                                            if (DB.SaveChanges() <= 0)
+                                                                            {
+                                                                                MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (rbSinpe1.Checked && rbEfectivo2.Checked)
+                                                                            {
+                                                                                apertura.MontoTransf += Convert.ToDecimal(valorPago1.Value);
+                                                                                apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                DB.Entry(apertura).State = EntityState.Modified;
+                                                                                if (DB.SaveChanges() <= 0)
+                                                                                {
+                                                                                    MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                                }
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                if (rbSinpe1.Checked && rbSinpeMovil2.Checked)
+                                                                                {
+                                                                                    apertura.MontoTransf += Convert.ToDecimal(valorPago1.Value);
+                                                                                    apertura.MontoSinpe += Convert.ToDecimal(valorPago2.Value);
+                                                                                    DB.Entry(apertura).State = EntityState.Modified;
+                                                                                    if (DB.SaveChanges() <= 0)
+                                                                                    {
+                                                                                        MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                                    }
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    if (rbSinpe1.Checked && rbCheque2.Checked)
+                                                                                    {
+                                                                                        apertura.MontoTransf += Convert.ToDecimal(valorPago1.Value);
+                                                                                        apertura.MontoCheque += Convert.ToDecimal(valorPago2.Value);
+                                                                                        DB.Entry(apertura).State = EntityState.Modified;
+                                                                                        if (DB.SaveChanges() <= 0)
+                                                                                        {
+                                                                                            MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                                        }
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        if (rbSinpeMovil1.Checked && rbEfectivo2.Checked)
+                                                                                        {
+                                                                                            apertura.MontoSinpe += Convert.ToDecimal(valorPago1.Value);
+                                                                                            apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                            DB.Entry(apertura).State = EntityState.Modified;
+                                                                                            if (DB.SaveChanges() <= 0)
+                                                                                            {
+                                                                                                MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                                            }
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            if (rbSinpeMovil1.Checked && rbSinpe2.Checked)
+                                                                                            {
+                                                                                                apertura.MontoSinpe += Convert.ToDecimal(valorPago1.Value);
+                                                                                                apertura.MontoTransf += Convert.ToDecimal(valorPago2.Value);
+                                                                                                DB.Entry(apertura).State = EntityState.Modified;
+                                                                                                if (DB.SaveChanges() <= 0)
+                                                                                                {
+                                                                                                    MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                                                }
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                if (rbSinpeMovil1.Checked && rbCheque2.Checked)
+                                                                                                {
+                                                                                                    apertura.MontoSinpe += Convert.ToDecimal(valorPago1.Value);
+                                                                                                    apertura.MontoCheque += Convert.ToDecimal(valorPago2.Value);
+                                                                                                    DB.Entry(apertura).State = EntityState.Modified;
+                                                                                                    if (DB.SaveChanges() <= 0)
+                                                                                                    {
+                                                                                                        MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                                                    }
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    if (rbCheque1.Checked && rbEfectivo2.Checked)
+                                                                                                    {
+                                                                                                        apertura.MontoCheque += Convert.ToDecimal(valorPago1.Value);
+                                                                                                        apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                                        DB.Entry(apertura).State = EntityState.Modified;
+                                                                                                        if (DB.SaveChanges() <= 0)
+                                                                                                        {
+                                                                                                            MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                                                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                                                        }
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        if (rbCheque1.Checked && rbSinpe2.Checked)
+                                                                                                        {
+                                                                                                            apertura.MontoCheque += Convert.ToDecimal(valorPago1.Value);
+                                                                                                            apertura.MontoTransf += Convert.ToDecimal(valorPago2.Value);
+                                                                                                            DB.Entry(apertura).State = EntityState.Modified;
+                                                                                                            if (DB.SaveChanges() <= 0)
+                                                                                                            {
+                                                                                                                MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                                                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                                                            }
+                                                                                                        }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            if (rbCheque1.Checked && rbSinpeMovil2.Checked)
+                                                                                                            {
+                                                                                                                apertura.MontoCheque += Convert.ToDecimal(valorPago1.Value);
+                                                                                                                apertura.MontoSinpe += Convert.ToDecimal(valorPago2.Value);
+                                                                                                                DB.Entry(apertura).State = EntityState.Modified;
+                                                                                                                if (DB.SaveChanges() <= 0)
+                                                                                                                {
+                                                                                                                    MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                                                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+
+                                                            
+                                                                MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                                /*
                                                                 using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                                                 {
                                                                     frm.ShowDialog();
                                                                 };
+                                                                */
                                                                 factura = null;
+                                                                limpiar();
 
                                                             }
                                                             else
@@ -1227,7 +1473,7 @@ namespace Agregados.Forms.Bills
                 }
                 else
                 {   
-                    if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 2)
+                    if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 2) //credito
                     {
                         if (ValidarFechaLimite())
                         {
@@ -1272,7 +1518,7 @@ namespace Agregados.Forms.Bills
                                                 IdCliente = Convert.ToInt32(txtNumClient.Text.Trim()),
                                                 IdProveedor = null,
                                                 IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                                IdCierreApert = 0
+                                                IdCierreApert = apertura.IdCierreApert,
                                             };
 
                                             DB.Facturas.Add(factura);
@@ -1327,13 +1573,23 @@ namespace Agregados.Forms.Bills
                                                         }
                                                     }
                                                 }
-                                                limpiar();
-                                                MessageBox.Show("Factura agregada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                apertura.MontoCredito += Total;
+                                                DB.Entry(apertura).State = EntityState.Modified;
+                                                if (DB.SaveChanges() <= 0)
+                                                {
+                                                    MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                }
+                                            
+                                                MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                /*
                                                 using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                                 {
                                                     frm.ShowDialog();
                                                 };
+                                                */
                                                 factura = null;
+                                                limpiar();
                                             }
                                             else
                                             {

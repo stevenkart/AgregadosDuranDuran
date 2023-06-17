@@ -440,7 +440,7 @@ namespace Agregados.Forms.Materials
             }
             else
             {
-                if (accion == 1)
+                if (accion == 1)//venta de material
                 {
                     try
                     {
@@ -486,6 +486,7 @@ namespace Agregados.Forms.Materials
                                         }
                                     }
                                     this.DialogResult = DialogResult.OK;
+                                    this.Hide();
                                 }
                             }
                         }
@@ -522,6 +523,7 @@ namespace Agregados.Forms.Materials
                                     Globals.MifrmBillProviderAdd.DtListaProvedor.Rows.Add(NuevaFilaEnFacturacion);
 
                                     this.DialogResult = DialogResult.OK;
+                                    this.Hide();
                                 }
                                 else
                                 {
@@ -544,6 +546,7 @@ namespace Agregados.Forms.Materials
                                             }
                                         }
                                         this.DialogResult = DialogResult.OK;
+                                        this.Hide();
                                     }
                                 }
                             }
