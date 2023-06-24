@@ -11,7 +11,7 @@
           </Key>
           <Property Name="IdCierreApert" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
-          <Property Name="Hora" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Hora" Type="varchar" MaxLength="255" />
           <Property Name="FechaSalida" Type="date" />
           <Property Name="HoraSalida" Type="varchar" MaxLength="255" />
           <Property Name="Detalles" Type="varchar" MaxLength="1000" />
@@ -178,7 +178,7 @@
           <Property Name="MesRevision" Type="int" Nullable="false" />
           <Property Name="IdEstado" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FKCierreAper920025">
+        <Association Name="FKCierreAperUsuario">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
           <End Role="CierreApertCajas" Type="Self.CierreApertCajas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -190,7 +190,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKClientes514688">
+        <Association Name="FKClientesEstados">
           <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
           <ReferentialConstraint>
@@ -202,7 +202,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKClientes935966">
+        <Association Name="FKClientesTipoClientes">
           <End Role="TipoClientes" Type="Self.TipoClientes" Multiplicity="1" />
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
           <ReferentialConstraint>
@@ -214,7 +214,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKDetalleFac524254">
+        <Association Name="FKDetalleFacturas">
           <End Role="Facturas" Type="Self.Facturas" Multiplicity="1" />
           <End Role="DetalleFacts" Type="Self.DetalleFacts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -226,7 +226,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKDetalleFac664226">
+        <Association Name="FKDetalleMateriales">
           <End Role="Materiales" Type="Self.Materiales" Multiplicity="1" />
           <End Role="DetalleFacts" Type="Self.DetalleFacts" Multiplicity="*" />
           <ReferentialConstraint>
@@ -238,43 +238,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKFacturas133865">
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
-          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="IdCliente" />
-            </Principal>
-            <Dependent Role="Facturas">
-              <PropertyRef Name="IdCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKFacturas362625">
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
-          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuarios">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="Facturas">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKFacturas372875">
-          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
-          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados">
-              <PropertyRef Name="IdEstado" />
-            </Principal>
-            <Dependent Role="Facturas">
-              <PropertyRef Name="IdEstado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKFacturas448726">
+        <Association Name="FKFacturasCierreApert">
           <End Role="CierreApertCajas" Type="Self.CierreApertCajas" Multiplicity="1" />
           <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -286,7 +250,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKFacturas574480">
+        <Association Name="FKFacturasClientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasMetodosPagos">
           <End Role="MetodosPagos" Type="Self.MetodosPagos" Multiplicity="1" />
           <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -298,19 +286,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKFacturas849510">
-          <End Role="TiposFacturas" Type="Self.TiposFacturas" Multiplicity="1" />
-          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TiposFacturas">
-              <PropertyRef Name="IdTipo" />
-            </Principal>
-            <Dependent Role="Facturas">
-              <PropertyRef Name="IdTipo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKFacturas9536">
+        <Association Name="FKFacturasProveedores">
           <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
           <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -322,7 +298,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKMateriales845007">
+        <Association Name="FKFacturasTiposFacts">
+          <End Role="TiposFacturas" Type="Self.TiposFacturas" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposFacturas">
+              <PropertyRef Name="IdTipo" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasUsuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKMaterialesEstados">
           <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
           <End Role="Materiales" Type="Self.Materiales" Multiplicity="*" />
           <ReferentialConstraint>
@@ -334,7 +334,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKProveedore378536">
+        <Association Name="FKProveedoresEstados">
           <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
           <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
           <ReferentialConstraint>
@@ -346,7 +346,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKProveedore794830">
+        <Association Name="FKProveedoresTipoProveed">
           <End Role="TiposProveedores" Type="Self.TiposProveedores" Multiplicity="1" />
           <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
           <ReferentialConstraint>
@@ -358,7 +358,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKUsuarios144656">
+        <Association Name="FkUsuariosEstados">
           <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -370,7 +370,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKVehiculos460868">
+        <Association Name="FKVehiculosEstados">
           <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
           <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -382,6 +382,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SPFactGenerada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdFactura" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="AgregadosModelStoreContainer">
           <EntitySet Name="CierreApertCajas" EntityType="Self.CierreApertCajas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
@@ -397,71 +400,71 @@
           <EntitySet Name="TiposProveedores" EntityType="Self.TiposProveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FKCierreAper920025" Association="Self.FKCierreAper920025">
+          <AssociationSet Name="FKCierreAperUsuario" Association="Self.FKCierreAperUsuario">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
           </AssociationSet>
-          <AssociationSet Name="FKClientes514688" Association="Self.FKClientes514688">
+          <AssociationSet Name="FKClientesEstados" Association="Self.FKClientesEstados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
-          <AssociationSet Name="FKClientes935966" Association="Self.FKClientes935966">
+          <AssociationSet Name="FKClientesTipoClientes" Association="Self.FKClientesTipoClientes">
             <End Role="TipoClientes" EntitySet="TipoClientes" />
             <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
-          <AssociationSet Name="FKDetalleFac524254" Association="Self.FKDetalleFac524254">
+          <AssociationSet Name="FKDetalleFacturas" Association="Self.FKDetalleFacturas">
             <End Role="Facturas" EntitySet="Facturas" />
             <End Role="DetalleFacts" EntitySet="DetalleFacts" />
           </AssociationSet>
-          <AssociationSet Name="FKDetalleFac664226" Association="Self.FKDetalleFac664226">
+          <AssociationSet Name="FKDetalleMateriales" Association="Self.FKDetalleMateriales">
             <End Role="Materiales" EntitySet="Materiales" />
             <End Role="DetalleFacts" EntitySet="DetalleFacts" />
           </AssociationSet>
-          <AssociationSet Name="FKFacturas133865" Association="Self.FKFacturas133865">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="Facturas" EntitySet="Facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FKFacturas362625" Association="Self.FKFacturas362625">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="Facturas" EntitySet="Facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FKFacturas372875" Association="Self.FKFacturas372875">
-            <End Role="Estados" EntitySet="Estados" />
-            <End Role="Facturas" EntitySet="Facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FKFacturas448726" Association="Self.FKFacturas448726">
+          <AssociationSet Name="FKFacturasCierreApert" Association="Self.FKFacturasCierreApert">
             <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
             <End Role="Facturas" EntitySet="Facturas" />
           </AssociationSet>
-          <AssociationSet Name="FKFacturas574480" Association="Self.FKFacturas574480">
+          <AssociationSet Name="FKFacturasClientes" Association="Self.FKFacturasClientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasEstados" Association="Self.FKFacturasEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasMetodosPagos" Association="Self.FKFacturasMetodosPagos">
             <End Role="MetodosPagos" EntitySet="MetodosPagos" />
             <End Role="Facturas" EntitySet="Facturas" />
           </AssociationSet>
-          <AssociationSet Name="FKFacturas849510" Association="Self.FKFacturas849510">
+          <AssociationSet Name="FKFacturasProveedores" Association="Self.FKFacturasProveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasTiposFacts" Association="Self.FKFacturasTiposFacts">
             <End Role="TiposFacturas" EntitySet="TiposFacturas" />
             <End Role="Facturas" EntitySet="Facturas" />
           </AssociationSet>
-          <AssociationSet Name="FKFacturas9536" Association="Self.FKFacturas9536">
-            <End Role="Proveedores" EntitySet="Proveedores" />
+          <AssociationSet Name="FKFacturasUsuarios" Association="Self.FKFacturasUsuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Facturas" EntitySet="Facturas" />
           </AssociationSet>
-          <AssociationSet Name="FKMateriales845007" Association="Self.FKMateriales845007">
+          <AssociationSet Name="FKMaterialesEstados" Association="Self.FKMaterialesEstados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Materiales" EntitySet="Materiales" />
           </AssociationSet>
-          <AssociationSet Name="FKProveedore378536" Association="Self.FKProveedore378536">
+          <AssociationSet Name="FKProveedoresEstados" Association="Self.FKProveedoresEstados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Proveedores" EntitySet="Proveedores" />
           </AssociationSet>
-          <AssociationSet Name="FKProveedore794830" Association="Self.FKProveedore794830">
+          <AssociationSet Name="FKProveedoresTipoProveed" Association="Self.FKProveedoresTipoProveed">
             <End Role="TiposProveedores" EntitySet="TiposProveedores" />
             <End Role="Proveedores" EntitySet="Proveedores" />
           </AssociationSet>
-          <AssociationSet Name="FKUsuarios144656" Association="Self.FKUsuarios144656">
+          <AssociationSet Name="FkUsuariosEstados" Association="Self.FkUsuariosEstados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FKVehiculos460868" Association="Self.FKVehiculos460868">
+          <AssociationSet Name="FKVehiculosEstados" Association="Self.FKVehiculosEstados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Vehiculos" EntitySet="Vehiculos" />
           </AssociationSet>
@@ -476,7 +479,7 @@
           </Key>
           <Property Name="IdCierreApert" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Hora" Nullable="false" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Hora" Type="String" FixedLength="false" MaxLength="255" Unicode="false" />
           <Property Name="Detalles" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="MontoEfectivoInicio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoEfectivoFinal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
@@ -955,6 +958,9 @@
           <FunctionImport Name="SPFactGeneradaContadoIVA" ReturnType="Collection(AgregadosModel.SPFactGeneradaContadoIVA_Result)">
           <Parameter Name="IdFactura" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SPFactGenerada" ReturnType="Collection(AgregadosModel.SPFactGenerada_Result)">
+          <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <Association Name="FKFacturas448726">
           <End Type="AgregadosModel.CierreApertCajas" Role="CierreApertCajas" Multiplicity="1" />
@@ -984,6 +990,28 @@
           <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="Material" Nullable="false" MaxLength="255" />
           <Property Type="Int32" Name="CodigoM" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPFactGenerada_Result">
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1178,6 +1206,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPFactGenerada" FunctionName="AgregadosModel.Store.SPFactGenerada">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactGenerada_Result">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1193,7 +1247,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

@@ -264,6 +264,9 @@
     <Compile Include="SPFactGeneradaContadoIVA_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="SPFactGenerada_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="TipoClientes.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>

@@ -102,7 +102,7 @@ namespace Agregados.Forms.Users
                         CboxUserType.Enabled = false;
                         CboxStates.SelectedValue = user.IdEstado;
                         CboxStates.Enabled = false;
-                        NoActions();
+                        NoActions(); // solo actualizar estaria disponible por si cambia contrasennia o correo
                     }
                     else
                     {
@@ -237,11 +237,11 @@ namespace Agregados.Forms.Users
             imgDelete.Enabled = true;
         }
 
-        //validaciones de botones para evitar errores
+        //validaciones de botones para evitar errores al ser el usuario administrador logueado no va a poder modificar
         private void NoActions()
         {
             imgAdd.Enabled = false;
-            imgUpdate.Enabled = false;
+            imgUpdate.Enabled = true;
             imgDelete.Enabled = false;
         }
 

@@ -820,12 +820,12 @@ namespace Agregados.Forms.Bills
                                             }
                                           
                                             MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            /*
+                                            
                                             using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                             {
                                                 frm.ShowDialog();
                                             };
-                                            */
+                                            
                                             factura = null;
                                             limpiar();
 
@@ -931,12 +931,12 @@ namespace Agregados.Forms.Bills
                                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                 }
                                                 MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                /*
+                                                
                                                 using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                                 {
                                                     frm.ShowDialog();
                                                 };
-                                                */
+                                                
                                                 factura = null;
                                                 limpiar();
 
@@ -1042,12 +1042,12 @@ namespace Agregados.Forms.Bills
                                                     }
 
                                                     MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                    /*
+                                                    
                                                     using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                                     {
                                                         frm.ShowDialog();
                                                     };
-                                                    */
+                                                    
                                                     factura = null;
                                                     limpiar();
 
@@ -1153,12 +1153,12 @@ namespace Agregados.Forms.Bills
                                                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                         }
                                                         MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                        /*
+                                                        
                                                         using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                                         {
                                                             frm.ShowDialog();
                                                         };
-                                                        */
+                                                        
                                                         factura = null;
                                                         limpiar();
 
@@ -1429,12 +1429,12 @@ namespace Agregados.Forms.Bills
 
                                                             
                                                                 MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                                /*
+                                                                
                                                                 using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                                                 {
                                                                     frm.ShowDialog();
                                                                 };
-                                                                */
+                                                                
                                                                 factura = null;
                                                                 limpiar();
 
@@ -1582,12 +1582,12 @@ namespace Agregados.Forms.Bills
                                                 }
                                             
                                                 MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                /*
+                                                
                                                 using (FrmPrintFact frm = new FrmPrintFact(IdFact))
                                                 {
                                                     frm.ShowDialog();
                                                 };
-                                                */
+                                                
                                                 factura = null;
                                                 limpiar();
                                             }

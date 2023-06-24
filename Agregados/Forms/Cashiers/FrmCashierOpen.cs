@@ -184,53 +184,107 @@ namespace Agregados.Forms.Cashiers
                     }
                     else
                     {
-                        using (FrmLoading frmLoading = new FrmLoading(Wait))
+
+                        if (Faltante == 0 && Sobrante == 0 && NumMontInicial.Value == 0)
                         {
-                            try
+                            using (FrmLoading frmLoading = new FrmLoading(Wait))
                             {
-                                cierreApertCajas = new CierreApertCajas
+                                try
                                 {
-                                    Fecha = Convert.ToDateTime(Fechap),
-                                    Hora = Horap,
-                                    Detalles = txtDetalle.Text.Trim(),
-                                    MontoEfectivoInicio = cierre.MontoEfectivoUsuarioFin,
-                                    MontoEfectivoUsuarioInicio = NumMontInicial.Value,
-                                    MontoEfectivoFinal = NumMontInicial.Value,
-                                    MontoEfectivoUsuarioFin = 0,
-                                    MontoTransf = 0,
-                                    MontoCompraTransf = 0,
-                                    MontoSinpe = 0,
-                                    MontoCompraSinpe = 0,
-                                    MontoCheque = 0,
-                                    MontoCredito = 0,
-                                    MontoCompraCredito = 0,
-                                    FaltanteInicio = Faltante,
-                                    SobranteInicio = Sobrante,
-                                    FaltanteFin = 0,
-                                    SobranteFin = 0,
-                                    Accion = Accionp,
-                                    IdUsuario = Globals.MyGlobalUser.IdUsuario,
-                                };
-                                DB.CierreApertCajas.Add(cierreApertCajas);
+                                    cierreApertCajas = new CierreApertCajas
+                                    {
+                                        Fecha = Convert.ToDateTime(Fechap),
+                                        Hora = Horap,
+                                        Detalles = txtDetalle.Text.Trim(),
+                                        MontoEfectivoInicio = cierre.MontoEfectivoUsuarioFin,
+                                        MontoEfectivoUsuarioInicio = NumMontInicial.Value,
+                                        MontoEfectivoFinal = NumMontInicial.Value,
+                                        MontoEfectivoUsuarioFin = 0,
+                                        MontoTransf = 0,
+                                        MontoCompraTransf = 0,
+                                        MontoSinpe = 0,
+                                        MontoCompraSinpe = 0,
+                                        MontoCheque = 0,
+                                        MontoCredito = 0,
+                                        MontoCompraCredito = 0,
+                                        FaltanteInicio = Faltante,
+                                        SobranteInicio = Sobrante,
+                                        FaltanteFin = 0,
+                                        SobranteFin = 0,
+                                        Accion = Accionp,
+                                        IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                    };
+                                    DB.CierreApertCajas.Add(cierreApertCajas);
 
-                                if (DB.SaveChanges() > 0)
-                                {
-                                    MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    //this.Hide();
-                                    this.DialogResult = DialogResult.OK;
+                                    if (DB.SaveChanges() > 0)
+                                    {
+                                        MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        //this.Hide();
+                                        this.DialogResult = DialogResult.OK;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        //this.Hide();
+                                    }
                                 }
-                                else
+                                catch (Exception)
                                 {
-                                    MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    //this.Hide();
-                                }
-                            }
-                            catch (Exception)
-                            {
 
-                                throw;
+                                    throw;
+                                }
                             }
                         }
+                        else
+                        {
+                            using (FrmLoading frmLoading = new FrmLoading(Wait))
+                            {
+                                try
+                                {
+                                    cierreApertCajas = new CierreApertCajas
+                                    {
+                                        Fecha = Convert.ToDateTime(Fechap),
+                                        Hora = Horap,
+                                        Detalles = txtDetalle.Text.Trim(),
+                                        MontoEfectivoInicio = cierre.MontoEfectivoUsuarioFin,
+                                        MontoEfectivoUsuarioInicio = NumMontInicial.Value,
+                                        MontoEfectivoFinal = NumMontInicial.Value,
+                                        MontoEfectivoUsuarioFin = 0,
+                                        MontoTransf = 0,
+                                        MontoCompraTransf = 0,
+                                        MontoSinpe = 0,
+                                        MontoCompraSinpe = 0,
+                                        MontoCheque = 0,
+                                        MontoCredito = 0,
+                                        MontoCompraCredito = 0,
+                                        FaltanteInicio = Faltante,
+                                        SobranteInicio = Sobrante,
+                                        FaltanteFin = 0,
+                                        SobranteFin = 0,
+                                        Accion = Accionp,
+                                        IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                    };
+                                    DB.CierreApertCajas.Add(cierreApertCajas);
+
+                                    if (DB.SaveChanges() > 0)
+                                    {
+                                        MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        //this.Hide();
+                                        this.DialogResult = DialogResult.OK;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        //this.Hide();
+                                    }
+                                }
+                                catch (Exception)
+                                {
+
+                                    throw;
+                                }
+                            }
+                        }                       
                     }
                 }
             }
@@ -278,6 +332,111 @@ namespace Agregados.Forms.Cashiers
                                     IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                 };
                                 DB.CierreApertCajas.Add(cierreApertCajas);
+
+                                if (DB.SaveChanges() > 0)
+                                {
+                                    MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //this.Hide();
+                                    this.DialogResult = DialogResult.OK;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //this.Hide();
+                                }
+                            }
+                            catch (Exception)
+                            {
+
+                                throw;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (Faltante == 0 && Sobrante == 0 && NumMontInicial.Value == 0)
+                    {
+                        using (FrmLoading frmLoading = new FrmLoading(Wait))
+                        {
+                            try
+                            {
+                                cierreApertCajas = new CierreApertCajas
+                                {
+                                    Fecha = Convert.ToDateTime(Fechap),
+                                    Hora = Horap,
+                                    Detalles = txtDetalle.Text.Trim(),
+                                    MontoEfectivoInicio = 0,
+                                    MontoEfectivoUsuarioInicio = NumMontInicial.Value,
+                                    MontoEfectivoFinal = NumMontInicial.Value,
+                                    MontoEfectivoUsuarioFin = 0,
+                                    MontoTransf = 0,
+                                    MontoCompraTransf = 0,
+                                    MontoSinpe = 0,
+                                    MontoCompraSinpe = 0,
+                                    MontoCheque = 0,
+                                    MontoCredito = 0,
+                                    MontoCompraCredito = 0,
+                                    FaltanteInicio = Faltante,
+                                    SobranteInicio = Sobrante,
+                                    FaltanteFin = 0,
+                                    SobranteFin = 0,
+                                    Accion = Accionp,
+                                    IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                };
+                                DB.CierreApertCajas.Add(cierreApertCajas);
+
+
+                                if (DB.SaveChanges() > 0)
+                                {
+                                    MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    //this.Hide();
+                                    this.DialogResult = DialogResult.OK;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //this.Hide();
+                                }
+                            }
+                            catch (Exception)
+                            {
+
+                                throw;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        using (FrmLoading frmLoading = new FrmLoading(Wait))
+                        {
+                            try
+                            {
+                                cierreApertCajas = new CierreApertCajas
+                                {
+                                    Fecha = Convert.ToDateTime(Fechap),
+                                    Hora = Horap,
+                                    Detalles = txtDetalle.Text.Trim(),
+                                    MontoEfectivoInicio = 0,
+                                    MontoEfectivoUsuarioInicio = NumMontInicial.Value,
+                                    MontoEfectivoFinal = NumMontInicial.Value,
+                                    MontoEfectivoUsuarioFin = 0,
+                                    MontoTransf = 0,
+                                    MontoCompraTransf = 0,
+                                    MontoSinpe = 0,
+                                    MontoCompraSinpe = 0,
+                                    MontoCheque = 0,
+                                    MontoCredito = 0,
+                                    MontoCompraCredito = 0,
+                                    FaltanteInicio = Faltante,
+                                    SobranteInicio = Sobrante,
+                                    FaltanteFin = 0,
+                                    SobranteFin = 0,
+                                    Accion = Accionp,
+                                    IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                };
+                                DB.CierreApertCajas.Add(cierreApertCajas);
+
 
                                 if (DB.SaveChanges() > 0)
                                 {

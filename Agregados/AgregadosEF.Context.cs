@@ -50,5 +50,14 @@ namespace Agregados
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactGeneradaContadoIVA_Result>("SPFactGeneradaContadoIVA", idFacturaParameter);
         }
+    
+        public virtual ObjectResult<SPFactGenerada_Result> SPFactGenerada(Nullable<int> idFactura)
+        {
+            var idFacturaParameter = idFactura.HasValue ?
+                new ObjectParameter("IdFactura", idFactura) :
+                new ObjectParameter("IdFactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactGenerada_Result>("SPFactGenerada", idFacturaParameter);
+        }
     }
 }
