@@ -30,7 +30,7 @@
           <Property Name="SobranteInicio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="FaltanteFin" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="SobranteFin" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Accion" Type="int" Nullable="false" />
+          <Property Name="Accion" Type="tinyint" Nullable="false" />
           <Property Name="IdUsuario" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Clientes">
@@ -487,7 +487,7 @@
           <Property Name="MontoSinpe" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoCheque" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoCredito" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Accion" Type="Int32" Nullable="false" />
+          <Property Name="Accion" Type="Byte" Nullable="false" />
           <Property Name="IdUsuario" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FKCierreAper920025" FromRole="CierreApertCajas" ToRole="Usuarios" />
           <NavigationProperty Name="Facturas" Relationship="AgregadosModel.FKFacturas448726" FromRole="CierreApertCajas" ToRole="Facturas" />

@@ -327,10 +327,10 @@ namespace Agregados.Forms.Customers
         {
             if (ValidarCamposRequeridos())
             {
-                if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
+                if (string.IsNullOrEmpty(txtEmail.Text.Trim()))
                 {
                     DialogResult respuesta = MessageBox.Show("¿Deseas agregar la empresa o cliente/a " + $"{txtName.Text.Trim()} ?",
-                                       "Registro de Clientes", MessageBoxButtons.YesNo);
+                                           "Registro de Clientes", MessageBoxButtons.YesNo);
                     if (respuesta == DialogResult.Yes)
                     {
                         using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -377,7 +377,58 @@ namespace Agregados.Forms.Customers
                 }
                 else
                 {
-                    MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Clientes", MessageBoxButtons.OK);
+                    if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
+                    {
+                        DialogResult respuesta = MessageBox.Show("¿Deseas agregar la empresa o cliente/a " + $"{txtName.Text.Trim()} ?",
+                                           "Registro de Clientes", MessageBoxButtons.YesNo);
+                        if (respuesta == DialogResult.Yes)
+                        {
+                            using (FrmLoading frmLoading = new FrmLoading(Wait))
+                            {
+                                try
+                                {
+                                    cliente = new Clientes
+                                    {
+                                        Identificacion = txtIdent.Text.Trim(),
+                                        Nombre = txtName.Text.Trim(),
+                                        IdTipoCliente = Convert.ToInt32(CboxCustomerType.SelectedValue),
+                                        Telefono = txtMainPhone.Text.Trim(),
+                                        Telefono2 = txtSecondPhone.Text.Trim(),
+                                        Correo = txtEmail.Text.Trim(),
+                                        Direccion = txtAddress.Text.Trim(),
+                                        Detalles = txtDetails.Text.Trim(),
+                                        IdEstado = Convert.ToInt32(CboxStates.SelectedValue)
+                                    };
+
+                                    DB.Clientes.Add(cliente);
+
+                                    if (DB.SaveChanges() > 0)
+                                    {
+                                        CheckChange();
+                                        limpiar();
+                                        limpiarBusqueda();
+                                        MessageBox.Show("Cliente agregado correctamente!", "Registro de Clientes", MessageBoxButtons.OK);
+                                        cliente = null;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Cliente No fue agregado", "Error Registro de Clientes", MessageBoxButtons.OK);
+                                        cliente = null;
+                                    }
+
+                                }
+                                catch (Exception)
+                                {
+
+                                    throw;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Clientes", MessageBoxButtons.OK);
+                    }
                 }
             }
         }
@@ -386,7 +437,7 @@ namespace Agregados.Forms.Customers
         {
             if (ValidarCamposRequeridos())
             {
-                if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
+                if (string.IsNullOrEmpty(txtEmail.Text.Trim()))
                 {
                     DialogResult respuesta = MessageBox.Show("¿Deseas Modificar la empresa o cliente/a " + $"{txtName.Text.Trim()} ?",
                                        "Registro de Clientes", MessageBoxButtons.YesNo);
@@ -409,7 +460,7 @@ namespace Agregados.Forms.Customers
 
 
 
-                                 DB.Entry(cliente).State = EntityState.Modified;
+                                DB.Entry(cliente).State = EntityState.Modified;
 
                                 if (DB.SaveChanges() > 0)
                                 {
@@ -433,10 +484,62 @@ namespace Agregados.Forms.Customers
                             }
                         }
                     }
+
                 }
                 else
                 {
-                    MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Clientes", MessageBoxButtons.OK);
+                    if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
+                    {
+                        DialogResult respuesta = MessageBox.Show("¿Deseas Modificar la empresa o cliente/a " + $"{txtName.Text.Trim()} ?",
+                                           "Registro de Clientes", MessageBoxButtons.YesNo);
+                        if (respuesta == DialogResult.Yes)
+                        {
+                            using (FrmLoading frmLoading = new FrmLoading(Wait))
+                            {
+                                try
+                                {
+
+                                    cliente.Identificacion = txtIdent.Text.Trim();
+                                    cliente.Nombre = txtName.Text.Trim();
+                                    cliente.IdTipoCliente = Convert.ToInt32(CboxCustomerType.SelectedValue);
+                                    cliente.Telefono = txtMainPhone.Text.Trim();
+                                    cliente.Telefono2 = txtSecondPhone.Text.Trim();
+                                    cliente.Correo = txtEmail.Text.Trim();
+                                    cliente.Direccion = txtAddress.Text.Trim();
+                                    cliente.Detalles = txtDetails.Text.Trim();
+                                    cliente.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
+
+
+
+                                    DB.Entry(cliente).State = EntityState.Modified;
+
+                                    if (DB.SaveChanges() > 0)
+                                    {
+                                        CheckChange();
+                                        limpiar();
+                                        limpiarBusqueda();
+                                        MessageBox.Show("Cliente modificado correctamente!", "Registro de Clientes", MessageBoxButtons.OK);
+                                        cliente = null;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Cliente No fue modificado", "Error Registro de Clientes", MessageBoxButtons.OK);
+                                        cliente = null;
+                                    }
+
+                                }
+                                catch (Exception)
+                                {
+
+                                    throw;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Clientes", MessageBoxButtons.OK);
+                    }
                 }
             }
         }

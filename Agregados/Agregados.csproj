@@ -255,10 +255,22 @@
     <Compile Include="Reports\Facts\FactNow\FrmPrintFact.Designer.cs">
       <DependentUpon>FrmPrintFact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintTicket.Designer.cs">
+      <DependentUpon>FrmPrintTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Facts\FactNow\RptFactCreated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RptFactCreated.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\RptTicketCreated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptTicketCreated.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SPFactGeneradaContadoIVA_Result.cs">
@@ -360,9 +372,16 @@
     <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintFact.resx">
       <DependentUpon>FrmPrintFact.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintTicket.resx">
+      <DependentUpon>FrmPrintTicket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\RptFactCreated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptFactCreated.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\RptTicketCreated.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptTicketCreated.cs</LastGenOutput>
     </EmbeddedResource>
     <EntityDeploy Include="AgregadosEF.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

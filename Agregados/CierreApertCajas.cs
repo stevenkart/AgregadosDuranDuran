@@ -30,7 +30,7 @@ namespace Agregados
         public decimal MontoSinpe { get; set; }
         public decimal MontoCheque { get; set; }
         public decimal MontoCredito { get; set; }
-        public int Accion { get; set; }
+        public byte Accion { get; set; }
         public int IdUsuario { get; set; }
         public Nullable<System.DateTime> FechaSalida { get; set; }
         public string HoraSalida { get; set; }

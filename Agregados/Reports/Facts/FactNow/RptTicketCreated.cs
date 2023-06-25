@@ -16,14 +16,14 @@ namespace Agregados.Reports.Facts.FactNow {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RptFactCreated : ReportClass {
+    public class RptTicketCreated : ReportClass {
         
-        public RptFactCreated() {
+        public RptTicketCreated() {
         }
         
         public override string ResourceName {
             get {
-                return "RptFactCreated.rpt";
+                return "RptTicketCreated.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Agregados.Reports.Facts.FactNow {
         
         public override string FullResourceName {
             get {
-                return "Agregados.Reports.Facts.FactNow.RptFactCreated.rpt";
+                return "Agregados.Reports.Facts.FactNow.RptTicketCreated.rpt";
             }
             set {
                 // Do nothing
@@ -98,9 +98,9 @@ namespace Agregados.Reports.Facts.FactNow {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRptFactCreated : Component, ICachedReport {
+    public class CachedRptTicketCreated : Component, ICachedReport {
         
-        public CachedRptFactCreated() {
+        public CachedRptTicketCreated() {
         }
         
         [Browsable(false)]
@@ -137,7 +137,7 @@ namespace Agregados.Reports.Facts.FactNow {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RptFactCreated rpt = new RptFactCreated();
+            RptTicketCreated rpt = new RptTicketCreated();
             rpt.Site = this.Site;
             return rpt;
         }

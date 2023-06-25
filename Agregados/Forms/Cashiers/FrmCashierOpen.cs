@@ -23,7 +23,7 @@ namespace Agregados.Forms.Cashiers
 
         string Fechap;
         string Horap;
-        int Accionp;
+        byte Accionp;
         
         public FrmCashierOpen()
         {
