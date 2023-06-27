@@ -31,10 +31,11 @@ namespace Agregados.Reports.Facts.FactFiltered
         private void FrmPrintFactFilter_Load(object sender, EventArgs e)
         {
             RptFactFiltered rptFactFiltered = new RptFactFiltered();
-            rptFactFiltered.SetParameterValue("@FechaInicio", fechaInicio);
-            rptFactFiltered.SetParameterValue("@FechaFin", fechaFin);
+            rptFactFiltered.SetParameterValue("@fechaInicio", fechaInicio);
+            rptFactFiltered.SetParameterValue("@fechaFin", fechaFin);
 
             crystalReportViewer1.ReportSource = rptFactFiltered;
         }
+
     }
 }

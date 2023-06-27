@@ -12,17 +12,17 @@ namespace Agregados.Reports.Facts.FactNow
 {
     public partial class FrmPrintTicket : Form
     {
-        int IdFact;
+        int Consecutivo;
 
         public FrmPrintTicket(int id)
         {
             InitializeComponent();
-            IdFact = id;
+            Consecutivo = id;
         }
         private void FrmPrintTicket_Load(object sender, EventArgs e)
         {
             RptTicketCreated rptTicketCreated = new RptTicketCreated();
-            rptTicketCreated.SetParameterValue("@IdTicket", IdFact);
+            rptTicketCreated.SetParameterValue("@Consecutivo", Consecutivo);
 
             crystalReportViewer1.ReportSource = rptTicketCreated;
         }

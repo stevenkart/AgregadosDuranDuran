@@ -51,7 +51,7 @@
             this.ClientSize = new System.Drawing.Size(1151, 609);
             this.Controls.Add(this.crystalReportViewer1);
             this.Name = "FrmPrintFactFilter";
-            this.Text = "FrmPrintFactFilter";
+            this.Text = "Búsqueda de Facturas";
             this.Load += new System.EventHandler(this.FrmPrintFactFilter_Load);
             this.ResumeLayout(false);
 

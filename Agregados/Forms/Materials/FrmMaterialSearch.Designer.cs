@@ -66,7 +66,7 @@
             this.txtName.Location = new System.Drawing.Point(251, 57);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(472, 20);
-            this.txtName.TabIndex = 28;
+            this.txtName.TabIndex = 1;
             this.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
@@ -109,7 +109,7 @@
             this.dgvListaMateriales.RowHeadersVisible = false;
             this.dgvListaMateriales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaMateriales.Size = new System.Drawing.Size(772, 181);
-            this.dgvListaMateriales.TabIndex = 1;
+            this.dgvListaMateriales.TabIndex = 2;
             this.dgvListaMateriales.VirtualMode = true;
             this.dgvListaMateriales.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaMateriales_CellClick);
             // 
@@ -181,7 +181,7 @@
             this.txtBuscarId.Location = new System.Drawing.Point(251, 24);
             this.txtBuscarId.Name = "txtBuscarId";
             this.txtBuscarId.Size = new System.Drawing.Size(472, 20);
-            this.txtBuscarId.TabIndex = 25;
+            this.txtBuscarId.TabIndex = 0;
             this.txtBuscarId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBuscarId.TextChanged += new System.EventHandler(this.txtBuscarId_TextChanged);
             this.txtBuscarId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarId_KeyPress);
@@ -205,7 +205,7 @@
             this.btnSeleccionar.Location = new System.Drawing.Point(592, 463);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(193, 30);
-            this.btnSeleccionar.TabIndex = 23;
+            this.btnSeleccionar.TabIndex = 3;
             this.btnSeleccionar.Text = "Seleccionar";
             this.btnSeleccionar.UseVisualStyleBackColor = false;
             this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
@@ -220,7 +220,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(427, 463);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(150, 30);
-            this.btnCancelar.TabIndex = 22;
+            this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -263,7 +263,7 @@
             this.TxtPrecioUnitario.MaxLength = 10;
             this.TxtPrecioUnitario.Name = "TxtPrecioUnitario";
             this.TxtPrecioUnitario.Size = new System.Drawing.Size(151, 26);
-            this.TxtPrecioUnitario.TabIndex = 12;
+            this.TxtPrecioUnitario.TabIndex = 1;
             this.TxtPrecioUnitario.Text = "0";
             this.TxtPrecioUnitario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TxtPrecioUnitario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPrecioUnitario_KeyPress);
@@ -289,7 +289,7 @@
             this.TxtSubTotal.Name = "TxtSubTotal";
             this.TxtSubTotal.ReadOnly = true;
             this.TxtSubTotal.Size = new System.Drawing.Size(134, 26);
-            this.TxtSubTotal.TabIndex = 10;
+            this.TxtSubTotal.TabIndex = 2;
             this.TxtSubTotal.Text = "0";
             this.TxtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -313,7 +313,7 @@
             this.TxtTotal.Name = "TxtTotal";
             this.TxtTotal.ReadOnly = true;
             this.TxtTotal.Size = new System.Drawing.Size(134, 26);
-            this.TxtTotal.TabIndex = 8;
+            this.TxtTotal.TabIndex = 4;
             this.TxtTotal.Text = "0";
             this.TxtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -348,7 +348,7 @@
             this.TxtIVA.Name = "TxtIVA";
             this.TxtIVA.ReadOnly = true;
             this.TxtIVA.Size = new System.Drawing.Size(134, 26);
-            this.TxtIVA.TabIndex = 4;
+            this.TxtIVA.TabIndex = 3;
             this.TxtIVA.Text = "0";
             this.TxtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -368,7 +368,7 @@
             0});
             this.NudCantidad.Name = "NudCantidad";
             this.NudCantidad.Size = new System.Drawing.Size(91, 26);
-            this.NudCantidad.TabIndex = 2;
+            this.NudCantidad.TabIndex = 0;
             this.NudCantidad.Value = new decimal(new int[] {
             1,
             0,

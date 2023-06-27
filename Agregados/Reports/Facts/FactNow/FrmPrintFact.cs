@@ -14,19 +14,19 @@ namespace Agregados.Reports
 {
     public partial class FrmPrintFact : Form
     {
-        int IdFact;
+        int Consecutivo;
 
         public FrmPrintFact(int id)
         {
             InitializeComponent();
 
-            IdFact = id;
+            Consecutivo = id;
         }
 
         private void FrmPrintFact_Load(object sender, EventArgs e)
         {
             RptFactCreated rptFactCreated = new RptFactCreated();
-            rptFactCreated.SetParameterValue("@IdFactura", IdFact);
+            rptFactCreated.SetParameterValue("@Consecutivo", Consecutivo);
  
             crystalReportViewer1.ReportSource = rptFactCreated;
 

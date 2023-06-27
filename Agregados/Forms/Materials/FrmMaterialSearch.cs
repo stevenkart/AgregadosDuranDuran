@@ -347,7 +347,7 @@ namespace Agregados.Forms.Materials
             }
             else
             {
-                if (accion == 1)
+                if (accion == 2)
                 {
                     foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
                     {

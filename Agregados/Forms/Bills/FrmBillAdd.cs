@@ -821,7 +821,7 @@ namespace Agregados.Forms.Bills
                                           
                                             MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             
-                                            using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                            using (FrmPrintFact frm = new FrmPrintFact(consecutivo))
                                             {
                                                 frm.ShowDialog();
                                             };
@@ -932,7 +932,7 @@ namespace Agregados.Forms.Bills
                                                 }
                                                 MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                 
-                                                using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                                using (FrmPrintFact frm = new FrmPrintFact(consecutivo))
                                                 {
                                                     frm.ShowDialog();
                                                 };
@@ -1043,7 +1043,7 @@ namespace Agregados.Forms.Bills
 
                                                     MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                     
-                                                    using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                                    using (FrmPrintFact frm = new FrmPrintFact(consecutivo))
                                                     {
                                                         frm.ShowDialog();
                                                     };
@@ -1154,7 +1154,7 @@ namespace Agregados.Forms.Bills
                                                         }
                                                         MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                         
-                                                        using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                                        using (FrmPrintFact frm = new FrmPrintFact(consecutivo))
                                                         {
                                                             frm.ShowDialog();
                                                         };
@@ -1430,7 +1430,7 @@ namespace Agregados.Forms.Bills
                                                             
                                                                 MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                                 
-                                                                using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                                                using (FrmPrintFact frm = new FrmPrintFact(consecutivo))
                                                                 {
                                                                     frm.ShowDialog();
                                                                 };
@@ -1527,7 +1527,7 @@ namespace Agregados.Forms.Bills
                                             {
 
                                                 int IdFact = DB.Facturas.Select((x) => x.IdFactura).Max();
-
+                                            
                                                 foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
                                                 {
                                                     detalleFact = new DetalleFacts
@@ -1583,7 +1583,7 @@ namespace Agregados.Forms.Bills
                                             
                                                 MessageBox.Show("Factura generada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                 
-                                                using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                                using (FrmPrintFact frm = new FrmPrintFact(consecutivo))
                                                 {
                                                     frm.ShowDialog();
                                                 };

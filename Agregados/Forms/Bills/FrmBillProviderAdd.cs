@@ -3,7 +3,6 @@ using Agregados.Forms.Materials;
 using Agregados.Forms.Providers;
 using Agregados.Reports;
 using Agregados.Reports.Facts.FactNow;
-using Agregados.Reports.Facts.FactPreView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -741,7 +740,7 @@ namespace Agregados.Forms.Bills
                                             
                                             MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             
-                                            using (FrmPrintTicket frm = new FrmPrintTicket(IdFact))
+                                            using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                             {
                                                 frm.ShowDialog();
                                             };
@@ -854,7 +853,7 @@ namespace Agregados.Forms.Bills
                                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                 }
                                                 MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                using (FrmPrintTicket frm = new FrmPrintTicket(IdFact))
+                                                using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                                 {
                                                     frm.ShowDialog();
                                                 };
@@ -966,7 +965,7 @@ namespace Agregados.Forms.Bills
                                                     }
 
                                                     MessageBox.Show("Ticket de Compra agregada correctamente!", "Registro de Ticket Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                    using (FrmPrintTicket frm = new FrmPrintTicket(IdFact))
+                                                    using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                                     {
                                                         frm.ShowDialog();
                                                     };
@@ -1122,7 +1121,7 @@ namespace Agregados.Forms.Bills
                                                 }
                                                 limpiar();
                                                 MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura de Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                using (FrmPrintTicket frm = new FrmPrintTicket(IdFact))
+                                                using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                                 {
                                                     frm.ShowDialog();
                                                 };
