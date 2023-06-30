@@ -62,7 +62,7 @@ namespace Agregados.Forms.Reports
                          join es in DB.Estados on fa.IdEstado equals es.IdEstado
                          join cl in DB.Clientes on fa.IdCliente equals cl.IdCliente
                          join us in DB.Usuarios on fa.IdUsuario equals us.IdUsuario
-                         where (fa.IdEstado == 4 && fa.IdCliente > 0 && (fa.FechaFactura >= fechaAnterior && fa.FechaFactura <= fechaActual))
+                         where ((fa.IdEstado == 4 || fa.IdEstado == 5) && fa.IdCliente > 0 && (fa.FechaFactura >= fechaAnterior && fa.FechaFactura <= fechaActual))
                          select new
                          {
                              fa.Consecutivo,
@@ -91,7 +91,7 @@ namespace Agregados.Forms.Reports
                          join es in DB.Estados on fa.IdEstado equals es.IdEstado
                          join cl in DB.Clientes on fa.IdCliente equals cl.IdCliente
                          join us in DB.Usuarios on fa.IdUsuario equals us.IdUsuario
-                         where (fa.IdEstado == 4 && fa.IdCliente > 0 && fa.FechaFactura == fechaActual)
+                         where ((fa.IdEstado == 4 || fa.IdEstado == 5) && fa.IdCliente > 0 && fa.FechaFactura == fechaActual)
                          select new
                          {
                              fa.Consecutivo,
@@ -156,7 +156,7 @@ namespace Agregados.Forms.Reports
                              join es in DB.Estados on fa.IdEstado equals es.IdEstado
                              join cl in DB.Clientes on fa.IdCliente equals cl.IdCliente
                              join us in DB.Usuarios on fa.IdUsuario equals us.IdUsuario
-                             where (fa.IdEstado == 4 && fa.IdCliente > 0 && (fa.FechaFactura >= FechaInicial && fa.FechaFactura <= FechaFinal))
+                             where ((fa.IdEstado == 4 || fa.IdEstado == 5) && fa.IdCliente > 0 && (fa.FechaFactura >= FechaInicial && fa.FechaFactura <= FechaFinal))
                              select new
                              {
                                  fa.Consecutivo,

@@ -38,10 +38,14 @@ namespace Agregados
 
         public static Forms.Bills.FrmBillProviderAdd MifrmBillProviderAdd = new Forms.Bills.FrmBillProviderAdd();
 
+        public static Forms.Bills.FrmRevFacts MifrmRevFacts = new Forms.Bills.FrmRevFacts();
+
         public static Forms.Cashiers.FrmCashierOpen MifrmCashierOpen = new Forms.Cashiers.FrmCashierOpen();
 
         public static Forms.Cashiers.FrmCashierClose MifrmCashierClose = new Forms.Cashiers.FrmCashierClose();
 
         public static Forms.Reports.FrmFactsReports MifrmFactsReports = new Forms.Reports.FrmFactsReports();
+
+        
     }
 }

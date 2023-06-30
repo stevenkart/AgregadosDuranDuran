@@ -123,6 +123,12 @@
     <Compile Include="Forms\Bills\FrmBillProviderAdd.Designer.cs">
       <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Bills\FrmRevFacts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmRevFacts.Designer.cs">
+      <DependentUpon>FrmRevFacts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Cashiers\FrmCashierClose.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,6 +327,9 @@
     <EmbeddedResource Include="Forms\Bills\FrmBillProviderAdd.resx">
       <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmRevFacts.resx">
+      <DependentUpon>FrmRevFacts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Cashiers\FrmCashierClose.resx">
       <DependentUpon>FrmCashierClose.cs</DependentUpon>
     </EmbeddedResource>
@@ -460,7 +469,11 @@
     <Content Include="Images\eye.ico" />
     <Content Include="Images\IconsApertCaja\exit.png" />
     <Content Include="Images\IconsApertCaja\guardarDatos.png" />
+    <None Include="Images\IconsFacts\ayuda.png" />
+    <None Include="Images\IconsFacts\buscar.png" />
+    <None Include="Images\IconsFacts\borrar.png" />
     <Content Include="Images\IconsFacts\lupa.png" />
+    <None Include="Images\IconsFacts\return.png" />
     <Content Include="Images\IconsFacts\salida.png" />
     <Content Include="Images\IconsMenuMant\add.png" />
     <Content Include="Images\IconsMenuMant\addCar.png" />
@@ -476,6 +489,12 @@
     <Content Include="Images\IconsMenuMant\Materials\expedienteDelete.png" />
     <Content Include="Images\IconsMenuMant\Materials\expedienteUpdate.png" />
     <Content Include="Images\IconsMenuMant\update.png" />
+    <None Include="Images\IconsReports\pdf.png" />
+    <None Include="Images\IconsReports\excel.png" />
+    <None Include="Images\IconsReports\fact.png" />
+    <None Include="Images\IconsReports\listFacts.png" />
+    <None Include="Images\IconsReports\factura.png" />
+    <None Include="Images\IconsReports\reporte.png" />
     <Content Include="Images\MDIPrincipal.jpg" />
   </ItemGroup>
   <ItemGroup>

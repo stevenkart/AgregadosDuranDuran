@@ -82,6 +82,7 @@ namespace Agregados.Forms
                 {
                     facturaciónToolStripMenuItem.Enabled = true;
                     facturaciónComprasToolStripMenuItem.Enabled = true;
+                    reversiónDeFacturaToolStripMenuItem.Enabled = true;
                     cerrarCajaToolStripMenuItem.Enabled = true;
                     abrirCajaToolStripMenuItem.Enabled = false;
                 }
@@ -89,6 +90,7 @@ namespace Agregados.Forms
                 {
                     abrirCajaToolStripMenuItem.Enabled = false;
                     facturaciónComprasToolStripMenuItem.Enabled = false;
+                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
                     facturaciónToolStripMenuItem.Enabled = false;
                     cerrarCajaToolStripMenuItem.Enabled = false;
                 }
@@ -121,6 +123,7 @@ namespace Agregados.Forms
                     {
                         facturaciónToolStripMenuItem.Enabled = true;
                         facturaciónComprasToolStripMenuItem.Enabled = true;
+                        reversiónDeFacturaToolStripMenuItem.Enabled = true;
                         cerrarCajaToolStripMenuItem.Enabled = true;
                         abrirCajaToolStripMenuItem.Enabled = false;
                     }
@@ -128,6 +131,7 @@ namespace Agregados.Forms
                     {
                         abrirCajaToolStripMenuItem.Enabled = false;
                         facturaciónComprasToolStripMenuItem.Enabled = false;
+                        reversiónDeFacturaToolStripMenuItem.Enabled = false;
                         facturaciónToolStripMenuItem.Enabled = false;
                         cerrarCajaToolStripMenuItem.Enabled = false;
                     }
@@ -288,6 +292,11 @@ namespace Agregados.Forms
             this.Hide();
         }
 
-       
+        private void reversiónDeFacturaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmRevFacts = new Bills.FrmRevFacts();
+            Globals.MifrmRevFacts.Show();
+            this.Hide();
+        }
     }
 }
