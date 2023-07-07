@@ -16,14 +16,14 @@ namespace Agregados.Reports.Facts.FactFiltered {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RptFactsPDF : ReportClass {
+    public class RptFactFilteredDetalle : ReportClass {
         
-        public RptFactsPDF() {
+        public RptFactFilteredDetalle() {
         }
         
         public override string ResourceName {
             get {
-                return "RptFactsPDF.rpt";
+                return "RptFactFilteredDetalle.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Agregados.Reports.Facts.FactFiltered {
         
         public override string FullResourceName {
             get {
-                return "Agregados.Reports.Facts.FactFiltered.RptFactsPDF.rpt";
+                return "Agregados.Reports.Facts.FactFiltered.RptFactFilteredDetalle.rpt";
             }
             set {
                 // Do nothing
@@ -66,7 +66,7 @@ namespace Agregados.Reports.Facts.FactFiltered {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection1 {
             get {
                 return this.ReportDefinition.Sections[2];
             }
@@ -74,7 +74,7 @@ namespace Agregados.Reports.Facts.FactFiltered {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,7 +82,7 @@ namespace Agregados.Reports.Facts.FactFiltered {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
             get {
                 return this.ReportDefinition.Sections[4];
             }
@@ -90,7 +90,23 @@ namespace Agregados.Reports.Facts.FactFiltered {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_fechaInicio {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+            get {
+                return this.ReportDefinition.Sections[5];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+            get {
+                return this.ReportDefinition.Sections[6];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_FechaInicio {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,7 +114,7 @@ namespace Agregados.Reports.Facts.FactFiltered {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_fechaFin {
+        public CrystalDecisions.Shared.IParameterField Parameter_FechaFin {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -106,9 +122,9 @@ namespace Agregados.Reports.Facts.FactFiltered {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRptFactsPDF : Component, ICachedReport {
+    public class CachedRptFactFilteredDetalle : Component, ICachedReport {
         
-        public CachedRptFactsPDF() {
+        public CachedRptFactFilteredDetalle() {
         }
         
         [Browsable(false)]
@@ -145,7 +161,7 @@ namespace Agregados.Reports.Facts.FactFiltered {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RptFactsPDF rpt = new RptFactsPDF();
+            RptFactFilteredDetalle rpt = new RptFactFilteredDetalle();
             rpt.Site = this.Site;
             return rpt;
         }

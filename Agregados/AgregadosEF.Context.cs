@@ -51,13 +51,48 @@ namespace Agregados
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactGeneradaContadoIVA_Result>("SPFactGeneradaContadoIVA", idFacturaParameter);
         }
     
-        public virtual ObjectResult<SPFactGenerada_Result> SPFactGenerada(Nullable<int> idFactura)
+        public virtual ObjectResult<SPFactGenerada_Result> SPFactGenerada(Nullable<int> consecutivo)
         {
-            var idFacturaParameter = idFactura.HasValue ?
-                new ObjectParameter("IdFactura", idFactura) :
-                new ObjectParameter("IdFactura", typeof(int));
+            var consecutivoParameter = consecutivo.HasValue ?
+                new ObjectParameter("Consecutivo", consecutivo) :
+                new ObjectParameter("Consecutivo", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactGenerada_Result>("SPFactGenerada", idFacturaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactGenerada_Result>("SPFactGenerada", consecutivoParameter);
+        }
+    
+        public virtual ObjectResult<SPFactPorRangoFecha_Result> SPFactPorRangoFecha(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("fechaFin", fechaFin) :
+                new ObjectParameter("fechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPorRangoFecha_Result>("SPFactPorRangoFecha", fechaInicioParameter, fechaFinParameter);
+        }
+    
+        public virtual ObjectResult<SPTicketGenerado_Result> SPTicketGenerado(Nullable<int> consecutivo)
+        {
+            var consecutivoParameter = consecutivo.HasValue ?
+                new ObjectParameter("Consecutivo", consecutivo) :
+                new ObjectParameter("Consecutivo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPTicketGenerado_Result>("SPTicketGenerado", consecutivoParameter);
+        }
+    
+        public virtual ObjectResult<SPTicketPorRangoFecha_Result> SPTicketPorRangoFecha(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("fechaFin", fechaFin) :
+                new ObjectParameter("fechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPTicketPorRangoFecha_Result>("SPTicketPorRangoFecha", fechaInicioParameter, fechaFinParameter);
         }
     }
 }

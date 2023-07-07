@@ -1,8 +1,6 @@
-﻿using Agregados.Reports.Facts.FactNow;
-
-namespace Agregados.Reports
+﻿namespace Agregados.Reports.Facts.FactNow
 {
-    partial class FrmPrintFact
+    partial class FrmPrintFactRev
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +29,6 @@ namespace Agregados.Reports
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.RptFactCreated1 = new Agregados.Reports.Facts.FactNow.RptFactCreated();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -42,21 +39,22 @@ namespace Agregados.Reports
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = this.RptFactCreated1;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(871, 564);
+            this.crystalReportViewer1.ReportSource = "C:\\Users\\steve\\source\\repos\\Agregados\\Agregados\\Reports\\Facts\\FactNow\\RptFactRev." +
+    "rpt";
+            this.crystalReportViewer1.Size = new System.Drawing.Size(1138, 642);
             this.crystalReportViewer1.TabIndex = 0;
             // 
-            // FrmPrintFact
+            // FrmPrintFactRev
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 564);
+            this.ClientSize = new System.Drawing.Size(1138, 642);
             this.Controls.Add(this.crystalReportViewer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MinimumSize = new System.Drawing.Size(887, 603);
-            this.Name = "FrmPrintFact";
-            this.Text = "Reporte Factura";
-            this.Load += new System.EventHandler(this.FrmPrintFact_Load);
+            this.Name = "FrmPrintFactRev";
+            this.Text = "Factura Reversada";
+            this.Load += new System.EventHandler(this.FrmPrintFactRev_Load);
             this.ResumeLayout(false);
 
         }
@@ -64,6 +62,5 @@ namespace Agregados.Reports
         #endregion
 
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private RptFactCreated RptFactCreated1;
     }
 }

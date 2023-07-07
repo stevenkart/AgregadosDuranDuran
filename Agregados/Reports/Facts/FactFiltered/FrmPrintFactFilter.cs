@@ -30,7 +30,7 @@ namespace Agregados.Reports.Facts.FactFiltered
 
         private void FrmPrintFactFilter_Load(object sender, EventArgs e)
         {
-            RptFactFiltered rptFactFiltered = new RptFactFiltered();
+            RptFactFilteredDetalle rptFactFiltered = new RptFactFilteredDetalle();
             rptFactFiltered.SetParameterValue("@fechaInicio", fechaInicio);
             rptFactFiltered.SetParameterValue("@fechaFin", fechaFin);
 

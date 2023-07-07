@@ -16,14 +16,14 @@ namespace Agregados.Reports.Facts.FactFiltered {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RptFactsPDF : ReportClass {
+    public class RptFactsPendSinDetalle : ReportClass {
         
-        public RptFactsPDF() {
+        public RptFactsPendSinDetalle() {
         }
         
         public override string ResourceName {
             get {
-                return "RptFactsPDF.rpt";
+                return "RptFactsPendSinDetalle.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Agregados.Reports.Facts.FactFiltered {
         
         public override string FullResourceName {
             get {
-                return "Agregados.Reports.Facts.FactFiltered.RptFactsPDF.rpt";
+                return "Agregados.Reports.Facts.FactFiltered.RptFactsPendSinDetalle.rpt";
             }
             set {
                 // Do nothing
@@ -87,28 +87,12 @@ namespace Agregados.Reports.Facts.FactFiltered {
                 return this.ReportDefinition.Sections[4];
             }
         }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_fechaInicio {
-            get {
-                return this.DataDefinition.ParameterFields[0];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_fechaFin {
-            get {
-                return this.DataDefinition.ParameterFields[1];
-            }
-        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRptFactsPDF : Component, ICachedReport {
+    public class CachedRptFactsPendSinDetalle : Component, ICachedReport {
         
-        public CachedRptFactsPDF() {
+        public CachedRptFactsPendSinDetalle() {
         }
         
         [Browsable(false)]
@@ -145,7 +129,7 @@ namespace Agregados.Reports.Facts.FactFiltered {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RptFactsPDF rpt = new RptFactsPDF();
+            RptFactsPendSinDetalle rpt = new RptFactsPendSinDetalle();
             rpt.Site = this.Site;
             return rpt;
         }

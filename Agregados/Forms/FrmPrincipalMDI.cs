@@ -298,5 +298,12 @@ namespace Agregados.Forms
             Globals.MifrmRevFacts.Show();
             this.Hide();
         }
+
+        private void notaDeCréditoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmNotaCredito = new Bills.FrmNotaCredito();
+            Globals.MifrmNotaCredito.Show();
+            this.Hide();
+        }
     }
 }

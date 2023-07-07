@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Agregados.Reports.Facts.FactFiltered {
+namespace Agregados.Reports.Facts.FactNow {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace Agregados.Reports.Facts.FactFiltered {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RptFactsPend : ReportClass {
+    public class RptFactRev : ReportClass {
         
-        public RptFactsPend() {
+        public RptFactRev() {
         }
         
         public override string ResourceName {
             get {
-                return "RptFactsPend.rpt";
+                return "RptFactRev.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Agregados.Reports.Facts.FactFiltered {
         
         public override string FullResourceName {
             get {
-                return "Agregados.Reports.Facts.FactFiltered.RptFactsPend.rpt";
+                return "Agregados.Reports.Facts.FactNow.RptFactRev.rpt";
             }
             set {
                 // Do nothing
@@ -87,12 +87,20 @@ namespace Agregados.Reports.Facts.FactFiltered {
                 return this.ReportDefinition.Sections[4];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Consecutivo {
+            get {
+                return this.DataDefinition.ParameterFields[0];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRptFactsPend : Component, ICachedReport {
+    public class CachedRptFactRev : Component, ICachedReport {
         
-        public CachedRptFactsPend() {
+        public CachedRptFactRev() {
         }
         
         [Browsable(false)]
@@ -129,7 +137,7 @@ namespace Agregados.Reports.Facts.FactFiltered {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RptFactsPend rpt = new RptFactsPend();
+            RptFactRev rpt = new RptFactRev();
             rpt.Site = this.Site;
             return rpt;
         }

@@ -16,14 +16,14 @@ namespace Agregados.Reports.Facts.FactFiltered {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class RptFactsPDF : ReportClass {
+    public class RptFactsDataDetalle : ReportClass {
         
-        public RptFactsPDF() {
+        public RptFactsDataDetalle() {
         }
         
         public override string ResourceName {
             get {
-                return "RptFactsPDF.rpt";
+                return "RptFactsDataDetalle.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Agregados.Reports.Facts.FactFiltered {
         
         public override string FullResourceName {
             get {
-                return "Agregados.Reports.Facts.FactFiltered.RptFactsPDF.rpt";
+                return "Agregados.Reports.Facts.FactFiltered.RptFactsDataDetalle.rpt";
             }
             set {
                 // Do nothing
@@ -106,9 +106,9 @@ namespace Agregados.Reports.Facts.FactFiltered {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRptFactsPDF : Component, ICachedReport {
+    public class CachedRptFactsDataDetalle : Component, ICachedReport {
         
-        public CachedRptFactsPDF() {
+        public CachedRptFactsDataDetalle() {
         }
         
         [Browsable(false)]
@@ -145,7 +145,7 @@ namespace Agregados.Reports.Facts.FactFiltered {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            RptFactsPDF rpt = new RptFactsPDF();
+            RptFactsDataDetalle rpt = new RptFactsDataDetalle();
             rpt.Site = this.Site;
             return rpt;
         }

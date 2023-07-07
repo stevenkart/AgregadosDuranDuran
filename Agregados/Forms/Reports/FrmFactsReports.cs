@@ -1,5 +1,6 @@
 ﻿using Agregados.Reports;
 using Agregados.Reports.Facts.FactFiltered;
+using Agregados.Reports.Facts.FactNow;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using System;
@@ -19,15 +20,18 @@ namespace Agregados.Forms.Reports
     {
         //variables del form
         AgregadosEntities DB;
-
+        Facturas facturas;
         int Consecutivo;
+        int Id;
 
 
         public FrmFactsReports()
         {
             InitializeComponent();
             DB = new AgregadosEntities();
-         
+            facturas = new Facturas();
+
+
         }
 
         private void FrmFactsReports_FormClosing(object sender, FormClosingEventArgs e)
@@ -94,6 +98,7 @@ namespace Agregados.Forms.Reports
                          where ((fa.IdEstado == 4 || fa.IdEstado == 5) && fa.IdCliente > 0 && fa.FechaFactura == fechaActual)
                          select new
                          {
+                             fa.IdFactura,
                              fa.Consecutivo,
                              fa.FechaFactura,
                              fa.CostoTotal,
@@ -159,6 +164,7 @@ namespace Agregados.Forms.Reports
                              where ((fa.IdEstado == 4 || fa.IdEstado == 5) && fa.IdCliente > 0 && (fa.FechaFactura >= FechaInicial && fa.FechaFactura <= FechaFinal))
                              select new
                              {
+                                 fa.IdFactura,
                                  fa.Consecutivo,
                                  fa.FechaFactura,
                                  fa.CostoTotal,
@@ -202,6 +208,7 @@ namespace Agregados.Forms.Reports
                             where (fa.IdEstado == 3 && fa.IdCliente > 0)
                             select new
                             {
+                                fa.IdFactura,
                                 fa.Consecutivo,
                                 fa.FechaFactura,
                                 fa.CostoTotal,
@@ -292,10 +299,22 @@ namespace Agregados.Forms.Reports
 
             if (Consecutivo > 0)
             {
-                using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
+                facturas = DB.Facturas.Find(Id);
+                if (facturas.IdEstado == 5)
                 {
-                    frm.ShowDialog();
-                };
+                    using (FrmPrintFactRev frm = new FrmPrintFactRev(Consecutivo))
+                    {
+                        frm.ShowDialog();
+                    };
+                }
+                else
+                {
+                    using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
+                    {
+                        frm.ShowDialog();
+                    };
+                }
+               
             }
             else
             {
@@ -338,6 +357,13 @@ namespace Agregados.Forms.Reports
                                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                else
+                {
+                    if (RbPendientes.Checked)
+                    {
+                        //TODO REPORT PENDIENTES
+                    }
+                }
             }
         }
 
@@ -349,16 +375,17 @@ namespace Agregados.Forms.Reports
                 DataGridViewRow MiFila = dgvFilter.SelectedRows[0];
 
                 Consecutivo = Convert.ToInt32(MiFila.Cells["CConsecutivo"].Value);
+                Id = Convert.ToInt32(MiFila.Cells["CID"].Value);
 
-                if (Consecutivo > 0)
+                if (Consecutivo > 0 && Id > 0)
                 {
                     BtnVerFact.Visible = true;
                 }
-
             }
             else
             {
                 Consecutivo = 0;
+                Id = 0;
             }
         }
 
@@ -374,7 +401,7 @@ namespace Agregados.Forms.Reports
             {
                 try
                 {
-                    RptFactsData rptFactsData = new RptFactsData();
+                    RptFactsDataDetalle rptFactsData = new RptFactsDataDetalle();
                     rptFactsData.SetParameterValue("@fechaInicio", Hoy);
                     rptFactsData.SetParameterValue("@fechaFin", Hoy);
 
@@ -414,7 +441,7 @@ namespace Agregados.Forms.Reports
                     {
                         if (ValidarFechaLimite())
                         {
-                            RptFactsData rptFactsData = new RptFactsData();
+                            RptFactsDataDetalle rptFactsData = new RptFactsDataDetalle();
                             rptFactsData.SetParameterValue("@fechaInicio", FechaInicial);
                             rptFactsData.SetParameterValue("@fechaFin", FechaFinal);
 
@@ -457,7 +484,7 @@ namespace Agregados.Forms.Reports
                     {
                         try
                         {
-                            RptFactsPend rptFactsPend = new RptFactsPend();
+                            RptFactsPendDetalle rptFactsPend = new RptFactsPendDetalle();
                             rptFactsPend.Refresh();
 
                             //datos para export excel el report
@@ -504,7 +531,7 @@ namespace Agregados.Forms.Reports
             {
                 try
                 {
-                    RptFactFiltered rptFactFiltered = new RptFactFiltered();
+                    RptFactFilteredDetalle rptFactFiltered = new RptFactFilteredDetalle();
                     rptFactFiltered.SetParameterValue("@fechaInicio", Hoy);
                     rptFactFiltered.SetParameterValue("@fechaFin", Hoy);
 
@@ -544,7 +571,7 @@ namespace Agregados.Forms.Reports
                     {
                         if (ValidarFechaLimite())
                         {
-                            RptFactFiltered rptFactFiltered = new RptFactFiltered();
+                            RptFactFilteredDetalle rptFactFiltered = new RptFactFilteredDetalle();
                             rptFactFiltered.SetParameterValue("@fechaInicio", FechaInicial);
                             rptFactFiltered.SetParameterValue("@fechaFin", FechaFinal);
 

@@ -40,6 +40,8 @@ namespace Agregados
 
         public static Forms.Bills.FrmRevFacts MifrmRevFacts = new Forms.Bills.FrmRevFacts();
 
+        public static Forms.Bills.FrmNotaCredito MifrmNotaCredito = new Forms.Bills.FrmNotaCredito();
+
         public static Forms.Cashiers.FrmCashierOpen MifrmCashierOpen = new Forms.Cashiers.FrmCashierOpen();
 
         public static Forms.Cashiers.FrmCashierClose MifrmCashierClose = new Forms.Cashiers.FrmCashierClose();
