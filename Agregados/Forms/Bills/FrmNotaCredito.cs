@@ -22,7 +22,7 @@ namespace Agregados.Forms.Bills
         Facturas facturatemp; //max consecutivo
         Facturas notaCredito;
         DetalleFacts detalleFacts;
-        DetalleFacts detalleFact;
+        DetalleFacts detalleFactsP;
         Materiales materiales;
         CierreApertCajas cierreApertCajas;
         CierreApertCajas apertura;
@@ -39,7 +39,7 @@ namespace Agregados.Forms.Bills
             facturatemp = new Facturas();//max consecutivo
             notaCredito = new Facturas();
             detalleFacts = new DetalleFacts();
-            detalleFact = new DetalleFacts();
+            detalleFactsP = new DetalleFacts();
             materiales = new Materiales();
             cierreApertCajas = new CierreApertCajas();
             apertura = new CierreApertCajas();
@@ -348,6 +348,7 @@ namespace Agregados.Forms.Bills
                                                 where (de.IdFactura == Id)
                                                 select new
                                                 {
+                                                    de.IdDetalle,
                                                     de.Cantidad,
                                                     de.Precio,
                                                     de.Subtotal,
@@ -371,8 +372,9 @@ namespace Agregados.Forms.Bills
                                 {
                                     consecutivo = (result + 1);
                                 }
-                                if (factura.IdTipoPago == 1  || factura.IdTipoPago == 2 || factura.IdTipoPago == 3) // tipo de fcatura 
+                                if (factura.IdTipoPago == 1  || factura.IdTipoPago == 2 || factura.IdTipoPago == 3) // tipo de factura 
                                 {
+                                    
                                     DialogResult respuesta = MessageBox.Show("¿Deseas generar la nota de crédito de la factura de contado #" + $"{factura.Consecutivo} ?",
                                                         "Nota Crédito", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                     if (respuesta == DialogResult.Yes)
@@ -391,6 +393,9 @@ namespace Agregados.Forms.Bills
                                                 MontoPendiente = null,
                                                 FechaLimiteP = null,
                                                 ReferenciaPago = $"**Anulación, nota crédito de la factura #{factura.Consecutivo}** " + factura.ReferenciaPago,
+                                                BackHoe = factura.BackHoe,
+                                                Tierra = null,
+                                                CantTierra = null,
 
                                                 IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                 IdTipo = factura.IdTipo,
@@ -402,15 +407,17 @@ namespace Agregados.Forms.Bills
                                             };
 
                                             DB.Facturas.Add(notaCredito);
+                                            factura.IdEstado = 13;
+                                            DB.Entry(factura).State = EntityState.Modified;
 
-                                            if (DB.SaveChanges() > 0)
+
+                                            int IdFact = DB.Facturas.Where((x) => x.IdCliente == factura.IdCliente).Select((x) => x.IdFactura).Max();
+
+                                            if (listDetalles.ToList().Count > 0)
                                             {
-
-                                                int IdFact = DB.Facturas.Where((x) => x.IdCliente == factura.IdCliente).Select((x) => x.IdFactura).Max();
-
                                                 foreach (var listDetalle in listDetalles)
                                                 {
-                                                    detalleFact = new DetalleFacts
+                                                    detalleFactsP = new DetalleFacts
                                                     {
                                                         Cantidad = listDetalle.Cantidad,
                                                         Precio = listDetalle.Precio,
@@ -422,71 +429,101 @@ namespace Agregados.Forms.Bills
                                                     };
                                                     int IdMaterial = listDetalle.IdMaterial;
                                                     decimal Cant = listDetalle.Cantidad;
-                                                    DB.DetalleFacts.Add(detalleFact);
-                                                    if (DB.SaveChanges() > 0)
+                                                    DB.DetalleFacts.Add(detalleFactsP);
+
+                                                    materiales = DB.Materiales.Find(IdMaterial);
+                                                    materiales.CantidadMaterial = materiales.CantidadMaterial + Cant;
+                                                    //actualiza el estado
+                                                    if (materiales.CantidadMaterial > (materiales.Minimos + 2))
                                                     {
-                                                        materiales = DB.Materiales.Find(IdMaterial);
-                                                        materiales.CantidadMaterial = materiales.CantidadMaterial + Cant;
-                                                        //actualiza el estado
-                                                        if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                        materiales.IdEstado = 11;
+                                                    }
+                                                    else
+                                                    {
+                                                        if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
                                                         {
-                                                            materiales.IdEstado = 11;
+                                                            materiales.IdEstado = 10;
                                                         }
                                                         else
                                                         {
-                                                            if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
-                                                            {
-                                                                materiales.IdEstado = 10;
-                                                            }
-                                                            else
-                                                            {
-                                                                materiales.IdEstado = 9;
-                                                            }
-                                                        }
-                                                        DB.Entry(materiales).State = EntityState.Modified;
-
-                                                        if (DB.SaveChanges() > 0)
-                                                        {
-                                                            detalleFact = null;
+                                                            materiales.IdEstado = 9;
                                                         }
                                                     }
+                                                    DB.Entry(materiales).State = EntityState.Modified;
                                                 }
-
-                                                apertura.MontoEfectivoFinal -= Total;
-                                                DB.Entry(apertura).State = EntityState.Modified;
-                                                factura.IdEstado = 1012;
-                                                DB.Entry(factura).State = EntityState.Modified;
-                                                if (DB.SaveChanges() <= 0)
-                                                {
-                                                    MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
-                                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                    //delete fact con error
-                                                }
-
-                                                MessageBox.Show("Nota de Crédito correctamente!", "Registro de Nota de Crédito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                                using (FrmPrintFactRev frm = new FrmPrintFactRev(consecutivo))
-                                                {
-                                                    frm.ShowDialog();
-                                                };
-
-                                                factura = null;
-
-                                                limpiar();
-
                                             }
-                                            else
+                                            switch (metodo)
                                             {
-                                                MessageBox.Show("Factura no se pudo procesada.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                factura = null;
-                                            }
+                                                case 1: //efectivo
+                                                    apertura.MontoEfectivoFinal -= Total;
+                                                    DB.Entry(apertura).State = EntityState.Modified;
+                                                    if (DB.SaveChanges() <= 0)
+                                                    {
+                                                        MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    }
 
+                                                    MessageBox.Show("Nota de Crédito correctamente!", "Registro de Nota de Crédito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                                    using (FrmPrintFactRev frm = new FrmPrintFactRev(consecutivo))
+                                                    {
+                                                        frm.ShowDialog();
+                                                    };
+
+                                                    factura = null;
+
+                                                    limpiar();
+                                                    break;
+                                                case 2: //sinpe
+                                                    apertura.MontoTransf -= Total;
+                                                    DB.Entry(apertura).State = EntityState.Modified;
+                                                    if (DB.SaveChanges() <= 0)
+                                                    {
+                                                        MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    }
+
+                                                    MessageBox.Show("Nota de Crédito correctamente!", "Registro de Nota de Crédito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                                    using (FrmPrintFactRev frm = new FrmPrintFactRev(consecutivo))
+                                                    {
+                                                        frm.ShowDialog();
+                                                    };
+
+                                                    factura = null;
+
+                                                    limpiar();
+                                                    break;
+                                                case 3: //sinpe movil
+                                                    apertura.MontoSinpe -= Total;
+                                                    DB.Entry(apertura).State = EntityState.Modified;
+                                                    if (DB.SaveChanges() <= 0)
+                                                    {
+                                                        MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    }
+
+                                                    MessageBox.Show("Nota de Crédito correctamente!", "Registro de Nota de Crédito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                                    using (FrmPrintFactRev frm = new FrmPrintFactRev(consecutivo))
+                                                    {
+                                                        frm.ShowDialog();
+                                                    };
+
+                                                    factura = null;
+
+                                                    limpiar();
+                                                    break;
+                                                default:
+                                                    break;
+                                            }                                         
                                         }
-                                        catch (Exception)
+                                        catch (System.Data.Entity.Infrastructure.DbUpdateConcurrencyException ex)
                                         {
-
+                                            Console.WriteLine("Concurrency Exception Occurred.");
                                             throw;
-                                        }
+                                        }   
+                                        
                                     }
                                 }
                             }
