@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvListaMateriales = new System.Windows.Forms.DataGridView();
@@ -94,14 +94,14 @@
             this.CPrecio,
             this.CIdEstado});
             this.dgvListaMateriales.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListaMateriales.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaMateriales.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvListaMateriales.Location = new System.Drawing.Point(12, 107);
             this.dgvListaMateriales.MultiSelect = false;
             this.dgvListaMateriales.Name = "dgvListaMateriales";
@@ -354,26 +354,22 @@
             // 
             // NudCantidad
             // 
+            this.NudCantidad.DecimalPlaces = 3;
             this.NudCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NudCantidad.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             this.NudCantidad.Location = new System.Drawing.Point(24, 62);
             this.NudCantidad.Maximum = new decimal(new int[] {
             50,
             0,
             0,
             0});
-            this.NudCantidad.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.NudCantidad.Name = "NudCantidad";
             this.NudCantidad.Size = new System.Drawing.Size(91, 26);
             this.NudCantidad.TabIndex = 0;
-            this.NudCantidad.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.NudCantidad.ValueChanged += new System.EventHandler(this.NudCantidad_ValueChanged);
             // 
             // label7

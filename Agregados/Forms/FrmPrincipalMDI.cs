@@ -71,9 +71,7 @@ namespace Agregados.Forms
             this.Hide();
         }
 
-
-        //carga el fomr
-        private void FrmPrincipalMDI_Load(object sender, EventArgs e)
+        private void UserLogged() // valida las opciones de facturacion segun el usuario logueado
         {
             //identifica si hay una apertura de caja, y si pertenece al usuario logueado hbailita botones, sino no 
             if (BuscarAperturaActual() != null)
@@ -81,25 +79,63 @@ namespace Agregados.Forms
                 if (apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario)
                 {
                     facturaciónToolStripMenuItem.Enabled = true;
-                    facturaciónComprasToolStripMenuItem.Enabled = true;
+                    notaDeCréditoToolStripMenuItem.Enabled = true;
                     reversiónDeFacturaToolStripMenuItem.Enabled = true;
+
+                    facturaciónComprasToolStripMenuItem.Enabled = true;
+                    reversiónDeComprasToolStripMenuItem.Enabled = true;
+
                     cerrarCajaToolStripMenuItem.Enabled = true;
                     abrirCajaToolStripMenuItem.Enabled = false;
+
+
+                    if (Globals.MyGlobalUser.TipoUsuario == 1) // administrador
+                    {
+                        cierreCajaForzadoToolStripMenuItem.Enabled = true;
+                        cierreCajaForzadoToolStripMenuItem.Visible = true;
+                    }
+                    else
+                    {
+                        cierreCajaForzadoToolStripMenuItem.Enabled = false;
+                        cierreCajaForzadoToolStripMenuItem.Visible = false;
+                    }
                 }
                 else
                 {
-                    abrirCajaToolStripMenuItem.Enabled = false;
-                    facturaciónComprasToolStripMenuItem.Enabled = false;
-                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
                     facturaciónToolStripMenuItem.Enabled = false;
+                    notaDeCréditoToolStripMenuItem.Enabled = false;
+                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
+
+                    facturaciónComprasToolStripMenuItem.Enabled = false;
+                    reversiónDeComprasToolStripMenuItem.Enabled = false;
+
                     cerrarCajaToolStripMenuItem.Enabled = false;
+                    abrirCajaToolStripMenuItem.Enabled = false;
                 }
             }
             else
             {
+                facturaciónToolStripMenuItem.Enabled = false;
+                notaDeCréditoToolStripMenuItem.Enabled = false;
+                reversiónDeFacturaToolStripMenuItem.Enabled = false;
+
+                facturaciónComprasToolStripMenuItem.Enabled = false;
+                reversiónDeComprasToolStripMenuItem.Enabled = false;
+
+
                 abrirCajaToolStripMenuItem.Enabled = true;
+                cerrarCajaToolStripMenuItem.Enabled = false;
+                cierreCajaForzadoToolStripMenuItem.Enabled = false;
+                cierreCajaForzadoToolStripMenuItem.Visible = false;
             }
 
+        }
+
+
+        //carga el fomr
+        private void FrmPrincipalMDI_Load(object sender, EventArgs e)
+        {
+            UserLogged();
 
 
             tmrFechaHora.Enabled = true;
@@ -116,30 +152,7 @@ namespace Agregados.Forms
 
             if (resp == DialogResult.OK)
             {
-                //identifica si hay una apertura de caja se hizo correctamente, y si pertenece al usuario logueado habilita botones, sino no 
-                if (BuscarAperturaActual() != null)
-                {
-                    if (apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario)
-                    {
-                        facturaciónToolStripMenuItem.Enabled = true;
-                        facturaciónComprasToolStripMenuItem.Enabled = true;
-                        reversiónDeFacturaToolStripMenuItem.Enabled = true;
-                        cerrarCajaToolStripMenuItem.Enabled = true;
-                        abrirCajaToolStripMenuItem.Enabled = false;
-                    }
-                    else
-                    {
-                        abrirCajaToolStripMenuItem.Enabled = false;
-                        facturaciónComprasToolStripMenuItem.Enabled = false;
-                        reversiónDeFacturaToolStripMenuItem.Enabled = false;
-                        facturaciónToolStripMenuItem.Enabled = false;
-                        cerrarCajaToolStripMenuItem.Enabled = false;
-                    }
-                }
-                else
-                {
-                    abrirCajaToolStripMenuItem.Enabled = true;
-                }
+                UserLogged();
             }
 
         }
@@ -152,31 +165,7 @@ namespace Agregados.Forms
 
             if (resp == DialogResult.OK)
             {
-                //identifica si hay una apertura de caja se hizo correctamente, y si pertenece al usuario logueado habilita botones, sino no 
-                if (BuscarAperturaActual() != null)
-                {
-                    if (apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario)
-                    {
-                        facturaciónToolStripMenuItem.Enabled = true;
-                        facturaciónComprasToolStripMenuItem.Enabled = true;
-                        cerrarCajaToolStripMenuItem.Enabled = true;
-                        abrirCajaToolStripMenuItem.Enabled = false;
-                    }
-                    else
-                    {
-                        abrirCajaToolStripMenuItem.Enabled = false;
-                        facturaciónComprasToolStripMenuItem.Enabled = false;
-                        facturaciónToolStripMenuItem.Enabled = false;
-                        cerrarCajaToolStripMenuItem.Enabled = false;
-                    }
-                }
-                else
-                {
-                    abrirCajaToolStripMenuItem.Enabled = true;
-                    facturaciónComprasToolStripMenuItem.Enabled = false;
-                    facturaciónToolStripMenuItem.Enabled = false;
-                    cerrarCajaToolStripMenuItem.Enabled = false;
-                }
+                UserLogged();
             }
         }
 
@@ -303,6 +292,13 @@ namespace Agregados.Forms
         {
             Globals.MifrmNotaCredito = new Bills.FrmNotaCredito();
             Globals.MifrmNotaCredito.Show();
+            this.Hide();
+        }
+
+        private void reversiónDeComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmRevBillProvider = new Bills.FrmRevBillProvider();
+            Globals.MifrmRevBillProvider.Show();
             this.Hide();
         }
     }

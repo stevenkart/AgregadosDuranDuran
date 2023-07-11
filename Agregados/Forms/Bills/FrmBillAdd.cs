@@ -3986,10 +3986,31 @@ namespace Agregados.Forms.Bills
         {
             if (chTierra.Checked)
             {
-                chTierraNormal.Visible = true;
-                chTierraRoja.Visible = true;
-                lblTierraNormal.Visible = true;
-                lblTierraRoja.Visible = true;
+                bool R = true;
+
+                foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
+                {
+                    if (Convert.ToInt32(Row["IdMaterial"]) == 1 || Convert.ToInt32(Row["IdMaterial"]) == 2)
+                    {
+                        MessageBox.Show("Ya se selecciono Tierra Normal o Roja para la lista de venta, no se puede seleccionar trabajo de tierra, " +
+                            "eliminelo de la lista para poder seleccionar trabajo de tierra.", "Error Factura a Crédito.",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        R = false;
+                    }
+
+                }
+                if (R)
+                {
+                    chTierraNormal.Visible = true;
+                    chTierraRoja.Visible = true;
+                    lblTierraNormal.Visible = true;
+                    lblTierraRoja.Visible = true;
+                }
+                else
+                {
+                    chTierra.Checked = false;
+                }
+
             }
             else
             {
@@ -4020,18 +4041,42 @@ namespace Agregados.Forms.Bills
             {
                 if (chTierraNormal.Checked)
                 {
-                    chTierraRoja.Checked = false;
-                    chTierraRoja.Enabled = false;
-                    txtTierraTotal.Visible = true;
-                    lblTierraTotal.Visible = true;
-                    lblCantTierra.Visible = true;
-                    txtCantTierra.Visible = true;
+
+                    bool R = true;
+
+                    foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
+                    {
+                        if (Convert.ToInt32(Row["IdMaterial"]) == 1)
+                        {
+                            MessageBox.Show("Ya se selecciono Tierra Normal para la lista de venta, no se puede seleccionar trabajo de tierra, " +
+                                "eliminelo de la lista para poder seleccionar trabajo de tierra.", "Error Factura a Crédito.",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            R = false;
+                        }
+
+                    }
+                    if (R)
+                    {
+                        chTierraRoja.Checked = false;
+                        chTierraRoja.Enabled = false;
+                        txtTierraTotal.Visible = true;
+                        lblTierraTotal.Visible = true;
+                        lblCantTierra.Visible = true;
+                        txtCantTierra.Visible = true;
+                    }
+                    else
+                    {
+                        chTierra.Checked = false;
+                        chTierraNormal.Checked = false;
+                    }
                 }
             }
         }
 
         private void chTierraRoja_CheckedChanged(object sender, EventArgs e)
         {
+            
+
             if (chTierraNormal.Checked == false && chTierraRoja.Checked == false)
             {
                 chTierraNormal.Checked = false;
@@ -4047,12 +4092,35 @@ namespace Agregados.Forms.Bills
             {
                 if (chTierraRoja.Checked)
                 {
-                    chTierraNormal.Checked = false;
-                    chTierraNormal.Enabled = false;
-                    txtTierraTotal.Visible = true;
-                    lblTierraTotal.Visible = true;
-                    lblCantTierra.Visible = true;
-                    txtCantTierra.Visible = true;
+                    bool R = true;
+
+                    foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
+                    {
+                        if (Convert.ToInt32(Row["IdMaterial"]) == 2)
+                        {
+                            MessageBox.Show("Ya se selecciono Tierra Roja para la lista de venta, no se puede seleccionar trabajo de tierra, " +
+                                "eliminelo de la lista para poder seleccionar trabajo de tierra.", "Error Factura a Crédito.",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            R = false;
+                        }
+
+                    }
+                    if (R)
+                    {
+                        chTierraNormal.Checked = false;
+                        chTierraNormal.Enabled = false;
+                        txtTierraTotal.Visible = true;
+                        lblTierraTotal.Visible = true;
+                        lblCantTierra.Visible = true;
+                        txtCantTierra.Visible = true;
+                    }
+                    else
+                    {
+                        chTierra.Checked = false;
+                        chTierraRoja.Checked = false;
+                    }
+
+                    
                 }
             }
 

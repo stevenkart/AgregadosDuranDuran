@@ -129,6 +129,12 @@
     <Compile Include="Forms\Bills\FrmNotaCredito.Designer.cs">
       <DependentUpon>FrmNotaCredito.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Bills\FrmRevBillProvider.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmRevBillProvider.Designer.cs">
+      <DependentUpon>FrmRevBillProvider.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Bills\FrmRevFacts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,10 +323,22 @@
     <Compile Include="Reports\Facts\FactNow\FrmPrintTicket.Designer.cs">
       <DependentUpon>FrmPrintTicket.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintTicketRev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintTicketRev.Designer.cs">
+      <DependentUpon>FrmPrintTicketRev.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Facts\FactNow\RptFactCreated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RptFactCreated.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\RptTicketProviderRev.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptTicketProviderRev.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Facts\FactNow\RptFactRev.cs">
@@ -374,6 +392,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmNotaCredito.resx">
       <DependentUpon>FrmNotaCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmRevBillProvider.resx">
+      <DependentUpon>FrmRevBillProvider.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmRevFacts.resx">
       <DependentUpon>FrmRevFacts.cs</DependentUpon>
@@ -481,9 +502,16 @@
     <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintTicket.resx">
       <DependentUpon>FrmPrintTicket.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintTicketRev.resx">
+      <DependentUpon>FrmPrintTicketRev.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\RptFactCreated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptFactCreated.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\RptTicketProviderRev.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptTicketProviderRev.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\RptFactRev.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
