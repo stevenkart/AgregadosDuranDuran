@@ -373,12 +373,12 @@ namespace Agregados.Forms.Materials
             {             
                 //valida que si se selecciono el check de tierra es para entonces cobrar al cliente por trabajo de tierra y no venderle tierra
                 // si se quiere vender tierra deben estar si marcar el check y asi solamente seria para venderle tierra 
-                if (Globals.MifrmBillAdd.chTierraNormal.Checked && codigo == 1 || Globals.MifrmBillAdd.chTierra.Checked)
+                if (Globals.MifrmBillAdd.chTierraNormal.Checked && codigo == 1)
                 {
                     R = false;
                 }
 
-                if (Globals.MifrmBillAdd.chTierraRoja.Checked && codigo == 2 || Globals.MifrmBillAdd.chTierra.Checked)
+                if (Globals.MifrmBillAdd.chTierraRoja.Checked && codigo == 2)
                 {
                     R = false;
                 }

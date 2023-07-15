@@ -1,5 +1,4 @@
-﻿using Agregados.Reports.Facts.FactNow;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,24 +10,20 @@ using System.Windows.Forms;
 
 namespace Agregados.Reports.Facts.FactFiltered
 {
-    public partial class FrmPrintFactFilter : Form
+    public partial class FrmPrintFactFilterSinDetalle : Form
     {
 
         string fechaInicio;
         string fechaFin;
 
-
-        public FrmPrintFactFilter(string inicio, string fin)
+        public FrmPrintFactFilterSinDetalle(string inicio, string fin)
         {
             InitializeComponent();
             fechaInicio = inicio;
             fechaFin = fin;
-
-
-
         }
 
-        private void FrmPrintFactFilter_Load(object sender, EventArgs e)
+        private void FrmPrintFactFilterSinDetalle_Load(object sender, EventArgs e)
         {
             RptFactFilteredDetalle rptFactFiltered = new RptFactFilteredDetalle();
             rptFactFiltered.SetParameterValue("@fechaInicio", fechaInicio);

@@ -388,7 +388,17 @@
         <Function Name="SPFactGenerada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Consecutivo" Type="int" Mode="In" />
         </Function>
-        <Function Name="SPFactPorRangoFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="SPFactPendDetalles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPFactPendSinDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPFactPorRangoFechaDetalles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+          <Parameter Name="fechaFin" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SPFactPorRangoFechaSinDetalles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+          <Parameter Name="fechaFin" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SPFactReversadasAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fechaInicio" Type="date" Mode="In" />
           <Parameter Name="fechaFin" Type="date" Mode="In" />
         </Function>
@@ -983,9 +993,24 @@
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SPTicketGenerado" ReturnType="Collection(AgregadosModel.SPTicketGenerado_Result)">
-            <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
+          <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPTicketPorRangoFecha" ReturnType="Collection(AgregadosModel.SPTicketPorRangoFecha_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SPFactPendDetalles" ReturnType="Collection(AgregadosModel.SPFactPendDetalles_Result)" />
+          <FunctionImport Name="SPFactPendSinDetalles" ReturnType="Collection(AgregadosModel.SPFactPendSinDetalles_Result)" />
+          <FunctionImport Name="SPFactPorRangoFechaDetalles" ReturnType="Collection(AgregadosModel.SPFactPorRangoFechaDetalles_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SPFactPorRangoFechaSinDetalles" ReturnType="Collection(AgregadosModel.SPFactPorRangoFechaSinDetalles_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SPFactPendSinDetalle" ReturnType="Collection(AgregadosModel.SPFactPendSinDetalle_Result)" />
+          <FunctionImport Name="SPFactReversadasAll" ReturnType="Collection(AgregadosModel.SPFactReversadasAll_Result)">
             <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -1106,6 +1131,148 @@
           <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
           <Property Type="Int32" Name="IdMaterial" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPFactPendDetalles_Result">
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPFactPendSinDetalles_Result">
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="Decimal" Name="BackHoe1" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IVA" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="NombreMaterial" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPFactPorRangoFechaDetalles_Result">
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPFactPorRangoFechaSinDetalles_Result">
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="Decimal" Name="BackHoe1" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IVA" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="NombreMaterial" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPFactPendSinDetalle_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IVA" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="NombreMaterial" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPFactReversadasAll_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1329,32 +1496,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SPFactPorRangoFecha" FunctionName="AgregadosModel.Store.SPFactPorRangoFecha">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AgregadosModel.SPFactPorRangoFecha_Result">
-                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
-                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
-                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
-                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
-                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
-                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
-                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
-                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
-                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
-                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
-                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="Precio" ColumnName="Precio" />
-                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
-                <ScalarProperty Name="IVA" ColumnName="IVA" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
-                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPTicketGenerado" FunctionName="AgregadosModel.Store.SPTicketGenerado">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AgregadosModel.SPTicketGenerado_Result">
@@ -1386,6 +1527,144 @@
               <ComplexTypeMapping TypeName="AgregadosModel.SPTicketPorRangoFecha_Result">
                 <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
                 <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactPendDetalles" FunctionName="AgregadosModel.Store.SPFactPendDetalles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactPendDetalles_Result">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactPorRangoFechaDetalles" FunctionName="AgregadosModel.Store.SPFactPorRangoFechaDetalles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactPorRangoFechaDetalles_Result">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactPorRangoFechaSinDetalles" FunctionName="AgregadosModel.Store.SPFactPorRangoFechaSinDetalles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactPorRangoFechaSinDetalles_Result">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="BackHoe1" ColumnName="BackHoe1" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactPendSinDetalle" FunctionName="AgregadosModel.Store.SPFactPendSinDetalle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactPendSinDetalle_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactReversadasAll" FunctionName="AgregadosModel.Store.SPFactReversadasAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactReversadasAll_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
                 <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
                 <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
                 <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />

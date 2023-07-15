@@ -407,6 +407,7 @@ namespace Agregados.Forms.Bills
                                         {
                                             MessageBox.Show("Factura fue reversada correctamente!",
                                                                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            
                                             using (FrmPrintTicketRev frm = new FrmPrintTicketRev(facturas.Consecutivo))
                                             {
                                                 frm.ShowDialog();

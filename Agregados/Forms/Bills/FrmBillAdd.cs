@@ -3044,7 +3044,7 @@ namespace Agregados.Forms.Bills
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Error, trabajo Tierra seleccionado pero monto a cobrar esta en 0 o la cantidad no feu ingresada", "Error",
+                                            MessageBox.Show("Error, trabajo Tierra seleccionado pero monto a cobrar esta en 0 o la cantidad no fue ingresada", "Error",
                                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
                                     }
@@ -3986,41 +3986,100 @@ namespace Agregados.Forms.Bills
         {
             if (chTierra.Checked)
             {
-                bool R = true;
+                int tierraNormal = 0;
+                int tierraRoja = 0;
 
-                foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
+                //valida la lineas si existe tierra a vender seleccionada
+                if (Globals.MifrmBillAdd.DtLista.Rows != null)
                 {
-                    if (Convert.ToInt32(Row["IdMaterial"]) == 1 || Convert.ToInt32(Row["IdMaterial"]) == 2)
+                    foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
                     {
-                        MessageBox.Show("Ya se selecciono Tierra Normal o Roja para la lista de venta, no se puede seleccionar trabajo de tierra, " +
-                            "eliminelo de la lista para poder seleccionar trabajo de tierra.", "Error Factura a Crédito.",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        R = false;
-                    }
+                        if (Convert.ToInt32(Row["IdMaterial"]) == 1)
+                        {
+                            tierraNormal = 1;
+                        }
 
+                        if (Convert.ToInt32(Row["IdMaterial"]) == 2)
+                        {
+                            tierraRoja = 1;
+                        }
+
+
+                    }
                 }
-                if (R)
+               
+                if (tierraNormal == 0 && tierraRoja == 0)
                 {
                     chTierraNormal.Visible = true;
                     chTierraRoja.Visible = true;
                     lblTierraNormal.Visible = true;
                     lblTierraRoja.Visible = true;
+                    chTierraNormal.Enabled = true;
+                    chTierraRoja.Enabled = true;
                 }
                 else
                 {
-                    chTierra.Checked = false;
-                }
+                    if (tierraNormal > 0 && tierraRoja == 0)
+                    {
+                        chTierraNormal.Visible = true;
+                        lblTierraNormal.Visible = true;
+                        chTierraNormal.Enabled = false;
 
+                        chTierraRoja.Visible = true;
+                        lblTierraRoja.Visible = true;
+                        chTierraRoja.Enabled = true;
+
+                        MessageBox.Show("Ya se selecciono Tierra Normal para la lista de venta, no se puede seleccionar trabajo de tierra normal",
+                            "Error Factura.",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        if (tierraNormal == 0 && tierraRoja > 0)
+                        {
+                            chTierraNormal.Visible = true;
+                            lblTierraNormal.Visible = true;
+                            chTierraNormal.Enabled = true;
+
+                            chTierraRoja.Visible = true;
+                            lblTierraRoja.Visible = true;
+                            chTierraRoja.Enabled = false;
+
+                            MessageBox.Show("Ya se selecciono Tierra Normal o Roja para la lista de venta, no se puede seleccionar trabajo de tierra."
+                                , "Error Factura.",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            if (tierraNormal > 0 && tierraRoja > 0)
+                            {
+                                chTierraNormal.Visible = false;
+                                lblTierraNormal.Visible = false;
+                                chTierraNormal.Enabled = false;
+
+                                chTierraRoja.Visible = false;
+                                lblTierraRoja.Visible = false;
+                                chTierraRoja.Enabled = false;
+
+                                MessageBox.Show("Ya se selecciono Tierra Normal y Roja para la lista de venta, no se puede seleccionar trabajo de tierra, " +
+                              "eliminelo de la lista para poder seleccionar trabajo de tierra.", "Error Factura.",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                chTierra.Checked = false;
+                            }
+                        }
+                    }
+                }
             }
             else
             {
                 chTierraNormal.Visible = false;
-                chTierraRoja.Visible = false;
                 lblTierraNormal.Visible = false;
-                lblTierraRoja.Visible = false;
+                chTierraNormal.Enabled = false;
 
-                txtTierraTotal.Visible = false;
-                lblTierraTotal.Visible = false;
+                chTierraRoja.Visible = false;
+                lblTierraRoja.Visible = false;
+                chTierraRoja.Enabled = false;
             }
         }
 

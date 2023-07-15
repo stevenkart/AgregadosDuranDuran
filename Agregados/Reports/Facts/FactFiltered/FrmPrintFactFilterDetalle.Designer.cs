@@ -1,6 +1,6 @@
-﻿namespace Agregados.Reports.Facts.FactNow
+﻿namespace Agregados.Reports.Facts.FactFiltered
 {
-    partial class FrmPrintTicketRev
+    partial class FrmPrintFactFilterDetalle
     {
         /// <summary>
         /// Required designer variable.
@@ -39,23 +39,22 @@
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = "C:\\Users\\steve\\source\\repos\\Agregados\\Agregados\\Reports\\Facts\\FactNow\\RptTicketPr" +
-    "oviderRev.rpt";
-            this.crystalReportViewer1.Size = new System.Drawing.Size(1120, 616);
+            this.crystalReportViewer1.ReportSource = "C:\\Users\\steve\\source\\repos\\Agregados\\Agregados\\Reports\\Facts\\FactFiltered\\RptFac" +
+    "tFilteredDetalle.rpt";
+            this.crystalReportViewer1.Size = new System.Drawing.Size(1151, 609);
             this.crystalReportViewer1.TabIndex = 0;
             // 
-            // FrmPrintTicketRev
+            // FrmPrintFactFilterDetalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1120, 616);
+            this.ClientSize = new System.Drawing.Size(1151, 609);
             this.Controls.Add(this.crystalReportViewer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "FrmPrintTicketRev";
+            this.Name = "FrmPrintFactFilterDetalle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmPrintTicketRev";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FrmPrintTicketRev_Load);
+            this.Text = "Facturas por Fechas";
+            this.Load += new System.EventHandler(this.FrmPrintFactFilterDetalle_Load);
             this.ResumeLayout(false);
 
         }

@@ -47,10 +47,23 @@ namespace Agregados.Forms.Reports
         private void FrmFactsReports_Load(object sender, EventArgs e)
         {
             btnFiltrarHoy.Visible = false;
-            btnFiltrarFechas.Visible = false;
-            btnFiltrarCredito.Visible = false;
+            btnFiltrarHoyAnuladas.Visible = false;
+
+            btnFiltrarFechasCorrecta.Visible = false;
+            btnFiltrarFechaAnulada.Visible = false;
             DateInicio.Visible = false;
             DateFin.Visible = false;
+
+            btnFiltrarCredito.Visible = false;
+            btnCredSinLineas.Visible = false;
+
+
+            btnAnuladas.Visible = false;
+            DateInicio2.Visible = false;
+            DateFin2.Visible = false;
+
+
+
             BtnVerFact.Visible = false;
             BtnVerFacturasList.Visible = false;
             btnReportExcel.Visible = false;
@@ -59,14 +72,14 @@ namespace Agregados.Forms.Reports
 
 
             DateTime fechaActual = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
-            DateTime fechaAnterior = fechaActual.AddDays(-7); //resta 7 dias a la fecha actual
+            DateTime fechaAnterior = fechaActual.AddDays(-3); //resta 3 dias a la fecha actual
       
             // linq para validar y disenar mejor la DataGridView al usuario
             var result = from fa in DB.Facturas
                          join es in DB.Estados on fa.IdEstado equals es.IdEstado
                          join cl in DB.Clientes on fa.IdCliente equals cl.IdCliente
                          join us in DB.Usuarios on fa.IdUsuario equals us.IdUsuario
-                         where ((fa.IdEstado == 4 || fa.IdEstado == 5) && fa.IdCliente > 0 && (fa.FechaFactura >= fechaAnterior && fa.FechaFactura <= fechaActual))
+                         where ((fa.IdEstado == 4) && fa.IdCliente > 0 && (fa.FechaFactura >= fechaAnterior && fa.FechaFactura <= fechaActual))
                          select new
                          {
                              fa.Consecutivo,
@@ -95,7 +108,7 @@ namespace Agregados.Forms.Reports
                          join es in DB.Estados on fa.IdEstado equals es.IdEstado
                          join cl in DB.Clientes on fa.IdCliente equals cl.IdCliente
                          join us in DB.Usuarios on fa.IdUsuario equals us.IdUsuario
-                         where ((fa.IdEstado == 4 || fa.IdEstado == 5) && fa.IdCliente > 0 && fa.FechaFactura == fechaActual)
+                         where ((fa.IdEstado == 4) && fa.IdCliente > 0 && fa.FechaFactura == fechaActual)
                          select new
                          {
                              fa.IdFactura,
@@ -107,6 +120,8 @@ namespace Agregados.Forms.Reports
                              us.NombreEmpleado
                          };
             dgvFilter.DataSource = result.ToList();
+
+
             if (result.ToList().Count > 0)
             {
                 BtnVerFacturasList.Visible = true;
@@ -161,7 +176,7 @@ namespace Agregados.Forms.Reports
                              join es in DB.Estados on fa.IdEstado equals es.IdEstado
                              join cl in DB.Clientes on fa.IdCliente equals cl.IdCliente
                              join us in DB.Usuarios on fa.IdUsuario equals us.IdUsuario
-                             where ((fa.IdEstado == 4 || fa.IdEstado == 5) && fa.IdCliente > 0 && (fa.FechaFactura >= FechaInicial && fa.FechaFactura <= FechaFinal))
+                             where ((fa.IdEstado == 4 ) && fa.IdCliente > 0 && (fa.FechaFactura >= FechaInicial && fa.FechaFactura <= FechaFinal))
                              select new
                              {
                                  fa.IdFactura,
@@ -205,7 +220,8 @@ namespace Agregados.Forms.Reports
                             join es in DB.Estados on fa.IdEstado equals es.IdEstado
                             join cl in DB.Clientes on fa.IdCliente equals cl.IdCliente
                             join us in DB.Usuarios on fa.IdUsuario equals us.IdUsuario
-                            where (fa.IdEstado == 3 && fa.IdCliente > 0)
+                            join de in DB.DetalleFacts on fa.IdFactura equals de.IdFactura
+                         where (fa.IdEstado == 3 && fa.IdCliente > 0 && fa.IdFactura == de.IdFactura)
                             select new
                             {
                                 fa.IdFactura,
@@ -240,10 +256,17 @@ namespace Agregados.Forms.Reports
             if (RbHoy.Checked)
             {
                 btnFiltrarHoy.Visible = true;
-                btnFiltrarFechas.Visible = false;
-                btnFiltrarCredito.Visible = false;
+                btnFiltrarHoyAnuladas.Visible = true;
+
+                btnFiltrarFechasCorrecta.Visible = false;
+                btnFiltrarFechaAnulada.Visible = false;
                 DateInicio.Visible = false;
                 DateFin.Visible = false;
+
+
+                btnFiltrarCredito.Visible = false;
+                btnCredSinLineas.Visible = false;
+              
 
                 BtnVerFacturasList.Visible = false;
                 Consecutivo = 0;
@@ -261,11 +284,18 @@ namespace Agregados.Forms.Reports
             if (RbFechas.Checked)
             {
                 btnFiltrarHoy.Visible = false;
-                btnFiltrarFechas.Visible = true;
-                btnFiltrarCredito.Visible = false;
+                btnFiltrarHoyAnuladas.Visible = false;
+
+                btnFiltrarFechasCorrecta.Visible = true;
+                btnFiltrarFechaAnulada.Visible = true;
                 DateInicio.Visible = true;
                 DateFin.Visible = true;
-                
+
+
+                btnFiltrarCredito.Visible = false;
+                btnCredSinLineas.Visible = false;
+
+
                 BtnVerFacturasList.Visible = false;
                 Consecutivo = 0;
 
@@ -281,10 +311,23 @@ namespace Agregados.Forms.Reports
             if (RbPendientes.Checked)
             {
                 btnFiltrarHoy.Visible = false;
-                btnFiltrarFechas.Visible = false;
-                btnFiltrarCredito.Visible = true;
+                btnFiltrarHoyAnuladas.Visible = false;
+
+                btnFiltrarFechasCorrecta.Visible = false;
+                btnFiltrarFechaAnulada.Visible = false;
                 DateInicio.Visible = false;
                 DateFin.Visible = false;
+
+
+                btnFiltrarCredito.Visible = true;
+                btnCredSinLineas.Visible = true;
+
+                btnAnuladas.Visible = false;
+                DateInicio2.Visible = false;
+                DateFin2.Visible = false;
+
+
+                BtnVerFacturasList.Visible = false;
                 Consecutivo = 0;
 
                 btnReportExcel.Visible = false;
@@ -300,7 +343,7 @@ namespace Agregados.Forms.Reports
             if (Consecutivo > 0)
             {
                 facturas = DB.Facturas.Find(Id);
-                if (facturas.IdEstado == 5)
+                if (facturas.IdEstado == 5  || facturas.IdEstado == 12 || facturas.IdEstado == 13)
                 {
                     using (FrmPrintFactRev frm = new FrmPrintFactRev(Consecutivo))
                     {
@@ -335,10 +378,28 @@ namespace Agregados.Forms.Reports
 
             if (RbHoy.Checked)
             {
-                using (FrmPrintFactFilter frm = new FrmPrintFactFilter(Hoy, Hoy))
+               
+                DialogResult respuesta = MessageBox.Show("¿Deseas visualizar detalle de facturas de venta de materiales o solo de servicios de backhoe?." 
+                    + Environment.NewLine + "'Si', para visualizar con detalles, 'No', para visualizar sin detalles. 'Cancel', para cancelar solicitud.",
+                                                "Registro de Facturas", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.Yes)
                 {
-                    frm.ShowDialog();
-                };
+                    using (FrmPrintFactFilterDetalle frm = new FrmPrintFactFilterDetalle(Hoy, Hoy))
+                    {
+                        frm.ShowDialog();
+                    };
+                }
+                else
+                {
+                    if (respuesta == DialogResult.No)
+                    {
+                        using (FrmPrintFactFilterSinDetalle frm = new FrmPrintFactFilterSinDetalle(Hoy, Hoy))
+                        {
+                            frm.ShowDialog();
+                        };
+                    }
+                }                
             }
             else
             {
@@ -346,10 +407,27 @@ namespace Agregados.Forms.Reports
                 {
                     if (ValidarFechaLimite())
                     {
-                        using (FrmPrintFactFilter frm = new FrmPrintFactFilter(FechaInicial, FechaFinal))
+                        DialogResult respuesta = MessageBox.Show("¿Deseas visualizar detalle de facturas de venta de materiales o solo de servicios de backhoe?."
+                        + Environment.NewLine + "'Si', para visualizar con detalles, 'No', para visualizar sin detalles. 'Cancel', para cancelar solicitud.",
+                                              "Registro de Facturas", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                        if (respuesta == DialogResult.Yes)
                         {
-                            frm.ShowDialog();
-                        };
+                            using (FrmPrintFactFilterDetalle frm = new FrmPrintFactFilterDetalle(FechaInicial, FechaFinal))
+                            {
+                                frm.ShowDialog();
+                            };
+                        }
+                        else
+                        {
+                            if (respuesta == DialogResult.No)
+                            {
+                                using (FrmPrintFactFilterSinDetalle frm = new FrmPrintFactFilterSinDetalle(FechaInicial, FechaFinal))
+                                {
+                                    frm.ShowDialog();
+                                };
+                            }
+                        }
                     }
                     else
                     {
@@ -644,6 +722,247 @@ namespace Agregados.Forms.Reports
                         }
                     }
                 }
+            }
+        }
+
+        private void btnCredSinLineas_Click(object sender, EventArgs e)
+        {
+            dgvFilter.ClearSelection();
+            Consecutivo = 0;
+            BtnVerFact.Visible = false;
+            // linq para validar y disenar mejor la DataGridView al usuario
+            //se llama el procedimiento Almacenado
+            var result = DB.SPFactPendSinDetalle().ToList();
+
+            var finalResult =   from fa in result
+                                 select new
+                                 {
+                                     fa.IdFactura,
+                                     fa.Consecutivo,
+                                     fa.FechaFactura,
+                                     fa.CostoTotal,
+                                     fa.NombreEstado,
+                                     fa.Nombre,
+                                     fa.NombreEmpleado
+                                 };
+
+            dgvFilter.DataSource = finalResult.ToList();
+            if (finalResult.ToList().Count > 0)
+            {
+                BtnVerFacturasList.Visible = true;
+                btnReportExcel.Visible = true;
+                btnReportPDF.Visible = true;
+            }
+            else
+            {
+                BtnVerFacturasList.Visible = false;
+                btnReportExcel.Visible = false;
+                btnReportPDF.Visible = false;
+            }
+        }
+
+        private void btnFiltrarFechaAnulada_Click(object sender, EventArgs e)
+        {
+            dgvFilter.ClearSelection();
+            Consecutivo = 0;
+            BtnVerFact.Visible = false;
+            if (ValidarFechaLimite())
+            {
+                DateTime FechaInicial = Convert.ToDateTime(DateInicio.Value.ToString("yyyy-MM-dd"));
+                DateTime FechaFinal = Convert.ToDateTime(DateFin.Value.ToString("yyyy-MM-dd"));
+
+                // linq para validar y disenar mejor la DataGridView al usuario
+                var result = from fa in DB.Facturas
+                             join es in DB.Estados on fa.IdEstado equals es.IdEstado
+                             join cl in DB.Clientes on fa.IdCliente equals cl.IdCliente
+                             join us in DB.Usuarios on fa.IdUsuario equals us.IdUsuario
+                             where ((fa.IdEstado == 12 || fa.IdEstado == 13 || fa.IdEstado == 5) && fa.IdCliente > 0 && (fa.FechaFactura >= FechaInicial && fa.FechaFactura <= FechaFinal))
+                             select new
+                             {
+                                 fa.IdFactura,
+                                 fa.Consecutivo,
+                                 fa.FechaFactura,
+                                 fa.CostoTotal,
+                                 es.NombreEstado,
+                                 cl.Nombre,
+                                 us.NombreEmpleado
+                             };
+                dgvFilter.DataSource = result.ToList();
+                if (result.ToList().Count > 0)
+                {
+                    BtnVerFacturasList.Visible = true;
+                    btnReportExcel.Visible = true;
+                    btnReportPDF.Visible = true;
+                }
+                else
+                {
+                    BtnVerFacturasList.Visible = false;
+                    btnReportExcel.Visible = false;
+                    btnReportPDF.Visible = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona correctamente las fecha para filtrar la información.",
+                                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnFiltrarHoyAnuladas_Click(object sender, EventArgs e)
+        {
+            dgvFilter.ClearSelection();
+            Consecutivo = 0;
+            BtnVerFact.Visible = false;
+            DateTime fechaActual = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
+
+            // linq para validar y disenar mejor la DataGridView al usuario
+            var result = from fa in DB.Facturas
+                         join es in DB.Estados on fa.IdEstado equals es.IdEstado
+                         join cl in DB.Clientes on fa.IdCliente equals cl.IdCliente
+                         join us in DB.Usuarios on fa.IdUsuario equals us.IdUsuario
+                         where ((fa.IdEstado == 5 || fa.IdEstado == 12 || fa.IdEstado == 13) && fa.IdCliente > 0 && fa.FechaFactura == fechaActual)
+                         select new
+                         {
+                             fa.IdFactura,
+                             fa.Consecutivo,
+                             fa.FechaFactura,
+                             fa.CostoTotal,
+                             es.NombreEstado,
+                             cl.Nombre,
+                             us.NombreEmpleado
+                         };
+            dgvFilter.DataSource = result.ToList();
+
+
+            if (result.ToList().Count > 0)
+            {
+                BtnVerFacturasList.Visible = true;
+                btnReportExcel.Visible = true;
+                btnReportPDF.Visible = true;
+            }
+            else
+            {
+                BtnVerFacturasList.Visible = false;
+                btnReportExcel.Visible = false;
+                btnReportPDF.Visible = false;
+            }
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
+            frmPrincipalMDI.Show();
+            this.Hide();
+        }
+
+        private void btnFiltrarHoyTodas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCreditoTodas_Click(object sender, EventArgs e)
+        {
+            dgvFilter.ClearSelection();
+            Consecutivo = 0;
+            BtnVerFact.Visible = false;
+            // linq para validar y disenar mejor la DataGridView al usuario
+            //se llama el procedimiento Almacenado
+            var result = DB.SPFactPendSinDetalle().ToList();
+
+            var finalResult = from fa in result
+                              select new
+                              {
+                                  fa.IdFactura,
+                                  fa.Consecutivo,
+                                  fa.FechaFactura,
+                                  fa.CostoTotal,
+                                  fa.NombreEstado,
+                                  fa.Nombre,
+                                  fa.NombreEmpleado
+                              };
+
+            dgvFilter.DataSource = finalResult.ToList();
+            if (finalResult.ToList().Count > 0)
+            {
+                BtnVerFacturasList.Visible = true;
+                btnReportExcel.Visible = true;
+                btnReportPDF.Visible = true;
+            }
+            else
+            {
+                BtnVerFacturasList.Visible = false;
+                btnReportExcel.Visible = false;
+                btnReportPDF.Visible = false;
+            }
+        }
+
+        private void btnAnuladas_Click(object sender, EventArgs e)
+        {
+            dgvFilter.ClearSelection();
+            Consecutivo = 0;
+            BtnVerFact.Visible = false;
+            // linq para validar y disenar mejor la DataGridView al usuario
+            //se llama el procedimiento Almacenado
+
+            DateTime FechaInicial = Convert.ToDateTime(DateInicio2.Value.ToString("yyyy-MM-dd"));
+            DateTime FechaFinal = Convert.ToDateTime(DateFin2.Value.ToString("yyyy-MM-dd"));
+
+
+            var result = DB.SPFactReversadasAll(FechaInicial, FechaFinal).ToList();
+
+            var finalResult = from fa in result
+                              select new
+                              {
+                                  fa.IdFactura,
+                                  fa.Consecutivo,
+                                  fa.FechaFactura,
+                                  fa.CostoTotal,
+                                  fa.NombreEstado,
+                                  fa.Nombre,
+                                  fa.NombreEmpleado
+                              };
+
+            dgvFilter.DataSource = finalResult.ToList();
+            if (finalResult.ToList().Count > 0)
+            {
+                BtnVerFacturasList.Visible = true;
+                btnReportExcel.Visible = true;
+                btnReportPDF.Visible = true;
+            }
+            else
+            {
+                BtnVerFacturasList.Visible = false;
+                btnReportExcel.Visible = false;
+                btnReportPDF.Visible = false;
+            }
+        }
+
+        private void RbAnuladas_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RbAnuladas.Checked)
+            {
+                btnFiltrarHoy.Visible = false;
+                btnFiltrarHoyAnuladas.Visible = false;
+
+                btnFiltrarFechasCorrecta.Visible = false;
+                btnFiltrarFechaAnulada.Visible = false;
+                DateInicio.Visible = false;
+                DateFin.Visible = false;
+
+
+                btnFiltrarCredito.Visible = false;
+                btnCredSinLineas.Visible = false;
+
+                btnAnuladas.Visible = true;
+                DateInicio2.Visible = true;
+                DateFin2.Visible = true;
+
+
+                BtnVerFacturasList.Visible = false;
+                Consecutivo = 0;
+
+                btnReportExcel.Visible = false;
+                btnReportPDF.Visible = false;
             }
         }
     }

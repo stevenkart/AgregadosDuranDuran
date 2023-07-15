@@ -1,12 +1,15 @@
 ﻿using Agregados.Forms.Cashiers;
 using Agregados.Forms.Loading;
 using Agregados.Forms.Login;
+using CrystalDecisions.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -300,6 +303,54 @@ namespace Agregados.Forms
             Globals.MifrmRevBillProvider = new Bills.FrmRevBillProvider();
             Globals.MifrmRevBillProvider.Show();
             this.Hide();
+        }
+
+        private void respaldoDeDatosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.InitialDirectory = "C:\\Program Files\\Microsoft SQL Server\\MSSQL15.SQLEXPRESS\\MSSQL\\Backup";
+                dialog.Filter = "Backup Files (*.bak)|*.bak|All Files (*.*)|*.*";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    using (var context = new AgregadosEntities())
+                    {
+                        var conn = context.Database.Connection;
+                        var sqlConn = conn as System.Data.SqlClient.SqlConnection;
+
+                        if (sqlConn != null)
+                        {
+                            var backupFilePath = dialog.FileName;
+                            var backupQuery = $"BACKUP DATABASE [{sqlConn.Database}] TO DISK='{backupFilePath}'";
+
+                            using (var command = new System.Data.SqlClient.SqlCommand(backupQuery, sqlConn))
+                            {
+                                conn.Open();
+                                command.ExecuteNonQuery();
+                                conn.Close();
+                            }
+                            MessageBox.Show("Copia de seguridad realizada con éxito.", "Back-Up Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo establecer la conexión con SQL Server.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Se cancelo proceso de respaldo", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error" , MessageBoxButtons.OK, MessageBoxIcon.Information);
+                throw;
+            }
         }
     }
 }

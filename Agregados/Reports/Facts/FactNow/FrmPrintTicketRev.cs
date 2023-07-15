@@ -22,23 +22,15 @@ namespace Agregados.Reports.Facts.FactNow
             Consecutivo = id;
         }
 
-        private void FrmPrintFact_Load(object sender, EventArgs e)
+        private void FrmPrintTicketRev_Load(object sender, EventArgs e)
         {
             RptTicketProviderRev rptTicketProviderRev = new RptTicketProviderRev();
             rptTicketProviderRev.SetParameterValue("@Consecutivo", Consecutivo);
+            //rptTicketProviderRev.Refresh();
 
-            /*
-            rptFactCreated.SetParameterValue("@Cantidad", null);
-            rptFactCreated.SetParameterValue("@Precio", null);
-            rptFactCreated.SetParameterValue("@Subtotal", null);
-            rptFactCreated.SetParameterValue("@IVA", null);
-            rptFactCreated.SetParameterValue("@Total", null);
-            rptFactCreated.SetParameterValue("@NombreMaterial", null);
-            rptFactCreated.SetParameterValue("@IdMaterial", null);
-            */
+
 
             crystalReportViewer1.ReportSource = rptTicketProviderRev;
-
         }
     }
 }

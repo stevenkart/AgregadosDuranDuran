@@ -1111,7 +1111,7 @@ namespace Agregados.Forms.Bills
                                                         }
                                                     }
                                                 }
-                                                apertura.MontoCredito += Total;
+                                                apertura.MontoCompraCredito += Total;
 
                                                 DB.Entry(apertura).State = EntityState.Modified;
                                                 if (DB.SaveChanges() <= 0)

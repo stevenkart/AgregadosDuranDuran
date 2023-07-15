@@ -255,18 +255,23 @@
     <Compile Include="Proveedores.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilter.cs">
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilter.Designer.cs">
-      <DependentUpon>FrmPrintFactFilter.cs</DependentUpon>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.Designer.cs">
+      <DependentUpon>FrmPrintFactFilterDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterSinDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterSinDetalle.Designer.cs">
+      <DependentUpon>FrmPrintFactFilterSinDetalle.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Facts\FactFiltered\RptFactFilteredDetalle.cs">
-      <DependentUpon>RptFactFilteredDetalle.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>RptFactFilteredDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Facts\FactFiltered\RptFactFilteredSinDetalle.cs">
       <AutoGen>True</AutoGen>
@@ -334,24 +339,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RptFactCreated.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\Facts\FactNow\RptTicketProviderRev.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RptTicketProviderRev.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\Facts\FactNow\RptFactRev.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RptFactRev.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\Facts\FactNow\RptTicketCreated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RptTicketCreated.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="SPFactGeneradaContadoIVA_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
@@ -359,7 +368,25 @@
     <Compile Include="SPFactGenerada_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="SPFactPendDetalles_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactPendSinDetalles_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactPendSinDetalle_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactPorRangoFechaDetalles_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactPorRangoFechaSinDetalles_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="SPFactPorRangoFecha_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactReversadasAll_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="SPTicketGenerado_Result.cs">
@@ -460,13 +487,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilter.resx">
-      <DependentUpon>FrmPrintFactFilter.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.resx">
+      <DependentUpon>FrmPrintFactFilterDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterSinDetalle.resx">
+      <DependentUpon>FrmPrintFactFilterSinDetalle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactFilteredDetalle.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptFactFilteredDetalle.cs</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactFilteredSinDetalle.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -508,18 +537,22 @@
     <EmbeddedResource Include="Reports\Facts\FactNow\RptFactCreated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptFactCreated.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\RptTicketProviderRev.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptTicketProviderRev.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\RptFactRev.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptFactRev.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\RptTicketCreated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptTicketCreated.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EntityDeploy Include="AgregadosEF.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
