@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Agregados.Forms.Bills;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +17,7 @@ namespace Agregados.Forms.Materials
         AgregadosEntities DB;
         Materiales material;
 
-        int accion;
+        int accion; // si es 1 es agregar material cliente // 2 es para proveedores
         #region PropiedadesDeTotalizacion
         public decimal Cantidad { get; set; } //cantidad indicada por usuario
         public decimal CantidadLimite { get; set; } //cantidad limite disponible
@@ -347,7 +348,44 @@ namespace Agregados.Forms.Materials
             }
             else
             {
-                if (accion == 1)
+                if (accion == 2)
+                {
+                    foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
+                    {
+                        if (Convert.ToInt32(Row["IdMaterial"]) == codigo)
+                        {
+                            R = false; // de que ya existe un item con ese ID en la datagridview de Factura
+                        }
+
+                    }
+                }
+            }
+            return R;
+        }
+
+
+        //valida si ya existe el item en el DATATABLE de facturacion
+        private bool ValidarItemListaTierra(int codigo)
+        {
+            bool R = true; //de que no hay repetido
+
+            if (accion == 1)
+            {             
+                //valida que si se selecciono el check de tierra es para entonces cobrar al cliente por trabajo de tierra y no venderle tierra
+                // si se quiere vender tierra deben estar si marcar el check y asi solamente seria para venderle tierra 
+                if (Globals.MifrmBillAdd.chTierraNormal.Checked && codigo == 1)
+                {
+                    R = false;
+                }
+
+                if (Globals.MifrmBillAdd.chTierraRoja.Checked && codigo == 2)
+                {
+                    R = false;
+                }
+            }
+            else
+            {
+                if (accion == 2)
                 {
                     foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
                     {
@@ -440,7 +478,7 @@ namespace Agregados.Forms.Materials
             }
             else
             {
-                if (accion == 1)
+                if (accion == 1)//venta de material
                 {
                     try
                     {
@@ -449,43 +487,65 @@ namespace Agregados.Forms.Materials
                             DataGridViewRow FilaSelected = dgvListaMateriales.SelectedRows[0];
                             int IdMaterial = Convert.ToInt32(FilaSelected.Cells["CIdMaterial"].Value);
 
-                            if (ValidarItemLista(IdMaterial))
+                            if (ValidarItemListaTierra(IdMaterial))
                             {
-                                DataRow NuevaFilaEnFacturacion = Globals.MifrmBillAdd.DtLista.NewRow();
+                                if (ValidarItemLista(IdMaterial))
+                                {
+                                    DataRow NuevaFilaEnFacturacion = Globals.MifrmBillAdd.DtLista.NewRow();
 
-                                NuevaFilaEnFacturacion["IdMaterial"] = Convert.ToInt32(FilaSelected.Cells["CIdMaterial"].Value);
-                                NuevaFilaEnFacturacion["NombreMaterial"] = Convert.ToString(FilaSelected.Cells["CNombreMaterial"].Value);
-                                NuevaFilaEnFacturacion["CantidadMaterial"] = Convert.ToDecimal(NudCantidad.Value);
-                                NuevaFilaEnFacturacion["Precio"] = Convert.ToDecimal(PrecioUnitario);
-                                NuevaFilaEnFacturacion["Subtotal"] = Convert.ToDecimal(SubTotal);
-                                NuevaFilaEnFacturacion["IVA"] = Convert.ToDecimal(TasaImpuesto);
-                                NuevaFilaEnFacturacion["PrecioFinal"] = Convert.ToDecimal(Total);
+                                    NuevaFilaEnFacturacion["IdMaterial"] = Convert.ToInt32(FilaSelected.Cells["CIdMaterial"].Value);
+                                    NuevaFilaEnFacturacion["NombreMaterial"] = Convert.ToString(FilaSelected.Cells["CNombreMaterial"].Value);
+                                    NuevaFilaEnFacturacion["CantidadMaterial"] = Convert.ToDecimal(NudCantidad.Value);
+                                    NuevaFilaEnFacturacion["Precio"] = Convert.ToDecimal(PrecioUnitario);
+                                    NuevaFilaEnFacturacion["Subtotal"] = Convert.ToDecimal(SubTotal);
+                                    NuevaFilaEnFacturacion["IVA"] = Convert.ToDecimal(TasaImpuesto);
+                                    NuevaFilaEnFacturacion["PrecioFinal"] = Convert.ToDecimal(Total);
 
-                                Globals.MifrmBillAdd.DtLista.Rows.Add(NuevaFilaEnFacturacion);
+                                    Globals.MifrmBillAdd.DtLista.Rows.Add(NuevaFilaEnFacturacion);
 
-                                this.DialogResult = DialogResult.OK;
+                                    this.DialogResult = DialogResult.OK;
+                                }
+                                else
+                                {
+                                    DialogResult respuesta = MessageBox.Show("Material ya existe en la lista de la factura." + Environment.NewLine +
+                                        "¿Desea modificar los datos del material seleccionado, en la factura?",
+                                        "Validación de Material.", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                                    if (respuesta == DialogResult.Yes)
+                                    {
+                                        foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
+                                        {
+                                            if (Convert.ToInt32(Row["IdMaterial"]) == IdMaterial)
+                                            {
+                                                Row["NombreMaterial"] = Convert.ToString(FilaSelected.Cells["CNombreMaterial"].Value);
+                                                Row["CantidadMaterial"] = Convert.ToDecimal(NudCantidad.Value);
+                                                Row["Precio"] = Convert.ToDecimal(PrecioUnitario);
+                                                Row["Subtotal"] = Convert.ToDecimal(SubTotal);
+                                                Row["IVA"] = Convert.ToDecimal(TasaImpuesto);
+                                                Row["PrecioFinal"] = Convert.ToDecimal(Total);
+                                            }
+                                        }
+                                        this.DialogResult = DialogResult.OK;
+                                        this.Hide();
+                                    }
+                                }
                             }
                             else
                             {
-                                DialogResult respuesta = MessageBox.Show("Material ya existe en la lista de la factura." + Environment.NewLine +
-                                    "¿Desea modificar los datos del material seleccionado, en la factura?",
-                                    "Validación de Material.", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                                if (respuesta == DialogResult.Yes)
+                                switch (IdMaterial)
                                 {
-                                    foreach (DataRow Row in Globals.MifrmBillAdd.DtLista.Rows)
-                                    {
-                                        if (Convert.ToInt32(Row["IdMaterial"]) == IdMaterial)
-                                        {
-                                            Row["NombreMaterial"] = Convert.ToString(FilaSelected.Cells["CNombreMaterial"].Value);
-                                            Row["CantidadMaterial"] = Convert.ToDecimal(NudCantidad.Value);
-                                            Row["Precio"] = Convert.ToDecimal(PrecioUnitario);
-                                            Row["Subtotal"] = Convert.ToDecimal(SubTotal);
-                                            Row["IVA"] = Convert.ToDecimal(TasaImpuesto);
-                                            Row["PrecioFinal"] = Convert.ToDecimal(Total);
-                                        }
-                                    }
-                                    this.DialogResult = DialogResult.OK;
+                                    case 1:
+                                        MessageBox.Show("No se puede agregar Material, ya que se tiene seleccionado trabajo con tierra normal o roja",
+                                                                   "Validación de Material.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        break;
+                                    case 2:
+                                        MessageBox.Show("No se puede agregar Material, ya que se tiene seleccionado trabajo con tierra normal o roja",
+                                                                   "Validación de Material.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        break;
+                                    default:
+                                        MessageBox.Show("Favor validar que no se tenga seleccionado el trabajo con tierra normal o roja",
+                                                                  "Validación de Material.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        break;
                                 }
                             }
                         }
@@ -522,6 +582,7 @@ namespace Agregados.Forms.Materials
                                     Globals.MifrmBillProviderAdd.DtListaProvedor.Rows.Add(NuevaFilaEnFacturacion);
 
                                     this.DialogResult = DialogResult.OK;
+                                    this.Hide();
                                 }
                                 else
                                 {
@@ -544,6 +605,7 @@ namespace Agregados.Forms.Materials
                                             }
                                         }
                                         this.DialogResult = DialogResult.OK;
+                                        this.Hide();
                                     }
                                 }
                             }

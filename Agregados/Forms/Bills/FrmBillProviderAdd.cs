@@ -2,6 +2,7 @@
 using Agregados.Forms.Materials;
 using Agregados.Forms.Providers;
 using Agregados.Reports;
+using Agregados.Reports.Facts.FactNow;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,8 @@ namespace Agregados.Forms.Bills
         Facturas factura;
         Materiales materiales;
         DetalleFacts detalleFact;
+        CierreApertCajas cierreApertCajas;
+        CierreApertCajas apertura; // valor termporal apertura
         public DataTable DtListaProvedor { get; set; }
 
         //propiedades para validar que item se seleccione y cantidad linea seleccionada
@@ -50,11 +53,17 @@ namespace Agregados.Forms.Bills
             detalleFact = new DetalleFacts();
             materiales = new Materiales();
             DtListaProvedor = new DataTable();
+            cierreApertCajas = new CierreApertCajas();
+            apertura = new CierreApertCajas();
 
         }
 
-        private void FrmBillProviderAdd_Load(object sender, EventArgs e)
-        {
+        private void FrmBillProviderAdd_Load(object sender, EventArgs e) 
+        { 
+
+            //actualizamos a nivel de sistema la caja
+            cierreApertCajas = BuscarAperturaActual();
+
             tmrFechaHora.Enabled = true;
             lblUsuarioLogueado.Text = $"( {Globals.MyGlobalUser.NombreUsuario} )" + $" {Globals.MyGlobalUser.NombreEmpleado} ";
             lblTypeFact.Visible = false;
@@ -78,6 +87,30 @@ namespace Agregados.Forms.Bills
             aplicarIva = CboxIVA.Checked;
 
         }
+
+        //busca la apertura para actualizar datos
+        public CierreApertCajas BuscarAperturaActual()
+        {
+            apertura = null;
+            try
+            {
+                cierreApertCajas = DB.CierreApertCajas.Where((x) => x.Accion == 1).FirstOrDefault();
+                if (cierreApertCajas != null)
+                {
+                    int id = DB.CierreApertCajas.Where((x) => x.Accion == 1).Select((x) => x.IdCierreApert).Max();
+                    apertura = DB.CierreApertCajas.Find(id);
+                }
+                cierreApertCajas = null;
+                return apertura;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+
         private void validarConsecutivoLbl()
         {
             //indica el consecutivo a generar en la factura de compra
@@ -231,7 +264,7 @@ namespace Agregados.Forms.Bills
                 lblTypeFact.Visible = false;
                 dateFinal.Visible = false;
                 //carga Cbox Tipo Factua
-                CargarTiposPagosNoCredito();
+                CargarTiposPagos();
             }
             else
             {
@@ -250,7 +283,7 @@ namespace Agregados.Forms.Bills
         {
 
             //Metodo que permite llamar y obtener los datos filtrados de los materiales y mostrarlos en el comboBox
-            var dt = DB.MetodosPagos.ToList();
+            var dt = DB.MetodosPagos.Where((x) => x.IdTipoPago != 5 && x.IdTipoPago != 4 && x.IdTipoPago != 6).ToList();
 
             CboxMetodoPago.ValueMember = "IdTipoPago";
             CboxMetodoPago.DisplayMember = "TipoPago";
@@ -265,19 +298,6 @@ namespace Agregados.Forms.Bills
 
             //Metodo que permite llamar y obtener los datos filtrados de  metodo de pago y mostrarlos en el comboBox
             var dt = DB.MetodosPagos.Where((x) => x.IdTipoPago == 5).ToList();
-
-            CboxMetodoPago.ValueMember = "IdTipoPago";
-            CboxMetodoPago.DisplayMember = "TipoPago";
-            CboxMetodoPago.DataSource = dt;
-            CboxMetodoPago.SelectedIndex = -1;
-        }
-
-        //carga Cbox Tipo Pago// como credito seleccionado
-        private void CargarTiposPagosNoCredito()
-        {
-
-            //Metodo que permite llamar y obtener los datos filtrados de los metodo de pago y mostrarlos en el comboBox
-            var dt = DB.MetodosPagos.Where((x) => x.IdTipoPago != 5).ToList();
 
             CboxMetodoPago.ValueMember = "IdTipoPago";
             CboxMetodoPago.DisplayMember = "TipoPago";
@@ -301,13 +321,14 @@ namespace Agregados.Forms.Bills
 
         private void pictureSearchClient_Click(object sender, EventArgs e)
         {
-            Form FrmProviderSearch= new FrmProviderSearch();
+            Form FrmProviderSearch = new FrmProviderSearch();
 
             DialogResult resp = FrmProviderSearch.ShowDialog();
 
+            
             if (resp == DialogResult.OK)
             {
-                MessageBox.Show("Se selecciono el proveedor " + $" {txtProveedor.ToString()}", "Éxito", MessageBoxButtons.OK);
+                //MessageBox.Show("Se selecciono el proveedor " + $" {txtProveedor.Text}", "Éxito", MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
         }
 
@@ -459,6 +480,7 @@ namespace Agregados.Forms.Bills
             bool R = false;
 
             if (!string.IsNullOrEmpty(txtNumProve.Text.Trim()) &&
+                Convert.ToInt32(txtNumProve.Text.Trim()) > 0 &&
                 txtTransporte.Value >= 0 &&
                 !string.IsNullOrEmpty(TxtSubTotal.Text.Trim()) &&
                 !string.IsNullOrEmpty(TxtIVA.Text.Trim()) &&
@@ -473,7 +495,8 @@ namespace Agregados.Forms.Bills
             {
                 //estas validaciones deben ser puntuales para informar al usuario que falla 
 
-                if (string.IsNullOrEmpty(txtNumProve.Text.Trim()))
+                if (string.IsNullOrEmpty(txtNumProve.Text.Trim()) ||
+                    Convert.ToInt32(txtNumProve.Text.Trim()) <= 0)
                 {
                     MessageBox.Show("Cliente es requerido, favor seleccionar un cliente de la lista, presionando la lupa de busqueda de clientes.",
                         "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -582,7 +605,8 @@ namespace Agregados.Forms.Bills
         public void limpiar()
         {
             validarConsecutivoLbl();
-            txtNumProve = null;
+            txtNumProve.Text = 0.ToString();
+            txtProveedor.Text = null;
             CboxTypeBill.SelectedIndex = -1;
             CboxMetodoPago.SelectedIndex = -1;
             txtTransporte.Value = 0;
@@ -592,13 +616,18 @@ namespace Agregados.Forms.Bills
             Totalizar();
             txtReferencia.Text = null;
 
+
+            FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
+            frmPrincipalMDI.Show();
+            this.Hide();
+
         }
 
         private void btnFacturar_Click(object sender, EventArgs e)
         {
             if (ValidarCamposRequeridos())
             {
-                if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 1)
+                if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 1) //contado
                 {
                     try
                     {
@@ -643,7 +672,7 @@ namespace Agregados.Forms.Bills
                                             IdCliente = null,
                                             IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
                                             IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                            IdCierreApert = 0
+                                            IdCierreApert = apertura.IdCierreApert,
                                         };
 
                                         DB.Facturas.Add(factura);
@@ -698,15 +727,26 @@ namespace Agregados.Forms.Bills
                                                     }
                                                 }
                                             }
-                                            limpiar();
-                                            MessageBox.Show("Factura de Compra agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            /*
-                                            using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+
+                                            apertura.MontoEfectivoFinal -= Total;
+                                            
+                                            DB.Entry(apertura).State = EntityState.Modified;
+                                            if (DB.SaveChanges() <= 0)
+                                            {
+                                                MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+
+                                            
+                                            MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            
+                                            using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                             {
                                                 frm.ShowDialog();
                                             };
-                                            */
+                                            
                                             factura = null;
+                                            limpiar();
 
                                         }
                                         else
@@ -748,7 +788,7 @@ namespace Agregados.Forms.Bills
                                                 IdCliente = null,
                                                 IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
                                                 IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                                IdCierreApert = 0
+                                                IdCierreApert = apertura.IdCierreApert,
                                             };
 
                                             DB.Facturas.Add(factura);
@@ -803,15 +843,22 @@ namespace Agregados.Forms.Bills
                                                         }
                                                     }
                                                 }
-                                                limpiar();
-                                                MessageBox.Show("Factura de Compra agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                /*
-                                                using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+
+                                                apertura.MontoCompraTransf += Total;
+
+                                                DB.Entry(apertura).State = EntityState.Modified;
+                                                if (DB.SaveChanges() <= 0)
+                                                {
+                                                    MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                }
+                                                MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                                 {
                                                     frm.ShowDialog();
                                                 };
-                                                */
                                                 factura = null;
+                                                limpiar();
 
                                             }
                                             else
@@ -853,7 +900,7 @@ namespace Agregados.Forms.Bills
                                                     IdCliente = null,
                                                     IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
                                                     IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                                    IdCierreApert = 0
+                                                    IdCierreApert = apertura.IdCierreApert,
                                                 };
 
                                                 DB.Facturas.Add(factura);
@@ -908,20 +955,27 @@ namespace Agregados.Forms.Bills
                                                             }
                                                         }
                                                     }
-                                                    limpiar();
-                                                    MessageBox.Show("Factura de Compra agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                    /*
-                                                    using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                                    apertura.MontoCompraSinpe += Total;
+
+                                                    DB.Entry(apertura).State = EntityState.Modified;
+                                                    if (DB.SaveChanges() <= 0)
+                                                    {
+                                                        MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    }
+
+                                                    MessageBox.Show("Ticket de Compra agregada correctamente!", "Registro de Ticket Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                                     {
                                                         frm.ShowDialog();
                                                     };
-                                                    */
                                                     factura = null;
+                                                    limpiar();
 
                                                 }
                                                 else
                                                 {
-                                                    MessageBox.Show("Factura de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    MessageBox.Show("Ticket de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                     factura = null;
                                                 }
                                             }
@@ -935,225 +989,15 @@ namespace Agregados.Forms.Bills
                                     {
                                         if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 4) // metodo cheque
                                         {
-                                            using (FrmLoading frmLoading = new FrmLoading(Wait))
-                                            {
-                                                try
-                                                {
-                                                    factura = new Facturas
-                                                    {
-                                                        Consecutivo = consecutivo,
-                                                        CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
-                                                        Subtotal = SubTotal,
-                                                        IVA = TasaImpuesto,
-                                                        CostoTotal = Total,
-
-                                                        FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                        MontoPendiente = null,
-                                                        FechaLimiteP = null,
-                                                        ReferenciaPago = txtReferencia.Text.Trim(),
-
-                                                        IdUsuario = Globals.MyGlobalUser.IdUsuario,
-                                                        IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
-                                                        IdEstado = 4,
-                                                        IdCliente = null,
-                                                        IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
-                                                        IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                                        IdCierreApert = 0
-                                                    };
-
-                                                    DB.Facturas.Add(factura);
-
-                                                    if (DB.SaveChanges() > 0)
-                                                    {
-
-                                                        int IdFact = DB.Facturas.Where((x) => x.IdProveedor == factura.IdProveedor).Select((x) => x.IdFactura).Max();
-
-                                                        foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
-                                                        {
-                                                            detalleFact = new DetalleFacts
-                                                            {
-                                                                Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
-                                                                Precio = Convert.ToDecimal(Row["Precio"]),
-                                                                Subtotal = Convert.ToDecimal(Row["Subtotal"]),
-                                                                IVA = Convert.ToDecimal(Row["IVA"]),
-                                                                Total = Convert.ToDecimal(Row["PrecioFinal"]),
-                                                                IdFactura = IdFact,
-                                                                IdMaterial = Convert.ToInt32(Row["IdMaterial"])
-                                                            };
-
-                                                            DB.DetalleFacts.Add(detalleFact);
-                                                            if (DB.SaveChanges() > 0)
-                                                            {
-                                                                int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
-                                                                materiales = DB.Materiales.Find(IdMaterial);
-                                                                materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
-                                                                //actualiza el estado
-                                                                if (materiales.CantidadMaterial > (materiales.Minimos + 2))
-                                                                {
-                                                                    materiales.IdEstado = 11;
-                                                                }
-                                                                else
-                                                                {
-                                                                    if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
-                                                                    {
-                                                                        materiales.IdEstado = 10;
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        materiales.IdEstado = 9;
-                                                                    }
-                                                                }
-
-
-                                                                DB.Entry(materiales).State = EntityState.Modified;
-
-                                                                if (DB.SaveChanges() > 0)
-                                                                {
-                                                                    detalleFact = null;
-                                                                }
-                                                            }
-                                                        }
-                                                        limpiar();
-                                                        MessageBox.Show("Factura de Compra agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                        /*
-                                                        using (FrmPrintFact frm = new FrmPrintFact(IdFact))
-                                                        {
-                                                            frm.ShowDialog();
-                                                        };
-                                                        */
-                                                        factura = null;
-
-                                                    }
-                                                    else
-                                                    {
-                                                        MessageBox.Show("Factura de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                        factura = null;
-                                                    }
-                                                }
-                                                catch (Exception)
-                                                {
-                                                    throw;
-                                                }
-                                            }
+                                            MessageBox.Show("Factura no se puede realizar con el metodo de pago indicado," +
+                                                " por favor valide que sea en efectivo, transferencia, o sinpe móvil",
+                                                "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
                                         else
                                         {
-                                            if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 6) // metodo mixto
-                                            {
-                                                if ((Convert.ToDecimal(valorPago1.Value) + Convert.ToDecimal(valorPago2.Value)) == Total
-                                                    && Convert.ToDecimal(valorPago1.Value) > 0
-                                                    && Convert.ToDecimal(valorPago2.Value) > 0)
-                                                {
-                                                    using (FrmLoading frmLoading = new FrmLoading(Wait))
-                                                    {
-                                                        try
-                                                        {
-                                                            factura = new Facturas
-                                                            {
-                                                                Consecutivo = consecutivo,
-                                                                CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
-                                                                Subtotal = SubTotal,
-                                                                IVA = TasaImpuesto,
-                                                                CostoTotal = Total,
-
-                                                                FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                                MontoPendiente = null,
-                                                                FechaLimiteP = null,
-                                                                ReferenciaPago = txtReferencia.Text.Trim(),
-
-                                                                IdUsuario = Globals.MyGlobalUser.IdUsuario,
-                                                                IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
-                                                                IdEstado = 4,
-                                                                IdCliente = null,
-                                                                IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
-                                                                IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                                                IdCierreApert = 0
-                                                            };
-
-                                                            DB.Facturas.Add(factura);
-
-                                                            if (DB.SaveChanges() > 0)
-                                                            {
-
-                                                                int IdFact = DB.Facturas.Where((x) => x.IdProveedor == factura.IdProveedor).Select((x) => x.IdFactura).Max();
-
-                                                                foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
-                                                                {
-                                                                    detalleFact = new DetalleFacts
-                                                                    {
-                                                                        Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
-                                                                        Precio = Convert.ToDecimal(Row["Precio"]),
-                                                                        Subtotal = Convert.ToDecimal(Row["Subtotal"]),
-                                                                        IVA = Convert.ToDecimal(Row["IVA"]),
-                                                                        Total = Convert.ToDecimal(Row["PrecioFinal"]),
-                                                                        IdFactura = IdFact,
-                                                                        IdMaterial = Convert.ToInt32(Row["IdMaterial"])
-                                                                    };
-
-                                                                    DB.DetalleFacts.Add(detalleFact);
-                                                                    if (DB.SaveChanges() > 0)
-                                                                    {
-                                                                        int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
-                                                                        materiales = DB.Materiales.Find(IdMaterial);
-                                                                        materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
-                                                                        //actualiza el estado
-                                                                        if (materiales.CantidadMaterial > (materiales.Minimos + 2))
-                                                                        {
-                                                                            materiales.IdEstado = 11;
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
-                                                                            {
-                                                                                materiales.IdEstado = 10;
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                materiales.IdEstado = 9;
-                                                                            }
-                                                                        }
-
-                                                                        DB.Entry(materiales).State = EntityState.Modified;
-
-                                                                        if (DB.SaveChanges() > 0)
-                                                                        {
-                                                                            detalleFact = null;
-                                                                        }
-                                                                    }
-                                                                }
-                                                                limpiar();
-
-                                                                MessageBox.Show("Factura de Compra agregado correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                                /*
-                                                                using (FrmPrintFact frm = new FrmPrintFact(IdFact))
-                                                                {
-                                                                    frm.ShowDialog();
-                                                                };
-                                                                */
-                                                                factura = null;
-
-                                                            }
-                                                            else
-                                                            {
-                                                                MessageBox.Show("Factura de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                                factura = null;
-                                                            }
-                                                        }
-                                                        catch (Exception)
-                                                        {
-                                                            throw;
-                                                        }
-                                                    }
-
-                                                }
-                                                else
-                                                {
-                                                    MessageBox.Show("Factura de Compra no se pudo procesar, favor validar que el monto indicado en los metodos de pago " +
-                                                        "sume y de exacto la cantidad, al total que indica la factura de compra a generar, y se haya seleccionado" +
-                                                        "ambos metodos de pago.",
-                                                        "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                }
-                                            }
+                                            MessageBox.Show("Factura no se puede realizar con el metodo de pago indicado," +
+                                                " por favor valide que sea en efectivo, transferencia, o sinpe móvil",
+                                                "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
                                     }
                                 }
@@ -1213,7 +1057,7 @@ namespace Agregados.Forms.Bills
                                                 IdCliente = null,
                                                 IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
                                                 IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                                IdCierreApert = 0
+                                                IdCierreApert = apertura.IdCierreApert,
                                             };
 
                                             DB.Facturas.Add(factura);
@@ -1267,14 +1111,20 @@ namespace Agregados.Forms.Bills
                                                         }
                                                     }
                                                 }
+                                                apertura.MontoCompraCredito += Total;
+
+                                                DB.Entry(apertura).State = EntityState.Modified;
+                                                if (DB.SaveChanges() <= 0)
+                                                {
+                                                    MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                }
                                                 limpiar();
                                                 MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura de Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                /*
-                                                using (FrmPrintFact frm = new FrmPrintFact(IdFact))
+                                                using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                                 {
                                                     frm.ShowDialog();
                                                 };
-                                                */
                                                 factura = null;
                                             }
                                             else
@@ -1511,5 +1361,7 @@ namespace Agregados.Forms.Bills
                 valorPago2.Value = 0;
             }
         }
+
+
     }
 }

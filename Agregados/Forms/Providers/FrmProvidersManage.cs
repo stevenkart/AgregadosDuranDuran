@@ -42,7 +42,7 @@ namespace Agregados.Forms.Providers
         //cuando se abra el form
         private void FrmProvidersManage_Load(object sender, EventArgs e)
         {
-            CargarEstadosClientes();
+            CargarEstadosProveedores();
             CargarTipos();
 
             // linq para validar y disenar mejor la DataGridView al usuario // empezando la informacion con Estado ACTIVO y lo unico que se necesita obtener
@@ -109,10 +109,10 @@ namespace Agregados.Forms.Providers
 
 
         //carga Cbox Estados
-        private void CargarEstadosClientes()
+        private void CargarEstadosProveedores()
         {
 
-            //Metodo que permite llamar y obtener los datos filtrados de los clientes y mostrarlos en el comboBox
+            //Metodo que permite llamar y obtener los datos filtrados de los proiveedores y mostrarlos en el comboBox
             var dt = DB.Estados.Where(x => x.IdEstado == 1 || x.IdEstado == 2).ToList();
 
             CboxStates.ValueMember = "IdEstado";
@@ -341,10 +341,10 @@ namespace Agregados.Forms.Providers
         {
             if (ValidarCamposRequeridos())
             {
-                if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
+                if (string.IsNullOrEmpty(txtEmail.Text.Trim()))
                 {
                     DialogResult respuesta = MessageBox.Show("¿Deseas agregar el proveedor " + $"{txtName.Text.Trim()} ?",
-                                       "Registro de Proveedores", MessageBoxButtons.YesNo);
+                                                           "Registro de Proveedores", MessageBoxButtons.YesNo);
                     if (respuesta == DialogResult.Yes)
                     {
                         using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -391,7 +391,58 @@ namespace Agregados.Forms.Providers
                 }
                 else
                 {
-                    MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                    if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
+                    {
+                        DialogResult respuesta = MessageBox.Show("¿Deseas agregar el proveedor " + $"{txtName.Text.Trim()} ?",
+                                           "Registro de Proveedores", MessageBoxButtons.YesNo);
+                        if (respuesta == DialogResult.Yes)
+                        {
+                            using (FrmLoading frmLoading = new FrmLoading(Wait))
+                            {
+                                try
+                                {
+                                    proveedor = new Proveedores
+                                    {
+                                        Identificacion = txtIdent.Text.Trim(),
+                                        Nombre = txtName.Text.Trim(),
+                                        IdTipoProveedor = Convert.ToInt32(CboxProviderType.SelectedValue),
+                                        Telefono = txtMainPhone.Text.Trim(),
+                                        Telefono2 = txtSecondPhone.Text.Trim(),
+                                        Correo = txtEmail.Text.Trim(),
+                                        Direccion = txtAddress.Text.Trim(),
+                                        Detalles = txtDetails.Text.Trim(),
+                                        IdEstado = Convert.ToInt32(CboxStates.SelectedValue)
+                                    };
+
+                                    DB.Proveedores.Add(proveedor);
+
+                                    if (DB.SaveChanges() > 0)
+                                    {
+                                        CheckChange();
+                                        limpiar();
+                                        limpiarBusqueda();
+                                        MessageBox.Show("Proveedor agregado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK);
+                                        proveedor = null;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Proveedor No fue agregado", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                                        proveedor = null;
+                                    }
+
+                                }
+                                catch (Exception)
+                                {
+
+                                    throw;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                    }
                 }
             }
         }
@@ -400,7 +451,7 @@ namespace Agregados.Forms.Providers
         {
             if (ValidarCamposRequeridos())
             {
-                if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
+                if (string.IsNullOrEmpty(txtEmail.Text.Trim()))
                 {
                     DialogResult respuesta = MessageBox.Show("¿Deseas Modificar el Proveedor " + $"{txtName.Text.Trim()} ?",
                                        "Registro de Proveedores", MessageBoxButtons.YesNo);
@@ -450,7 +501,58 @@ namespace Agregados.Forms.Providers
                 }
                 else
                 {
-                    MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                    if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
+                    {
+                        DialogResult respuesta = MessageBox.Show("¿Deseas Modificar el Proveedor " + $"{txtName.Text.Trim()} ?",
+                                           "Registro de Proveedores", MessageBoxButtons.YesNo);
+                        if (respuesta == DialogResult.Yes)
+                        {
+                            using (FrmLoading frmLoading = new FrmLoading(Wait))
+                            {
+                                try
+                                {
+
+                                    proveedor.Identificacion = txtIdent.Text.Trim();
+                                    proveedor.Nombre = txtName.Text.Trim();
+                                    proveedor.IdTipoProveedor = Convert.ToInt32(CboxProviderType.SelectedValue);
+                                    proveedor.Telefono = txtMainPhone.Text.Trim();
+                                    proveedor.Telefono2 = txtSecondPhone.Text.Trim();
+                                    proveedor.Correo = txtEmail.Text.Trim();
+                                    proveedor.Direccion = txtAddress.Text.Trim();
+                                    proveedor.Detalles = txtDetails.Text.Trim();
+                                    proveedor.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
+
+
+
+                                    DB.Entry(proveedor).State = EntityState.Modified;
+
+                                    if (DB.SaveChanges() > 0)
+                                    {
+                                        CheckChange();
+                                        limpiar();
+                                        limpiarBusqueda();
+                                        MessageBox.Show("Proveedor modificado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK);
+                                        proveedor = null;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Proveedor No fue modificado", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                                        proveedor = null;
+                                    }
+
+                                }
+                                catch (Exception)
+                                {
+
+                                    throw;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                    }
                 }
             }
         }

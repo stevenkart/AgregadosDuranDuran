@@ -140,7 +140,7 @@ namespace Agregados.Forms.Materials
         private void limpiar()
         {
             txtName.Text = null;
-            txtCantidad.Text = null;
+            txtCantidad.Text = 0.ToString();
             txtMinimos.Text = null;
             txtPrecio.Text = null;
             CboxStates.SelectedValue = -1;

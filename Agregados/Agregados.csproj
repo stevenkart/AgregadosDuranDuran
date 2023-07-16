@@ -123,6 +123,36 @@
     <Compile Include="Forms\Bills\FrmBillProviderAdd.Designer.cs">
       <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Bills\FrmNotaCredito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmNotaCredito.Designer.cs">
+      <DependentUpon>FrmNotaCredito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmRevBillProvider.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmRevBillProvider.Designer.cs">
+      <DependentUpon>FrmRevBillProvider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmRevFacts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmRevFacts.Designer.cs">
+      <DependentUpon>FrmRevFacts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Cashiers\FrmCashierClose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Cashiers\FrmCashierClose.Designer.cs">
+      <DependentUpon>FrmCashierClose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Cashiers\FrmCashierOpen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Cashiers\FrmCashierOpen.Designer.cs">
+      <DependentUpon>FrmCashierOpen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Customers\FrmCustomerSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,17 +255,108 @@
     <Compile Include="Proveedores.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilter.cs">
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendAll.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilter.Designer.cs">
-      <DependentUpon>FrmPrintFactFilter.cs</DependentUpon>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendAll.Designer.cs">
+      <DependentUpon>FrmPrintFactPendAll.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\RptFactFiltered.cs">
-      <DependentUpon>RptFactFiltered.rpt</DependentUpon>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.Designer.cs">
+      <DependentUpon>FrmPrintFactAnuladas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.Designer.cs">
+      <DependentUpon>FrmPrintFactFilterDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterSinDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterSinDetalle.Designer.cs">
+      <DependentUpon>FrmPrintFactFilterSinDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendConD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendConD.Designer.cs">
+      <DependentUpon>FrmPrintFactPendConD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendSinD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendSinD.Designer.cs">
+      <DependentUpon>FrmPrintFactPendSinD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactFilteredDetalle.cs">
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactFilteredDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactFilteredSinDetalle.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactFilteredSinDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactPendAll.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactPendAll.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactPendConD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactPendConD.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactPendSinD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactPendSinD.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactsAnuladas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactsAnuladas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactsDataDetalle.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactsDataDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactsDataSinDetalle.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactsDataSinDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactsPDF.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactsPDF.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactsPendDetalle.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactsPendDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactsPendSinDetalle.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactsPendSinDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Facts\FactNow\FrmPrintFact.cs">
       <SubType>Form</SubType>
@@ -243,13 +364,83 @@
     <Compile Include="Reports\Facts\FactNow\FrmPrintFact.Designer.cs">
       <DependentUpon>FrmPrintFact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintFactRev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintFactRev.Designer.cs">
+      <DependentUpon>FrmPrintFactRev.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintTicket.Designer.cs">
+      <DependentUpon>FrmPrintTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintTicketRev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\FrmPrintTicketRev.Designer.cs">
+      <DependentUpon>FrmPrintTicketRev.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Facts\FactNow\RptFactCreated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RptFactCreated.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\RptTicketProviderRev.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptTicketProviderRev.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\RptFactRev.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactRev.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\Facts\FactNow\RptTicketCreated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptTicketCreated.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="SPFactGeneradaContadoIVA_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactGenerada_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactPendDetalles_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactPendSinDetalles_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactPendSinDetalle_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactPorRangoFechaDetalles_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactPorRangoFechaSinDetalles_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactPorRangoFecha_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactReversadasAll_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPTicketGenerado_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPTicketPorRangoFecha_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoClientes.cs">
@@ -273,6 +464,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmBillProviderAdd.resx">
       <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmNotaCredito.resx">
+      <DependentUpon>FrmNotaCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmRevBillProvider.resx">
+      <DependentUpon>FrmRevBillProvider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmRevFacts.resx">
+      <DependentUpon>FrmRevFacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Cashiers\FrmCashierClose.resx">
+      <DependentUpon>FrmCashierClose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Cashiers\FrmCashierOpen.resx">
+      <DependentUpon>FrmCashierOpen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Customers\FrmCustomerSearch.resx">
       <DependentUpon>FrmCustomerSearch.cs</DependentUpon>
@@ -329,19 +535,100 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilter.resx">
-      <DependentUpon>FrmPrintFactFilter.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.resx">
+      <DependentUpon>FrmPrintFactAnuladas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactFiltered.rpt">
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.resx">
+      <DependentUpon>FrmPrintFactFilterDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterSinDetalle.resx">
+      <DependentUpon>FrmPrintFactFilterSinDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactPendAll.resx">
+      <DependentUpon>FrmPrintFactPendAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactPendConD.resx">
+      <DependentUpon>FrmPrintFactPendConD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactPendSinD.resx">
+      <DependentUpon>FrmPrintFactPendSinD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactFilteredDetalle.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptFactFiltered.cs</LastGenOutput>
+      <LastGenOutput>RptFactFilteredDetalle.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactFilteredSinDetalle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactFilteredSinDetalle.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactPendAll.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactPendAll.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactPendConD.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactPendConD.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactPendSinD.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactPendSinD.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsAnuladas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactsAnuladas.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsDataDetalle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactsDataDetalle.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsDataSinDetalle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactsDataSinDetalle.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsPDF.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactsPDF.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsPendDetalle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactsPendDetalle.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsPendSinDetalle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactsPendSinDetalle.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintFact.resx">
       <DependentUpon>FrmPrintFact.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintFactRev.resx">
+      <DependentUpon>FrmPrintFactRev.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintTicket.resx">
+      <DependentUpon>FrmPrintTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintTicketRev.resx">
+      <DependentUpon>FrmPrintTicketRev.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\RptFactCreated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptFactCreated.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\RptTicketProviderRev.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptTicketProviderRev.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\RptFactRev.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactRev.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactNow\RptTicketCreated.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptTicketCreated.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EntityDeploy Include="AgregadosEF.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -384,7 +671,13 @@
     <Content Include="Images\agregados.ico" />
     <Content Include="Images\agregadosIcon.ico" />
     <Content Include="Images\eye.ico" />
+    <Content Include="Images\IconsApertCaja\exit.png" />
+    <Content Include="Images\IconsApertCaja\guardarDatos.png" />
+    <None Include="Images\IconsFacts\ayuda.png" />
+    <None Include="Images\IconsFacts\buscar.png" />
+    <None Include="Images\IconsFacts\borrar.png" />
     <Content Include="Images\IconsFacts\lupa.png" />
+    <None Include="Images\IconsFacts\return.png" />
     <Content Include="Images\IconsFacts\salida.png" />
     <Content Include="Images\IconsMenuMant\add.png" />
     <Content Include="Images\IconsMenuMant\addCar.png" />
@@ -400,6 +693,12 @@
     <Content Include="Images\IconsMenuMant\Materials\expedienteDelete.png" />
     <Content Include="Images\IconsMenuMant\Materials\expedienteUpdate.png" />
     <Content Include="Images\IconsMenuMant\update.png" />
+    <None Include="Images\IconsReports\pdf.png" />
+    <None Include="Images\IconsReports\excel.png" />
+    <None Include="Images\IconsReports\fact.png" />
+    <None Include="Images\IconsReports\listFacts.png" />
+    <None Include="Images\IconsReports\factura.png" />
+    <None Include="Images\IconsReports\reporte.png" />
     <Content Include="Images\MDIPrincipal.jpg" />
   </ItemGroup>
   <ItemGroup>

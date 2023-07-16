@@ -90,7 +90,7 @@ namespace Agregados.Reports.Facts.FactNow {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_IdFactura {
+        public CrystalDecisions.Shared.IParameterField Parameter_Consecutivo {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }

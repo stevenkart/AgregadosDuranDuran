@@ -37,6 +37,9 @@ namespace Agregados
         public int IdCierreApert { get; set; }
         public int Consecutivo { get; set; }
         public decimal Subtotal { get; set; }
+        public Nullable<decimal> BackHoe { get; set; }
+        public Nullable<decimal> Tierra { get; set; }
+        public Nullable<decimal> CantTierra { get; set; }
     
         public virtual Clientes Clientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

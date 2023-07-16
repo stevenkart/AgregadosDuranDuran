@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace Agregados.Reports.Facts.FactFiltered
 {
-    public partial class FrmPrintFactFilter : Form
+    public partial class FrmPrintFactFilterDetalle : Form
     {
 
         string fechaInicio;
         string fechaFin;
 
 
-        public FrmPrintFactFilter(string inicio, string fin)
+        public FrmPrintFactFilterDetalle(string inicio, string fin)
         {
             InitializeComponent();
             fechaInicio = inicio;
@@ -28,11 +28,11 @@ namespace Agregados.Reports.Facts.FactFiltered
 
         }
 
-        private void FrmPrintFactFilter_Load(object sender, EventArgs e)
+        private void FrmPrintFactFilterDetalle_Load(object sender, EventArgs e)
         {
-            RptFactFiltered rptFactFiltered = new RptFactFiltered();
-            rptFactFiltered.SetParameterValue("@FechaInicio", fechaInicio);
-            rptFactFiltered.SetParameterValue("@FechaFin", fechaFin);
+            RptFactFilteredDetalle rptFactFiltered = new RptFactFilteredDetalle();
+            rptFactFiltered.SetParameterValue("@fechaInicio", fechaInicio);
+            rptFactFiltered.SetParameterValue("@fechaFin", fechaFin);
 
             crystalReportViewer1.ReportSource = rptFactFiltered;
         }

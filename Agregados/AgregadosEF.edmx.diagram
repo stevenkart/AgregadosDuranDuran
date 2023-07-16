@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="12640dc599694ef8b3e6bb3b109d8ced" Name="Diagram1">
-        <EntityTypeShape EntityType="AgregadosModel.CierreApertCajas" Width="1.5" PointX="8.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.CierreApertCajas" Width="1.5" PointX="5.25" PointY="17.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AgregadosModel.Clientes" Width="1.5" PointX="6" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AgregadosModel.CorreoNotificaciones" Width="1.5" PointX="1.125" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AgregadosModel.DetalleFacts" Width="1.5" PointX="10.5" PointY="12.5" IsExpanded="true" />

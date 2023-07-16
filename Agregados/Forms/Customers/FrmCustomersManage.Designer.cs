@@ -139,7 +139,7 @@
             this.tableLayoutPanel8.ColumnCount = 3;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.88469F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 227F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 228F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChActivos, 2, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -169,9 +169,9 @@
             this.ChActivos.Checked = true;
             this.ChActivos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChActivos.Location = new System.Drawing.Point(1045, 6);
+            this.ChActivos.Location = new System.Drawing.Point(1044, 6);
             this.ChActivos.Name = "ChActivos";
-            this.ChActivos.Size = new System.Drawing.Size(222, 24);
+            this.ChActivos.Size = new System.Drawing.Size(223, 24);
             this.ChActivos.TabIndex = 0;
             this.ChActivos.Text = "Clientes Activos";
             this.ChActivos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -565,7 +565,7 @@
             this.CboxCustomerType.Location = new System.Drawing.Point(142, 146);
             this.CboxCustomerType.Name = "CboxCustomerType";
             this.CboxCustomerType.Size = new System.Drawing.Size(356, 28);
-            this.CboxCustomerType.TabIndex = 2;
+            this.CboxCustomerType.TabIndex = 1;
             // 
             // txtDetails
             // 
@@ -578,7 +578,7 @@
             this.txtDetails.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtDetails.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtDetails.Size = new System.Drawing.Size(356, 47);
-            this.txtDetails.TabIndex = 7;
+            this.txtDetails.TabIndex = 6;
             this.txtDetails.Text = "";
             // 
             // txtAddress
@@ -592,7 +592,7 @@
             this.txtAddress.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtAddress.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtAddress.Size = new System.Drawing.Size(356, 47);
-            this.txtAddress.TabIndex = 6;
+            this.txtAddress.TabIndex = 5;
             this.txtAddress.Text = "";
             // 
             // label1
@@ -663,7 +663,7 @@
             this.txtMainPhone.MaxLength = 8;
             this.txtMainPhone.Name = "txtMainPhone";
             this.txtMainPhone.Size = new System.Drawing.Size(356, 26);
-            this.txtMainPhone.TabIndex = 3;
+            this.txtMainPhone.TabIndex = 2;
             this.txtMainPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMainPhone_KeyPress);
             // 
             // label7
@@ -686,7 +686,7 @@
             this.txtName.MaxLength = 255;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(356, 26);
-            this.txtName.TabIndex = 1;
+            this.txtName.TabIndex = 0;
             // 
             // label14
             // 
@@ -720,7 +720,7 @@
             this.txtSecondPhone.MaxLength = 8;
             this.txtSecondPhone.Name = "txtSecondPhone";
             this.txtSecondPhone.Size = new System.Drawing.Size(356, 26);
-            this.txtSecondPhone.TabIndex = 4;
+            this.txtSecondPhone.TabIndex = 3;
             this.txtSecondPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecondPhone_KeyPress);
             // 
             // txtEmail
@@ -731,7 +731,7 @@
             this.txtEmail.MaxLength = 255;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(356, 26);
-            this.txtEmail.TabIndex = 5;
+            this.txtEmail.TabIndex = 4;
             this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmail_KeyPress);
             // 
             // CboxStates
@@ -743,7 +743,7 @@
             this.CboxStates.Location = new System.Drawing.Point(142, 465);
             this.CboxStates.Name = "CboxStates";
             this.CboxStates.Size = new System.Drawing.Size(356, 28);
-            this.CboxStates.TabIndex = 8;
+            this.CboxStates.TabIndex = 7;
             // 
             // label15
             // 

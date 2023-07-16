@@ -43,16 +43,17 @@ namespace Agregados.Reports
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
             this.crystalReportViewer1.ReportSource = this.RptFactCreated1;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(1120, 616);
+            this.crystalReportViewer1.Size = new System.Drawing.Size(871, 564);
             this.crystalReportViewer1.TabIndex = 0;
             // 
             // FrmPrintFact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1120, 616);
+            this.ClientSize = new System.Drawing.Size(871, 564);
             this.Controls.Add(this.crystalReportViewer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MinimumSize = new System.Drawing.Size(887, 603);
             this.Name = "FrmPrintFact";
             this.Text = "Reporte Factura";
             this.Load += new System.EventHandler(this.FrmPrintFact_Load);
