@@ -32,5 +32,7 @@ namespace Agregados.Reports.Facts.FactFiltered
             crystalReportViewer1.ReportSource = rptFactFiltered;
         }
 
+
+
     }
 }

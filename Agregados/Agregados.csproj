@@ -255,6 +255,18 @@
     <Compile Include="Proveedores.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendAll.Designer.cs">
+      <DependentUpon>FrmPrintFactPendAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.Designer.cs">
+      <DependentUpon>FrmPrintFactAnuladas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,6 +279,18 @@
     <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterSinDetalle.Designer.cs">
       <DependentUpon>FrmPrintFactFilterSinDetalle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendConD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendConD.Designer.cs">
+      <DependentUpon>FrmPrintFactPendConD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendSinD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendSinD.Designer.cs">
+      <DependentUpon>FrmPrintFactPendSinD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Facts\FactFiltered\RptFactFilteredDetalle.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -277,6 +301,30 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RptFactFilteredSinDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactPendAll.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactPendAll.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactPendConD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactPendConD.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactPendSinD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactPendSinD.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptFactsAnuladas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactsAnuladas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Facts\FactFiltered\RptFactsDataDetalle.cs">
@@ -487,11 +535,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.resx">
+      <DependentUpon>FrmPrintFactAnuladas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.resx">
       <DependentUpon>FrmPrintFactFilterDetalle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterSinDetalle.resx">
       <DependentUpon>FrmPrintFactFilterSinDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactPendAll.resx">
+      <DependentUpon>FrmPrintFactPendAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactPendConD.resx">
+      <DependentUpon>FrmPrintFactPendConD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactPendSinD.resx">
+      <DependentUpon>FrmPrintFactPendSinD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactFilteredDetalle.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -500,6 +560,22 @@
     <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactFilteredSinDetalle.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptFactFilteredSinDetalle.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactPendAll.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactPendAll.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactPendConD.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactPendConD.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactPendSinD.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactPendSinD.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsAnuladas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactsAnuladas.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsDataDetalle.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

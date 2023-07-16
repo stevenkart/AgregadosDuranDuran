@@ -25,12 +25,15 @@ namespace Agregados.Forms.Reports
         int Id;
 
 
+        int valorPendiente = 0;
+
+
         public FrmFactsReports()
         {
             InitializeComponent();
             DB = new AgregadosEntities();
             facturas = new Facturas();
-
+            valorPendiente = 0;
 
         }
 
@@ -374,7 +377,57 @@ namespace Agregados.Forms.Reports
             string FechaInicial = Convert.ToString(DateInicio.Value.ToString("yyyy-MM-dd"));
             string FechaFinal = Convert.ToString(DateFin.Value.ToString("yyyy-MM-dd"));
 
+
+            string FechaInicial2 = Convert.ToString(DateInicio2.Value.ToString("yyyy-MM-dd"));
+            string FechaFinal2 = Convert.ToString(DateFin2.Value.ToString("yyyy-MM-dd"));
+
+
             string Hoy = Convert.ToString(DateTime.Today.ToString("yyyy-MM-dd"));
+
+            if (RbAnuladas.Checked)
+            {
+                DialogResult respuesta = MessageBox.Show("¿Deseas visualizar todas las facturas anuladas o reversadas en el rango de fechas indicado?.",
+                                                "Registro de Facturas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    using (FrmPrintFactAnuladas frm = new FrmPrintFactAnuladas(FechaInicial2, FechaFinal2))
+                    {
+                        frm.ShowDialog();
+                    };
+                }
+            }
+
+            if (RbPendientes.Checked)
+            {
+                if (valorPendiente == 0)
+                {
+                    
+                }
+
+                switch (valorPendiente)
+                {
+                    case 0:
+                        MessageBox.Show("Debes de seleccionar un filtro para buscar las facturas.",
+                      "Registro de Facturas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 1:
+
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        MessageBox.Show("Debes de seleccionar un filtro para buscar las facturas, si ya lo seleccionaste, " +
+                            "entonces ha ocurrido un error, favor contactar al administrador.",
+                      "Registro de Facturas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+            }
+
+
+           
 
             if (RbHoy.Checked)
             {
@@ -752,12 +805,14 @@ namespace Agregados.Forms.Reports
                 BtnVerFacturasList.Visible = true;
                 btnReportExcel.Visible = true;
                 btnReportPDF.Visible = true;
+                valorPendiente = 1;
             }
             else
             {
                 BtnVerFacturasList.Visible = false;
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
+                valorPendiente = 0;
             }
         }
 
