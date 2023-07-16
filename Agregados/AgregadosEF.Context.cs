@@ -51,7 +51,22 @@ namespace Agregados
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactGenerada_Result>("SPFactGenerada", consecutivoParameter);
         }
     
-        public virtual int SPFactPorRangoFecha(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        public virtual ObjectResult<SPFactPendAll_Result> SPFactPendAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPendAll_Result>("SPFactPendAll");
+        }
+    
+        public virtual ObjectResult<SPFactPendDetalles_Result> SPFactPendDetalles()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPendDetalles_Result>("SPFactPendDetalles");
+        }
+    
+        public virtual ObjectResult<SPFactPendSinDetalle_Result> SPFactPendSinDetalle()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPendSinDetalle_Result>("SPFactPendSinDetalle");
+        }
+    
+        public virtual ObjectResult<SPFactPorRangoFechaAll_Result> SPFactPorRangoFechaAll(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
         {
             var fechaInicioParameter = fechaInicio.HasValue ?
                 new ObjectParameter("fechaInicio", fechaInicio) :
@@ -61,7 +76,46 @@ namespace Agregados
                 new ObjectParameter("fechaFin", fechaFin) :
                 new ObjectParameter("fechaFin", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPFactPorRangoFecha", fechaInicioParameter, fechaFinParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPorRangoFechaAll_Result>("SPFactPorRangoFechaAll", fechaInicioParameter, fechaFinParameter);
+        }
+    
+        public virtual ObjectResult<SPFactPorRangoFechaDetalles_Result> SPFactPorRangoFechaDetalles(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("fechaFin", fechaFin) :
+                new ObjectParameter("fechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPorRangoFechaDetalles_Result>("SPFactPorRangoFechaDetalles", fechaInicioParameter, fechaFinParameter);
+        }
+    
+        public virtual ObjectResult<SPFactPorRangoFechaSinDetalles_Result> SPFactPorRangoFechaSinDetalles(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("fechaFin", fechaFin) :
+                new ObjectParameter("fechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPorRangoFechaSinDetalles_Result>("SPFactPorRangoFechaSinDetalles", fechaInicioParameter, fechaFinParameter);
+        }
+    
+        public virtual ObjectResult<SPFactReversadasAll_Result> SPFactReversadasAll(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("fechaFin", fechaFin) :
+                new ObjectParameter("fechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactReversadasAll_Result>("SPFactReversadasAll", fechaInicioParameter, fechaFinParameter);
         }
     
         public virtual ObjectResult<SPTicketGenerado_Result> SPTicketGenerado(Nullable<int> consecutivo)
@@ -84,73 +138,6 @@ namespace Agregados
                 new ObjectParameter("fechaFin", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPTicketPorRangoFecha_Result>("SPTicketPorRangoFecha", fechaInicioParameter, fechaFinParameter);
-        }
-    
-        public virtual ObjectResult<SPFactPendDetalles_Result> SPFactPendDetalles()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPendDetalles_Result>("SPFactPendDetalles");
-        }
-    
-        public virtual ObjectResult<SPFactPendSinDetalle_Result> SPFactPendSinDetalle()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPendSinDetalle_Result>("SPFactPendSinDetalle");
-        }
-    
-        public virtual ObjectResult<SPFactReversadasAll_Result> SPFactReversadasAll(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
-        {
-            var fechaInicioParameter = fechaInicio.HasValue ?
-                new ObjectParameter("fechaInicio", fechaInicio) :
-                new ObjectParameter("fechaInicio", typeof(System.DateTime));
-    
-            var fechaFinParameter = fechaFin.HasValue ?
-                new ObjectParameter("fechaFin", fechaFin) :
-                new ObjectParameter("fechaFin", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactReversadasAll_Result>("SPFactReversadasAll", fechaInicioParameter, fechaFinParameter);
-        }
-    
-        public virtual ObjectResult<SPFactPendAll_Result> SPFactPendAll()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPendAll_Result>("SPFactPendAll");
-        }
-    
-        public virtual ObjectResult<SPFactPorRangoFechaAll1_Result> SPFactPorRangoFechaAll1(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
-        {
-            var fechaInicioParameter = fechaInicio.HasValue ?
-                new ObjectParameter("fechaInicio", fechaInicio) :
-                new ObjectParameter("fechaInicio", typeof(System.DateTime));
-    
-            var fechaFinParameter = fechaFin.HasValue ?
-                new ObjectParameter("fechaFin", fechaFin) :
-                new ObjectParameter("fechaFin", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPorRangoFechaAll1_Result>("SPFactPorRangoFechaAll1", fechaInicioParameter, fechaFinParameter);
-        }
-    
-        public virtual ObjectResult<SPFactPorRangoFechaDetalles1_Result> SPFactPorRangoFechaDetalles1(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
-        {
-            var fechaInicioParameter = fechaInicio.HasValue ?
-                new ObjectParameter("fechaInicio", fechaInicio) :
-                new ObjectParameter("fechaInicio", typeof(System.DateTime));
-    
-            var fechaFinParameter = fechaFin.HasValue ?
-                new ObjectParameter("fechaFin", fechaFin) :
-                new ObjectParameter("fechaFin", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPorRangoFechaDetalles1_Result>("SPFactPorRangoFechaDetalles1", fechaInicioParameter, fechaFinParameter);
-        }
-    
-        public virtual ObjectResult<SPFactPorRangoFechaSinDetalles1_Result> SPFactPorRangoFechaSinDetalles1(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
-        {
-            var fechaInicioParameter = fechaInicio.HasValue ?
-                new ObjectParameter("fechaInicio", fechaInicio) :
-                new ObjectParameter("fechaInicio", typeof(System.DateTime));
-    
-            var fechaFinParameter = fechaFin.HasValue ?
-                new ObjectParameter("fechaFin", fechaFin) :
-                new ObjectParameter("fechaFin", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactPorRangoFechaSinDetalles1_Result>("SPFactPorRangoFechaSinDetalles1", fechaInicioParameter, fechaFinParameter);
         }
     }
 }

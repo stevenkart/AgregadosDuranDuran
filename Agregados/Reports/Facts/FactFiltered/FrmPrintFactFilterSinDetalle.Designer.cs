@@ -53,7 +53,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FrmPrintFactFilterSinDetalle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Facturas por Fecha";
+            this.Text = "Facturas por Fecha (Sin Linea Materiales)";
             this.Load += new System.EventHandler(this.FrmPrintFactFilterSinDetalle_Load);
             this.ResumeLayout(false);
 

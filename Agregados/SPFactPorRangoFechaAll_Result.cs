@@ -11,7 +11,7 @@ namespace Agregados
 {
     using System;
     
-    public partial class SPFactPorRangoFechaSinDetalles1_Result
+    public partial class SPFactPorRangoFechaAll_Result
     {
         public int IdFactura { get; set; }
         public int Consecutivo { get; set; }

@@ -53,7 +53,8 @@ namespace Agregados.Forms.Reports
         private void FrmFactsReports_Load(object sender, EventArgs e)
         {
             btnFiltrarHoy.Visible = false;
-            btnFiltrarHoyAnuladas.Visible = false;
+            btnFiltrarHoySoloBackHoe.Visible = false;
+            btnFiltrarHoyTodas.Visible = false;
 
             btnFiltrarFechasCorrecta.Visible = false;
             btnFiltrarFechaBachHoe.Visible = false;
@@ -181,7 +182,7 @@ namespace Agregados.Forms.Reports
 
                 // linq para validar y disenar mejor la DataGridView al usuario
 
-                var result = DB.SPFactPorRangoFechaDetalles1(FechaInicial, FechaFinal).ToList();
+                var result = DB.SPFactPorRangoFechaDetalles(FechaInicial, FechaFinal).ToList();
 
                 var finalResult = from fa in result
                                   select new
@@ -264,7 +265,8 @@ namespace Agregados.Forms.Reports
             if (RbHoy.Checked)
             {
                 btnFiltrarHoy.Visible = true;
-                btnFiltrarHoyAnuladas.Visible = true;
+                btnFiltrarHoySoloBackHoe.Visible = true;
+                btnFiltrarHoyTodas.Visible = true;
 
                 btnFiltrarFechasCorrecta.Visible = false;
                 btnFiltrarFechaBachHoe.Visible = false;
@@ -276,6 +278,10 @@ namespace Agregados.Forms.Reports
                 btnFiltrarCredito.Visible = false;
                 btnCredSinLineas.Visible = false;
                 btnCreditoTodas.Visible = false;
+
+                btnAnuladas.Visible = false;
+                DateInicio2.Visible = false;
+                DateFin2.Visible = false;
 
 
                 BtnVerFacturasList.Visible = false;
@@ -296,7 +302,8 @@ namespace Agregados.Forms.Reports
             if (RbFechas.Checked)
             {
                 btnFiltrarHoy.Visible = false;
-                btnFiltrarHoyAnuladas.Visible = false;
+                btnFiltrarHoySoloBackHoe.Visible = false;
+                btnFiltrarHoyTodas.Visible = false;
 
                 btnFiltrarFechasCorrecta.Visible = true;
                 btnFiltrarFechaBachHoe.Visible = true;
@@ -309,6 +316,9 @@ namespace Agregados.Forms.Reports
                 btnCredSinLineas.Visible = false;
                 btnCreditoTodas.Visible = false;
 
+                btnAnuladas.Visible = false;
+                DateInicio2.Visible = false;
+                DateFin2.Visible = false;
 
                 BtnVerFacturasList.Visible = false;
                 Consecutivo = 0;
@@ -329,7 +339,8 @@ namespace Agregados.Forms.Reports
             if (RbPendientes.Checked)
             {
                 btnFiltrarHoy.Visible = false;
-                btnFiltrarHoyAnuladas.Visible = false;
+                btnFiltrarHoySoloBackHoe.Visible = false;
+                btnFiltrarHoyTodas.Visible = false;
 
                 btnFiltrarFechasCorrecta.Visible = false;
                 btnFiltrarFechaBachHoe.Visible = false;
@@ -364,7 +375,8 @@ namespace Agregados.Forms.Reports
             if (RbAnuladas.Checked)
             {
                 btnFiltrarHoy.Visible = false;
-                btnFiltrarHoyAnuladas.Visible = false;
+                btnFiltrarHoySoloBackHoe.Visible = false;
+                btnFiltrarHoyTodas.Visible = false;
 
                 btnFiltrarFechasCorrecta.Visible = false;
                 btnFiltrarFechaBachHoe.Visible = false;
@@ -947,46 +959,6 @@ namespace Agregados.Forms.Reports
                 valorPendiente = 0;
             }
         }
-        private void btnFiltrarHoyAnuladas_Click(object sender, EventArgs e)
-        {
-            dgvFilter.ClearSelection();
-            Consecutivo = 0;
-            BtnVerFact.Visible = false;
-            DateTime fechaActual = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
-
-            // linq para validar y disenar mejor la DataGridView al usuario
-            var result = from fa in DB.Facturas
-                         join es in DB.Estados on fa.IdEstado equals es.IdEstado
-                         join cl in DB.Clientes on fa.IdCliente equals cl.IdCliente
-                         join us in DB.Usuarios on fa.IdUsuario equals us.IdUsuario
-                         where ((fa.IdEstado == 5 || fa.IdEstado == 12 || fa.IdEstado == 13) && fa.IdCliente > 0 && fa.FechaFactura == fechaActual)
-                         select new
-                         {
-                             fa.IdFactura,
-                             fa.Consecutivo,
-                             fa.FechaFactura,
-                             fa.CostoTotal,
-                             es.NombreEstado,
-                             cl.Nombre,
-                             us.NombreEmpleado
-                         };
-            dgvFilter.DataSource = result.ToList();
-
-
-            if (result.ToList().Count > 0)
-            {
-                BtnVerFacturasList.Visible = true;
-                btnReportExcel.Visible = true;
-                btnReportPDF.Visible = true;
-            }
-            else
-            {
-                BtnVerFacturasList.Visible = false;
-                btnReportExcel.Visible = false;
-                btnReportPDF.Visible = false;
-            }
-        }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
@@ -1098,7 +1070,7 @@ namespace Agregados.Forms.Reports
 
                 // linq para validar y disenar mejor la DataGridView al usuario
 
-                var result = DB.SPFactPorRangoFechaSinDetalles1(FechaInicial, FechaFinal).ToList();
+                var result = DB.SPFactPorRangoFechaSinDetalles(FechaInicial, FechaFinal).ToList();
 
                 var finalResult = from fa in result
                                   select new
@@ -1146,7 +1118,7 @@ namespace Agregados.Forms.Reports
 
                 // linq para validar y disenar mejor la DataGridView al usuario
 
-                var result = DB.SPFactPorRangoFechaAll1(FechaInicial, FechaFinal).ToList();
+                var result = DB.SPFactPorRangoFechaAll(FechaInicial, FechaFinal).ToList();
 
                 var finalResult = from fa in result
                                   select new
@@ -1179,6 +1151,46 @@ namespace Agregados.Forms.Reports
             {
                 MessageBox.Show("Selecciona correctamente las fecha para filtrar la información.",
                                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnFiltrarHoySoloBackHoe_Click(object sender, EventArgs e)
+        {
+            dgvFilter.ClearSelection();
+            Consecutivo = 0;
+            BtnVerFact.Visible = false;
+            DateTime fechaActual = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
+
+            // linq para validar y disenar mejor la DataGridView al usuario
+            var result = from fa in DB.Facturas
+                         join es in DB.Estados on fa.IdEstado equals es.IdEstado
+                         join cl in DB.Clientes on fa.IdCliente equals cl.IdCliente
+                         join us in DB.Usuarios on fa.IdUsuario equals us.IdUsuario
+                         where ((fa.IdEstado == 5 || fa.IdEstado == 12 || fa.IdEstado == 13) && fa.IdCliente > 0 && fa.FechaFactura == fechaActual)
+                         select new
+                         {
+                             fa.IdFactura,
+                             fa.Consecutivo,
+                             fa.FechaFactura,
+                             fa.CostoTotal,
+                             es.NombreEstado,
+                             cl.Nombre,
+                             us.NombreEmpleado
+                         };
+            dgvFilter.DataSource = result.ToList();
+
+
+            if (result.ToList().Count > 0)
+            {
+                BtnVerFacturasList.Visible = true;
+                btnReportExcel.Visible = true;
+                btnReportPDF.Visible = true;
+            }
+            else
+            {
+                BtnVerFacturasList.Visible = false;
+                btnReportExcel.Visible = false;
+                btnReportPDF.Visible = false;
             }
         }
     }

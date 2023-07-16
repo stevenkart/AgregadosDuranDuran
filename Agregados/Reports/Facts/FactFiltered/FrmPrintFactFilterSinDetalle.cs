@@ -26,6 +26,7 @@ namespace Agregados.Reports.Facts.FactFiltered
         private void FrmPrintFactFilterSinDetalle_Load(object sender, EventArgs e)
         {
             RptFactFilteredSinDetalle rptFactFiltered = new RptFactFilteredSinDetalle();
+            rptFactFiltered.Refresh();
             rptFactFiltered.SetParameterValue("@fechaInicio", fechaInicio);
             rptFactFiltered.SetParameterValue("@fechaFin", fechaFin);
 

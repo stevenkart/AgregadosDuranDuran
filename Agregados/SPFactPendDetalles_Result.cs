@@ -13,6 +13,7 @@ namespace Agregados
     
     public partial class SPFactPendDetalles_Result
     {
+        public int IdFactura { get; set; }
         public int Consecutivo { get; set; }
         public decimal CostoTransporte { get; set; }
         public Nullable<decimal> BackHoe { get; set; }
@@ -34,6 +35,5 @@ namespace Agregados
         public decimal Total { get; set; }
         public string NombreMaterial { get; set; }
         public int IdMaterial { get; set; }
-        public int IdFactura { get; set; }
     }
 }

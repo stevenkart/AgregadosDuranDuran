@@ -11,7 +11,7 @@ namespace Agregados
 {
     using System;
     
-    public partial class SPFactPorRangoFechaDetalles1_Result
+    public partial class SPFactPorRangoFechaSinDetalles_Result
     {
         public int IdFactura { get; set; }
         public int Consecutivo { get; set; }
@@ -28,12 +28,12 @@ namespace Agregados
         public string NombreEmpleado { get; set; }
         public string Nombre { get; set; }
         public string Tipo { get; set; }
-        public decimal Cantidad { get; set; }
-        public decimal Precio { get; set; }
-        public decimal Subtotal { get; set; }
-        public decimal IVA { get; set; }
-        public decimal Total { get; set; }
+        public Nullable<decimal> Cantidad { get; set; }
+        public Nullable<decimal> Precio { get; set; }
+        public Nullable<decimal> Subtotal { get; set; }
+        public Nullable<decimal> IVA { get; set; }
+        public Nullable<decimal> Total { get; set; }
         public string NombreMaterial { get; set; }
-        public int IdMaterial { get; set; }
+        public Nullable<int> IdMaterial { get; set; }
     }
 }

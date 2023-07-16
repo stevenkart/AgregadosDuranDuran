@@ -434,13 +434,13 @@
     <Compile Include="SPFactPendSinDetalle_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="SPFactPorRangoFechaAll1_Result.cs">
+    <Compile Include="SPFactPorRangoFechaAll_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="SPFactPorRangoFechaDetalles1_Result.cs">
+    <Compile Include="SPFactPorRangoFechaDetalles_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="SPFactPorRangoFechaSinDetalles1_Result.cs">
+    <Compile Include="SPFactPorRangoFechaSinDetalles_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactReversadasAll_Result.cs">
@@ -653,6 +653,7 @@
     <None Include="AgregadosEF.edmx.diagram">
       <DependentUpon>AgregadosEF.edmx</DependentUpon>
     </None>
+    <None Include="App.Config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -663,9 +664,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
