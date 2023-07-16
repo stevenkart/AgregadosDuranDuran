@@ -1,6 +1,6 @@
 ﻿namespace Agregados.Reports.Facts.FactFiltered
 {
-    partial class FrmPrintFactFilterSinDetalle
+    partial class FrmPrintFactFilterAll
     {
         /// <summary>
         /// Required designer variable.
@@ -39,22 +39,22 @@
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = "C:\\Users\\steve\\source\\repos\\Agregados\\Agregados\\Reports\\Facts\\FactFiltered\\RptFac" +
-    "tFilteredSinDetalle.rpt";
-            this.crystalReportViewer1.Size = new System.Drawing.Size(1151, 609);
+            this.crystalReportViewer1.ReportSource = "C:\\Users\\steve\\source\\repos\\Agregados\\Agregados\\Reports\\Facts\\FactFiltered\\RptPri" +
+    "ntFactFilterAll.rpt";
+            this.crystalReportViewer1.Size = new System.Drawing.Size(1023, 549);
             this.crystalReportViewer1.TabIndex = 0;
             // 
-            // FrmPrintFactFilterSinDetalle
+            // FrmPrintFactFilterAll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1151, 609);
+            this.ClientSize = new System.Drawing.Size(1023, 549);
             this.Controls.Add(this.crystalReportViewer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "FrmPrintFactFilterSinDetalle";
+            this.Name = "FrmPrintFactFilterAll";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Facturas por Fecha";
-            this.Load += new System.EventHandler(this.FrmPrintFactFilterSinDetalle_Load);
+            this.Text = "FrmPrintFactFilterAll";
+            this.Load += new System.EventHandler(this.FrmPrintFactFilterAll_Load);
             this.ResumeLayout(false);
 
         }

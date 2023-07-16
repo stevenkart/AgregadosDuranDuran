@@ -52,8 +52,8 @@
             this.DateFin = new System.Windows.Forms.DateTimePicker();
             this.DateInicio = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnFiltrarFechaAnulada = new System.Windows.Forms.Button();
+            this.btnFiltrarTodasVentas = new System.Windows.Forms.Button();
+            this.btnFiltrarFechaBachHoe = new System.Windows.Forms.Button();
             this.btnFiltrarFechasCorrecta = new System.Windows.Forms.Button();
             this.RbAnuladas = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
@@ -282,7 +282,7 @@
             this.btnCreditoTodas.Name = "btnCreditoTodas";
             this.btnCreditoTodas.Size = new System.Drawing.Size(207, 26);
             this.btnCreditoTodas.TabIndex = 8;
-            this.btnCreditoTodas.Text = "Filtrar a Crédito Todas";
+            this.btnCreditoTodas.Text = "Filtrar a Crédito Todas las Ventas";
             this.btnCreditoTodas.UseVisualStyleBackColor = false;
             this.btnCreditoTodas.Click += new System.EventHandler(this.btnCreditoTodas_Click);
             // 
@@ -362,8 +362,8 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.Controls.Add(this.button1, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnFiltrarFechaAnulada, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnFiltrarTodasVentas, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnFiltrarFechaBachHoe, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnFiltrarFechasCorrecta, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 39);
@@ -373,29 +373,30 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(632, 30);
             this.tableLayoutPanel4.TabIndex = 5;
             // 
-            // button1
+            // btnFiltrarTodasVentas
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(423, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 24);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Filtrar Todas";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnFiltrarTodasVentas.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnFiltrarTodasVentas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFiltrarTodasVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarTodasVentas.Location = new System.Drawing.Point(423, 3);
+            this.btnFiltrarTodasVentas.Name = "btnFiltrarTodasVentas";
+            this.btnFiltrarTodasVentas.Size = new System.Drawing.Size(206, 24);
+            this.btnFiltrarTodasVentas.TabIndex = 6;
+            this.btnFiltrarTodasVentas.Text = "Filtrar Todas";
+            this.btnFiltrarTodasVentas.UseVisualStyleBackColor = false;
+            this.btnFiltrarTodasVentas.Click += new System.EventHandler(this.btnFiltrarTodasVentas_Click);
             // 
-            // btnFiltrarFechaAnulada
+            // btnFiltrarFechaBachHoe
             // 
-            this.btnFiltrarFechaAnulada.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnFiltrarFechaAnulada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFiltrarFechaAnulada.Location = new System.Drawing.Point(3, 3);
-            this.btnFiltrarFechaAnulada.Name = "btnFiltrarFechaAnulada";
-            this.btnFiltrarFechaAnulada.Size = new System.Drawing.Size(204, 24);
-            this.btnFiltrarFechaAnulada.TabIndex = 5;
-            this.btnFiltrarFechaAnulada.Text = "Filtrar Anuladas";
-            this.btnFiltrarFechaAnulada.UseVisualStyleBackColor = false;
-            this.btnFiltrarFechaAnulada.Click += new System.EventHandler(this.btnFiltrarFechaAnulada_Click);
+            this.btnFiltrarFechaBachHoe.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnFiltrarFechaBachHoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarFechaBachHoe.Location = new System.Drawing.Point(3, 3);
+            this.btnFiltrarFechaBachHoe.Name = "btnFiltrarFechaBachHoe";
+            this.btnFiltrarFechaBachHoe.Size = new System.Drawing.Size(204, 24);
+            this.btnFiltrarFechaBachHoe.TabIndex = 5;
+            this.btnFiltrarFechaBachHoe.Text = "Filtrar a Credito solo BackHoe";
+            this.btnFiltrarFechaBachHoe.UseVisualStyleBackColor = false;
+            this.btnFiltrarFechaBachHoe.Click += new System.EventHandler(this.btnFiltrarFechaBachHoe_Click);
             // 
             // btnFiltrarFechasCorrecta
             // 
@@ -406,7 +407,7 @@
             this.btnFiltrarFechasCorrecta.Name = "btnFiltrarFechasCorrecta";
             this.btnFiltrarFechasCorrecta.Size = new System.Drawing.Size(204, 24);
             this.btnFiltrarFechasCorrecta.TabIndex = 4;
-            this.btnFiltrarFechasCorrecta.Text = "Filtrar Procesadas";
+            this.btnFiltrarFechasCorrecta.Text = "Filtrar Ventas";
             this.btnFiltrarFechasCorrecta.UseVisualStyleBackColor = false;
             this.btnFiltrarFechasCorrecta.Click += new System.EventHandler(this.btnFiltrarFechas_Click);
             // 
@@ -652,7 +653,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03101F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
             this.tableLayoutPanel5.Controls.Add(this.btnVolver, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnReportPDF, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.BtnVerFact, 4, 0);
@@ -676,7 +677,7 @@
             this.btnVolver.Image = global::Agregados.Properties.Resources._return;
             this.btnVolver.Location = new System.Drawing.Point(3, 3);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(520, 79);
+            this.btnVolver.Size = new System.Drawing.Size(519, 79);
             this.btnVolver.TabIndex = 6;
             this.btnVolver.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnVolver.UseVisualStyleBackColor = false;
@@ -691,7 +692,7 @@
             this.btnReportPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportPDF.Image = global::Agregados.Properties.Resources.pdf;
             this.btnReportPDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportPDF.Location = new System.Drawing.Point(529, 3);
+            this.btnReportPDF.Location = new System.Drawing.Point(528, 3);
             this.btnReportPDF.Name = "btnReportPDF";
             this.btnReportPDF.Size = new System.Drawing.Size(160, 79);
             this.btnReportPDF.TabIndex = 2;
@@ -709,9 +710,9 @@
             this.BtnVerFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVerFact.Image = global::Agregados.Properties.Resources.factura;
             this.BtnVerFact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerFact.Location = new System.Drawing.Point(1048, 3);
+            this.BtnVerFact.Location = new System.Drawing.Point(1047, 3);
             this.BtnVerFact.Name = "BtnVerFact";
-            this.BtnVerFact.Size = new System.Drawing.Size(125, 79);
+            this.BtnVerFact.Size = new System.Drawing.Size(126, 79);
             this.BtnVerFact.TabIndex = 0;
             this.BtnVerFact.Text = "Ver Factura";
             this.BtnVerFact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -727,7 +728,7 @@
             this.BtnVerFacturasList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVerFacturasList.Image = global::Agregados.Properties.Resources.reporte;
             this.BtnVerFacturasList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerFacturasList.Location = new System.Drawing.Point(851, 3);
+            this.BtnVerFacturasList.Location = new System.Drawing.Point(850, 3);
             this.BtnVerFacturasList.Name = "BtnVerFacturasList";
             this.BtnVerFacturasList.Size = new System.Drawing.Size(191, 79);
             this.BtnVerFacturasList.TabIndex = 1;
@@ -745,7 +746,7 @@
             this.btnReportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportExcel.Image = global::Agregados.Properties.Resources.excel;
             this.btnReportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportExcel.Location = new System.Drawing.Point(695, 3);
+            this.btnReportExcel.Location = new System.Drawing.Point(694, 3);
             this.btnReportExcel.Name = "btnReportExcel";
             this.btnReportExcel.Size = new System.Drawing.Size(150, 79);
             this.btnReportExcel.TabIndex = 3;
@@ -825,10 +826,10 @@
         private System.Windows.Forms.Button btnFiltrarHoyAnuladas;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        private System.Windows.Forms.Button btnFiltrarFechaAnulada;
+        private System.Windows.Forms.Button btnFiltrarFechaBachHoe;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Button btnFiltrarHoyTodas;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnFiltrarTodasVentas;
         private System.Windows.Forms.RadioButton RbPendientes;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Button btnCredSinLineas;

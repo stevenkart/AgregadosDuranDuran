@@ -255,6 +255,12 @@
     <Compile Include="Proveedores.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterAll.Designer.cs">
+      <DependentUpon>FrmPrintFactFilterAll.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendAll.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -358,6 +364,12 @@
       <DependentUpon>RptFactsPendSinDetalle.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\RptPrintFactFilterAll.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptPrintFactFilterAll.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Facts\FactNow\FrmPrintFact.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -410,28 +422,25 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="SPFactGeneradaContadoIVA_Result.cs">
+    <Compile Include="SPFactGenerada_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="SPFactGenerada_Result.cs">
+    <Compile Include="SPFactPendAll_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactPendDetalles_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="SPFactPendSinDetalles_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
-    </Compile>
     <Compile Include="SPFactPendSinDetalle_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="SPFactPorRangoFechaDetalles_Result.cs">
+    <Compile Include="SPFactPorRangoFechaAll1_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="SPFactPorRangoFechaSinDetalles_Result.cs">
+    <Compile Include="SPFactPorRangoFechaDetalles1_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="SPFactPorRangoFecha_Result.cs">
+    <Compile Include="SPFactPorRangoFechaSinDetalles1_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactReversadasAll_Result.cs">
@@ -538,6 +547,9 @@
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.resx">
       <DependentUpon>FrmPrintFactAnuladas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterAll.resx">
+      <DependentUpon>FrmPrintFactFilterAll.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.resx">
       <DependentUpon>FrmPrintFactFilterDetalle.cs</DependentUpon>
     </EmbeddedResource>
@@ -597,6 +609,10 @@
     <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsPendSinDetalle.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptFactsPendSinDetalle.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptPrintFactFilterAll.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptPrintFactFilterAll.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintFact.resx">
       <DependentUpon>FrmPrintFact.cs</DependentUpon>

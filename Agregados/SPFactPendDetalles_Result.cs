@@ -34,5 +34,6 @@ namespace Agregados
         public decimal Total { get; set; }
         public string NombreMaterial { get; set; }
         public int IdMaterial { get; set; }
+        public int IdFactura { get; set; }
     }
 }

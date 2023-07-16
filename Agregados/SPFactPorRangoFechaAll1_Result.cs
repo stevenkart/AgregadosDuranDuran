@@ -11,8 +11,9 @@ namespace Agregados
 {
     using System;
     
-    public partial class SPFactPorRangoFechaSinDetalles_Result
+    public partial class SPFactPorRangoFechaAll1_Result
     {
+        public int IdFactura { get; set; }
         public int Consecutivo { get; set; }
         public decimal CostoTransporte { get; set; }
         public Nullable<decimal> BackHoe { get; set; }
@@ -22,7 +23,6 @@ namespace Agregados
         public decimal CostoTotal { get; set; }
         public string ReferenciaPago { get; set; }
         public Nullable<System.DateTime> FechaLimiteP { get; set; }
-        public Nullable<decimal> BackHoe1 { get; set; }
         public string NombreEstado { get; set; }
         public string TipoPago { get; set; }
         public string NombreEmpleado { get; set; }
