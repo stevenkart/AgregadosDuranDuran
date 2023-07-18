@@ -89,7 +89,7 @@ namespace Agregados.Forms.Login
                                 if (context.SaveChanges() > 0)
                                 {
                                     email = context.CorreoNotificaciones.FirstOrDefault();
-                                    if (email.SendEmail(email.Correo, "Prueba",
+                                    if (email.SendEmail(usuario.Correo, "Prueba",
                                         "Este es el código PIN para que puedas cambiar la contraseña " +
                                         $"{usuario.Pin}")) //sentto quemado //TODO cambiar a que obtenga el correo del usuario
                                     {
@@ -229,7 +229,7 @@ namespace Agregados.Forms.Login
                                 if (context.SaveChanges() > 0)
                                 {
                                     email = context.CorreoNotificaciones.FirstOrDefault();
-                                    if (email.SendEmail(email.Correo, "Cambio de contraseña",
+                                    if (email.SendEmail(usuario.Correo, "Cambio de contraseña",
                                         "Haz Cambiado la contraseña correctamente. Por favor intenta ingresar. ")) //sentto quemado //TODO cambiar a que obtenga el correo del usuario
                                     {
                                         MessageBox.Show("Cambio de Contraseña correcto",

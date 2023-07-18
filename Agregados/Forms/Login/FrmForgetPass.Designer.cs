@@ -183,9 +183,9 @@
             this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChange.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnChange.Location = new System.Drawing.Point(101, 98);
+            this.btnChange.Location = new System.Drawing.Point(100, 98);
             this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(258, 23);
+            this.btnChange.Size = new System.Drawing.Size(259, 23);
             this.btnChange.TabIndex = 4;
             this.btnChange.Text = "Cambiar Contraseña";
             this.btnChange.UseVisualStyleBackColor = false;
@@ -215,7 +215,7 @@
             // txtPass
             // 
             this.txtPass.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtPass.Location = new System.Drawing.Point(109, 3);
+            this.txtPass.Location = new System.Drawing.Point(108, 3);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(242, 22);
             this.txtPass.TabIndex = 7;
@@ -224,7 +224,7 @@
             // txtConfirmPass
             // 
             this.txtConfirmPass.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtConfirmPass.Location = new System.Drawing.Point(109, 36);
+            this.txtConfirmPass.Location = new System.Drawing.Point(108, 36);
             this.txtConfirmPass.Name = "txtConfirmPass";
             this.txtConfirmPass.Size = new System.Drawing.Size(242, 22);
             this.txtConfirmPass.TabIndex = 8;
@@ -263,7 +263,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FrmForgetPass";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
