@@ -52,6 +52,8 @@ namespace Agregados
 
         public static Forms.Reports.FrmFactsReports MifrmFactsReports = new Forms.Reports.FrmFactsReports();
 
-        
+        public static Forms.Reports.FrmTicketsReports MifrmTicketsReports = new Forms.Reports.FrmTicketsReports();
+
+
     }
 }

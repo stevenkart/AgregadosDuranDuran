@@ -359,5 +359,12 @@ namespace Agregados.Forms
             Globals.MifrmPendBill.Show();
             this.Hide();
         }
+
+        private void reporteDeComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmTicketsReports = new Reports.FrmTicketsReports();
+            Globals.MifrmTicketsReports.Show();
+            this.Hide();
+        }
     }
 }

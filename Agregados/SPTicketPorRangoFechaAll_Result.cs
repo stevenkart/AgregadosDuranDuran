@@ -11,8 +11,9 @@ namespace Agregados
 {
     using System;
     
-    public partial class SPTicketPorRangoFecha_Result
+    public partial class SPTicketPorRangoFechaAll_Result
     {
+        public int IdFactura { get; set; }
         public int Consecutivo { get; set; }
         public decimal CostoTransporte { get; set; }
         public Nullable<decimal> BackHoe { get; set; }

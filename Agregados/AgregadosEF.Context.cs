@@ -127,7 +127,12 @@ namespace Agregados
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPTicketGenerado_Result>("SPTicketGenerado", consecutivoParameter);
         }
     
-        public virtual ObjectResult<SPTicketPorRangoFecha_Result> SPTicketPorRangoFecha(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        public virtual ObjectResult<SPTicketPendAll_Result> SPTicketPendAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPTicketPendAll_Result>("SPTicketPendAll");
+        }
+    
+        public virtual ObjectResult<SPTicketPorRangoFechaAll_Result> SPTicketPorRangoFechaAll(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
         {
             var fechaInicioParameter = fechaInicio.HasValue ?
                 new ObjectParameter("fechaInicio", fechaInicio) :
@@ -137,7 +142,20 @@ namespace Agregados
                 new ObjectParameter("fechaFin", fechaFin) :
                 new ObjectParameter("fechaFin", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPTicketPorRangoFecha_Result>("SPTicketPorRangoFecha", fechaInicioParameter, fechaFinParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPTicketPorRangoFechaAll_Result>("SPTicketPorRangoFechaAll", fechaInicioParameter, fechaFinParameter);
+        }
+    
+        public virtual ObjectResult<SPTicketReversadasAll_Result> SPTicketReversadasAll(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("fechaFin", fechaFin) :
+                new ObjectParameter("fechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPTicketReversadasAll_Result>("SPTicketReversadasAll", fechaInicioParameter, fechaFinParameter);
         }
     }
 }

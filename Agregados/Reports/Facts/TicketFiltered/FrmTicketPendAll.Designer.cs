@@ -1,6 +1,6 @@
-﻿namespace Agregados.Reports.Facts.FactFiltered
+﻿namespace Agregados.Reports.Facts.TicketFiltered
 {
-    partial class FrmPrintFactFilterAll
+    partial class FrmTicketPendAll
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTicketPendAll));
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.SuspendLayout();
             // 
@@ -39,22 +40,23 @@
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = "C:\\Users\\steve\\source\\repos\\Agregados\\Agregados\\Reports\\Facts\\FactFiltered\\RptPri" +
-    "ntFactFilterAll.rpt";
+            this.crystalReportViewer1.ReportSource = "C:\\Users\\steve\\source\\repos\\Agregados\\Agregados\\Reports\\Facts\\TicketFiltered\\RptT" +
+    "icketPendAll.rpt";
             this.crystalReportViewer1.Size = new System.Drawing.Size(1023, 549);
             this.crystalReportViewer1.TabIndex = 0;
             // 
-            // FrmPrintFactFilterAll
+            // FrmTicketPendAll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1023, 549);
             this.Controls.Add(this.crystalReportViewer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "FrmPrintFactFilterAll";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Facturas Por Rango Fechas";
-            this.Load += new System.EventHandler(this.FrmPrintFactFilterAll_Load);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1039, 588);
+            this.Name = "FrmTicketPendAll";
+            this.Text = "Compras Pendientes por Pagar";
+            this.Load += new System.EventHandler(this.FrmTicketPendAll_Load);
             this.ResumeLayout(false);
 
         }

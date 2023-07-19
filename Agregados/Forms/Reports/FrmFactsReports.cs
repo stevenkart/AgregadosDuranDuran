@@ -105,10 +105,16 @@ namespace Agregados.Forms.Reports
                              cl.Nombre,
                              us.NombreEmpleado
                          };
-            dgvFilter.DataSource = result.ToList();
-            
-            BtnVerFacturasList.Visible = false;
-            
+
+            if (result.ToList().Count > 0)
+            {
+                dgvFilter.DataSource = result.ToList();
+                MessageBox.Show("Lista de los últimos 3 días", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No hay registro de facturas en los últimos 3 días", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         //boton de filtrar datos a hoy
@@ -559,7 +565,7 @@ namespace Agregados.Forms.Reports
                 }
             }
 
-            //pendiente por credito
+            //por fechas
             if (RbFechas.Checked)
             {
                 switch (valorPorFechas)
@@ -608,6 +614,57 @@ namespace Agregados.Forms.Reports
                         break;
                 }
             }
+
+            //por fechas hoy
+            if (RbHoy.Checked)
+            {
+                switch (valorHoy)
+                {
+                    case 0:
+                        MessageBox.Show("Debes de seleccionar un filtro para buscar las facturas.",
+                      "Registro de Facturas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 1:
+                        DialogResult respuesta1 = MessageBox.Show("¿Deseas visualizar todas las facturas procesadas de solo backhoe y transporte?.",
+                                                "Registro de Facturas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (respuesta1 == DialogResult.Yes)
+                        {
+                            using (FrmPrintFactFilterSinDetalle frm = new FrmPrintFactFilterSinDetalle(Hoy, Hoy))
+                            {
+                                frm.ShowDialog();
+                            };
+                        }
+                        break;
+                    case 2:
+                        DialogResult respuesta2 = MessageBox.Show("¿Deseas visualizar todas las facturas procesadas con detalles de materiales?.",
+                                               "Registro de Facturas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (respuesta2 == DialogResult.Yes)
+                        {
+                            using (FrmPrintFactFilterDetalle frm = new FrmPrintFactFilterDetalle(Hoy, Hoy))
+                            {
+                                frm.ShowDialog();
+                            };
+                        }
+                        break;
+                    case 3:
+                        DialogResult respuesta3 = MessageBox.Show("¿Deseas visualizar todas las facturas procesadas?.",
+                                               "Registro de Facturas", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (respuesta3 == DialogResult.Yes)
+                        {
+                            using (FrmPrintFactFilterAll frm = new FrmPrintFactFilterAll(Hoy, Hoy))
+                            {
+                                frm.ShowDialog();
+                            };
+                        }
+                        break;
+                    default:
+                        MessageBox.Show("Debes de seleccionar un filtro para buscar las facturas, si ya lo seleccionaste, " +
+                            "entonces ha ocurrido un error, favor contactar al administrador.",
+                      "Registro de Facturas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+            }
+
         }
 
         //evento que cuando se selecciona un elemento en el datagrid, toma el consecutivo para ser usado en los botones
