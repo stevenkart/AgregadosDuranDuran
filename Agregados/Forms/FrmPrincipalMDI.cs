@@ -349,8 +349,15 @@ namespace Agregados.Forms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error" , MessageBoxButtons.OK, MessageBoxIcon.Information);
-                throw;
+                //throw;
             }
+        }
+
+        private void facturasACréditoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmPendBill = new Bills.FrmPendBill();
+            Globals.MifrmPendBill.Show();
+            this.Hide();
         }
     }
 }

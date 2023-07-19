@@ -37,6 +37,7 @@
             this.txtUser = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnSeePass = new System.Windows.Forms.PictureBox();
+            this.btnRecoverDB = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.btnSeePass)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,6 +131,20 @@
             this.btnSeePass.TabStop = false;
             this.btnSeePass.Click += new System.EventHandler(this.btnSeePass_Click);
             // 
+            // btnRecoverDB
+            // 
+            this.btnRecoverDB.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnRecoverDB.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRecoverDB.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRecoverDB.Location = new System.Drawing.Point(406, 143);
+            this.btnRecoverDB.Name = "btnRecoverDB";
+            this.btnRecoverDB.Size = new System.Drawing.Size(82, 28);
+            this.btnRecoverDB.TabIndex = 8;
+            this.btnRecoverDB.Text = "Recover";
+            this.btnRecoverDB.UseVisualStyleBackColor = false;
+            this.btnRecoverDB.Visible = false;
+            this.btnRecoverDB.Click += new System.EventHandler(this.btnRecoverDB_Click);
+            // 
             // FrmLogin
             // 
             this.AcceptButton = this.btnLogin;
@@ -138,6 +153,7 @@
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(500, 274);
+            this.Controls.Add(this.btnRecoverDB);
             this.Controls.Add(this.btnSeePass);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUser);
@@ -148,6 +164,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(516, 313);
@@ -158,6 +175,8 @@
             this.Text = "Agregados Duran & Duran";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmLogin_FormClosing);
             this.Load += new System.EventHandler(this.FrmLogin_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmLogin_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FrmLogin_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.btnSeePass)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -174,5 +193,6 @@
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.PictureBox btnSeePass;
+        private System.Windows.Forms.Button btnRecoverDB;
     }
 }

@@ -224,6 +224,12 @@
     <Compile Include="Forms\Bills\FrmNotaCredito.Designer.cs">
       <DependentUpon>FrmNotaCredito.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Bills\FrmPendBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmPendBill.Designer.cs">
+      <DependentUpon>FrmPendBill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Bills\FrmRevBillProvider.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -552,6 +558,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmNotaCredito.resx">
       <DependentUpon>FrmNotaCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmPendBill.resx">
+      <DependentUpon>FrmPendBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmRevBillProvider.resx">
       <DependentUpon>FrmRevBillProvider.cs</DependentUpon>
