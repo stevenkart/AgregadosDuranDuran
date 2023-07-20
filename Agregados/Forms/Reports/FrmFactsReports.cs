@@ -158,6 +158,7 @@ namespace Agregados.Forms.Reports
             }
             else
             {
+                MessageBox.Show("No hay registro de facturas a contado el día de hoy, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BtnVerFacturasList.Visible = false;
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
@@ -247,6 +248,7 @@ namespace Agregados.Forms.Reports
                 }
                 else
                 {
+                    MessageBox.Show("No hay registro de facturas a contado en el rango de fechas indicado, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BtnVerFacturasList.Visible = false;
                     btnReportExcel.Visible = false;
                     btnReportPDF.Visible = false;
@@ -295,6 +297,7 @@ namespace Agregados.Forms.Reports
             }
             else
             {
+                MessageBox.Show("No hay registro de facturas a crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BtnVerFacturasList.Visible = false;
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
@@ -1642,6 +1645,8 @@ namespace Agregados.Forms.Reports
                                         if (result.Count > 0)
                                         {
                                             RptFactsAnuladas rptFactsAnuladas = new RptFactsAnuladas();
+                                            rptFactsAnuladas.SetParameterValue("@fechaInicio", pFechaInicial2);
+                                            rptFactsAnuladas.SetParameterValue("@fechaFin", pFechaFinal2);
 
                                             //datos para export pdf el report
                                             ExportOptions exportOptions;
@@ -1717,6 +1722,7 @@ namespace Agregados.Forms.Reports
             }
             else
             {
+                MessageBox.Show("No hay registro de facturas a crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BtnVerFacturasList.Visible = false;
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
@@ -1769,6 +1775,7 @@ namespace Agregados.Forms.Reports
             }
             else
             {
+                MessageBox.Show("No hay registro de facturas a contado el día de hoy, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BtnVerFacturasList.Visible = false;
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
@@ -1810,6 +1817,7 @@ namespace Agregados.Forms.Reports
             }
             else
             {
+                MessageBox.Show("No hay registro de facturas a crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BtnVerFacturasList.Visible = false;
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
@@ -1856,6 +1864,7 @@ namespace Agregados.Forms.Reports
                 }
                 else
                 {
+                    MessageBox.Show("No hay registro de facturas a anuladas o con nota de crédito.", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BtnVerFacturasList.Visible = false;
                     btnReportExcel.Visible = false;
                     btnReportPDF.Visible = false;
@@ -1906,6 +1915,7 @@ namespace Agregados.Forms.Reports
                 }
                 else
                 {
+                    MessageBox.Show("No hay registro de facturas a contado en el rango de fechas indicado, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BtnVerFacturasList.Visible = false;
                     btnReportExcel.Visible = false;
                     btnReportPDF.Visible = false;
@@ -1956,6 +1966,7 @@ namespace Agregados.Forms.Reports
                 }
                 else
                 {
+                    MessageBox.Show("No hay registro de facturas a contado en el rango de fechas indicado, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BtnVerFacturasList.Visible = false;
                     btnReportExcel.Visible = false;
                     btnReportPDF.Visible = false;
@@ -2008,6 +2019,7 @@ namespace Agregados.Forms.Reports
             }
             else
             {
+                MessageBox.Show("No hay registro de facturas a contado el día de hoy, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BtnVerFacturasList.Visible = false;
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;

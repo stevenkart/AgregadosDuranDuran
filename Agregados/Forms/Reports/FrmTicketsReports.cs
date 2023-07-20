@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Agregados.Reports.Facts.FactFiltered;
 using Agregados.Reports.Facts.TicketFiltered;
 using Ganss.Excel;
+using CrystalDecisions.Shared;
 
 namespace Agregados.Forms.Reports
 {
@@ -329,7 +330,7 @@ namespace Agregados.Forms.Reports
             }
             else
             {
-                MessageBox.Show("No hay registro de compras a contado el día de hoy, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No hay registro de compras a contado el día de hoy, puedes revisar las de crédito", "Lista Compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BtnVerFacturasList.Visible = false;
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
@@ -372,7 +373,7 @@ namespace Agregados.Forms.Reports
                 }
                 else
                 {
-                    MessageBox.Show("No hay registro de compras en el rango de fechas indicado", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No hay registro de compras en el rango de fechas indicado", "Lista Compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BtnVerFacturasList.Visible = false;
                     btnReportExcel.Visible = false;
                     btnReportPDF.Visible = false;
@@ -415,11 +416,11 @@ namespace Agregados.Forms.Reports
                 BtnVerFacturasList.Visible = true;
                 btnReportExcel.Visible = true;
                 btnReportPDF.Visible = true;
-                valorPendiente = 3; // indica la accion a realizar para ver las facturas list
+                valorPendiente = 1; // indica la accion a realizar para ver las facturas list
             }
             else
             {
-                MessageBox.Show("No hay registro de compras a crédito pendiente por pagar", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No hay registro de compras a crédito pendiente por pagar", "Lista Compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BtnVerFacturasList.Visible = false;
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
@@ -466,7 +467,7 @@ namespace Agregados.Forms.Reports
                 }
                 else
                 {
-                    MessageBox.Show("No hay registro de compras reversada / anuladas pendiente por pagar", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No hay registro de compras reversada / anuladas pendiente por pagar", "Lista Compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BtnVerFacturasList.Visible = false;
                     btnReportExcel.Visible = false;
                     btnReportPDF.Visible = false;
@@ -508,14 +509,14 @@ namespace Agregados.Forms.Reports
                 facturas = DB.Facturas.Find(Id);
                 if (facturas.IdEstado == 5 || facturas.IdEstado == 12 || facturas.IdEstado == 13)
                 {
-                    using (FrmPrintFactRev frm = new FrmPrintFactRev(Consecutivo))
+                    using (FrmPrintTicketRev frm = new FrmPrintTicketRev(Consecutivo))
                     {
                         frm.ShowDialog();
                     };
                 }
                 else
                 {
-                    using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
+                    using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                     {
                         frm.ShowDialog();
                     };
@@ -524,7 +525,7 @@ namespace Agregados.Forms.Reports
             }
             else
             {
-                MessageBox.Show("Debes de seleccionar una factura para poder verla.",
+                MessageBox.Show("Debes de seleccionar una Compra para poder verla.",
                                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -560,7 +561,7 @@ namespace Agregados.Forms.Reports
                 switch (valorPendiente)
                 {
                     case 0:
-                        MessageBox.Show("Debes de seleccionar un filtro para buscar las facturas.",
+                        MessageBox.Show("Debes de seleccionar un filtro para buscar las Compras.",
                       "Registro de Facturas", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     case 1:
@@ -575,13 +576,12 @@ namespace Agregados.Forms.Reports
                         }
                         break;
                     default:
-                        MessageBox.Show("Debes de seleccionar un filtro para buscar las facturas, si ya lo seleccionaste, " +
+                        MessageBox.Show("Debes de seleccionar un filtro para buscar las Compras, si ya lo seleccionaste, " +
                             "entonces ha ocurrido un error, favor contactar al administrador.",
                       "Registro de Facturas", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
             }
-
 
             //por fechas
             if (RbFechas.Checked)
@@ -876,6 +876,295 @@ namespace Agregados.Forms.Reports
                 }
             }
 
+        }
+
+        private void btnReportPDF_Click(object sender, EventArgs e)
+        {
+            //para SP consultas
+            //parametro para fechas 1
+            DateTime FechaInicial = Convert.ToDateTime(DateInicio.Value.ToString("yyyy-MM-dd"));
+            DateTime FechaFinal = Convert.ToDateTime(DateFin.Value.ToString("yyyy-MM-dd"));
+
+            //paraemtros para fechas 2
+            DateTime FechaInicial2 = Convert.ToDateTime(DateInicio2.Value.ToString("yyyy-MM-dd"));
+            DateTime FechaFinal2 = Convert.ToDateTime(DateFin2.Value.ToString("yyyy-MM-dd"));
+
+            //parametros hoy
+            DateTime Inicial = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
+            DateTime Final = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
+
+            //----------------------------------------------------------------------------------//
+
+            //para pdf reports
+            string pFechaInicial = Convert.ToString(DateInicio.Value.ToString("yyyy-MM-dd"));
+            string pFechaFinal = Convert.ToString(DateFin.Value.ToString("yyyy-MM-dd"));
+
+            string pFechaInicial2 = Convert.ToString(DateInicio2.Value.ToString("yyyy-MM-dd"));
+            string pFechaFinal2 = Convert.ToString(DateFin2.Value.ToString("yyyy-MM-dd"));
+
+            //parametros hoy
+            string pInicial2 = Convert.ToString(DateTime.Now.Date.ToString("yyyy-MM-dd"));
+            string pFinal2 = Convert.ToString(DateTime.Now.Date.ToString("yyyy-MM-dd"));
+
+            if (RbHoy.Checked)
+            {
+                try
+                {
+                    switch (valorHoy)
+                    {
+                        case 0:
+                            MessageBox.Show("Debes de seleccionar un filtro para buscar las Compras.",
+                          "Registro de Compras", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                        case 1:
+                            DialogResult respuesta = MessageBox.Show("¿Deseas exportar a pdf todas las Compras procesadas de hoy?.",
+                                                   "Registro de Compras", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (respuesta == DialogResult.Yes)
+                            {
+                                var result = DB.SPTicketPorRangoFechaAll(Inicial, Final).ToList();
+                                if (result.Count > 0)
+                                {
+                                    RptTickesPorFechas rptTickesPorFechas = new RptTickesPorFechas();
+                                    rptTickesPorFechas.SetParameterValue("@fechaInicio", pInicial2);
+                                    rptTickesPorFechas.SetParameterValue("@fechaFin", pFinal2);
+
+                                    //datos para export pdf el report
+                                    ExportOptions exportOptions;
+                                    DiskFileDestinationOptions diskFileDestinationOptions = new DiskFileDestinationOptions();
+                                    SaveFileDialog dialog = new SaveFileDialog();
+                                    dialog.Filter = "Pdf|*.pdf";
+                                    if (dialog.ShowDialog() == DialogResult.OK)
+                                    {
+                                        diskFileDestinationOptions.DiskFileName = dialog.FileName;
+                                    }
+                                    exportOptions = rptTickesPorFechas.ExportOptions;
+                                    {
+                                        exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                                        exportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                                        exportOptions.ExportDestinationOptions = diskFileDestinationOptions;
+                                        exportOptions.ExportFormatOptions = new PdfRtfWordFormatOptions();
+                                    }
+                                    rptTickesPorFechas.Export();
+
+                                    MessageBox.Show("Se exporto correctamente el documento.",
+                                                            "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No hay datos que exportar",
+                                                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            break;
+                        default:
+                            MessageBox.Show("Debes de seleccionar un filtro para buscar las facturas, si ya lo seleccionaste, " +
+                                "entonces ha ocurrido un error, favor contactar al administrador.",
+                          "Registro de Facturas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            else
+            {
+                if (RbFechas.Checked)
+                {
+                    try
+                    {
+                        if (ValidarFechaLimite())
+                        {
+                            switch (valorPorFechas)
+                            {
+                                case 0:
+                                    MessageBox.Show("Debes de seleccionar un filtro para buscar las Compras.",
+                                  "Registro de Compras", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break;
+                                case 1:
+                                    DialogResult respuesta3 = MessageBox.Show("¿Deseas exportar a pdf todas las Compras procesadas del rango indicado?.",
+                                                           "Registro de Compras", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (respuesta3 == DialogResult.Yes)
+                                    {
+                                        var result = DB.SPTicketPorRangoFechaAll(FechaInicial, FechaFinal).ToList();
+                                        if (result.Count > 0)
+                                        {
+                                            RptTickesPorFechas rptTickesPorFechas = new RptTickesPorFechas();
+                                            rptTickesPorFechas.Refresh();
+                                            rptTickesPorFechas.SetParameterValue("@fechaInicio", pFechaInicial);
+                                            rptTickesPorFechas.SetParameterValue("@fechaFin", pFechaFinal);
+
+                                            //datos para export pdf el report
+                                            ExportOptions exportOptions;
+                                            DiskFileDestinationOptions diskFileDestinationOptions = new DiskFileDestinationOptions();
+                                            SaveFileDialog dialog = new SaveFileDialog();
+                                            dialog.Filter = "Pdf|*.pdf";
+                                            if (dialog.ShowDialog() == DialogResult.OK)
+                                            {
+                                                diskFileDestinationOptions.DiskFileName = dialog.FileName;
+                                            }
+                                            exportOptions = rptTickesPorFechas.ExportOptions;
+                                            {
+                                                exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                                                exportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                                                exportOptions.ExportDestinationOptions = diskFileDestinationOptions;
+                                                exportOptions.ExportFormatOptions = new PdfRtfWordFormatOptions();
+                                            }
+                                            rptTickesPorFechas.Export();
+
+                                            MessageBox.Show("Se exporto correctamente el documento.",
+                                                                    "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("No hay datos que exportar",
+                                                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    MessageBox.Show("Debes de seleccionar un filtro para buscar las facturas, si ya lo seleccionaste, " +
+                                        "entonces ha ocurrido un error, favor contactar al administrador.",
+                                  "Registro de Facturas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Selecciona correctamente las fecha para filtrar la información.",
+                                                           "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    if (RbPendientes.Checked)
+                    {
+                        try
+                        {
+                            switch (valorPendiente)
+                            {
+                                case 0:
+                                    MessageBox.Show("Debes de seleccionar un filtro para buscar las Compras.",
+                                  "Registro de Compras", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break;
+                                case 1:
+                                    DialogResult respuesta = MessageBox.Show("¿Deseas exportar a pdf todas las Compras a crédito?.",
+                                                           "Registro de Compras", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (respuesta == DialogResult.Yes)
+                                    {
+                                        var result = DB.SPTicketPendAll().ToList();
+                                        if (result.Count > 0)
+                                        {
+                                            RptTicketPendAll rptTicketPendAll = new RptTicketPendAll();
+                                            rptTicketPendAll.Refresh();
+
+                                            //datos para export pdf el report
+                                            ExportOptions exportOptions;
+                                            DiskFileDestinationOptions diskFileDestinationOptions = new DiskFileDestinationOptions();
+                                            SaveFileDialog dialog = new SaveFileDialog();
+                                            dialog.Filter = "Pdf|*.pdf";
+                                            if (dialog.ShowDialog() == DialogResult.OK)
+                                            {
+                                                diskFileDestinationOptions.DiskFileName = dialog.FileName;
+                                            }
+                                            exportOptions = rptTicketPendAll.ExportOptions;
+                                            {
+                                                exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                                                exportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                                                exportOptions.ExportDestinationOptions = diskFileDestinationOptions;
+                                                exportOptions.ExportFormatOptions = new PdfRtfWordFormatOptions();
+                                            }
+                                            rptTicketPendAll.Export();
+
+                                            MessageBox.Show("Se exporto correctamente el documento.",
+                                                                    "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("No hay datos que exportar",
+                                                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    MessageBox.Show("Debes de seleccionar un filtro para buscar las facturas, si ya lo seleccionaste, " +
+                                        "entonces ha ocurrido un error, favor contactar al administrador.",
+                                  "Registro de Facturas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
+                    }
+                    else
+                    {
+                        if (RbAnuladas.Checked)
+                        {
+                            try
+                            {
+                                if (ValidarFechaLimite2())
+                                {
+                                    DialogResult respuesta1 = MessageBox.Show("¿Deseas exportar a pdf, todas las compras anuladas / reversadas?.",
+                                                                                               "Registro de Compras", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (respuesta1 == DialogResult.Yes)
+                                    {
+                                        var result = DB.SPTicketReversadasAll(FechaInicial2, FechaFinal2).ToList();
+                                        if (result.Count > 0)
+                                        {
+                                            RptTicketAnuladasAll rptTicketAnuladasAll = new RptTicketAnuladasAll();
+                                            rptTicketAnuladasAll.Refresh();
+                                            rptTicketAnuladasAll.SetParameterValue("@fechaInicio", pFechaInicial2);
+                                            rptTicketAnuladasAll.SetParameterValue("@fechaFin", pFechaFinal2);
+
+                                            //datos para export pdf el report
+                                            ExportOptions exportOptions;
+                                            DiskFileDestinationOptions diskFileDestinationOptions = new DiskFileDestinationOptions();
+                                            SaveFileDialog dialog = new SaveFileDialog();
+                                            dialog.Filter = "Pdf|*.pdf";
+                                            if (dialog.ShowDialog() == DialogResult.OK)
+                                            {
+                                                diskFileDestinationOptions.DiskFileName = dialog.FileName;
+                                            }
+                                            exportOptions = rptTicketAnuladasAll.ExportOptions;
+                                            {
+                                                exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                                                exportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                                                exportOptions.ExportDestinationOptions = diskFileDestinationOptions;
+                                                exportOptions.ExportFormatOptions = new PdfRtfWordFormatOptions();
+                                            }
+                                            rptTicketAnuladasAll.Export();
+
+                                            MessageBox.Show("Se exporto correctamente el documento.",
+                                                                    "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("No hay datos que exportar",
+                                                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

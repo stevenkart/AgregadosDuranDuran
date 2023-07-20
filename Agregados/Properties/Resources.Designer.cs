@@ -163,6 +163,16 @@ namespace Agregados.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cajaRegistradora {
+            get {
+                object obj = ResourceManager.GetObject("cajaRegistradora", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap clean {
             get {
                 object obj = ResourceManager.GetObject("clean", resourceCulture);
@@ -306,6 +316,16 @@ namespace Agregados.Properties {
         internal static System.Drawing.Bitmap guardarDatos {
             get {
                 object obj = ResourceManager.GetObject("guardarDatos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap listaCierreCaja {
+            get {
+                object obj = ResourceManager.GetObject("listaCierreCaja", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

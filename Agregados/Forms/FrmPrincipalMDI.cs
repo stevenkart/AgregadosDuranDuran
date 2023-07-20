@@ -366,5 +366,12 @@ namespace Agregados.Forms
             Globals.MifrmTicketsReports.Show();
             this.Hide();
         }
+
+        private void reportesDeCajaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmCajaReports = new Reports.FrmCajaReports();
+            Globals.MifrmCajaReports.Show();
+            this.Hide();
+        }
     }
 }

@@ -296,6 +296,12 @@
     <Compile Include="Forms\Providers\FrmProvidersManage.Designer.cs">
       <DependentUpon>FrmProvidersManage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Reports\FrmCajaReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\FrmCajaReports.Designer.cs">
+      <DependentUpon>FrmCajaReports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Reports\FrmFactsReports.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -361,6 +367,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Caja\FrmCajaPorFecha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Caja\FrmCajaPorFecha.Designer.cs">
+      <DependentUpon>FrmCajaPorFecha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Caja\RptCajaPorFecha.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptCajaPorFecha.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterAll.cs">
       <SubType>Form</SubType>
@@ -546,6 +564,12 @@
       <DependentUpon>RptTicketPendAll.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="SPCierreCajaPend_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPCierreCajaPorFecha_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="SPFactGenerada_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
@@ -643,6 +667,9 @@
     <EmbeddedResource Include="Forms\Providers\FrmProvidersManage.resx">
       <DependentUpon>FrmProvidersManage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\FrmCajaReports.resx">
+      <DependentUpon>FrmCajaReports.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\FrmFactsReports.resx">
       <DependentUpon>FrmFactsReports.cs</DependentUpon>
     </EmbeddedResource>
@@ -680,6 +707,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\Caja\FrmCajaPorFecha.resx">
+      <DependentUpon>FrmCajaPorFecha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Caja\RptCajaPorFecha.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptCajaPorFecha.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.resx">
       <DependentUpon>FrmPrintFactAnuladas.cs</DependentUpon>
     </EmbeddedResource>
@@ -857,6 +891,8 @@
     <None Include="Images\IconsReports\listFacts.png" />
     <None Include="Images\IconsReports\factura.png" />
     <None Include="Images\IconsReports\reporte.png" />
+    <None Include="Images\IconsReports\cajaRegistradora.png" />
+    <None Include="Images\IconsReports\listaCierreCaja.png" />
     <Content Include="Images\MDIPrincipal.jpg" />
   </ItemGroup>
   <ItemGroup>

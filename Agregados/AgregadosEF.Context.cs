@@ -157,5 +157,23 @@ namespace Agregados
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPTicketReversadasAll_Result>("SPTicketReversadasAll", fechaInicioParameter, fechaFinParameter);
         }
+    
+        public virtual ObjectResult<SPCierreCajaPend_Result> SPCierreCajaPend()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPCierreCajaPend_Result>("SPCierreCajaPend");
+        }
+    
+        public virtual ObjectResult<SPCierreCajaPorFecha_Result> SPCierreCajaPorFecha(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("fechaFin", fechaFin) :
+                new ObjectParameter("fechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPCierreCajaPorFecha_Result>("SPCierreCajaPorFecha", fechaInicioParameter, fechaFinParameter);
+        }
     }
 }

@@ -232,7 +232,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(262, 21);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Búsqueda de Facturas";
+            this.label1.Text = "Búsqueda de Compras";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // RbPendientes
@@ -736,6 +736,7 @@
             this.btnReportPDF.Text = "Export PDF";
             this.btnReportPDF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReportPDF.UseVisualStyleBackColor = false;
+            this.btnReportPDF.Click += new System.EventHandler(this.btnReportPDF_Click);
             // 
             // BtnVerFact
             // 
