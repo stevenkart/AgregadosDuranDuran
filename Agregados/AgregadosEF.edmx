@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CierreApertCajas">
           <Key>
             <PropertyRef Name="IdCierreApert" />
@@ -19,6 +19,8 @@
           <Property Name="MontoEfectivoUsuarioInicio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoEfectivoFinal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoEfectivoUsuarioFin" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoVentaEfectivo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraEfectivo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoTransf" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoCompraTransf" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoSinpe" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -390,6 +392,9 @@
           <Parameter Name="fechaInicio" Type="date" Mode="In" />
           <Parameter Name="fechaFin" Type="date" Mode="In" />
         </Function>
+        <Function Name="SPCierreCajaPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SPFactGenerada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Consecutivo" Type="int" Mode="In" />
         </Function>
@@ -508,7 +513,8 @@
             <End Role="Vehiculos" EntitySet="Vehiculos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AgregadosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -526,6 +532,8 @@
           <Property Name="MontoEfectivoUsuarioInicio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoEfectivoFinal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoEfectivoUsuarioFin" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoVentaEfectivo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraEfectivo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoTransf" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoCompraTransf" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MontoSinpe" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
@@ -1009,8 +1017,16 @@
             <End Role="TiposProveedores" EntitySet="TiposProveedores" />
             <End Role="Proveedores" EntitySet="Proveedores" />
           </AssociationSet>
+          <FunctionImport Name="SPCierreCajaPend" ReturnType="Collection(AgregadosModel.SPCierreCajaPend_Result)" />
+          <FunctionImport Name="SPCierreCajaPorFecha" ReturnType="Collection(AgregadosModel.SPCierreCajaPorFecha_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SPCierreCajaPorId" ReturnType="Collection(AgregadosModel.SPCierreCajaPorId_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="SPFactGenerada" ReturnType="Collection(AgregadosModel.SPFactGenerada_Result)">
-          <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
+            <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPFactPendAll" ReturnType="Collection(AgregadosModel.SPFactPendAll_Result)" />
           <FunctionImport Name="SPFactPendDetalles" ReturnType="Collection(AgregadosModel.SPFactPendDetalles_Result)" />
@@ -1032,7 +1048,7 @@
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SPTicketGenerado" ReturnType="Collection(AgregadosModel.SPTicketGenerado_Result)">
-          <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
+            <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPTicketPendAll" ReturnType="Collection(AgregadosModel.SPTicketPendAll_Result)" />
           <FunctionImport Name="SPTicketPorRangoFechaAll" ReturnType="Collection(AgregadosModel.SPTicketPorRangoFechaAll_Result)">
@@ -1043,12 +1059,88 @@
             <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="SPCierreCajaPend" ReturnType="Collection(AgregadosModel.SPCierreCajaPend_Result)" />
-          <FunctionImport Name="SPCierreCajaPorFecha" ReturnType="Collection(AgregadosModel.SPCierreCajaPorFecha_Result)">
-            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
-            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
-          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="SPCierreCajaPend_Result">
+          <Property Type="Int32" Name="IdCierreApert" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
+          <Property Type="String" Name="Hora" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="FechaSalida" Nullable="true" />
+          <Property Type="String" Name="HoraSalida" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Detalles" Nullable="true" MaxLength="1000" />
+          <Property Type="Decimal" Name="MontoEfectivoInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoUsuarioInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoFinal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoUsuarioFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoVentaEfectivo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraEfectivo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoTransf" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraTransf" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoSinpe" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraSinpe" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCheque" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCredito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraCredito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FaltanteInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SobranteInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FaltanteFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SobranteFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SPCierreCajaPorFecha_Result">
+          <Property Type="Int32" Name="IdCierreApert" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
+          <Property Type="String" Name="Hora" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="FechaSalida" Nullable="true" />
+          <Property Type="String" Name="HoraSalida" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Detalles" Nullable="true" MaxLength="1000" />
+          <Property Type="Decimal" Name="MontoEfectivoInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoUsuarioInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoFinal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoUsuarioFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoVentaEfectivo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraEfectivo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoTransf" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraTransf" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoSinpe" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraSinpe" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCheque" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCredito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraCredito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FaltanteInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SobranteInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FaltanteFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SobranteFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SPCierreCajaPorId_Result">
+          <Property Type="Int32" Name="IdCierreApert" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
+          <Property Type="String" Name="Hora" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="FechaSalida" Nullable="true" />
+          <Property Type="String" Name="HoraSalida" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Detalles" Nullable="true" MaxLength="1000" />
+          <Property Type="Decimal" Name="MontoEfectivoInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoUsuarioInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoFinal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoUsuarioFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoVentaEfectivo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraEfectivo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoTransf" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraTransf" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoSinpe" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraSinpe" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCheque" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCredito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraCredito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FaltanteInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SobranteInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FaltanteFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SobranteFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+        </ComplexType>
         <ComplexType Name="SPFactGenerada_Result">
           <Property Type="Int32" Name="Consecutivo" Nullable="false" />
           <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
@@ -1336,56 +1428,6 @@
           <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
           <Property Type="Int32" Name="IdMaterial" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="SPCierreCajaPend_Result">
-          <Property Type="Int32" Name="IdCierreApert" Nullable="false" />
-          <Property Type="DateTime" Name="Fecha" Nullable="false" />
-          <Property Type="String" Name="Hora" Nullable="true" MaxLength="255" />
-          <Property Type="DateTime" Name="FechaSalida" Nullable="true" />
-          <Property Type="String" Name="HoraSalida" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="Detalles" Nullable="true" MaxLength="1000" />
-          <Property Type="Decimal" Name="MontoEfectivoInicio" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoEfectivoUsuarioInicio" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoEfectivoFinal" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoEfectivoUsuarioFin" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoTransf" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoCompraTransf" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoSinpe" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoCompraSinpe" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoCheque" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoCredito" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoCompraCredito" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="FaltanteInicio" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="SobranteInicio" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="FaltanteFin" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="SobranteFin" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="255" />
-          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
-        </ComplexType>
-        <ComplexType Name="SPCierreCajaPorFecha_Result">
-          <Property Type="Int32" Name="IdCierreApert" Nullable="false" />
-          <Property Type="DateTime" Name="Fecha" Nullable="false" />
-          <Property Type="String" Name="Hora" Nullable="true" MaxLength="255" />
-          <Property Type="DateTime" Name="FechaSalida" Nullable="true" />
-          <Property Type="String" Name="HoraSalida" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="Detalles" Nullable="true" MaxLength="1000" />
-          <Property Type="Decimal" Name="MontoEfectivoInicio" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoEfectivoUsuarioInicio" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoEfectivoFinal" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoEfectivoUsuarioFin" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoTransf" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoCompraTransf" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoSinpe" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoCompraSinpe" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoCheque" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoCredito" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MontoCompraCredito" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="FaltanteInicio" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="SobranteInicio" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="FaltanteFin" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="SobranteFin" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="255" />
-          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1405,6 +1447,8 @@
                 <ScalarProperty Name="MontoEfectivoUsuarioInicio" ColumnName="MontoEfectivoUsuarioInicio" />
                 <ScalarProperty Name="MontoEfectivoFinal" ColumnName="MontoEfectivoFinal" />
                 <ScalarProperty Name="MontoEfectivoUsuarioFin" ColumnName="MontoEfectivoUsuarioFin" />
+                <ScalarProperty Name="MontoVentaEfectivo" ColumnName="MontoVentaEfectivo" />
+                <ScalarProperty Name="MontoCompraEfectivo" ColumnName="MontoCompraEfectivo" />
                 <ScalarProperty Name="MontoTransf" ColumnName="MontoTransf" />
                 <ScalarProperty Name="MontoCompraTransf" ColumnName="MontoCompraTransf" />
                 <ScalarProperty Name="MontoSinpe" ColumnName="MontoSinpe" />
@@ -1582,6 +1626,99 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPCierreCajaPend" FunctionName="AgregadosModel.Store.SPCierreCajaPend">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPCierreCajaPend_Result">
+                <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
+                <ScalarProperty Name="MontoEfectivoInicio" ColumnName="MontoEfectivoInicio" />
+                <ScalarProperty Name="MontoEfectivoUsuarioInicio" ColumnName="MontoEfectivoUsuarioInicio" />
+                <ScalarProperty Name="MontoEfectivoFinal" ColumnName="MontoEfectivoFinal" />
+                <ScalarProperty Name="MontoEfectivoUsuarioFin" ColumnName="MontoEfectivoUsuarioFin" />
+                <ScalarProperty Name="MontoVentaEfectivo" ColumnName="MontoVentaEfectivo" />
+                <ScalarProperty Name="MontoCompraEfectivo" ColumnName="MontoCompraEfectivo" />
+                <ScalarProperty Name="MontoTransf" ColumnName="MontoTransf" />
+                <ScalarProperty Name="MontoCompraTransf" ColumnName="MontoCompraTransf" />
+                <ScalarProperty Name="MontoSinpe" ColumnName="MontoSinpe" />
+                <ScalarProperty Name="MontoCompraSinpe" ColumnName="MontoCompraSinpe" />
+                <ScalarProperty Name="MontoCheque" ColumnName="MontoCheque" />
+                <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
+                <ScalarProperty Name="MontoCompraCredito" ColumnName="MontoCompraCredito" />
+                <ScalarProperty Name="FaltanteInicio" ColumnName="FaltanteInicio" />
+                <ScalarProperty Name="SobranteInicio" ColumnName="SobranteInicio" />
+                <ScalarProperty Name="FaltanteFin" ColumnName="FaltanteFin" />
+                <ScalarProperty Name="SobranteFin" ColumnName="SobranteFin" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPCierreCajaPorFecha" FunctionName="AgregadosModel.Store.SPCierreCajaPorFecha">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPCierreCajaPorFecha_Result">
+                <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
+                <ScalarProperty Name="MontoEfectivoInicio" ColumnName="MontoEfectivoInicio" />
+                <ScalarProperty Name="MontoEfectivoUsuarioInicio" ColumnName="MontoEfectivoUsuarioInicio" />
+                <ScalarProperty Name="MontoEfectivoFinal" ColumnName="MontoEfectivoFinal" />
+                <ScalarProperty Name="MontoEfectivoUsuarioFin" ColumnName="MontoEfectivoUsuarioFin" />
+                <ScalarProperty Name="MontoVentaEfectivo" ColumnName="MontoVentaEfectivo" />
+                <ScalarProperty Name="MontoCompraEfectivo" ColumnName="MontoCompraEfectivo" />
+                <ScalarProperty Name="MontoTransf" ColumnName="MontoTransf" />
+                <ScalarProperty Name="MontoCompraTransf" ColumnName="MontoCompraTransf" />
+                <ScalarProperty Name="MontoSinpe" ColumnName="MontoSinpe" />
+                <ScalarProperty Name="MontoCompraSinpe" ColumnName="MontoCompraSinpe" />
+                <ScalarProperty Name="MontoCheque" ColumnName="MontoCheque" />
+                <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
+                <ScalarProperty Name="MontoCompraCredito" ColumnName="MontoCompraCredito" />
+                <ScalarProperty Name="FaltanteInicio" ColumnName="FaltanteInicio" />
+                <ScalarProperty Name="SobranteInicio" ColumnName="SobranteInicio" />
+                <ScalarProperty Name="FaltanteFin" ColumnName="FaltanteFin" />
+                <ScalarProperty Name="SobranteFin" ColumnName="SobranteFin" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPCierreCajaPorId" FunctionName="AgregadosModel.Store.SPCierreCajaPorId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPCierreCajaPorId_Result">
+                <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
+                <ScalarProperty Name="MontoEfectivoInicio" ColumnName="MontoEfectivoInicio" />
+                <ScalarProperty Name="MontoEfectivoUsuarioInicio" ColumnName="MontoEfectivoUsuarioInicio" />
+                <ScalarProperty Name="MontoEfectivoFinal" ColumnName="MontoEfectivoFinal" />
+                <ScalarProperty Name="MontoEfectivoUsuarioFin" ColumnName="MontoEfectivoUsuarioFin" />
+                <ScalarProperty Name="MontoVentaEfectivo" ColumnName="MontoVentaEfectivo" />
+                <ScalarProperty Name="MontoCompraEfectivo" ColumnName="MontoCompraEfectivo" />
+                <ScalarProperty Name="MontoTransf" ColumnName="MontoTransf" />
+                <ScalarProperty Name="MontoCompraTransf" ColumnName="MontoCompraTransf" />
+                <ScalarProperty Name="MontoSinpe" ColumnName="MontoSinpe" />
+                <ScalarProperty Name="MontoCompraSinpe" ColumnName="MontoCompraSinpe" />
+                <ScalarProperty Name="MontoCheque" ColumnName="MontoCheque" />
+                <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
+                <ScalarProperty Name="MontoCompraCredito" ColumnName="MontoCompraCredito" />
+                <ScalarProperty Name="FaltanteInicio" ColumnName="FaltanteInicio" />
+                <ScalarProperty Name="SobranteInicio" ColumnName="SobranteInicio" />
+                <ScalarProperty Name="FaltanteFin" ColumnName="FaltanteFin" />
+                <ScalarProperty Name="SobranteFin" ColumnName="SobranteFin" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPFactGenerada" FunctionName="AgregadosModel.Store.SPFactGenerada">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AgregadosModel.SPFactGenerada_Result">
@@ -1914,64 +2051,6 @@
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
                 <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SPCierreCajaPend" FunctionName="AgregadosModel.Store.SPCierreCajaPend">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AgregadosModel.SPCierreCajaPend_Result">
-                <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Hora" ColumnName="Hora" />
-                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
-                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
-                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
-                <ScalarProperty Name="MontoEfectivoInicio" ColumnName="MontoEfectivoInicio" />
-                <ScalarProperty Name="MontoEfectivoUsuarioInicio" ColumnName="MontoEfectivoUsuarioInicio" />
-                <ScalarProperty Name="MontoEfectivoFinal" ColumnName="MontoEfectivoFinal" />
-                <ScalarProperty Name="MontoEfectivoUsuarioFin" ColumnName="MontoEfectivoUsuarioFin" />
-                <ScalarProperty Name="MontoTransf" ColumnName="MontoTransf" />
-                <ScalarProperty Name="MontoCompraTransf" ColumnName="MontoCompraTransf" />
-                <ScalarProperty Name="MontoSinpe" ColumnName="MontoSinpe" />
-                <ScalarProperty Name="MontoCompraSinpe" ColumnName="MontoCompraSinpe" />
-                <ScalarProperty Name="MontoCheque" ColumnName="MontoCheque" />
-                <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
-                <ScalarProperty Name="MontoCompraCredito" ColumnName="MontoCompraCredito" />
-                <ScalarProperty Name="FaltanteInicio" ColumnName="FaltanteInicio" />
-                <ScalarProperty Name="SobranteInicio" ColumnName="SobranteInicio" />
-                <ScalarProperty Name="FaltanteFin" ColumnName="FaltanteFin" />
-                <ScalarProperty Name="SobranteFin" ColumnName="SobranteFin" />
-                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
-                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SPCierreCajaPorFecha" FunctionName="AgregadosModel.Store.SPCierreCajaPorFecha">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AgregadosModel.SPCierreCajaPorFecha_Result">
-                <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Hora" ColumnName="Hora" />
-                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
-                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
-                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
-                <ScalarProperty Name="MontoEfectivoInicio" ColumnName="MontoEfectivoInicio" />
-                <ScalarProperty Name="MontoEfectivoUsuarioInicio" ColumnName="MontoEfectivoUsuarioInicio" />
-                <ScalarProperty Name="MontoEfectivoFinal" ColumnName="MontoEfectivoFinal" />
-                <ScalarProperty Name="MontoEfectivoUsuarioFin" ColumnName="MontoEfectivoUsuarioFin" />
-                <ScalarProperty Name="MontoTransf" ColumnName="MontoTransf" />
-                <ScalarProperty Name="MontoCompraTransf" ColumnName="MontoCompraTransf" />
-                <ScalarProperty Name="MontoSinpe" ColumnName="MontoSinpe" />
-                <ScalarProperty Name="MontoCompraSinpe" ColumnName="MontoCompraSinpe" />
-                <ScalarProperty Name="MontoCheque" ColumnName="MontoCheque" />
-                <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
-                <ScalarProperty Name="MontoCompraCredito" ColumnName="MontoCompraCredito" />
-                <ScalarProperty Name="FaltanteInicio" ColumnName="FaltanteInicio" />
-                <ScalarProperty Name="SobranteInicio" ColumnName="SobranteInicio" />
-                <ScalarProperty Name="FaltanteFin" ColumnName="FaltanteFin" />
-                <ScalarProperty Name="SobranteFin" ColumnName="SobranteFin" />
-                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
-                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -485,6 +485,7 @@ namespace Agregados.Forms.Bills
                                                     {
                                                         case 1: //efectivo
                                                             apertura.MontoEfectivoFinal -= Total;
+                                                            apertura.MontoVentaEfectivo -= Total;
                                                             DB.Entry(apertura).State = EntityState.Modified;
                                                             if (DB.SaveChanges() <= 0)
                                                             {

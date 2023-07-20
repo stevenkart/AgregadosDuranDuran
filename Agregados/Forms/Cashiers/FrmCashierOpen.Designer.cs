@@ -151,10 +151,11 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 127);
+            this.label4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(3, 126);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(296, 16);
+            this.label4.Size = new System.Drawing.Size(296, 18);
             this.label4.TabIndex = 2;
             this.label4.Text = "Monto Efectivo Inicial";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -187,6 +188,7 @@
             // NumMontInicial
             // 
             this.NumMontInicial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.NumMontInicial.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.NumMontInicial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NumMontInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NumMontInicial.Location = new System.Drawing.Point(305, 122);

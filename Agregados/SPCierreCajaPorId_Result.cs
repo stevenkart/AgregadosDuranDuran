@@ -11,7 +11,7 @@ namespace Agregados
 {
     using System;
     
-    public partial class SPCierreCajaPend_Result
+    public partial class SPCierreCajaPorId_Result
     {
         public int IdCierreApert { get; set; }
         public System.DateTime Fecha { get; set; }

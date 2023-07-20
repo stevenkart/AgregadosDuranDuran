@@ -34,7 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPendBill));
             this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
-            this.btnFiltrar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -46,12 +45,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnFiltrarHoyTodas = new System.Windows.Forms.Button();
             this.btnFiltrarHoySoloBackHoe = new System.Windows.Forms.Button();
-            this.btnHelp = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnPagar = new System.Windows.Forms.Button();
-            this.btnVolver = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rbEfectivo2 = new System.Windows.Forms.RadioButton();
@@ -89,6 +85,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
+            this.btnVolver = new System.Windows.Forms.Button();
+            this.btnPagar = new System.Windows.Forms.Button();
+            this.btnFiltrar = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -107,21 +107,6 @@
             // 
             this.tmrFechaHora.Enabled = true;
             this.tmrFechaHora.Interval = 1000;
-            // 
-            // btnFiltrar
-            // 
-            this.btnFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFiltrar.BackColor = System.Drawing.Color.LightBlue;
-            this.btnFiltrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFiltrar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnFiltrar.Image = global::Agregados.Properties.Resources.buscar;
-            this.btnFiltrar.Location = new System.Drawing.Point(838, 59);
-            this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(251, 70);
-            this.btnFiltrar.TabIndex = 4;
-            this.btnFiltrar.UseVisualStyleBackColor = false;
-            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -159,7 +144,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.86692F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.13308F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 265F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 252F));
             this.tableLayoutPanel2.Controls.Add(this.label8, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label7, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtClienteNombre, 1, 1);
@@ -184,9 +169,9 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(581, 8);
+            this.label8.Location = new System.Drawing.Point(579, 8);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(245, 18);
+            this.label8.Size = new System.Drawing.Size(247, 18);
             this.label8.TabIndex = 9;
             this.label8.Text = "Filtrar Facturas con Materiales";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -197,7 +182,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(316, 8);
+            this.label7.Location = new System.Drawing.Point(314, 8);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(259, 18);
             this.label7.TabIndex = 8;
@@ -207,9 +192,9 @@
             // txtClienteNombre
             // 
             this.txtClienteNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClienteNombre.Location = new System.Drawing.Point(143, 43);
+            this.txtClienteNombre.Location = new System.Drawing.Point(142, 43);
             this.txtClienteNombre.Name = "txtClienteNombre";
-            this.txtClienteNombre.Size = new System.Drawing.Size(167, 20);
+            this.txtClienteNombre.Size = new System.Drawing.Size(166, 20);
             this.txtClienteNombre.TabIndex = 3;
             this.txtClienteNombre.TextChanged += new System.EventHandler(this.txtClienteNombre_TextChanged);
             this.txtClienteNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClienteNombre_KeyPress);
@@ -222,7 +207,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 18);
+            this.label2.Size = new System.Drawing.Size(133, 18);
             this.label2.TabIndex = 0;
             this.label2.Text = "Consecutivo";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -233,7 +218,7 @@
             this.txtConsecutivo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtConsecutivo.Location = new System.Drawing.Point(3, 43);
             this.txtConsecutivo.Name = "txtConsecutivo";
-            this.txtConsecutivo.Size = new System.Drawing.Size(134, 20);
+            this.txtConsecutivo.Size = new System.Drawing.Size(133, 20);
             this.txtConsecutivo.TabIndex = 2;
             this.txtConsecutivo.TextChanged += new System.EventHandler(this.txtConsecutivo_TextChanged);
             this.txtConsecutivo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConsecutivo_KeyPress);
@@ -244,9 +229,9 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(143, 8);
+            this.label3.Location = new System.Drawing.Point(142, 8);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(167, 18);
+            this.label3.Size = new System.Drawing.Size(166, 18);
             this.label3.TabIndex = 1;
             this.label3.Text = "Nombre Cliente";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -257,9 +242,9 @@
             this.btnFiltrarHoyTodas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFiltrarHoyTodas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFiltrarHoyTodas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFiltrarHoyTodas.Location = new System.Drawing.Point(581, 38);
+            this.btnFiltrarHoyTodas.Location = new System.Drawing.Point(579, 38);
             this.btnFiltrarHoyTodas.Name = "btnFiltrarHoyTodas";
-            this.btnFiltrarHoyTodas.Size = new System.Drawing.Size(245, 30);
+            this.btnFiltrarHoyTodas.Size = new System.Drawing.Size(247, 30);
             this.btnFiltrarHoyTodas.TabIndex = 7;
             this.btnFiltrarHoyTodas.Text = "Filtrar";
             this.btnFiltrarHoyTodas.UseVisualStyleBackColor = false;
@@ -271,27 +256,13 @@
             this.btnFiltrarHoySoloBackHoe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFiltrarHoySoloBackHoe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFiltrarHoySoloBackHoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFiltrarHoySoloBackHoe.Location = new System.Drawing.Point(316, 38);
+            this.btnFiltrarHoySoloBackHoe.Location = new System.Drawing.Point(314, 38);
             this.btnFiltrarHoySoloBackHoe.Name = "btnFiltrarHoySoloBackHoe";
             this.btnFiltrarHoySoloBackHoe.Size = new System.Drawing.Size(259, 30);
             this.btnFiltrarHoySoloBackHoe.TabIndex = 6;
             this.btnFiltrarHoySoloBackHoe.Text = "Filtrar";
             this.btnFiltrarHoySoloBackHoe.UseVisualStyleBackColor = false;
             this.btnFiltrarHoySoloBackHoe.Click += new System.EventHandler(this.btnFiltrarHoySoloBackHoe_Click);
-            // 
-            // btnHelp
-            // 
-            this.btnHelp.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnHelp.BackColor = System.Drawing.Color.GhostWhite;
-            this.btnHelp.Cursor = System.Windows.Forms.Cursors.Help;
-            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnHelp.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnHelp.Image = global::Agregados.Properties.Resources.ayuda;
-            this.btnHelp.Location = new System.Drawing.Point(1014, 4);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(75, 48);
-            this.btnHelp.TabIndex = 3;
-            this.btnHelp.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -334,43 +305,6 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1086, 78);
             this.tableLayoutPanel4.TabIndex = 1;
-            // 
-            // btnPagar
-            // 
-            this.btnPagar.BackColor = System.Drawing.Color.LightGreen;
-            this.btnPagar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPagar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPagar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPagar.Image = global::Agregados.Properties.Resources.factura;
-            this.btnPagar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPagar.Location = new System.Drawing.Point(546, 3);
-            this.btnPagar.Name = "btnPagar";
-            this.btnPagar.Size = new System.Drawing.Size(537, 72);
-            this.btnPagar.TabIndex = 6;
-            this.btnPagar.Text = "Realizar Pago";
-            this.btnPagar.UseVisualStyleBackColor = false;
-            this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
-            // 
-            // btnVolver
-            // 
-            this.btnVolver.BackColor = System.Drawing.Color.Snow;
-            this.btnVolver.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVolver.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnVolver.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolver.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnVolver.Image = global::Agregados.Properties.Resources._return;
-            this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(3, 3);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(537, 72);
-            this.btnVolver.TabIndex = 5;
-            this.btnVolver.Text = "Volver";
-            this.btnVolver.UseVisualStyleBackColor = false;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // tableLayoutPanel5
             // 
@@ -817,6 +751,73 @@
             this.txtDescription.Size = new System.Drawing.Size(845, 45);
             this.txtDescription.TabIndex = 2;
             // 
+            // btnVolver
+            // 
+            this.btnVolver.BackColor = System.Drawing.Color.Snow;
+            this.btnVolver.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVolver.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnVolver.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnVolver.Image = global::Agregados.Properties.Resources._return;
+            this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVolver.Location = new System.Drawing.Point(3, 3);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(537, 72);
+            this.btnVolver.TabIndex = 5;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = false;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
+            // btnPagar
+            // 
+            this.btnPagar.BackColor = System.Drawing.Color.LightGreen;
+            this.btnPagar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPagar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPagar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnPagar.Image = global::Agregados.Properties.Resources.factura;
+            this.btnPagar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPagar.Location = new System.Drawing.Point(546, 3);
+            this.btnPagar.Name = "btnPagar";
+            this.btnPagar.Size = new System.Drawing.Size(537, 72);
+            this.btnPagar.TabIndex = 6;
+            this.btnPagar.Text = "Realizar Pago";
+            this.btnPagar.UseVisualStyleBackColor = false;
+            this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFiltrar.BackColor = System.Drawing.Color.LightBlue;
+            this.btnFiltrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnFiltrar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnFiltrar.Image = global::Agregados.Properties.Resources.buscar;
+            this.btnFiltrar.Location = new System.Drawing.Point(838, 59);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(251, 70);
+            this.btnFiltrar.TabIndex = 4;
+            this.btnFiltrar.UseVisualStyleBackColor = false;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnHelp.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnHelp.Cursor = System.Windows.Forms.Cursors.Help;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHelp.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnHelp.Image = global::Agregados.Properties.Resources.ayuda;
+            this.btnHelp.Location = new System.Drawing.Point(1014, 4);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(75, 48);
+            this.btnHelp.TabIndex = 3;
+            this.btnHelp.UseVisualStyleBackColor = false;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
             // FrmPendBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -829,7 +830,7 @@
             this.MinimumSize = new System.Drawing.Size(1010, 526);
             this.Name = "FrmPendBill";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Facturas Pendientes";
+            this.Text = "Cuentas Por Cobrar Pendientes (Facturas Pendientes)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPendBill_FormClosing);
             this.Load += new System.EventHandler(this.FrmPendBill_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

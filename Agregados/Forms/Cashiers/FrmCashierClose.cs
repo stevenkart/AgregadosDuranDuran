@@ -49,11 +49,13 @@ namespace Agregados.Forms.Cashiers
             if (BuscarAperturaActual() != null)
             {
                 txtDetalle.MaxLength = 1000 - (apertura.Detalles.Length); // valida que luego al unir detalle entrada con detalle de salida, no superen los 1000 caracteres.
+                txtMontoVtaEfectivo.Text = string.Format("¢ {0:N2}", apertura.MontoVentaEfectivo);
                 txtMontoVtaTransf.Text = string.Format("¢ {0:N2}", apertura.MontoTransf);
                 txtMontoVtaSinpe.Text = string.Format("¢ {0:N2}", apertura.MontoSinpe);
                 txtMontoVtaCheque.Text = string.Format("¢ {0:N2}", apertura.MontoCheque);
                 txtMontoVtaCredito.Text = string.Format("¢ {0:N2}", apertura.MontoCredito);
 
+                txtMontoCompraEfect.Text = string.Format("¢ {0:N2}", apertura.MontoCompraEfectivo);
                 txtMontoCompraTransf.Text = string.Format("¢ {0:N2}", apertura.MontoCompraTransf);
                 txtMontoCompraSinpe.Text = string.Format("¢ {0:N2}", apertura.MontoCompraSinpe);
             }

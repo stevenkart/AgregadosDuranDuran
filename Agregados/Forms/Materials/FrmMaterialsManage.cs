@@ -471,10 +471,10 @@ namespace Agregados.Forms.Materials
                                 }
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
-                            throw;
+                            MessageBox.Show(ex.ToString(),
+                                       "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 } 
@@ -518,10 +518,10 @@ namespace Agregados.Forms.Materials
                             }
 
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
-                            throw;
+                            MessageBox.Show(ex.ToString(),
+                                       "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -567,10 +567,10 @@ namespace Agregados.Forms.Materials
                             }
 
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
-                            throw;
+                            MessageBox.Show(ex.ToString(),
+                                       "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }

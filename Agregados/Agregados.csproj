@@ -230,6 +230,12 @@
     <Compile Include="Forms\Bills\FrmPendBill.Designer.cs">
       <DependentUpon>FrmPendBill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Bills\FrmPendTicketProvider.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmPendTicketProvider.Designer.cs">
+      <DependentUpon>FrmPendTicketProvider.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Bills\FrmRevBillProvider.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -570,6 +576,9 @@
     <Compile Include="SPCierreCajaPorFecha_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="SPCierreCajaPorId_Result.cs">
+      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="SPFactGenerada_Result.cs">
       <DependentUpon>AgregadosEF.tt</DependentUpon>
     </Compile>
@@ -633,6 +642,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmPendBill.resx">
       <DependentUpon>FrmPendBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmPendTicketProvider.resx">
+      <DependentUpon>FrmPendTicketProvider.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmRevBillProvider.resx">
       <DependentUpon>FrmRevBillProvider.cs</DependentUpon>

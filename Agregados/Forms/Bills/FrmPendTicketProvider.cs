@@ -1,12 +1,9 @@
 ﻿using Agregados.Reports;
-using Agregados.Reports.Facts.FactNow;
-using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Core.Metadata.Edm;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Agregados.Forms.Bills
 {
-    public partial class FrmPendBill : Form
+    public partial class FrmPendTicketProvider : Form
     {
 
         //variables del form
@@ -27,15 +24,13 @@ namespace Agregados.Forms.Bills
         int Id;
         int metodo;
 
-
-        public FrmPendBill()
+        public FrmPendTicketProvider()
         {
             InitializeComponent();
             DB = new AgregadosEntities();
             fact = new Facturas();
             cierreApertCajas = new CierreApertCajas();
             apertura = new CierreApertCajas();
-
         }
 
 
@@ -60,102 +55,25 @@ namespace Agregados.Forms.Bills
             }
         }
 
-        private void FrmPendBill_Load(object sender, EventArgs e)
-        {
-            apertura = BuscarAperturaActual();
-            btnPagar.Visible = false;
-            metodo = 0;
-        }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
             frmPrincipalMDI.Show();
             this.Hide();
-
         }
 
-        private void FrmPendBill_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmPendTicketProvider_FormClosing(object sender, FormClosingEventArgs e)
         {
             FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
             frmPrincipalMDI.Show();
             this.Hide();
         }
 
-        private void btnFiltrarHoySoloBackHoe_Click(object sender, EventArgs e)
+        private void FrmPendTicketProvider_Load(object sender, EventArgs e)
         {
-            dgvFilter.ClearSelection();
-            Consecutivo = 0;
+            apertura = BuscarAperturaActual();
             btnPagar.Visible = false;
-            // linq para validar y disenar mejor la DataGridView al usuario
-            //se llama el procedimiento Almacenado
-            var result = DB.SPFactPendSinDetalle().ToList();
-
-            var finalResult = from fa in result
-                              select new
-                              {
-                                  fa.IdFactura,
-                                  fa.Consecutivo,
-                                  fa.FechaFactura,
-                                  fa.CostoTotal,
-                                  fa.NombreEstado,
-                                  fa.Nombre,
-                                  fa.NombreEmpleado,
-                                  fa.FechaLimiteP
-                              };
-
-            finalResult = finalResult.Distinct();
-
-            dgvFilter.DataSource = finalResult.ToList();
-            if (finalResult.ToList().Count > 0)
-            {
-                btnPagar.Visible = true;
-                btnPagar.Enabled = false;
-                MessageBox.Show("No hay datos que mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                btnPagar.Visible = false;
-                btnPagar.Enabled = false;
-            }
-        }
-
-        private void btnFiltrarHoyTodas_Click(object sender, EventArgs e)
-        {
-            dgvFilter.ClearSelection();
-            Consecutivo = 0;
-            btnPagar.Visible = false;
-            // linq para validar y disenar mejor la DataGridView al usuario
-            //se llama el procedimiento Almacenado
-            var result = DB.SPFactPendDetalles().ToList();
-
-            var finalResult = from fa in result
-                              select new
-                              {
-                                  fa.IdFactura,
-                                  fa.Consecutivo,
-                                  fa.FechaFactura,
-                                  fa.CostoTotal,
-                                  fa.NombreEstado,
-                                  fa.Nombre,
-                                  fa.NombreEmpleado,
-                                  fa.FechaLimiteP
-                              };
-
-            finalResult = finalResult.Distinct();
-
-            dgvFilter.DataSource = finalResult.ToList();
-            if (finalResult.ToList().Count > 0)
-            {
-                btnPagar.Visible = true;
-                btnPagar.Enabled = false;
-                MessageBox.Show("No hay datos que mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                btnPagar.Visible = false;
-                btnPagar.Enabled = false;
-            }
+            metodo = 0;
         }
 
         private void filtrarTodos()
@@ -165,7 +83,7 @@ namespace Agregados.Forms.Bills
             btnPagar.Visible = false;
             // linq para validar y disenar mejor la DataGridView al usuario
             //se llama el procedimiento Almacenado
-            var result = DB.SPFactPendAll().ToList();
+            var result = DB.SPTicketPendAll().ToList();
 
             var finalResult = from fa in result
                               select new
@@ -194,9 +112,9 @@ namespace Agregados.Forms.Bills
                 btnPagar.Visible = false;
                 btnPagar.Enabled = false;
             }
-        }
 
-        private void btnFiltrar_Click(object sender, EventArgs e) // filtra todas las facturas
+        }
+        private void btnFiltrar_Click(object sender, EventArgs e)
         {
             filtrarTodos();
         }
@@ -211,8 +129,6 @@ namespace Agregados.Forms.Bills
             if (txtConsecutivo.Text.Length > 0)
             {
                 btnFiltrar.Enabled = false;
-                btnFiltrarHoyTodas.Enabled = false; 
-                btnFiltrarHoySoloBackHoe.Enabled = false;
                 txtClienteNombre.Enabled = false;
 
                 dgvFilter.ClearSelection();
@@ -220,7 +136,7 @@ namespace Agregados.Forms.Bills
                 btnPagar.Visible = false;
                 // linq para validar y disenar mejor la DataGridView al usuario
                 //se llama el procedimiento Almacenado
-                var result = DB.SPFactPendAll().ToList();
+                var result = DB.SPTicketPendAll().ToList();
 
                 var finalResult = from fa in result
                                   select new
@@ -252,8 +168,6 @@ namespace Agregados.Forms.Bills
             else
             {
                 btnFiltrar.Enabled = true;
-                btnFiltrarHoyTodas.Enabled = true;
-                btnFiltrarHoySoloBackHoe.Enabled = true;
                 txtClienteNombre.Enabled = true;
             }
         }
@@ -268,8 +182,6 @@ namespace Agregados.Forms.Bills
             if (txtClienteNombre.Text.Length > 0)
             {
                 btnFiltrar.Enabled = false;
-                btnFiltrarHoyTodas.Enabled = false;
-                btnFiltrarHoySoloBackHoe.Enabled = false;
                 txtConsecutivo.Enabled = false;
 
                 dgvFilter.ClearSelection();
@@ -277,7 +189,7 @@ namespace Agregados.Forms.Bills
                 btnPagar.Visible = false;
                 // linq para validar y disenar mejor la DataGridView al usuario
                 //se llama el procedimiento Almacenado
-                var result = DB.SPFactPendAll().ToList();
+                var result = DB.SPTicketPendAll().ToList();
 
                 var finalResult = from fa in result
                                   select new
@@ -309,8 +221,6 @@ namespace Agregados.Forms.Bills
             else
             {
                 btnFiltrar.Enabled = true;
-                btnFiltrarHoyTodas.Enabled = true;
-                btnFiltrarHoySoloBackHoe.Enabled = true;
                 txtConsecutivo.Enabled = true;
             }
         }
@@ -379,7 +289,7 @@ namespace Agregados.Forms.Bills
 
                             if (Convert.ToDecimal(txtTotal.Value) != fact.CostoTotal)
                             {
-                                MessageBox.Show("Debes de indicar el monto total de la factura a pagar, deben ser igual para continuar.",
+                                MessageBox.Show("Debes de indicar el monto total del ticket de Compras a pagar, deben ser igual para continuar.",
                                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else
@@ -392,23 +302,23 @@ namespace Agregados.Forms.Bills
 
                                     if (respuesta == DialogResult.Yes)
                                     {
-                                        fact.ReferenciaPago = "Se paga crédito el día: " + txtFecha.Text.Trim() + ". " + txtDescription.Text.Trim();
+                                        fact.ReferenciaPago = "Se paga compra a crédito el día: " + txtFecha.Text.Trim() + ". " + txtDescription.Text.Trim();
                                         fact.FechaLimiteP = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
                                         fact.IdTipoPago = 1;
                                         fact.IdEstado = 4;
                                         DB.Entry(fact).State = EntityState.Modified;
 
-
-                                        apertura.MontoEfectivoFinal += Convert.ToDecimal(txtTotal.Value);
-                                        apertura.MontoVentaEfectivo += Convert.ToDecimal(txtTotal.Value);
+                                        apertura.MontoCompraEfectivo += Convert.ToDecimal(txtTotal.Value);
+                                        apertura.MontoEfectivoFinal -= Convert.ToDecimal(txtTotal.Value);
                                         DB.Entry(apertura).State = EntityState.Modified;
                                         if (DB.SaveChanges() <= 0)
                                         {
-                                            MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja, ni procesar pago de factura", "Error Sistema Caja",
+                                            MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja, ni procesar pago de la compra a crédito",
+                                                "Error Sistema Caja",
                                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
 
-                                        MessageBox.Show("Factura pagada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        MessageBox.Show("Compra de crédito pagada correctamente!", "Registro de Compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                         using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
                                         {
@@ -428,23 +338,23 @@ namespace Agregados.Forms.Bills
 
                                     if (respuesta2 == DialogResult.Yes)
                                     {
-                                        fact.ReferenciaPago = "Se paga crédito el día: " + txtFecha.Text.Trim() + ". " + txtDescription.Text.Trim();
+                                        fact.ReferenciaPago = "Se paga compra a crédito el día: " + txtFecha.Text.Trim() + ". " + txtDescription.Text.Trim();
                                         fact.FechaLimiteP = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
                                         fact.IdTipoPago = 1;
                                         fact.IdEstado = 4;
                                         DB.Entry(fact).State = EntityState.Modified;
 
-
-                                        apertura.MontoEfectivoFinal += Convert.ToDecimal(txtTotal.Value);
-                                        apertura.MontoVentaEfectivo += Convert.ToDecimal(txtTotal.Value);
+                                        apertura.MontoCompraEfectivo += Convert.ToDecimal(txtTotal.Value);
+                                        apertura.MontoEfectivoFinal -= Convert.ToDecimal(txtTotal.Value);
                                         DB.Entry(apertura).State = EntityState.Modified;
                                         if (DB.SaveChanges() <= 0)
                                         {
-                                            MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja, ni procesar pago de factura", "Error Sistema Caja",
+                                            MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja, ni procesar pago de la compra a crédito",
+                                                "Error Sistema Caja",
                                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
 
-                                        MessageBox.Show("Factura pagada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        MessageBox.Show("Compra a crédito pagada correctamente!", "Registro de Compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                         using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
                                         {
@@ -462,7 +372,7 @@ namespace Agregados.Forms.Bills
 
                             if (Convert.ToDecimal(txtTotal.Value) != fact.CostoTotal)
                             {
-                                MessageBox.Show("Debes de indicar el monto total de la factura a pagar, deben ser igual para continuar.",
+                                MessageBox.Show("Debes de indicar el monto total del ticket de Compra a pagar, deben ser igual para continuar.",
                                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else
@@ -475,22 +385,22 @@ namespace Agregados.Forms.Bills
 
                                     if (respuesta == DialogResult.Yes)
                                     {
-                                        fact.ReferenciaPago = "Se paga crédito el día: " + txtFecha.Text.Trim() + ". " + txtDescription.Text.Trim();
+                                        fact.ReferenciaPago = "Se paga compra a crédito el día: " + txtFecha.Text.Trim() + ". " + txtDescription.Text.Trim();
                                         fact.FechaLimiteP = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
                                         fact.IdTipoPago = 2;
                                         fact.IdEstado = 4;
                                         DB.Entry(fact).State = EntityState.Modified;
 
 
-                                        apertura.MontoTransf += Convert.ToDecimal(txtTotal.Value);
+                                        apertura.MontoCompraTransf += Convert.ToDecimal(txtTotal.Value);
                                         DB.Entry(apertura).State = EntityState.Modified;
                                         if (DB.SaveChanges() <= 0)
                                         {
-                                            MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja, ni procesar pago de factura", "Error Sistema Caja",
+                                            MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja, ni procesar pago", "Error Sistema Caja",
                                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
 
-                                        MessageBox.Show("Factura pagada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        MessageBox.Show("Ticket de Compra pagada correctamente!", "Registro de Compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                         using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
                                         {
@@ -509,14 +419,14 @@ namespace Agregados.Forms.Bills
                                     "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                     if (respuesta2 == DialogResult.Yes)
                                     {
-                                        fact.ReferenciaPago = "Se paga crédito el día: " + txtFecha.Text.Trim() + ". " + txtDescription.Text.Trim();
+                                        fact.ReferenciaPago = "Se paga compra a crédito el día: " + txtFecha.Text.Trim() + ". " + txtDescription.Text.Trim();
                                         fact.FechaLimiteP = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
                                         fact.IdTipoPago = 2;
                                         fact.IdEstado = 4;
                                         DB.Entry(fact).State = EntityState.Modified;
 
 
-                                        apertura.MontoTransf += Convert.ToDecimal(txtTotal.Value);
+                                        apertura.MontoCompraTransf += Convert.ToDecimal(txtTotal.Value);
                                         DB.Entry(apertura).State = EntityState.Modified;
                                         if (DB.SaveChanges() <= 0)
                                         {
@@ -541,7 +451,7 @@ namespace Agregados.Forms.Bills
                         case 3:
                             if (Convert.ToDecimal(txtTotal.Value) != fact.CostoTotal)
                             {
-                                MessageBox.Show("Debes de indicar el monto total de la factura a pagar, deben ser igual para continuar.",
+                                MessageBox.Show("Debes de indicar el monto total de la Compra a pagar, deben ser igual para continuar.",
                                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else
@@ -554,14 +464,14 @@ namespace Agregados.Forms.Bills
 
                                     if (respuesta == DialogResult.Yes)
                                     {
-                                        fact.ReferenciaPago = "Se paga crédito el día: " + txtFecha.Text.Trim() + ". " + txtDescription.Text.Trim();
+                                        fact.ReferenciaPago = "Se paga compra a crédito el día: " + txtFecha.Text.Trim() + ". " + txtDescription.Text.Trim();
                                         fact.FechaLimiteP = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
                                         fact.IdTipoPago = 3;
                                         fact.IdEstado = 4;
                                         DB.Entry(fact).State = EntityState.Modified;
 
 
-                                        apertura.MontoSinpe += Convert.ToDecimal(txtTotal.Value);
+                                        apertura.MontoCompraSinpe += Convert.ToDecimal(txtTotal.Value);
                                         DB.Entry(apertura).State = EntityState.Modified;
                                         if (DB.SaveChanges() <= 0)
                                         {
@@ -569,7 +479,7 @@ namespace Agregados.Forms.Bills
                                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
 
-                                        MessageBox.Show("Factura pagada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        MessageBox.Show("Ticket de Compra pagado correctamente!", "Registro de Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                         using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
                                         {
@@ -588,14 +498,14 @@ namespace Agregados.Forms.Bills
                                     "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                     if (respuesta2 == DialogResult.Yes)
                                     {
-                                        fact.ReferenciaPago = "Se paga crédito el día: " + txtFecha.Text.Trim() + ". " + txtDescription.Text.Trim();
+                                        fact.ReferenciaPago = "Se paga compra a crédito el día: " + txtFecha.Text.Trim() + ". " + txtDescription.Text.Trim();
                                         fact.FechaLimiteP = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
                                         fact.IdTipoPago = 2;
                                         fact.IdEstado = 4;
                                         DB.Entry(fact).State = EntityState.Modified;
 
 
-                                        apertura.MontoSinpe += Convert.ToDecimal(txtTotal.Value);
+                                        apertura.MontoCompraSinpe += Convert.ToDecimal(txtTotal.Value);
                                         DB.Entry(apertura).State = EntityState.Modified;
                                         if (DB.SaveChanges() <= 0)
                                         {
@@ -603,7 +513,7 @@ namespace Agregados.Forms.Bills
                                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
 
-                                        MessageBox.Show("Factura pagada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        MessageBox.Show("Ticket de Compra pagado correctamente!", "Registro de Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                         using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
                                         {
@@ -619,8 +529,8 @@ namespace Agregados.Forms.Bills
                             }
                             break;
                         default:
-                            MessageBox.Show("Error metodo pago no seleccionado, no se pudo actualizar la información de caja, ni procesar pago de factura",
-                                "Error Sistema Caja",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error metodo pago no seleccionado, no se pudo actualizar la información de caja, ni procesar pago de Compra a Crédito",
+                                "Error Sistema Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                     }
                 }
@@ -631,7 +541,7 @@ namespace Agregados.Forms.Bills
             }
             else
             {
-                MessageBox.Show("Debes de seleccionar la factura que se va a cancelar, para continuar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debes de seleccionar la compra de crédito que se va a cancelar, para continuar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -678,8 +588,7 @@ namespace Agregados.Forms.Bills
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Este apartado permite registrar las cancelaciones de lo cliente a las facturas que tienen pendientes por cancelar (crédito)," +
-                " y que quede registro el día que se cancelan",
+            MessageBox.Show("Este apartado permite realizar el pago de compras a crédito, y que quede registro el día que se cancelan",
                 "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }

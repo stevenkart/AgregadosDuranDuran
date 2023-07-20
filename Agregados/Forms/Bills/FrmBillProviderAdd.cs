@@ -731,7 +731,7 @@ namespace Agregados.Forms.Bills
                                                 }
 
                                                 apertura.MontoEfectivoFinal -= Total;
-
+                                                apertura.MontoCompraEfectivo += Total;
                                                 DB.Entry(apertura).State = EntityState.Modified;
                                                 if (DB.SaveChanges() <= 0)
                                                 {

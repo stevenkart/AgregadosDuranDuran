@@ -42,6 +42,33 @@ namespace Agregados
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Vehiculos> Vehiculos { get; set; }
     
+        public virtual ObjectResult<SPCierreCajaPend_Result> SPCierreCajaPend()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPCierreCajaPend_Result>("SPCierreCajaPend");
+        }
+    
+        public virtual ObjectResult<SPCierreCajaPorFecha_Result> SPCierreCajaPorFecha(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("fechaFin", fechaFin) :
+                new ObjectParameter("fechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPCierreCajaPorFecha_Result>("SPCierreCajaPorFecha", fechaInicioParameter, fechaFinParameter);
+        }
+    
+        public virtual ObjectResult<SPCierreCajaPorId_Result> SPCierreCajaPorId(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPCierreCajaPorId_Result>("SPCierreCajaPorId", iDParameter);
+        }
+    
         public virtual ObjectResult<SPFactGenerada_Result> SPFactGenerada(Nullable<int> consecutivo)
         {
             var consecutivoParameter = consecutivo.HasValue ?
@@ -156,24 +183,6 @@ namespace Agregados
                 new ObjectParameter("fechaFin", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPTicketReversadasAll_Result>("SPTicketReversadasAll", fechaInicioParameter, fechaFinParameter);
-        }
-    
-        public virtual ObjectResult<SPCierreCajaPend_Result> SPCierreCajaPend()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPCierreCajaPend_Result>("SPCierreCajaPend");
-        }
-    
-        public virtual ObjectResult<SPCierreCajaPorFecha_Result> SPCierreCajaPorFecha(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
-        {
-            var fechaInicioParameter = fechaInicio.HasValue ?
-                new ObjectParameter("fechaInicio", fechaInicio) :
-                new ObjectParameter("fechaInicio", typeof(System.DateTime));
-    
-            var fechaFinParameter = fechaFin.HasValue ?
-                new ObjectParameter("fechaFin", fechaFin) :
-                new ObjectParameter("fechaFin", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPCierreCajaPorFecha_Result>("SPCierreCajaPorFecha", fechaInicioParameter, fechaFinParameter);
         }
     }
 }

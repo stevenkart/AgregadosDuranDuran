@@ -23,6 +23,8 @@ namespace Agregados
         public decimal MontoEfectivoUsuarioInicio { get; set; }
         public decimal MontoEfectivoFinal { get; set; }
         public decimal MontoEfectivoUsuarioFin { get; set; }
+        public decimal MontoVentaEfectivo { get; set; }
+        public decimal MontoCompraEfectivo { get; set; }
         public decimal MontoTransf { get; set; }
         public decimal MontoCompraTransf { get; set; }
         public decimal MontoSinpe { get; set; }

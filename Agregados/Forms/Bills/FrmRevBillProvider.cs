@@ -339,6 +339,7 @@ namespace Agregados.Forms.Bills
                                     }
                                     //reversamos datos financieros del cierre de caja
                                     cierreApertCajas = DB.CierreApertCajas.Find(facturas.IdCierreApert);
+                                    cierreApertCajas.MontoCompraEfectivo -= facturas.CostoTotal;
                                     cierreApertCajas.MontoEfectivoFinal += facturas.CostoTotal;
                                     DB.Entry(cierreApertCajas).State = EntityState.Modified;
 
