@@ -79,8 +79,9 @@ namespace Agregados.Forms.Bills
                 cierreApertCajas = null;
                 return apertura;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -564,9 +565,9 @@ namespace Agregados.Forms.Bills
                                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }

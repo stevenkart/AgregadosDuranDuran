@@ -330,9 +330,9 @@ namespace Agregados.Forms.Users
                                     
                                 }
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-
+                                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 throw;
                             }
                         }
@@ -416,9 +416,9 @@ namespace Agregados.Forms.Users
                                             txtUsername.Focus();
                                         }
                                     }
-                                    catch (Exception)
+                                    catch (Exception ex)
                                     {
-
+                                        MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         throw;
                                     }
                                 }  
@@ -500,9 +500,9 @@ namespace Agregados.Forms.Users
                                                 txtUsername.Focus();
                                             }
                                         }
-                                        catch (Exception)
+                                        catch (Exception ex)
                                         {
-
+                                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             throw;
                                         }
                                     }

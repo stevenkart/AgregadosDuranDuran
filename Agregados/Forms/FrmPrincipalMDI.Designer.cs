@@ -55,6 +55,7 @@
             this.reversiónDeFacturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.facturaciónComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comprasACréditoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reversiónDeComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeFacturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,8 +71,8 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblUsuarioLogueado = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFechaHora = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -135,6 +136,7 @@
             this.cierreCajaForzadoToolStripMenuItem.Name = "cierreCajaForzadoToolStripMenuItem";
             this.cierreCajaForzadoToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.cierreCajaForzadoToolStripMenuItem.Text = "Cierre Caja Forzado";
+            this.cierreCajaForzadoToolStripMenuItem.Click += new System.EventHandler(this.cierreCajaForzadoToolStripMenuItem_Click_1);
             // 
             // salirToolStripMenuItem
             // 
@@ -232,6 +234,7 @@
             this.reversiónDeFacturaToolStripMenuItem,
             this.toolStripSeparator4,
             this.facturaciónComprasToolStripMenuItem,
+            this.comprasACréditoToolStripMenuItem,
             this.reversiónDeComprasToolStripMenuItem});
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(74, 21);
@@ -240,47 +243,54 @@
             // facturaciónToolStripMenuItem
             // 
             this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
-            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.facturaciónToolStripMenuItem.Text = "Facturación Ventas";
             this.facturaciónToolStripMenuItem.Click += new System.EventHandler(this.facturaciónToolStripMenuItem_Click);
             // 
             // facturasACréditoToolStripMenuItem
             // 
             this.facturasACréditoToolStripMenuItem.Name = "facturasACréditoToolStripMenuItem";
-            this.facturasACréditoToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.facturasACréditoToolStripMenuItem.Text = "Facturas a Crédito";
+            this.facturasACréditoToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.facturasACréditoToolStripMenuItem.Text = "Ver Facturas a Crédito";
             this.facturasACréditoToolStripMenuItem.Click += new System.EventHandler(this.facturasACréditoToolStripMenuItem_Click);
             // 
             // notaDeCréditoToolStripMenuItem
             // 
             this.notaDeCréditoToolStripMenuItem.Name = "notaDeCréditoToolStripMenuItem";
-            this.notaDeCréditoToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.notaDeCréditoToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.notaDeCréditoToolStripMenuItem.Text = "Nota de Crédito";
             this.notaDeCréditoToolStripMenuItem.Click += new System.EventHandler(this.notaDeCréditoToolStripMenuItem_Click);
             // 
             // reversiónDeFacturaToolStripMenuItem
             // 
             this.reversiónDeFacturaToolStripMenuItem.Name = "reversiónDeFacturaToolStripMenuItem";
-            this.reversiónDeFacturaToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.reversiónDeFacturaToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.reversiónDeFacturaToolStripMenuItem.Text = "Reversión de Facturas";
             this.reversiónDeFacturaToolStripMenuItem.Click += new System.EventHandler(this.reversiónDeFacturaToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(210, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(211, 6);
             // 
             // facturaciónComprasToolStripMenuItem
             // 
             this.facturaciónComprasToolStripMenuItem.Name = "facturaciónComprasToolStripMenuItem";
-            this.facturaciónComprasToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.facturaciónComprasToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.facturaciónComprasToolStripMenuItem.Text = "Facturación Compras";
             this.facturaciónComprasToolStripMenuItem.Click += new System.EventHandler(this.facturaciónComprasToolStripMenuItem_Click);
+            // 
+            // comprasACréditoToolStripMenuItem
+            // 
+            this.comprasACréditoToolStripMenuItem.Name = "comprasACréditoToolStripMenuItem";
+            this.comprasACréditoToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.comprasACréditoToolStripMenuItem.Text = "Ver Compras a Crédito";
+            this.comprasACréditoToolStripMenuItem.Click += new System.EventHandler(this.comprasACréditoToolStripMenuItem_Click);
             // 
             // reversiónDeComprasToolStripMenuItem
             // 
             this.reversiónDeComprasToolStripMenuItem.Name = "reversiónDeComprasToolStripMenuItem";
-            this.reversiónDeComprasToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.reversiónDeComprasToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.reversiónDeComprasToolStripMenuItem.Text = "Reversión de Compras";
             this.reversiónDeComprasToolStripMenuItem.Click += new System.EventHandler(this.reversiónDeComprasToolStripMenuItem_Click);
             // 
@@ -402,10 +412,6 @@
             this.lblFechaHora.Text = "FechaHora";
             this.lblFechaHora.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // tmrFechaHora
-            // 
-            this.tmrFechaHora.Tick += new System.EventHandler(this.tmrFechaHora_Tick);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
@@ -416,6 +422,10 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1229, 516);
             this.panel1.TabIndex = 1;
+            // 
+            // tmrFechaHora
+            // 
+            this.tmrFechaHora.Tick += new System.EventHandler(this.tmrFechaHora_Tick);
             // 
             // FrmPrincipalMDI
             // 
@@ -491,5 +501,6 @@
         private System.Windows.Forms.ToolStripMenuItem reportesDeCajaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem respaldoDeDatosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem facturasACréditoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem comprasACréditoToolStripMenuItem;
     }
 }

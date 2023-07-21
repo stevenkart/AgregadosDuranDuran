@@ -130,9 +130,9 @@ namespace Agregados.Forms.Login
                                            MessageBoxButtons.OK);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw;
                 }
             }
@@ -198,9 +198,9 @@ namespace Agregados.Forms.Login
                                          MessageBoxButtons.OK);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw;
                 }
             }
@@ -255,9 +255,9 @@ namespace Agregados.Forms.Login
                             "Error validación", MessageBoxButtons.OK);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw;
                 }
             }

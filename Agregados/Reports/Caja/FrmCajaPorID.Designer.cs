@@ -1,6 +1,6 @@
 ﻿namespace Agregados.Reports.Caja
 {
-    partial class FrmCajaPorFecha
+    partial class FrmCajaPorID
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCajaPorFecha));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCajaPorID));
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.SuspendLayout();
             // 
@@ -40,23 +40,22 @@
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = "C:\\Users\\steve\\source\\repos\\Agregados\\Agregados\\Reports\\Caja\\RptCajaPorFecha.rpt";
+            this.crystalReportViewer1.ReportSource = "C:\\Users\\steve\\source\\repos\\Agregados\\Agregados\\Reports\\Caja\\RptCajaPorID.rpt";
             this.crystalReportViewer1.Size = new System.Drawing.Size(1069, 644);
             this.crystalReportViewer1.TabIndex = 0;
             // 
-            // FrmCajaPorFecha
+            // FrmCajaPorID
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1069, 644);
             this.Controls.Add(this.crystalReportViewer1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1085, 683);
-            this.Name = "FrmCajaPorFecha";
+            this.Name = "FrmCajaPorID";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Reporte de Cierre Caja  (Resumen por Fechas)";
-            this.Load += new System.EventHandler(this.FrmCajaPorFecha_Load);
+            this.Text = "Reporte de Cierre Caja";
+            this.Load += new System.EventHandler(this.FrmCajaPorID_Load);
             this.ResumeLayout(false);
 
         }

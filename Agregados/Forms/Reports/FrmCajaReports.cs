@@ -1,4 +1,9 @@
-﻿using NPOI.SS.Formula.Functions;
+﻿using Agregados.Reports.Caja;
+using Agregados.Reports.Facts.FactNow;
+using Agregados.Reports.Facts.TicketFiltered;
+using CrystalDecisions.Shared;
+using Ganss.Excel;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +21,7 @@ namespace Agregados.Forms.Reports
         //variables del form
         AgregadosEntities DB;
         CierreApertCajas cierreApertCajas;
+        CierreApertCajas cierreApertCajas2; //para buscar el cierre actual
         Usuarios usuario;
         int Id;
 
@@ -31,6 +37,7 @@ namespace Agregados.Forms.Reports
             DB = new AgregadosEntities();
             usuario = new Usuarios();
             cierreApertCajas = new CierreApertCajas();
+            cierreApertCajas2 = new CierreApertCajas();
             valorPendiente = 0;
             valorPorFechas = 0;
             valorHoy = 0;
@@ -350,10 +357,435 @@ namespace Agregados.Forms.Reports
             }
         }
 
+        private void BtnVerCierre_Click(object sender, EventArgs e)
+        {
+            if (Id > 0)
+            {
+                cierreApertCajas2 = DB.CierreApertCajas.Find(Id);
+                if (cierreApertCajas2.Accion == 1 || cierreApertCajas2.Accion == 2 )
+                {
+                    using (FrmCajaPorID frm = new FrmCajaPorID(Id))
+                    {
+                        frm.ShowDialog();
+                    };
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debes de seleccionar un cierre de caja para poder visualizar la información.",
+                                              "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnVerCierreList_Click(object sender, EventArgs e)
+        {
+            string FechaInicial = Convert.ToString(DateInicio.Value.ToString("yyyy-MM-dd"));
+            string FechaFinal = Convert.ToString(DateFin.Value.ToString("yyyy-MM-dd"));
+            string Hoy = Convert.ToString(DateTime.Today.ToString("yyyy-MM-dd"));
+            //pendiente de cierre
+            if (RbPendientes.Checked)
+            {
+                switch (valorPendiente)
+                {
+                    case 0:
+                        MessageBox.Show("Debes de seleccionar un filtro para buscar los cierres.",
+                      "Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 1:
+                         MessageBox.Show("Selecciona ver cierre de caja, para que puedas visualizarlo.",
+                                                "Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                    default:
+                        MessageBox.Show("Debes de seleccionar un filtro para buscar los Cierre de Caja, si ya lo seleccionaste, " +
+                            "entonces ha ocurrido un error, favor contactar al administrador.",
+                      "Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+            }
+
+            //por fechas
+            if (RbFechas.Checked)
+            {
+                switch (valorPorFechas)
+                {
+                    case 0:
+                        MessageBox.Show("Debes de seleccionar un filtro para buscar los Registro de Cierre de Caja.",
+                      "Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 1:
+                        DialogResult respuesta1 = MessageBox.Show("¿Deseas visualizar todas los Registro de Cierre de Caja?.",
+                                                "Registro de Cierre de Caja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (respuesta1 == DialogResult.Yes)
+                        {
+                            using (FrmCajaPorFecha frm = new FrmCajaPorFecha(FechaInicial, FechaFinal))
+                            {
+                                frm.ShowDialog();
+                            };
+                        }
+                        break;
+                    default:
+                        MessageBox.Show("Debes de seleccionar un filtro para buscar los Registro de Cierre de Caja, si ya lo seleccionaste, " +
+                            "entonces ha ocurrido un error, favor contactar al administrador.",
+                      "Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+            }
+
+            //hoy
+            if (RbHoy.Checked)
+            {
+                switch (valorHoy)
+                {
+                    case 0:
+                        MessageBox.Show("Debes de seleccionar un filtro para buscar los Registros de Cierre de Caja.",
+                      "los Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 1:
+                        DialogResult respuesta1 = MessageBox.Show("¿Deseas visualizar todos los Registro de Cierre de Caja ya cerrados?.",
+                                                "Registro de Cierre de Caja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (respuesta1 == DialogResult.Yes)
+                        {
+                            using (FrmCajaPorFecha frm = new FrmCajaPorFecha(Hoy, Hoy))
+                            {
+                                frm.ShowDialog();
+                            };
+                        }
+                        break;
+                    default:
+                        MessageBox.Show("Debes de seleccionar un filtro para buscar los Registro de Cierre de Caja, si ya lo seleccionaste, " +
+                            "entonces ha ocurrido un error, favor contactar al administrador.",
+                      "Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+            }
+        }
+
+        private void btnReportExcel_Click(object sender, EventArgs e)
+        {
+            //parametro para fechas 1
+            DateTime FechaInicial = Convert.ToDateTime(DateInicio.Value.ToString("yyyy-MM-dd"));
+            DateTime FechaFinal = Convert.ToDateTime(DateFin.Value.ToString("yyyy-MM-dd"));
+
+            //parametros hoy
+            DateTime Inicial = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
+            DateTime Final = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
 
 
+            if (RbHoy.Checked)
+            {
+                try
+                {
+                    switch (valorHoy)
+                    {
+                        case 0:
+                            MessageBox.Show("Debes de seleccionar un filtro para buscar los Registro de Cierre de Caja.",
+                          "Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                        case 1:
+                            DialogResult respuesta = MessageBox.Show("¿Deseas exportar a excel todos Registro de Cierre de Caja de hoy ya cerrados?.",
+                                                   "Registro de Cierre de Caja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (respuesta == DialogResult.Yes)
+                            {
+                                var result = DB.SPCierreCajaPorFecha(Inicial, Final).ToList();
 
+                                if (result.Count > 0)
+                                {
+                                    SaveFileDialog saveFileDialog = new SaveFileDialog
+                                    {
+                                        Filter = "Excel|*.xlsx"
+                                    };
 
+                                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                                    {
+                                        ExcelMapper mapper = new ExcelMapper();
+                                        var file = saveFileDialog.FileName;
+                                        mapper.Save(file, result, $"ReportCIERRES_{Inicial}", true); //true is for saving .xlsx
+                                        MessageBox.Show("Se exporto correctamente el documento.",
+                                                            "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No hay datos que exportar",
+                                                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            break;
+                        default:
+                            MessageBox.Show("Debes de seleccionar un filtro para buscar los Registro de Cierre de Caja, si ya lo seleccionaste, " +
+                                "entonces ha ocurrido un error, favor contactar al administrador.",
+                          "Registro de Facturas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                }
+            }
+            else
+            {
+                if (RbFechas.Checked)
+                {
+                    try
+                    {
+                        if (ValidarFechaLimite())
+                        {
+                            switch (valorPorFechas)
+                            {
+                                case 0:
+                                    MessageBox.Show("Debes de seleccionar un filtro para buscar los Registro de Cierre de Caja.",
+                                  "Registro de Facturas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break;
+                                case 1:
+                                    DialogResult respuesta3 = MessageBox.Show("¿Deseas exportar a excel todas los Registro de Cierre de Caja; ya cerrados, del rango indicado?.",
+                                                           "Registro de Cierre de Caja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (respuesta3 == DialogResult.Yes)
+                                    {
+                                        var result = DB.SPCierreCajaPorFecha(FechaInicial, FechaFinal).ToList();
+
+                                        if (result.Count > 0)
+                                        {
+                                            SaveFileDialog saveFileDialog = new SaveFileDialog
+                                            {
+                                                Filter = "Excel|*.xlsx"
+                                            };
+
+                                            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                                            {
+                                                ExcelMapper mapper = new ExcelMapper();
+                                                var file = saveFileDialog.FileName;
+                                                mapper.Save(file, result, "ReportCierres", true); //true is for saving .xlsx
+                                                MessageBox.Show("Se exporto correctamente el documento.",
+                                                                    "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("No hay datos que exportar",
+                                                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    MessageBox.Show("Debes de seleccionar un filtro para buscar los Registro de Cierre de Caja, si ya lo seleccionaste, " +
+                                        "entonces ha ocurrido un error, favor contactar al administrador.",
+                                  "Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Selecciona correctamente las fecha para filtrar la información.",
+                                                           "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    if (RbPendientes.Checked)
+                    {
+                        switch (valorPendiente)
+                        {
+                            case 1:
+                                MessageBox.Show("No hay datos que exportar, ya que solo se exporta registros de cierre de caja ya cerrados, busca registros que ya se hayan cerrado.",
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                            default:
+                                MessageBox.Show("No hay datos que exportar, ya que solo se exporta registros de cierre de caja ya cerrados, busca registros que ya se hayan cerrado.",
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnReportPDF_Click(object sender, EventArgs e)
+        {
+            //para SP consultas
+            //parametro para fechas 1
+            DateTime FechaInicial = Convert.ToDateTime(DateInicio.Value.ToString("yyyy-MM-dd"));
+            DateTime FechaFinal = Convert.ToDateTime(DateFin.Value.ToString("yyyy-MM-dd"));
+
+            //parametros hoy
+            DateTime Inicial = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
+            DateTime Final = Convert.ToDateTime(DateTime.Now.Date.ToString("yyyy-MM-dd"));
+
+            //----------------------------------------------------------------------------------//
+
+            //para pdf reports
+            string pFechaInicial = Convert.ToString(DateInicio.Value.ToString("yyyy-MM-dd"));
+            string pFechaFinal = Convert.ToString(DateFin.Value.ToString("yyyy-MM-dd"));
+
+            //parametros hoy
+            string pInicial2 = Convert.ToString(DateTime.Now.Date.ToString("yyyy-MM-dd"));
+            string pFinal2 = Convert.ToString(DateTime.Now.Date.ToString("yyyy-MM-dd"));
+
+            if (RbHoy.Checked)
+            {
+                try
+                {
+                    switch (valorHoy)
+                    {
+                        case 0:
+                            MessageBox.Show("Debes de seleccionar un filtro para buscar los Registro de Cierre de Caja.",
+                          "Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                        case 1:
+                            DialogResult respuesta = MessageBox.Show("¿Deseas exportar a pdf todos los Registro de Cierre de Caja de hoy?.",
+                                                   "Registro de Cierre de Caja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (respuesta == DialogResult.Yes)
+                            {
+                                var result = DB.SPCierreCajaPorFecha(Inicial, Final).ToList();
+                                if (result.Count > 0)
+                                {
+                                    RptCajaPorFecha rptCajaPorFecha = new RptCajaPorFecha();
+                                    rptCajaPorFecha.Refresh();
+                                    rptCajaPorFecha.SetParameterValue("@fechaInicio", pInicial2);
+                                    rptCajaPorFecha.SetParameterValue("@fechaFin", pFinal2);
+
+                                    //datos para export pdf el report
+                                    ExportOptions exportOptions;
+                                    DiskFileDestinationOptions diskFileDestinationOptions = new DiskFileDestinationOptions();
+                                    SaveFileDialog dialog = new SaveFileDialog();
+                                    dialog.Filter = "Pdf|*.pdf";
+                                    if (dialog.ShowDialog() == DialogResult.OK)
+                                    {
+                                        diskFileDestinationOptions.DiskFileName = dialog.FileName;
+                                    }
+                                    exportOptions = rptCajaPorFecha.ExportOptions;
+                                    {
+                                        exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                                        exportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                                        exportOptions.ExportDestinationOptions = diskFileDestinationOptions;
+                                        exportOptions.ExportFormatOptions = new PdfRtfWordFormatOptions();
+                                    }
+                                    rptCajaPorFecha.Export();
+
+                                    MessageBox.Show("Se exporto correctamente el documento.",
+                                                            "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No hay datos que exportar",
+                                                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            break;
+                        default:
+                            MessageBox.Show("Debes de seleccionar un filtro para buscar los Registro de Cierre de Caja, si ya lo seleccionaste, " +
+                                "entonces ha ocurrido un error, favor contactar al administrador.",
+                          "Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            else
+            {
+                if (RbFechas.Checked)
+                {
+                    try
+                    {
+                        if (ValidarFechaLimite())
+                        {
+                            switch (valorPorFechas)
+                            {
+                                case 0:
+                                    MessageBox.Show("Debes de seleccionar un filtro para buscar los Registro de Cierre de Caja.",
+                                  "Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break;
+                                case 1:
+                                    DialogResult respuesta3 = MessageBox.Show("¿Deseas exportar a pdf todos los Registro de Cierre de Caja cerrados del rango indicado?.",
+                                                           "Registro de Cierre de Caja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (respuesta3 == DialogResult.Yes)
+                                    {
+                                        var result = DB.SPCierreCajaPorFecha(FechaInicial, FechaFinal).ToList();
+                                        if (result.Count > 0)
+                                        {
+                                            RptCajaPorFecha rptCajaPorFecha = new RptCajaPorFecha();
+                                            rptCajaPorFecha.Refresh();
+                                            rptCajaPorFecha.SetParameterValue("@fechaInicio", pFechaInicial);
+                                            rptCajaPorFecha.SetParameterValue("@fechaFin", pFechaFinal);
+
+                                            //datos para export pdf el report
+                                            ExportOptions exportOptions;
+                                            DiskFileDestinationOptions diskFileDestinationOptions = new DiskFileDestinationOptions();
+                                            SaveFileDialog dialog = new SaveFileDialog();
+                                            dialog.Filter = "Pdf|*.pdf";
+                                            if (dialog.ShowDialog() == DialogResult.OK)
+                                            {
+                                                diskFileDestinationOptions.DiskFileName = dialog.FileName;
+                                            }
+                                            exportOptions = rptCajaPorFecha.ExportOptions;
+                                            {
+                                                exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                                                exportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                                                exportOptions.ExportDestinationOptions = diskFileDestinationOptions;
+                                                exportOptions.ExportFormatOptions = new PdfRtfWordFormatOptions();
+                                            }
+                                            rptCajaPorFecha.Export();
+
+                                            MessageBox.Show("Se exporto correctamente el documento.",
+                                                                    "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("No hay datos que exportar",
+                                                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    MessageBox.Show("Debes de seleccionar un filtro para buscar los Registro de Cierre de Caja, si ya lo seleccionaste, " +
+                                        "entonces ha ocurrido un error, favor contactar al administrador.",
+                                  "Registro de Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Selecciona correctamente las fecha para filtrar la información.",
+                                                           "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    if (RbPendientes.Checked)
+                    {
+                        if (RbPendientes.Checked)
+                        {
+                            switch (valorPendiente)
+                            {
+                                case 1:
+                                    MessageBox.Show("No hay datos que exportar, ya que solo se exporta registros de cierre de caja ya cerrados, busca registros que ya se hayan cerrado.",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break;
+                                default:
+                                    MessageBox.Show("No hay datos que exportar, ya que solo se exporta registros de cierre de caja ya cerrados, busca registros que ya se hayan cerrado.",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

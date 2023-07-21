@@ -47,17 +47,17 @@
             this.DateInicio = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnFiltrarTodosCierres = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvFilter = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnReportPDF = new System.Windows.Forms.Button();
             this.BtnVerCierre = new System.Windows.Forms.Button();
             this.BtnVerCierreList = new System.Windows.Forms.Button();
             this.btnReportExcel = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvFilter = new System.Windows.Forms.DataGridView();
             this.CID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,12 +89,12 @@
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -327,6 +327,17 @@
             this.btnFiltrarTodosCierres.UseVisualStyleBackColor = false;
             this.btnFiltrarTodosCierres.Click += new System.EventHandler(this.btnFiltrarTodosCierres_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::Agregados.Properties.Resources.agregadoImg;
+            this.pictureBox1.Location = new System.Drawing.Point(941, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(252, 244);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.tableLayoutPanel5);
@@ -344,7 +355,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.23838F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 199F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 146F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
             this.tableLayoutPanel5.Controls.Add(this.btnVolver, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnReportPDF, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.BtnVerCierre, 4, 0);
@@ -357,6 +368,94 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1176, 85);
             this.tableLayoutPanel5.TabIndex = 2;
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.BackColor = System.Drawing.Color.Snow;
+            this.btnVolver.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVolver.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnVolver.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnVolver.Image = global::Agregados.Properties.Resources._return;
+            this.btnVolver.Location = new System.Drawing.Point(3, 3);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(506, 79);
+            this.btnVolver.TabIndex = 6;
+            this.btnVolver.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnVolver.UseVisualStyleBackColor = false;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
+            // btnReportPDF
+            // 
+            this.btnReportPDF.BackColor = System.Drawing.Color.RosyBrown;
+            this.btnReportPDF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReportPDF.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReportPDF.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReportPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportPDF.Image = global::Agregados.Properties.Resources.pdf;
+            this.btnReportPDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReportPDF.Location = new System.Drawing.Point(515, 3);
+            this.btnReportPDF.Name = "btnReportPDF";
+            this.btnReportPDF.Size = new System.Drawing.Size(149, 79);
+            this.btnReportPDF.TabIndex = 2;
+            this.btnReportPDF.Text = "Export PDF";
+            this.btnReportPDF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReportPDF.UseVisualStyleBackColor = false;
+            this.btnReportPDF.Click += new System.EventHandler(this.btnReportPDF_Click);
+            // 
+            // BtnVerCierre
+            // 
+            this.BtnVerCierre.BackColor = System.Drawing.Color.LightGreen;
+            this.BtnVerCierre.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnVerCierre.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnVerCierre.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnVerCierre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVerCierre.Image = global::Agregados.Properties.Resources.cajaRegistradora;
+            this.BtnVerCierre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnVerCierre.Location = new System.Drawing.Point(1032, 3);
+            this.BtnVerCierre.Name = "BtnVerCierre";
+            this.BtnVerCierre.Size = new System.Drawing.Size(141, 79);
+            this.BtnVerCierre.TabIndex = 0;
+            this.BtnVerCierre.Text = "Ver Cierre";
+            this.BtnVerCierre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnVerCierre.UseVisualStyleBackColor = false;
+            this.BtnVerCierre.Click += new System.EventHandler(this.BtnVerCierre_Click);
+            // 
+            // BtnVerCierreList
+            // 
+            this.BtnVerCierreList.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.BtnVerCierreList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnVerCierreList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnVerCierreList.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnVerCierreList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVerCierreList.Image = global::Agregados.Properties.Resources.listaCierreCaja;
+            this.BtnVerCierreList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnVerCierreList.Location = new System.Drawing.Point(833, 3);
+            this.BtnVerCierreList.Name = "BtnVerCierreList";
+            this.BtnVerCierreList.Size = new System.Drawing.Size(193, 79);
+            this.BtnVerCierreList.TabIndex = 1;
+            this.BtnVerCierreList.Text = "Ver listas de Cierres";
+            this.BtnVerCierreList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnVerCierreList.UseVisualStyleBackColor = false;
+            this.BtnVerCierreList.Click += new System.EventHandler(this.BtnVerCierreList_Click);
+            // 
+            // btnReportExcel
+            // 
+            this.btnReportExcel.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.btnReportExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReportExcel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReportExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportExcel.Image = global::Agregados.Properties.Resources.excel;
+            this.btnReportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReportExcel.Location = new System.Drawing.Point(670, 3);
+            this.btnReportExcel.Name = "btnReportExcel";
+            this.btnReportExcel.Size = new System.Drawing.Size(157, 79);
+            this.btnReportExcel.TabIndex = 3;
+            this.btnReportExcel.Text = "Export Excel";
+            this.btnReportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReportExcel.UseVisualStyleBackColor = false;
+            this.btnReportExcel.Click += new System.EventHandler(this.btnReportExcel_Click);
             // 
             // panel2
             // 
@@ -431,101 +530,6 @@
             this.dgvFilter.Size = new System.Drawing.Size(1170, 231);
             this.dgvFilter.TabIndex = 2;
             this.dgvFilter.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellClick);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::Agregados.Properties.Resources.agregadoImg;
-            this.pictureBox1.Location = new System.Drawing.Point(941, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(252, 244);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnVolver
-            // 
-            this.btnVolver.BackColor = System.Drawing.Color.Snow;
-            this.btnVolver.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVolver.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnVolver.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnVolver.Image = global::Agregados.Properties.Resources._return;
-            this.btnVolver.Location = new System.Drawing.Point(3, 3);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(506, 79);
-            this.btnVolver.TabIndex = 6;
-            this.btnVolver.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnVolver.UseVisualStyleBackColor = false;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
-            // 
-            // btnReportPDF
-            // 
-            this.btnReportPDF.BackColor = System.Drawing.Color.RosyBrown;
-            this.btnReportPDF.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReportPDF.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReportPDF.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReportPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReportPDF.Image = global::Agregados.Properties.Resources.pdf;
-            this.btnReportPDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportPDF.Location = new System.Drawing.Point(515, 3);
-            this.btnReportPDF.Name = "btnReportPDF";
-            this.btnReportPDF.Size = new System.Drawing.Size(149, 79);
-            this.btnReportPDF.TabIndex = 2;
-            this.btnReportPDF.Text = "Export PDF";
-            this.btnReportPDF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReportPDF.UseVisualStyleBackColor = false;
-            // 
-            // BtnVerCierre
-            // 
-            this.BtnVerCierre.BackColor = System.Drawing.Color.LightGreen;
-            this.BtnVerCierre.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnVerCierre.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnVerCierre.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnVerCierre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVerCierre.Image = global::Agregados.Properties.Resources.cajaRegistradora;
-            this.BtnVerCierre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerCierre.Location = new System.Drawing.Point(1032, 3);
-            this.BtnVerCierre.Name = "BtnVerCierre";
-            this.BtnVerCierre.Size = new System.Drawing.Size(141, 79);
-            this.BtnVerCierre.TabIndex = 0;
-            this.BtnVerCierre.Text = "Ver Cierre";
-            this.BtnVerCierre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnVerCierre.UseVisualStyleBackColor = false;
-            // 
-            // BtnVerCierreList
-            // 
-            this.BtnVerCierreList.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.BtnVerCierreList.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnVerCierreList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnVerCierreList.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnVerCierreList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVerCierreList.Image = global::Agregados.Properties.Resources.listaCierreCaja;
-            this.BtnVerCierreList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerCierreList.Location = new System.Drawing.Point(833, 3);
-            this.BtnVerCierreList.Name = "BtnVerCierreList";
-            this.BtnVerCierreList.Size = new System.Drawing.Size(193, 79);
-            this.BtnVerCierreList.TabIndex = 1;
-            this.BtnVerCierreList.Text = "Ver listas de Cierres";
-            this.BtnVerCierreList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnVerCierreList.UseVisualStyleBackColor = false;
-            // 
-            // btnReportExcel
-            // 
-            this.btnReportExcel.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnReportExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReportExcel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReportExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReportExcel.Image = global::Agregados.Properties.Resources.excel;
-            this.btnReportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportExcel.Location = new System.Drawing.Point(670, 3);
-            this.btnReportExcel.Name = "btnReportExcel";
-            this.btnReportExcel.Size = new System.Drawing.Size(157, 79);
-            this.btnReportExcel.TabIndex = 3;
-            this.btnReportExcel.Text = "Export Excel";
-            this.btnReportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReportExcel.UseVisualStyleBackColor = false;
             // 
             // CID
             // 
@@ -751,12 +755,12 @@
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

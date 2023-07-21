@@ -111,9 +111,9 @@ namespace Agregados.Forms.Materials
                     dgvListaMateriales.DataSource = result.ToList();
                     limpiar();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     throw;
                 }
             }
@@ -141,9 +141,9 @@ namespace Agregados.Forms.Materials
                         dgvListaMateriales.DataSource = result.ToList();
                         limpiar();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         throw;
                     }
                 }
@@ -192,9 +192,9 @@ namespace Agregados.Forms.Materials
                         limpiar();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     throw;
                 }
             }
@@ -233,9 +233,9 @@ namespace Agregados.Forms.Materials
                             limpiar();
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         throw;
                     }
                 }
@@ -279,9 +279,9 @@ namespace Agregados.Forms.Materials
                         limpiar();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     throw;
                 }
             }
@@ -321,9 +321,9 @@ namespace Agregados.Forms.Materials
                             limpiar();
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         throw;
                     }
                 }
@@ -550,9 +550,9 @@ namespace Agregados.Forms.Materials
                             }
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         throw;
                     }
                 }
@@ -610,9 +610,9 @@ namespace Agregados.Forms.Materials
                                 }
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
+                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             throw;
                         }
                     }

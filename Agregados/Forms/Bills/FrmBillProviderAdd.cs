@@ -103,10 +103,12 @@ namespace Agregados.Forms.Bills
                 cierreApertCajas = null;
                 return apertura;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
+
         }
 
 
@@ -594,8 +596,9 @@ namespace Agregados.Forms.Bills
                 factura = null;
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -757,8 +760,9 @@ namespace Agregados.Forms.Bills
                                                 factura = null;
                                             }
                                         }
-                                        catch (Exception)
+                                        catch (Exception ex)
                                         {
+                                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             throw;
                                         }
                                     }
@@ -869,8 +873,9 @@ namespace Agregados.Forms.Bills
                                                     factura = null;
                                                 }
                                             }
-                                            catch (Exception)
+                                            catch (Exception ex)
                                             {
+                                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                 throw;
                                             }
                                         }
@@ -981,8 +986,9 @@ namespace Agregados.Forms.Bills
                                                         factura = null;
                                                     }
                                                 }
-                                                catch (Exception)
+                                                catch (Exception ex)
                                                 {
+                                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                     throw;
                                                 }
                                             }
@@ -1006,9 +1012,9 @@ namespace Agregados.Forms.Bills
                                 }
                             }
                         }
-                        catch (NullReferenceException)
+                        catch (Exception ex)
                         {
-
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             throw;
                         }
                     }
@@ -1135,16 +1141,17 @@ namespace Agregados.Forms.Bills
                                                     factura = null;
                                                 }
                                             }
-                                            catch (Exception)
+                                            catch (Exception ex)
                                             {
+                                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                 throw;
                                             }
                                         }
                                     }
                                 }
-                                catch (NullReferenceException)
+                                catch (Exception ex)
                                 {
-
+                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     throw;
                                 }
                             }

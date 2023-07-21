@@ -56,8 +56,9 @@ namespace Agregados.Forms
                 cierreApertCajas = null;
                 return apertura;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -79,57 +80,157 @@ namespace Agregados.Forms
             //identifica si hay una apertura de caja, y si pertenece al usuario logueado hbailita botones, sino no 
             if (BuscarAperturaActual() != null)
             {
-                if (apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario)
+                if (apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario) // pertenece al usuario
                 {
                     facturaciónToolStripMenuItem.Enabled = true;
+                    facturasACréditoToolStripMenuItem.Enabled = true;
                     notaDeCréditoToolStripMenuItem.Enabled = true;
-                    reversiónDeFacturaToolStripMenuItem.Enabled = true;
-
+                  
                     facturaciónComprasToolStripMenuItem.Enabled = true;
+                    comprasACréditoToolStripMenuItem.Enabled = true;
                     reversiónDeComprasToolStripMenuItem.Enabled = true;
 
                     cerrarCajaToolStripMenuItem.Enabled = true;
                     abrirCajaToolStripMenuItem.Enabled = false;
 
 
-                    if (Globals.MyGlobalUser.TipoUsuario == 1) // administrador
+                    if (Globals.MyGlobalUser.TipoUsuario == 1) // administrador revisa si es administrador
                     {
+                        respaldoDeDatosToolStripMenuItem.Enabled = true;
+                        respaldoDeDatosToolStripMenuItem.Visible = true;
                         cierreCajaForzadoToolStripMenuItem.Enabled = true;
                         cierreCajaForzadoToolStripMenuItem.Visible = true;
+                        notificacionesToolStripMenuItem.Enabled = true;
+                        notificacionesToolStripMenuItem.Visible = true;
+                        usuariosToolStripMenuItem.Enabled = true;
+                        usuariosToolStripMenuItem.Visible = true;
+
+                        reversiónDeFacturaToolStripMenuItem.Enabled = true;
+
+                        reportesDeCajaToolStripMenuItem.Enabled = true;
+                        reportesDeCajaToolStripMenuItem.Visible = true;
+
                     }
-                    else
+                    else //sino es administrador
                     {
+                        respaldoDeDatosToolStripMenuItem.Enabled = false;
+                        respaldoDeDatosToolStripMenuItem.Visible = false;
                         cierreCajaForzadoToolStripMenuItem.Enabled = false;
                         cierreCajaForzadoToolStripMenuItem.Visible = false;
+                        notificacionesToolStripMenuItem.Enabled = false;
+                        notificacionesToolStripMenuItem.Visible = false;
+                        usuariosToolStripMenuItem.Enabled = false;
+                        usuariosToolStripMenuItem.Visible = false;
+
+                        reversiónDeFacturaToolStripMenuItem.Enabled = false;
+
+                        reportesDeCajaToolStripMenuItem.Enabled = false;
+                        reportesDeCajaToolStripMenuItem.Visible = false;
                     }
                 }
                 else
                 {
                     facturaciónToolStripMenuItem.Enabled = false;
+                    facturasACréditoToolStripMenuItem.Enabled = false;
                     notaDeCréditoToolStripMenuItem.Enabled = false;
-                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
 
                     facturaciónComprasToolStripMenuItem.Enabled = false;
+                    comprasACréditoToolStripMenuItem.Enabled = false;
                     reversiónDeComprasToolStripMenuItem.Enabled = false;
 
                     cerrarCajaToolStripMenuItem.Enabled = false;
                     abrirCajaToolStripMenuItem.Enabled = false;
+
+
+
+                    respaldoDeDatosToolStripMenuItem.Enabled = false;
+                    respaldoDeDatosToolStripMenuItem.Visible = false;
+                    cierreCajaForzadoToolStripMenuItem.Enabled = false;
+                    cierreCajaForzadoToolStripMenuItem.Visible = false;
+                    notificacionesToolStripMenuItem.Enabled = false;
+                    notificacionesToolStripMenuItem.Visible = false;
+                    usuariosToolStripMenuItem.Enabled = false;
+                    usuariosToolStripMenuItem.Visible = false;
+
+                    reversiónDeFacturaToolStripMenuItem.Visible = false;
+                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
+
+                    reportesDeCajaToolStripMenuItem.Enabled = false;
+                    reportesDeCajaToolStripMenuItem.Visible = false;
+
+                    if (Globals.MyGlobalUser.TipoUsuario == 1) // administrador revisa si es administrador
+                    {
+                        respaldoDeDatosToolStripMenuItem.Enabled = true;
+                        respaldoDeDatosToolStripMenuItem.Visible = true;
+                        cierreCajaForzadoToolStripMenuItem.Enabled = true;
+                        cierreCajaForzadoToolStripMenuItem.Visible = true;
+                        notificacionesToolStripMenuItem.Enabled = true;
+                        notificacionesToolStripMenuItem.Visible = true;
+                        usuariosToolStripMenuItem.Enabled = true;
+                        usuariosToolStripMenuItem.Visible = true;
+
+                        reportesDeCajaToolStripMenuItem.Enabled = true;
+                        reportesDeCajaToolStripMenuItem.Visible = true;
+
+                    }
                 }
             }
             else
-            {
+            { //no hay apertura
+
                 facturaciónToolStripMenuItem.Enabled = false;
+                facturasACréditoToolStripMenuItem.Enabled = false;
                 notaDeCréditoToolStripMenuItem.Enabled = false;
-                reversiónDeFacturaToolStripMenuItem.Enabled = false;
 
                 facturaciónComprasToolStripMenuItem.Enabled = false;
+                comprasACréditoToolStripMenuItem.Enabled = false;
                 reversiónDeComprasToolStripMenuItem.Enabled = false;
 
-
-                abrirCajaToolStripMenuItem.Enabled = true;
                 cerrarCajaToolStripMenuItem.Enabled = false;
-                cierreCajaForzadoToolStripMenuItem.Enabled = false;
-                cierreCajaForzadoToolStripMenuItem.Visible = false;
+                abrirCajaToolStripMenuItem.Enabled = true;
+
+                if (Globals.MyGlobalUser.TipoUsuario == 1) // administrador revisa si es administrador
+                {
+                    respaldoDeDatosToolStripMenuItem.Enabled = true;
+                    respaldoDeDatosToolStripMenuItem.Visible = true;
+
+                    cierreCajaForzadoToolStripMenuItem.Enabled = false;
+                    cierreCajaForzadoToolStripMenuItem.Visible = false;
+
+                    notificacionesToolStripMenuItem.Enabled = true;
+                    notificacionesToolStripMenuItem.Visible = true;
+                    usuariosToolStripMenuItem.Enabled = true;
+                    usuariosToolStripMenuItem.Visible = true;
+
+                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
+                    reversiónDeFacturaToolStripMenuItem.Visible = false;
+
+                    reportesDeCajaToolStripMenuItem.Enabled = true;
+                    reportesDeCajaToolStripMenuItem.Visible = true;
+
+                }
+                else //sino es administrador
+                {
+                    respaldoDeDatosToolStripMenuItem.Enabled = false;
+                    respaldoDeDatosToolStripMenuItem.Visible = false;
+
+                    cierreCajaForzadoToolStripMenuItem.Enabled = false;
+                    cierreCajaForzadoToolStripMenuItem.Visible = false;
+
+                    notificacionesToolStripMenuItem.Enabled = false;
+                    notificacionesToolStripMenuItem.Visible = false;
+
+                    usuariosToolStripMenuItem.Enabled = false;
+                    usuariosToolStripMenuItem.Visible = false;
+
+                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
+                    reversiónDeFacturaToolStripMenuItem.Visible = false;
+
+                    reportesDeCajaToolStripMenuItem.Enabled = false;
+                    reportesDeCajaToolStripMenuItem.Visible = false;
+                }
+
+
             }
 
         }
@@ -162,7 +263,7 @@ namespace Agregados.Forms
 
         private void cerrarCajaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form MifrmCashierClose = new Cashiers.FrmCashierClose();
+            Form MifrmCashierClose = new Cashiers.FrmCashierClose( 1 );
 
             DialogResult resp = MifrmCashierClose.ShowDialog();
 
@@ -372,6 +473,30 @@ namespace Agregados.Forms
             Globals.MifrmCajaReports = new Reports.FrmCajaReports();
             Globals.MifrmCajaReports.Show();
             this.Hide();
+        }
+
+        private void comprasACréditoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmPendTicketProvider = new Bills.FrmPendTicketProvider();
+            Globals.MifrmPendTicketProvider.Show();
+            this.Hide();
+        }
+
+        private void cierreCajaForzadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cierreCajaForzadoToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Form MifrmCashierClose = new Cashiers.FrmCashierClose(2);
+
+            DialogResult resp = MifrmCashierClose.ShowDialog();
+
+            if (resp == DialogResult.OK)
+            {
+                UserLogged();
+            }
         }
     }
 }

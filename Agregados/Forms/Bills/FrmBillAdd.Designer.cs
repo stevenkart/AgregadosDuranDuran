@@ -201,7 +201,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 154F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 149F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 253F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 254F));
             this.tableLayoutPanel8.Controls.Add(this.txtCantTierra, 5, 2);
             this.tableLayoutPanel8.Controls.Add(this.lblTotalBackHoe, 2, 1);
             this.tableLayoutPanel8.Controls.Add(this.lblCantTierra, 4, 2);
@@ -239,7 +239,7 @@
             this.txtCantTierra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCantTierra.DecimalPlaces = 2;
             this.txtCantTierra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantTierra.Location = new System.Drawing.Point(734, 78);
+            this.txtCantTierra.Location = new System.Drawing.Point(733, 78);
             this.txtCantTierra.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -256,7 +256,7 @@
             this.lblTotalBackHoe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotalBackHoe.AutoSize = true;
             this.lblTotalBackHoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalBackHoe.Location = new System.Drawing.Point(330, 48);
+            this.lblTotalBackHoe.Location = new System.Drawing.Point(329, 48);
             this.lblTotalBackHoe.Name = "lblTotalBackHoe";
             this.lblTotalBackHoe.Size = new System.Drawing.Size(88, 18);
             this.lblTotalBackHoe.TabIndex = 23;
@@ -268,7 +268,7 @@
             this.lblCantTierra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCantTierra.AutoSize = true;
             this.lblCantTierra.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantTierra.Location = new System.Drawing.Point(580, 82);
+            this.lblCantTierra.Location = new System.Drawing.Point(579, 82);
             this.lblCantTierra.Name = "lblCantTierra";
             this.lblCantTierra.Size = new System.Drawing.Size(148, 18);
             this.lblCantTierra.TabIndex = 19;
@@ -281,7 +281,7 @@
             this.chBackHoe.AutoSize = true;
             this.chBackHoe.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chBackHoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBackHoe.Location = new System.Drawing.Point(424, 11);
+            this.chBackHoe.Location = new System.Drawing.Point(423, 11);
             this.chBackHoe.Name = "chBackHoe";
             this.chBackHoe.Size = new System.Drawing.Size(150, 20);
             this.chBackHoe.TabIndex = 20;
@@ -294,7 +294,7 @@
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(330, 12);
+            this.label13.Location = new System.Drawing.Point(329, 12);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(88, 18);
             this.label13.TabIndex = 15;
@@ -306,7 +306,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(885, 13);
+            this.label1.Location = new System.Drawing.Point(884, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(143, 16);
             this.label1.TabIndex = 7;
@@ -318,9 +318,9 @@
             this.lblDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(1034, 13);
+            this.lblDate.Location = new System.Drawing.Point(1033, 13);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(248, 16);
+            this.lblDate.Size = new System.Drawing.Size(249, 16);
             this.lblDate.TabIndex = 8;
             this.lblDate.Text = "Date:";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -331,9 +331,9 @@
             this.CboxTypeBill.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboxTypeBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboxTypeBill.FormattingEnabled = true;
-            this.CboxTypeBill.Location = new System.Drawing.Point(1034, 75);
+            this.CboxTypeBill.Location = new System.Drawing.Point(1033, 75);
             this.CboxTypeBill.Name = "CboxTypeBill";
-            this.CboxTypeBill.Size = new System.Drawing.Size(248, 24);
+            this.CboxTypeBill.Size = new System.Drawing.Size(249, 24);
             this.CboxTypeBill.TabIndex = 10;
             this.CboxTypeBill.SelectedValueChanged += new System.EventHandler(this.CboxTypeBill_SelectedValueChanged);
             // 
@@ -342,7 +342,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(885, 83);
+            this.label4.Location = new System.Drawing.Point(884, 83);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(143, 16);
             this.label4.TabIndex = 9;
@@ -354,7 +354,7 @@
             this.FactNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.FactNum.AutoSize = true;
             this.FactNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FactNum.Location = new System.Drawing.Point(885, 49);
+            this.FactNum.Location = new System.Drawing.Point(884, 49);
             this.FactNum.Name = "FactNum";
             this.FactNum.Size = new System.Drawing.Size(143, 16);
             this.FactNum.TabIndex = 13;
@@ -366,9 +366,9 @@
             this.lblFactNueva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFactNueva.AutoSize = true;
             this.lblFactNueva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFactNueva.Location = new System.Drawing.Point(1034, 47);
+            this.lblFactNueva.Location = new System.Drawing.Point(1033, 47);
             this.lblFactNueva.Name = "lblFactNueva";
-            this.lblFactNueva.Size = new System.Drawing.Size(248, 20);
+            this.lblFactNueva.Size = new System.Drawing.Size(249, 20);
             this.lblFactNueva.TabIndex = 14;
             this.lblFactNueva.Text = "Fact:";
             this.lblFactNueva.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -393,7 +393,7 @@
             this.txtClient.Location = new System.Drawing.Point(128, 77);
             this.txtClient.Name = "txtClient";
             this.txtClient.ReadOnly = true;
-            this.txtClient.Size = new System.Drawing.Size(196, 29);
+            this.txtClient.Size = new System.Drawing.Size(195, 29);
             this.txtClient.TabIndex = 1;
             // 
             // label8
@@ -417,7 +417,7 @@
             this.txtNumClient.Location = new System.Drawing.Point(128, 45);
             this.txtNumClient.Name = "txtNumClient";
             this.txtNumClient.ReadOnly = true;
-            this.txtNumClient.Size = new System.Drawing.Size(196, 29);
+            this.txtNumClient.Size = new System.Drawing.Size(195, 29);
             this.txtNumClient.TabIndex = 4;
             this.txtNumClient.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtNumClient.TextChanged += new System.EventHandler(this.txtNumClient_TextChanged);
@@ -440,7 +440,7 @@
             this.pictureSearchClient.Image = global::Agregados.Properties.Resources.lupa;
             this.pictureSearchClient.Location = new System.Drawing.Point(128, 3);
             this.pictureSearchClient.Name = "pictureSearchClient";
-            this.pictureSearchClient.Size = new System.Drawing.Size(196, 36);
+            this.pictureSearchClient.Size = new System.Drawing.Size(195, 36);
             this.pictureSearchClient.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureSearchClient.TabIndex = 5;
             this.pictureSearchClient.TabStop = false;
@@ -451,7 +451,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(580, 12);
+            this.label14.Location = new System.Drawing.Point(579, 12);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(148, 18);
             this.label14.TabIndex = 16;
@@ -464,7 +464,7 @@
             this.chTierra.AutoSize = true;
             this.chTierra.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chTierra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chTierra.Location = new System.Drawing.Point(734, 11);
+            this.chTierra.Location = new System.Drawing.Point(733, 11);
             this.chTierra.Name = "chTierra";
             this.chTierra.Size = new System.Drawing.Size(145, 20);
             this.chTierra.TabIndex = 19;
@@ -478,7 +478,7 @@
             this.totalBackHoe.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.totalBackHoe.DecimalPlaces = 2;
             this.totalBackHoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalBackHoe.Location = new System.Drawing.Point(424, 45);
+            this.totalBackHoe.Location = new System.Drawing.Point(423, 45);
             this.totalBackHoe.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -499,7 +499,7 @@
             this.tableLayoutPanel15.Controls.Add(this.chTierraNormal, 1, 0);
             this.tableLayoutPanel15.Controls.Add(this.lblTierraNormal, 0, 0);
             this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel15.Location = new System.Drawing.Point(580, 45);
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(579, 45);
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RowCount = 1;
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -538,7 +538,7 @@
             this.tableLayoutPanel16.Controls.Add(this.chTierraRoja, 1, 0);
             this.tableLayoutPanel16.Controls.Add(this.lblTierraRoja, 0, 0);
             this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel16.Location = new System.Drawing.Point(734, 45);
+            this.tableLayoutPanel16.Location = new System.Drawing.Point(733, 45);
             this.tableLayoutPanel16.Name = "tableLayoutPanel16";
             this.tableLayoutPanel16.RowCount = 1;
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -587,7 +587,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 254F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 255F));
             this.tableLayoutPanel2.Controls.Add(this.lblTierraTotal, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.dateFinal, 6, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtTierraTotal, 4, 0);
@@ -608,7 +608,7 @@
             this.lblTierraTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTierraTotal.AutoSize = true;
             this.lblTierraTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTierraTotal.Location = new System.Drawing.Point(581, 15);
+            this.lblTierraTotal.Location = new System.Drawing.Point(580, 15);
             this.lblTierraTotal.Name = "lblTierraTotal";
             this.lblTierraTotal.Size = new System.Drawing.Size(149, 18);
             this.lblTierraTotal.TabIndex = 17;
@@ -619,9 +619,9 @@
             // 
             this.dateFinal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dateFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateFinal.Location = new System.Drawing.Point(1039, 13);
+            this.dateFinal.Location = new System.Drawing.Point(1038, 13);
             this.dateFinal.Name = "dateFinal";
-            this.dateFinal.Size = new System.Drawing.Size(249, 21);
+            this.dateFinal.Size = new System.Drawing.Size(250, 21);
             this.dateFinal.TabIndex = 11;
             this.dateFinal.Visible = false;
             // 
@@ -631,7 +631,7 @@
             this.txtTierraTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTierraTotal.DecimalPlaces = 2;
             this.txtTierraTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTierraTotal.Location = new System.Drawing.Point(736, 11);
+            this.txtTierraTotal.Location = new System.Drawing.Point(735, 11);
             this.txtTierraTotal.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -649,7 +649,7 @@
             this.lblTypeFact.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTypeFact.AutoSize = true;
             this.lblTypeFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTypeFact.Location = new System.Drawing.Point(888, 16);
+            this.lblTypeFact.Location = new System.Drawing.Point(887, 16);
             this.lblTypeFact.Name = "lblTypeFact";
             this.lblTypeFact.Size = new System.Drawing.Size(145, 16);
             this.lblTypeFact.TabIndex = 10;
@@ -663,7 +663,7 @@
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.70492F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.29508F));
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel14.Location = new System.Drawing.Point(331, 3);
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(330, 3);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
             this.tableLayoutPanel14.RowCount = 1;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -681,7 +681,7 @@
             0,
             0,
             65536});
-            this.txtTransporte.Location = new System.Drawing.Point(146, 11);
+            this.txtTransporte.Location = new System.Drawing.Point(145, 11);
             this.txtTransporte.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -936,7 +936,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.43735F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.56265F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 359F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
             this.tableLayoutPanel5.Controls.Add(this.groupBox2, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.groupBox1, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel10, 0, 1);
@@ -968,7 +968,7 @@
             this.groupBox2.Controls.Add(this.rbSinpe2);
             this.groupBox2.Controls.Add(this.rbSinpeMovil2);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(766, 3);
+            this.groupBox2.Location = new System.Drawing.Point(765, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(353, 44);
             this.groupBox2.TabIndex = 22;
@@ -1036,7 +1036,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(357, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(403, 44);
+            this.groupBox1.Size = new System.Drawing.Size(402, 44);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selecciona Método de Pago";
@@ -1139,7 +1139,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.1134F));
             this.tableLayoutPanel6.Controls.Add(this.lblLineas, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.label12, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(1125, 3);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(1124, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1264,7 +1264,7 @@
             // btnFacturar
             // 
             this.btnFacturar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFacturar.Location = new System.Drawing.Point(766, 193);
+            this.btnFacturar.Location = new System.Drawing.Point(765, 193);
             this.btnFacturar.Name = "btnFacturar";
             this.btnFacturar.Size = new System.Drawing.Size(353, 38);
             this.btnFacturar.TabIndex = 9;
@@ -1279,7 +1279,7 @@
             this.tableLayoutPanel12.Controls.Add(this.TxtTotal, 0, 1);
             this.tableLayoutPanel12.Controls.Add(this.label11, 0, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(766, 121);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(765, 121);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 2;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1322,7 +1322,7 @@
             this.tableLayoutPanel13.RowCount = 2;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(403, 65);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(402, 65);
             this.tableLayoutPanel13.TabIndex = 15;
             // 
             // TxtIVA
@@ -1332,7 +1332,7 @@
             this.TxtIVA.Location = new System.Drawing.Point(3, 35);
             this.TxtIVA.Name = "TxtIVA";
             this.TxtIVA.ReadOnly = true;
-            this.TxtIVA.Size = new System.Drawing.Size(397, 29);
+            this.TxtIVA.Size = new System.Drawing.Size(396, 29);
             this.TxtIVA.TabIndex = 5;
             this.TxtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1343,7 +1343,7 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(3, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(397, 32);
+            this.label10.Size = new System.Drawing.Size(396, 32);
             this.label10.TabIndex = 3;
             this.label10.Text = "I.V.A. Factura";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1355,7 +1355,7 @@
             this.valorPago2.DecimalPlaces = 2;
             this.valorPago2.Enabled = false;
             this.valorPago2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valorPago2.Location = new System.Drawing.Point(766, 71);
+            this.valorPago2.Location = new System.Drawing.Point(765, 71);
             this.valorPago2.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -1381,7 +1381,7 @@
             0,
             0});
             this.valorPago1.Name = "valorPago1";
-            this.valorPago1.Size = new System.Drawing.Size(403, 26);
+            this.valorPago1.Size = new System.Drawing.Size(402, 26);
             this.valorPago1.TabIndex = 19;
             this.valorPago1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.valorPago1.ThousandsSeparator = true;
@@ -1393,9 +1393,9 @@
             this.CboxIVA.Checked = true;
             this.CboxIVA.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CboxIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CboxIVA.Location = new System.Drawing.Point(1125, 143);
+            this.CboxIVA.Location = new System.Drawing.Point(1124, 143);
             this.CboxIVA.Name = "CboxIVA";
-            this.CboxIVA.Size = new System.Drawing.Size(157, 20);
+            this.CboxIVA.Size = new System.Drawing.Size(158, 20);
             this.CboxIVA.TabIndex = 13;
             this.CboxIVA.Text = "Aplicar I.V.A.";
             this.CboxIVA.UseVisualStyleBackColor = true;

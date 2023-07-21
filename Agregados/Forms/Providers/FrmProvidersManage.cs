@@ -381,9 +381,9 @@ namespace Agregados.Forms.Providers
                                 }
 
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-
+                                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 throw;
                             }
                         }
@@ -431,9 +431,9 @@ namespace Agregados.Forms.Providers
                                     }
 
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-
+                                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     throw;
                                 }
                             }
@@ -491,9 +491,9 @@ namespace Agregados.Forms.Providers
                                 }
 
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-
+                                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 throw;
                             }
                         }
@@ -541,9 +541,9 @@ namespace Agregados.Forms.Providers
                                     }
 
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-
+                                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     throw;
                                 }
                             }
@@ -613,9 +613,9 @@ namespace Agregados.Forms.Providers
                                 }
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
+                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             throw;
                         }
                     }
@@ -663,9 +663,9 @@ namespace Agregados.Forms.Providers
                                     }
 
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-
+                                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     throw;
                                 }
                             }

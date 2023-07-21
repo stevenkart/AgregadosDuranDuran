@@ -26,10 +26,11 @@ namespace Agregados.Forms.Cashiers
         string Horap;
         byte Accionp;
 
-        public FrmCashierClose()
+        int accion;
+        public FrmCashierClose(int pAccion)
         {
             InitializeComponent();
-
+            accion = pAccion;
             DB = new AgregadosEntities();
             cierreApertCajas = new CierreApertCajas();
             apertura = new CierreApertCajas();
@@ -86,15 +87,16 @@ namespace Agregados.Forms.Cashiers
                 cierreApertCajas = null;
                 return apertura;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (BuscarAperturaActual() != null && apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario)
+            if (BuscarAperturaActual() != null && apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario && accion == 1)
             {
                
                 //efectivo
@@ -144,7 +146,8 @@ namespace Agregados.Forms.Cashiers
 
                     apertura.FechaSalida = Convert.ToDateTime(Fechap);
                     apertura.HoraSalida = Horap;
-                    apertura.Detalles = apertura.Detalles + Environment.NewLine + txtDetalle.Text.Trim();
+                    apertura.Detalles = txtDetalle.Text.Trim()
+                                                   + Environment.NewLine + apertura.Detalles;
                     apertura.MontoEfectivoUsuarioFin = NumMontInicial.Value;
                     //lo que son monto por transferencia, cheque y credito 
                     //sistema los valida automaticamente ya que conforme se facture por ese medio de pago, y no efectivo
@@ -172,8 +175,87 @@ namespace Agregados.Forms.Cashiers
             }
             else
             {
-                MessageBox.Show("Ya hay una caja abierta, no es posible tener otra caja abierta simultaneamente; ya que otro usuario esta manejando el efectivo..",
-                   "Apertura de Caja Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (BuscarAperturaActual() != null && apertura.IdUsuario != Globals.MyGlobalUser.IdUsuario && Globals.MyGlobalUser.TipoUsuario == 1 && accion==2)//usuario admin
+                {
+                    //efectivo
+                    decimal Faltante = (apertura.MontoEfectivoFinal > NumMontInicial.Value) ? (apertura.MontoEfectivoFinal - NumMontInicial.Value) : 0;
+                    decimal Sobrante = (apertura.MontoEfectivoFinal < NumMontInicial.Value) ? (NumMontInicial.Value - apertura.MontoEfectivoFinal) : 0;
+
+                    if (Faltante != 0 || Sobrante != 0)
+                    {
+                        DialogResult pregunta = MessageBox.Show("Posee diferencia de efectivo en caja, por favor valide." + Environment.NewLine +
+                            $"Faltante: ¢ {Faltante} ." + Environment.NewLine +
+                            $"Sobrante: ¢ {Sobrante} ." + Environment.NewLine +
+                            "¿Deseas continuar y cerrar caja con la diferencia?"
+                            , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+
+                        if (pregunta == DialogResult.Yes)
+                        {
+                            apertura.FechaSalida = Convert.ToDateTime(Fechap);
+                            apertura.HoraSalida = Horap;
+                            apertura.Detalles = $"Cierre de Caja Forzado por: {Globals.MyGlobalUser.NombreEmpleado} " + txtDetalle.Text.Trim() 
+                                                    + Environment.NewLine + apertura.Detalles;
+                            apertura.MontoEfectivoUsuarioFin = NumMontInicial.Value;
+                            //lo que son monto por transferencia, cheque y credito 
+                            //sistema los valida automaticamente ya que conforme se facture por ese medio de pago, y no efectivo
+                            //sistema arroja resultado calculado.
+                            apertura.FaltanteFin = Faltante;
+                            apertura.SobranteFin = Sobrante;
+                            apertura.Accion = Accionp;
+
+
+                            DB.Entry(apertura).State = EntityState.Modified;
+
+
+                            if (DB.SaveChanges() > 0)
+                            {
+                                MessageBox.Show("Cierre de Caja correcto!", "Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //this.Hide();
+                                this.DialogResult = DialogResult.OK;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Cierre de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //this.Hide();
+                            }
+                        }
+                    }
+                    else
+                    {
+
+                        apertura.FechaSalida = Convert.ToDateTime(Fechap);
+                        apertura.HoraSalida = Horap;
+                        apertura.Detalles = $"Cierre de Caja Forzado por: {Globals.MyGlobalUser.NombreEmpleado} " + txtDetalle.Text.Trim()
+                                                     + Environment.NewLine + apertura.Detalles;
+                        apertura.MontoEfectivoUsuarioFin = NumMontInicial.Value;
+                        //lo que son monto por transferencia, cheque y credito 
+                        //sistema los valida automaticamente ya que conforme se facture por ese medio de pago, y no efectivo
+                        //sistema arroja resultado calculado.
+                        apertura.FaltanteFin = Faltante;
+                        apertura.SobranteFin = Sobrante;
+                        apertura.Accion = Accionp;
+
+
+                        DB.Entry(apertura).State = EntityState.Modified;
+
+
+                        if (DB.SaveChanges() > 0)
+                        {
+                            MessageBox.Show("Cierre de Caja correcto!", "Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //this.Hide();
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cierre de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //this.Hide();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Cierre de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

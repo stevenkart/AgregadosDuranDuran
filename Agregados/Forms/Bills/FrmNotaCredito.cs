@@ -68,8 +68,9 @@ namespace Agregados.Forms.Bills
                 cierreApertCajas = null;
                 return apertura;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -316,8 +317,9 @@ namespace Agregados.Forms.Bills
                 facturatemp = null;
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -554,10 +556,11 @@ namespace Agregados.Forms.Bills
                                                     factura = null;
                                                 }
                                             }
-                                            catch (System.Data.Entity.Infrastructure.DbUpdateConcurrencyException)
+                                            catch (System.Data.Entity.Infrastructure.DbUpdateConcurrencyException ex)
                                             {
-                                                Console.WriteLine("Concurrency Exception Occurred.");
+                                                MessageBox.Show("Concurrency Exception Occurred." + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                 throw;
+                                               
                                             }
                                         }
                                     }

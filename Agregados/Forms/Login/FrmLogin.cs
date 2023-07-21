@@ -189,7 +189,7 @@ namespace Agregados.Forms.Login
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //throw;
+                throw;
             }
         }
 

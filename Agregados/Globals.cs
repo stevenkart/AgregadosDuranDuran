@@ -46,9 +46,11 @@ namespace Agregados
 
         public static Forms.Bills.FrmPendBill MifrmPendBill = new Forms.Bills.FrmPendBill();
 
+        public static Forms.Bills.FrmPendTicketProvider MifrmPendTicketProvider = new Forms.Bills.FrmPendTicketProvider();
+
         public static Forms.Cashiers.FrmCashierOpen MifrmCashierOpen = new Forms.Cashiers.FrmCashierOpen();
 
-        public static Forms.Cashiers.FrmCashierClose MifrmCashierClose = new Forms.Cashiers.FrmCashierClose();
+        public static Forms.Cashiers.FrmCashierClose MifrmCashierClose = new Forms.Cashiers.FrmCashierClose(1);//caja normal
 
         public static Forms.Reports.FrmFactsReports MifrmFactsReports = new Forms.Reports.FrmFactsReports();
 

@@ -12,9 +12,23 @@ namespace Agregados.Reports.Caja
 {
     public partial class FrmCajaPorFecha : Form
     {
-        public FrmCajaPorFecha()
+        string inicio;
+        string fin;
+        public FrmCajaPorFecha(string pInicio, string pFin)
         {
             InitializeComponent();
+            inicio = pInicio;
+            fin = pFin;
+        }
+
+        private void FrmCajaPorFecha_Load(object sender, EventArgs e)
+        {
+            RptCajaPorFecha rptCajaPorFecha = new RptCajaPorFecha();
+            rptCajaPorFecha.Refresh();
+            rptCajaPorFecha.SetParameterValue("@fechaInicio", inicio);
+            rptCajaPorFecha.SetParameterValue("@fechaFin", fin);
+
+            crystalReportViewer1.ReportSource = rptCajaPorFecha;
         }
     }
 }

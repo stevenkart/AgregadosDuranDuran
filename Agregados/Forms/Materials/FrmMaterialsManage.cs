@@ -144,6 +144,7 @@ namespace Agregados.Forms.Materials
             txtMinimos.Text = null;
             txtPrecio.Text = null;
             CboxStates.SelectedValue = -1;
+            txtName.Enabled = true;
 
             ActivarAdd();
 
@@ -423,61 +424,70 @@ namespace Agregados.Forms.Materials
             //todo se debe de validar que MATERIAL no tenga facturas, sino entonces no se puede eliminar
             if (ValidarCamposRequeridos())
             {
-                DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el Material " + $"{txtName.Text.Trim()} ?" +
+                if (material.IdMaterial == 1 || material.IdMaterial == 2)
+                {
+                    MessageBox.Show("Material No fue Eliminado, este es un material requerido por el sistema y no puede eliminar su registro.",
+                                        "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el Material " + $"{txtName.Text.Trim()} ?" +
                     Environment.NewLine + "Si lo eliminas, no prodras recuperar nuevamente sus datos...",
                     "Registro de Materiales", MessageBoxButtons.YesNo);
-                if (respuesta == DialogResult.Yes)
-                {
-                    using (FrmLoading frmLoading = new FrmLoading(Wait))
+                    if (respuesta == DialogResult.Yes)
                     {
-                        try
+                        using (FrmLoading frmLoading = new FrmLoading(Wait))
                         {
-                            if (material == null)
+                            try
                             {
-                                MessageBox.Show("Material No existe, o no ha sido seleccionado de la lista", "Error Registro de Materiales", MessageBoxButtons.OK);
-                            }
-                            else
-                            {
-                                //linq que consulta si hay relacion con alguna tabla.
-                                var list = from de in DB.DetalleFacts
-                                           join ma in DB.Materiales
-                                           on de.IdMaterial equals ma.IdMaterial
-                                           where (ma.IdMaterial == material.IdMaterial)
-                                           select new
-                                           {
-                                               de.IdDetalle,
-                                           };
-
-                                if (list.ToList().Count <= 0)
+                                if (material == null)
                                 {
-                                    DB.Materiales.Remove(material); // metodo para eliminar el material, dato de la BD
-                                    if (DB.SaveChanges() > 0)
-                                    {
-                                        CheckChange();
-                                        limpiarBusqueda();
-                                        MessageBox.Show("Material Eliminado Correctamente!", "Registro de Materiales", MessageBoxButtons.OK);
-                                        material = null;
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Material No fue Eliminado, por favor valide", "Error Registro de Materiales", MessageBoxButtons.OK);
-                                        material = null;
-                                    }
+                                    MessageBox.Show("Material No existe, o no ha sido seleccionado de la lista", "Error Registro de Materiales", MessageBoxButtons.OK);
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Material No fue Eliminado, este ya se encuentra relacionado a una factura que se emitió anteriormente.",
-                                        "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //linq que consulta si hay relacion con alguna tabla.
+                                    var list = from de in DB.DetalleFacts
+                                               join ma in DB.Materiales
+                                               on de.IdMaterial equals ma.IdMaterial
+                                               where (ma.IdMaterial == material.IdMaterial)
+                                               select new
+                                               {
+                                                   de.IdDetalle,
+                                               };
+
+                                    if (list.ToList().Count <= 0)
+                                    {
+                                        DB.Materiales.Remove(material); // metodo para eliminar el material, dato de la BD
+                                        if (DB.SaveChanges() > 0)
+                                        {
+                                            CheckChange();
+                                            limpiarBusqueda();
+                                            MessageBox.Show("Material Eliminado Correctamente!", "Registro de Materiales", MessageBoxButtons.OK);
+                                            material = null;
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Material No fue Eliminado, por favor valide ya que hay facturas que pertenecen a dicho registro",
+                                                "Error Registro de Materiales", MessageBoxButtons.OK);
+                                            material = null;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Material No fue Eliminado, este ya se encuentra relacionado a una factura que se emitió anteriormente.",
+                                            "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
                                 }
                             }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.ToString(),
-                                       "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString(),
+                                           "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
-                } 
+                }
             }
         }
 
@@ -485,7 +495,7 @@ namespace Agregados.Forms.Materials
         {
             if (ValidarCamposRequeridos())
             {
-                DialogResult respuesta = MessageBox.Show("¿Deseas Modificar el Material " + $"{txtName.Text.Trim()} ?",
+                DialogResult respuesta = MessageBox.Show("¿Deseas Modificar el Material " + $"{material.NombreMaterial}" + $" por el {txtName.Text.Trim()}?",
                                     "Registro de Materiales", MessageBoxButtons.YesNo);
                 if (respuesta == DialogResult.Yes)
                 {
@@ -601,6 +611,15 @@ namespace Agregados.Forms.Materials
                 {
                     //una vez me asegure que el objeto posee datos, entonces se procede a representar
                     //en pantalla
+                    if (material.IdMaterial == 1 || material.IdMaterial == 2)
+                    {
+                        txtName.Enabled = false;
+                    }
+                    else
+                    {
+                        txtName.Enabled = true;
+                    }
+
                     txtName.Text = material.NombreMaterial.ToString();
                     txtCantidad.Text = material.CantidadMaterial.ToString();
                     txtMinimos.Text = material.Minimos.ToString();

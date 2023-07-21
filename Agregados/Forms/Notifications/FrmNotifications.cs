@@ -122,9 +122,9 @@ namespace Agregados.Forms.Notifications
                                       "Correo Notificaciones (Error)", MessageBoxButtons.OK);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     throw;
                 }
             }

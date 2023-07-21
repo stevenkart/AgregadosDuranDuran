@@ -71,8 +71,9 @@ namespace Agregados.Forms.Cashiers
                 cierreApertCajas = null;
                 return cierre;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -92,8 +93,9 @@ namespace Agregados.Forms.Cashiers
                 cierreApertCajas = null;
                 return apertura;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -176,9 +178,9 @@ namespace Agregados.Forms.Cashiers
                                         //this.Hide();
                                     }
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-
+                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     throw;
                                 }
                             }
@@ -232,9 +234,9 @@ namespace Agregados.Forms.Cashiers
                                         //this.Hide();
                                     }
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-
+                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     throw;
                                 }
                             }
@@ -284,9 +286,9 @@ namespace Agregados.Forms.Cashiers
                                         //this.Hide();
                                     }
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-
+                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     throw;
                                 }
                             }
@@ -353,9 +355,9 @@ namespace Agregados.Forms.Cashiers
                                     //this.Hide();
                                 }
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 throw;
                             }
                         }
@@ -409,9 +411,9 @@ namespace Agregados.Forms.Cashiers
                                     //this.Hide();
                                 }
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 throw;
                             }
                         }
@@ -462,9 +464,9 @@ namespace Agregados.Forms.Cashiers
                                     //this.Hide();
                                 }
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 throw;
                             }
                         }
