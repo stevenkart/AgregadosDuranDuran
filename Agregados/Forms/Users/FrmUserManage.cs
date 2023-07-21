@@ -225,16 +225,21 @@ namespace Agregados.Forms.Users
             imgAdd.Enabled = true;
             imgUpdate.Enabled = false;
             imgDelete.Enabled = false;
-
-            CboxUserType.Enabled = true;
-            CboxStates.Enabled = true;
         }
         //validaciones de botones para evitar errores
-        private void ActivarUpdateDelete() 
+        private void ActivarUpdateDelete()
         {
             imgAdd.Enabled = false;
-            imgUpdate.Enabled = true;
-            imgDelete.Enabled = true;
+            if (Globals.MyGlobalUser.TipoUsuario == 1)
+            {
+                imgUpdate.Enabled = true;
+                imgDelete.Enabled = true;
+            }
+            else
+            {
+                imgUpdate.Enabled = false;
+                imgDelete.Enabled = false;
+            }
         }
 
         //validaciones de botones para evitar errores al ser el usuario administrador logueado no va a poder modificar

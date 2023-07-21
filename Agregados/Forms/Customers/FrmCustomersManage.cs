@@ -546,7 +546,6 @@ namespace Agregados.Forms.Customers
 
         private void imgDelete_Click(object sender, EventArgs e)
         {
-            //todo se debe de validar que cliente no tenga facturas, sino entonces no se puede eliminar y proceder a inactivarlo si usuario desea
             if (ValidarCamposRequeridos())
             {
                 DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el cliente " + $"{txtName.Text.Trim()} ?" +

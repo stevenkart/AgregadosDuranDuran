@@ -29,7 +29,6 @@ namespace Agregados
                 {
                     System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
 
-                    //TODO: crear email valido para enviar correo
                     email.From = new System.Net.Mail.MailAddress(this.Correo);
                     email.Subject = Subject;
                     email.Body = Message;

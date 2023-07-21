@@ -191,7 +191,7 @@ namespace Agregados.Forms.Providers
                 {
                     DataGridViewRow FilaSelected = dgvListaProveedores.SelectedRows[0];
                     int IdProveedor = Convert.ToInt32(FilaSelected.Cells["CIdProveedor"].Value);
-                    Globals.MifrmBillProviderAdd.txtNumProve.Text = Convert.ToString(IdProveedor); //todo Fact proveedor ligue
+                    Globals.MifrmBillProviderAdd.txtNumProve.Text = Convert.ToString(IdProveedor);
 
                     /*
                     DataRow NuevaFilaEnFacturacion = Globals.MifrmBillAdd.DtLista.NewRow();

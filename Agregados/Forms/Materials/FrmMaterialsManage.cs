@@ -98,8 +98,16 @@ namespace Agregados.Forms.Materials
         private void ActivarUpdateDelete()
         {
             imgAdd.Enabled = false;
-            imgUpdate.Enabled = true;
-            imgDelete.Enabled = true;
+            if (Globals.MyGlobalUser.TipoUsuario == 1)
+            {
+                imgUpdate.Enabled = true;
+                imgDelete.Enabled = true;
+            }
+            else
+            {
+                imgUpdate.Enabled = false;
+                imgDelete.Enabled = false;
+            }
         }
 
 
@@ -421,7 +429,6 @@ namespace Agregados.Forms.Materials
         //metodo add, delete & update
         private void imgDelete_Click(object sender, EventArgs e)
         {
-            //todo se debe de validar que MATERIAL no tenga facturas, sino entonces no se puede eliminar
             if (ValidarCamposRequeridos())
             {
                 if (material.IdMaterial == 1 || material.IdMaterial == 2)
