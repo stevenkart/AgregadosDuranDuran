@@ -7,8 +7,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
@@ -415,37 +417,49 @@ namespace Agregados.Forms
                 dialog.InitialDirectory = "C:\\Program Files\\Microsoft SQL Server\\MSSQL15.SQLEXPRESS\\MSSQL\\Backup";
                 dialog.Filter = "Backup Files (*.bak)|*.bak|All Files (*.*)|*.*";
 
+
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     using (var context = new AgregadosEntities())
                     {
-                        var conn = context.Database.Connection;
-                        var sqlConn = conn as System.Data.SqlClient.SqlConnection;
+                        string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                        var backupFilePath = dialog.FileName;
+                        string relativePath = baseDirectory + "Agregados.mdf";
+                        string LocalDB = relativePath;
+                        SqlConnection sqlConn = new SqlConnection($"Data Source=(LocalDB)\\MSSQLLocalDB;Database={LocalDB};User Id=administrador; Password=administrador123;Connect Timeout=30");
 
                         if (sqlConn != null)
                         {
-                            var backupFilePath = dialog.FileName;
-                            var backupQuery = $"BACKUP DATABASE [{sqlConn.Database}] TO DISK='{backupFilePath}'";
+                            var backupQuery = $"BACKUP DATABASE [{LocalDB}] TO DISK='{backupFilePath}'";
 
                             using (var command = new System.Data.SqlClient.SqlCommand(backupQuery, sqlConn))
                             {
-                                conn.Open();
-                                command.ExecuteNonQuery();
-                                conn.Close();
+                                try
+                                {
+                                    sqlConn.Open();
+                                    command.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.ToString(), "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    throw;
+                                }
+                                finally
+                                {
+                                    sqlConn.Close();
+                                }
+                                
                             }
                             MessageBox.Show("Copia de seguridad realizada con éxito.", "Back-Up Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("No se pudo establecer la conexión con SQL Server.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No se pudo establecer la conexión con el servidor.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         }
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Se cancelo proceso de respaldo", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                   
             }
             catch (Exception ex)
             {

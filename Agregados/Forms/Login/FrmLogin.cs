@@ -91,11 +91,12 @@ namespace Agregados.Forms.Login
                                     MessageBoxButtons.OK);
                             }
                         }
-                        catch (Exception ex)
+                        catch (SqlException ex)
                         {
                             
                             MessageBox.Show(ex.ToString(), "Error validación",
                                     MessageBoxButtons.OK);
+                         
                         }
                     }  
                 }
@@ -146,33 +147,44 @@ namespace Agregados.Forms.Login
                 dialog.Filter = "Backup Files (*.bak)|*.bak|All Files (*.*)|*.*";
                 dialog.Title = "Restaurar Base de Datos";
                 
-
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     using (var context = new AgregadosEntities())
                     {
-                        var conn = context.Database.Connection;
-                        SqlConnection sqlConn = new SqlConnection($@"Data Source={conn.DataSource};Initial Catalog=master;Integrated Security=True");
+                        string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                        string relativePath = baseDirectory + "Agregados.mdf";
+                        string LocalDB = relativePath;
+                        SqlConnection sqlConn = new SqlConnection($"Data Source=(LocalDB)\\MSSQLLocalDB;Database=master;User Id=administrador; Password=administrador123;Connect Timeout=30");
 
                         if (sqlConn != null)
                         {
-                            sqlConn.Open();
-                            var RestoreFilePath = dialog.FileName;
-                          
-                            var RestoreQuery1 = $"USE master \r\n IF exists (SELECT * FROM sysdatabases WHERE NAME='{conn.Database}')\r\n\t\tDROP DATABASE [{conn.Database}]\r\n";
-                            var RestoreQuery2 = $"RESTORE DATABASE {conn.Database} FROM DISK = '{RestoreFilePath}'";
+                            try
+                            {
+                                
+                                var RestoreFilePath = dialog.FileName;
 
-                    
-                            SqlCommand command1 = new SqlCommand(RestoreQuery1, sqlConn);
-                            SqlCommand command2 = new SqlCommand(RestoreQuery2, sqlConn);
+                                //var RestoreQuery1 = $"USE master \r\n IF exists (SELECT * FROM sysdatabases WHERE NAME='Agregados')\r\n\t\tDROP DATABASE [Agregados]\r\n";
+                                var RestoreQuery1 = $"USE [master]";
+                                var RestoreQuery2 = "RESTORE DATABASE [" + LocalDB + "] FROM  DISK = N'" + RestoreFilePath + "' WITH  FILE = 1,  NOUNLOAD,  STATS = 5";
 
-             
-                            command1.ExecuteNonQuery();
-                            command2.ExecuteNonQuery();
-               
-                            sqlConn.Close();
-                            MessageBox.Show("Restauración de Base de Datos realizada con éxito.", "Restauración Correcta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                SqlCommand command1 = new SqlCommand(RestoreQuery1, sqlConn);
+                                SqlCommand command2 = new SqlCommand(RestoreQuery2, sqlConn);
 
+                                sqlConn.Open();
+                                command1.ExecuteNonQuery();
+                                command2.ExecuteNonQuery();
+                                MessageBox.Show("Restauración de Base de Datos realizada con éxito.", "Restauración Correcta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString(), "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                throw;
+                            }
+                            finally
+                            {
+                                sqlConn.Close();
+                            }
                         }
                         else
                         {
@@ -189,7 +201,7 @@ namespace Agregados.Forms.Login
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                throw;
+             
             }
         }
 

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Agregados")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Control de Inventario & Facturación")]
+[assembly: AssemblyDescription("Aplicación de Windows")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Agregados")]
-[assembly: AssemblyCopyright("Copyright ©  2023")]
+[assembly: AssemblyCompany("Steven Carrillo")]
+[assembly: AssemblyProduct("")]
+[assembly: AssemblyCopyright("Steven Carrillo Jiménez Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
