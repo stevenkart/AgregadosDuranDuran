@@ -422,11 +422,13 @@ namespace Agregados.Forms
                 {
                     using (var context = new AgregadosEntities())
                     {
+                        SqlConnection sqlConn = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=master;User Id=administrador; Password=administrador123;Connect Timeout=30");
+
                         string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                         var backupFilePath = dialog.FileName;
                         string relativePath = baseDirectory + "Agregados.mdf";
                         string LocalDB = relativePath;
-                        SqlConnection sqlConn = new SqlConnection($"Data Source=(LocalDB)\\MSSQLLocalDB;Database={LocalDB};User Id=administrador; Password=administrador123;Connect Timeout=30");
+                        //SqlConnection sqlConn = new SqlConnection($"Data Source=(LocalDB)\\MSSQLLocalDB;Database={LocalDB};User Id=administrador; Password=administrador123;Connect Timeout=30");
 
                         if (sqlConn != null)
                         {

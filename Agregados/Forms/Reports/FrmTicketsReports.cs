@@ -685,7 +685,7 @@ namespace Agregados.Forms.Reports
                                     {
                                         ExcelMapper mapper = new ExcelMapper();
                                         var file = saveFileDialog.FileName;
-                                        mapper.Save(file, result, $"ReportCompras{Inicial}", true); //true is for saving .xlsx
+                                        mapper.Save(file, result, $"ReportCompras", true); //true is for saving .xlsx
                                         MessageBox.Show("Se exporto correctamente el documento.",
                                                             "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }

@@ -8,7 +8,7 @@
     <ProjectGuid>{F85D892F-19E4-4374-87D6-C18AF4D3EFEC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Agregados</RootNamespace>
-    <AssemblyName>ControlDeInventarioFacturación</AssemblyName>
+    <AssemblyName>ControlDeInventarioFacturacion</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -26,7 +26,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -55,7 +55,7 @@
     <ApplicationIcon>agregadosIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -65,10 +65,11 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>46478D3AF5D6679B6CE77DB49297225078ADFE96</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>2A6213D0816ED79FDB8D0CF82F4877FFF5F6004B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Firma2023.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <DelaySign>false</DelaySign>
@@ -81,6 +82,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Agregados.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
@@ -909,6 +913,7 @@
     <None Include="AgregadosEF.edmx.diagram">
       <DependentUpon>AgregadosEF.edmx</DependentUpon>
     </None>
+    <None Include="Agregados_TemporaryKey.pfx" />
     <None Include="App.Config" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
@@ -927,6 +932,9 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Agregados.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="AgregadosEF.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AgregadosEF.edmx</DependentUpon>
@@ -938,6 +946,10 @@
       <LastGenOutput>AgregadosEF.cs</LastGenOutput>
     </Content>
     <Content Include="agregadosIcon.ico" />
+    <Content Include="Agregados_log.ldf">
+      <DependentUpon>Agregados.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\agregadoImg.ico" />
     <Content Include="Images\agregadoImg.jpg" />
     <Content Include="Images\agregados.ico" />
@@ -945,13 +957,6 @@
     <Content Include="Images\eye.ico" />
     <Content Include="Images\IconsApertCaja\exit.png" />
     <Content Include="Images\IconsApertCaja\guardarDatos.png" />
-    <Content Include="Agregados.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Agregados_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Agregados.mdf</DependentUpon>
-    </Content>
     <None Include="Images\IconsFacts\ayuda.png" />
     <None Include="Images\IconsFacts\buscar.png" />
     <None Include="Images\IconsFacts\borrar.png" />
@@ -1015,15 +1020,25 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="log4net">
+    <PublishFile Include="Agregados.mdf">
       <Visible>False</Visible>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Agregados_log.ldf">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
   <ItemGroup>

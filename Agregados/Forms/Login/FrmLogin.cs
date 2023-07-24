@@ -154,7 +154,8 @@ namespace Agregados.Forms.Login
                         string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                         string relativePath = baseDirectory + "Agregados.mdf";
                         string LocalDB = relativePath;
-                        SqlConnection sqlConn = new SqlConnection($"Data Source=(LocalDB)\\MSSQLLocalDB;Database=master;User Id=administrador; Password=administrador123;Connect Timeout=30");
+                        //SqlConnection sqlConn = new SqlConnection($"Data Source=(LocalDB)\\MSSQLLocalDB;Database=master;User Id=administrador; Password=administrador123;Connect Timeout=30");
+                        SqlConnection sqlConn = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=master;User Id=administrador; Password=administrador123;Connect Timeout=30");
 
                         if (sqlConn != null)
                         {
