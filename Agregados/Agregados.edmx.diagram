@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="22f10f7f1575425eae8af24d2f2aa4fd" Name="Diagram1">
-        <EntityTypeShape EntityType="AgregadosModel.CierreApertCajas" Width="1.5" PointX="5" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgregadosModel.Clientes" Width="1.5" PointX="2.75" PointY="8.25" IsExpanded="true" />
+      <Diagram DiagramId="eaa5f7559b2c4a3cbbef262251ce8e5e" Name="Diagram1">
+        <EntityTypeShape EntityType="AgregadosModel.CierreApertCajas" Width="1.5" PointX="5.125" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Clientes" Width="1.5" PointX="2.875" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AgregadosModel.CorreoNotificaciones" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgregadosModel.DetalleFacts" Width="1.5" PointX="10.25" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgregadosModel.Estados" Width="1.5" PointX="0.5" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgregadosModel.Facturas" Width="1.5" PointX="8" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgregadosModel.Materiales" Width="1.5" PointX="2.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgregadosModel.MetodosPagos" Width="1.5" PointX="5.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgregadosModel.Proveedores" Width="1.5" PointX="5.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgregadosModel.TipoClientes" Width="1.5" PointX="0.5" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgregadosModel.TiposFacturas" Width="1.5" PointX="5.75" PointY="20.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgregadosModel.TiposProveedores" Width="1.5" PointX="4.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgregadosModel.Usuarios" Width="1.5" PointX="2.75" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgregadosModel.Vehiculos" Width="1.5" PointX="2.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.DetalleFacts" Width="1.5" PointX="10.375" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Estados" Width="1.5" PointX="0.625" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Facturas" Width="1.5" PointX="8.125" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Materiales" Width="1.5" PointX="2.875" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.MetodosPagos" Width="1.5" PointX="5.875" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Proveedores" Width="1.5" PointX="5.875" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.TipoClientes" Width="1.5" PointX="0.625" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.TiposFacturas" Width="1.5" PointX="5.875" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.TiposProveedores" Width="1.5" PointX="3.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Usuarios" Width="1.5" PointX="2.875" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Vehiculos" Width="1.5" PointX="2.875" PointY="18" IsExpanded="true" />
         <AssociationConnector Association="AgregadosModel.FKCierreAperUsuario" ManuallyRouted="false" />
         <AssociationConnector Association="AgregadosModel.FKFacturasCierreApert" ManuallyRouted="false" />
         <AssociationConnector Association="AgregadosModel.FKClientesEstados" ManuallyRouted="false" />

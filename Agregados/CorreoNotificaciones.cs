@@ -18,8 +18,6 @@ namespace Agregados
         public string Correo { get; set; }
         public string Contrasennia { get; set; }
 
-
-
         public bool SendEmail(string SendTo, string Subject, string Message)
         {
             bool R = false;
@@ -65,6 +63,7 @@ namespace Agregados
             return R;
 
         }
+
 
     }
 }

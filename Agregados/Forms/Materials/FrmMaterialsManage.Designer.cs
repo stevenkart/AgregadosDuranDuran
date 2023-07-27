@@ -125,7 +125,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 154F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChCantBuena, 2, 0);
             this.tableLayoutPanel8.Controls.Add(this.chCantRegular, 3, 0);
@@ -157,7 +157,7 @@
             this.ChCantBuena.Checked = true;
             this.ChCantBuena.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChCantBuena.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChCantBuena.Location = new System.Drawing.Point(808, 7);
+            this.ChCantBuena.Location = new System.Drawing.Point(807, 7);
             this.ChCantBuena.Name = "ChCantBuena";
             this.ChCantBuena.Size = new System.Drawing.Size(147, 22);
             this.ChCantBuena.TabIndex = 0;
@@ -171,7 +171,7 @@
             this.chCantRegular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chCantRegular.AutoSize = true;
             this.chCantRegular.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chCantRegular.Location = new System.Drawing.Point(961, 7);
+            this.chCantRegular.Location = new System.Drawing.Point(960, 7);
             this.chCantRegular.Name = "chCantRegular";
             this.chCantRegular.Size = new System.Drawing.Size(152, 22);
             this.chCantRegular.TabIndex = 1;
@@ -185,9 +185,9 @@
             this.chVacia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chVacia.AutoSize = true;
             this.chVacia.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chVacia.Location = new System.Drawing.Point(1119, 7);
+            this.chVacia.Location = new System.Drawing.Point(1118, 7);
             this.chVacia.Name = "chVacia";
-            this.chVacia.Size = new System.Drawing.Size(148, 22);
+            this.chVacia.Size = new System.Drawing.Size(149, 22);
             this.chVacia.TabIndex = 2;
             this.chVacia.Text = "Sin Material";
             this.chVacia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -284,7 +284,7 @@
             // 
             this.txtIdMaterialSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIdMaterialSearch.Location = new System.Drawing.Point(3, 44);
-            this.txtIdMaterialSearch.MaxLength = 255;
+            this.txtIdMaterialSearch.MaxLength = 10;
             this.txtIdMaterialSearch.Name = "txtIdMaterialSearch";
             this.txtIdMaterialSearch.Size = new System.Drawing.Size(181, 20);
             this.txtIdMaterialSearch.TabIndex = 0;
@@ -319,6 +319,7 @@
             // 
             this.txtNameSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNameSearch.Location = new System.Drawing.Point(190, 44);
+            this.txtNameSearch.MaxLength = 255;
             this.txtNameSearch.Name = "txtNameSearch";
             this.txtNameSearch.Size = new System.Drawing.Size(231, 20);
             this.txtNameSearch.TabIndex = 1;

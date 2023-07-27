@@ -139,7 +139,7 @@
             this.tableLayoutPanel8.ColumnCount = 3;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.88469F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 228F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 229F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChActivos, 2, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -169,10 +169,10 @@
             this.ChActivos.Checked = true;
             this.ChActivos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChActivos.Location = new System.Drawing.Point(1044, 6);
+            this.ChActivos.Location = new System.Drawing.Point(1043, 6);
             this.ChActivos.Name = "ChActivos";
-            this.ChActivos.Size = new System.Drawing.Size(223, 24);
-            this.ChActivos.TabIndex = 0;
+            this.ChActivos.Size = new System.Drawing.Size(224, 24);
+            this.ChActivos.TabIndex = 1;
             this.ChActivos.Text = "Clientes Activos";
             this.ChActivos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ChActivos.UseVisualStyleBackColor = true;
@@ -210,7 +210,7 @@
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(630, 72);
-            this.tableLayoutPanel4.TabIndex = 6;
+            this.tableLayoutPanel4.TabIndex = 0;
             // 
             // label13
             // 
@@ -274,7 +274,7 @@
             this.txtIdCustomerSearch.MaxLength = 10;
             this.txtIdCustomerSearch.Name = "txtIdCustomerSearch";
             this.txtIdCustomerSearch.Size = new System.Drawing.Size(149, 26);
-            this.txtIdCustomerSearch.TabIndex = 0;
+            this.txtIdCustomerSearch.TabIndex = 1;
             this.txtIdCustomerSearch.TextChanged += new System.EventHandler(this.txtIdCustomerSearch_TextChanged);
             this.txtIdCustomerSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdCustomerSearch_KeyPress);
             // 
@@ -286,7 +286,7 @@
             this.txtIdentSearch.MaxLength = 255;
             this.txtIdentSearch.Name = "txtIdentSearch";
             this.txtIdentSearch.Size = new System.Drawing.Size(235, 26);
-            this.txtIdentSearch.TabIndex = 1;
+            this.txtIdentSearch.TabIndex = 3;
             this.txtIdentSearch.TextChanged += new System.EventHandler(this.txtIdentSearch_TextChanged);
             this.txtIdentSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdentSearch_KeyPress);
             // 
@@ -298,7 +298,7 @@
             this.txtNameSearch.MaxLength = 255;
             this.txtNameSearch.Name = "txtNameSearch";
             this.txtNameSearch.Size = new System.Drawing.Size(225, 26);
-            this.txtNameSearch.TabIndex = 2;
+            this.txtNameSearch.TabIndex = 5;
             this.txtNameSearch.TextChanged += new System.EventHandler(this.txtNameSearch_TextChanged);
             // 
             // label9
@@ -565,7 +565,7 @@
             this.CboxCustomerType.Location = new System.Drawing.Point(142, 146);
             this.CboxCustomerType.Name = "CboxCustomerType";
             this.CboxCustomerType.Size = new System.Drawing.Size(356, 28);
-            this.CboxCustomerType.TabIndex = 1;
+            this.CboxCustomerType.TabIndex = 4;
             // 
             // txtDetails
             // 
@@ -578,7 +578,7 @@
             this.txtDetails.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtDetails.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtDetails.Size = new System.Drawing.Size(356, 47);
-            this.txtDetails.TabIndex = 6;
+            this.txtDetails.TabIndex = 14;
             this.txtDetails.Text = "";
             // 
             // txtAddress
@@ -592,7 +592,7 @@
             this.txtAddress.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtAddress.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtAddress.Size = new System.Drawing.Size(356, 47);
-            this.txtAddress.TabIndex = 5;
+            this.txtAddress.TabIndex = 12;
             this.txtAddress.Text = "";
             // 
             // label1
@@ -615,7 +615,7 @@
             this.label2.Location = new System.Drawing.Point(3, 97);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(133, 20);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 1;
             this.label2.Text = "Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -627,7 +627,7 @@
             this.label3.Location = new System.Drawing.Point(3, 150);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 20);
-            this.label3.TabIndex = 4;
+            this.label3.TabIndex = 3;
             this.label3.Text = "Tipo Cliente:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -639,7 +639,7 @@
             this.label4.Location = new System.Drawing.Point(3, 193);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(133, 40);
-            this.label4.TabIndex = 6;
+            this.label4.TabIndex = 5;
             this.label4.Text = "Teléfono Principal:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -651,7 +651,7 @@
             this.label5.Location = new System.Drawing.Point(3, 246);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(133, 40);
-            this.label5.TabIndex = 8;
+            this.label5.TabIndex = 7;
             this.label5.Text = "Teléfono Secundario:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -663,7 +663,7 @@
             this.txtMainPhone.MaxLength = 8;
             this.txtMainPhone.Name = "txtMainPhone";
             this.txtMainPhone.Size = new System.Drawing.Size(356, 26);
-            this.txtMainPhone.TabIndex = 2;
+            this.txtMainPhone.TabIndex = 6;
             this.txtMainPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMainPhone_KeyPress);
             // 
             // label7
@@ -674,7 +674,7 @@
             this.label7.Location = new System.Drawing.Point(3, 309);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(133, 20);
-            this.label7.TabIndex = 12;
+            this.label7.TabIndex = 9;
             this.label7.Text = "Correo:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -686,7 +686,7 @@
             this.txtName.MaxLength = 255;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(356, 26);
-            this.txtName.TabIndex = 0;
+            this.txtName.TabIndex = 2;
             // 
             // label14
             // 
@@ -696,7 +696,7 @@
             this.label14.Location = new System.Drawing.Point(3, 362);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(133, 20);
-            this.label14.TabIndex = 14;
+            this.label14.TabIndex = 11;
             this.label14.Text = "Dirección:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -720,7 +720,7 @@
             this.txtSecondPhone.MaxLength = 8;
             this.txtSecondPhone.Name = "txtSecondPhone";
             this.txtSecondPhone.Size = new System.Drawing.Size(356, 26);
-            this.txtSecondPhone.TabIndex = 3;
+            this.txtSecondPhone.TabIndex = 8;
             this.txtSecondPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecondPhone_KeyPress);
             // 
             // txtEmail
@@ -731,7 +731,7 @@
             this.txtEmail.MaxLength = 255;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(356, 26);
-            this.txtEmail.TabIndex = 4;
+            this.txtEmail.TabIndex = 10;
             this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmail_KeyPress);
             // 
             // CboxStates
@@ -743,7 +743,7 @@
             this.CboxStates.Location = new System.Drawing.Point(142, 465);
             this.CboxStates.Name = "CboxStates";
             this.CboxStates.Size = new System.Drawing.Size(356, 28);
-            this.CboxStates.TabIndex = 7;
+            this.CboxStates.TabIndex = 16;
             // 
             // label15
             // 
@@ -911,7 +911,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmCustomersManage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento de Clientes";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCustomersManage_FormClosing);
             this.Load += new System.EventHandler(this.FrmCustomersManage_Load);
             this.panel1.ResumeLayout(false);

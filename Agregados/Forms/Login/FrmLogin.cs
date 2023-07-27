@@ -151,11 +151,11 @@ namespace Agregados.Forms.Login
                 {
                     using (var context = new AgregadosEntities())
                     {
-                        string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                        string relativePath = baseDirectory + "Agregados.mdf";
-                        string LocalDB = relativePath;
-                        //SqlConnection sqlConn = new SqlConnection($"Data Source=(LocalDB)\\MSSQLLocalDB;Database=master;User Id=administrador; Password=administrador123;Connect Timeout=30");
+                        //string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                        //string relativePath = baseDirectory + "Agregados.mdf";
+                        //string LocalDB = relativePath;
                         SqlConnection sqlConn = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=master;User Id=administrador; Password=administrador123;Connect Timeout=30");
+                        //SqlConnection sqlConn = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=master;User Id=administrador; Password=administrador123;Connect Timeout=30");
 
                         if (sqlConn != null)
                         {
@@ -166,7 +166,7 @@ namespace Agregados.Forms.Login
 
                                 //var RestoreQuery1 = $"USE master \r\n IF exists (SELECT * FROM sysdatabases WHERE NAME='Agregados')\r\n\t\tDROP DATABASE [Agregados]\r\n";
                                 var RestoreQuery1 = $"USE [master]";
-                                var RestoreQuery2 = "RESTORE DATABASE [" + LocalDB + "] FROM  DISK = N'" + RestoreFilePath + "' WITH  FILE = 1,  NOUNLOAD,  STATS = 5";
+                                var RestoreQuery2 = "RESTORE DATABASE [Agregados_Pro] FROM  DISK = N'" + RestoreFilePath + "' WITH  FILE = 1,  NOUNLOAD,  STATS = 5";
 
                                 SqlCommand command1 = new SqlCommand(RestoreQuery1, sqlConn);
                                 SqlCommand command2 = new SqlCommand(RestoreQuery2, sqlConn);

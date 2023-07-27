@@ -61,6 +61,7 @@
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.DateFin2 = new System.Windows.Forms.DateTimePicker();
             this.DateInicio2 = new System.Windows.Forms.DateTimePicker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
@@ -93,7 +94,6 @@
             this.BtnVerFact = new System.Windows.Forms.Button();
             this.BtnVerFacturasList = new System.Windows.Forms.Button();
             this.btnReportExcel = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -104,12 +104,12 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -237,7 +237,7 @@
             // 
             this.btnFiltrarHoyTodas.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnFiltrarHoyTodas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFiltrarHoyTodas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarHoyTodas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrarHoyTodas.Location = new System.Drawing.Point(441, 3);
             this.btnFiltrarHoyTodas.Name = "btnFiltrarHoyTodas";
             this.btnFiltrarHoyTodas.Size = new System.Drawing.Size(214, 22);
@@ -250,7 +250,7 @@
             // 
             this.btnFiltrarHoySoloBackHoe.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnFiltrarHoySoloBackHoe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFiltrarHoySoloBackHoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarHoySoloBackHoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrarHoySoloBackHoe.Location = new System.Drawing.Point(3, 3);
             this.btnFiltrarHoySoloBackHoe.Name = "btnFiltrarHoySoloBackHoe";
             this.btnFiltrarHoySoloBackHoe.Size = new System.Drawing.Size(213, 22);
@@ -263,7 +263,7 @@
             // 
             this.btnFiltrarHoy.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnFiltrarHoy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFiltrarHoy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarHoy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrarHoy.Location = new System.Drawing.Point(222, 3);
             this.btnFiltrarHoy.Name = "btnFiltrarHoy";
             this.btnFiltrarHoy.Size = new System.Drawing.Size(213, 22);
@@ -293,7 +293,7 @@
             // 
             this.btnCreditoTodas.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnCreditoTodas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCreditoTodas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreditoTodas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreditoTodas.Location = new System.Drawing.Point(441, 3);
             this.btnCreditoTodas.Name = "btnCreditoTodas";
             this.btnCreditoTodas.Size = new System.Drawing.Size(214, 26);
@@ -306,7 +306,7 @@
             // 
             this.btnCredSinLineas.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnCredSinLineas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCredSinLineas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCredSinLineas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCredSinLineas.Location = new System.Drawing.Point(3, 3);
             this.btnCredSinLineas.Name = "btnCredSinLineas";
             this.btnCredSinLineas.Size = new System.Drawing.Size(213, 26);
@@ -319,7 +319,7 @@
             // 
             this.btnFiltrarCredito.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnFiltrarCredito.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFiltrarCredito.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarCredito.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrarCredito.Location = new System.Drawing.Point(222, 3);
             this.btnFiltrarCredito.Name = "btnFiltrarCredito";
             this.btnFiltrarCredito.Size = new System.Drawing.Size(213, 26);
@@ -395,7 +395,7 @@
             // 
             this.btnFiltrarTodasVentas.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnFiltrarTodasVentas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFiltrarTodasVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarTodasVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrarTodasVentas.Location = new System.Drawing.Point(437, 3);
             this.btnFiltrarTodasVentas.Name = "btnFiltrarTodasVentas";
             this.btnFiltrarTodasVentas.Size = new System.Drawing.Size(212, 24);
@@ -408,7 +408,7 @@
             // 
             this.btnFiltrarFechaBachHoe.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnFiltrarFechaBachHoe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFiltrarFechaBachHoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarFechaBachHoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrarFechaBachHoe.Location = new System.Drawing.Point(3, 3);
             this.btnFiltrarFechaBachHoe.Name = "btnFiltrarFechaBachHoe";
             this.btnFiltrarFechaBachHoe.Size = new System.Drawing.Size(211, 24);
@@ -421,7 +421,7 @@
             // 
             this.btnFiltrarFechasCorrecta.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnFiltrarFechasCorrecta.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFiltrarFechasCorrecta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarFechasCorrecta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrarFechasCorrecta.Location = new System.Drawing.Point(220, 3);
             this.btnFiltrarFechasCorrecta.Name = "btnFiltrarFechasCorrecta";
             this.btnFiltrarFechasCorrecta.Size = new System.Drawing.Size(211, 24);
@@ -463,7 +463,7 @@
             // 
             this.btnAnuladas.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnAnuladas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAnuladas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnuladas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnuladas.Location = new System.Drawing.Point(3, 38);
             this.btnAnuladas.Name = "btnAnuladas";
             this.btnAnuladas.Size = new System.Drawing.Size(652, 26);
@@ -502,6 +502,17 @@
             this.DateInicio2.Name = "DateInicio2";
             this.DateInicio2.Size = new System.Drawing.Size(320, 20);
             this.DateInicio2.TabIndex = 2;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::Agregados.Properties.Resources.agregadoImg;
+            this.pictureBox1.Location = new System.Drawing.Point(941, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(252, 244);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // panel2
             // 
@@ -899,17 +910,6 @@
             this.btnReportExcel.UseVisualStyleBackColor = false;
             this.btnReportExcel.Click += new System.EventHandler(this.btnReportExcel_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::Agregados.Properties.Resources.agregadoImg;
-            this.pictureBox1.Location = new System.Drawing.Point(941, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(252, 244);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // FrmFactsReports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -924,6 +924,7 @@
             this.Name = "FrmFactsReports";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Facturas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmFactsReports_FormClosing);
             this.Load += new System.EventHandler(this.FrmFactsReports_Load);
             this.panel1.ResumeLayout(false);
@@ -937,12 +938,12 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).EndInit();
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

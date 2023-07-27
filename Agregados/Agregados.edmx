@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CierreApertCajas">
           <Key>
             <PropertyRef Name="IdCierreApert" />
@@ -513,7 +513,8 @@
             <End Role="Vehiculos" EntitySet="Vehiculos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AgregadosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1022,10 +1023,10 @@
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SPCierreCajaPorId" ReturnType="Collection(AgregadosModel.SPCierreCajaPorId_Result)">
-          <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPFactGenerada" ReturnType="Collection(AgregadosModel.SPFactGenerada_Result)">
-          <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
+            <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPFactPendAll" ReturnType="Collection(AgregadosModel.SPFactPendAll_Result)" />
           <FunctionImport Name="SPFactPendDetalles" ReturnType="Collection(AgregadosModel.SPFactPendDetalles_Result)" />
@@ -1047,7 +1048,7 @@
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SPTicketGenerado" ReturnType="Collection(AgregadosModel.SPTicketGenerado_Result)">
-          <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
+            <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPTicketPendAll" ReturnType="Collection(AgregadosModel.SPTicketPendAll_Result)" />
           <FunctionImport Name="SPTicketPorRangoFechaAll" ReturnType="Collection(AgregadosModel.SPTicketPorRangoFechaAll_Result)">

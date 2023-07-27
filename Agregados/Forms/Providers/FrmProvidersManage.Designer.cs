@@ -65,9 +65,9 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.CboxProviderType = new System.Windows.Forms.ComboBox();
             this.txtDetails = new System.Windows.Forms.RichTextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -138,7 +138,7 @@
             this.tableLayoutPanel8.ColumnCount = 3;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.88469F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 228F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 230F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChActivos, 2, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -168,9 +168,9 @@
             this.ChActivos.Checked = true;
             this.ChActivos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChActivos.Location = new System.Drawing.Point(1044, 6);
+            this.ChActivos.Location = new System.Drawing.Point(1042, 6);
             this.ChActivos.Name = "ChActivos";
-            this.ChActivos.Size = new System.Drawing.Size(223, 24);
+            this.ChActivos.Size = new System.Drawing.Size(225, 24);
             this.ChActivos.TabIndex = 0;
             this.ChActivos.Text = "Proveedores Activos";
             this.ChActivos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -270,7 +270,7 @@
             this.txtIdProviderSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIdProviderSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdProviderSearch.Location = new System.Drawing.Point(3, 41);
-            this.txtIdProviderSearch.MaxLength = 255;
+            this.txtIdProviderSearch.MaxLength = 10;
             this.txtIdProviderSearch.Name = "txtIdProviderSearch";
             this.txtIdProviderSearch.Size = new System.Drawing.Size(181, 26);
             this.txtIdProviderSearch.TabIndex = 0;
@@ -282,6 +282,7 @@
             this.txtIdentSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIdentSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdentSearch.Location = new System.Drawing.Point(190, 41);
+            this.txtIdentSearch.MaxLength = 255;
             this.txtIdentSearch.Name = "txtIdentSearch";
             this.txtIdentSearch.Size = new System.Drawing.Size(231, 26);
             this.txtIdentSearch.TabIndex = 1;
@@ -293,6 +294,7 @@
             this.txtNameSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNameSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNameSearch.Location = new System.Drawing.Point(427, 41);
+            this.txtNameSearch.MaxLength = 255;
             this.txtNameSearch.Name = "txtNameSearch";
             this.txtNameSearch.Size = new System.Drawing.Size(197, 26);
             this.txtNameSearch.TabIndex = 2;
@@ -563,7 +565,7 @@
             this.CboxProviderType.Location = new System.Drawing.Point(140, 147);
             this.CboxProviderType.Name = "CboxProviderType";
             this.CboxProviderType.Size = new System.Drawing.Size(348, 28);
-            this.CboxProviderType.TabIndex = 2;
+            this.CboxProviderType.TabIndex = 1;
             // 
             // txtDetails
             // 
@@ -576,8 +578,20 @@
             this.txtDetails.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtDetails.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtDetails.Size = new System.Drawing.Size(348, 47);
-            this.txtDetails.TabIndex = 7;
+            this.txtDetails.TabIndex = 6;
             this.txtDetails.Text = "";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 98);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(131, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Nombre:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtAddress
             // 
@@ -590,7 +604,7 @@
             this.txtAddress.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtAddress.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtAddress.Size = new System.Drawing.Size(348, 47);
-            this.txtAddress.TabIndex = 6;
+            this.txtAddress.TabIndex = 5;
             this.txtAddress.Text = "";
             // 
             // label1
@@ -604,18 +618,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Identificación:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 98);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nombre:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
@@ -658,10 +660,10 @@
             this.txtMainPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMainPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMainPhone.Location = new System.Drawing.Point(140, 201);
-            this.txtMainPhone.MaxLength = 255;
+            this.txtMainPhone.MaxLength = 8;
             this.txtMainPhone.Name = "txtMainPhone";
             this.txtMainPhone.Size = new System.Drawing.Size(348, 26);
-            this.txtMainPhone.TabIndex = 3;
+            this.txtMainPhone.TabIndex = 2;
             this.txtMainPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMainPhone_KeyPress);
             // 
             // label7
@@ -684,7 +686,7 @@
             this.txtName.MaxLength = 255;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(348, 26);
-            this.txtName.TabIndex = 1;
+            this.txtName.TabIndex = 0;
             // 
             // label14
             // 
@@ -715,10 +717,10 @@
             this.txtSecondPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSecondPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSecondPhone.Location = new System.Drawing.Point(140, 254);
-            this.txtSecondPhone.MaxLength = 255;
+            this.txtSecondPhone.MaxLength = 8;
             this.txtSecondPhone.Name = "txtSecondPhone";
             this.txtSecondPhone.Size = new System.Drawing.Size(348, 26);
-            this.txtSecondPhone.TabIndex = 4;
+            this.txtSecondPhone.TabIndex = 3;
             this.txtSecondPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecondPhone_KeyPress);
             // 
             // txtEmail
@@ -729,7 +731,7 @@
             this.txtEmail.MaxLength = 255;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(348, 26);
-            this.txtEmail.TabIndex = 5;
+            this.txtEmail.TabIndex = 4;
             this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmail_KeyPress);
             // 
             // CboxStates
@@ -741,7 +743,7 @@
             this.CboxStates.Location = new System.Drawing.Point(140, 466);
             this.CboxStates.Name = "CboxStates";
             this.CboxStates.Size = new System.Drawing.Size(348, 28);
-            this.CboxStates.TabIndex = 8;
+            this.CboxStates.TabIndex = 7;
             // 
             // label15
             // 
@@ -893,7 +895,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmProvidersManage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento de Proveedores";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmProvidersManage_FormClosing);
             this.Load += new System.EventHandler(this.FrmProvidersManage_Load);
             this.panel1.ResumeLayout(false);

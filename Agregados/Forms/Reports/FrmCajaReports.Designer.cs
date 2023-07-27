@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCajaReports));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -138,9 +138,9 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 4;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.60163F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.10582F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.61404F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.13115F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.4918F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.4918F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(932, 244);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
@@ -161,7 +161,7 @@
             this.RbPendientes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.RbPendientes.AutoSize = true;
             this.RbPendientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbPendientes.Location = new System.Drawing.Point(3, 206);
+            this.RbPendientes.Location = new System.Drawing.Point(3, 208);
             this.RbPendientes.Name = "RbPendientes";
             this.RbPendientes.Size = new System.Drawing.Size(262, 20);
             this.RbPendientes.TabIndex = 2;
@@ -175,7 +175,7 @@
             this.RbFechas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.RbFechas.AutoSize = true;
             this.RbFechas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbFechas.Location = new System.Drawing.Point(3, 123);
+            this.RbFechas.Location = new System.Drawing.Point(3, 128);
             this.RbFechas.Name = "RbFechas";
             this.RbFechas.Size = new System.Drawing.Size(262, 20);
             this.RbFechas.TabIndex = 1;
@@ -189,7 +189,7 @@
             this.RbHoy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.RbHoy.AutoSize = true;
             this.RbHoy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RbHoy.Location = new System.Drawing.Point(3, 44);
+            this.RbHoy.Location = new System.Drawing.Point(3, 46);
             this.RbHoy.Name = "RbHoy";
             this.RbHoy.Size = new System.Drawing.Size(262, 20);
             this.RbHoy.TabIndex = 0;
@@ -208,7 +208,7 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(658, 42);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(658, 47);
             this.tableLayoutPanel6.TabIndex = 7;
             // 
             // btnFiltrarHoyTodas
@@ -216,10 +216,12 @@
             this.btnFiltrarHoyTodas.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnFiltrarHoyTodas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFiltrarHoyTodas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFiltrarHoyTodas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarHoyTodas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarHoyTodas.Image = ((System.Drawing.Image)(resources.GetObject("btnFiltrarHoyTodas.Image")));
+            this.btnFiltrarHoyTodas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFiltrarHoyTodas.Location = new System.Drawing.Point(3, 3);
             this.btnFiltrarHoyTodas.Name = "btnFiltrarHoyTodas";
-            this.btnFiltrarHoyTodas.Size = new System.Drawing.Size(652, 36);
+            this.btnFiltrarHoyTodas.Size = new System.Drawing.Size(652, 41);
             this.btnFiltrarHoyTodas.TabIndex = 5;
             this.btnFiltrarHoyTodas.Text = "Filtrar Cierres de Hoy";
             this.btnFiltrarHoyTodas.UseVisualStyleBackColor = false;
@@ -231,11 +233,11 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel7.Controls.Add(this.btnCierresPend, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(271, 191);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(271, 196);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(658, 50);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(658, 45);
             this.tableLayoutPanel7.TabIndex = 8;
             // 
             // btnCierresPend
@@ -243,10 +245,12 @@
             this.btnCierresPend.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnCierresPend.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCierresPend.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCierresPend.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCierresPend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCierresPend.Image = ((System.Drawing.Image)(resources.GetObject("btnCierresPend.Image")));
+            this.btnCierresPend.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCierresPend.Location = new System.Drawing.Point(3, 3);
             this.btnCierresPend.Name = "btnCierresPend";
-            this.btnCierresPend.Size = new System.Drawing.Size(652, 44);
+            this.btnCierresPend.Size = new System.Drawing.Size(652, 39);
             this.btnCierresPend.TabIndex = 8;
             this.btnCierresPend.Text = "Filtrar Cierres Pendientes";
             this.btnCierresPend.UseVisualStyleBackColor = false;
@@ -259,7 +263,7 @@
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel9, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel4, 0, 1);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(271, 81);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(271, 86);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 2;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -318,7 +322,9 @@
             this.btnFiltrarTodosCierres.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnFiltrarTodosCierres.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFiltrarTodosCierres.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFiltrarTodosCierres.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarTodosCierres.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrarTodosCierres.Image = ((System.Drawing.Image)(resources.GetObject("btnFiltrarTodosCierres.Image")));
+            this.btnFiltrarTodosCierres.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFiltrarTodosCierres.Location = new System.Drawing.Point(3, 3);
             this.btnFiltrarTodosCierres.Name = "btnFiltrarTodosCierres";
             this.btnFiltrarTodosCierres.Size = new System.Drawing.Size(646, 40);
@@ -523,9 +529,9 @@
             this.dgvFilter.MultiSelect = false;
             this.dgvFilter.Name = "dgvFilter";
             this.dgvFilter.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvFilter.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvFilter.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvFilter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFilter.Size = new System.Drawing.Size(1170, 231);
             this.dgvFilter.TabIndex = 2;
@@ -743,7 +749,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1212, 647);
             this.Name = "FrmCajaReports";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Cierre de Caja";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCajaReports_FormClosing);
             this.Load += new System.EventHandler(this.FrmCajaReports_Load);
             this.panel1.ResumeLayout(false);

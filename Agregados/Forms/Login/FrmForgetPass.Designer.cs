@@ -62,6 +62,7 @@
             // txtUser
             // 
             this.txtUser.Location = new System.Drawing.Point(75, 58);
+            this.txtUser.MaxLength = 15;
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(145, 22);
             this.txtUser.TabIndex = 1;
@@ -83,10 +84,10 @@
             // 
             // btnSend
             // 
-            this.btnSend.BackColor = System.Drawing.Color.LightGreen;
+            this.btnSend.BackColor = System.Drawing.Color.PaleTurquoise;
             this.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSend.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnSend.ForeColor = System.Drawing.SystemColors.MenuText;
             this.btnSend.Location = new System.Drawing.Point(119, 189);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(101, 23);
@@ -139,9 +140,9 @@
             this.btnValidatePin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnValidatePin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValidatePin.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnValidatePin.Location = new System.Drawing.Point(43, 134);
+            this.btnValidatePin.Location = new System.Drawing.Point(12, 134);
             this.btnValidatePin.Name = "btnValidatePin";
-            this.btnValidatePin.Size = new System.Drawing.Size(177, 23);
+            this.btnValidatePin.Size = new System.Drawing.Size(208, 23);
             this.btnValidatePin.TabIndex = 8;
             this.btnValidatePin.Text = "Validar Pin";
             this.btnValidatePin.UseVisualStyleBackColor = false;
@@ -183,9 +184,9 @@
             this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChange.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnChange.Location = new System.Drawing.Point(100, 98);
+            this.btnChange.Location = new System.Drawing.Point(100, 91);
             this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(259, 23);
+            this.btnChange.Size = new System.Drawing.Size(259, 37);
             this.btnChange.TabIndex = 4;
             this.btnChange.Text = "Cambiar Contraseña";
             this.btnChange.UseVisualStyleBackColor = false;
@@ -216,6 +217,7 @@
             // 
             this.txtPass.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtPass.Location = new System.Drawing.Point(108, 3);
+            this.txtPass.MaxLength = 16;
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(242, 22);
             this.txtPass.TabIndex = 7;
@@ -225,6 +227,7 @@
             // 
             this.txtConfirmPass.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtConfirmPass.Location = new System.Drawing.Point(108, 36);
+            this.txtConfirmPass.MaxLength = 16;
             this.txtConfirmPass.Name = "txtConfirmPass";
             this.txtConfirmPass.Size = new System.Drawing.Size(242, 22);
             this.txtConfirmPass.TabIndex = 8;
@@ -250,7 +253,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(614, 218);
+            this.ClientSize = new System.Drawing.Size(607, 219);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnValidatePin);
             this.Controls.Add(this.txtPin);
@@ -265,6 +268,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(623, 258);
+            this.MinimumSize = new System.Drawing.Size(623, 258);
             this.Name = "FrmForgetPass";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Recuperación Contraseña";

@@ -130,7 +130,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 134F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChBuenEstado, 2, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChMalEstado, 3, 0);
@@ -162,7 +162,7 @@
             this.ChBuenEstado.Checked = true;
             this.ChBuenEstado.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChBuenEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChBuenEstado.Location = new System.Drawing.Point(862, 7);
+            this.ChBuenEstado.Location = new System.Drawing.Point(860, 7);
             this.ChBuenEstado.Name = "ChBuenEstado";
             this.ChBuenEstado.Size = new System.Drawing.Size(141, 22);
             this.ChBuenEstado.TabIndex = 0;
@@ -176,7 +176,7 @@
             this.ChMalEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ChMalEstado.AutoSize = true;
             this.ChMalEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChMalEstado.Location = new System.Drawing.Point(1009, 7);
+            this.ChMalEstado.Location = new System.Drawing.Point(1007, 7);
             this.ChMalEstado.Name = "ChMalEstado";
             this.ChMalEstado.Size = new System.Drawing.Size(123, 22);
             this.ChMalEstado.TabIndex = 1;
@@ -190,9 +190,9 @@
             this.ChReparacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ChReparacion.AutoSize = true;
             this.ChReparacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChReparacion.Location = new System.Drawing.Point(1138, 7);
+            this.ChReparacion.Location = new System.Drawing.Point(1136, 7);
             this.ChReparacion.Name = "ChReparacion";
-            this.ChReparacion.Size = new System.Drawing.Size(129, 22);
+            this.ChReparacion.Size = new System.Drawing.Size(131, 22);
             this.ChReparacion.TabIndex = 2;
             this.ChReparacion.Text = "Reparación";
             this.ChReparacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -291,7 +291,7 @@
             // 
             this.txtIdVehicleSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIdVehicleSearch.Location = new System.Drawing.Point(3, 44);
-            this.txtIdVehicleSearch.MaxLength = 255;
+            this.txtIdVehicleSearch.MaxLength = 10;
             this.txtIdVehicleSearch.Name = "txtIdVehicleSearch";
             this.txtIdVehicleSearch.Size = new System.Drawing.Size(149, 20);
             this.txtIdVehicleSearch.TabIndex = 0;
@@ -302,6 +302,7 @@
             // 
             this.txtPlacaSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPlacaSearch.Location = new System.Drawing.Point(158, 44);
+            this.txtPlacaSearch.MaxLength = 255;
             this.txtPlacaSearch.Name = "txtPlacaSearch";
             this.txtPlacaSearch.Size = new System.Drawing.Size(235, 20);
             this.txtPlacaSearch.TabIndex = 1;
@@ -312,6 +313,7 @@
             // 
             this.txtAnnioSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAnnioSearch.Location = new System.Drawing.Point(399, 44);
+            this.txtAnnioSearch.MaxLength = 4;
             this.txtAnnioSearch.Name = "txtAnnioSearch";
             this.txtAnnioSearch.Size = new System.Drawing.Size(225, 20);
             this.txtAnnioSearch.TabIndex = 2;
@@ -611,7 +613,7 @@
             this.txtAnnio.MaxLength = 4;
             this.txtAnnio.Name = "txtAnnio";
             this.txtAnnio.Size = new System.Drawing.Size(346, 22);
-            this.txtAnnio.TabIndex = 2;
+            this.txtAnnio.TabIndex = 3;
             this.txtAnnio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAnnio_KeyPress);
             // 
             // txtModelo
@@ -622,7 +624,7 @@
             this.txtModelo.MaxLength = 255;
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(346, 22);
-            this.txtModelo.TabIndex = 1;
+            this.txtModelo.TabIndex = 2;
             // 
             // label7
             // 
@@ -645,7 +647,7 @@
             this.CboxStates.Location = new System.Drawing.Point(142, 384);
             this.CboxStates.Name = "CboxStates";
             this.CboxStates.Size = new System.Drawing.Size(346, 24);
-            this.CboxStates.TabIndex = 4;
+            this.CboxStates.TabIndex = 5;
             // 
             // CboxMes
             // 
@@ -656,17 +658,17 @@
             this.CboxMes.Location = new System.Drawing.Point(142, 312);
             this.CboxMes.Name = "CboxMes";
             this.CboxMes.Size = new System.Drawing.Size(346, 24);
-            this.CboxMes.TabIndex = 3;
+            this.CboxMes.TabIndex = 4;
             // 
             // txtMarca
             // 
             this.txtMarca.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMarca.Location = new System.Drawing.Point(142, 97);
-            this.txtMarca.MaxLength = 16;
+            this.txtMarca.MaxLength = 255;
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(346, 22);
-            this.txtMarca.TabIndex = 0;
+            this.txtMarca.TabIndex = 1;
             // 
             // tableLayoutPanel7
             // 
@@ -766,7 +768,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmVehiclesManage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento de Vehículos";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmVehiclesManage_FormClosing);
             this.Load += new System.EventHandler(this.FrmVehiclesManage_Load);
             this.panel1.ResumeLayout(false);

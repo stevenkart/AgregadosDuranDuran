@@ -630,6 +630,9 @@ namespace Agregados.Forms.Users
             txtIdent.Text = null;
             CboxUserType.SelectedValue = -1;
             CboxStates.SelectedValue = -1;
+            CboxUserType.Enabled = true;
+            CboxStates.Enabled = true;
+            NoActions(); // solo actualizar estaria disponible por si cambia contrasennia o correo
 
             ActivarAdd();
            
@@ -825,6 +828,11 @@ namespace Agregados.Forms.Users
             FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
             frmPrincipalMDI.Show();
             this.Hide();
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //e.Handled = Validaciones.CaracteresTexto(e, false, false);
         }
     }
 }

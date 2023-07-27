@@ -674,6 +674,20 @@ namespace Agregados.Forms.Reports
                             {
                                 var result = DB.SPTicketPorRangoFechaAll(Inicial, Final).ToList();
 
+                                var finaResult = from re in result
+                                                 select (
+
+                                                     re.Consecutivo,
+                                                     re.FechaFactura,
+                                                     re.SubTotalFact,
+                                                     re.IVAFact,
+                                                     re.CostoTotal,
+                                                     re.NombreEstado,
+                                                     re.Nombre,
+                                                     re.NombreEmpleado,
+                                                     re.ReferenciaPago
+                                                 );
+
                                 if (result.Count > 0)
                                 {
                                     SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -685,7 +699,7 @@ namespace Agregados.Forms.Reports
                                     {
                                         ExcelMapper mapper = new ExcelMapper();
                                         var file = saveFileDialog.FileName;
-                                        mapper.Save(file, result, $"ReportCompras", true); //true is for saving .xlsx
+                                        mapper.Save(file, finaResult, $"ReportCompras", true); //true is for saving .xlsx
                                         MessageBox.Show("Se exporto correctamente el documento.",
                                                             "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
@@ -731,6 +745,20 @@ namespace Agregados.Forms.Reports
                                     {
                                         var result = DB.SPTicketPorRangoFechaAll(FechaInicial, FechaFinal).ToList();
 
+                                        var finaResult = from re in result
+                                                         select (
+
+                                                             re.Consecutivo,
+                                                             re.FechaFactura,
+                                                             re.SubTotalFact,
+                                                             re.IVAFact,
+                                                             re.CostoTotal,
+                                                             re.NombreEstado,
+                                                             re.Nombre,
+                                                             re.NombreEmpleado,
+                                                             re.ReferenciaPago
+                                                         );
+
                                         if (result.Count > 0)
                                         {
                                             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -742,7 +770,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
-                                                mapper.Save(file, result, "ReportCompras", true); //true is for saving .xlsx
+                                                mapper.Save(file, finaResult, "ReportCompras", true); //true is for saving .xlsx
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }
@@ -791,6 +819,20 @@ namespace Agregados.Forms.Reports
                                     if (respuesta3 == DialogResult.Yes)
                                     {
                                         var result = DB.SPTicketPendAll().ToList();
+                                        var finaResult = from re in result
+                                                         select (
+
+                                                             re.Consecutivo,
+                                                             re.FechaFactura,
+                                                             re.SubTotalFact,
+                                                             re.IVAFact,
+                                                             re.CostoTotal,
+                                                             re.NombreEstado,
+                                                             re.Nombre,
+                                                             re.NombreEmpleado,
+                                                             re.ReferenciaPago
+                                                         );
+
 
                                         if (result.Count > 0)
                                         {
@@ -803,7 +845,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
-                                                mapper.Save(file, result, "ReportComprasCredito", true); //true is for saving .xlsx
+                                                mapper.Save(file, finaResult, "ReportComprasCredito", true); //true is for saving .xlsx
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }
@@ -841,6 +883,19 @@ namespace Agregados.Forms.Reports
                                     if (respuesta1 == DialogResult.Yes)
                                     {
                                         var result = DB.SPTicketReversadasAll(FechaInicial2, FechaFinal2).ToList();
+                                        var finaResult = from re in result
+                                                         select (
+
+                                                             re.Consecutivo,
+                                                             re.FechaFactura,
+                                                             re.SubTotalFact,
+                                                             re.IVAFact,
+                                                             re.CostoTotal,
+                                                             re.NombreEstado,
+                                                             re.Nombre,
+                                                             re.NombreEmpleado,
+                                                             re.ReferenciaPago
+                                                         );
 
                                         if (result.Count > 0)
                                         {
@@ -853,7 +908,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
-                                                mapper.Save(file, result, "ReportComprasAnuladas", true); //true is for saving .xlsx
+                                                mapper.Save(file, finaResult, "ReportComprasAnuladas", true); //true is for saving .xlsx
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }

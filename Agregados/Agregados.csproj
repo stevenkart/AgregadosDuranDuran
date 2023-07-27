@@ -26,9 +26,12 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ProductName>Control de Inventario &amp; Facturación</ProductName>
+    <PublisherName>Steven Carrillo</PublisherName>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -223,39 +226,39 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgregadosEF.Context.cs">
+    <Compile Include="Agregados.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AgregadosEF.Context.tt</DependentUpon>
+      <DependentUpon>Agregados.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="AgregadosEF.cs">
+    <Compile Include="Agregados.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
-    <Compile Include="AgregadosEF.Designer.cs">
+    <Compile Include="Agregados.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AgregadosEF.edmx</DependentUpon>
+      <DependentUpon>Agregados.edmx</DependentUpon>
     </Compile>
     <Compile Include="CierreApertCajas.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Clientes.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="CorreoNotificaciones.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Crypto.cs" />
     <Compile Include="DetalleFacts.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Estados.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Facturas.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\Bills\FrmBillAdd.cs">
       <SubType>Form</SubType>
@@ -415,15 +418,15 @@
     </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Materiales.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="MetodosPagos.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Reports\Caja\FrmCajaPorFecha.cs">
       <SubType>Form</SubType>
@@ -634,65 +637,65 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SPCierreCajaPend_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPCierreCajaPorFecha_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPCierreCajaPorId_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactGenerada_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactPendAll_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactPendDetalles_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactPendSinDetalle_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactPorRangoFechaAll_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactPorRangoFechaDetalles_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactPorRangoFechaSinDetalles_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactReversadasAll_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPTicketGenerado_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPTicketPendAll_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPTicketPorRangoFechaAll_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPTicketReversadasAll_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoClientes.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="TiposFacturas.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="TiposProveedores.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Validaciones.cs" />
     <Compile Include="Vehiculos.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\Bills\FrmBillAdd.resx">
       <DependentUpon>FrmBillAdd.cs</DependentUpon>
@@ -906,12 +909,12 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptTicketPendAll.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="AgregadosEF.edmx">
+    <EntityDeploy Include="Agregados.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AgregadosEF.Designer.cs</LastGenOutput>
+      <LastGenOutput>Agregados.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AgregadosEF.edmx.diagram">
-      <DependentUpon>AgregadosEF.edmx</DependentUpon>
+    <None Include="Agregados.edmx.diagram">
+      <DependentUpon>Agregados.edmx</DependentUpon>
     </None>
     <None Include="Agregados_TemporaryKey.pfx" />
     <None Include="App.Config" />
@@ -932,24 +935,17 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Agregados.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="AgregadosEF.Context.tt">
+    <Content Include="Agregados.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AgregadosEF.edmx</DependentUpon>
-      <LastGenOutput>AgregadosEF.Context.cs</LastGenOutput>
+      <DependentUpon>Agregados.edmx</DependentUpon>
+      <LastGenOutput>Agregados.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="AgregadosEF.tt">
+    <Content Include="Agregados.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AgregadosEF.edmx</DependentUpon>
-      <LastGenOutput>AgregadosEF.cs</LastGenOutput>
+      <DependentUpon>Agregados.edmx</DependentUpon>
+      <LastGenOutput>Agregados.cs</LastGenOutput>
     </Content>
     <Content Include="agregadosIcon.ico" />
-    <Content Include="Agregados_log.ldf">
-      <DependentUpon>Agregados.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Images\agregadoImg.ico" />
     <Content Include="Images\agregadoImg.jpg" />
     <Content Include="Images\agregados.ico" />
@@ -985,11 +981,11 @@
     <None Include="Images\IconsReports\reporte.png" />
     <None Include="Images\IconsReports\cajaRegistradora.png" />
     <None Include="Images\IconsReports\listaCierreCaja.png" />
+    <None Include="Images\Icons\BusquedaClient\lupa.png" />
+    <None Include="Images\Icons\BusquedaClient\cancelar.png" />
     <Content Include="Images\MDIPrincipal.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\Icons\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
@@ -1019,28 +1015,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <PublishFile Include="Agregados.mdf">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-    <PublishFile Include="Agregados_log.ldf">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
-      <FileType>File</FileType>
-    </PublishFile>
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
@@ -1051,6 +1026,11 @@
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SqlServer.SqlLocalDB.15.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2019 Express LocalDB</ProductName>
+      <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

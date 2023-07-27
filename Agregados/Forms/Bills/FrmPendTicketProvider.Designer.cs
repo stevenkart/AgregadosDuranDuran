@@ -51,6 +51,8 @@
             this.CIVAFact = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnPagar = new System.Windows.Forms.Button();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.CCostoTransporte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CBackHoe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CReferenciaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,19 +74,17 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnFiltrar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.txtClienteNombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtConsecutivo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnPagar = new System.Windows.Forms.Button();
-            this.btnVolver = new System.Windows.Forms.Button();
-            this.btnFiltrar = new System.Windows.Forms.Button();
-            this.btnHelp = new System.Windows.Forms.Button();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -187,7 +187,7 @@
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(567, 69);
-            this.groupBox2.TabIndex = 23;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Selecciona Método de Pago";
             // 
@@ -243,7 +243,7 @@
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(507, 69);
-            this.tableLayoutPanel6.TabIndex = 24;
+            this.tableLayoutPanel6.TabIndex = 1;
             // 
             // txtTotal
             // 
@@ -259,7 +259,7 @@
             0});
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(431, 26);
-            this.txtTotal.TabIndex = 13;
+            this.txtTotal.TabIndex = 1;
             this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTotal.ThousandsSeparator = true;
             // 
@@ -272,7 +272,7 @@
             this.label4.Location = new System.Drawing.Point(3, 25);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 18);
-            this.label4.TabIndex = 1;
+            this.label4.TabIndex = 0;
             this.label4.Text = "¢";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -308,6 +308,43 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1086, 78);
             this.tableLayoutPanel4.TabIndex = 1;
+            // 
+            // btnPagar
+            // 
+            this.btnPagar.BackColor = System.Drawing.Color.LightGreen;
+            this.btnPagar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPagar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPagar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnPagar.Image = global::Agregados.Properties.Resources.factura;
+            this.btnPagar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPagar.Location = new System.Drawing.Point(546, 3);
+            this.btnPagar.Name = "btnPagar";
+            this.btnPagar.Size = new System.Drawing.Size(537, 72);
+            this.btnPagar.TabIndex = 0;
+            this.btnPagar.Text = "Realizar Pago";
+            this.btnPagar.UseVisualStyleBackColor = false;
+            this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.BackColor = System.Drawing.Color.Snow;
+            this.btnVolver.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVolver.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnVolver.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnVolver.Image = global::Agregados.Properties.Resources._return;
+            this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVolver.Location = new System.Drawing.Point(3, 3);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(537, 72);
+            this.btnVolver.TabIndex = 1;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = false;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // CCostoTransporte
             // 
@@ -431,7 +468,7 @@
             this.txtFecha.Name = "txtFecha";
             this.txtFecha.ReadOnly = true;
             this.txtFecha.Size = new System.Drawing.Size(223, 20);
-            this.txtFecha.TabIndex = 4;
+            this.txtFecha.TabIndex = 3;
             // 
             // label6
             // 
@@ -442,7 +479,7 @@
             this.label6.Location = new System.Drawing.Point(854, 2);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(223, 18);
-            this.label6.TabIndex = 3;
+            this.label6.TabIndex = 2;
             this.label6.Text = "Fecha Pago";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -455,7 +492,7 @@
             this.label5.Location = new System.Drawing.Point(3, 2);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(845, 18);
-            this.label5.TabIndex = 1;
+            this.label5.TabIndex = 0;
             this.label5.Text = "Detalle";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -467,7 +504,7 @@
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(845, 45);
-            this.txtDescription.TabIndex = 2;
+            this.txtDescription.TabIndex = 1;
             // 
             // CConsecutivo
             // 
@@ -577,6 +614,21 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1092, 133);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFiltrar.BackColor = System.Drawing.Color.LightBlue;
+            this.btnFiltrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnFiltrar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnFiltrar.Image = global::Agregados.Properties.Resources.buscar;
+            this.btnFiltrar.Location = new System.Drawing.Point(838, 59);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(251, 70);
+            this.btnFiltrar.TabIndex = 0;
+            this.btnFiltrar.UseVisualStyleBackColor = false;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -638,7 +690,7 @@
             this.txtConsecutivo.Location = new System.Drawing.Point(3, 43);
             this.txtConsecutivo.Name = "txtConsecutivo";
             this.txtConsecutivo.Size = new System.Drawing.Size(365, 20);
-            this.txtConsecutivo.TabIndex = 2;
+            this.txtConsecutivo.TabIndex = 1;
             this.txtConsecutivo.TextChanged += new System.EventHandler(this.txtConsecutivo_TextChanged);
             this.txtConsecutivo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConsecutivo_KeyPress);
             // 
@@ -651,9 +703,24 @@
             this.label3.Location = new System.Drawing.Point(374, 8);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(452, 18);
-            this.label3.TabIndex = 1;
+            this.label3.TabIndex = 2;
             this.label3.Text = "Nombre Proveedor";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnHelp.BackColor = System.Drawing.Color.GhostWhite;
+            this.btnHelp.Cursor = System.Windows.Forms.Cursors.Help;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHelp.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnHelp.Image = global::Agregados.Properties.Resources.ayuda;
+            this.btnHelp.Location = new System.Drawing.Point(1014, 4);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(75, 48);
+            this.btnHelp.TabIndex = 1;
+            this.btnHelp.UseVisualStyleBackColor = false;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // tmrFechaHora
             // 
@@ -687,73 +754,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1092, 482);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // btnPagar
-            // 
-            this.btnPagar.BackColor = System.Drawing.Color.LightGreen;
-            this.btnPagar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPagar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPagar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPagar.Image = global::Agregados.Properties.Resources.factura;
-            this.btnPagar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPagar.Location = new System.Drawing.Point(546, 3);
-            this.btnPagar.Name = "btnPagar";
-            this.btnPagar.Size = new System.Drawing.Size(537, 72);
-            this.btnPagar.TabIndex = 6;
-            this.btnPagar.Text = "Realizar Pago";
-            this.btnPagar.UseVisualStyleBackColor = false;
-            this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
-            // 
-            // btnVolver
-            // 
-            this.btnVolver.BackColor = System.Drawing.Color.Snow;
-            this.btnVolver.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVolver.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnVolver.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolver.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnVolver.Image = global::Agregados.Properties.Resources._return;
-            this.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVolver.Location = new System.Drawing.Point(3, 3);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(537, 72);
-            this.btnVolver.TabIndex = 5;
-            this.btnVolver.Text = "Volver";
-            this.btnVolver.UseVisualStyleBackColor = false;
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
-            // 
-            // btnFiltrar
-            // 
-            this.btnFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFiltrar.BackColor = System.Drawing.Color.LightBlue;
-            this.btnFiltrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFiltrar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnFiltrar.Image = global::Agregados.Properties.Resources.buscar;
-            this.btnFiltrar.Location = new System.Drawing.Point(838, 59);
-            this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(251, 70);
-            this.btnFiltrar.TabIndex = 4;
-            this.btnFiltrar.UseVisualStyleBackColor = false;
-            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
-            // 
-            // btnHelp
-            // 
-            this.btnHelp.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnHelp.BackColor = System.Drawing.Color.GhostWhite;
-            this.btnHelp.Cursor = System.Windows.Forms.Cursors.Help;
-            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnHelp.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnHelp.Image = global::Agregados.Properties.Resources.ayuda;
-            this.btnHelp.Location = new System.Drawing.Point(1014, 4);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(75, 48);
-            this.btnHelp.TabIndex = 3;
-            this.btnHelp.UseVisualStyleBackColor = false;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            // 
             // FrmPendTicketProvider
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -765,6 +765,7 @@
             this.Name = "FrmPendTicketProvider";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cuentas Por Pagar Pendientes (Ticket de Compra Pendientes)";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPendTicketProvider_FormClosing);
             this.Load += new System.EventHandler(this.FrmPendTicketProvider_Load);
             this.tableLayoutPanel5.ResumeLayout(false);
