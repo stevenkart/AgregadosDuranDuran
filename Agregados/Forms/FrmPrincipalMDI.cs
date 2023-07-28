@@ -436,7 +436,7 @@ namespace Agregados.Forms
                         if (sqlConn != null)
                         {
                             var backupFilePath = dialog.FileName;
-                            var backupQuery = $"BACKUP DATABASE [Agregados_Pro] TO DISK='{backupFilePath}'";
+                            var backupQuery = $"BACKUP DATABASE [Agregados] TO DISK='{backupFilePath}'";
 
                             using (var command = new System.Data.SqlClient.SqlCommand(backupQuery, sqlConn))
                             {
@@ -444,19 +444,19 @@ namespace Agregados.Forms
                                 {
                                     sqlConn.Open();
                                     command.ExecuteNonQuery();
+                                    MessageBox.Show("Copia de seguridad realizada con éxito.", "Back-Up Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show(ex.ToString(), "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     throw;
                                 }
                                 finally
                                 {
                                     sqlConn.Close();
                                 }
-                                
                             }
-                            MessageBox.Show("Copia de seguridad realizada con éxito.", "Back-Up Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                           
                         }
                         else
                         {
@@ -469,7 +469,7 @@ namespace Agregados.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error" , MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Error" , MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //throw;
             }
         }

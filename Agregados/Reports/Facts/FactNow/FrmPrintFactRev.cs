@@ -24,6 +24,7 @@ namespace Agregados.Reports.Facts.FactNow
         private void FrmPrintFactRev_Load(object sender, EventArgs e)
         {
             RptFactRev rptFactRev = new RptFactRev();
+            rptFactRev.Refresh();
             rptFactRev.SetParameterValue("@Consecutivo", Consecutivo);
 
             crystalReportViewer1.ReportSource = rptFactRev;

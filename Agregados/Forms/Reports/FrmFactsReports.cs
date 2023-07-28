@@ -778,19 +778,6 @@ namespace Agregados.Forms.Reports
                             if (respuesta1 == DialogResult.Yes)
                             {
                                 var result = DB.SPFactPorRangoFechaSinDetalles(Inicial, Final).ToList();
-                                var finaResult = from re in result
-                                                  select (
-                                                  
-                                                      re.Consecutivo,
-                                                      re.FechaFactura,
-                                                      re.SubTotalFact,
-                                                      re.IVAFact,
-                                                      re.CostoTotal,
-                                                      re.NombreEstado,
-                                                      re.Nombre,
-                                                      re.NombreEmpleado,
-                                                      re.ReferenciaPago
-                                                  );
 
                                 if (result.Count > 0)
                                 {
@@ -803,7 +790,7 @@ namespace Agregados.Forms.Reports
                                     {
                                         ExcelMapper mapper = new ExcelMapper();
                                         var file = saveFileDialog.FileName;
-                                        mapper.Save(file, finaResult, "ReportVtasHoyTodo", true); //true is for saving .xlsx
+                                        mapper.Save(file, result, "ReportVtasHoyTodo", true); //true is for saving .xlsx
                                         MessageBox.Show("Se exporto correctamente el documento.",
                                                             "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
@@ -821,20 +808,7 @@ namespace Agregados.Forms.Reports
                             if (respuesta2 == DialogResult.Yes)
                             {
                                 var result = DB.SPFactPorRangoFechaDetalles(Inicial, Final).ToList();
-                                var finaResult = from re in result
-                                                 select (
-
-                                                     re.Consecutivo,
-                                                     re.FechaFactura,
-                                                     re.SubTotalFact,
-                                                     re.IVAFact,
-                                                     re.CostoTotal,
-                                                     re.NombreEstado,
-                                                     re.Nombre,
-                                                     re.NombreEmpleado,
-                                                     re.ReferenciaPago
-                                                 );
-
+                               
                                 if (result.Count > 0)
                                 {
                                     SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -846,7 +820,7 @@ namespace Agregados.Forms.Reports
                                     {
                                         ExcelMapper mapper = new ExcelMapper();
                                         var file = saveFileDialog.FileName;
-                                        mapper.Save(file, finaResult, "ReportVtasHoy", true); //true is for saving .xlsx
+                                        mapper.Save(file, result, "ReportVtasHoy", true); //true is for saving .xlsx
                                         MessageBox.Show("Se exporto correctamente el documento.",
                                                             "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
@@ -864,19 +838,6 @@ namespace Agregados.Forms.Reports
                             if (respuesta3 == DialogResult.Yes)
                             {
                                 var result = DB.SPFactPorRangoFechaAll(Inicial, Final).ToList();
-                                var finaResult = from re in result
-                                                 select (
-
-                                                     re.Consecutivo,
-                                                     re.FechaFactura,
-                                                     re.SubTotalFact,
-                                                     re.IVAFact,
-                                                     re.CostoTotal,
-                                                     re.NombreEstado,
-                                                     re.Nombre,
-                                                     re.NombreEmpleado,
-                                                     re.ReferenciaPago
-                                                 );
 
                                 if (result.Count > 0)
                                 {
@@ -889,7 +850,7 @@ namespace Agregados.Forms.Reports
                                     {
                                         ExcelMapper mapper = new ExcelMapper();
                                         var file = saveFileDialog.FileName;
-                                        mapper.Save(file, finaResult, "ReportVtasHoyBachHoe", true); //true is for saving .xlsx
+                                        mapper.Save(file, result, "ReportVtasHoyBachHoe", true); //true is for saving .xlsx
                                         MessageBox.Show("Se exporto correctamente el documento.",
                                                             "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
@@ -937,20 +898,6 @@ namespace Agregados.Forms.Reports
                                     {
                                         var result = DB.SPFactPorRangoFechaSinDetalles(FechaInicial, FechaFinal).ToList();
 
-                                        var finaResult = from re in result
-                                                         select (
-
-                                                             re.Consecutivo,
-                                                             re.FechaFactura,
-                                                             re.SubTotalFact,
-                                                             re.IVAFact,
-                                                             re.CostoTotal,
-                                                             re.NombreEstado,
-                                                             re.Nombre,
-                                                             re.NombreEmpleado,
-                                                             re.ReferenciaPago
-                                                         );
-
                                         if (result.Count > 0)
                                         {
                                             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -962,7 +909,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
-                                                mapper.Save(file, finaResult, "ReportVtasBachHoe", true); //true is for saving .xlsx
+                                                mapper.Save(file, result, "ReportVtasBachHoe", true); //true is for saving .xlsx
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }
@@ -981,20 +928,6 @@ namespace Agregados.Forms.Reports
                                     {
                                         var result = DB.SPFactPorRangoFechaDetalles(FechaInicial, FechaFinal).ToList();
 
-                                        var finaResult = from re in result
-                                                         select (
-
-                                                             re.Consecutivo,
-                                                             re.FechaFactura,
-                                                             re.SubTotalFact,
-                                                             re.IVAFact,
-                                                             re.CostoTotal,
-                                                             re.NombreEstado,
-                                                             re.Nombre,
-                                                             re.NombreEmpleado,
-                                                             re.ReferenciaPago
-                                                         );
-
                                         if (result.Count > 0)
                                         {
                                             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -1006,7 +939,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
-                                                mapper.Save(file, finaResult, "ReportVtas", true); //true is for saving .xlsx
+                                                mapper.Save(file, result, "ReportVtas", true); //true is for saving .xlsx
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }
@@ -1024,19 +957,6 @@ namespace Agregados.Forms.Reports
                                     if (respuesta3 == DialogResult.Yes)
                                     {
                                         var result = DB.SPFactPorRangoFechaAll(FechaInicial, FechaFinal).ToList();
-                                        var finaResult = from re in result
-                                                         select (
-
-                                                             re.Consecutivo,
-                                                             re.FechaFactura,
-                                                             re.SubTotalFact,
-                                                             re.IVAFact,
-                                                             re.CostoTotal,
-                                                             re.NombreEstado,
-                                                             re.Nombre,
-                                                             re.NombreEmpleado,
-                                                             re.ReferenciaPago
-                                                         );
                                         if (result.Count > 0)
                                         {
                                             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -1048,7 +968,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
-                                                mapper.Save(file, finaResult, "ReportVtasTodas", true); //true is for saving .xlsx
+                                                mapper.Save(file, result, "ReportVtasTodas", true); //true is for saving .xlsx
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }
@@ -1097,20 +1017,6 @@ namespace Agregados.Forms.Reports
                                     if (respuesta1 == DialogResult.Yes)
                                     {
                                         var result = DB.SPFactPendSinDetalle().ToList();
-                                        var finaResult = from re in result
-                                                         select (
-
-                                                             re.Consecutivo,
-                                                             re.FechaFactura,
-                                                             re.SubTotalFact,
-                                                             re.IVAFact,
-                                                             re.CostoTotal,
-                                                             re.NombreEstado,
-                                                             re.Nombre,
-                                                             re.NombreEmpleado,
-                                                             re.ReferenciaPago
-                                                         );
-
                                         if (result.Count > 0)
                                         {
                                             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -1122,7 +1028,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
-                                                mapper.Save(file, finaResult, "ReportVtasCreditoBackHoe", true); //true is for saving .xlsx
+                                                mapper.Save(file, result, "ReportVtasCreditoBackHoe", true); //true is for saving .xlsx
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }
@@ -1140,19 +1046,6 @@ namespace Agregados.Forms.Reports
                                     if (respuesta2 == DialogResult.Yes)
                                     {
                                         var result = DB.SPFactPendDetalles().ToList();
-                                        var finaResult = from re in result
-                                                         select (
-
-                                                             re.Consecutivo,
-                                                             re.FechaFactura,
-                                                             re.SubTotalFact,
-                                                             re.IVAFact,
-                                                             re.CostoTotal,
-                                                             re.NombreEstado,
-                                                             re.Nombre,
-                                                             re.NombreEmpleado,
-                                                             re.ReferenciaPago
-                                                         );
 
                                         if (result.Count > 0)
                                         {
@@ -1165,7 +1058,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
-                                                mapper.Save(file, finaResult, "ReportVtasCredito", true); //true is for saving .xlsx
+                                                mapper.Save(file, result, "ReportVtasCredito", true); //true is for saving .xlsx
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }
@@ -1183,19 +1076,6 @@ namespace Agregados.Forms.Reports
                                     if (respuesta3 == DialogResult.Yes)
                                     {
                                         var result = DB.SPFactPendAll().ToList();
-                                        var finaResult = from re in result
-                                                         select (
-
-                                                             re.Consecutivo,
-                                                             re.FechaFactura,
-                                                             re.SubTotalFact,
-                                                             re.IVAFact,
-                                                             re.CostoTotal,
-                                                             re.NombreEstado,
-                                                             re.Nombre,
-                                                             re.NombreEmpleado,
-                                                             re.ReferenciaPago
-                                                         );
 
                                         if (result.Count > 0)
                                         {
@@ -1208,7 +1088,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
-                                                mapper.Save(file, finaResult, "ReportVtasCreditoTodas", true); //true is for saving .xlsx
+                                                mapper.Save(file, result, "ReportVtasCreditoTodas", true); //true is for saving .xlsx
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }
@@ -1246,19 +1126,6 @@ namespace Agregados.Forms.Reports
                                     if (respuesta1 == DialogResult.Yes)
                                     {
                                         var result = DB.SPFactReversadasAll(FechaInicial2, FechaFinal2).ToList();
-                                        var finaResult = from re in result
-                                                         select (
-
-                                                             re.Consecutivo,
-                                                             re.FechaFactura,
-                                                             re.SubTotalFact,
-                                                             re.IVAFact,
-                                                             re.CostoTotal,
-                                                             re.NombreEstado,
-                                                             re.Nombre,
-                                                             re.NombreEmpleado,
-                                                             re.ReferenciaPago
-                                                         );
 
                                         if (result.Count > 0)
                                         {
@@ -1271,7 +1138,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
-                                                mapper.Save(file, finaResult, "ReportVtasAnuladas", true); //true is for saving .xlsx
+                                                mapper.Save(file, result, "ReportVtasAnuladas", true); //true is for saving .xlsx
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }

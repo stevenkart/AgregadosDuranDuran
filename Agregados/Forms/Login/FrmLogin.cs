@@ -94,7 +94,7 @@ namespace Agregados.Forms.Login
                         catch (SqlException ex)
                         {
                             
-                            MessageBox.Show(ex.ToString(), "Error validación",
+                            MessageBox.Show(ex.Message, "Error validación",
                                     MessageBoxButtons.OK);
                          
                         }
@@ -166,7 +166,7 @@ namespace Agregados.Forms.Login
 
                                 //var RestoreQuery1 = $"USE master \r\n IF exists (SELECT * FROM sysdatabases WHERE NAME='Agregados')\r\n\t\tDROP DATABASE [Agregados]\r\n";
                                 var RestoreQuery1 = $"USE [master]";
-                                var RestoreQuery2 = "RESTORE DATABASE [Agregados_Pro] FROM  DISK = N'" + RestoreFilePath + "' WITH  FILE = 1,  NOUNLOAD,  STATS = 5";
+                                var RestoreQuery2 = "RESTORE DATABASE [Agregados] FROM  DISK = N'" + RestoreFilePath + "' WITH  FILE = 1,  NOUNLOAD,  STATS = 5";
 
                                 SqlCommand command1 = new SqlCommand(RestoreQuery1, sqlConn);
                                 SqlCommand command2 = new SqlCommand(RestoreQuery2, sqlConn);
@@ -179,7 +179,7 @@ namespace Agregados.Forms.Login
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.ToString(), "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show(ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 throw;
                             }
                             finally
@@ -201,7 +201,7 @@ namespace Agregados.Forms.Login
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
              
             }
         }

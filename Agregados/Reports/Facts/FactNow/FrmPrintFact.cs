@@ -26,17 +26,8 @@ namespace Agregados.Reports
         private void FrmPrintFact_Load(object sender, EventArgs e)
         {
             RptFactCreated rptFactCreated = new RptFactCreated();
+            rptFactCreated.Refresh();
             rptFactCreated.SetParameterValue("@Consecutivo", Consecutivo);
-
-            /*
-            rptFactCreated.SetParameterValue("@Cantidad", null);
-            rptFactCreated.SetParameterValue("@Precio", null);
-            rptFactCreated.SetParameterValue("@Subtotal", null);
-            rptFactCreated.SetParameterValue("@IVA", null);
-            rptFactCreated.SetParameterValue("@Total", null);
-            rptFactCreated.SetParameterValue("@NombreMaterial", null);
-            rptFactCreated.SetParameterValue("@IdMaterial", null);
-            */
 
             crystalReportViewer1.ReportSource = rptFactCreated;
 

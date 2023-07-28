@@ -11,7 +11,8 @@ namespace Agregados
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Windows.Forms;
+
     public partial class CorreoNotificaciones
     {
         public int IdCorreo { get; set; }
@@ -54,9 +55,10 @@ namespace Agregados
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
 

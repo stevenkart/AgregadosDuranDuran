@@ -89,11 +89,19 @@ namespace Agregados.Forms.Login
                                 if (context.SaveChanges() > 0)
                                 {
                                     email = context.CorreoNotificaciones.FirstOrDefault();
-                                    if (email.SendEmail(usuario.Correo, "Prueba",
-                                        "Este es el código PIN para que puedas cambiar la contraseña " +
-                                        $"{usuario.Pin}")) //sentto quemado //TODO cambiar a que obtenga el correo del usuario
+                                    if (email.SendEmail(usuario.Correo, "Restablecer Contraseña",
+                                        "Hola," + Environment.NewLine +
+                                        "Para poder continuar con el proceso de restablecer la contraseña, debes de ingresar en el sistema el siguiente PIN: " +
+                                        $"{usuario.Pin}" + " ." 
+                                        + Environment.NewLine 
+                                        + "En caso de alguna duda, no dudes en contactar al administrador."
+                                        + Environment.NewLine
+                                        + Environment.NewLine 
+                                        + "Saludos Cordiales,"
+                                        + Environment.NewLine
+                                        + "Agregados y Materiales Durán & Durán.")) //sentto quemado //TODO cambiar a que obtenga el correo del usuario
                                     {
-                                        MessageBox.Show("Por favor ingrese el pin, que fue enviado a su correo para continuar.",
+                                        MessageBox.Show("Por favor ingrese el pin, que fue enviado a su correo electrónico para continuar.",
                                             "Recuperación de Contraseña", MessageBoxButtons.OK);
 
                                         txtUser.Enabled = false;
