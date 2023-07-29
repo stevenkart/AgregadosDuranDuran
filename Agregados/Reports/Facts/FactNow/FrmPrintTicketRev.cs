@@ -25,6 +25,7 @@ namespace Agregados.Reports.Facts.FactNow
         private void FrmPrintTicketRev_Load(object sender, EventArgs e)
         {
             RptTicketProviderRev rptTicketProviderRev = new RptTicketProviderRev();
+            rptTicketProviderRev.Refresh();
             rptTicketProviderRev.SetParameterValue("@Consecutivo", Consecutivo);
             //rptTicketProviderRev.Refresh();
 

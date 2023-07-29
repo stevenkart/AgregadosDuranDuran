@@ -1,0 +1,2080 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CierreApertCajas">
+          <Key>
+            <PropertyRef Name="IdCierreApert" />
+          </Key>
+          <Property Name="IdCierreApert" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Hora" Type="varchar" MaxLength="255" />
+          <Property Name="FechaSalida" Type="date" />
+          <Property Name="HoraSalida" Type="varchar" MaxLength="255" />
+          <Property Name="Detalles" Type="varchar" MaxLength="1000" />
+          <Property Name="MontoEfectivoInicio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoEfectivoUsuarioInicio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoEfectivoFinal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoEfectivoUsuarioFin" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoVentaEfectivo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraEfectivo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoTransf" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraTransf" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoSinpe" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraSinpe" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCheque" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraCredito" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FaltanteInicio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SobranteInicio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FaltanteFin" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SobranteFin" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Accion" Type="tinyint" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Identificacion" Type="varchar" MaxLength="255" />
+          <Property Name="Nombre" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefono2" Type="varchar" MaxLength="255" />
+          <Property Name="Correo" Type="varchar" MaxLength="255" />
+          <Property Name="Direccion" Type="varchar" MaxLength="1000" />
+          <Property Name="Detalles" Type="varchar" MaxLength="1000" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="IdTipoCliente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CorreoNotificaciones">
+          <Key>
+            <PropertyRef Name="IdCorreo" />
+          </Key>
+          <Property Name="IdCorreo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Contrasennia" Type="varchar" MaxLength="1500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleFacts">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cantidad" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Subtotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IVA" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IdFactura" Type="int" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreEstado" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Facturas">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Consecutivo" Type="int" Nullable="false" />
+          <Property Name="CostoTransporte" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Subtotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IVA" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CostoTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FechaFactura" Type="date" Nullable="false" />
+          <Property Name="MontoPendiente" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FechaLimiteP" Type="date" />
+          <Property Name="ReferenciaPago" Type="varchar" MaxLength="500" />
+          <Property Name="BackHoe" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Tierra" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CantTierra" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdTipo" Type="int" Nullable="false" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="IdProveedor" Type="int" />
+          <Property Name="IdTipoPago" Type="int" Nullable="false" />
+          <Property Name="IdCierreApert" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Materiales">
+          <Key>
+            <PropertyRef Name="IdMaterial" />
+          </Key>
+          <Property Name="IdMaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreMaterial" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CantidadMaterial" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Minimos" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MetodosPagos">
+          <Key>
+            <PropertyRef Name="IdTipoPago" />
+          </Key>
+          <Property Name="IdTipoPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoPago" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Identificacion" Type="varchar" MaxLength="255" />
+          <Property Name="Nombre" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefono2" Type="varchar" MaxLength="255" />
+          <Property Name="Correo" Type="varchar" MaxLength="255" />
+          <Property Name="Direccion" Type="varchar" MaxLength="1000" />
+          <Property Name="Detalles" Type="varchar" MaxLength="1000" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="IdTipoProveedor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoClientes">
+          <Key>
+            <PropertyRef Name="IdTipoCliente" />
+          </Key>
+          <Property Name="IdTipoCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoCliente" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposFacturas">
+          <Key>
+            <PropertyRef Name="IdTipo" />
+          </Key>
+          <Property Name="IdTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiposProveedores">
+          <Key>
+            <PropertyRef Name="IdTipoProveedor" />
+          </Key>
+          <Property Name="IdTipoProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoProveedor" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreUsuario" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Contrasennia" Type="varchar" MaxLength="1500" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Pin" Type="varchar" MaxLength="6" />
+          <Property Name="NombreEmpleado" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Identificacion" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TipoUsuario" Type="int" Nullable="false" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehiculos">
+          <Key>
+            <PropertyRef Name="IdVehiculo" />
+          </Key>
+          <Property Name="IdVehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Placa" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Marca" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Modelo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Annio" Type="int" Nullable="false" />
+          <Property Name="MesRevision" Type="int" Nullable="false" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FKCierreAperUsuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="CierreApertCajas" Type="Self.CierreApertCajas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="CierreApertCajas">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKClientesEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKClientesTipoClientes">
+          <End Role="TipoClientes" Type="Self.TipoClientes" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoClientes">
+              <PropertyRef Name="IdTipoCliente" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdTipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDetalleFacturas">
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="1" />
+          <End Role="DetalleFacts" Type="Self.DetalleFacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facturas">
+              <PropertyRef Name="IdFactura" />
+            </Principal>
+            <Dependent Role="DetalleFacts">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDetalleMateriales">
+          <End Role="Materiales" Type="Self.Materiales" Multiplicity="1" />
+          <End Role="DetalleFacts" Type="Self.DetalleFacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materiales">
+              <PropertyRef Name="IdMaterial" />
+            </Principal>
+            <Dependent Role="DetalleFacts">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasCierreApert">
+          <End Role="CierreApertCajas" Type="Self.CierreApertCajas" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CierreApertCajas">
+              <PropertyRef Name="IdCierreApert" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdCierreApert" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasClientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasMetodosPagos">
+          <End Role="MetodosPagos" Type="Self.MetodosPagos" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetodosPagos">
+              <PropertyRef Name="IdTipoPago" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdTipoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasProveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="IdProveedor" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasTiposFacts">
+          <End Role="TiposFacturas" Type="Self.TiposFacturas" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposFacturas">
+              <PropertyRef Name="IdTipo" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasUsuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKMaterialesEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Materiales" Type="Self.Materiales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Materiales">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKProveedoresEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKProveedoresTipoProveed">
+          <End Role="TiposProveedores" Type="Self.TiposProveedores" Multiplicity="1" />
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProveedores">
+              <PropertyRef Name="IdTipoProveedor" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdTipoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkUsuariosEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKVehiculosEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Vehiculos">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SPCierreCajaPend" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPCierreCajaPorFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+          <Parameter Name="fechaFin" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SPCierreCajaPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPFactGenerada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Consecutivo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPFactPendAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPFactPendDetalles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPFactPendSinDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPFactPorRangoFechaAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+          <Parameter Name="fechaFin" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SPFactPorRangoFechaDetalles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+          <Parameter Name="fechaFin" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SPFactPorRangoFechaSinDetalles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+          <Parameter Name="fechaFin" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SPFactReversadasAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+          <Parameter Name="fechaFin" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SPTicketGenerado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Consecutivo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPTicketPendAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPTicketPorRangoFechaAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+          <Parameter Name="fechaFin" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SPTicketReversadasAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+          <Parameter Name="fechaFin" Type="date" Mode="In" />
+        </Function>
+        <EntityContainer Name="AgregadosModelStoreContainer">
+          <EntitySet Name="CierreApertCajas" EntityType="Self.CierreApertCajas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CorreoNotificaciones" EntityType="Self.CorreoNotificaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleFacts" EntityType="Self.DetalleFacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facturas" EntityType="Self.Facturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materiales" EntityType="Self.Materiales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MetodosPagos" EntityType="Self.MetodosPagos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoClientes" EntityType="Self.TipoClientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposFacturas" EntityType="Self.TiposFacturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposProveedores" EntityType="Self.TiposProveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FKCierreAperUsuario" Association="Self.FKCierreAperUsuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
+          </AssociationSet>
+          <AssociationSet Name="FKClientesEstados" Association="Self.FKClientesEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FKClientesTipoClientes" Association="Self.FKClientesTipoClientes">
+            <End Role="TipoClientes" EntitySet="TipoClientes" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FKDetalleFacturas" Association="Self.FKDetalleFacturas">
+            <End Role="Facturas" EntitySet="Facturas" />
+            <End Role="DetalleFacts" EntitySet="DetalleFacts" />
+          </AssociationSet>
+          <AssociationSet Name="FKDetalleMateriales" Association="Self.FKDetalleMateriales">
+            <End Role="Materiales" EntitySet="Materiales" />
+            <End Role="DetalleFacts" EntitySet="DetalleFacts" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasCierreApert" Association="Self.FKFacturasCierreApert">
+            <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasClientes" Association="Self.FKFacturasClientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasEstados" Association="Self.FKFacturasEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasMetodosPagos" Association="Self.FKFacturasMetodosPagos">
+            <End Role="MetodosPagos" EntitySet="MetodosPagos" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasProveedores" Association="Self.FKFacturasProveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasTiposFacts" Association="Self.FKFacturasTiposFacts">
+            <End Role="TiposFacturas" EntitySet="TiposFacturas" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasUsuarios" Association="Self.FKFacturasUsuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKMaterialesEstados" Association="Self.FKMaterialesEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Materiales" EntitySet="Materiales" />
+          </AssociationSet>
+          <AssociationSet Name="FKProveedoresEstados" Association="Self.FKProveedoresEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FKProveedoresTipoProveed" Association="Self.FKProveedoresTipoProveed">
+            <End Role="TiposProveedores" EntitySet="TiposProveedores" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FkUsuariosEstados" Association="Self.FkUsuariosEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FKVehiculosEstados" Association="Self.FKVehiculosEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AgregadosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CierreApertCajas">
+          <Key>
+            <PropertyRef Name="IdCierreApert" />
+          </Key>
+          <Property Name="IdCierreApert" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Hora" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FechaSalida" Type="DateTime" Precision="0" />
+          <Property Name="HoraSalida" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Detalles" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="MontoEfectivoInicio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoEfectivoUsuarioInicio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoEfectivoFinal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoEfectivoUsuarioFin" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoVentaEfectivo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraEfectivo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoTransf" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraTransf" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoSinpe" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraSinpe" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCheque" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCredito" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoCompraCredito" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FaltanteInicio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SobranteInicio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FaltanteFin" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SobranteFin" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Accion" Type="Byte" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FKCierreAperUsuario" FromRole="CierreApertCajas" ToRole="Usuarios" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturasCierreApert" FromRole="CierreApertCajas" ToRole="Facturas" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Detalles" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoCliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FKClientesEstados" FromRole="Clientes" ToRole="Estados" />
+          <NavigationProperty Name="TipoClientes" Relationship="Self.FKClientesTipoClientes" FromRole="Clientes" ToRole="TipoClientes" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturasClientes" FromRole="Clientes" ToRole="Facturas" />
+        </EntityType>
+        <EntityType Name="CorreoNotificaciones">
+          <Key>
+            <PropertyRef Name="IdCorreo" />
+          </Key>
+          <Property Name="IdCorreo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contrasennia" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleFacts">
+          <Key>
+            <PropertyRef Name="IdDetalle" />
+          </Key>
+          <Property Name="IdDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Subtotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IVA" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IdFactura" Type="Int32" Nullable="false" />
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKDetalleFacturas" FromRole="DetalleFacts" ToRole="Facturas" />
+          <NavigationProperty Name="Materiales" Relationship="Self.FKDetalleMateriales" FromRole="DetalleFacts" ToRole="Materiales" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreEstado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FKClientesEstados" FromRole="Estados" ToRole="Clientes" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturasEstados" FromRole="Estados" ToRole="Facturas" />
+          <NavigationProperty Name="Materiales" Relationship="Self.FKMaterialesEstados" FromRole="Estados" ToRole="Materiales" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FKProveedoresEstados" FromRole="Estados" ToRole="Proveedores" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FkUsuariosEstados" FromRole="Estados" ToRole="Usuarios" />
+          <NavigationProperty Name="Vehiculos" Relationship="Self.FKVehiculosEstados" FromRole="Estados" ToRole="Vehiculos" />
+        </EntityType>
+        <EntityType Name="Facturas">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" />
+          <Property Name="CostoTransporte" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Subtotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IVA" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CostoTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FechaFactura" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MontoPendiente" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FechaLimiteP" Type="DateTime" Precision="0" />
+          <Property Name="ReferenciaPago" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="BackHoe" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Tierra" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CantTierra" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdTipo" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="IdCliente" Type="Int32" />
+          <Property Name="IdProveedor" Type="Int32" />
+          <Property Name="IdTipoPago" Type="Int32" Nullable="false" />
+          <Property Name="IdCierreApert" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CierreApertCajas" Relationship="Self.FKFacturasCierreApert" FromRole="Facturas" ToRole="CierreApertCajas" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FKFacturasClientes" FromRole="Facturas" ToRole="Clientes" />
+          <NavigationProperty Name="DetalleFacts" Relationship="Self.FKDetalleFacturas" FromRole="Facturas" ToRole="DetalleFacts" />
+          <NavigationProperty Name="Estados" Relationship="Self.FKFacturasEstados" FromRole="Facturas" ToRole="Estados" />
+          <NavigationProperty Name="MetodosPagos" Relationship="Self.FKFacturasMetodosPagos" FromRole="Facturas" ToRole="MetodosPagos" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FKFacturasProveedores" FromRole="Facturas" ToRole="Proveedores" />
+          <NavigationProperty Name="TiposFacturas" Relationship="Self.FKFacturasTiposFacts" FromRole="Facturas" ToRole="TiposFacturas" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FKFacturasUsuarios" FromRole="Facturas" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Materiales">
+          <Key>
+            <PropertyRef Name="IdMaterial" />
+          </Key>
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreMaterial" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CantidadMaterial" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Minimos" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetalleFacts" Relationship="Self.FKDetalleMateriales" FromRole="Materiales" ToRole="DetalleFacts" />
+          <NavigationProperty Name="Estados" Relationship="Self.FKMaterialesEstados" FromRole="Materiales" ToRole="Estados" />
+        </EntityType>
+        <EntityType Name="MetodosPagos">
+          <Key>
+            <PropertyRef Name="IdTipoPago" />
+          </Key>
+          <Property Name="IdTipoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoPago" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturasMetodosPagos" FromRole="MetodosPagos" ToRole="Facturas" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Detalles" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoProveedor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FKProveedoresEstados" FromRole="Proveedores" ToRole="Estados" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturasProveedores" FromRole="Proveedores" ToRole="Facturas" />
+          <NavigationProperty Name="TiposProveedores" Relationship="Self.FKProveedoresTipoProveed" FromRole="Proveedores" ToRole="TiposProveedores" />
+        </EntityType>
+        <EntityType Name="TipoClientes">
+          <Key>
+            <PropertyRef Name="IdTipoCliente" />
+          </Key>
+          <Property Name="IdTipoCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoCliente" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FKClientesTipoClientes" FromRole="TipoClientes" ToRole="Clientes" />
+        </EntityType>
+        <EntityType Name="TiposFacturas">
+          <Key>
+            <PropertyRef Name="IdTipo" />
+          </Key>
+          <Property Name="IdTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturasTiposFacts" FromRole="TiposFacturas" ToRole="Facturas" />
+        </EntityType>
+        <EntityType Name="TiposProveedores">
+          <Key>
+            <PropertyRef Name="IdTipoProveedor" />
+          </Key>
+          <Property Name="IdTipoProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoProveedor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FKProveedoresTipoProveed" FromRole="TiposProveedores" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contrasennia" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pin" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="NombreEmpleado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Identificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CierreApertCajas" Relationship="Self.FKCierreAperUsuario" FromRole="Usuarios" ToRole="CierreApertCajas" />
+          <NavigationProperty Name="Estados" Relationship="Self.FkUsuariosEstados" FromRole="Usuarios" ToRole="Estados" />
+          <NavigationProperty Name="Facturas" Relationship="Self.FKFacturasUsuarios" FromRole="Usuarios" ToRole="Facturas" />
+        </EntityType>
+        <EntityType Name="Vehiculos">
+          <Key>
+            <PropertyRef Name="IdVehiculo" />
+          </Key>
+          <Property Name="IdVehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Placa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Marca" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Modelo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Annio" Type="Int32" Nullable="false" />
+          <Property Name="MesRevision" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FKVehiculosEstados" FromRole="Vehiculos" ToRole="Estados" />
+        </EntityType>
+        <Association Name="FKCierreAperUsuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="CierreApertCajas" Type="Self.CierreApertCajas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="CierreApertCajas">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasCierreApert">
+          <End Role="CierreApertCajas" Type="Self.CierreApertCajas" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CierreApertCajas">
+              <PropertyRef Name="IdCierreApert" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdCierreApert" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKClientesEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKClientesTipoClientes">
+          <End Role="TipoClientes" Type="Self.TipoClientes" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoClientes">
+              <PropertyRef Name="IdTipoCliente" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="IdTipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasClientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDetalleFacturas">
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="1" />
+          <End Role="DetalleFacts" Type="Self.DetalleFacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facturas">
+              <PropertyRef Name="IdFactura" />
+            </Principal>
+            <Dependent Role="DetalleFacts">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDetalleMateriales">
+          <End Role="Materiales" Type="Self.Materiales" Multiplicity="1" />
+          <End Role="DetalleFacts" Type="Self.DetalleFacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materiales">
+              <PropertyRef Name="IdMaterial" />
+            </Principal>
+            <Dependent Role="DetalleFacts">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKMaterialesEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Materiales" Type="Self.Materiales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Materiales">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKProveedoresEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FkUsuariosEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKVehiculosEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Vehiculos">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasMetodosPagos">
+          <End Role="MetodosPagos" Type="Self.MetodosPagos" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetodosPagos">
+              <PropertyRef Name="IdTipoPago" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdTipoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasProveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="IdProveedor" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasTiposFacts">
+          <End Role="TiposFacturas" Type="Self.TiposFacturas" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposFacturas">
+              <PropertyRef Name="IdTipo" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKFacturasUsuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKProveedoresTipoProveed">
+          <End Role="TiposProveedores" Type="Self.TiposProveedores" Multiplicity="1" />
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProveedores">
+              <PropertyRef Name="IdTipoProveedor" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdTipoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AgregadosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CierreApertCajas" EntityType="Self.CierreApertCajas" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+          <EntitySet Name="CorreoNotificaciones" EntityType="Self.CorreoNotificaciones" />
+          <EntitySet Name="DetalleFacts" EntityType="Self.DetalleFacts" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" />
+          <EntitySet Name="Facturas" EntityType="Self.Facturas" />
+          <EntitySet Name="Materiales" EntityType="Self.Materiales" />
+          <EntitySet Name="MetodosPagos" EntityType="Self.MetodosPagos" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" />
+          <EntitySet Name="TipoClientes" EntityType="Self.TipoClientes" />
+          <EntitySet Name="TiposFacturas" EntityType="Self.TiposFacturas" />
+          <EntitySet Name="TiposProveedores" EntityType="Self.TiposProveedores" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" />
+          <AssociationSet Name="FKCierreAperUsuario" Association="Self.FKCierreAperUsuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasCierreApert" Association="Self.FKFacturasCierreApert">
+            <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKClientesEstados" Association="Self.FKClientesEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FKClientesTipoClientes" Association="Self.FKClientesTipoClientes">
+            <End Role="TipoClientes" EntitySet="TipoClientes" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasClientes" Association="Self.FKFacturasClientes">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKDetalleFacturas" Association="Self.FKDetalleFacturas">
+            <End Role="Facturas" EntitySet="Facturas" />
+            <End Role="DetalleFacts" EntitySet="DetalleFacts" />
+          </AssociationSet>
+          <AssociationSet Name="FKDetalleMateriales" Association="Self.FKDetalleMateriales">
+            <End Role="Materiales" EntitySet="Materiales" />
+            <End Role="DetalleFacts" EntitySet="DetalleFacts" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasEstados" Association="Self.FKFacturasEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKMaterialesEstados" Association="Self.FKMaterialesEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Materiales" EntitySet="Materiales" />
+          </AssociationSet>
+          <AssociationSet Name="FKProveedoresEstados" Association="Self.FKProveedoresEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FkUsuariosEstados" Association="Self.FkUsuariosEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FKVehiculosEstados" Association="Self.FKVehiculosEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasMetodosPagos" Association="Self.FKFacturasMetodosPagos">
+            <End Role="MetodosPagos" EntitySet="MetodosPagos" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasProveedores" Association="Self.FKFacturasProveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasTiposFacts" Association="Self.FKFacturasTiposFacts">
+            <End Role="TiposFacturas" EntitySet="TiposFacturas" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKFacturasUsuarios" Association="Self.FKFacturasUsuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FKProveedoresTipoProveed" Association="Self.FKProveedoresTipoProveed">
+            <End Role="TiposProveedores" EntitySet="TiposProveedores" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <FunctionImport Name="SPCierreCajaPend" ReturnType="Collection(AgregadosModel.SPCierreCajaPend_Result)" />
+          <FunctionImport Name="SPCierreCajaPorFecha" ReturnType="Collection(AgregadosModel.SPCierreCajaPorFecha_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SPCierreCajaPorId" ReturnType="Collection(AgregadosModel.SPCierreCajaPorId_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPFactGenerada" ReturnType="Collection(AgregadosModel.SPFactGenerada_Result)">
+            <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPFactPendAll" ReturnType="Collection(AgregadosModel.SPFactPendAll_Result)" />
+          <FunctionImport Name="SPFactPendDetalles" ReturnType="Collection(AgregadosModel.SPFactPendDetalles_Result)" />
+          <FunctionImport Name="SPFactPendSinDetalle" ReturnType="Collection(AgregadosModel.SPFactPendSinDetalle_Result)" />
+          <FunctionImport Name="SPFactPorRangoFechaAll" ReturnType="Collection(AgregadosModel.SPFactPorRangoFechaAll_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SPFactPorRangoFechaDetalles" ReturnType="Collection(AgregadosModel.SPFactPorRangoFechaDetalles_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SPFactPorRangoFechaSinDetalles" ReturnType="Collection(AgregadosModel.SPFactPorRangoFechaSinDetalles_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SPFactReversadasAll" ReturnType="Collection(AgregadosModel.SPFactReversadasAll_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SPTicketGenerado" ReturnType="Collection(AgregadosModel.SPTicketGenerado_Result)">
+            <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPTicketPendAll" ReturnType="Collection(AgregadosModel.SPTicketPendAll_Result)" />
+          <FunctionImport Name="SPTicketPorRangoFechaAll" ReturnType="Collection(AgregadosModel.SPTicketPorRangoFechaAll_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SPTicketReversadasAll" ReturnType="Collection(AgregadosModel.SPTicketReversadasAll_Result)">
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SPCierreCajaPend_Result">
+          <Property Type="Int32" Name="IdCierreApert" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
+          <Property Type="String" Name="Hora" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="FechaSalida" Nullable="true" />
+          <Property Type="String" Name="HoraSalida" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Detalles" Nullable="true" MaxLength="1000" />
+          <Property Type="Decimal" Name="MontoEfectivoInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoUsuarioInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoFinal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoUsuarioFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoVentaEfectivo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraEfectivo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoTransf" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraTransf" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoSinpe" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraSinpe" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCheque" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCredito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraCredito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FaltanteInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SobranteInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FaltanteFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SobranteFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SPCierreCajaPorFecha_Result">
+          <Property Type="Int32" Name="IdCierreApert" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
+          <Property Type="String" Name="Hora" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="FechaSalida" Nullable="true" />
+          <Property Type="String" Name="HoraSalida" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Detalles" Nullable="true" MaxLength="1000" />
+          <Property Type="Decimal" Name="MontoEfectivoInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoUsuarioInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoFinal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoUsuarioFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoVentaEfectivo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraEfectivo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoTransf" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraTransf" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoSinpe" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraSinpe" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCheque" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCredito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraCredito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FaltanteInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SobranteInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FaltanteFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SobranteFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SPCierreCajaPorId_Result">
+          <Property Type="Int32" Name="IdCierreApert" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
+          <Property Type="String" Name="Hora" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="FechaSalida" Nullable="true" />
+          <Property Type="String" Name="HoraSalida" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Detalles" Nullable="true" MaxLength="1000" />
+          <Property Type="Decimal" Name="MontoEfectivoInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoUsuarioInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoFinal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoEfectivoUsuarioFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoVentaEfectivo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraEfectivo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoTransf" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraTransf" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoSinpe" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraSinpe" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCheque" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCredito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoCompraCredito" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FaltanteInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SobranteInicio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="FaltanteFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SobranteFin" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SPFactGenerada_Result">
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="Decimal" Name="BackHoe1" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPFactPendAll_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPFactPendDetalles_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPFactPendSinDetalle_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IVA" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="NombreMaterial" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPFactPorRangoFechaAll_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPFactPorRangoFechaDetalles_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPFactPorRangoFechaSinDetalles_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IVA" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="NombreMaterial" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPFactReversadasAll_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPTicketGenerado_Result">
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPTicketPendAll_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPTicketPorRangoFechaAll_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPTicketReversadasAll_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IVA" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="IdMaterial" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AgregadosModelStoreContainer" CdmEntityContainer="AgregadosEntities">
+          <EntitySetMapping Name="CierreApertCajas">
+            <EntityTypeMapping TypeName="AgregadosModel.CierreApertCajas">
+              <MappingFragment StoreEntitySet="CierreApertCajas">
+                <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
+                <ScalarProperty Name="MontoEfectivoInicio" ColumnName="MontoEfectivoInicio" />
+                <ScalarProperty Name="MontoEfectivoUsuarioInicio" ColumnName="MontoEfectivoUsuarioInicio" />
+                <ScalarProperty Name="MontoEfectivoFinal" ColumnName="MontoEfectivoFinal" />
+                <ScalarProperty Name="MontoEfectivoUsuarioFin" ColumnName="MontoEfectivoUsuarioFin" />
+                <ScalarProperty Name="MontoVentaEfectivo" ColumnName="MontoVentaEfectivo" />
+                <ScalarProperty Name="MontoCompraEfectivo" ColumnName="MontoCompraEfectivo" />
+                <ScalarProperty Name="MontoTransf" ColumnName="MontoTransf" />
+                <ScalarProperty Name="MontoCompraTransf" ColumnName="MontoCompraTransf" />
+                <ScalarProperty Name="MontoSinpe" ColumnName="MontoSinpe" />
+                <ScalarProperty Name="MontoCompraSinpe" ColumnName="MontoCompraSinpe" />
+                <ScalarProperty Name="MontoCheque" ColumnName="MontoCheque" />
+                <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
+                <ScalarProperty Name="MontoCompraCredito" ColumnName="MontoCompraCredito" />
+                <ScalarProperty Name="FaltanteInicio" ColumnName="FaltanteInicio" />
+                <ScalarProperty Name="SobranteInicio" ColumnName="SobranteInicio" />
+                <ScalarProperty Name="FaltanteFin" ColumnName="FaltanteFin" />
+                <ScalarProperty Name="SobranteFin" ColumnName="SobranteFin" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="AgregadosModel.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="IdTipoCliente" ColumnName="IdTipoCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CorreoNotificaciones">
+            <EntityTypeMapping TypeName="AgregadosModel.CorreoNotificaciones">
+              <MappingFragment StoreEntitySet="CorreoNotificaciones">
+                <ScalarProperty Name="IdCorreo" ColumnName="IdCorreo" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Contrasennia" ColumnName="Contrasennia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleFacts">
+            <EntityTypeMapping TypeName="AgregadosModel.DetalleFacts">
+              <MappingFragment StoreEntitySet="DetalleFacts">
+                <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados">
+            <EntityTypeMapping TypeName="AgregadosModel.Estados">
+              <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facturas">
+            <EntityTypeMapping TypeName="AgregadosModel.Facturas">
+              <MappingFragment StoreEntitySet="Facturas">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="MontoPendiente" ColumnName="MontoPendiente" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="Tierra" ColumnName="Tierra" />
+                <ScalarProperty Name="CantTierra" ColumnName="CantTierra" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="IdTipoPago" ColumnName="IdTipoPago" />
+                <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materiales">
+            <EntityTypeMapping TypeName="AgregadosModel.Materiales">
+              <MappingFragment StoreEntitySet="Materiales">
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="CantidadMaterial" ColumnName="CantidadMaterial" />
+                <ScalarProperty Name="Minimos" ColumnName="Minimos" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MetodosPagos">
+            <EntityTypeMapping TypeName="AgregadosModel.MetodosPagos">
+              <MappingFragment StoreEntitySet="MetodosPagos">
+                <ScalarProperty Name="IdTipoPago" ColumnName="IdTipoPago" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedores">
+            <EntityTypeMapping TypeName="AgregadosModel.Proveedores">
+              <MappingFragment StoreEntitySet="Proveedores">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="IdTipoProveedor" ColumnName="IdTipoProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoClientes">
+            <EntityTypeMapping TypeName="AgregadosModel.TipoClientes">
+              <MappingFragment StoreEntitySet="TipoClientes">
+                <ScalarProperty Name="IdTipoCliente" ColumnName="IdTipoCliente" />
+                <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposFacturas">
+            <EntityTypeMapping TypeName="AgregadosModel.TiposFacturas">
+              <MappingFragment StoreEntitySet="TiposFacturas">
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposProveedores">
+            <EntityTypeMapping TypeName="AgregadosModel.TiposProveedores">
+              <MappingFragment StoreEntitySet="TiposProveedores">
+                <ScalarProperty Name="IdTipoProveedor" ColumnName="IdTipoProveedor" />
+                <ScalarProperty Name="TipoProveedor" ColumnName="TipoProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="AgregadosModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="Contrasennia" ColumnName="Contrasennia" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehiculos">
+            <EntityTypeMapping TypeName="AgregadosModel.Vehiculos">
+              <MappingFragment StoreEntitySet="Vehiculos">
+                <ScalarProperty Name="IdVehiculo" ColumnName="IdVehiculo" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Annio" ColumnName="Annio" />
+                <ScalarProperty Name="MesRevision" ColumnName="MesRevision" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPCierreCajaPend" FunctionName="AgregadosModel.Store.SPCierreCajaPend">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPCierreCajaPend_Result">
+                <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
+                <ScalarProperty Name="MontoEfectivoInicio" ColumnName="MontoEfectivoInicio" />
+                <ScalarProperty Name="MontoEfectivoUsuarioInicio" ColumnName="MontoEfectivoUsuarioInicio" />
+                <ScalarProperty Name="MontoEfectivoFinal" ColumnName="MontoEfectivoFinal" />
+                <ScalarProperty Name="MontoEfectivoUsuarioFin" ColumnName="MontoEfectivoUsuarioFin" />
+                <ScalarProperty Name="MontoVentaEfectivo" ColumnName="MontoVentaEfectivo" />
+                <ScalarProperty Name="MontoCompraEfectivo" ColumnName="MontoCompraEfectivo" />
+                <ScalarProperty Name="MontoTransf" ColumnName="MontoTransf" />
+                <ScalarProperty Name="MontoCompraTransf" ColumnName="MontoCompraTransf" />
+                <ScalarProperty Name="MontoSinpe" ColumnName="MontoSinpe" />
+                <ScalarProperty Name="MontoCompraSinpe" ColumnName="MontoCompraSinpe" />
+                <ScalarProperty Name="MontoCheque" ColumnName="MontoCheque" />
+                <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
+                <ScalarProperty Name="MontoCompraCredito" ColumnName="MontoCompraCredito" />
+                <ScalarProperty Name="FaltanteInicio" ColumnName="FaltanteInicio" />
+                <ScalarProperty Name="SobranteInicio" ColumnName="SobranteInicio" />
+                <ScalarProperty Name="FaltanteFin" ColumnName="FaltanteFin" />
+                <ScalarProperty Name="SobranteFin" ColumnName="SobranteFin" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPCierreCajaPorFecha" FunctionName="AgregadosModel.Store.SPCierreCajaPorFecha">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPCierreCajaPorFecha_Result">
+                <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
+                <ScalarProperty Name="MontoEfectivoInicio" ColumnName="MontoEfectivoInicio" />
+                <ScalarProperty Name="MontoEfectivoUsuarioInicio" ColumnName="MontoEfectivoUsuarioInicio" />
+                <ScalarProperty Name="MontoEfectivoFinal" ColumnName="MontoEfectivoFinal" />
+                <ScalarProperty Name="MontoEfectivoUsuarioFin" ColumnName="MontoEfectivoUsuarioFin" />
+                <ScalarProperty Name="MontoVentaEfectivo" ColumnName="MontoVentaEfectivo" />
+                <ScalarProperty Name="MontoCompraEfectivo" ColumnName="MontoCompraEfectivo" />
+                <ScalarProperty Name="MontoTransf" ColumnName="MontoTransf" />
+                <ScalarProperty Name="MontoCompraTransf" ColumnName="MontoCompraTransf" />
+                <ScalarProperty Name="MontoSinpe" ColumnName="MontoSinpe" />
+                <ScalarProperty Name="MontoCompraSinpe" ColumnName="MontoCompraSinpe" />
+                <ScalarProperty Name="MontoCheque" ColumnName="MontoCheque" />
+                <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
+                <ScalarProperty Name="MontoCompraCredito" ColumnName="MontoCompraCredito" />
+                <ScalarProperty Name="FaltanteInicio" ColumnName="FaltanteInicio" />
+                <ScalarProperty Name="SobranteInicio" ColumnName="SobranteInicio" />
+                <ScalarProperty Name="FaltanteFin" ColumnName="FaltanteFin" />
+                <ScalarProperty Name="SobranteFin" ColumnName="SobranteFin" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPCierreCajaPorId" FunctionName="AgregadosModel.Store.SPCierreCajaPorId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPCierreCajaPorId_Result">
+                <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
+                <ScalarProperty Name="MontoEfectivoInicio" ColumnName="MontoEfectivoInicio" />
+                <ScalarProperty Name="MontoEfectivoUsuarioInicio" ColumnName="MontoEfectivoUsuarioInicio" />
+                <ScalarProperty Name="MontoEfectivoFinal" ColumnName="MontoEfectivoFinal" />
+                <ScalarProperty Name="MontoEfectivoUsuarioFin" ColumnName="MontoEfectivoUsuarioFin" />
+                <ScalarProperty Name="MontoVentaEfectivo" ColumnName="MontoVentaEfectivo" />
+                <ScalarProperty Name="MontoCompraEfectivo" ColumnName="MontoCompraEfectivo" />
+                <ScalarProperty Name="MontoTransf" ColumnName="MontoTransf" />
+                <ScalarProperty Name="MontoCompraTransf" ColumnName="MontoCompraTransf" />
+                <ScalarProperty Name="MontoSinpe" ColumnName="MontoSinpe" />
+                <ScalarProperty Name="MontoCompraSinpe" ColumnName="MontoCompraSinpe" />
+                <ScalarProperty Name="MontoCheque" ColumnName="MontoCheque" />
+                <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
+                <ScalarProperty Name="MontoCompraCredito" ColumnName="MontoCompraCredito" />
+                <ScalarProperty Name="FaltanteInicio" ColumnName="FaltanteInicio" />
+                <ScalarProperty Name="SobranteInicio" ColumnName="SobranteInicio" />
+                <ScalarProperty Name="FaltanteFin" ColumnName="FaltanteFin" />
+                <ScalarProperty Name="SobranteFin" ColumnName="SobranteFin" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactGenerada" FunctionName="AgregadosModel.Store.SPFactGenerada">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactGenerada_Result">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="BackHoe1" ColumnName="BackHoe1" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactPendAll" FunctionName="AgregadosModel.Store.SPFactPendAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactPendAll_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactPendDetalles" FunctionName="AgregadosModel.Store.SPFactPendDetalles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactPendDetalles_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactPendSinDetalle" FunctionName="AgregadosModel.Store.SPFactPendSinDetalle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactPendSinDetalle_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactPorRangoFechaAll" FunctionName="AgregadosModel.Store.SPFactPorRangoFechaAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactPorRangoFechaAll_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactPorRangoFechaDetalles" FunctionName="AgregadosModel.Store.SPFactPorRangoFechaDetalles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactPorRangoFechaDetalles_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactPorRangoFechaSinDetalles" FunctionName="AgregadosModel.Store.SPFactPorRangoFechaSinDetalles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactPorRangoFechaSinDetalles_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactReversadasAll" FunctionName="AgregadosModel.Store.SPFactReversadasAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactReversadasAll_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPTicketGenerado" FunctionName="AgregadosModel.Store.SPTicketGenerado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPTicketGenerado_Result">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPTicketPendAll" FunctionName="AgregadosModel.Store.SPTicketPendAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPTicketPendAll_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPTicketPorRangoFechaAll" FunctionName="AgregadosModel.Store.SPTicketPorRangoFechaAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPTicketPorRangoFechaAll_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPTicketReversadasAll" FunctionName="AgregadosModel.Store.SPTicketReversadasAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPTicketReversadasAll_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
+                <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
+                <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+                <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

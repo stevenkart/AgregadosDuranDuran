@@ -225,16 +225,21 @@ namespace Agregados.Forms.Users
             imgAdd.Enabled = true;
             imgUpdate.Enabled = false;
             imgDelete.Enabled = false;
-
-            CboxUserType.Enabled = true;
-            CboxStates.Enabled = true;
         }
         //validaciones de botones para evitar errores
-        private void ActivarUpdateDelete() 
+        private void ActivarUpdateDelete()
         {
             imgAdd.Enabled = false;
-            imgUpdate.Enabled = true;
-            imgDelete.Enabled = true;
+            if (Globals.MyGlobalUser.TipoUsuario == 1)
+            {
+                imgUpdate.Enabled = true;
+                imgDelete.Enabled = true;
+            }
+            else
+            {
+                imgUpdate.Enabled = false;
+                imgDelete.Enabled = false;
+            }
         }
 
         //validaciones de botones para evitar errores al ser el usuario administrador logueado no va a poder modificar
@@ -330,9 +335,9 @@ namespace Agregados.Forms.Users
                                     
                                 }
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-
+                                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 throw;
                             }
                         }
@@ -416,9 +421,9 @@ namespace Agregados.Forms.Users
                                             txtUsername.Focus();
                                         }
                                     }
-                                    catch (Exception)
+                                    catch (Exception ex)
                                     {
-
+                                        MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         throw;
                                     }
                                 }  
@@ -500,9 +505,9 @@ namespace Agregados.Forms.Users
                                                 txtUsername.Focus();
                                             }
                                         }
-                                        catch (Exception)
+                                        catch (Exception ex)
                                         {
-
+                                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             throw;
                                         }
                                     }
@@ -625,6 +630,9 @@ namespace Agregados.Forms.Users
             txtIdent.Text = null;
             CboxUserType.SelectedValue = -1;
             CboxStates.SelectedValue = -1;
+            CboxUserType.Enabled = true;
+            CboxStates.Enabled = true;
+            NoActions(); // solo actualizar estaria disponible por si cambia contrasennia o correo
 
             ActivarAdd();
            
@@ -820,6 +828,11 @@ namespace Agregados.Forms.Users
             FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
             frmPrincipalMDI.Show();
             this.Hide();
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //e.Handled = Validaciones.CaracteresTexto(e, false, false);
         }
     }
 }

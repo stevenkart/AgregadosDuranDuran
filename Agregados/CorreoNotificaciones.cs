@@ -11,7 +11,8 @@ namespace Agregados
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Windows.Forms;
+
     public partial class CorreoNotificaciones
     {
         public int IdCorreo { get; set; }
@@ -29,7 +30,6 @@ namespace Agregados
                 {
                     System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
 
-                    //TODO: crear email valido para enviar correo
                     email.From = new System.Net.Mail.MailAddress(this.Correo);
                     email.Subject = Subject;
                     email.Body = Message;
@@ -55,9 +55,10 @@ namespace Agregados
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
 

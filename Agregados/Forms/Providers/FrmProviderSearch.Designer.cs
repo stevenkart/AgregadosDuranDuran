@@ -31,17 +31,17 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvListaProveedores = new System.Windows.Forms.DataGridView();
-            this.txtBuscarId = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSeleccionar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.imgClean = new System.Windows.Forms.PictureBox();
             this.CIdProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIdentificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CTipoProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtBuscarId = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
+            this.imgClean = new System.Windows.Forms.PictureBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaProveedores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgClean)).BeginInit();
             this.SuspendLayout();
@@ -50,6 +50,7 @@
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Location = new System.Drawing.Point(402, 66);
+            this.txtName.MaxLength = 255;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(322, 20);
             this.txtName.TabIndex = 28;
@@ -88,68 +89,6 @@
             this.dgvListaProveedores.Size = new System.Drawing.Size(772, 120);
             this.dgvListaProveedores.TabIndex = 26;
             this.dgvListaProveedores.VirtualMode = true;
-            // 
-            // txtBuscarId
-            // 
-            this.txtBuscarId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBuscarId.Location = new System.Drawing.Point(402, 33);
-            this.txtBuscarId.Name = "txtBuscarId";
-            this.txtBuscarId.Size = new System.Drawing.Size(322, 20);
-            this.txtBuscarId.TabIndex = 25;
-            this.txtBuscarId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtBuscarId.TextChanged += new System.EventHandler(this.txtBuscarId_TextChanged);
-            this.txtBuscarId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarId_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(248, 20);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "Buscar Proveedor por Código:";
-            // 
-            // btnSeleccionar
-            // 
-            this.btnSeleccionar.BackColor = System.Drawing.Color.Lime;
-            this.btnSeleccionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeleccionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSeleccionar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSeleccionar.Location = new System.Drawing.Point(402, 248);
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(385, 30);
-            this.btnSeleccionar.TabIndex = 23;
-            this.btnSeleccionar.Text = "Seleccionar";
-            this.btnSeleccionar.UseVisualStyleBackColor = false;
-            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCancelar.Location = new System.Drawing.Point(15, 248);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(381, 30);
-            this.btnCancelar.TabIndex = 22;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // imgClean
-            // 
-            this.imgClean.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgClean.Image = global::Agregados.Properties.Resources.clean;
-            this.imgClean.Location = new System.Drawing.Point(747, 35);
-            this.imgClean.Name = "imgClean";
-            this.imgClean.Size = new System.Drawing.Size(56, 53);
-            this.imgClean.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgClean.TabIndex = 29;
-            this.imgClean.TabStop = false;
-            this.imgClean.Click += new System.EventHandler(this.imgClean_Click);
             // 
             // CIdProveedor
             // 
@@ -210,6 +149,73 @@
             this.CIdEstado.Name = "CIdEstado";
             this.CIdEstado.ReadOnly = true;
             this.CIdEstado.Width = 120;
+            // 
+            // txtBuscarId
+            // 
+            this.txtBuscarId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBuscarId.Location = new System.Drawing.Point(402, 33);
+            this.txtBuscarId.MaxLength = 10;
+            this.txtBuscarId.Name = "txtBuscarId";
+            this.txtBuscarId.Size = new System.Drawing.Size(322, 20);
+            this.txtBuscarId.TabIndex = 25;
+            this.txtBuscarId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBuscarId.TextChanged += new System.EventHandler(this.txtBuscarId_TextChanged);
+            this.txtBuscarId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarId_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(11, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(248, 20);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Buscar Proveedor por Código:";
+            // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnSeleccionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeleccionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeleccionar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnSeleccionar.Image = global::Agregados.Properties.Resources.lupa1;
+            this.btnSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSeleccionar.Location = new System.Drawing.Point(402, 248);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(385, 40);
+            this.btnSeleccionar.TabIndex = 23;
+            this.btnSeleccionar.Text = "Seleccionar";
+            this.btnSeleccionar.UseVisualStyleBackColor = false;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
+            // imgClean
+            // 
+            this.imgClean.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgClean.Image = global::Agregados.Properties.Resources.clean;
+            this.imgClean.Location = new System.Drawing.Point(747, 35);
+            this.imgClean.Name = "imgClean";
+            this.imgClean.Size = new System.Drawing.Size(56, 53);
+            this.imgClean.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgClean.TabIndex = 29;
+            this.imgClean.TabStop = false;
+            this.imgClean.Click += new System.EventHandler(this.imgClean_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.Salmon;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnCancelar.Image = global::Agregados.Properties.Resources.cancelar1;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(15, 248);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(381, 40);
+            this.btnCancelar.TabIndex = 22;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FrmProviderSearch
             // 

@@ -205,11 +205,11 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(411, 5);
+            this.label3.Location = new System.Drawing.Point(411, 13);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 32);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Buscar Cliente:";
+            this.label3.Size = new System.Drawing.Size(62, 16);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Buscar:";
             // 
             // txtNumProve
             // 
@@ -221,7 +221,7 @@
             this.txtNumProve.Name = "txtNumProve";
             this.txtNumProve.ReadOnly = true;
             this.txtNumProve.Size = new System.Drawing.Size(85, 29);
-            this.txtNumProve.TabIndex = 4;
+            this.txtNumProve.TabIndex = 1;
             this.txtNumProve.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtNumProve.TextChanged += new System.EventHandler(this.txtNumProve_TextChanged);
             // 
@@ -245,7 +245,7 @@
             this.label2.Location = new System.Drawing.Point(3, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 16);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 2;
             this.label2.Text = "Proveedor:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -258,7 +258,7 @@
             this.txtProveedor.Name = "txtProveedor";
             this.txtProveedor.ReadOnly = true;
             this.txtProveedor.Size = new System.Drawing.Size(288, 29);
-            this.txtProveedor.TabIndex = 1;
+            this.txtProveedor.TabIndex = 3;
             this.txtProveedor.TextChanged += new System.EventHandler(this.txtProveedor_TextChanged);
             // 
             // pictureSearchClient
@@ -282,7 +282,7 @@
             this.label1.Location = new System.Drawing.Point(916, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(134, 16);
-            this.label1.TabIndex = 7;
+            this.label1.TabIndex = 5;
             this.label1.Text = "Fecha:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -294,7 +294,7 @@
             this.lblDate.Location = new System.Drawing.Point(1056, 13);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(232, 16);
-            this.lblDate.TabIndex = 8;
+            this.lblDate.TabIndex = 6;
             this.lblDate.Text = "Date:";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -330,7 +330,7 @@
             this.FactNum.Location = new System.Drawing.Point(916, 51);
             this.FactNum.Name = "FactNum";
             this.FactNum.Size = new System.Drawing.Size(134, 16);
-            this.FactNum.TabIndex = 11;
+            this.FactNum.TabIndex = 7;
             this.FactNum.Text = "Factura:";
             this.FactNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -342,7 +342,7 @@
             this.lblFactNueva.Location = new System.Drawing.Point(1056, 51);
             this.lblFactNueva.Name = "lblFactNueva";
             this.lblFactNueva.Size = new System.Drawing.Size(232, 16);
-            this.lblFactNueva.TabIndex = 12;
+            this.lblFactNueva.TabIndex = 8;
             this.lblFactNueva.Text = "Fact:";
             this.lblFactNueva.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -363,7 +363,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.35829F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 506F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 277F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 282F));
             this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.dateFinal, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblTypeFact, 3, 0);
@@ -384,7 +384,7 @@
             this.label5.Location = new System.Drawing.Point(3, 16);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(131, 16);
-            this.label5.TabIndex = 1;
+            this.label5.TabIndex = 0;
             this.label5.Text = "Costo Transporte:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -392,10 +392,10 @@
             // 
             this.dateFinal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dateFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateFinal.Location = new System.Drawing.Point(1022, 13);
+            this.dateFinal.Location = new System.Drawing.Point(1017, 13);
             this.dateFinal.Name = "dateFinal";
-            this.dateFinal.Size = new System.Drawing.Size(272, 21);
-            this.dateFinal.TabIndex = 11;
+            this.dateFinal.Size = new System.Drawing.Size(277, 21);
+            this.dateFinal.TabIndex = 3;
             this.dateFinal.Visible = false;
             // 
             // lblTypeFact
@@ -403,10 +403,10 @@
             this.lblTypeFact.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTypeFact.AutoSize = true;
             this.lblTypeFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTypeFact.Location = new System.Drawing.Point(906, 16);
+            this.lblTypeFact.Location = new System.Drawing.Point(901, 16);
             this.lblTypeFact.Name = "lblTypeFact";
             this.lblTypeFact.Size = new System.Drawing.Size(110, 16);
-            this.lblTypeFact.TabIndex = 10;
+            this.lblTypeFact.TabIndex = 2;
             this.lblTypeFact.Text = "Fecha Límite:";
             this.lblTypeFact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblTypeFact.Visible = false;
@@ -417,15 +417,15 @@
             this.txtTransporte.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTransporte.DecimalPlaces = 2;
             this.txtTransporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTransporte.Location = new System.Drawing.Point(164, 11);
+            this.txtTransporte.Location = new System.Drawing.Point(162, 11);
             this.txtTransporte.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtTransporte.Name = "txtTransporte";
-            this.txtTransporte.Size = new System.Drawing.Size(230, 26);
-            this.txtTransporte.TabIndex = 12;
+            this.txtTransporte.Size = new System.Drawing.Size(227, 26);
+            this.txtTransporte.TabIndex = 1;
             this.txtTransporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTransporte.ThousandsSeparator = true;
             this.txtTransporte.ValueChanged += new System.EventHandler(this.txtTransporte_ValueChanged);
@@ -474,7 +474,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 184);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1297, 24);
-            this.menuStrip1.TabIndex = 29;
+            this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // mnuAgregarItem
@@ -589,7 +589,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.43735F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.56265F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 367F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 138F));
             this.tableLayoutPanel5.Controls.Add(this.groupBox2, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel10, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 3, 0);
@@ -621,7 +621,7 @@
             this.groupBox2.Controls.Add(this.rbSinpe2);
             this.groupBox2.Controls.Add(this.rbSinpeMovil2);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(793, 3);
+            this.groupBox2.Location = new System.Drawing.Point(788, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(361, 49);
             this.groupBox2.TabIndex = 20;
@@ -692,20 +692,20 @@
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(361, 72);
-            this.tableLayoutPanel10.TabIndex = 14;
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(358, 72);
+            this.tableLayoutPanel10.TabIndex = 1;
             // 
             // txtReferencia
             // 
             this.txtReferencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtReferencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReferencia.Location = new System.Drawing.Point(96, 6);
+            this.txtReferencia.Location = new System.Drawing.Point(95, 6);
             this.txtReferencia.MaxLength = 500;
             this.txtReferencia.Multiline = true;
             this.txtReferencia.Name = "txtReferencia";
             this.txtReferencia.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtReferencia.Size = new System.Drawing.Size(262, 60);
-            this.txtReferencia.TabIndex = 14;
+            this.txtReferencia.Size = new System.Drawing.Size(260, 60);
+            this.txtReferencia.TabIndex = 0;
             // 
             // lblReferencia
             // 
@@ -714,8 +714,8 @@
             this.lblReferencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReferencia.Location = new System.Drawing.Point(3, 28);
             this.lblReferencia.Name = "lblReferencia";
-            this.lblReferencia.Size = new System.Drawing.Size(87, 16);
-            this.lblReferencia.TabIndex = 11;
+            this.lblReferencia.Size = new System.Drawing.Size(86, 16);
+            this.lblReferencia.TabIndex = 1;
             this.lblReferencia.Text = "Detalles:";
             this.lblReferencia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -726,7 +726,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.1134F));
             this.tableLayoutPanel6.Controls.Add(this.lblLineas, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.label12, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(1160, 3);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(1155, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -771,8 +771,8 @@
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(361, 49);
-            this.tableLayoutPanel9.TabIndex = 13;
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(358, 49);
+            this.tableLayoutPanel9.TabIndex = 0;
             // 
             // CboxMetodoPago
             // 
@@ -780,10 +780,10 @@
             this.CboxMetodoPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboxMetodoPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboxMetodoPago.FormattingEnabled = true;
-            this.CboxMetodoPago.Location = new System.Drawing.Point(137, 12);
+            this.CboxMetodoPago.Location = new System.Drawing.Point(136, 12);
             this.CboxMetodoPago.Name = "CboxMetodoPago";
-            this.CboxMetodoPago.Size = new System.Drawing.Size(221, 24);
-            this.CboxMetodoPago.TabIndex = 12;
+            this.CboxMetodoPago.Size = new System.Drawing.Size(219, 24);
+            this.CboxMetodoPago.TabIndex = 1;
             this.CboxMetodoPago.SelectedValueChanged += new System.EventHandler(this.CboxMetodoPago_SelectedValueChanged);
             // 
             // label6
@@ -793,8 +793,8 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(3, 16);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 16);
-            this.label6.TabIndex = 11;
+            this.label6.Size = new System.Drawing.Size(127, 16);
+            this.label6.TabIndex = 0;
             this.label6.Text = "Método de Pago:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -810,7 +810,7 @@
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(361, 90);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(358, 90);
             this.tableLayoutPanel7.TabIndex = 12;
             // 
             // TxtSubTotal
@@ -820,8 +820,8 @@
             this.TxtSubTotal.Location = new System.Drawing.Point(3, 53);
             this.TxtSubTotal.Name = "TxtSubTotal";
             this.TxtSubTotal.ReadOnly = true;
-            this.TxtSubTotal.Size = new System.Drawing.Size(355, 29);
-            this.TxtSubTotal.TabIndex = 2;
+            this.TxtSubTotal.Size = new System.Drawing.Size(352, 29);
+            this.TxtSubTotal.TabIndex = 1;
             this.TxtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label9
@@ -833,20 +833,25 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(3, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(355, 45);
+            this.label9.Size = new System.Drawing.Size(352, 45);
             this.label9.TabIndex = 0;
-            this.label9.Text = "Subtotal Factura";
+            this.label9.Text = "Subtotal Factura Compra";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnFacturar
             // 
             this.btnFacturar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFacturar.Location = new System.Drawing.Point(793, 232);
+            this.btnFacturar.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnFacturar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnFacturar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFacturar.Image = global::Agregados.Properties.Resources.guardarDatos;
+            this.btnFacturar.Location = new System.Drawing.Point(788, 232);
             this.btnFacturar.Name = "btnFacturar";
             this.btnFacturar.Size = new System.Drawing.Size(361, 37);
-            this.btnFacturar.TabIndex = 9;
+            this.btnFacturar.TabIndex = 5;
             this.btnFacturar.Text = "Emitir Ticket Compra";
-            this.btnFacturar.UseVisualStyleBackColor = true;
+            this.btnFacturar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFacturar.UseVisualStyleBackColor = false;
             this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
             // 
             // CboxIVA
@@ -856,10 +861,10 @@
             this.CboxIVA.Checked = true;
             this.CboxIVA.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CboxIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CboxIVA.Location = new System.Drawing.Point(1160, 171);
+            this.CboxIVA.Location = new System.Drawing.Point(1155, 171);
             this.CboxIVA.Name = "CboxIVA";
-            this.CboxIVA.Size = new System.Drawing.Size(128, 20);
-            this.CboxIVA.TabIndex = 13;
+            this.CboxIVA.Size = new System.Drawing.Size(133, 20);
+            this.CboxIVA.TabIndex = 4;
             this.CboxIVA.Text = "Aplicar I.V.A.";
             this.CboxIVA.UseVisualStyleBackColor = true;
             this.CboxIVA.CheckedChanged += new System.EventHandler(this.CboxIVA_CheckedChanged);
@@ -871,12 +876,12 @@
             this.tableLayoutPanel12.Controls.Add(this.TxtIVA, 0, 1);
             this.tableLayoutPanel12.Controls.Add(this.label10, 0, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(370, 136);
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(367, 136);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 2;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(417, 90);
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(415, 90);
             this.tableLayoutPanel12.TabIndex = 15;
             // 
             // TxtIVA
@@ -886,8 +891,8 @@
             this.TxtIVA.Location = new System.Drawing.Point(3, 53);
             this.TxtIVA.Name = "TxtIVA";
             this.TxtIVA.ReadOnly = true;
-            this.TxtIVA.Size = new System.Drawing.Size(411, 29);
-            this.TxtIVA.TabIndex = 5;
+            this.TxtIVA.Size = new System.Drawing.Size(409, 29);
+            this.TxtIVA.TabIndex = 1;
             this.TxtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label10
@@ -899,9 +904,9 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(3, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(411, 45);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "I.V.A. Factura";
+            this.label10.Size = new System.Drawing.Size(409, 45);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "I.V.A.";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel13
@@ -911,7 +916,7 @@
             this.tableLayoutPanel13.Controls.Add(this.TxtTotal, 0, 1);
             this.tableLayoutPanel13.Controls.Add(this.label11, 0, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(793, 136);
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(788, 136);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 2;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -927,7 +932,7 @@
             this.TxtTotal.Name = "TxtTotal";
             this.TxtTotal.ReadOnly = true;
             this.TxtTotal.Size = new System.Drawing.Size(355, 29);
-            this.TxtTotal.TabIndex = 6;
+            this.TxtTotal.TabIndex = 1;
             this.TxtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
@@ -940,8 +945,8 @@
             this.label11.Location = new System.Drawing.Point(3, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(355, 45);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "Total Factura";
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Total Factura Compra";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureExit
@@ -964,15 +969,15 @@
             this.valorPago1.DecimalPlaces = 2;
             this.valorPago1.Enabled = false;
             this.valorPago1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valorPago1.Location = new System.Drawing.Point(370, 81);
+            this.valorPago1.Location = new System.Drawing.Point(367, 81);
             this.valorPago1.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.valorPago1.Name = "valorPago1";
-            this.valorPago1.Size = new System.Drawing.Size(417, 26);
-            this.valorPago1.TabIndex = 17;
+            this.valorPago1.Size = new System.Drawing.Size(415, 26);
+            this.valorPago1.TabIndex = 2;
             this.valorPago1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.valorPago1.ThousandsSeparator = true;
             // 
@@ -983,7 +988,7 @@
             this.valorPago2.DecimalPlaces = 2;
             this.valorPago2.Enabled = false;
             this.valorPago2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.valorPago2.Location = new System.Drawing.Point(793, 81);
+            this.valorPago2.Location = new System.Drawing.Point(788, 81);
             this.valorPago2.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -991,7 +996,7 @@
             0});
             this.valorPago2.Name = "valorPago2";
             this.valorPago2.Size = new System.Drawing.Size(361, 26);
-            this.valorPago2.TabIndex = 18;
+            this.valorPago2.TabIndex = 3;
             this.valorPago2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.valorPago2.ThousandsSeparator = true;
             // 
@@ -1002,9 +1007,9 @@
             this.groupBox1.Controls.Add(this.rbCheque1);
             this.groupBox1.Controls.Add(this.rbSinpe1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(370, 3);
+            this.groupBox1.Location = new System.Drawing.Point(367, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(417, 49);
+            this.groupBox1.Size = new System.Drawing.Size(415, 49);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selecciona Método de Pago";
@@ -1120,7 +1125,7 @@
             this.dgvMaterials.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvMaterials.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMaterials.Size = new System.Drawing.Size(1248, 172);
-            this.dgvMaterials.TabIndex = 1;
+            this.dgvMaterials.TabIndex = 0;
             this.dgvMaterials.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaterials_CellClick);
             // 
             // CIdMaterial
@@ -1213,7 +1218,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1313, 726);
             this.Name = "FrmBillProviderAdd";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generar Ticket Compra Proveedor";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmBillProviderAdd_FormClosing);
             this.Load += new System.EventHandler(this.FrmBillProviderAdd_Load);
             this.panel1.ResumeLayout(false);

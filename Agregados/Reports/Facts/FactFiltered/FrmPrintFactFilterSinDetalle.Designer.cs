@@ -33,12 +33,14 @@
             // 
             // crystalReportViewer1
             // 
-            this.crystalReportViewer1.ActiveViewIndex = -1;
+            this.crystalReportViewer1.ActiveViewIndex = 0;
             this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
+            this.crystalReportViewer1.ReportSource = "C:\\Users\\steve\\source\\repos\\Agregados\\Agregados\\Reports\\Facts\\FactFiltered\\RptFac" +
+    "tFilteredSinDetalle.rpt";
             this.crystalReportViewer1.Size = new System.Drawing.Size(1151, 609);
             this.crystalReportViewer1.TabIndex = 0;
             // 
@@ -48,9 +50,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1151, 609);
             this.Controls.Add(this.crystalReportViewer1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FrmPrintFactFilterSinDetalle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Facturas por Fecha";
+            this.Text = "Facturas por Fecha (Sin Linea Materiales)";
             this.Load += new System.EventHandler(this.FrmPrintFactFilterSinDetalle_Load);
             this.ResumeLayout(false);
 

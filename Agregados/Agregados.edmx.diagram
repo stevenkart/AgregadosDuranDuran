@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eaa5f7559b2c4a3cbbef262251ce8e5e" Name="Diagram1">
+        <EntityTypeShape EntityType="AgregadosModel.CierreApertCajas" Width="1.5" PointX="5.125" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Clientes" Width="1.5" PointX="2.875" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.CorreoNotificaciones" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.DetalleFacts" Width="1.5" PointX="10.375" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Estados" Width="1.5" PointX="0.625" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Facturas" Width="1.5" PointX="8.125" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Materiales" Width="1.5" PointX="2.875" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.MetodosPagos" Width="1.5" PointX="5.875" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Proveedores" Width="1.5" PointX="5.875" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.TipoClientes" Width="1.5" PointX="0.625" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.TiposFacturas" Width="1.5" PointX="5.875" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.TiposProveedores" Width="1.5" PointX="3.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Usuarios" Width="1.5" PointX="2.875" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgregadosModel.Vehiculos" Width="1.5" PointX="2.875" PointY="18" IsExpanded="true" />
+        <AssociationConnector Association="AgregadosModel.FKCierreAperUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKFacturasCierreApert" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKClientesEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKClientesTipoClientes" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKFacturasClientes" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKDetalleFacturas" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKDetalleMateriales" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKFacturasEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKMaterialesEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKProveedoresEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FkUsuariosEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKVehiculosEstados" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKFacturasMetodosPagos" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKFacturasProveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKFacturasTiposFacts" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKFacturasUsuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="AgregadosModel.FKProveedoresTipoProveed" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

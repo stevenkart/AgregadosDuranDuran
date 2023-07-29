@@ -15,12 +15,14 @@ namespace Agregados
     {
         public int Consecutivo { get; set; }
         public decimal CostoTransporte { get; set; }
+        public Nullable<decimal> BackHoe { get; set; }
         public System.DateTime FechaFactura { get; set; }
         public decimal SubTotalFact { get; set; }
         public decimal IVAFact { get; set; }
         public decimal CostoTotal { get; set; }
         public string ReferenciaPago { get; set; }
         public Nullable<System.DateTime> FechaLimiteP { get; set; }
+        public Nullable<decimal> BackHoe1 { get; set; }
         public string NombreEstado { get; set; }
         public string TipoPago { get; set; }
         public string NombreEmpleado { get; set; }

@@ -72,9 +72,9 @@ namespace Agregados.Forms.Providers
                 dgvListaProveedores.DataSource = result.ToList();
                 limpiar();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 throw;
             }
         }
@@ -121,9 +121,9 @@ namespace Agregados.Forms.Providers
                     limpiar();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 throw;
             }
         }
@@ -164,9 +164,9 @@ namespace Agregados.Forms.Providers
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 throw;
             }
         }
@@ -191,7 +191,7 @@ namespace Agregados.Forms.Providers
                 {
                     DataGridViewRow FilaSelected = dgvListaProveedores.SelectedRows[0];
                     int IdProveedor = Convert.ToInt32(FilaSelected.Cells["CIdProveedor"].Value);
-                    Globals.MifrmBillProviderAdd.txtNumProve.Text = Convert.ToString(IdProveedor); //todo Fact proveedor ligue
+                    Globals.MifrmBillProviderAdd.txtNumProve.Text = Convert.ToString(IdProveedor);
 
                     /*
                     DataRow NuevaFilaEnFacturacion = Globals.MifrmBillAdd.DtLista.NewRow();
@@ -211,9 +211,9 @@ namespace Agregados.Forms.Providers
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 throw;
             }
 

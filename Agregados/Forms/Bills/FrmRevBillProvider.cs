@@ -79,8 +79,9 @@ namespace Agregados.Forms.Bills
                 cierreApertCajas = null;
                 return apertura;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -339,6 +340,7 @@ namespace Agregados.Forms.Bills
                                     }
                                     //reversamos datos financieros del cierre de caja
                                     cierreApertCajas = DB.CierreApertCajas.Find(facturas.IdCierreApert);
+                                    cierreApertCajas.MontoCompraEfectivo -= facturas.CostoTotal;
                                     cierreApertCajas.MontoEfectivoFinal += facturas.CostoTotal;
                                     DB.Entry(cierreApertCajas).State = EntityState.Modified;
 
@@ -563,9 +565,9 @@ namespace Agregados.Forms.Bills
                                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }

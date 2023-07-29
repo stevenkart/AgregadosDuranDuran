@@ -20,7 +20,7 @@ namespace Agregados.Reports.Facts.FactFiltered
         private void FrmPrintFactPendSinD_Load(object sender, EventArgs e)
         {
             RptFactPendSinD rptFactPendSinD = new RptFactPendSinD();
-
+            rptFactPendSinD.Refresh();
             crystalReportViewer1.ReportSource = rptFactPendSinD;
         }
     }

@@ -21,34 +21,34 @@ namespace Agregados
         }
     
         public int IdFactura { get; set; }
+        public int Consecutivo { get; set; }
         public decimal CostoTransporte { get; set; }
+        public decimal Subtotal { get; set; }
         public decimal IVA { get; set; }
         public decimal CostoTotal { get; set; }
         public System.DateTime FechaFactura { get; set; }
+        public Nullable<decimal> MontoPendiente { get; set; }
         public Nullable<System.DateTime> FechaLimiteP { get; set; }
+        public string ReferenciaPago { get; set; }
+        public Nullable<decimal> BackHoe { get; set; }
+        public Nullable<decimal> Tierra { get; set; }
+        public Nullable<decimal> CantTierra { get; set; }
         public int IdUsuario { get; set; }
         public int IdTipo { get; set; }
         public int IdEstado { get; set; }
         public Nullable<int> IdCliente { get; set; }
         public Nullable<int> IdProveedor { get; set; }
         public int IdTipoPago { get; set; }
-        public Nullable<decimal> MontoPendiente { get; set; }
-        public string ReferenciaPago { get; set; }
         public int IdCierreApert { get; set; }
-        public int Consecutivo { get; set; }
-        public decimal Subtotal { get; set; }
-        public Nullable<decimal> BackHoe { get; set; }
-        public Nullable<decimal> Tierra { get; set; }
-        public Nullable<decimal> CantTierra { get; set; }
     
+        public virtual CierreApertCajas CierreApertCajas { get; set; }
         public virtual Clientes Clientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetalleFacts> DetalleFacts { get; set; }
         public virtual Estados Estados { get; set; }
-        public virtual Usuarios Usuarios { get; set; }
         public virtual MetodosPagos MetodosPagos { get; set; }
-        public virtual TiposFacturas TiposFacturas { get; set; }
         public virtual Proveedores Proveedores { get; set; }
-        public virtual CierreApertCajas CierreApertCajas { get; set; }
+        public virtual TiposFacturas TiposFacturas { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
     }
 }

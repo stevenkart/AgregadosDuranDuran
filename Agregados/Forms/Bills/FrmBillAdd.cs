@@ -129,8 +129,9 @@ namespace Agregados.Forms.Bills
                 cierreApertCajas = null;
                 return apertura;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -680,10 +681,11 @@ namespace Agregados.Forms.Bills
                 factura = null;
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
-            }  
+            }
         }
 
         //limpiar
@@ -839,6 +841,7 @@ namespace Agregados.Forms.Bills
 
                                                                     if (rbEfectivo1.Checked && rbSinpe2.Checked)
                                                                     {
+                                                                        apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago1.Value);
                                                                         apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
                                                                         apertura.MontoTransf += Convert.ToDecimal(valorPago2.Value);
                                                                         DB.Entry(apertura).State = EntityState.Modified;
@@ -852,6 +855,7 @@ namespace Agregados.Forms.Bills
                                                                     {
                                                                         if (rbEfectivo1.Checked && rbSinpeMovil2.Checked)
                                                                         {
+                                                                            apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago1.Value);
                                                                             apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
                                                                             apertura.MontoSinpe += Convert.ToDecimal(valorPago2.Value);
                                                                             DB.Entry(apertura).State = EntityState.Modified;
@@ -865,6 +869,7 @@ namespace Agregados.Forms.Bills
                                                                         {
                                                                             if (rbEfectivo1.Checked && rbCheque2.Checked)
                                                                             {
+                                                                                apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago1.Value);
                                                                                 apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
                                                                                 apertura.MontoCheque += Convert.ToDecimal(valorPago2.Value);
                                                                                 DB.Entry(apertura).State = EntityState.Modified;
@@ -880,6 +885,7 @@ namespace Agregados.Forms.Bills
                                                                                 {
                                                                                     apertura.MontoTransf += Convert.ToDecimal(valorPago1.Value);
                                                                                     apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                    apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago2.Value);
                                                                                     DB.Entry(apertura).State = EntityState.Modified;
                                                                                     if (DB.SaveChanges() <= 0)
                                                                                     {
@@ -919,6 +925,7 @@ namespace Agregados.Forms.Bills
                                                                                             {
                                                                                                 apertura.MontoSinpe += Convert.ToDecimal(valorPago1.Value);
                                                                                                 apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                                apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago2.Value);
                                                                                                 DB.Entry(apertura).State = EntityState.Modified;
                                                                                                 if (DB.SaveChanges() <= 0)
                                                                                                 {
@@ -958,6 +965,7 @@ namespace Agregados.Forms.Bills
                                                                                                         {
                                                                                                             apertura.MontoCheque += Convert.ToDecimal(valorPago1.Value);
                                                                                                             apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                                            apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago2.Value);
                                                                                                             DB.Entry(apertura).State = EntityState.Modified;
                                                                                                             if (DB.SaveChanges() <= 0)
                                                                                                             {
@@ -1111,6 +1119,7 @@ namespace Agregados.Forms.Bills
                                                     {
                                                         case 1: //efectivo
                                                             apertura.MontoEfectivoFinal += Total;
+                                                            apertura.MontoVentaEfectivo += Total;
                                                             DB.Entry(apertura).State = EntityState.Modified;
                                                             if (DB.SaveChanges() <= 0)
                                                             {
@@ -1194,8 +1203,9 @@ namespace Agregados.Forms.Bills
                                                 }
                                             }
                                         }
-                                        catch (Exception)
+                                        catch (Exception ex)
                                         {
+                                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             throw;
                                         }
                                     }
@@ -1417,6 +1427,7 @@ namespace Agregados.Forms.Bills
                                                                             if (rbEfectivo1.Checked && rbSinpe2.Checked)
                                                                             {
                                                                                 apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
+                                                                                apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago1.Value);
                                                                                 apertura.MontoTransf += Convert.ToDecimal(valorPago2.Value);
                                                                                 DB.Entry(apertura).State = EntityState.Modified;
                                                                                 if (DB.SaveChanges() <= 0)
@@ -1430,6 +1441,7 @@ namespace Agregados.Forms.Bills
                                                                                 if (rbEfectivo1.Checked && rbSinpeMovil2.Checked)
                                                                                 {
                                                                                     apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
+                                                                                    apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago1.Value);
                                                                                     apertura.MontoSinpe += Convert.ToDecimal(valorPago2.Value);
                                                                                     DB.Entry(apertura).State = EntityState.Modified;
                                                                                     if (DB.SaveChanges() <= 0)
@@ -1443,6 +1455,7 @@ namespace Agregados.Forms.Bills
                                                                                     if (rbEfectivo1.Checked && rbCheque2.Checked)
                                                                                     {
                                                                                         apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
+                                                                                        apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago1.Value);
                                                                                         apertura.MontoCheque += Convert.ToDecimal(valorPago2.Value);
                                                                                         DB.Entry(apertura).State = EntityState.Modified;
                                                                                         if (DB.SaveChanges() <= 0)
@@ -1457,6 +1470,7 @@ namespace Agregados.Forms.Bills
                                                                                         {
                                                                                             apertura.MontoTransf += Convert.ToDecimal(valorPago1.Value);
                                                                                             apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                            apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago2.Value);
                                                                                             DB.Entry(apertura).State = EntityState.Modified;
                                                                                             if (DB.SaveChanges() <= 0)
                                                                                             {
@@ -1496,6 +1510,7 @@ namespace Agregados.Forms.Bills
                                                                                                     {
                                                                                                         apertura.MontoSinpe += Convert.ToDecimal(valorPago1.Value);
                                                                                                         apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                                        apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago2.Value);
                                                                                                         DB.Entry(apertura).State = EntityState.Modified;
                                                                                                         if (DB.SaveChanges() <= 0)
                                                                                                         {
@@ -1535,6 +1550,7 @@ namespace Agregados.Forms.Bills
                                                                                                                 {
                                                                                                                     apertura.MontoCheque += Convert.ToDecimal(valorPago1.Value);
                                                                                                                     apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                                                    apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago2.Value);
                                                                                                                     DB.Entry(apertura).State = EntityState.Modified;
                                                                                                                     if (DB.SaveChanges() <= 0)
                                                                                                                     {
@@ -1785,6 +1801,7 @@ namespace Agregados.Forms.Bills
                                                             {
                                                                 case 1: //efectivo
                                                                     apertura.MontoEfectivoFinal += Total;
+                                                                    apertura.MontoVentaEfectivo += Total;
                                                                     DB.Entry(apertura).State = EntityState.Modified;
                                                                     if (DB.SaveChanges() <= 0)
                                                                     {
@@ -1868,8 +1885,9 @@ namespace Agregados.Forms.Bills
                                                         }
                                                     }
                                                 }
-                                                catch (Exception)
+                                                catch (Exception ex)
                                                 {
+                                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                     throw;
                                                 }
                                             }
@@ -1999,6 +2017,7 @@ namespace Agregados.Forms.Bills
                                                                                 if (rbEfectivo1.Checked && rbSinpe2.Checked)
                                                                                 {
                                                                                     apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
+                                                                                    apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago1.Value);
                                                                                     apertura.MontoTransf += Convert.ToDecimal(valorPago2.Value);
                                                                                     DB.Entry(apertura).State = EntityState.Modified;
                                                                                     if (DB.SaveChanges() <= 0)
@@ -2012,6 +2031,7 @@ namespace Agregados.Forms.Bills
                                                                                     if (rbEfectivo1.Checked && rbSinpeMovil2.Checked)
                                                                                     {
                                                                                         apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
+                                                                                        apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago1.Value);
                                                                                         apertura.MontoSinpe += Convert.ToDecimal(valorPago2.Value);
                                                                                         DB.Entry(apertura).State = EntityState.Modified;
                                                                                         if (DB.SaveChanges() <= 0)
@@ -2025,6 +2045,7 @@ namespace Agregados.Forms.Bills
                                                                                         if (rbEfectivo1.Checked && rbCheque2.Checked)
                                                                                         {
                                                                                             apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
+                                                                                            apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago1.Value);
                                                                                             apertura.MontoCheque += Convert.ToDecimal(valorPago2.Value);
                                                                                             DB.Entry(apertura).State = EntityState.Modified;
                                                                                             if (DB.SaveChanges() <= 0)
@@ -2039,6 +2060,7 @@ namespace Agregados.Forms.Bills
                                                                                             {
                                                                                                 apertura.MontoTransf += Convert.ToDecimal(valorPago1.Value);
                                                                                                 apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                                apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago2.Value);
                                                                                                 DB.Entry(apertura).State = EntityState.Modified;
                                                                                                 if (DB.SaveChanges() <= 0)
                                                                                                 {
@@ -2078,6 +2100,7 @@ namespace Agregados.Forms.Bills
                                                                                                         {
                                                                                                             apertura.MontoSinpe += Convert.ToDecimal(valorPago1.Value);
                                                                                                             apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                                            apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago2.Value);
                                                                                                             DB.Entry(apertura).State = EntityState.Modified;
                                                                                                             if (DB.SaveChanges() <= 0)
                                                                                                             {
@@ -2117,6 +2140,7 @@ namespace Agregados.Forms.Bills
                                                                                                                     {
                                                                                                                         apertura.MontoCheque += Convert.ToDecimal(valorPago1.Value);
                                                                                                                         apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                                                        apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago2.Value);
                                                                                                                         DB.Entry(apertura).State = EntityState.Modified;
                                                                                                                         if (DB.SaveChanges() <= 0)
                                                                                                                         {
@@ -2270,6 +2294,7 @@ namespace Agregados.Forms.Bills
                                                                 {
                                                                     case 1: //efectivo
                                                                         apertura.MontoEfectivoFinal += Total;
+                                                                        apertura.MontoVentaEfectivo += Total;
                                                                         DB.Entry(apertura).State = EntityState.Modified;
                                                                         if (DB.SaveChanges() <= 0)
                                                                         {
@@ -2353,8 +2378,9 @@ namespace Agregados.Forms.Bills
                                                             }
                                                         }
                                                     }
-                                                    catch (Exception)
+                                                    catch (Exception ex)
                                                     {
+                                                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                         throw;
                                                     }
                                                 }
@@ -2583,6 +2609,7 @@ namespace Agregados.Forms.Bills
                                                                                     if (rbEfectivo1.Checked && rbSinpe2.Checked)
                                                                                     {
                                                                                         apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
+                                                                                        apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago1.Value);
                                                                                         apertura.MontoTransf += Convert.ToDecimal(valorPago2.Value);
                                                                                         DB.Entry(apertura).State = EntityState.Modified;
                                                                                         if (DB.SaveChanges() <= 0)
@@ -2596,6 +2623,7 @@ namespace Agregados.Forms.Bills
                                                                                         if (rbEfectivo1.Checked && rbSinpeMovil2.Checked)
                                                                                         {
                                                                                             apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
+                                                                                            apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago1.Value);
                                                                                             apertura.MontoSinpe += Convert.ToDecimal(valorPago2.Value);
                                                                                             DB.Entry(apertura).State = EntityState.Modified;
                                                                                             if (DB.SaveChanges() <= 0)
@@ -2609,6 +2637,7 @@ namespace Agregados.Forms.Bills
                                                                                             if (rbEfectivo1.Checked && rbCheque2.Checked)
                                                                                             {
                                                                                                 apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago1.Value);
+                                                                                                apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago1.Value);
                                                                                                 apertura.MontoCheque += Convert.ToDecimal(valorPago2.Value);
                                                                                                 DB.Entry(apertura).State = EntityState.Modified;
                                                                                                 if (DB.SaveChanges() <= 0)
@@ -2623,6 +2652,7 @@ namespace Agregados.Forms.Bills
                                                                                                 {
                                                                                                     apertura.MontoTransf += Convert.ToDecimal(valorPago1.Value);
                                                                                                     apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                                    apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago2.Value);
                                                                                                     DB.Entry(apertura).State = EntityState.Modified;
                                                                                                     if (DB.SaveChanges() <= 0)
                                                                                                     {
@@ -2662,6 +2692,7 @@ namespace Agregados.Forms.Bills
                                                                                                             {
                                                                                                                 apertura.MontoSinpe += Convert.ToDecimal(valorPago1.Value);
                                                                                                                 apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                                                apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago2.Value);
                                                                                                                 DB.Entry(apertura).State = EntityState.Modified;
                                                                                                                 if (DB.SaveChanges() <= 0)
                                                                                                                 {
@@ -2701,6 +2732,7 @@ namespace Agregados.Forms.Bills
                                                                                                                         {
                                                                                                                             apertura.MontoCheque += Convert.ToDecimal(valorPago1.Value);
                                                                                                                             apertura.MontoEfectivoFinal += Convert.ToDecimal(valorPago2.Value);
+                                                                                                                            apertura.MontoVentaEfectivo += Convert.ToDecimal(valorPago2.Value);
                                                                                                                             DB.Entry(apertura).State = EntityState.Modified;
                                                                                                                             if (DB.SaveChanges() <= 0)
                                                                                                                             {
@@ -2951,6 +2983,7 @@ namespace Agregados.Forms.Bills
                                                                     {
                                                                         case 1: //efectivo
                                                                             apertura.MontoEfectivoFinal += Total;
+                                                                            apertura.MontoVentaEfectivo += Total;
                                                                             DB.Entry(apertura).State = EntityState.Modified;
                                                                             if (DB.SaveChanges() <= 0)
                                                                             {
@@ -3034,8 +3067,9 @@ namespace Agregados.Forms.Bills
                                                                 }
                                                             }
                                                         }
-                                                        catch (Exception)
+                                                        catch (Exception ex)
                                                         {
+                                                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                             throw;
                                                         }
                                                     }
@@ -3053,9 +3087,9 @@ namespace Agregados.Forms.Bills
                             }
                         }
                     }
-                    catch (NullReferenceException)
+                    catch (NullReferenceException ex)
                     {
-
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         throw;
                     }
                 }
@@ -3195,8 +3229,9 @@ namespace Agregados.Forms.Bills
                                                     }
                                                 }
                                             }
-                                            catch (Exception)
+                                            catch (Exception ex)
                                             {
+                                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                 throw;
                                             }
                                         }
@@ -3419,8 +3454,9 @@ namespace Agregados.Forms.Bills
                                                             }
                                                         }
                                                     }
-                                                    catch (Exception)
+                                                    catch (Exception ex)
                                                     {
+                                                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                         throw;
                                                     }
                                                 }
@@ -3553,8 +3589,9 @@ namespace Agregados.Forms.Bills
                                                                 }
                                                             }
                                                         }
-                                                        catch (Exception)
+                                                        catch (Exception ex)
                                                         {
+                                                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                             throw;
                                                         }
                                                     }
@@ -3784,8 +3821,9 @@ namespace Agregados.Forms.Bills
                                                                     }
                                                                 }
                                                             }
-                                                            catch (Exception)
+                                                            catch (Exception ex)
                                                             {
+                                                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                                 throw;
                                                             }
                                                         }
@@ -3801,9 +3839,9 @@ namespace Agregados.Forms.Bills
                                     }
                                 }
                             }
-                            catch (NullReferenceException)
+                            catch (Exception ex)
                             {
-
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 throw;
                             }
                         }

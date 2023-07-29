@@ -77,6 +77,7 @@
             // 
             this.txtClienteNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtClienteNombre.Location = new System.Drawing.Point(350, 43);
+            this.txtClienteNombre.MaxLength = 255;
             this.txtClienteNombre.Name = "txtClienteNombre";
             this.txtClienteNombre.Size = new System.Drawing.Size(342, 20);
             this.txtClienteNombre.TabIndex = 3;
@@ -145,6 +146,7 @@
             this.txtConsecutivo.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
             this.txtConsecutivo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtConsecutivo.Location = new System.Drawing.Point(3, 43);
+            this.txtConsecutivo.MaxLength = 10;
             this.txtConsecutivo.Name = "txtConsecutivo";
             this.txtConsecutivo.Size = new System.Drawing.Size(341, 20);
             this.txtConsecutivo.TabIndex = 2;
@@ -177,7 +179,7 @@
             this.btnEmitirNota.Location = new System.Drawing.Point(458, 5);
             this.btnEmitirNota.Name = "btnEmitirNota";
             this.btnEmitirNota.Size = new System.Drawing.Size(450, 68);
-            this.btnEmitirNota.TabIndex = 6;
+            this.btnEmitirNota.TabIndex = 0;
             this.btnEmitirNota.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnEmitirNota.UseVisualStyleBackColor = false;
             this.btnEmitirNota.Click += new System.EventHandler(this.btnEmitirNota_Click);
@@ -193,7 +195,7 @@
             this.btnVolver.Location = new System.Drawing.Point(3, 5);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(449, 68);
-            this.btnVolver.TabIndex = 5;
+            this.btnVolver.TabIndex = 1;
             this.btnVolver.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnVolver.UseVisualStyleBackColor = false;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
@@ -329,7 +331,7 @@
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(475, 48);
-            this.groupBox2.TabIndex = 23;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Selecciona Método de Crédito";
             // 
@@ -382,7 +384,7 @@
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(424, 48);
-            this.tableLayoutPanel6.TabIndex = 24;
+            this.tableLayoutPanel6.TabIndex = 1;
             // 
             // txtTotal
             // 
@@ -398,7 +400,7 @@
             0});
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(360, 26);
-            this.txtTotal.TabIndex = 13;
+            this.txtTotal.TabIndex = 1;
             this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTotal.ThousandsSeparator = true;
             // 
@@ -411,7 +413,7 @@
             this.label4.Location = new System.Drawing.Point(3, 15);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 18);
-            this.label4.TabIndex = 1;
+            this.label4.TabIndex = 0;
             this.label4.Text = "¢";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -454,7 +456,7 @@
             this.btnFiltrar.Location = new System.Drawing.Point(704, 59);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(210, 70);
-            this.btnFiltrar.TabIndex = 4;
+            this.btnFiltrar.TabIndex = 0;
             this.btnFiltrar.UseVisualStyleBackColor = false;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
@@ -469,7 +471,7 @@
             this.btnHelp.Location = new System.Drawing.Point(839, 4);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(75, 48);
-            this.btnHelp.TabIndex = 3;
+            this.btnHelp.TabIndex = 1;
             this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
@@ -489,6 +491,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(933, 548);
             this.Name = "FrmNotaCredito";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Notas de Crédito";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmNotaCredito_FormClosing);
             this.Load += new System.EventHandler(this.FrmNotaCredito_Load);

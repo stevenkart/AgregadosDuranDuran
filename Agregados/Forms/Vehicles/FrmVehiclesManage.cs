@@ -142,7 +142,7 @@ namespace Agregados.Forms.Vehicles
                 Thread.Sleep(5);
             }
         }
-      
+
 
         //validaciones de botones para evitar errores
         private void ActivarAdd()
@@ -155,8 +155,16 @@ namespace Agregados.Forms.Vehicles
         private void ActivarUpdateDelete()
         {
             imgAdd.Enabled = false;
-            imgUpdate.Enabled = true;
-            imgDelete.Enabled = true;
+            if (Globals.MyGlobalUser.TipoUsuario == 1)
+            {
+                imgUpdate.Enabled = true;
+                imgDelete.Enabled = true;
+            }
+            else
+            {
+                imgUpdate.Enabled = false;
+                imgDelete.Enabled = false;
+            }
         }
 
 
@@ -1179,9 +1187,9 @@ namespace Agregados.Forms.Vehicles
                             }
 
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
+                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             throw;
                         }
                     }
@@ -1227,9 +1235,9 @@ namespace Agregados.Forms.Vehicles
                             }
 
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
+                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             throw;
                         }
                     }
@@ -1272,9 +1280,9 @@ namespace Agregados.Forms.Vehicles
                                 }
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
+                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             throw;
                         }
                     }

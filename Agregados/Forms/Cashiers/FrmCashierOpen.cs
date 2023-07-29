@@ -71,8 +71,9 @@ namespace Agregados.Forms.Cashiers
                 cierreApertCajas = null;
                 return cierre;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -92,8 +93,9 @@ namespace Agregados.Forms.Cashiers
                 cierreApertCajas = null;
                 return apertura;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -146,6 +148,8 @@ namespace Agregados.Forms.Cashiers
                                         MontoEfectivoUsuarioInicio = NumMontInicial.Value,
                                         MontoEfectivoFinal = NumMontInicial.Value,
                                         MontoEfectivoUsuarioFin = 0,
+                                        MontoVentaEfectivo = 0,
+                                        MontoCompraEfectivo = 0,
                                         MontoTransf = 0,
                                         MontoCompraTransf = 0,
                                         MontoSinpe = 0,
@@ -174,9 +178,9 @@ namespace Agregados.Forms.Cashiers
                                         //this.Hide();
                                     }
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-
+                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     throw;
                                 }
                             }
@@ -200,6 +204,8 @@ namespace Agregados.Forms.Cashiers
                                         MontoEfectivoUsuarioInicio = NumMontInicial.Value,
                                         MontoEfectivoFinal = NumMontInicial.Value,
                                         MontoEfectivoUsuarioFin = 0,
+                                        MontoVentaEfectivo = 0,
+                                        MontoCompraEfectivo = 0,
                                         MontoTransf = 0,
                                         MontoCompraTransf = 0,
                                         MontoSinpe = 0,
@@ -228,9 +234,9 @@ namespace Agregados.Forms.Cashiers
                                         //this.Hide();
                                     }
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-
+                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     throw;
                                 }
                             }
@@ -250,6 +256,8 @@ namespace Agregados.Forms.Cashiers
                                         MontoEfectivoUsuarioInicio = NumMontInicial.Value,
                                         MontoEfectivoFinal = NumMontInicial.Value,
                                         MontoEfectivoUsuarioFin = 0,
+                                        MontoVentaEfectivo = 0,
+                                        MontoCompraEfectivo = 0,
                                         MontoTransf = 0,
                                         MontoCompraTransf = 0,
                                         MontoSinpe = 0,
@@ -278,9 +286,9 @@ namespace Agregados.Forms.Cashiers
                                         //this.Hide();
                                     }
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
-
+                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     throw;
                                 }
                             }
@@ -317,6 +325,8 @@ namespace Agregados.Forms.Cashiers
                                     MontoEfectivoUsuarioInicio = NumMontInicial.Value,
                                     MontoEfectivoFinal = NumMontInicial.Value,
                                     MontoEfectivoUsuarioFin = 0,
+                                    MontoVentaEfectivo = 0,
+                                    MontoCompraEfectivo = 0,
                                     MontoTransf = 0,
                                     MontoCompraTransf = 0,
                                     MontoSinpe = 0,
@@ -345,9 +355,9 @@ namespace Agregados.Forms.Cashiers
                                     //this.Hide();
                                 }
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 throw;
                             }
                         }
@@ -370,6 +380,8 @@ namespace Agregados.Forms.Cashiers
                                     MontoEfectivoUsuarioInicio = NumMontInicial.Value,
                                     MontoEfectivoFinal = NumMontInicial.Value,
                                     MontoEfectivoUsuarioFin = 0,
+                                    MontoVentaEfectivo = 0,
+                                    MontoCompraEfectivo = 0,
                                     MontoTransf = 0,
                                     MontoCompraTransf = 0,
                                     MontoSinpe = 0,
@@ -399,9 +411,9 @@ namespace Agregados.Forms.Cashiers
                                     //this.Hide();
                                 }
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 throw;
                             }
                         }
@@ -421,6 +433,8 @@ namespace Agregados.Forms.Cashiers
                                     MontoEfectivoUsuarioInicio = NumMontInicial.Value,
                                     MontoEfectivoFinal = NumMontInicial.Value,
                                     MontoEfectivoUsuarioFin = 0,
+                                    MontoVentaEfectivo = 0,
+                                    MontoCompraEfectivo = 0,
                                     MontoTransf = 0,
                                     MontoCompraTransf = 0,
                                     MontoSinpe = 0,
@@ -450,9 +464,9 @@ namespace Agregados.Forms.Cashiers
                                     //this.Hide();
                                 }
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 throw;
                             }
                         }

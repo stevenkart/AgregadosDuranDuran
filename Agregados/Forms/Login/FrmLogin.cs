@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace Agregados.Forms.Login
 {
@@ -19,6 +20,7 @@ namespace Agregados.Forms.Login
 
         AgregadosEntities context;
         Crypto encriptar;
+        string data = "";
 
         public FrmLogin()
         {
@@ -89,9 +91,12 @@ namespace Agregados.Forms.Login
                                     MessageBoxButtons.OK);
                             }
                         }
-                        catch (Exception)
+                        catch (SqlException ex)
                         {
-                            throw;
+                            
+                            MessageBox.Show(ex.Message, "Error validación",
+                                    MessageBoxButtons.OK);
+                         
                         }
                     }  
                 }
@@ -130,6 +135,104 @@ namespace Agregados.Forms.Login
         {
             //cierra completamente la app
             System.Environment.Exit(0);
+        }
+
+        private void btnRecoverDB_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                
+                dialog.InitialDirectory = "C:\\Program Files\\Microsoft SQL Server\\MSSQL15.SQLEXPRESS\\MSSQL\\Backup";
+                dialog.Filter = "Backup Files (*.bak)|*.bak|All Files (*.*)|*.*";
+                dialog.Title = "Restaurar Base de Datos";
+                
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    using (var context = new AgregadosEntities())
+                    {
+                        //string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                        //string relativePath = baseDirectory + "Agregados.mdf";
+                        //string LocalDB = relativePath;
+                        SqlConnection sqlConn = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=master;User Id=administrador; Password=administrador123;Connect Timeout=30");
+                        //SqlConnection sqlConn = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=master;User Id=administrador; Password=administrador123;Connect Timeout=30");
+
+                        if (sqlConn != null)
+                        {
+                            try
+                            {
+                                
+                                var RestoreFilePath = dialog.FileName;
+
+                                //var RestoreQuery1 = $"USE master \r\n IF exists (SELECT * FROM sysdatabases WHERE NAME='Agregados')\r\n\t\tDROP DATABASE [Agregados]\r\n";
+                                var RestoreQuery1 = $"USE [master]";
+                                var RestoreQuery2 = "RESTORE DATABASE [Agregados] FROM  DISK = N'" + RestoreFilePath + "' WITH  FILE = 1,  NOUNLOAD,  STATS = 5";
+
+                                SqlCommand command1 = new SqlCommand(RestoreQuery1, sqlConn);
+                                SqlCommand command2 = new SqlCommand(RestoreQuery2, sqlConn);
+
+                                sqlConn.Open();
+                                command1.ExecuteNonQuery();
+                                command2.ExecuteNonQuery();
+                                MessageBox.Show("Restauración de Base de Datos realizada con éxito.", "Restauración Correcta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                throw;
+                            }
+                            finally
+                            {
+                                sqlConn.Close();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo establecer la conexión con Servidor.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Se cancelo proceso de restauración de datos", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+             
+            }
+        }
+
+        private void FrmLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            btnRecoverDB.Visible = false;
+            data += e.KeyCode.ToString();
+        }
+
+        private void FrmLogin_KeyUp(object sender, KeyEventArgs e)
+        {
+     
+            if (btnRecoverDB.Visible == false)
+            {//Restore Data Base 'RDB' = makes visible the hidden button to select and restore the database,
+             //but keep pressing the RD once the B is unpressed to show the hiide button
+               if (data == "RDB")
+                {
+                    btnRecoverDB.Visible = true;
+                }
+                else
+                {
+                    data = "";
+                    btnRecoverDB.Visible = false;
+                }
+            }
+            else
+            {
+                data = "";
+                btnRecoverDB.Visible = false;
+            }
         }
     }
 }

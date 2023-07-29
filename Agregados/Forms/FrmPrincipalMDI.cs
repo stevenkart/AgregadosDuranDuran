@@ -7,8 +7,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
@@ -56,8 +58,9 @@ namespace Agregados.Forms
                 cierreApertCajas = null;
                 return apertura;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -79,57 +82,157 @@ namespace Agregados.Forms
             //identifica si hay una apertura de caja, y si pertenece al usuario logueado hbailita botones, sino no 
             if (BuscarAperturaActual() != null)
             {
-                if (apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario)
+                if (apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario) // pertenece al usuario
                 {
                     facturaciónToolStripMenuItem.Enabled = true;
+                    facturasACréditoToolStripMenuItem.Enabled = true;
                     notaDeCréditoToolStripMenuItem.Enabled = true;
-                    reversiónDeFacturaToolStripMenuItem.Enabled = true;
-
+                  
                     facturaciónComprasToolStripMenuItem.Enabled = true;
+                    comprasACréditoToolStripMenuItem.Enabled = true;
                     reversiónDeComprasToolStripMenuItem.Enabled = true;
 
                     cerrarCajaToolStripMenuItem.Enabled = true;
                     abrirCajaToolStripMenuItem.Enabled = false;
 
 
-                    if (Globals.MyGlobalUser.TipoUsuario == 1) // administrador
+                    if (Globals.MyGlobalUser.TipoUsuario == 1) // administrador revisa si es administrador
                     {
+                        respaldoDeDatosToolStripMenuItem.Enabled = true;
+                        respaldoDeDatosToolStripMenuItem.Visible = true;
                         cierreCajaForzadoToolStripMenuItem.Enabled = true;
                         cierreCajaForzadoToolStripMenuItem.Visible = true;
+                        notificacionesToolStripMenuItem.Enabled = true;
+                        notificacionesToolStripMenuItem.Visible = true;
+                        usuariosToolStripMenuItem.Enabled = true;
+                        usuariosToolStripMenuItem.Visible = true;
+
+                        reversiónDeFacturaToolStripMenuItem.Enabled = true;
+
+                        reportesDeCajaToolStripMenuItem.Enabled = true;
+                        reportesDeCajaToolStripMenuItem.Visible = true;
+
                     }
-                    else
+                    else //sino es administrador
                     {
+                        respaldoDeDatosToolStripMenuItem.Enabled = false;
+                        respaldoDeDatosToolStripMenuItem.Visible = false;
                         cierreCajaForzadoToolStripMenuItem.Enabled = false;
                         cierreCajaForzadoToolStripMenuItem.Visible = false;
+                        notificacionesToolStripMenuItem.Enabled = false;
+                        notificacionesToolStripMenuItem.Visible = false;
+                        usuariosToolStripMenuItem.Enabled = false;
+                        usuariosToolStripMenuItem.Visible = false;
+
+                        reversiónDeFacturaToolStripMenuItem.Enabled = false;
+
+                        reportesDeCajaToolStripMenuItem.Enabled = false;
+                        reportesDeCajaToolStripMenuItem.Visible = false;
                     }
                 }
                 else
                 {
                     facturaciónToolStripMenuItem.Enabled = false;
+                    facturasACréditoToolStripMenuItem.Enabled = false;
                     notaDeCréditoToolStripMenuItem.Enabled = false;
-                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
 
                     facturaciónComprasToolStripMenuItem.Enabled = false;
+                    comprasACréditoToolStripMenuItem.Enabled = false;
                     reversiónDeComprasToolStripMenuItem.Enabled = false;
 
                     cerrarCajaToolStripMenuItem.Enabled = false;
                     abrirCajaToolStripMenuItem.Enabled = false;
+
+
+
+                    respaldoDeDatosToolStripMenuItem.Enabled = false;
+                    respaldoDeDatosToolStripMenuItem.Visible = false;
+                    cierreCajaForzadoToolStripMenuItem.Enabled = false;
+                    cierreCajaForzadoToolStripMenuItem.Visible = false;
+                    notificacionesToolStripMenuItem.Enabled = false;
+                    notificacionesToolStripMenuItem.Visible = false;
+                    usuariosToolStripMenuItem.Enabled = false;
+                    usuariosToolStripMenuItem.Visible = false;
+
+                    reversiónDeFacturaToolStripMenuItem.Visible = false;
+                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
+
+                    reportesDeCajaToolStripMenuItem.Enabled = false;
+                    reportesDeCajaToolStripMenuItem.Visible = false;
+
+                    if (Globals.MyGlobalUser.TipoUsuario == 1) // administrador revisa si es administrador
+                    {
+                        respaldoDeDatosToolStripMenuItem.Enabled = true;
+                        respaldoDeDatosToolStripMenuItem.Visible = true;
+                        cierreCajaForzadoToolStripMenuItem.Enabled = true;
+                        cierreCajaForzadoToolStripMenuItem.Visible = true;
+                        notificacionesToolStripMenuItem.Enabled = true;
+                        notificacionesToolStripMenuItem.Visible = true;
+                        usuariosToolStripMenuItem.Enabled = true;
+                        usuariosToolStripMenuItem.Visible = true;
+
+                        reportesDeCajaToolStripMenuItem.Enabled = true;
+                        reportesDeCajaToolStripMenuItem.Visible = true;
+
+                    }
                 }
             }
             else
-            {
+            { //no hay apertura
+
                 facturaciónToolStripMenuItem.Enabled = false;
+                facturasACréditoToolStripMenuItem.Enabled = false;
                 notaDeCréditoToolStripMenuItem.Enabled = false;
-                reversiónDeFacturaToolStripMenuItem.Enabled = false;
 
                 facturaciónComprasToolStripMenuItem.Enabled = false;
+                comprasACréditoToolStripMenuItem.Enabled = false;
                 reversiónDeComprasToolStripMenuItem.Enabled = false;
 
-
-                abrirCajaToolStripMenuItem.Enabled = true;
                 cerrarCajaToolStripMenuItem.Enabled = false;
-                cierreCajaForzadoToolStripMenuItem.Enabled = false;
-                cierreCajaForzadoToolStripMenuItem.Visible = false;
+                abrirCajaToolStripMenuItem.Enabled = true;
+
+                if (Globals.MyGlobalUser.TipoUsuario == 1) // administrador revisa si es administrador
+                {
+                    respaldoDeDatosToolStripMenuItem.Enabled = true;
+                    respaldoDeDatosToolStripMenuItem.Visible = true;
+
+                    cierreCajaForzadoToolStripMenuItem.Enabled = false;
+                    cierreCajaForzadoToolStripMenuItem.Visible = false;
+
+                    notificacionesToolStripMenuItem.Enabled = true;
+                    notificacionesToolStripMenuItem.Visible = true;
+                    usuariosToolStripMenuItem.Enabled = true;
+                    usuariosToolStripMenuItem.Visible = true;
+
+                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
+                    reversiónDeFacturaToolStripMenuItem.Visible = false;
+
+                    reportesDeCajaToolStripMenuItem.Enabled = true;
+                    reportesDeCajaToolStripMenuItem.Visible = true;
+
+                }
+                else //sino es administrador
+                {
+                    respaldoDeDatosToolStripMenuItem.Enabled = false;
+                    respaldoDeDatosToolStripMenuItem.Visible = false;
+
+                    cierreCajaForzadoToolStripMenuItem.Enabled = false;
+                    cierreCajaForzadoToolStripMenuItem.Visible = false;
+
+                    notificacionesToolStripMenuItem.Enabled = false;
+                    notificacionesToolStripMenuItem.Visible = false;
+
+                    usuariosToolStripMenuItem.Enabled = false;
+                    usuariosToolStripMenuItem.Visible = false;
+
+                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
+                    reversiónDeFacturaToolStripMenuItem.Visible = false;
+
+                    reportesDeCajaToolStripMenuItem.Enabled = false;
+                    reportesDeCajaToolStripMenuItem.Visible = false;
+                }
+
+
             }
 
         }
@@ -162,7 +265,7 @@ namespace Agregados.Forms
 
         private void cerrarCajaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form MifrmCashierClose = new Cashiers.FrmCashierClose();
+            Form MifrmCashierClose = new Cashiers.FrmCashierClose( 1 );
 
             DialogResult resp = MifrmCashierClose.ShowDialog();
 
@@ -314,42 +417,105 @@ namespace Agregados.Forms
                 dialog.InitialDirectory = "C:\\Program Files\\Microsoft SQL Server\\MSSQL15.SQLEXPRESS\\MSSQL\\Backup";
                 dialog.Filter = "Backup Files (*.bak)|*.bak|All Files (*.*)|*.*";
 
+
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     using (var context = new AgregadosEntities())
                     {
-                        var conn = context.Database.Connection;
-                        var sqlConn = conn as System.Data.SqlClient.SqlConnection;
+                        //SqlConnection sqlConn = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=master;User Id=administrador; Password=administrador123;Connect Timeout=30");
+
+
+                        /*
+                         *   string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                       
+                        string relativePath = baseDirectory + "Agregados_Pro";
+                        string LocalDB = relativePath;
+                        */
+                        SqlConnection sqlConn = new SqlConnection($@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=master;User Id=administrador; Password=administrador123;Connect Timeout=30");
 
                         if (sqlConn != null)
                         {
                             var backupFilePath = dialog.FileName;
-                            var backupQuery = $"BACKUP DATABASE [{sqlConn.Database}] TO DISK='{backupFilePath}'";
+                            var backupQuery = $"BACKUP DATABASE [Agregados] TO DISK='{backupFilePath}'";
 
                             using (var command = new System.Data.SqlClient.SqlCommand(backupQuery, sqlConn))
                             {
-                                conn.Open();
-                                command.ExecuteNonQuery();
-                                conn.Close();
+                                try
+                                {
+                                    sqlConn.Open();
+                                    command.ExecuteNonQuery();
+                                    MessageBox.Show("Copia de seguridad realizada con éxito.", "Back-Up Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    throw;
+                                }
+                                finally
+                                {
+                                    sqlConn.Close();
+                                }
                             }
-                            MessageBox.Show("Copia de seguridad realizada con éxito.", "Back-Up Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                           
                         }
                         else
                         {
-                            MessageBox.Show("No se pudo establecer la conexión con SQL Server.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No se pudo establecer la conexión con el servidor.", "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         }
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Se cancelo proceso de respaldo", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                   
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error" , MessageBoxButtons.OK, MessageBoxIcon.Information);
-                throw;
+                MessageBox.Show(ex.Message, "Error" , MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //throw;
+            }
+        }
+
+        private void facturasACréditoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmPendBill = new Bills.FrmPendBill();
+            Globals.MifrmPendBill.Show();
+            this.Hide();
+        }
+
+        private void reporteDeComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmTicketsReports = new Reports.FrmTicketsReports();
+            Globals.MifrmTicketsReports.Show();
+            this.Hide();
+        }
+
+        private void reportesDeCajaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmCajaReports = new Reports.FrmCajaReports();
+            Globals.MifrmCajaReports.Show();
+            this.Hide();
+        }
+
+        private void comprasACréditoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmPendTicketProvider = new Bills.FrmPendTicketProvider();
+            Globals.MifrmPendTicketProvider.Show();
+            this.Hide();
+        }
+
+        private void cierreCajaForzadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cierreCajaForzadoToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Form MifrmCashierClose = new Cashiers.FrmCashierClose(2);
+
+            DialogResult resp = MifrmCashierClose.ShowDialog();
+
+            if (resp == DialogResult.OK)
+            {
+                UserLogged();
             }
         }
     }

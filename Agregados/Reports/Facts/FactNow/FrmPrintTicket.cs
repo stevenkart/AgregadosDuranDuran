@@ -22,6 +22,7 @@ namespace Agregados.Reports.Facts.FactNow
         private void FrmPrintTicket_Load(object sender, EventArgs e)
         {
             RptTicketCreated rptTicketCreated = new RptTicketCreated();
+            rptTicketCreated.Refresh();
             rptTicketCreated.SetParameterValue("@Consecutivo", Consecutivo);
 
             crystalReportViewer1.ReportSource = rptTicketCreated;

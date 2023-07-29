@@ -13,6 +13,7 @@ namespace Agregados
     
     public partial class SPFactPorRangoFechaDetalles_Result
     {
+        public int IdFactura { get; set; }
         public int Consecutivo { get; set; }
         public decimal CostoTransporte { get; set; }
         public Nullable<decimal> BackHoe { get; set; }

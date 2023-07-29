@@ -15,6 +15,7 @@ namespace Agregados
     {
         public int Consecutivo { get; set; }
         public decimal CostoTransporte { get; set; }
+        public Nullable<decimal> BackHoe { get; set; }
         public System.DateTime FechaFactura { get; set; }
         public decimal SubTotalFact { get; set; }
         public decimal IVAFact { get; set; }

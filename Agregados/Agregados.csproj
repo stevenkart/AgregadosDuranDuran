@@ -8,13 +8,32 @@
     <ProjectGuid>{F85D892F-19E4-4374-87D6-C18AF4D3EFEC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Agregados</RootNamespace>
-    <AssemblyName>Agregados</AssemblyName>
+    <AssemblyName>ControlDeInventarioFacturacion</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\steve\Desktop\Publicaciones APPs\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>Control de Inventario &amp; Facturación</ProductName>
+    <PublisherName>Steven Carrillo</PublisherName>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +54,41 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>agregadosIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>2A6213D0816ED79FDB8D0CF82F4877FFF5F6004B</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Agregados.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
@@ -49,18 +103,113 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ExcelMapper, Version=1.0.5.0, Culture=neutral, PublicKeyToken=6c3f2bec99465df3, processorArchitecture=MSIL">
+      <HintPath>..\packages\My.ExcelMapper.1.0.5\lib\net45\ExcelMapper.dll</HintPath>
+    </Reference>
     <Reference Include="ExpressionEvaluator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=90d9f15d622e2348, processorArchitecture=MSIL">
       <HintPath>..\packages\ExpressionEvaluator.2.0.4.0\lib\net40\ExpressionEvaluator.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.0.0.999, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.0.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NPOI, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.UnmanagedMemoryStream, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.UnmanagedMemoryStream.4.3.0\lib\net46\System.IO.UnmanagedMemoryStream.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.RegularExpressions.4.3.1\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
@@ -69,47 +218,47 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
     <Reference Include="WinFormAnimation, Version=1.6.0.4, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
       <HintPath>..\packages\WinFormAnimation.1.6.0.4\lib\net40\WinFormAnimation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgregadosEF.Context.cs">
+    <Compile Include="Agregados.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AgregadosEF.Context.tt</DependentUpon>
+      <DependentUpon>Agregados.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="AgregadosEF.cs">
+    <Compile Include="Agregados.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
-    <Compile Include="AgregadosEF.Designer.cs">
+    <Compile Include="Agregados.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AgregadosEF.edmx</DependentUpon>
+      <DependentUpon>Agregados.edmx</DependentUpon>
     </Compile>
     <Compile Include="CierreApertCajas.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Clientes.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="CorreoNotificaciones.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Crypto.cs" />
     <Compile Include="DetalleFacts.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Estados.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Facturas.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\Bills\FrmBillAdd.cs">
       <SubType>Form</SubType>
@@ -128,6 +277,18 @@
     </Compile>
     <Compile Include="Forms\Bills\FrmNotaCredito.Designer.cs">
       <DependentUpon>FrmNotaCredito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmPendBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmPendBill.Designer.cs">
+      <DependentUpon>FrmPendBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmPendTicketProvider.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmPendTicketProvider.Designer.cs">
+      <DependentUpon>FrmPendTicketProvider.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Bills\FrmRevBillProvider.cs">
       <SubType>Form</SubType>
@@ -195,11 +356,23 @@
     <Compile Include="Forms\Providers\FrmProvidersManage.Designer.cs">
       <DependentUpon>FrmProvidersManage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Reports\FrmCajaReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\FrmCajaReports.Designer.cs">
+      <DependentUpon>FrmCajaReports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Reports\FrmFactsReports.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Reports\FrmFactsReports.Designer.cs">
       <DependentUpon>FrmFactsReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Reports\FrmTicketsReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports\FrmTicketsReports.Designer.cs">
+      <DependentUpon>FrmTicketsReports.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Users\FrmUserManage.cs">
       <SubType>Form</SubType>
@@ -245,15 +418,45 @@
     </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Materiales.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="MetodosPagos.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Caja\FrmCajaPorFecha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Caja\FrmCajaPorFecha.Designer.cs">
+      <DependentUpon>FrmCajaPorFecha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Caja\FrmCajaPorID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Caja\FrmCajaPorID.Designer.cs">
+      <DependentUpon>FrmCajaPorID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Caja\RptCajaPorFecha.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptCajaPorFecha.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Caja\RptCajaPorID.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptCajaPorID.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterAll.Designer.cs">
+      <DependentUpon>FrmPrintFactFilterAll.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendAll.cs">
       <SubType>Form</SubType>
@@ -327,35 +530,10 @@
       <DependentUpon>RptFactsAnuladas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\RptFactsDataDetalle.cs">
+    <Compile Include="Reports\Facts\FactFiltered\RptPrintFactFilterAll.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RptFactsDataDetalle.rpt</DependentUpon>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\RptFactsDataSinDetalle.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptFactsDataSinDetalle.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\RptFactsPDF.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptFactsPDF.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\RptFactsPendDetalle.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptFactsPendDetalle.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\RptFactsPendSinDetalle.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptFactsPendSinDetalle.rpt</DependentUpon>
+      <DependentUpon>RptPrintFactFilterAll.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Facts\FactNow\FrmPrintFact.cs">
@@ -410,54 +588,102 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="SPFactGeneradaContadoIVA_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    <Compile Include="Reports\Facts\TicketFiltered\FrmTicketAnuladas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\TicketFiltered\FrmTicketAnuladas.Designer.cs">
+      <DependentUpon>FrmTicketAnuladas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\TicketFiltered\FrmTicketPendAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\TicketFiltered\FrmTicketPendAll.Designer.cs">
+      <DependentUpon>FrmTicketPendAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\TicketFiltered\FrmTicketPorFechas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\TicketFiltered\FrmTicketPorFechas.Designer.cs">
+      <DependentUpon>FrmTicketPorFechas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Facts\TicketFiltered\RptTickesPorFechas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptTickesPorFechas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\TicketFiltered\RptTicketAnuladasAll.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptTicketAnuladasAll.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Facts\TicketFiltered\RptTicketPendAll.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptTicketPendAll.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SPCierreCajaPend_Result.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPCierreCajaPorFecha_Result.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPCierreCajaPorId_Result.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactGenerada_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactPendAll_Result.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactPendDetalles_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SPFactPendSinDetalles_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactPendSinDetalle_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPFactPorRangoFechaAll_Result.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactPorRangoFechaDetalles_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactPorRangoFechaSinDetalles_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SPFactPorRangoFecha_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPFactReversadasAll_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="SPTicketGenerado_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
-    <Compile Include="SPTicketPorRangoFecha_Result.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+    <Compile Include="SPTicketPendAll_Result.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPTicketPorRangoFechaAll_Result.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPTicketReversadasAll_Result.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoClientes.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="TiposFacturas.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="TiposProveedores.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Validaciones.cs" />
     <Compile Include="Vehiculos.cs">
-      <DependentUpon>AgregadosEF.tt</DependentUpon>
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\Bills\FrmBillAdd.resx">
       <DependentUpon>FrmBillAdd.cs</DependentUpon>
@@ -467,6 +693,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmNotaCredito.resx">
       <DependentUpon>FrmNotaCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmPendBill.resx">
+      <DependentUpon>FrmPendBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmPendTicketProvider.resx">
+      <DependentUpon>FrmPendTicketProvider.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmRevBillProvider.resx">
       <DependentUpon>FrmRevBillProvider.cs</DependentUpon>
@@ -501,8 +733,14 @@
     <EmbeddedResource Include="Forms\Providers\FrmProvidersManage.resx">
       <DependentUpon>FrmProvidersManage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\FrmCajaReports.resx">
+      <DependentUpon>FrmCajaReports.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Reports\FrmFactsReports.resx">
       <DependentUpon>FrmFactsReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports\FrmTicketsReports.resx">
+      <DependentUpon>FrmTicketsReports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Users\FrmUserManage.resx">
       <DependentUpon>FrmUserManage.cs</DependentUpon>
@@ -535,8 +773,25 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\Caja\FrmCajaPorFecha.resx">
+      <DependentUpon>FrmCajaPorFecha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Caja\FrmCajaPorID.resx">
+      <DependentUpon>FrmCajaPorID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Caja\RptCajaPorFecha.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptCajaPorFecha.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Caja\RptCajaPorID.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptCajaPorID.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.resx">
       <DependentUpon>FrmPrintFactAnuladas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterAll.resx">
+      <DependentUpon>FrmPrintFactFilterAll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.resx">
       <DependentUpon>FrmPrintFactFilterDetalle.cs</DependentUpon>
@@ -577,26 +832,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptFactsAnuladas.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsDataDetalle.rpt">
+    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptPrintFactFilterAll.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptFactsDataDetalle.cs</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsDataSinDetalle.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptFactsDataSinDetalle.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsPDF.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptFactsPDF.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsPendDetalle.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptFactsPendDetalle.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactsPendSinDetalle.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptFactsPendSinDetalle.cs</LastGenOutput>
+      <LastGenOutput>RptPrintFactFilterAll.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintFact.resx">
       <DependentUpon>FrmPrintFact.cs</DependentUpon>
@@ -630,14 +868,38 @@
       <LastGenOutput>RptTicketCreated.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EntityDeploy Include="AgregadosEF.edmx">
+    <EmbeddedResource Include="Reports\Facts\TicketFiltered\FrmTicketAnuladas.resx">
+      <DependentUpon>FrmTicketAnuladas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\TicketFiltered\FrmTicketPendAll.resx">
+      <DependentUpon>FrmTicketPendAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\TicketFiltered\FrmTicketPorFechas.resx">
+      <DependentUpon>FrmTicketPorFechas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\TicketFiltered\RptTickesPorFechas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptTickesPorFechas.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\TicketFiltered\RptTicketAnuladasAll.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptTicketAnuladasAll.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Facts\TicketFiltered\RptTicketPendAll.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptTicketPendAll.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Agregados.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AgregadosEF.Designer.cs</LastGenOutput>
+      <LastGenOutput>Agregados.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AgregadosEF.edmx.diagram">
-      <DependentUpon>AgregadosEF.edmx</DependentUpon>
+    <None Include="Agregados.edmx.diagram">
+      <DependentUpon>Agregados.edmx</DependentUpon>
     </None>
+    <None Include="Agregados_TemporaryKey.pfx" />
+    <None Include="App.Config" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -649,23 +911,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AgregadosEF.Context.tt">
+    <Content Include="Agregados.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AgregadosEF.edmx</DependentUpon>
-      <LastGenOutput>AgregadosEF.Context.cs</LastGenOutput>
+      <DependentUpon>Agregados.edmx</DependentUpon>
+      <LastGenOutput>Agregados.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="AgregadosEF.tt">
+    <Content Include="Agregados.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AgregadosEF.edmx</DependentUpon>
-      <LastGenOutput>AgregadosEF.cs</LastGenOutput>
+      <DependentUpon>Agregados.edmx</DependentUpon>
+      <LastGenOutput>Agregados.cs</LastGenOutput>
     </Content>
+    <Content Include="agregadosIcon.ico" />
     <Content Include="Images\agregadoImg.ico" />
     <Content Include="Images\agregadoImg.jpg" />
     <Content Include="Images\agregados.ico" />
@@ -699,10 +959,59 @@
     <None Include="Images\IconsReports\listFacts.png" />
     <None Include="Images\IconsReports\factura.png" />
     <None Include="Images\IconsReports\reporte.png" />
+    <None Include="Images\IconsReports\cajaRegistradora.png" />
+    <None Include="Images\IconsReports\listaCierreCaja.png" />
+    <None Include="Images\Icons\BusquedaClient\lupa.png" />
+    <None Include="Images\Icons\BusquedaClient\cancelar.png" />
     <Content Include="Images\MDIPrincipal.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Images\Icons\" />
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SqlServer.SqlLocalDB.15.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2019 Express LocalDB</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

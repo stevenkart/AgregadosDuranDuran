@@ -65,7 +65,7 @@
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(819, 253);
+            this.panel1.Size = new System.Drawing.Size(819, 235);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel4
@@ -79,10 +79,10 @@
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(819, 253);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.86842F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65.13158F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(819, 235);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
             // tableLayoutPanel5
@@ -93,11 +93,11 @@
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 54);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 56);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(813, 147);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(813, 93);
             this.tableLayoutPanel5.TabIndex = 3;
             // 
             // tableLayoutPanel3
@@ -115,17 +115,17 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(380, 141);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(380, 87);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 97);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(3, 56);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(160, 16);
+            this.label6.Size = new System.Drawing.Size(180, 18);
             this.label6.TabIndex = 7;
             this.label6.Text = "Confirmar Contraseña:";
             // 
@@ -133,7 +133,7 @@
             // 
             this.txtPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPass.Location = new System.Drawing.Point(193, 95);
+            this.txtPass.Location = new System.Drawing.Point(193, 54);
             this.txtPass.MaxLength = 16;
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(184, 21);
@@ -144,7 +144,7 @@
             // 
             this.txtConfirmPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtConfirmPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirmPass.Location = new System.Drawing.Point(193, 24);
+            this.txtConfirmPass.Location = new System.Drawing.Point(193, 11);
             this.txtConfirmPass.MaxLength = 16;
             this.txtConfirmPass.Name = "txtConfirmPass";
             this.txtConfirmPass.Size = new System.Drawing.Size(184, 21);
@@ -155,18 +155,18 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 27);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 12);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(139, 16);
+            this.label5.Size = new System.Drawing.Size(152, 18);
             this.label5.TabIndex = 6;
             this.label5.Text = "Nueva Contraseña:";
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.39423F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.60577F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.40618F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.59382F));
             this.tableLayoutPanel2.Controls.Add(this.txtConfirmEmail, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.txtNewEmail, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 0);
@@ -177,17 +177,17 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(421, 141);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(421, 87);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // txtConfirmEmail
             // 
             this.txtConfirmEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtConfirmEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirmEmail.Location = new System.Drawing.Point(198, 95);
+            this.txtConfirmEmail.Location = new System.Drawing.Point(211, 54);
             this.txtConfirmEmail.MaxLength = 255;
             this.txtConfirmEmail.Name = "txtConfirmEmail";
-            this.txtConfirmEmail.Size = new System.Drawing.Size(220, 21);
+            this.txtConfirmEmail.Size = new System.Drawing.Size(207, 21);
             this.txtConfirmEmail.TabIndex = 5;
             this.txtConfirmEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConfirmEmail_KeyPress);
             // 
@@ -195,10 +195,10 @@
             // 
             this.txtNewEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNewEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewEmail.Location = new System.Drawing.Point(198, 24);
+            this.txtNewEmail.Location = new System.Drawing.Point(211, 11);
             this.txtNewEmail.MaxLength = 255;
             this.txtNewEmail.Name = "txtNewEmail";
-            this.txtNewEmail.Size = new System.Drawing.Size(220, 21);
+            this.txtNewEmail.Size = new System.Drawing.Size(207, 21);
             this.txtNewEmail.TabIndex = 4;
             this.txtNewEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNewEmail_KeyPress);
             // 
@@ -206,10 +206,10 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 27);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 16);
+            this.label3.Size = new System.Drawing.Size(119, 18);
             this.label3.TabIndex = 2;
             this.label3.Text = "Correo Nuevo:";
             // 
@@ -217,10 +217,10 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 97);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(3, 56);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(177, 16);
+            this.label4.Size = new System.Drawing.Size(199, 18);
             this.label4.TabIndex = 3;
             this.label4.Text = "Confirmar Correo Nuevo:";
             // 
@@ -230,7 +230,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 94.96982F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.030181F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 205F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
             this.tableLayoutPanel1.Controls.Add(this.txtEmailActual, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 0);
@@ -239,17 +239,18 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.71682F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(813, 45);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(813, 47);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // txtEmailActual
             // 
             this.txtEmailActual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmailActual.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.txtEmailActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmailActual.Location = new System.Drawing.Point(610, 12);
+            this.txtEmailActual.Location = new System.Drawing.Point(609, 13);
             this.txtEmailActual.Name = "txtEmailActual";
             this.txtEmailActual.ReadOnly = true;
-            this.txtEmailActual.Size = new System.Drawing.Size(200, 21);
+            this.txtEmailActual.Size = new System.Drawing.Size(201, 21);
             this.txtEmailActual.TabIndex = 1;
             // 
             // label1
@@ -257,7 +258,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 14);
+            this.label1.Location = new System.Drawing.Point(3, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(452, 16);
             this.label1.TabIndex = 0;
@@ -268,7 +269,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(495, 14);
+            this.label2.Location = new System.Drawing.Point(494, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 16);
             this.label2.TabIndex = 1;
@@ -282,39 +283,44 @@
             this.tableLayoutPanel6.Controls.Add(this.btnChange, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.btnExit, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 207);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 155);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(813, 43);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(813, 77);
             this.tableLayoutPanel6.TabIndex = 4;
             // 
             // btnChange
             // 
-            this.btnChange.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnChange.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnChange.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChange.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnChange.Image = global::Agregados.Properties.Resources.expedienteUpdate;
+            this.btnChange.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChange.ImageKey = "(none)";
             this.btnChange.Location = new System.Drawing.Point(429, 3);
             this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(381, 37);
+            this.btnChange.Size = new System.Drawing.Size(381, 71);
             this.btnChange.TabIndex = 1;
-            this.btnChange.Text = "Actualizar";
+            this.btnChange.Text = "Cambiar";
             this.btnChange.UseVisualStyleBackColor = false;
             this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
             // btnExit
             // 
-            this.btnExit.BackColor = System.Drawing.Color.Maroon;
+            this.btnExit.BackColor = System.Drawing.Color.White;
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnExit.ForeColor = System.Drawing.Color.IndianRed;
+            this.btnExit.Image = global::Agregados.Properties.Resources._return;
+            this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExit.Location = new System.Drawing.Point(3, 3);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(420, 37);
+            this.btnExit.Size = new System.Drawing.Size(420, 71);
             this.btnExit.TabIndex = 0;
             this.btnExit.Text = "Salir";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -326,13 +332,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(819, 253);
+            this.ClientSize = new System.Drawing.Size(819, 235);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(835, 292);
-            this.MinimumSize = new System.Drawing.Size(835, 292);
+            this.MinimumSize = new System.Drawing.Size(835, 0);
             this.Name = "FrmNotifications";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Correo de Notificaciones";

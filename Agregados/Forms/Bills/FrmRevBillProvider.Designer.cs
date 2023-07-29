@@ -42,15 +42,15 @@
             this.btnReversar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
+            this.CID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CConsecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CFechaFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCostoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNombreEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.CEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CNombreEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CCostoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CFechaFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CConsecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -111,7 +111,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(783, 71);
-            this.tableLayoutPanel2.TabIndex = 2;
+            this.tableLayoutPanel2.TabIndex = 1;
             // 
             // txtConsecutivo
             // 
@@ -153,7 +153,7 @@
             this.btnFiltrar.Location = new System.Drawing.Point(792, 59);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(237, 70);
-            this.btnFiltrar.TabIndex = 4;
+            this.btnFiltrar.TabIndex = 0;
             this.btnFiltrar.UseVisualStyleBackColor = false;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
@@ -180,7 +180,7 @@
             this.btnHelp.Location = new System.Drawing.Point(954, 4);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(75, 48);
-            this.btnHelp.TabIndex = 3;
+            this.btnHelp.TabIndex = 1;
             this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
@@ -210,7 +210,7 @@
             this.btnReversar.Location = new System.Drawing.Point(516, 3);
             this.btnReversar.Name = "btnReversar";
             this.btnReversar.Size = new System.Drawing.Size(507, 74);
-            this.btnReversar.TabIndex = 6;
+            this.btnReversar.TabIndex = 0;
             this.btnReversar.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnReversar.UseVisualStyleBackColor = false;
             this.btnReversar.Click += new System.EventHandler(this.btnReversar_Click);
@@ -226,7 +226,7 @@
             this.btnVolver.Location = new System.Drawing.Point(3, 3);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(507, 74);
-            this.btnVolver.TabIndex = 5;
+            this.btnVolver.TabIndex = 1;
             this.btnVolver.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnVolver.UseVisualStyleBackColor = false;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
@@ -256,6 +256,70 @@
             this.dgvFilter.TabIndex = 0;
             this.dgvFilter.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellClick);
             // 
+            // CID
+            // 
+            this.CID.DataPropertyName = "IdFactura";
+            this.CID.HeaderText = "ID Fact";
+            this.CID.Name = "CID";
+            this.CID.ReadOnly = true;
+            this.CID.Visible = false;
+            // 
+            // CConsecutivo
+            // 
+            this.CConsecutivo.DataPropertyName = "Consecutivo";
+            this.CConsecutivo.HeaderText = "Consecutivo";
+            this.CConsecutivo.MinimumWidth = 100;
+            this.CConsecutivo.Name = "CConsecutivo";
+            this.CConsecutivo.ReadOnly = true;
+            // 
+            // CFechaFactura
+            // 
+            this.CFechaFactura.DataPropertyName = "FechaFactura";
+            this.CFechaFactura.FillWeight = 150F;
+            this.CFechaFactura.HeaderText = "Fecha";
+            this.CFechaFactura.MinimumWidth = 150;
+            this.CFechaFactura.Name = "CFechaFactura";
+            this.CFechaFactura.ReadOnly = true;
+            this.CFechaFactura.Width = 150;
+            // 
+            // CCostoTotal
+            // 
+            this.CCostoTotal.DataPropertyName = "CostoTotal";
+            this.CCostoTotal.FillWeight = 150F;
+            this.CCostoTotal.HeaderText = "Costo Total";
+            this.CCostoTotal.MinimumWidth = 150;
+            this.CCostoTotal.Name = "CCostoTotal";
+            this.CCostoTotal.ReadOnly = true;
+            this.CCostoTotal.Width = 150;
+            // 
+            // CNombreEstado
+            // 
+            this.CNombreEstado.DataPropertyName = "NombreEstado";
+            this.CNombreEstado.FillWeight = 150F;
+            this.CNombreEstado.HeaderText = "Estado";
+            this.CNombreEstado.MinimumWidth = 150;
+            this.CNombreEstado.Name = "CNombreEstado";
+            this.CNombreEstado.ReadOnly = true;
+            this.CNombreEstado.Width = 150;
+            // 
+            // CCliente
+            // 
+            this.CCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CCliente.DataPropertyName = "Nombre";
+            this.CCliente.HeaderText = "Cliente";
+            this.CCliente.Name = "CCliente";
+            this.CCliente.ReadOnly = true;
+            // 
+            // CEmpleado
+            // 
+            this.CEmpleado.DataPropertyName = "NombreEmpleado";
+            this.CEmpleado.FillWeight = 250F;
+            this.CEmpleado.HeaderText = "Empleado";
+            this.CEmpleado.MinimumWidth = 250;
+            this.CEmpleado.Name = "CEmpleado";
+            this.CEmpleado.ReadOnly = true;
+            this.CEmpleado.Width = 250;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -281,70 +345,6 @@
             this.panel1.Size = new System.Drawing.Size(1032, 608);
             this.panel1.TabIndex = 1;
             // 
-            // CEmpleado
-            // 
-            this.CEmpleado.DataPropertyName = "NombreEmpleado";
-            this.CEmpleado.FillWeight = 250F;
-            this.CEmpleado.HeaderText = "Empleado";
-            this.CEmpleado.MinimumWidth = 250;
-            this.CEmpleado.Name = "CEmpleado";
-            this.CEmpleado.ReadOnly = true;
-            this.CEmpleado.Width = 250;
-            // 
-            // CCliente
-            // 
-            this.CCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CCliente.DataPropertyName = "Nombre";
-            this.CCliente.HeaderText = "Cliente";
-            this.CCliente.Name = "CCliente";
-            this.CCliente.ReadOnly = true;
-            // 
-            // CNombreEstado
-            // 
-            this.CNombreEstado.DataPropertyName = "NombreEstado";
-            this.CNombreEstado.FillWeight = 150F;
-            this.CNombreEstado.HeaderText = "Estado";
-            this.CNombreEstado.MinimumWidth = 150;
-            this.CNombreEstado.Name = "CNombreEstado";
-            this.CNombreEstado.ReadOnly = true;
-            this.CNombreEstado.Width = 150;
-            // 
-            // CCostoTotal
-            // 
-            this.CCostoTotal.DataPropertyName = "CostoTotal";
-            this.CCostoTotal.FillWeight = 150F;
-            this.CCostoTotal.HeaderText = "Costo Total";
-            this.CCostoTotal.MinimumWidth = 150;
-            this.CCostoTotal.Name = "CCostoTotal";
-            this.CCostoTotal.ReadOnly = true;
-            this.CCostoTotal.Width = 150;
-            // 
-            // CFechaFactura
-            // 
-            this.CFechaFactura.DataPropertyName = "FechaFactura";
-            this.CFechaFactura.FillWeight = 150F;
-            this.CFechaFactura.HeaderText = "Fecha";
-            this.CFechaFactura.MinimumWidth = 150;
-            this.CFechaFactura.Name = "CFechaFactura";
-            this.CFechaFactura.ReadOnly = true;
-            this.CFechaFactura.Width = 150;
-            // 
-            // CConsecutivo
-            // 
-            this.CConsecutivo.DataPropertyName = "Consecutivo";
-            this.CConsecutivo.HeaderText = "Consecutivo";
-            this.CConsecutivo.MinimumWidth = 100;
-            this.CConsecutivo.Name = "CConsecutivo";
-            this.CConsecutivo.ReadOnly = true;
-            // 
-            // CID
-            // 
-            this.CID.DataPropertyName = "IdFactura";
-            this.CID.HeaderText = "ID Fact";
-            this.CID.Name = "CID";
-            this.CID.ReadOnly = true;
-            this.CID.Visible = false;
-            // 
             // FrmRevBillProvider
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,7 +355,7 @@
             this.MinimumSize = new System.Drawing.Size(1048, 647);
             this.Name = "FrmRevBillProvider";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmRevBillProvider";
+            this.Text = "Reversión de Compras";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmRevBillProvider_FormClosing);
             this.Load += new System.EventHandler(this.FrmRevBillProvider_Load);
             this.tableLayoutPanel2.ResumeLayout(false);

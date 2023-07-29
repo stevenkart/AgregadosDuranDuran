@@ -103,10 +103,12 @@ namespace Agregados.Forms.Bills
                 cierreApertCajas = null;
                 return apertura;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
+
         }
 
 
@@ -498,14 +500,14 @@ namespace Agregados.Forms.Bills
                 if (string.IsNullOrEmpty(txtNumProve.Text.Trim()) ||
                     Convert.ToInt32(txtNumProve.Text.Trim()) <= 0)
                 {
-                    MessageBox.Show("Cliente es requerido, favor seleccionar un cliente de la lista, presionando la lupa de busqueda de clientes.",
+                    MessageBox.Show("Proveedor es requerido, favor seleccionar un Proveedor de la lista, presionando la lupa de búsqueda de Proveedores.",
                         "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNumProve.Focus();
                     return false;
                 }
                 if (txtTransporte.Value < 0)
                 {
-                    MessageBox.Show("Costo Transporte debe ser igual a 0 o mayor", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Costo Transporte (Combustible) debe ser igual a 0 o mayor", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtTransporte.Focus();
                     return false;
                 }
@@ -532,7 +534,7 @@ namespace Agregados.Forms.Bills
                 }
                 if (CboxTypeBill.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Tipo de Factura debe ser ingresado, selecciona contado o a crédito", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Tipo de Factura Compra debe ser ingresado, selecciona contado o a crédito", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CboxTypeBill.Focus();
                     return false;
                 }
@@ -594,8 +596,9 @@ namespace Agregados.Forms.Bills
                 factura = null;
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
@@ -627,143 +630,29 @@ namespace Agregados.Forms.Bills
         {
             if (ValidarCamposRequeridos())
             {
-                if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 1) //contado
+                if (DtListaProvedor.Rows.Count > 0)
                 {
-                    try
+                    if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 1) //contado
                     {
-                        int result = MaxIdConsecutivo();
+                        try
+                        {
+                            int result = MaxIdConsecutivo();
 
-                        int consecutivo = 0;
-                        if (result == 0)
-                        {
-                            consecutivo = 1;
-                        }
-                        else
-                        {
-                            consecutivo = (result + 1);
-                        }
-
-                        DialogResult respuesta = MessageBox.Show("¿Deseas generar el ticket de compra de contado?",
-                                               "Registro Factura de Compra", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (respuesta == DialogResult.Yes)
-                        {
-                            if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 1) // metodo efectivo   //TODO validar datos para el cierre de caja
+                            int consecutivo = 0;
+                            if (result == 0)
                             {
-                                using (FrmLoading frmLoading = new FrmLoading(Wait))
-                                {
-                                    try
-                                    {
-                                        factura = new Facturas
-                                        {
-                                            Consecutivo = consecutivo,
-                                            CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
-                                            Subtotal = SubTotal,
-                                            IVA = TasaImpuesto,
-                                            CostoTotal = Total,
-
-                                            FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                            MontoPendiente = null,
-                                            FechaLimiteP = null,
-                                            ReferenciaPago = txtReferencia.Text.Trim(),
-
-                                            IdUsuario = Globals.MyGlobalUser.IdUsuario,
-                                            IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
-                                            IdEstado = 4,
-                                            IdCliente = null,
-                                            IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
-                                            IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                            IdCierreApert = apertura.IdCierreApert,
-                                        };
-
-                                        DB.Facturas.Add(factura);
-
-                                        if (DB.SaveChanges() > 0)
-                                        {
-
-                                            int IdFact = DB.Facturas.Where((x) => x.IdProveedor == factura.IdProveedor).Select((x) => x.IdFactura).Max();
-
-                                            foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
-                                            {
-                                                detalleFact = new DetalleFacts
-                                                {
-                                                    Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
-                                                    Precio = Convert.ToDecimal(Row["Precio"]),
-                                                    Subtotal = Convert.ToDecimal(Row["Subtotal"]),
-                                                    IVA = Convert.ToDecimal(Row["IVA"]),
-                                                    Total = Convert.ToDecimal(Row["PrecioFinal"]),
-                                                    IdFactura = IdFact,
-                                                    IdMaterial = Convert.ToInt32(Row["IdMaterial"])
-                                                };
-
-                                                DB.DetalleFacts.Add(detalleFact);
-                                                if (DB.SaveChanges() > 0)
-                                                {
-                                                    int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
-                                                    materiales = DB.Materiales.Find(IdMaterial);
-                                                    materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
-                                                    //actualiza el estado
-                                                    if (materiales.CantidadMaterial > (materiales.Minimos + 2))
-                                                    {
-                                                        materiales.IdEstado = 11;
-                                                    }
-                                                    else
-                                                    {
-                                                        if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
-                                                        {
-                                                            materiales.IdEstado = 10;
-                                                        }
-                                                        else
-                                                        {
-                                                            materiales.IdEstado = 9;
-                                                        }
-                                                    }
-
-
-                                                    DB.Entry(materiales).State = EntityState.Modified;
-
-                                                    if (DB.SaveChanges() > 0)
-                                                    {
-                                                        detalleFact = null;
-                                                    }
-                                                }
-                                            }
-
-                                            apertura.MontoEfectivoFinal -= Total;
-                                            
-                                            DB.Entry(apertura).State = EntityState.Modified;
-                                            if (DB.SaveChanges() <= 0)
-                                            {
-                                                MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
-                                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                            }
-
-                                            
-                                            MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            
-                                            using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
-                                            {
-                                                frm.ShowDialog();
-                                            };
-                                            
-                                            factura = null;
-                                            limpiar();
-
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("Factura de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                            factura = null;
-                                        }
-                                    }
-                                    catch (Exception)
-                                    {
-                                        throw;
-                                    }
-                                }
+                                consecutivo = 1;
                             }
                             else
                             {
-                                if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 2) // metodo transferencia sinpe
+                                consecutivo = (result + 1);
+                            }
+
+                            DialogResult respuesta = MessageBox.Show("¿Deseas generar el ticket de compra de contado?",
+                                                   "Registro Factura de Compra", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (respuesta == DialogResult.Yes)
+                            {
+                                if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 1) // metodo efectivo   //TODO validar datos para el cierre de caja
                                 {
                                     using (FrmLoading frmLoading = new FrmLoading(Wait))
                                     {
@@ -844,19 +733,23 @@ namespace Agregados.Forms.Bills
                                                     }
                                                 }
 
-                                                apertura.MontoCompraTransf += Total;
-
+                                                apertura.MontoEfectivoFinal -= Total;
+                                                apertura.MontoCompraEfectivo += Total;
                                                 DB.Entry(apertura).State = EntityState.Modified;
                                                 if (DB.SaveChanges() <= 0)
                                                 {
                                                     MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
                                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                 }
+
+
                                                 MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                                                 using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                                 {
                                                     frm.ShowDialog();
                                                 };
+
                                                 factura = null;
                                                 limpiar();
 
@@ -867,15 +760,16 @@ namespace Agregados.Forms.Bills
                                                 factura = null;
                                             }
                                         }
-                                        catch (Exception)
+                                        catch (Exception ex)
                                         {
+                                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             throw;
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 3) // metodo sinpe movil
+                                    if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 2) // metodo transferencia sinpe
                                     {
                                         using (FrmLoading frmLoading = new FrmLoading(Wait))
                                         {
@@ -955,7 +849,8 @@ namespace Agregados.Forms.Bills
                                                             }
                                                         }
                                                     }
-                                                    apertura.MontoCompraSinpe += Total;
+
+                                                    apertura.MontoCompraTransf += Total;
 
                                                     DB.Entry(apertura).State = EntityState.Modified;
                                                     if (DB.SaveChanges() <= 0)
@@ -963,8 +858,7 @@ namespace Agregados.Forms.Bills
                                                         MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
                                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                     }
-
-                                                    MessageBox.Show("Ticket de Compra agregada correctamente!", "Registro de Ticket Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                     using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                                     {
                                                         frm.ShowDialog();
@@ -975,182 +869,303 @@ namespace Agregados.Forms.Bills
                                                 }
                                                 else
                                                 {
-                                                    MessageBox.Show("Ticket de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    MessageBox.Show("Factura de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                     factura = null;
                                                 }
                                             }
-                                            catch (Exception)
+                                            catch (Exception ex)
                                             {
+                                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                 throw;
                                             }
                                         }
                                     }
                                     else
                                     {
-                                        if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 4) // metodo cheque
+                                        if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 3) // metodo sinpe movil
                                         {
-                                            MessageBox.Show("Factura no se puede realizar con el metodo de pago indicado," +
-                                                " por favor valide que sea en efectivo, transferencia, o sinpe móvil",
-                                                "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            using (FrmLoading frmLoading = new FrmLoading(Wait))
+                                            {
+                                                try
+                                                {
+                                                    factura = new Facturas
+                                                    {
+                                                        Consecutivo = consecutivo,
+                                                        CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
+                                                        Subtotal = SubTotal,
+                                                        IVA = TasaImpuesto,
+                                                        CostoTotal = Total,
+
+                                                        FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
+                                                        MontoPendiente = null,
+                                                        FechaLimiteP = null,
+                                                        ReferenciaPago = txtReferencia.Text.Trim(),
+
+                                                        IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                                        IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
+                                                        IdEstado = 4,
+                                                        IdCliente = null,
+                                                        IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
+                                                        IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
+                                                        IdCierreApert = apertura.IdCierreApert,
+                                                    };
+
+                                                    DB.Facturas.Add(factura);
+
+                                                    if (DB.SaveChanges() > 0)
+                                                    {
+
+                                                        int IdFact = DB.Facturas.Where((x) => x.IdProveedor == factura.IdProveedor).Select((x) => x.IdFactura).Max();
+
+                                                        foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
+                                                        {
+                                                            detalleFact = new DetalleFacts
+                                                            {
+                                                                Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
+                                                                Precio = Convert.ToDecimal(Row["Precio"]),
+                                                                Subtotal = Convert.ToDecimal(Row["Subtotal"]),
+                                                                IVA = Convert.ToDecimal(Row["IVA"]),
+                                                                Total = Convert.ToDecimal(Row["PrecioFinal"]),
+                                                                IdFactura = IdFact,
+                                                                IdMaterial = Convert.ToInt32(Row["IdMaterial"])
+                                                            };
+
+                                                            DB.DetalleFacts.Add(detalleFact);
+                                                            if (DB.SaveChanges() > 0)
+                                                            {
+                                                                int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
+                                                                materiales = DB.Materiales.Find(IdMaterial);
+                                                                materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
+                                                                //actualiza el estado
+                                                                if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                                {
+                                                                    materiales.IdEstado = 11;
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
+                                                                    {
+                                                                        materiales.IdEstado = 10;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        materiales.IdEstado = 9;
+                                                                    }
+                                                                }
+
+
+                                                                DB.Entry(materiales).State = EntityState.Modified;
+
+                                                                if (DB.SaveChanges() > 0)
+                                                                {
+                                                                    detalleFact = null;
+                                                                }
+                                                            }
+                                                        }
+                                                        apertura.MontoCompraSinpe += Total;
+
+                                                        DB.Entry(apertura).State = EntityState.Modified;
+                                                        if (DB.SaveChanges() <= 0)
+                                                        {
+                                                            MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                        }
+
+                                                        MessageBox.Show("Ticket de Compra agregada correctamente!", "Registro de Ticket Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                        using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
+                                                        {
+                                                            frm.ShowDialog();
+                                                        };
+                                                        factura = null;
+                                                        limpiar();
+
+                                                    }
+                                                    else
+                                                    {
+                                                        MessageBox.Show("Ticket de Compra no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                        factura = null;
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    throw;
+                                                }
+                                            }
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Factura no se puede realizar con el metodo de pago indicado," +
-                                                " por favor valide que sea en efectivo, transferencia, o sinpe móvil",
-                                                "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 4) // metodo cheque
+                                            {
+                                                MessageBox.Show("Factura no se puede realizar con el metodo de pago indicado," +
+                                                    " por favor valide que sea en efectivo, transferencia, o sinpe móvil",
+                                                    "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Factura no se puede realizar con el metodo de pago indicado," +
+                                                    " por favor valide que sea en efectivo, transferencia, o sinpe móvil",
+                                                    "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            throw;
+                        }
                     }
-                    catch (NullReferenceException)
+                    else
                     {
+                        if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 2) // credito => metodo pago pendiente (credito)
+                        {
+                            if (ValidarFechaLimite())
+                            {
+                                try
+                                {
+                                    int result = MaxIdConsecutivo();
 
-                        throw;
+                                    int consecutivo = 0;
+                                    if (result == 0)
+                                    {
+                                        consecutivo = 1;
+                                    }
+                                    else
+                                    {
+                                        consecutivo = (result + 1);
+                                    }
+
+                                    DialogResult respuesta = MessageBox.Show("¿Deseas generar el ticket de compra a Crédito?",
+                                                   "Registro Factura de Compra", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (respuesta == DialogResult.Yes)
+                                    {
+                                        using (FrmLoading frmLoading = new FrmLoading(Wait))
+                                        {
+                                            try
+                                            {
+                                                factura = new Facturas
+                                                {
+                                                    Consecutivo = consecutivo,
+                                                    CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
+                                                    Subtotal = SubTotal,
+                                                    IVA = TasaImpuesto,
+                                                    CostoTotal = Total,
+
+                                                    FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
+                                                    MontoPendiente = Total,
+                                                    FechaLimiteP = Convert.ToDateTime(dateFinal.Value),
+                                                    ReferenciaPago = txtReferencia.Text.Trim(),
+
+                                                    IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                                    IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
+                                                    IdEstado = 3,
+                                                    IdCliente = null,
+                                                    IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
+                                                    IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
+                                                    IdCierreApert = apertura.IdCierreApert,
+                                                };
+
+                                                DB.Facturas.Add(factura);
+
+                                                if (DB.SaveChanges() > 0)
+                                                {
+
+                                                    int IdFact = DB.Facturas.Where((x) => x.IdProveedor == factura.IdProveedor).Select((x) => x.IdFactura).Max();
+
+                                                    foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
+                                                    {
+                                                        detalleFact = new DetalleFacts
+                                                        {
+                                                            Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
+                                                            Precio = Convert.ToDecimal(Row["Precio"]),
+                                                            Subtotal = Convert.ToDecimal(Row["Subtotal"]),
+                                                            IVA = Convert.ToDecimal(Row["IVA"]),
+                                                            Total = Convert.ToDecimal(Row["PrecioFinal"]),
+                                                            IdFactura = IdFact,
+                                                            IdMaterial = Convert.ToInt32(Row["IdMaterial"])
+                                                        };
+
+                                                        DB.DetalleFacts.Add(detalleFact);
+                                                        if (DB.SaveChanges() > 0)
+                                                        {
+                                                            int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
+                                                            materiales = DB.Materiales.Find(IdMaterial);
+                                                            materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
+
+                                                            if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                            {
+                                                                materiales.IdEstado = 11;
+                                                            }
+                                                            else
+                                                            {
+                                                                if ((materiales.Minimos + 2) > materiales.CantidadMaterial && materiales.CantidadMaterial > 0)
+                                                                {
+                                                                    materiales.IdEstado = 10;
+                                                                }
+                                                                else
+                                                                {
+                                                                    materiales.IdEstado = 9;
+                                                                }
+                                                            }
+
+                                                            DB.Entry(materiales).State = EntityState.Modified;
+
+                                                            if (DB.SaveChanges() > 0)
+                                                            {
+                                                                detalleFact = null;
+                                                            }
+                                                        }
+                                                    }
+                                                    apertura.MontoCompraCredito += Total;
+
+                                                    DB.Entry(apertura).State = EntityState.Modified;
+                                                    if (DB.SaveChanges() <= 0)
+                                                    {
+                                                        MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
+                                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    }
+                                                    limpiar();
+                                                    MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura de Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
+                                                    {
+                                                        frm.ShowDialog();
+                                                    };
+                                                    factura = null;
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Factura no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    factura = null;
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                throw;
+                                            }
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    throw;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se selecciono una fecha mayor al 2 días del actual, favor validar.", "Error Factura de Compra a Crédito.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                     }
                 }
                 else
                 {
-                    if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 2) // credito => metodo pago pendiente (credito)
-                    {
-                        if (ValidarFechaLimite())
-                        {
-                            try
-                            {
-                                int result = MaxIdConsecutivo();
-
-                                int consecutivo = 0;
-                                if (result == 0)
-                                {
-                                    consecutivo = 1;
-                                }
-                                else
-                                {
-                                    consecutivo = (result + 1);
-                                }
-
-                                DialogResult respuesta = MessageBox.Show("¿Deseas generar el ticket de compra a Crédito?",
-                                               "Registro Factura de Compra", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (respuesta == DialogResult.Yes)
-                                {
-                                    using (FrmLoading frmLoading = new FrmLoading(Wait))
-                                    {
-                                        try
-                                        {
-                                            factura = new Facturas
-                                            {
-                                                Consecutivo = consecutivo,
-                                                CostoTransporte = Convert.ToDecimal(txtTransporte.Value),
-                                                Subtotal = SubTotal,
-                                                IVA = TasaImpuesto,
-                                                CostoTotal = Total,
-
-                                                FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                MontoPendiente = Total,
-                                                FechaLimiteP = Convert.ToDateTime(dateFinal.Value),
-                                                ReferenciaPago = txtReferencia.Text.Trim(),
-
-                                                IdUsuario = Globals.MyGlobalUser.IdUsuario,
-                                                IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
-                                                IdEstado = 3,
-                                                IdCliente = null,
-                                                IdProveedor = Convert.ToInt32(txtNumProve.Text.Trim()),
-                                                IdTipoPago = Convert.ToInt32(CboxMetodoPago.SelectedValue),
-                                                IdCierreApert = apertura.IdCierreApert,
-                                            };
-
-                                            DB.Facturas.Add(factura);
-
-                                            if (DB.SaveChanges() > 0)
-                                            {
-
-                                                int IdFact = DB.Facturas.Where((x) => x.IdProveedor == factura.IdProveedor).Select((x) => x.IdFactura).Max();
-
-                                                foreach (DataRow Row in Globals.MifrmBillProviderAdd.DtListaProvedor.Rows)
-                                                {
-                                                    detalleFact = new DetalleFacts
-                                                    {
-                                                        Cantidad = Convert.ToDecimal(Row["CantidadMaterial"]),
-                                                        Precio = Convert.ToDecimal(Row["Precio"]),
-                                                        Subtotal = Convert.ToDecimal(Row["Subtotal"]),
-                                                        IVA = Convert.ToDecimal(Row["IVA"]),
-                                                        Total = Convert.ToDecimal(Row["PrecioFinal"]),
-                                                        IdFactura = IdFact,
-                                                        IdMaterial = Convert.ToInt32(Row["IdMaterial"])
-                                                    };
-
-                                                    DB.DetalleFacts.Add(detalleFact);
-                                                    if (DB.SaveChanges() > 0)
-                                                    {
-                                                        int IdMaterial = Convert.ToInt32(Row["IdMaterial"]);
-                                                        materiales = DB.Materiales.Find(IdMaterial);
-                                                        materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
-
-                                                        if (materiales.CantidadMaterial > (materiales.Minimos + 2))
-                                                        {
-                                                            materiales.IdEstado = 11;
-                                                        }
-                                                        else
-                                                        {
-                                                            if ((materiales.Minimos + 2) > materiales.CantidadMaterial && materiales.CantidadMaterial > 0)
-                                                            {
-                                                                materiales.IdEstado = 10;
-                                                            }
-                                                            else
-                                                            {
-                                                                materiales.IdEstado = 9;
-                                                            }
-                                                        }
-
-                                                        DB.Entry(materiales).State = EntityState.Modified;
-
-                                                        if (DB.SaveChanges() > 0)
-                                                        {
-                                                            detalleFact = null;
-                                                        }
-                                                    }
-                                                }
-                                                apertura.MontoCompraCredito += Total;
-
-                                                DB.Entry(apertura).State = EntityState.Modified;
-                                                if (DB.SaveChanges() <= 0)
-                                                {
-                                                    MessageBox.Show("Error inesperado, no se pudo actualizar la información de caja", "Error Sistema Caja",
-                                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                }
-                                                limpiar();
-                                                MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura de Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
-                                                {
-                                                    frm.ShowDialog();
-                                                };
-                                                factura = null;
-                                            }
-                                            else
-                                            {
-                                                MessageBox.Show("Factura no se pudo procesar.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                factura = null;
-                                            }
-                                        }
-                                        catch (Exception)
-                                        {
-                                            throw;
-                                        }
-                                    }
-                                }
-                            }
-                            catch (NullReferenceException)
-                            {
-
-                                throw;
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se selecciono una fecha mayor al 2 días del actual, favor validar.", "Error Factura de Compra a Crédito.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    MessageBox.Show("No has seleccionado un material, para poder emitir ticket de compra debes de seleccionar un material.",
+                                               "Registro Factura de Compra", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

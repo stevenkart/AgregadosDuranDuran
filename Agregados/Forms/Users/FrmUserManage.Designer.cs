@@ -38,7 +38,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtEmployer = new System.Windows.Forms.TextBox();
             this.txtIdent = new System.Windows.Forms.TextBox();
@@ -76,6 +75,7 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.SeePass = new System.Windows.Forms.PictureBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.imgAdd = new System.Windows.Forms.PictureBox();
             this.imgUpdate = new System.Windows.Forms.PictureBox();
@@ -197,19 +197,8 @@
             this.txtUsername.MaxLength = 15;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(357, 26);
-            this.txtUsername.TabIndex = 1;
+            this.txtUsername.TabIndex = 0;
             this.txtUsername.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsername_KeyPress);
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(3, 20);
-            this.txtPassword.MaxLength = 16;
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(293, 26);
-            this.txtPassword.TabIndex = 0;
-            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtEmail
             // 
@@ -219,7 +208,7 @@
             this.txtEmail.MaxLength = 255;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(357, 26);
-            this.txtEmail.TabIndex = 5;
+            this.txtEmail.TabIndex = 1;
             this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmail_KeyPress);
             // 
             // txtEmployer
@@ -230,7 +219,7 @@
             this.txtEmployer.MaxLength = 255;
             this.txtEmployer.Name = "txtEmployer";
             this.txtEmployer.Size = new System.Drawing.Size(357, 26);
-            this.txtEmployer.TabIndex = 7;
+            this.txtEmployer.TabIndex = 2;
             // 
             // txtIdent
             // 
@@ -240,7 +229,7 @@
             this.txtIdent.MaxLength = 255;
             this.txtIdent.Name = "txtIdent";
             this.txtIdent.Size = new System.Drawing.Size(357, 26);
-            this.txtIdent.TabIndex = 9;
+            this.txtIdent.TabIndex = 3;
             // 
             // dgvUsers
             // 
@@ -303,14 +292,13 @@
             // 
             // CNombreEmpleado
             // 
-            this.CNombreEmpleado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CNombreEmpleado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CNombreEmpleado.DataPropertyName = "NombreEmpleado";
             this.CNombreEmpleado.FillWeight = 180F;
             this.CNombreEmpleado.HeaderText = "Empleado";
             this.CNombreEmpleado.MinimumWidth = 150;
             this.CNombreEmpleado.Name = "CNombreEmpleado";
             this.CNombreEmpleado.ReadOnly = true;
-            this.CNombreEmpleado.Width = 150;
             // 
             // CIdentificacion
             // 
@@ -361,7 +349,7 @@
             this.CboxStates.Location = new System.Drawing.Point(146, 455);
             this.CboxStates.Name = "CboxStates";
             this.CboxStates.Size = new System.Drawing.Size(357, 28);
-            this.CboxStates.TabIndex = 13;
+            this.CboxStates.TabIndex = 5;
             // 
             // CboxUserType
             // 
@@ -372,7 +360,7 @@
             this.CboxUserType.Location = new System.Drawing.Point(146, 382);
             this.CboxUserType.Name = "CboxUserType";
             this.CboxUserType.Size = new System.Drawing.Size(357, 28);
-            this.CboxUserType.TabIndex = 11;
+            this.CboxUserType.TabIndex = 4;
             // 
             // panel1
             // 
@@ -401,7 +389,7 @@
             this.tableLayoutPanel8.ColumnCount = 3;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.88469F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 201F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 205F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.checkBox1, 2, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -431,10 +419,10 @@
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(1103, 4);
+            this.checkBox1.Location = new System.Drawing.Point(1099, 4);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(196, 28);
-            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Size = new System.Drawing.Size(200, 28);
+            this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Usuarios Activos";
             this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -549,7 +537,7 @@
             this.txtIdUserSearch.MaxLength = 10;
             this.txtIdUserSearch.Name = "txtIdUserSearch";
             this.txtIdUserSearch.Size = new System.Drawing.Size(149, 26);
-            this.txtIdUserSearch.TabIndex = 1;
+            this.txtIdUserSearch.TabIndex = 0;
             this.txtIdUserSearch.TextChanged += new System.EventHandler(this.txtIdUserSearch_TextChanged);
             this.txtIdUserSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdUserSearch_KeyPress);
             // 
@@ -561,7 +549,7 @@
             this.txtNameUserSearch.MaxLength = 255;
             this.txtNameUserSearch.Name = "txtNameUserSearch";
             this.txtNameUserSearch.Size = new System.Drawing.Size(235, 26);
-            this.txtNameUserSearch.TabIndex = 3;
+            this.txtNameUserSearch.TabIndex = 1;
             this.txtNameUserSearch.TextChanged += new System.EventHandler(this.txtNameUserSearch_TextChanged);
             this.txtNameUserSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNameUserSearch_KeyPress);
             // 
@@ -573,7 +561,7 @@
             this.txtIdentUserSearch.MaxLength = 255;
             this.txtIdentUserSearch.Name = "txtIdentUserSearch";
             this.txtIdentUserSearch.Size = new System.Drawing.Size(225, 26);
-            this.txtIdentUserSearch.TabIndex = 5;
+            this.txtIdentUserSearch.TabIndex = 2;
             this.txtIdentUserSearch.TextChanged += new System.EventHandler(this.txtIdentUserSearch_TextChanged);
             // 
             // label11
@@ -699,6 +687,17 @@
             this.SeePass.TabIndex = 8;
             this.SeePass.TabStop = false;
             this.SeePass.Click += new System.EventHandler(this.SeePass_Click);
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(3, 22);
+            this.txtPassword.MaxLength = 16;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(293, 22);
+            this.txtPassword.TabIndex = 0;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // tableLayoutPanel7
             // 
@@ -843,7 +842,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtEmployer;
         private System.Windows.Forms.TextBox txtIdent;
@@ -879,6 +877,7 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.PictureBox SeePass;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridViewTextBoxColumn CidUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn CNombreUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn CNombreEmpleado;
@@ -886,7 +885,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CCorreo;
         private System.Windows.Forms.DataGridViewTextBoxColumn CTipoUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdEstado;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtPassword;
     }
 }
 
