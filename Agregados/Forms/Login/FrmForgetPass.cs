@@ -99,7 +99,7 @@ namespace Agregados.Forms.Login
                                         + Environment.NewLine 
                                         + "Saludos Cordiales,"
                                         + Environment.NewLine
-                                        + "Agregados y Materiales Durán & Durán.")) //sentto quemado //TODO cambiar a que obtenga el correo del usuario
+                                        + "Agregados y Materiales Durán & Durán."))
                                     {
                                         MessageBox.Show("Por favor ingrese el pin, que fue enviado a su correo electrónico para continuar.",
                                             "Recuperación de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -238,7 +238,15 @@ namespace Agregados.Forms.Login
                                 {
                                     email = context.CorreoNotificaciones.FirstOrDefault();
                                     if (email.SendEmail(usuario.Correo, "Cambio de contraseña",
-                                        "Haz Cambiado la contraseña correctamente. Por favor intenta ingresar. ")) //sentto quemado //TODO cambiar a que obtenga el correo del usuario
+                                        "Haz Cambiado la contraseña correctamente. Por favor intenta ingresar."
+                                        + Environment.NewLine
+                                        + "En caso de alguna duda, no dudes en contactar al administrador."
+                                        + Environment.NewLine
+                                        + Environment.NewLine
+                                        + "Saludos Cordiales,"
+                                        + Environment.NewLine
+                                        + "Agregados y Materiales Durán & Durán."
+                                        ))
                                     {
                                         MessageBox.Show("Cambio de Contraseña correcto",
                                             "Recuperación de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -194,31 +194,31 @@ namespace Agregados.Forms.Materials
 
                 if (string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
-                    MessageBox.Show("Nombre de Material es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Nombre de Material es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtName.Focus();
                     return false;
                 }
                 if (string.IsNullOrEmpty(txtCantidad.Text.Trim()))
                 {
-                    MessageBox.Show("Cantidad de Material es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Cantidad de Material es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtCantidad.Focus();
                     return false;
                 }
                 if (string.IsNullOrEmpty(txtMinimos.Text.Trim()))
                 {
-                    MessageBox.Show("Cantidad de Mínimos es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Cantidad de Mínimos es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtMinimos.Focus();
                     return false;
                 }
                 if (string.IsNullOrEmpty(txtPrecio.Text.Trim()))
                 {
-                    MessageBox.Show("Precio de Material es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Precio de Material es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtPrecio.Focus();
                     return false;
                 }
                 if (CboxStates.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Debe Seleccionar un estado del Material", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe Seleccionar un estado del Material", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CboxStates.Focus();
                     return false;
                 }
@@ -440,7 +440,7 @@ namespace Agregados.Forms.Materials
                 {
                     DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el Material " + $"{txtName.Text.Trim()} ?" +
                     Environment.NewLine + "Si lo eliminas, no prodras recuperar nuevamente sus datos...",
-                    "Registro de Materiales", MessageBoxButtons.YesNo);
+                    "Registro de Materiales", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (respuesta == DialogResult.Yes)
                     {
                         using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -449,7 +449,7 @@ namespace Agregados.Forms.Materials
                             {
                                 if (material == null)
                                 {
-                                    MessageBox.Show("Material No existe, o no ha sido seleccionado de la lista", "Error Registro de Materiales", MessageBoxButtons.OK);
+                                    MessageBox.Show("Material No existe, o no ha sido seleccionado de la lista", "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 else
                                 {
@@ -470,13 +470,13 @@ namespace Agregados.Forms.Materials
                                         {
                                             CheckChange();
                                             limpiarBusqueda();
-                                            MessageBox.Show("Material Eliminado Correctamente!", "Registro de Materiales", MessageBoxButtons.OK);
+                                            MessageBox.Show("Material Eliminado Correctamente!", "Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             material = null;
                                         }
                                         else
                                         {
                                             MessageBox.Show("Material No fue Eliminado, por favor valide ya que hay facturas que pertenecen a dicho registro",
-                                                "Error Registro de Materiales", MessageBoxButtons.OK);
+                                                "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             material = null;
                                         }
                                     }
@@ -503,7 +503,7 @@ namespace Agregados.Forms.Materials
             if (ValidarCamposRequeridos())
             {
                 DialogResult respuesta = MessageBox.Show("¿Deseas Modificar el Material " + $"{material.NombreMaterial}" + $" por el {txtName.Text.Trim()}?",
-                                    "Registro de Materiales", MessageBoxButtons.YesNo);
+                                    "Registro de Materiales", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)
                 {
                     using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -525,12 +525,12 @@ namespace Agregados.Forms.Materials
                                 CheckChange();
                                 limpiar();
                                 limpiarBusqueda();
-                                MessageBox.Show("Material modificado correctamente!", "Registro de Materiales", MessageBoxButtons.OK);
+                                MessageBox.Show("Material modificado correctamente!", "Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 material = null;
                             }
                             else
                             {
-                                MessageBox.Show("Material No fue modificado", "Error Registro de Materiales", MessageBoxButtons.OK);
+                                MessageBox.Show("Material No fue modificado", "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 material = null;
                             }
 
@@ -551,7 +551,7 @@ namespace Agregados.Forms.Materials
             if (ValidarCamposRequeridos())
             {
                 DialogResult respuesta = MessageBox.Show("¿Deseas agregar el Material " + $"{txtName.Text.Trim()} ?",
-                                    "Registro de Materiales", MessageBoxButtons.YesNo);
+                                    "Registro de Materiales", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)
                 {
                     using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -574,12 +574,12 @@ namespace Agregados.Forms.Materials
                                 CheckChange();
                                 limpiar();
                                 limpiarBusqueda();
-                                MessageBox.Show("Material agregado correctamente!", "Registro de Materiales", MessageBoxButtons.OK);
+                                MessageBox.Show("Material agregado correctamente!", "Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 material = null;
                             }
                             else
                             {
-                                MessageBox.Show("Material No fue agregado", "Error Registro de Materiales", MessageBoxButtons.OK);
+                                MessageBox.Show("Material No fue agregado", "Error Registro de Materiales", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 material = null;
                             }
 

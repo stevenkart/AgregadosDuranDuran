@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,10 +24,12 @@ namespace Agregados.Forms.Help
             try
             {
                 //pdfDocument.src = "C:\\Users\\steve\\source\\repos\\Agregados\\Agregados\\Forms\\Help\\report 1.pdf";
-                string path = Application.StartupPath;
-                path += @"\";
-                string path2 = System.Configuration.ConfigurationManager.AppSettings["AppManual"];
-                pdfDocument.src = path + path2;
+                //string path = Application.StartupPath;
+                string path = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["AppManual"]);
+
+                //string path2 = System.Configuration.ConfigurationManager.AppSettings["AppManual"];
+                //MessageBox.Show(path);
+                pdfDocument.src = path;
             }
             catch (Exception ex)
             {

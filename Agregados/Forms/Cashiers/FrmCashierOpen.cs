@@ -131,7 +131,7 @@ namespace Agregados.Forms.Cashiers
                             $"Faltante: ¢ {Faltante} ." + Environment.NewLine +
                             $"Sobrante: ¢ {Sobrante} ." + Environment.NewLine +
                             "¿Deseas continuar y abrir caja con la diferencia?"
-                            , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                            , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (pregunta == DialogResult.Yes)
                         {

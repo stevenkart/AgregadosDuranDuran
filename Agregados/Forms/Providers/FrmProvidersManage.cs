@@ -252,25 +252,25 @@ namespace Agregados.Forms.Providers
 
                 if (string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
-                    MessageBox.Show("Nombre de Proveedor es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Nombre de Proveedor es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtName.Focus();
                     return false;
                 }
                 if (string.IsNullOrEmpty(txtMainPhone.Text.Trim()))
                 {
-                    MessageBox.Show("Teléfono Principal es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Teléfono Principal es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtMainPhone.Focus();
                     return false;
                 }
                 if (CboxProviderType.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Tipo de Proveedor debe ser ingresado", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Tipo de Proveedor debe ser ingresado", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CboxProviderType.Focus();
                     return false;
                 }
                 if (CboxStates.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Debe Seleccionar un estado del Proveedor", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe Seleccionar un estado del Proveedor", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CboxStates.Focus();
                     return false;
                 }
@@ -344,7 +344,7 @@ namespace Agregados.Forms.Providers
                 if (string.IsNullOrEmpty(txtEmail.Text.Trim()))
                 {
                     DialogResult respuesta = MessageBox.Show("¿Deseas agregar el proveedor " + $"{txtName.Text.Trim()} ?",
-                                                           "Registro de Proveedores", MessageBoxButtons.YesNo);
+                                                           "Registro de Proveedores", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (respuesta == DialogResult.Yes)
                     {
                         using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -371,19 +371,19 @@ namespace Agregados.Forms.Providers
                                     CheckChange();
                                     limpiar();
                                     limpiarBusqueda();
-                                    MessageBox.Show("Proveedor agregado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK);
+                                    MessageBox.Show("Proveedor agregado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     proveedor = null;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Proveedor No fue agregado", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                                    MessageBox.Show("Proveedor No fue agregado", "Error Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     proveedor = null;
                                 }
 
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 throw;
                             }
                         }
@@ -394,7 +394,7 @@ namespace Agregados.Forms.Providers
                     if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
                     {
                         DialogResult respuesta = MessageBox.Show("¿Deseas agregar el proveedor " + $"{txtName.Text.Trim()} ?",
-                                           "Registro de Proveedores", MessageBoxButtons.YesNo);
+                                           "Registro de Proveedores", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (respuesta == DialogResult.Yes)
                         {
                             using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -421,19 +421,19 @@ namespace Agregados.Forms.Providers
                                         CheckChange();
                                         limpiar();
                                         limpiarBusqueda();
-                                        MessageBox.Show("Proveedor agregado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK);
+                                        MessageBox.Show("Proveedor agregado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         proveedor = null;
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Proveedor No fue agregado", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                                        MessageBox.Show("Proveedor No fue agregado", "Error Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         proveedor = null;
                                     }
 
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     throw;
                                 }
                             }
@@ -441,7 +441,8 @@ namespace Agregados.Forms.Providers
                     }
                     else
                     {
-                        MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                        MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", 
+                            "Error Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -454,7 +455,7 @@ namespace Agregados.Forms.Providers
                 if (string.IsNullOrEmpty(txtEmail.Text.Trim()))
                 {
                     DialogResult respuesta = MessageBox.Show("¿Deseas Modificar el Proveedor " + $"{txtName.Text.Trim()} ?",
-                                       "Registro de Proveedores", MessageBoxButtons.YesNo);
+                                       "Registro de Proveedores", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (respuesta == DialogResult.Yes)
                     {
                         using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -481,19 +482,19 @@ namespace Agregados.Forms.Providers
                                     CheckChange();
                                     limpiar();
                                     limpiarBusqueda();
-                                    MessageBox.Show("Proveedor modificado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK);
+                                    MessageBox.Show("Proveedor modificado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     proveedor = null;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Proveedor No fue modificado", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                                    MessageBox.Show("Proveedor No fue modificado", "Error Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     proveedor = null;
                                 }
 
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 throw;
                             }
                         }
@@ -504,7 +505,7 @@ namespace Agregados.Forms.Providers
                     if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
                     {
                         DialogResult respuesta = MessageBox.Show("¿Deseas Modificar el Proveedor " + $"{txtName.Text.Trim()} ?",
-                                           "Registro de Proveedores", MessageBoxButtons.YesNo);
+                                           "Registro de Proveedores", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (respuesta == DialogResult.Yes)
                         {
                             using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -531,19 +532,19 @@ namespace Agregados.Forms.Providers
                                         CheckChange();
                                         limpiar();
                                         limpiarBusqueda();
-                                        MessageBox.Show("Proveedor modificado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK);
+                                        MessageBox.Show("Proveedor modificado correctamente!", "Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         proveedor = null;
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Proveedor No fue modificado", "Error Registro de Proveedores", MessageBoxButtons.OK);
+                                        MessageBox.Show("Proveedor No fue modificado", "Error Registro de Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         proveedor = null;
                                     }
 
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     throw;
                                 }
                             }
@@ -563,7 +564,7 @@ namespace Agregados.Forms.Providers
             {
                 DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el Proveedor " + $"{txtName.Text.Trim()} ?" +
                     Environment.NewLine + "Si lo eliminas, no prodras recuperar nuevamente sus datos...",
-                    "Registro de Proveedores", MessageBoxButtons.YesNo);
+                    "Registro de Proveedores", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)
                 {
                     using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -614,7 +615,7 @@ namespace Agregados.Forms.Providers
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             throw;
                         }
                     }
@@ -624,7 +625,7 @@ namespace Agregados.Forms.Providers
                     if (proveedor != null && proveedor.IdEstado == 1)
                     {
                         DialogResult respuesta2 = MessageBox.Show("¿Deseas inactivar el proveedor " + $"{txtName.Text.Trim()} ?",
-                        "Registro de Proveedores", MessageBoxButtons.YesNo);
+                        "Registro de Proveedores", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (respuesta2 == DialogResult.Yes)
                         {
@@ -664,7 +665,7 @@ namespace Agregados.Forms.Providers
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     throw;
                                 }
                             }

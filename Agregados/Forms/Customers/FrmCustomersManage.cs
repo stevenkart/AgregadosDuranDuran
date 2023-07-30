@@ -237,25 +237,25 @@ namespace Agregados.Forms.Customers
 
                 if (string.IsNullOrEmpty(txtName.Text.Trim()))
                 {
-                    MessageBox.Show("Nombre de Cliente es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Nombre de Cliente es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtName.Focus();
                     return false;
                 }
                 if (string.IsNullOrEmpty(txtMainPhone.Text.Trim()))
                 {
-                    MessageBox.Show("Teléfono Principal es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Teléfono Principal es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtMainPhone.Focus();
                     return false;
                 }
                 if (CboxCustomerType.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Tipo de Cliente debe ser ingresado", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Tipo de Cliente debe ser ingresado", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CboxCustomerType.Focus();
                     return false;
                 }
                 if (CboxStates.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Debe Seleccionar un estado del Cliente", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe Seleccionar un estado del Cliente", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CboxStates.Focus();
                     return false;
                 }
@@ -330,7 +330,7 @@ namespace Agregados.Forms.Customers
                 if (string.IsNullOrEmpty(txtEmail.Text.Trim()))
                 {
                     DialogResult respuesta = MessageBox.Show("¿Deseas agregar la empresa o cliente/a " + $"{txtName.Text.Trim()} ?",
-                                           "Registro de Clientes", MessageBoxButtons.YesNo);
+                                           "Registro de Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (respuesta == DialogResult.Yes)
                     {
                         using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -357,12 +357,12 @@ namespace Agregados.Forms.Customers
                                     CheckChange();
                                     limpiar();
                                     limpiarBusqueda();
-                                    MessageBox.Show("Cliente agregado correctamente!", "Registro de Clientes", MessageBoxButtons.OK);
+                                    MessageBox.Show("Cliente agregado correctamente!", "Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     cliente = null;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Cliente No fue agregado", "Error Registro de Clientes", MessageBoxButtons.OK);
+                                    MessageBox.Show("Cliente No fue agregado", "Error Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     cliente = null;
                                 }
 
@@ -380,7 +380,7 @@ namespace Agregados.Forms.Customers
                     if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
                     {
                         DialogResult respuesta = MessageBox.Show("¿Deseas agregar la empresa o cliente/a " + $"{txtName.Text.Trim()} ?",
-                                           "Registro de Clientes", MessageBoxButtons.YesNo);
+                                           "Registro de Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (respuesta == DialogResult.Yes)
                         {
                             using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -407,12 +407,12 @@ namespace Agregados.Forms.Customers
                                         CheckChange();
                                         limpiar();
                                         limpiarBusqueda();
-                                        MessageBox.Show("Cliente agregado correctamente!", "Registro de Clientes", MessageBoxButtons.OK);
+                                        MessageBox.Show("Cliente agregado correctamente!", "Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         cliente = null;
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Cliente No fue agregado", "Error Registro de Clientes", MessageBoxButtons.OK);
+                                        MessageBox.Show("Cliente No fue agregado", "Error Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         cliente = null;
                                     }
 
@@ -427,7 +427,8 @@ namespace Agregados.Forms.Customers
                     }
                     else
                     {
-                        MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.", "Error Registro de Clientes", MessageBoxButtons.OK);
+                        MessageBox.Show("Correo no posee un formato correcto, por favor valida que contenga '@' y que contenga dominio correcto.",
+                            "Error Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -440,7 +441,7 @@ namespace Agregados.Forms.Customers
                 if (string.IsNullOrEmpty(txtEmail.Text.Trim()))
                 {
                     DialogResult respuesta = MessageBox.Show("¿Deseas Modificar la empresa o cliente/a " + $"{txtName.Text.Trim()} ?",
-                                       "Registro de Clientes", MessageBoxButtons.YesNo);
+                                       "Registro de Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (respuesta == DialogResult.Yes)
                     {
                         using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -467,12 +468,12 @@ namespace Agregados.Forms.Customers
                                     CheckChange();
                                     limpiar();
                                     limpiarBusqueda();
-                                    MessageBox.Show("Cliente modificado correctamente!", "Registro de Clientes", MessageBoxButtons.OK);
+                                    MessageBox.Show("Cliente modificado correctamente!", "Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     cliente = null;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Cliente No fue modificado", "Error Registro de Clientes", MessageBoxButtons.OK);
+                                    MessageBox.Show("Cliente No fue modificado", "Error Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     cliente = null;
                                 }
 
@@ -491,7 +492,7 @@ namespace Agregados.Forms.Customers
                     if (Validaciones.IsValidEmail(txtEmail.Text.Trim()))
                     {
                         DialogResult respuesta = MessageBox.Show("¿Deseas Modificar la empresa o cliente/a " + $"{txtName.Text.Trim()} ?",
-                                           "Registro de Clientes", MessageBoxButtons.YesNo);
+                                           "Registro de Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (respuesta == DialogResult.Yes)
                         {
                             using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -518,12 +519,12 @@ namespace Agregados.Forms.Customers
                                         CheckChange();
                                         limpiar();
                                         limpiarBusqueda();
-                                        MessageBox.Show("Cliente modificado correctamente!", "Registro de Clientes", MessageBoxButtons.OK);
+                                        MessageBox.Show("Cliente modificado correctamente!", "Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         cliente = null;
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Cliente No fue modificado", "Error Registro de Clientes", MessageBoxButtons.OK);
+                                        MessageBox.Show("Cliente No fue modificado", "Error Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         cliente = null;
                                     }
 
@@ -550,7 +551,7 @@ namespace Agregados.Forms.Customers
             {
                 DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el cliente " + $"{txtName.Text.Trim()} ?" +
                     Environment.NewLine + "Si lo eliminas, no prodras recuperar nuevamente sus datos...",
-                    "Registro de Clientes", MessageBoxButtons.YesNo);
+                    "Registro de Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)
                 {
                     using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -559,7 +560,8 @@ namespace Agregados.Forms.Customers
                         {
                             if (cliente == null)
                             {
-                                MessageBox.Show("Cliente No existe, o no ha sido seleccionado de la lista", "Error Registro de Clientes", MessageBoxButtons.OK);
+                                MessageBox.Show("Cliente No existe, o no ha sido seleccionado de la lista",
+                                    "Error Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else
                             {
@@ -580,19 +582,19 @@ namespace Agregados.Forms.Customers
                                     {
                                         CheckChange();
                                         limpiarBusqueda();
-                                        MessageBox.Show("Cliente Eliminado Correctamente!", "Registro de Clientes", MessageBoxButtons.OK);
+                                        MessageBox.Show("Cliente Eliminado Correctamente!", "Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         cliente = null;
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Cliente No fue Eliminado, por favor valide", "Error Registro de Clientes", MessageBoxButtons.OK);
+                                        MessageBox.Show("Cliente No fue Eliminado, por favor valide", "Error Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         cliente = null;
                                     }
                                 }
                                 else
                                 {
                                     MessageBox.Show("Cliente No fue Eliminado, este ya se encuentra relacionado a una factura que se emitió anteriormente.",
-                                        "Error Registro de Clientes", MessageBoxButtons.OK);
+                                        "Error Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 } 
                             }
                         }
@@ -608,7 +610,7 @@ namespace Agregados.Forms.Customers
                     if (cliente != null && cliente.IdEstado == 1)
                     {
                         DialogResult respuesta2 = MessageBox.Show("¿Deseas inactivar el cliente " + $"{txtName.Text.Trim()} ?",
-                        "Registro de Clientes", MessageBoxButtons.YesNo);
+                        "Registro de Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (respuesta2 == DialogResult.Yes)
                         {
@@ -634,12 +636,12 @@ namespace Agregados.Forms.Customers
                                         CheckChange();
                                         limpiar();
                                         limpiarBusqueda();
-                                        MessageBox.Show("Cliente modificado correctamente!", "Registro de Clientes", MessageBoxButtons.OK);
+                                        MessageBox.Show("Cliente modificado correctamente!", "Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         cliente = null;
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Cliente No fue modificado", "Error Registro de Clientes", MessageBoxButtons.OK);
+                                        MessageBox.Show("Cliente No fue modificado", "Error Registro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         cliente = null;
                                     }
 

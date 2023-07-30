@@ -88,7 +88,7 @@ namespace Agregados.Forms.Login
                             }
                             else
                             {
-                                MessageBox.Show("Usuario o contraseña incorrecta, o puede que su usario esta inactivo", "Error validación",
+                                MessageBox.Show("Usuario o contraseña incorrecta, o puede que su usuario esta inactivo", "Error validación",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
@@ -203,7 +203,7 @@ namespace Agregados.Forms.Login
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
              
             }
         }

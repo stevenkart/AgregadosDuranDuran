@@ -189,37 +189,37 @@ namespace Agregados.Forms.Vehicles
 
                 if (string.IsNullOrEmpty(txtPlaca.Text.Trim()))
                 {
-                    MessageBox.Show("Placa es Requerida", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Placa es Requerida", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtPlaca.Focus();
                     return false;
                 }
                 if (string.IsNullOrEmpty(txtMarca.Text.Trim()))
                 {
-                    MessageBox.Show("Marca es Requerida", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Marca es Requerida", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtMarca.Focus();
                     return false;
                 }
                 if (string.IsNullOrEmpty(txtModelo.Text.Trim()))
                 {
-                    MessageBox.Show("Modelo es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Modelo es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtModelo.Focus();
                     return false;
                 }
                 if (string.IsNullOrEmpty(txtAnnio.Text.Trim()))
                 {
-                    MessageBox.Show("Año es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Año es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtAnnio.Focus();
                     return false;
                 }
                 if (CboxMes.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Mes es Requerido indicarlo", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Mes es Requerido indicarlo", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CboxMes.Focus();
                     return false;
                 }
                 if (CboxStates.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Debe Seleccionar un estado del Vehículo", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe Seleccionar un estado del Vehículo", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CboxStates.Focus();
                     return false;
                 }
@@ -1153,7 +1153,7 @@ namespace Agregados.Forms.Vehicles
             if (ValidarCamposRequeridos())
             {
                 DialogResult respuesta = MessageBox.Show("¿Deseas agregar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
-                    "Registro de Vehículos", MessageBoxButtons.YesNo);
+                    "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)
                 {
                     using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -1177,19 +1177,19 @@ namespace Agregados.Forms.Vehicles
                                 CheckChange();
                                 limpiar();
                                 limpiarBusqueda();
-                                MessageBox.Show("Vehículo agregado correctamente!", "Registro de Vehículos", MessageBoxButtons.OK);
+                                MessageBox.Show("Vehículo agregado correctamente!", "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 vehiculo = null;
                             }
                             else
                             {
-                                MessageBox.Show("Vehículo No fue agregado", "Error Registro de Vehículos", MessageBoxButtons.OK);
+                                MessageBox.Show("Vehículo No fue agregado", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 vehiculo = null;
                             }
 
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             throw;
                         }
                     }
@@ -1203,7 +1203,7 @@ namespace Agregados.Forms.Vehicles
             if (ValidarCamposRequeridos())
             {
                 DialogResult respuesta = MessageBox.Show("¿Deseas modificar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
-                    "Registro de Vehículos", MessageBoxButtons.YesNo);
+                    "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)
                 {
                     using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -1225,19 +1225,19 @@ namespace Agregados.Forms.Vehicles
                                 CheckChange();
                                 limpiar();
                                 limpiarBusqueda();
-                                MessageBox.Show("Vehículo modificado correctamente!", "Registro de Vehículos", MessageBoxButtons.OK);
+                                MessageBox.Show("Vehículo modificado correctamente!", "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 vehiculo = null;
                             }
                             else
                             {
-                                MessageBox.Show("Vehículo No fue modificado", "Error Registro de Vehículos", MessageBoxButtons.OK);
+                                MessageBox.Show("Vehículo No fue modificado", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 vehiculo = null;
                             }
 
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             throw;
                         }
                     }
@@ -1252,7 +1252,7 @@ namespace Agregados.Forms.Vehicles
             {
                 DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?" + 
                     Environment.NewLine + "Si lo eliminas, no prodras recuperar nuevamente sus datos...",
-                    "Registro de Vehículos", MessageBoxButtons.YesNo);
+                    "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)
                 {
                     using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -1261,7 +1261,7 @@ namespace Agregados.Forms.Vehicles
                         {
                             if (vehiculo == null)
                             {
-                                MessageBox.Show("Vehículo No existe, o no ha sido seleccionado de la lista", "Error Registro de Vehículos", MessageBoxButtons.OK);
+                                MessageBox.Show("Vehículo No existe, o no ha sido seleccionado de la lista", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else
                             {
@@ -1270,19 +1270,19 @@ namespace Agregados.Forms.Vehicles
                                 {
                                     CheckChange();
                                     limpiarBusqueda();
-                                    MessageBox.Show("Vehículo Eliminado Correctamente!", "Registro de Vehículos", MessageBoxButtons.OK);
+                                    MessageBox.Show("Vehículo Eliminado Correctamente!", "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     vehiculo = null;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Vehículo No fue Eliminado, por favor valide", "Error Registro de Vehículos", MessageBoxButtons.OK);
+                                    MessageBox.Show("Vehículo No fue Eliminado, por favor valide", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     vehiculo = null;
                                 }
                             }
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             throw;
                         }
                     }
