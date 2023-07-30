@@ -34,33 +34,33 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtUser = new System.Windows.Forms.TextBox();
             this.txtFecha = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtMontoCompraSinpe = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtMontoCompraTransf = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtMontoCompraEfect = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.NumMontInicial = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtMontoVtaEfectivo = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtMontoVtaTransf = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtMontoVtaSinpe = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtMontoVtaCheque = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtMontoVtaCredito = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtMontoCompraSinpe = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtMontoCompraTransf = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtDetalle = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtMontoVtaEfectivo = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtMontoCompraEfect = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -123,7 +123,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.2514F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.7486F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 186F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 203F));
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtUser, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtFecha, 3, 0);
@@ -161,30 +161,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(743, 330);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 127);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(154, 32);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Monto Ventas Por Sinpe Móvil";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 78);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(154, 32);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Monto Ventas Por Transferencia";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -206,7 +182,7 @@
             this.txtUser.Location = new System.Drawing.Point(163, 4);
             this.txtUser.Name = "txtUser";
             this.txtUser.ReadOnly = true;
-            this.txtUser.Size = new System.Drawing.Size(188, 26);
+            this.txtUser.Size = new System.Drawing.Size(187, 26);
             this.txtUser.TabIndex = 4;
             this.txtUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -216,10 +192,10 @@
             this.txtFecha.BackColor = System.Drawing.SystemColors.Window;
             this.txtFecha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFecha.Location = new System.Drawing.Point(543, 4);
+            this.txtFecha.Location = new System.Drawing.Point(542, 4);
             this.txtFecha.Name = "txtFecha";
             this.txtFecha.ReadOnly = true;
-            this.txtFecha.Size = new System.Drawing.Size(197, 26);
+            this.txtFecha.Size = new System.Drawing.Size(198, 26);
             this.txtFecha.TabIndex = 5;
             this.txtFecha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -228,12 +204,89 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(357, 9);
+            this.label5.Location = new System.Drawing.Point(356, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(180, 16);
             this.label5.TabIndex = 3;
             this.label5.Text = "Fecha";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(356, 181);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(180, 32);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Monto Compras por Sinpe Móvil";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtMontoCompraSinpe
+            // 
+            this.txtMontoCompraSinpe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMontoCompraSinpe.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMontoCompraSinpe.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMontoCompraSinpe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMontoCompraSinpe.Location = new System.Drawing.Point(542, 184);
+            this.txtMontoCompraSinpe.Name = "txtMontoCompraSinpe";
+            this.txtMontoCompraSinpe.ReadOnly = true;
+            this.txtMontoCompraSinpe.Size = new System.Drawing.Size(198, 26);
+            this.txtMontoCompraSinpe.TabIndex = 17;
+            this.txtMontoCompraSinpe.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(356, 127);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(180, 32);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Monto Compras por Transferencias";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtMontoCompraTransf
+            // 
+            this.txtMontoCompraTransf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMontoCompraTransf.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMontoCompraTransf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMontoCompraTransf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMontoCompraTransf.Location = new System.Drawing.Point(542, 130);
+            this.txtMontoCompraTransf.Name = "txtMontoCompraTransf";
+            this.txtMontoCompraTransf.ReadOnly = true;
+            this.txtMontoCompraTransf.Size = new System.Drawing.Size(198, 26);
+            this.txtMontoCompraTransf.TabIndex = 16;
+            this.txtMontoCompraTransf.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(356, 78);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(180, 32);
+            this.label12.TabIndex = 21;
+            this.label12.Text = "Monto Compras en Efectivo";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label12.Visible = false;
+            // 
+            // txtMontoCompraEfect
+            // 
+            this.txtMontoCompraEfect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMontoCompraEfect.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMontoCompraEfect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMontoCompraEfect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMontoCompraEfect.Location = new System.Drawing.Point(542, 81);
+            this.txtMontoCompraEfect.Name = "txtMontoCompraEfect";
+            this.txtMontoCompraEfect.ReadOnly = true;
+            this.txtMontoCompraEfect.Size = new System.Drawing.Size(198, 26);
+            this.txtMontoCompraEfect.TabIndex = 22;
+            this.txtMontoCompraEfect.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtMontoCompraEfect.Visible = false;
             // 
             // label4
             // 
@@ -241,7 +294,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(357, 292);
+            this.label4.Location = new System.Drawing.Point(356, 292);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(180, 18);
             this.label4.TabIndex = 2;
@@ -254,16 +307,55 @@
             this.NumMontInicial.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.NumMontInicial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NumMontInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumMontInicial.Location = new System.Drawing.Point(543, 288);
+            this.NumMontInicial.Location = new System.Drawing.Point(542, 288);
             this.NumMontInicial.Maximum = new decimal(new int[] {
             1000000000,
             0,
             0,
             0});
             this.NumMontInicial.Name = "NumMontInicial";
-            this.NumMontInicial.Size = new System.Drawing.Size(197, 26);
+            this.NumMontInicial.Size = new System.Drawing.Size(198, 26);
             this.NumMontInicial.TabIndex = 6;
             this.NumMontInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(3, 38);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(154, 32);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Monto Ventas Por Efectivo";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label11.Visible = false;
+            // 
+            // txtMontoVtaEfectivo
+            // 
+            this.txtMontoVtaEfectivo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMontoVtaEfectivo.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMontoVtaEfectivo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMontoVtaEfectivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMontoVtaEfectivo.Location = new System.Drawing.Point(163, 41);
+            this.txtMontoVtaEfectivo.Name = "txtMontoVtaEfectivo";
+            this.txtMontoVtaEfectivo.ReadOnly = true;
+            this.txtMontoVtaEfectivo.Size = new System.Drawing.Size(187, 26);
+            this.txtMontoVtaEfectivo.TabIndex = 20;
+            this.txtMontoVtaEfectivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtMontoVtaEfectivo.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 78);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(154, 32);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Monto Ventas Por Transferencia";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtMontoVtaTransf
             // 
@@ -274,9 +366,21 @@
             this.txtMontoVtaTransf.Location = new System.Drawing.Point(163, 81);
             this.txtMontoVtaTransf.Name = "txtMontoVtaTransf";
             this.txtMontoVtaTransf.ReadOnly = true;
-            this.txtMontoVtaTransf.Size = new System.Drawing.Size(188, 26);
+            this.txtMontoVtaTransf.Size = new System.Drawing.Size(187, 26);
             this.txtMontoVtaTransf.TabIndex = 8;
             this.txtMontoVtaTransf.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(3, 127);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(154, 32);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Monto Ventas Por Sinpe Móvil";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtMontoVtaSinpe
             // 
@@ -287,7 +391,7 @@
             this.txtMontoVtaSinpe.Location = new System.Drawing.Point(163, 130);
             this.txtMontoVtaSinpe.Name = "txtMontoVtaSinpe";
             this.txtMontoVtaSinpe.ReadOnly = true;
-            this.txtMontoVtaSinpe.Size = new System.Drawing.Size(188, 26);
+            this.txtMontoVtaSinpe.Size = new System.Drawing.Size(187, 26);
             this.txtMontoVtaSinpe.TabIndex = 10;
             this.txtMontoVtaSinpe.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -312,7 +416,7 @@
             this.txtMontoVtaCheque.Location = new System.Drawing.Point(163, 184);
             this.txtMontoVtaCheque.Name = "txtMontoVtaCheque";
             this.txtMontoVtaCheque.ReadOnly = true;
-            this.txtMontoVtaCheque.Size = new System.Drawing.Size(188, 26);
+            this.txtMontoVtaCheque.Size = new System.Drawing.Size(187, 26);
             this.txtMontoVtaCheque.TabIndex = 18;
             this.txtMontoVtaCheque.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -337,59 +441,9 @@
             this.txtMontoVtaCredito.Location = new System.Drawing.Point(163, 235);
             this.txtMontoVtaCredito.Name = "txtMontoVtaCredito";
             this.txtMontoVtaCredito.ReadOnly = true;
-            this.txtMontoVtaCredito.Size = new System.Drawing.Size(188, 26);
+            this.txtMontoVtaCredito.Size = new System.Drawing.Size(187, 26);
             this.txtMontoVtaCredito.TabIndex = 11;
             this.txtMontoVtaCredito.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(357, 181);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(180, 32);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Monto Compras por Sinpe Móvil";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtMontoCompraSinpe
-            // 
-            this.txtMontoCompraSinpe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMontoCompraSinpe.BackColor = System.Drawing.SystemColors.Window;
-            this.txtMontoCompraSinpe.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMontoCompraSinpe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMontoCompraSinpe.Location = new System.Drawing.Point(543, 184);
-            this.txtMontoCompraSinpe.Name = "txtMontoCompraSinpe";
-            this.txtMontoCompraSinpe.ReadOnly = true;
-            this.txtMontoCompraSinpe.Size = new System.Drawing.Size(197, 26);
-            this.txtMontoCompraSinpe.TabIndex = 17;
-            this.txtMontoCompraSinpe.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(357, 127);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(180, 32);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Monto Compras por Transferencias";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtMontoCompraTransf
-            // 
-            this.txtMontoCompraTransf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMontoCompraTransf.BackColor = System.Drawing.SystemColors.Window;
-            this.txtMontoCompraTransf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMontoCompraTransf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMontoCompraTransf.Location = new System.Drawing.Point(543, 130);
-            this.txtMontoCompraTransf.Name = "txtMontoCompraTransf";
-            this.txtMontoCompraTransf.ReadOnly = true;
-            this.txtMontoCompraTransf.Size = new System.Drawing.Size(197, 26);
-            this.txtMontoCompraTransf.TabIndex = 16;
-            this.txtMontoCompraTransf.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox2
             // 
@@ -450,56 +504,6 @@
             // tmrFechaHora
             // 
             this.tmrFechaHora.Tick += new System.EventHandler(this.tmrFechaHora_Tick);
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(3, 38);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(154, 32);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "Monto Ventas Por Efectivo";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtMontoVtaEfectivo
-            // 
-            this.txtMontoVtaEfectivo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMontoVtaEfectivo.BackColor = System.Drawing.SystemColors.Window;
-            this.txtMontoVtaEfectivo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMontoVtaEfectivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMontoVtaEfectivo.Location = new System.Drawing.Point(163, 41);
-            this.txtMontoVtaEfectivo.Name = "txtMontoVtaEfectivo";
-            this.txtMontoVtaEfectivo.ReadOnly = true;
-            this.txtMontoVtaEfectivo.Size = new System.Drawing.Size(188, 26);
-            this.txtMontoVtaEfectivo.TabIndex = 20;
-            this.txtMontoVtaEfectivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(357, 78);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(180, 32);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "Monto Compras en Efectivo";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtMontoCompraEfect
-            // 
-            this.txtMontoCompraEfect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMontoCompraEfect.BackColor = System.Drawing.SystemColors.Window;
-            this.txtMontoCompraEfect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMontoCompraEfect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMontoCompraEfect.Location = new System.Drawing.Point(543, 81);
-            this.txtMontoCompraEfect.Name = "txtMontoCompraEfect";
-            this.txtMontoCompraEfect.ReadOnly = true;
-            this.txtMontoCompraEfect.Size = new System.Drawing.Size(197, 26);
-            this.txtMontoCompraEfect.TabIndex = 22;
-            this.txtMontoCompraEfect.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FrmCashierClose
             // 

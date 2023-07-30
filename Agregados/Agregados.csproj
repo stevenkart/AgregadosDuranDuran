@@ -332,6 +332,12 @@
     <Compile Include="Forms\FrmPrincipalMDI.Designer.cs">
       <DependentUpon>FrmPrincipalMDI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Help\FrmManualUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Help\FrmManualUser.Designer.cs">
+      <DependentUpon>FrmManualUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Materials\FrmMaterialSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -721,6 +727,9 @@
     <EmbeddedResource Include="Forms\FrmPrincipalMDI.resx">
       <DependentUpon>FrmPrincipalMDI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Help\FrmManualUser.resx">
+      <DependentUpon>FrmManualUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Materials\FrmMaterialSearch.resx">
       <DependentUpon>FrmMaterialSearch.cs</DependentUpon>
     </EmbeddedResource>
@@ -898,6 +907,7 @@
     </None>
     <None Include="Agregados_TemporaryKey.pfx" />
     <None Include="App.Config" />
+    <None Include="Forms\Help\report 1.pdf" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -967,6 +977,23 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>

@@ -71,14 +71,15 @@ namespace Agregados.Forms.Login
                             frmLoading.ShowDialog(this);
                             string u = txtUser.Text.Trim();
                             string p = encriptar.EncriptarEnUnSentido(txtPassword.Text.Trim());
-                            int IdLog = context.Usuarios.Where(x => x.NombreUsuario == u && x.Contrasennia == p).Select(x => x.IdUsuario).FirstOrDefault();              
+                            //verifica usuario contrasennia y que el usuario este con status activo
+                            int IdLog = context.Usuarios.Where(x => x.NombreUsuario == u && x.Contrasennia == p && x.IdEstado == 1).Select(x => x.IdUsuario).FirstOrDefault();              
                             if (IdLog > 0)
                             {
                                 Globals.MyGlobalUser = context.Usuarios.Find(IdLog);
                                 if (Globals.MyGlobalUser.IdUsuario > 0)
                                 {
                                     MessageBox.Show("Bienvenido " + $"{Globals.MyGlobalUser.NombreEmpleado}", "Éxito",
-                                                                MessageBoxButtons.OK);
+                                                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     FrmPrincipalMDI frmPrincipalMDI = new FrmPrincipalMDI();
                                     frmPrincipalMDI.Show();
                                     this.Hide();
@@ -87,15 +88,15 @@ namespace Agregados.Forms.Login
                             }
                             else
                             {
-                                MessageBox.Show("Usuario o contraseña incorrecta", "Error validación",
-                                    MessageBoxButtons.OK);
+                                MessageBox.Show("Usuario o contraseña incorrecta, o puede que su usario esta inactivo", "Error validación",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         catch (SqlException ex)
                         {
                             
                             MessageBox.Show(ex.Message, "Error validación",
-                                    MessageBoxButtons.OK);
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                          
                         }
                     }  
@@ -104,13 +105,13 @@ namespace Agregados.Forms.Login
                 {
                     MessageBox.Show("Contraseña es requerido, no puede estar vacio \n" +
                         "Contraseña debe ser entre 8 a 16 carácteres.", "Error validación",
-                       MessageBoxButtons.OK);
+                       MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
                 MessageBox.Show("Usuario es requerido, no puede estar vacio, siempre es en minusculas.", "Error validación",
-                       MessageBoxButtons.OK);
+                       MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -174,7 +175,8 @@ namespace Agregados.Forms.Login
                                 sqlConn.Open();
                                 command1.ExecuteNonQuery();
                                 command2.ExecuteNonQuery();
-                                MessageBox.Show("Restauración de Base de Datos realizada con éxito.", "Restauración Correcta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Restauración de Base de Datos realizada con éxito.", "Restauración Correcta",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             }
                             catch (Exception ex)

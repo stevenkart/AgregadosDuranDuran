@@ -51,16 +51,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvProveedores = new System.Windows.Forms.DataGridView();
-            this.CIdProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CIdentificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CTipoProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CTelefono2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CDetalles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.CboxProviderType = new System.Windows.Forms.ComboBox();
@@ -89,6 +79,16 @@
             this.imgDelete = new System.Windows.Forms.PictureBox();
             this.imgClean = new System.Windows.Forms.PictureBox();
             this.imgExit = new System.Windows.Forms.PictureBox();
+            this.CIdProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIdentificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CTipoProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CTelefono2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CDetalles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -138,7 +138,7 @@
             this.tableLayoutPanel8.ColumnCount = 3;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.88469F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 230F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 231F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChActivos, 2, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -168,9 +168,9 @@
             this.ChActivos.Checked = true;
             this.ChActivos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChActivos.Location = new System.Drawing.Point(1042, 6);
+            this.ChActivos.Location = new System.Drawing.Point(1041, 6);
             this.ChActivos.Name = "ChActivos";
-            this.ChActivos.Size = new System.Drawing.Size(225, 24);
+            this.ChActivos.Size = new System.Drawing.Size(226, 24);
             this.ChActivos.TabIndex = 0;
             this.ChActivos.Text = "Proveedores Activos";
             this.ChActivos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -398,109 +398,6 @@
             this.dgvProveedores.Size = new System.Drawing.Size(632, 513);
             this.dgvProveedores.TabIndex = 0;
             this.dgvProveedores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProveedores_CellClick);
-            // 
-            // CIdProveedor
-            // 
-            this.CIdProveedor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CIdProveedor.DataPropertyName = "IdProveedor";
-            this.CIdProveedor.FillWeight = 50F;
-            this.CIdProveedor.Frozen = true;
-            this.CIdProveedor.HeaderText = "Cod.";
-            this.CIdProveedor.MinimumWidth = 40;
-            this.CIdProveedor.Name = "CIdProveedor";
-            this.CIdProveedor.ReadOnly = true;
-            this.CIdProveedor.Width = 60;
-            // 
-            // CIdentificacion
-            // 
-            this.CIdentificacion.DataPropertyName = "Identificacion";
-            this.CIdentificacion.FillWeight = 150F;
-            this.CIdentificacion.Frozen = true;
-            this.CIdentificacion.HeaderText = "Identificación";
-            this.CIdentificacion.MinimumWidth = 110;
-            this.CIdentificacion.Name = "CIdentificacion";
-            this.CIdentificacion.ReadOnly = true;
-            this.CIdentificacion.Width = 110;
-            // 
-            // CNombre
-            // 
-            this.CNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CNombre.DataPropertyName = "Nombre";
-            this.CNombre.FillWeight = 180F;
-            this.CNombre.HeaderText = "Nombre";
-            this.CNombre.MinimumWidth = 150;
-            this.CNombre.Name = "CNombre";
-            this.CNombre.ReadOnly = true;
-            // 
-            // CTipoProveedor
-            // 
-            this.CTipoProveedor.DataPropertyName = "TipoProveedor";
-            this.CTipoProveedor.FillWeight = 140F;
-            this.CTipoProveedor.HeaderText = "Tipo Proveedor";
-            this.CTipoProveedor.MinimumWidth = 100;
-            this.CTipoProveedor.Name = "CTipoProveedor";
-            this.CTipoProveedor.ReadOnly = true;
-            this.CTipoProveedor.Width = 110;
-            // 
-            // CTelefono
-            // 
-            this.CTelefono.DataPropertyName = "Telefono";
-            this.CTelefono.FillWeight = 170F;
-            this.CTelefono.HeaderText = "Teléfono Principal";
-            this.CTelefono.MinimumWidth = 140;
-            this.CTelefono.Name = "CTelefono";
-            this.CTelefono.ReadOnly = true;
-            this.CTelefono.Width = 140;
-            // 
-            // CTelefono2
-            // 
-            this.CTelefono2.DataPropertyName = "Telefono2";
-            this.CTelefono2.FillWeight = 170F;
-            this.CTelefono2.HeaderText = "Teléfono Secundario";
-            this.CTelefono2.MinimumWidth = 160;
-            this.CTelefono2.Name = "CTelefono2";
-            this.CTelefono2.ReadOnly = true;
-            this.CTelefono2.Width = 160;
-            // 
-            // CCorreo
-            // 
-            this.CCorreo.DataPropertyName = "Correo";
-            this.CCorreo.FillWeight = 170F;
-            this.CCorreo.HeaderText = "Correo";
-            this.CCorreo.MinimumWidth = 100;
-            this.CCorreo.Name = "CCorreo";
-            this.CCorreo.ReadOnly = true;
-            this.CCorreo.Width = 120;
-            // 
-            // CDireccion
-            // 
-            this.CDireccion.DataPropertyName = "Direccion";
-            this.CDireccion.FillWeight = 200F;
-            this.CDireccion.HeaderText = "Dirección";
-            this.CDireccion.MinimumWidth = 100;
-            this.CDireccion.Name = "CDireccion";
-            this.CDireccion.ReadOnly = true;
-            this.CDireccion.Width = 150;
-            // 
-            // CDetalles
-            // 
-            this.CDetalles.DataPropertyName = "Detalles";
-            this.CDetalles.FillWeight = 200F;
-            this.CDetalles.HeaderText = "Detalles";
-            this.CDetalles.MinimumWidth = 100;
-            this.CDetalles.Name = "CDetalles";
-            this.CDetalles.ReadOnly = true;
-            this.CDetalles.Width = 150;
-            // 
-            // CIdEstado
-            // 
-            this.CIdEstado.DataPropertyName = "IdEstado";
-            this.CIdEstado.FillWeight = 120F;
-            this.CIdEstado.HeaderText = "Estado";
-            this.CIdEstado.MinimumWidth = 80;
-            this.CIdEstado.Name = "CIdEstado";
-            this.CIdEstado.ReadOnly = true;
-            this.CIdEstado.Width = 80;
             // 
             // tableLayoutPanel5
             // 
@@ -884,6 +781,109 @@
             this.imgExit.TabStop = false;
             this.imgExit.Click += new System.EventHandler(this.imgExit_Click);
             // 
+            // CIdProveedor
+            // 
+            this.CIdProveedor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CIdProveedor.DataPropertyName = "IdProveedor";
+            this.CIdProveedor.FillWeight = 50F;
+            this.CIdProveedor.Frozen = true;
+            this.CIdProveedor.HeaderText = "Cód.";
+            this.CIdProveedor.MinimumWidth = 40;
+            this.CIdProveedor.Name = "CIdProveedor";
+            this.CIdProveedor.ReadOnly = true;
+            this.CIdProveedor.Width = 60;
+            // 
+            // CIdentificacion
+            // 
+            this.CIdentificacion.DataPropertyName = "Identificacion";
+            this.CIdentificacion.FillWeight = 150F;
+            this.CIdentificacion.Frozen = true;
+            this.CIdentificacion.HeaderText = "Identificación";
+            this.CIdentificacion.MinimumWidth = 110;
+            this.CIdentificacion.Name = "CIdentificacion";
+            this.CIdentificacion.ReadOnly = true;
+            this.CIdentificacion.Width = 110;
+            // 
+            // CNombre
+            // 
+            this.CNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CNombre.DataPropertyName = "Nombre";
+            this.CNombre.FillWeight = 180F;
+            this.CNombre.HeaderText = "Nombre";
+            this.CNombre.MinimumWidth = 150;
+            this.CNombre.Name = "CNombre";
+            this.CNombre.ReadOnly = true;
+            // 
+            // CTipoProveedor
+            // 
+            this.CTipoProveedor.DataPropertyName = "TipoProveedor";
+            this.CTipoProveedor.FillWeight = 140F;
+            this.CTipoProveedor.HeaderText = "Tipo Proveedor";
+            this.CTipoProveedor.MinimumWidth = 100;
+            this.CTipoProveedor.Name = "CTipoProveedor";
+            this.CTipoProveedor.ReadOnly = true;
+            this.CTipoProveedor.Width = 110;
+            // 
+            // CTelefono
+            // 
+            this.CTelefono.DataPropertyName = "Telefono";
+            this.CTelefono.FillWeight = 170F;
+            this.CTelefono.HeaderText = "Teléfono Principal";
+            this.CTelefono.MinimumWidth = 140;
+            this.CTelefono.Name = "CTelefono";
+            this.CTelefono.ReadOnly = true;
+            this.CTelefono.Width = 140;
+            // 
+            // CTelefono2
+            // 
+            this.CTelefono2.DataPropertyName = "Telefono2";
+            this.CTelefono2.FillWeight = 170F;
+            this.CTelefono2.HeaderText = "Teléfono Secundario";
+            this.CTelefono2.MinimumWidth = 160;
+            this.CTelefono2.Name = "CTelefono2";
+            this.CTelefono2.ReadOnly = true;
+            this.CTelefono2.Width = 160;
+            // 
+            // CCorreo
+            // 
+            this.CCorreo.DataPropertyName = "Correo";
+            this.CCorreo.FillWeight = 170F;
+            this.CCorreo.HeaderText = "Correo";
+            this.CCorreo.MinimumWidth = 100;
+            this.CCorreo.Name = "CCorreo";
+            this.CCorreo.ReadOnly = true;
+            this.CCorreo.Width = 120;
+            // 
+            // CDireccion
+            // 
+            this.CDireccion.DataPropertyName = "Direccion";
+            this.CDireccion.FillWeight = 200F;
+            this.CDireccion.HeaderText = "Dirección";
+            this.CDireccion.MinimumWidth = 100;
+            this.CDireccion.Name = "CDireccion";
+            this.CDireccion.ReadOnly = true;
+            this.CDireccion.Width = 150;
+            // 
+            // CDetalles
+            // 
+            this.CDetalles.DataPropertyName = "Detalles";
+            this.CDetalles.FillWeight = 200F;
+            this.CDetalles.HeaderText = "Detalles";
+            this.CDetalles.MinimumWidth = 100;
+            this.CDetalles.Name = "CDetalles";
+            this.CDetalles.ReadOnly = true;
+            this.CDetalles.Width = 150;
+            // 
+            // CIdEstado
+            // 
+            this.CIdEstado.DataPropertyName = "IdEstado";
+            this.CIdEstado.FillWeight = 120F;
+            this.CIdEstado.HeaderText = "Estado";
+            this.CIdEstado.MinimumWidth = 80;
+            this.CIdEstado.Name = "CIdEstado";
+            this.CIdEstado.ReadOnly = true;
+            this.CIdEstado.Width = 80;
+            // 
             // FrmProvidersManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -978,6 +978,8 @@
         private System.Windows.Forms.PictureBox imgDelete;
         private System.Windows.Forms.PictureBox imgClean;
         private System.Windows.Forms.PictureBox imgExit;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdentificacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
@@ -988,7 +990,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CDireccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn CDetalles;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdEstado;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        private System.Windows.Forms.Label label17;
     }
 }

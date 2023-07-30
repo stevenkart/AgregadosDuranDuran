@@ -102,7 +102,7 @@ namespace Agregados.Forms.Login
                                         + "Agregados y Materiales Durán & Durán.")) //sentto quemado //TODO cambiar a que obtenga el correo del usuario
                                     {
                                         MessageBox.Show("Por favor ingrese el pin, que fue enviado a su correo electrónico para continuar.",
-                                            "Recuperación de Contraseña", MessageBoxButtons.OK);
+                                            "Recuperación de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                         txtUser.Enabled = false;
 
@@ -116,26 +116,26 @@ namespace Agregados.Forms.Login
                                     else
                                     {
                                         MessageBox.Show("Correo no pudo ser enviado.",
-                                            "Recuperación de Contraseña (Error)", MessageBoxButtons.OK);
+                                            "Recuperación de Contraseña (Error)", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
                                 }
                                 else
                                 {
                                     MessageBox.Show("No pudo guardarse la información del usuario.",
-                                       "Recuperación de Contraseña (Error)", MessageBoxButtons.OK);
+                                       "Recuperación de Contraseña (Error)", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                         }
                         else
                         {
                             MessageBox.Show("No existe el usuario ingresado en la base de datos.",
-                                    "Recuperación de Contraseña (Error)", MessageBoxButtons.OK);
+                                    "Recuperación de Contraseña (Error)", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
                         MessageBox.Show("Usuario es requerido", "Error validación",
-                                           MessageBoxButtons.OK);
+                                           MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
@@ -197,13 +197,13 @@ namespace Agregados.Forms.Login
                         else
                         {
                             MessageBox.Show("Pin no es correcto!", "Error validación",
-                                          MessageBoxButtons.OK);
+                                          MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
                         MessageBox.Show("Pin debe ser ingresado para continuar", "Error validación",
-                                         MessageBoxButtons.OK);
+                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
@@ -241,7 +241,7 @@ namespace Agregados.Forms.Login
                                         "Haz Cambiado la contraseña correctamente. Por favor intenta ingresar. ")) //sentto quemado //TODO cambiar a que obtenga el correo del usuario
                                     {
                                         MessageBox.Show("Cambio de Contraseña correcto",
-                                            "Recuperación de Contraseña", MessageBoxButtons.OK);
+                                            "Recuperación de Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                         usuario = null;
                                         FrmLogin frmLogin = new FrmLogin();
@@ -253,14 +253,14 @@ namespace Agregados.Forms.Login
                             else
                             {
                                 MessageBox.Show("Los espacios de contraseña y confirmar contraseña, No son igual.",
-                            "Error validación", MessageBoxButtons.OK);
+                            "Error validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
                     else
                     {
                         MessageBox.Show("Los espacios de contraseña y confirmar contraseña no pueden estar vacios.",
-                            "Error validación", MessageBoxButtons.OK);
+                            "Error validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)

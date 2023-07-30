@@ -42,13 +42,6 @@
             this.txtEmployer = new System.Windows.Forms.TextBox();
             this.txtIdent = new System.Windows.Forms.TextBox();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.CidUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CNombreUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CNombreEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CIdentificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CTipoUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CboxStates = new System.Windows.Forms.ComboBox();
             this.CboxUserType = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -82,6 +75,13 @@
             this.imgDelete = new System.Windows.Forms.PictureBox();
             this.imgClean = new System.Windows.Forms.PictureBox();
             this.imgExit = new System.Windows.Forms.PictureBox();
+            this.CidUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNombreUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNombreEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIdentificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CTipoUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -266,80 +266,6 @@
             this.dgvUsers.TabIndex = 0;
             this.dgvUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellClick);
             // 
-            // CidUsuario
-            // 
-            this.CidUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CidUsuario.DataPropertyName = "IdUsuario";
-            this.CidUsuario.FillWeight = 50F;
-            this.CidUsuario.Frozen = true;
-            this.CidUsuario.HeaderText = "Cod.";
-            this.CidUsuario.MinimumWidth = 40;
-            this.CidUsuario.Name = "CidUsuario";
-            this.CidUsuario.ReadOnly = true;
-            this.CidUsuario.Width = 60;
-            // 
-            // CNombreUsuario
-            // 
-            this.CNombreUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.CNombreUsuario.DataPropertyName = "NombreUsuario";
-            this.CNombreUsuario.FillWeight = 150F;
-            this.CNombreUsuario.Frozen = true;
-            this.CNombreUsuario.HeaderText = "Nombre Usuario";
-            this.CNombreUsuario.MinimumWidth = 140;
-            this.CNombreUsuario.Name = "CNombreUsuario";
-            this.CNombreUsuario.ReadOnly = true;
-            this.CNombreUsuario.Width = 140;
-            // 
-            // CNombreEmpleado
-            // 
-            this.CNombreEmpleado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CNombreEmpleado.DataPropertyName = "NombreEmpleado";
-            this.CNombreEmpleado.FillWeight = 180F;
-            this.CNombreEmpleado.HeaderText = "Empleado";
-            this.CNombreEmpleado.MinimumWidth = 150;
-            this.CNombreEmpleado.Name = "CNombreEmpleado";
-            this.CNombreEmpleado.ReadOnly = true;
-            // 
-            // CIdentificacion
-            // 
-            this.CIdentificacion.DataPropertyName = "Identificacion";
-            this.CIdentificacion.FillWeight = 140F;
-            this.CIdentificacion.HeaderText = "Identificación";
-            this.CIdentificacion.MinimumWidth = 100;
-            this.CIdentificacion.Name = "CIdentificacion";
-            this.CIdentificacion.ReadOnly = true;
-            this.CIdentificacion.Width = 110;
-            // 
-            // CCorreo
-            // 
-            this.CCorreo.DataPropertyName = "Correo";
-            this.CCorreo.FillWeight = 170F;
-            this.CCorreo.HeaderText = "Correo";
-            this.CCorreo.MinimumWidth = 140;
-            this.CCorreo.Name = "CCorreo";
-            this.CCorreo.ReadOnly = true;
-            this.CCorreo.Width = 140;
-            // 
-            // CTipoUsuario
-            // 
-            this.CTipoUsuario.DataPropertyName = "TipoUsuario";
-            this.CTipoUsuario.FillWeight = 130F;
-            this.CTipoUsuario.HeaderText = "Tipo Usuario";
-            this.CTipoUsuario.MinimumWidth = 110;
-            this.CTipoUsuario.Name = "CTipoUsuario";
-            this.CTipoUsuario.ReadOnly = true;
-            this.CTipoUsuario.Width = 110;
-            // 
-            // CIdEstado
-            // 
-            this.CIdEstado.DataPropertyName = "IdEstado";
-            this.CIdEstado.FillWeight = 120F;
-            this.CIdEstado.HeaderText = "Estado";
-            this.CIdEstado.MinimumWidth = 80;
-            this.CIdEstado.Name = "CIdEstado";
-            this.CIdEstado.ReadOnly = true;
-            this.CIdEstado.Width = 80;
-            // 
             // CboxStates
             // 
             this.CboxStates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -389,7 +315,7 @@
             this.tableLayoutPanel8.ColumnCount = 3;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.88469F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 205F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.checkBox1, 2, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -419,9 +345,9 @@
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(1099, 4);
+            this.checkBox1.Location = new System.Drawing.Point(1098, 4);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(200, 28);
+            this.checkBox1.Size = new System.Drawing.Size(201, 28);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Usuarios Activos";
             this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -786,6 +712,80 @@
             this.imgExit.TabStop = false;
             this.imgExit.Click += new System.EventHandler(this.imgExit_Click);
             // 
+            // CidUsuario
+            // 
+            this.CidUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CidUsuario.DataPropertyName = "IdUsuario";
+            this.CidUsuario.FillWeight = 50F;
+            this.CidUsuario.Frozen = true;
+            this.CidUsuario.HeaderText = "Cód.";
+            this.CidUsuario.MinimumWidth = 40;
+            this.CidUsuario.Name = "CidUsuario";
+            this.CidUsuario.ReadOnly = true;
+            this.CidUsuario.Width = 60;
+            // 
+            // CNombreUsuario
+            // 
+            this.CNombreUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CNombreUsuario.DataPropertyName = "NombreUsuario";
+            this.CNombreUsuario.FillWeight = 150F;
+            this.CNombreUsuario.Frozen = true;
+            this.CNombreUsuario.HeaderText = "Nombre Usuario";
+            this.CNombreUsuario.MinimumWidth = 140;
+            this.CNombreUsuario.Name = "CNombreUsuario";
+            this.CNombreUsuario.ReadOnly = true;
+            this.CNombreUsuario.Width = 140;
+            // 
+            // CNombreEmpleado
+            // 
+            this.CNombreEmpleado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CNombreEmpleado.DataPropertyName = "NombreEmpleado";
+            this.CNombreEmpleado.FillWeight = 180F;
+            this.CNombreEmpleado.HeaderText = "Empleado";
+            this.CNombreEmpleado.MinimumWidth = 150;
+            this.CNombreEmpleado.Name = "CNombreEmpleado";
+            this.CNombreEmpleado.ReadOnly = true;
+            // 
+            // CIdentificacion
+            // 
+            this.CIdentificacion.DataPropertyName = "Identificacion";
+            this.CIdentificacion.FillWeight = 140F;
+            this.CIdentificacion.HeaderText = "Identificación";
+            this.CIdentificacion.MinimumWidth = 100;
+            this.CIdentificacion.Name = "CIdentificacion";
+            this.CIdentificacion.ReadOnly = true;
+            this.CIdentificacion.Width = 110;
+            // 
+            // CCorreo
+            // 
+            this.CCorreo.DataPropertyName = "Correo";
+            this.CCorreo.FillWeight = 170F;
+            this.CCorreo.HeaderText = "Correo";
+            this.CCorreo.MinimumWidth = 140;
+            this.CCorreo.Name = "CCorreo";
+            this.CCorreo.ReadOnly = true;
+            this.CCorreo.Width = 140;
+            // 
+            // CTipoUsuario
+            // 
+            this.CTipoUsuario.DataPropertyName = "TipoUsuario";
+            this.CTipoUsuario.FillWeight = 130F;
+            this.CTipoUsuario.HeaderText = "Tipo Usuario";
+            this.CTipoUsuario.MinimumWidth = 110;
+            this.CTipoUsuario.Name = "CTipoUsuario";
+            this.CTipoUsuario.ReadOnly = true;
+            this.CTipoUsuario.Width = 110;
+            // 
+            // CIdEstado
+            // 
+            this.CIdEstado.DataPropertyName = "IdEstado";
+            this.CIdEstado.FillWeight = 120F;
+            this.CIdEstado.HeaderText = "Estado";
+            this.CIdEstado.MinimumWidth = 80;
+            this.CIdEstado.Name = "CIdEstado";
+            this.CIdEstado.ReadOnly = true;
+            this.CIdEstado.Width = 80;
+            // 
             // FrmUserManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -878,6 +878,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.PictureBox SeePass;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.DataGridViewTextBoxColumn CidUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn CNombreUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn CNombreEmpleado;
@@ -885,7 +886,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CCorreo;
         private System.Windows.Forms.DataGridViewTextBoxColumn CTipoUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdEstado;
-        private System.Windows.Forms.TextBox txtPassword;
     }
 }
 
