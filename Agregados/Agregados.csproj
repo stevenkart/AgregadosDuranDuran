@@ -28,7 +28,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Control de Inventario &amp; Facturación</ProductName>
     <PublisherName>Steven Carrillo</PublisherName>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -435,17 +435,21 @@
     <Compile Include="Proveedores.cs">
       <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Caja\FrmCajaPorFecha.cs">
+    <Content Include="Reports\Caja\FrmCajaPorFecha.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Caja\FrmCajaPorFecha.Designer.cs">
       <DependentUpon>FrmCajaPorFecha.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Caja\FrmCajaPorID.cs">
+    <Content Include="Reports\Caja\FrmCajaPorID.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Caja\FrmCajaPorID.Designer.cs">
       <DependentUpon>FrmCajaPorID.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\Caja\RptCajaPorFecha.cs">
       <AutoGen>True</AutoGen>
@@ -459,47 +463,61 @@
       <DependentUpon>RptCajaPorID.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterAll.cs">
+    <Content Include="Reports\Facts\FactFiltered\FrmPrintFactFilterAll.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterAll.Designer.cs">
       <DependentUpon>FrmPrintFactFilterAll.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendAll.cs">
+    <Content Include="Reports\Facts\FactFiltered\FrmPrintFactPendAll.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendAll.Designer.cs">
       <DependentUpon>FrmPrintFactPendAll.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.cs">
+    <Content Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.Designer.cs">
       <DependentUpon>FrmPrintFactAnuladas.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.cs">
+    <Content Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.Designer.cs">
       <DependentUpon>FrmPrintFactFilterDetalle.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterSinDetalle.cs">
+    <Content Include="Reports\Facts\FactFiltered\FrmPrintFactFilterSinDetalle.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactFilterSinDetalle.Designer.cs">
       <DependentUpon>FrmPrintFactFilterSinDetalle.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendConD.cs">
+    <Content Include="Reports\Facts\FactFiltered\FrmPrintFactPendConD.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendConD.Designer.cs">
       <DependentUpon>FrmPrintFactPendConD.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendSinD.cs">
+    <Content Include="Reports\Facts\FactFiltered\FrmPrintFactPendSinD.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\FactFiltered\FrmPrintFactPendSinD.Designer.cs">
       <DependentUpon>FrmPrintFactPendSinD.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\Facts\FactFiltered\RptFactFilteredDetalle.cs">
       <AutoGen>True</AutoGen>
@@ -543,29 +561,37 @@
       <DependentUpon>RptPrintFactFilterAll.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Facts\FactNow\FrmPrintFact.cs">
+    <Content Include="Reports\Facts\FactNow\FrmPrintFact.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\FactNow\FrmPrintFact.Designer.cs">
       <DependentUpon>FrmPrintFact.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Facts\FactNow\FrmPrintFactRev.cs">
+    <Content Include="Reports\Facts\FactNow\FrmPrintFactRev.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\FactNow\FrmPrintFactRev.Designer.cs">
       <DependentUpon>FrmPrintFactRev.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Facts\FactNow\FrmPrintTicket.cs">
+    <Content Include="Reports\Facts\FactNow\FrmPrintTicket.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\FactNow\FrmPrintTicket.Designer.cs">
       <DependentUpon>FrmPrintTicket.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Facts\FactNow\FrmPrintTicketRev.cs">
+    <Content Include="Reports\Facts\FactNow\FrmPrintTicketRev.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\FactNow\FrmPrintTicketRev.Designer.cs">
       <DependentUpon>FrmPrintTicketRev.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\Facts\FactNow\RptFactCreated.cs">
       <AutoGen>True</AutoGen>
@@ -595,23 +621,29 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Facts\TicketFiltered\FrmTicketAnuladas.cs">
+    <Content Include="Reports\Facts\TicketFiltered\FrmTicketAnuladas.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\TicketFiltered\FrmTicketAnuladas.Designer.cs">
       <DependentUpon>FrmTicketAnuladas.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Facts\TicketFiltered\FrmTicketPendAll.cs">
+    <Content Include="Reports\Facts\TicketFiltered\FrmTicketPendAll.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\TicketFiltered\FrmTicketPendAll.Designer.cs">
       <DependentUpon>FrmTicketPendAll.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\Facts\TicketFiltered\FrmTicketPorFechas.cs">
+    <Content Include="Reports\Facts\TicketFiltered\FrmTicketPorFechas.cs">
       <SubType>Form</SubType>
-    </Compile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Reports\Facts\TicketFiltered\FrmTicketPorFechas.Designer.cs">
       <DependentUpon>FrmTicketPorFechas.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\Facts\TicketFiltered\RptTickesPorFechas.cs">
       <AutoGen>True</AutoGen>
@@ -785,9 +817,11 @@
     </Compile>
     <EmbeddedResource Include="Reports\Caja\FrmCajaPorFecha.resx">
       <DependentUpon>FrmCajaPorFecha.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Caja\FrmCajaPorID.resx">
       <DependentUpon>FrmCajaPorID.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Caja\RptCajaPorFecha.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -799,24 +833,31 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactAnuladas.resx">
       <DependentUpon>FrmPrintFactAnuladas.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterAll.resx">
       <DependentUpon>FrmPrintFactFilterAll.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterDetalle.resx">
       <DependentUpon>FrmPrintFactFilterDetalle.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactFilterSinDetalle.resx">
       <DependentUpon>FrmPrintFactFilterSinDetalle.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactPendAll.resx">
       <DependentUpon>FrmPrintFactPendAll.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactPendConD.resx">
       <DependentUpon>FrmPrintFactPendConD.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\FrmPrintFactPendSinD.resx">
       <DependentUpon>FrmPrintFactPendSinD.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactFiltered\RptFactFilteredDetalle.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -848,15 +889,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintFact.resx">
       <DependentUpon>FrmPrintFact.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintFactRev.resx">
       <DependentUpon>FrmPrintFactRev.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintTicket.resx">
       <DependentUpon>FrmPrintTicket.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\FrmPrintTicketRev.resx">
       <DependentUpon>FrmPrintTicketRev.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\RptFactCreated.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -880,12 +925,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\TicketFiltered\FrmTicketAnuladas.resx">
       <DependentUpon>FrmTicketAnuladas.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\TicketFiltered\FrmTicketPendAll.resx">
       <DependentUpon>FrmTicketPendAll.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\TicketFiltered\FrmTicketPorFechas.resx">
       <DependentUpon>FrmTicketPorFechas.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\TicketFiltered\RptTickesPorFechas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -908,7 +956,9 @@
     </None>
     <None Include="Agregados_TemporaryKey.pfx" />
     <None Include="App.Config" />
-    <None Include="Forms\Help\Manual de Usuario.pdf" />
+    <Content Include="Forms\Help\Manual de Usuario.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
