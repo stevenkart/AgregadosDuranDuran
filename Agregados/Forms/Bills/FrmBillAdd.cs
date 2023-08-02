@@ -764,7 +764,7 @@ namespace Agregados.Forms.Bills
                                                             CostoTotal = Total,
 
                                                             FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                            MontoPendiente = null,
+                                                            MontoPendiente = 0,
                                                             FechaLimiteP = null,
                                                             ReferenciaPago = txtReferencia.Text.Trim(),
                                                             BackHoe = null,
@@ -1045,7 +1045,7 @@ namespace Agregados.Forms.Bills
                                                     CostoTotal = Total,
 
                                                     FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                    MontoPendiente = null,
+                                                    MontoPendiente = 0,
                                                     FechaLimiteP = null,
                                                     ReferenciaPago = txtReferencia.Text.Trim(),
                                                     BackHoe = null,
@@ -1251,7 +1251,7 @@ namespace Agregados.Forms.Bills
                                                                     CostoTotal = Total,
 
                                                                     FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                                    MontoPendiente = null,
+                                                                    MontoPendiente = 0,
                                                                     FechaLimiteP = null,
                                                                     ReferenciaPago = txtReferencia.Text.Trim(),
                                                                     BackHoe = Convert.ToDecimal(totalBackHoe.Value),
@@ -1630,7 +1630,7 @@ namespace Agregados.Forms.Bills
                                                             CostoTotal = Total,
 
                                                             FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                            MontoPendiente = null,
+                                                            MontoPendiente = 0,
                                                             FechaLimiteP = null,
                                                             ReferenciaPago = txtReferencia.Text.Trim(),
                                                             BackHoe = Convert.ToDecimal(totalBackHoe.Value),
@@ -2395,7 +2395,6 @@ namespace Agregados.Forms.Bills
                                 }  // solamente backhoe
                                 else
                                 {
-
                                     if (chTierra.Checked)  // donde es trabajo de tierra solamente
                                     {
                                         if (txtTierraTotal.Value > 0 && txtCantTierra.Value > 0)
@@ -3135,8 +3134,8 @@ namespace Agregados.Forms.Bills
                                                         CostoTotal = Total,
 
                                                         FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                        MontoPendiente = null,
-                                                        FechaLimiteP = null,
+                                                        MontoPendiente = Total,
+                                                        FechaLimiteP = Convert.ToDateTime(dateFinal.Value),
                                                         ReferenciaPago = txtReferencia.Text.Trim(),
                                                         BackHoe = null,
                                                         Tierra = null,
@@ -3228,6 +3227,11 @@ namespace Agregados.Forms.Bills
                                                         factura = null;
                                                     }
                                                 }
+                                                else
+                                                {
+                                                    MessageBox.Show("Factura no se pudo procesada, método de pago debe ser crédito.", "Error Registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    factura = null;
+                                                }
                                             }
                                             catch (Exception ex)
                                             {
@@ -3263,8 +3267,8 @@ namespace Agregados.Forms.Bills
                                                                 CostoTotal = Total,
 
                                                                 FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                                MontoPendiente = null,
-                                                                FechaLimiteP = null,
+                                                                MontoPendiente = Total,
+                                                                FechaLimiteP = Convert.ToDateTime(dateFinal.Value),
                                                                 ReferenciaPago = txtReferencia.Text.Trim(),
                                                                 BackHoe = Convert.ToDecimal(totalBackHoe.Value),
                                                                 Tierra = Convert.ToDecimal(txtTierraTotal.Value),
@@ -3494,8 +3498,8 @@ namespace Agregados.Forms.Bills
                                                                     CostoTotal = Total,
 
                                                                     FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                                    MontoPendiente = null,
-                                                                    FechaLimiteP = null,
+                                                                    MontoPendiente = Total,
+                                                                    FechaLimiteP = Convert.ToDateTime(dateFinal.Value),
                                                                     ReferenciaPago = txtReferencia.Text.Trim(),
                                                                     BackHoe = Convert.ToDecimal(totalBackHoe.Value),
                                                                     Tierra = null,
@@ -3630,8 +3634,8 @@ namespace Agregados.Forms.Bills
                                                                         CostoTotal = Total,
 
                                                                         FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                                        MontoPendiente = null,
-                                                                        FechaLimiteP = null,
+                                                                        MontoPendiente = Total,
+                                                                        FechaLimiteP = Convert.ToDateTime(dateFinal.Value),
                                                                         ReferenciaPago = txtReferencia.Text.Trim(),
                                                                         BackHoe = null,
                                                                         Tierra = Convert.ToDecimal(txtTierraTotal.Value),

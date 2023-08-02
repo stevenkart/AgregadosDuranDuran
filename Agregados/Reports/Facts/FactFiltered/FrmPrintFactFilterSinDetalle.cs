@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,12 +26,14 @@ namespace Agregados.Reports.Facts.FactFiltered
 
         private void FrmPrintFactFilterSinDetalle_Load(object sender, EventArgs e)
         {
-            RptFactFilteredSinDetalle rptFactFiltered = new RptFactFilteredSinDetalle();
-            rptFactFiltered.Refresh();
-            rptFactFiltered.SetParameterValue("@fechaInicio", fechaInicio);
-            rptFactFiltered.SetParameterValue("@fechaFin", fechaFin);
+            RptFactFilteredSinDetalle rptFactFilteredSinDetalle = new RptFactFilteredSinDetalle();
+            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptFactFilteredSinDetalle"]);
+            rptFactFilteredSinDetalle.Load(reportPath);
+            rptFactFilteredSinDetalle.Refresh();
+            rptFactFilteredSinDetalle.SetParameterValue("@fechaInicio", fechaInicio);
+            rptFactFilteredSinDetalle.SetParameterValue("@fechaFin", fechaFin);
 
-            crystalReportViewer1.ReportSource = rptFactFiltered;
+            crystalReportViewer1.ReportSource = rptFactFilteredSinDetalle;
         }
 
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,9 @@ namespace Agregados.Reports.Facts.FactNow
         private void FrmPrintTicket_Load(object sender, EventArgs e)
         {
             RptTicketCreated rptTicketCreated = new RptTicketCreated();
+            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptTicketCreated"]);
+            rptTicketCreated.Load(reportPath);
+           
             rptTicketCreated.Refresh();
             rptTicketCreated.SetParameterValue("@Consecutivo", Consecutivo);
 

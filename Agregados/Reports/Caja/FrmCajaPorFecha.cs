@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,9 @@ namespace Agregados.Reports.Caja
         private void FrmCajaPorFecha_Load(object sender, EventArgs e)
         {
             RptCajaPorFecha rptCajaPorFecha = new RptCajaPorFecha();
+            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptCajaPorFecha"]);
+            rptCajaPorFecha.Load(reportPath);
+           
             rptCajaPorFecha.Refresh();
             rptCajaPorFecha.SetParameterValue("@fechaInicio", inicio);
             rptCajaPorFecha.SetParameterValue("@fechaFin", fin);

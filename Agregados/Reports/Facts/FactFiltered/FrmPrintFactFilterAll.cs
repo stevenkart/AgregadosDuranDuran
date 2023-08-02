@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,9 @@ namespace Agregados.Reports.Facts.FactFiltered
         private void FrmPrintFactFilterAll_Load(object sender, EventArgs e)
         {
             RptPrintFactFilterAll rptFactFiltered = new RptPrintFactFilterAll();
+            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptPrintFactFilterAll"]);
+            rptFactFiltered.Load(reportPath);
+      
             rptFactFiltered.Refresh();
             rptFactFiltered.SetParameterValue("@fechaInicio", fechaInicio);
             rptFactFiltered.SetParameterValue("@fechaFin", fechaFin);

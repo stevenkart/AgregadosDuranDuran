@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,12 +31,15 @@ namespace Agregados.Reports.Facts.FactFiltered
 
         private void FrmPrintFactFilterDetalle_Load(object sender, EventArgs e)
         {
-            RptFactFilteredDetalle rptFactFiltered = new RptFactFilteredDetalle();
-            rptFactFiltered.Refresh();
-            rptFactFiltered.SetParameterValue("@fechaInicio", fechaInicio);
-            rptFactFiltered.SetParameterValue("@fechaFin", fechaFin);
+            RptFactFilteredDetalle rptFactFilteredDetalle = new RptFactFilteredDetalle();
+            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptFactFilteredDetalle"]);
+            rptFactFilteredDetalle.Load(reportPath);
 
-            crystalReportViewer1.ReportSource = rptFactFiltered;
+            rptFactFilteredDetalle.Refresh();
+            rptFactFilteredDetalle.SetParameterValue("@fechaInicio", fechaInicio);
+            rptFactFilteredDetalle.SetParameterValue("@fechaFin", fechaFin);
+
+            crystalReportViewer1.ReportSource = rptFactFilteredDetalle;
         }
     }
 }

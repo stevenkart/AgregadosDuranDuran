@@ -1,4 +1,5 @@
 ﻿using NPOI.SS.Formula.Functions;
+using NPOI.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,8 +48,13 @@ namespace Agregados.Forms.Help
 
         private void FrmManualUser_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.Hide();
+    
+          this.Hide();
+        }
 
+        private void FrmManualUser_FormClosed(object sender, FormClosedEventArgs e)
+        {
+           
         }
     }
 }
