@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,9 @@ namespace Agregados.Reports.Caja
         private void FrmCajaPorID_Load(object sender, EventArgs e)
         {
             RptCajaPorID rptCajaPorID = new RptCajaPorID();
+            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptCajaPorID"]);
+            rptCajaPorID.Load(reportPath);
+           
             rptCajaPorID.Refresh();
             rptCajaPorID.SetParameterValue("@ID", ID);
 

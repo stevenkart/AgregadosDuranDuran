@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Agregados.Reports.Caja;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +26,10 @@ namespace Agregados.Reports.Facts.FactFiltered
         private void FrmPrintFactAnuladas_Load(object sender, EventArgs e)
         {
             RptFactsAnuladas rptFactsAnuladas = new RptFactsAnuladas();
+            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptFactAnuladas"]);
+            rptFactsAnuladas.Load(reportPath);
+ 
+            rptFactsAnuladas.Refresh();
             rptFactsAnuladas.SetParameterValue("@fechaInicio", fechaInicio);
             rptFactsAnuladas.SetParameterValue("@fechaFin", fechaFin);
 

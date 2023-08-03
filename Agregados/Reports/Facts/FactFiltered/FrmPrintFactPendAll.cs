@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,9 @@ namespace Agregados.Reports.Facts.FactFiltered
         private void FrmPrintFactPendAll_Load(object sender, EventArgs e)
         {
             RptFactPendAll rptFactPendAll = new RptFactPendAll();
+            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptFactPendAll"]);
+            rptFactPendAll.Load(reportPath);
+    
             rptFactPendAll.Refresh();
             crystalReportViewer1.ReportSource = rptFactPendAll;
         }

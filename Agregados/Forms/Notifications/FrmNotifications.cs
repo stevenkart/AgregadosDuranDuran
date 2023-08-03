@@ -88,7 +88,7 @@ namespace Agregados.Forms.Notifications
                                         if (context.SaveChanges() > 0)
                                         {
                                             MessageBox.Show("Cambio correcto de email para notificaciones",
-                                                "Correo Notificaciones", MessageBoxButtons.OK);
+                                                "Correo Notificaciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                             txtEmailActual.Text = email.Correo.ToString();
                                             Clean();
@@ -98,33 +98,33 @@ namespace Agregados.Forms.Notifications
                                 else
                                 {
                                     MessageBox.Show("Correo no es valido, por favor verifique que cuente con '@', y con dominio correcto",
-                                                                  "Correo Notificaciones (Error)", MessageBoxButtons.OK);
+                                                                  "Correo Notificaciones (Error)", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                                 }
                             }
                             else
                             {
                                 MessageBox.Show("La confirmación de contraseña no es igual al correo ingresado",
-                                                                  "Correo Notificaciones (Error)", MessageBoxButtons.OK);
+                                                                  "Correo Notificaciones (Error)", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                             }
                         }
                         else
                         {
                             MessageBox.Show("La confirmación de correo no es igual al correo ingresado",
-                                                                  "Correo Notificaciones (Error)", MessageBoxButtons.OK);
+                                                                  "Correo Notificaciones (Error)", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
 
                         MessageBox.Show("Los campos no pueden estar vacíos",
-                                      "Correo Notificaciones (Error)", MessageBoxButtons.OK);
+                                      "Correo Notificaciones (Error)", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw;
                 }
             }

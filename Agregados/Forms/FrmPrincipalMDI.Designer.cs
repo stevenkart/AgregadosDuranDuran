@@ -339,6 +339,7 @@
             this.manualDeUsuarioToolStripMenuItem.Name = "manualDeUsuarioToolStripMenuItem";
             this.manualDeUsuarioToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.manualDeUsuarioToolStripMenuItem.Text = "Manual de Usuario";
+            this.manualDeUsuarioToolStripMenuItem.Click += new System.EventHandler(this.manualDeUsuarioToolStripMenuItem_Click);
             // 
             // acercaDeToolStripMenuItem1
             // 

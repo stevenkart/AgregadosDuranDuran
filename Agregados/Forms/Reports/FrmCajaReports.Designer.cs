@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCajaReports));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -357,11 +357,11 @@
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 5;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.76162F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.23838F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 199F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel5.Controls.Add(this.btnVolver, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnReportPDF, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.BtnVerCierre, 4, 0);
@@ -371,7 +371,7 @@
             this.tableLayoutPanel5.Location = new System.Drawing.Point(10, 10);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1176, 85);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
@@ -385,7 +385,7 @@
             this.btnVolver.Image = global::Agregados.Properties.Resources._return;
             this.btnVolver.Location = new System.Drawing.Point(3, 3);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(506, 79);
+            this.btnVolver.Size = new System.Drawing.Size(386, 79);
             this.btnVolver.TabIndex = 6;
             this.btnVolver.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnVolver.UseVisualStyleBackColor = false;
@@ -400,9 +400,9 @@
             this.btnReportPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportPDF.Image = global::Agregados.Properties.Resources.pdf;
             this.btnReportPDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportPDF.Location = new System.Drawing.Point(515, 3);
+            this.btnReportPDF.Location = new System.Drawing.Point(395, 3);
             this.btnReportPDF.Name = "btnReportPDF";
-            this.btnReportPDF.Size = new System.Drawing.Size(149, 79);
+            this.btnReportPDF.Size = new System.Drawing.Size(190, 79);
             this.btnReportPDF.TabIndex = 2;
             this.btnReportPDF.Text = "Export PDF";
             this.btnReportPDF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -418,9 +418,9 @@
             this.BtnVerCierre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVerCierre.Image = global::Agregados.Properties.Resources.cajaRegistradora;
             this.BtnVerCierre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerCierre.Location = new System.Drawing.Point(1032, 3);
+            this.BtnVerCierre.Location = new System.Drawing.Point(983, 3);
             this.BtnVerCierre.Name = "BtnVerCierre";
-            this.BtnVerCierre.Size = new System.Drawing.Size(141, 79);
+            this.BtnVerCierre.Size = new System.Drawing.Size(190, 79);
             this.BtnVerCierre.TabIndex = 0;
             this.BtnVerCierre.Text = "Ver Cierre";
             this.BtnVerCierre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -436,9 +436,9 @@
             this.BtnVerCierreList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVerCierreList.Image = global::Agregados.Properties.Resources.listaCierreCaja;
             this.BtnVerCierreList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerCierreList.Location = new System.Drawing.Point(833, 3);
+            this.BtnVerCierreList.Location = new System.Drawing.Point(787, 3);
             this.BtnVerCierreList.Name = "BtnVerCierreList";
-            this.BtnVerCierreList.Size = new System.Drawing.Size(193, 79);
+            this.BtnVerCierreList.Size = new System.Drawing.Size(190, 79);
             this.BtnVerCierreList.TabIndex = 1;
             this.BtnVerCierreList.Text = "Ver listas de Cierres";
             this.BtnVerCierreList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -454,9 +454,9 @@
             this.btnReportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportExcel.Image = global::Agregados.Properties.Resources.excel;
             this.btnReportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportExcel.Location = new System.Drawing.Point(670, 3);
+            this.btnReportExcel.Location = new System.Drawing.Point(591, 3);
             this.btnReportExcel.Name = "btnReportExcel";
-            this.btnReportExcel.Size = new System.Drawing.Size(157, 79);
+            this.btnReportExcel.Size = new System.Drawing.Size(190, 79);
             this.btnReportExcel.TabIndex = 3;
             this.btnReportExcel.Text = "Export Excel";
             this.btnReportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -529,9 +529,9 @@
             this.dgvFilter.MultiSelect = false;
             this.dgvFilter.Name = "dgvFilter";
             this.dgvFilter.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvFilter.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvFilter.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFilter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFilter.Size = new System.Drawing.Size(1170, 231);
             this.dgvFilter.TabIndex = 2;

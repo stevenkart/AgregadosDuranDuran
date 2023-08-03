@@ -138,7 +138,7 @@
             this.tableLayoutPanel8.ColumnCount = 3;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.88469F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 230F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 232F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChActivos, 2, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -168,9 +168,9 @@
             this.ChActivos.Checked = true;
             this.ChActivos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChActivos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChActivos.Location = new System.Drawing.Point(1042, 6);
+            this.ChActivos.Location = new System.Drawing.Point(1040, 6);
             this.ChActivos.Name = "ChActivos";
-            this.ChActivos.Size = new System.Drawing.Size(225, 24);
+            this.ChActivos.Size = new System.Drawing.Size(227, 24);
             this.ChActivos.TabIndex = 0;
             this.ChActivos.Text = "Proveedores Activos";
             this.ChActivos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -405,7 +405,7 @@
             this.CIdProveedor.DataPropertyName = "IdProveedor";
             this.CIdProveedor.FillWeight = 50F;
             this.CIdProveedor.Frozen = true;
-            this.CIdProveedor.HeaderText = "Cod.";
+            this.CIdProveedor.HeaderText = "Cód.";
             this.CIdProveedor.MinimumWidth = 40;
             this.CIdProveedor.Name = "CIdProveedor";
             this.CIdProveedor.ReadOnly = true;
@@ -978,6 +978,8 @@
         private System.Windows.Forms.PictureBox imgDelete;
         private System.Windows.Forms.PictureBox imgClean;
         private System.Windows.Forms.PictureBox imgExit;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdentificacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
@@ -988,7 +990,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CDireccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn CDetalles;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdEstado;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        private System.Windows.Forms.Label label17;
     }
 }

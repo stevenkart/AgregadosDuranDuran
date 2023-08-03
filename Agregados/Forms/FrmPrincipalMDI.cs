@@ -518,5 +518,11 @@ namespace Agregados.Forms
                 UserLogged();
             }
         }
+
+        private void manualDeUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmManualUser = new Help.FrmManualUser();
+            Globals.MifrmManualUser.Show();
+        }
     }
 }

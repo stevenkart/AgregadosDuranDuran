@@ -24,6 +24,8 @@ namespace Agregados
 
         public static Forms.Help.FrmInfo MifrmInfo = new Forms.Help.FrmInfo();
 
+        public static Forms.Help.FrmManualUser MifrmManualUser = new Forms.Help.FrmManualUser();
+
         public static Forms.Vehicles.FrmVehiclesManage MifrmVehiclesManage = new Forms.Vehicles.FrmVehiclesManage();
 
         public static Forms.Users.FrmUserManage MifrmUser = new Forms.Users.FrmUserManage();

@@ -173,7 +173,7 @@ namespace Agregados.Forms.Users
 
                 if (string.IsNullOrEmpty(txtUsername.Text.Trim()))
                 {
-                    MessageBox.Show("Nombre de Usuario es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Nombre de Usuario es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtUsername.Focus();
                     return false;
                 }
@@ -187,31 +187,31 @@ namespace Agregados.Forms.Users
                 */
                 if (string.IsNullOrEmpty(txtEmail.Text.Trim()))
                 {
-                    MessageBox.Show("Correo Electrónico es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Correo Electrónico es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtEmail.Focus();
                     return false;
                 }
                 if (string.IsNullOrEmpty(txtEmployer.Text.Trim()))
                 {
-                    MessageBox.Show("Nombre del Empleado es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Nombre del Empleado es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtEmployer.Focus();
                     return false;
                 }
                 if (string.IsNullOrEmpty(txtIdent.Text.Trim()))
                 {
-                    MessageBox.Show("Identificación del Empleado es Requerido", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Identificación del Empleado es Requerido", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtIdent.Focus();
                     return false;
                 }
                 if (CboxUserType.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Debe Seleccionar un tipo de Usuario", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe Seleccionar un tipo de Usuario", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CboxUserType.Focus();
                     return false;
                 }
                 if (CboxStates.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Debe Seleccionar un estado de Usuario", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Debe Seleccionar un estado de Usuario", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CboxUserType.Focus();
                     return false;
                 }
@@ -257,14 +257,14 @@ namespace Agregados.Forms.Users
             {
                 if (txtUsername.TextLength < 8)
                 {
-                    MessageBox.Show("Usuario debe ser tener entre 8 a 15 caracteres", "Error de Validación!", MessageBoxButtons.OK);
+                    MessageBox.Show("Usuario debe ser tener entre 8 a 15 caracteres", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtUsername.Focus();
                 }
                 else
                 {
                     if (string.IsNullOrEmpty(txtPassword.Text.Trim()))
                     {
-                        MessageBox.Show("Contraseña es Requerida, espacio no puede estar vacío", "Error de Validación!", MessageBoxButtons.OK);
+                        MessageBox.Show("Contraseña es Requerida, espacio no puede estar vacío", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtPassword.Focus();
                     }
                     else
@@ -306,30 +306,33 @@ namespace Agregados.Forms.Users
                                                 {
                                                     CheckChange();
                                                     limpiarBusqueda();
-                                                    MessageBox.Show("Usuario Agregado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK);
+                                                    MessageBox.Show("Usuario Agregado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                     user = null;
                                                 }
                                                 else
                                                 {
-                                                    MessageBox.Show("Usuario No fue agregado", "Error Registro de Usuarios", MessageBoxButtons.OK);
+                                                    MessageBox.Show("Usuario No fue agregado", "Error Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                     user = null;
                                                 }
                                             }
                                             else
                                             {
-                                                MessageBox.Show("Ya hay un usuario con esa misma identificación, registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                                MessageBox.Show("Ya hay un usuario con esa misma identificación, registrado en el sistema.", 
+                                                    "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                 txtIdent.Focus();
                                             }
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Ya hay un usuario con ese mismo correo registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                            MessageBox.Show("Ya hay un usuario con ese mismo correo registrado en el sistema.",
+                                                "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             txtEmail.Focus();
                                         }
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Ya hay un usuario con ese mismo nombre de usuario registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                        MessageBox.Show("Ya hay un usuario con ese mismo nombre de usuario registrado en el sistema.",
+                                            "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         txtUsername.Focus();
                                     }
                                     
@@ -350,7 +353,8 @@ namespace Agregados.Forms.Users
         {
             if (user == null)
             {
-                MessageBox.Show("Usuario No existe, o no se ha seleccionado un usuario de la Lista", "Error Registro de Usuarios", MessageBoxButtons.OK);
+                MessageBox.Show("Usuario No existe, o no se ha seleccionado un usuario de la Lista",
+                    "Error Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -360,7 +364,7 @@ namespace Agregados.Forms.Users
                     {
                         if (txtUsername.TextLength < 8)
                         {
-                            MessageBox.Show("Usuario debe ser tener entre 8 a 15 caracteres", "Error de Validación!", MessageBoxButtons.OK);
+                            MessageBox.Show("Usuario debe ser tener entre 8 a 15 caracteres", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             txtUsername.Focus();
                         }
                         else
@@ -394,43 +398,46 @@ namespace Agregados.Forms.Users
                                                     {
                                                         CheckChange();
                                                         limpiarBusqueda();
-                                                        MessageBox.Show("Usuario Modificado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK);
+                                                        MessageBox.Show("Usuario Modificado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                         user = null;
                                                     }
                                                     else
                                                     {
-                                                        MessageBox.Show("Usuario No fue Modificado, por favor valide", "Error Registro de Usuarios", MessageBoxButtons.OK);
+                                                        MessageBox.Show("Usuario No fue Modificado, por favor valide", "Error Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                         user = null;
                                                     }
                                                 }
                                                 else
                                                 {
-                                                    MessageBox.Show("Ya hay un usuario con esa misma identificación, registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                                    MessageBox.Show("Ya hay un usuario con esa misma identificación, registrado en el sistema.",
+                                                        "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                     txtIdent.Focus();
                                                 }
                                             }
                                             else
                                             {
-                                                MessageBox.Show("Ya hay un usuario con ese mismo correo registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                                MessageBox.Show("Ya hay un usuario con ese mismo correo registrado en el sistema.",
+                                                    "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                 txtEmail.Focus();
                                             }
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Ya hay un usuario con ese mismo nombre de usuario registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                            MessageBox.Show("Ya hay un usuario con ese mismo nombre de usuario registrado en el sistema.",
+                                                "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             txtUsername.Focus();
                                         }
                                     }
                                     catch (Exception ex)
                                     {
-                                        MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         throw;
                                     }
                                 }  
                             }
                             else
                             {
-                                MessageBox.Show("Correo Electrónico no tiene un formato valido con @ y dominio correspondiente.", "Error de Validación!", MessageBoxButtons.OK);
+                                MessageBox.Show("Correo Electrónico no tiene un formato valido con @ y dominio correspondiente.", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 txtEmail.Focus();
                             }
                         }             
@@ -442,7 +449,7 @@ namespace Agregados.Forms.Users
                     {
                         if (txtUsername.TextLength < 8)
                         {
-                            MessageBox.Show("Usuario debe ser tener entre 8 a 15 caracteres", "Error de Validación!", MessageBoxButtons.OK);
+                            MessageBox.Show("Usuario debe ser tener entre 8 a 15 caracteres", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             txtUsername.Focus();
                         }
                         else
@@ -478,36 +485,39 @@ namespace Agregados.Forms.Users
                                                         {
                                                             CheckChange();
                                                             limpiarBusqueda();
-                                                            MessageBox.Show("Usuario Modificado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK);
+                                                            MessageBox.Show("Usuario Modificado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                             user = null;
                                                         }
                                                         else
                                                         {
-                                                            MessageBox.Show("Usuario No fue Modificado, por favor valide", "Error Registro de Usuarios", MessageBoxButtons.OK);
+                                                            MessageBox.Show("Usuario No fue Modificado, por favor valide", "Error Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                             user = null;
                                                         }
                                                     }
                                                     else
                                                     {
-                                                        MessageBox.Show("Ya hay un usuario con esa misma identificación, registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                                        MessageBox.Show("Ya hay un usuario con esa misma identificación, registrado en el sistema.",
+                                                            "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                         txtIdent.Focus();
                                                     }
                                                 }
                                                 else
                                                 {
-                                                    MessageBox.Show("Ya hay un usuario con ese mismo correo registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                                    MessageBox.Show("Ya hay un usuario con ese mismo correo registrado en el sistema.", 
+                                                        "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                     txtEmail.Focus();
                                                 }
                                             }
                                             else
                                             {
-                                                MessageBox.Show("Ya hay un usuario con ese mismo nombre de usuario registrado en el sistema.", "Error de Validación!", MessageBoxButtons.OK);
+                                                MessageBox.Show("Ya hay un usuario con ese mismo nombre de usuario registrado en el sistema.",
+                                                    "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                 txtUsername.Focus();
                                             }
                                         }
                                         catch (Exception ex)
                                         {
-                                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             throw;
                                         }
                                     }
@@ -515,7 +525,7 @@ namespace Agregados.Forms.Users
                             }
                             else
                             {
-                                MessageBox.Show("Correo Electrónico no tiene un formato valido con @ y dominio correspondiente.", "Error de Validación!", MessageBoxButtons.OK);
+                                MessageBox.Show("Correo Electrónico no tiene un formato valido con @ y dominio correspondiente.", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 txtEmail.Focus();
                             }
                         }
@@ -532,7 +542,7 @@ namespace Agregados.Forms.Users
             {
                 if (user == null)
                 {
-                    MessageBox.Show("Usuario No existe, o no ha sido seleccionado de la lista", "Error Registro de Usuarios", MessageBoxButtons.OK);
+                    MessageBox.Show("Usuario No existe, o no ha sido seleccionado de la lista", "Error Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -579,13 +589,13 @@ namespace Agregados.Forms.Users
                     {
                         if (user == null)
                         {
-                            MessageBox.Show("Usuario No existe, o no ha sido seleccionado de la lista", "Error Registro de Usuarios", MessageBoxButtons.OK);
+                            MessageBox.Show("Usuario No existe, o no ha sido seleccionado de la lista", "Error Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
                             if (user.IdEstado == 2)
                             {
-                                MessageBox.Show("Usuario ya se encuentra Inactivo", "Registro de Usuarios", MessageBoxButtons.OK);
+                                MessageBox.Show("Usuario ya se encuentra Inactivo", "Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else
                             {
@@ -597,12 +607,12 @@ namespace Agregados.Forms.Users
                                     {
                                         CheckChange();
                                         limpiarBusqueda();
-                                        MessageBox.Show("Usuario Inactivado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK);
+                                        MessageBox.Show("Usuario Inactivado correctamente!", "Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         user = null;
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Usuario No fue Inactivado, por favor valide", "Error Registro de Usuarios", MessageBoxButtons.OK);
+                                        MessageBox.Show("Usuario No fue Inactivado, por favor valide", "Error Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         user = null;
                                     }
                                 }
