@@ -250,7 +250,7 @@ namespace Agregados.Forms.Bills
         private void CargarTiposFactura()
         {
 
-            //Metodo que permite llamar y obtener los datos filtrados de los materiales y mostrarlos en el comboBox
+            //método que permite llamar y obtener los datos filtrados de los materiales y mostrarlos en el comboBox
             var dt = DB.TiposFacturas.ToList();
 
             CboxTypeBill.ValueMember = "IdTipo";
@@ -284,7 +284,7 @@ namespace Agregados.Forms.Bills
         private void CargarTiposPagos()
         {
 
-            //Metodo que permite llamar y obtener los datos filtrados de los materiales y mostrarlos en el comboBox
+            //método que permite llamar y obtener los datos filtrados de los materiales y mostrarlos en el comboBox
             var dt = DB.MetodosPagos.Where((x) => x.IdTipoPago != 5 && x.IdTipoPago != 4 && x.IdTipoPago != 6).ToList();
 
             CboxMetodoPago.ValueMember = "IdTipoPago";
@@ -298,7 +298,7 @@ namespace Agregados.Forms.Bills
         private void CargarTiposPagosCredito()
         {
 
-            //Metodo que permite llamar y obtener los datos filtrados de  metodo de pago y mostrarlos en el comboBox
+            //método que permite llamar y obtener los datos filtrados de  método de pago y mostrarlos en el comboBox
             var dt = DB.MetodosPagos.Where((x) => x.IdTipoPago == 5).ToList();
 
             CboxMetodoPago.ValueMember = "IdTipoPago";
@@ -476,7 +476,7 @@ namespace Agregados.Forms.Bills
         }
 
 
-        //metodo que permite realizar validaciones a tomar en cuenta para generar registro de factura
+        //método que permite realizar validaciones a tomar en cuenta para generar registro de factura
         private bool ValidarCamposRequeridos()
         {
             bool R = false;
@@ -667,7 +667,7 @@ namespace Agregados.Forms.Bills
                                                 CostoTotal = Total,
 
                                                 FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                MontoPendiente = null,
+                                                MontoPendiente = 0,
                                                 FechaLimiteP = null,
                                                 ReferenciaPago = txtReferencia.Text.Trim(),
 
@@ -707,23 +707,21 @@ namespace Agregados.Forms.Bills
                                                         materiales = DB.Materiales.Find(IdMaterial);
                                                         materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
                                                         //actualiza el estado
-                                                        if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                        if (materiales.CantidadMaterial >= (materiales.Minimos + 2))
                                                         {
-                                                            materiales.IdEstado = 11;
+                                                            materiales.IdEstado = 11; //cantidad buena
                                                         }
                                                         else
                                                         {
-                                                            if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
+                                                            if (((materiales.Minimos) > materiales.CantidadMaterial) || materiales.CantidadMaterial > 0)
                                                             {
-                                                                materiales.IdEstado = 10;
+                                                                materiales.IdEstado = 10;//cantidad regular
                                                             }
                                                             else
                                                             {
-                                                                materiales.IdEstado = 9;
+                                                                materiales.IdEstado = 9;//cantidad sin material
                                                             }
                                                         }
-
-
                                                         DB.Entry(materiales).State = EntityState.Modified;
 
                                                         if (DB.SaveChanges() > 0)
@@ -769,7 +767,7 @@ namespace Agregados.Forms.Bills
                                 }
                                 else
                                 {
-                                    if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 2) // metodo transferencia sinpe
+                                    if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 2) // método transferencia sinpe
                                     {
                                         using (FrmLoading frmLoading = new FrmLoading(Wait))
                                         {
@@ -784,7 +782,7 @@ namespace Agregados.Forms.Bills
                                                     CostoTotal = Total,
 
                                                     FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                    MontoPendiente = null,
+                                                    MontoPendiente = 0,
                                                     FechaLimiteP = null,
                                                     ReferenciaPago = txtReferencia.Text.Trim(),
 
@@ -824,23 +822,21 @@ namespace Agregados.Forms.Bills
                                                             materiales = DB.Materiales.Find(IdMaterial);
                                                             materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
                                                             //actualiza el estado
-                                                            if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                            if (materiales.CantidadMaterial >= (materiales.Minimos + 2))
                                                             {
-                                                                materiales.IdEstado = 11;
+                                                                materiales.IdEstado = 11; //cantidad buena
                                                             }
                                                             else
                                                             {
-                                                                if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
+                                                                if (((materiales.Minimos) > materiales.CantidadMaterial) || materiales.CantidadMaterial > 0)
                                                                 {
-                                                                    materiales.IdEstado = 10;
+                                                                    materiales.IdEstado = 10;//cantidad regular
                                                                 }
                                                                 else
                                                                 {
-                                                                    materiales.IdEstado = 9;
+                                                                    materiales.IdEstado = 9;//cantidad sin material
                                                                 }
                                                             }
-
-
                                                             DB.Entry(materiales).State = EntityState.Modified;
 
                                                             if (DB.SaveChanges() > 0)
@@ -882,7 +878,7 @@ namespace Agregados.Forms.Bills
                                     }
                                     else
                                     {
-                                        if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 3) // metodo sinpe movil
+                                        if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 3) // método sinpe movil
                                         {
                                             using (FrmLoading frmLoading = new FrmLoading(Wait))
                                             {
@@ -897,7 +893,7 @@ namespace Agregados.Forms.Bills
                                                         CostoTotal = Total,
 
                                                         FechaFactura = Convert.ToDateTime(DateTime.Now.Date.ToShortDateString()),
-                                                        MontoPendiente = null,
+                                                        MontoPendiente = 0,
                                                         FechaLimiteP = null,
                                                         ReferenciaPago = txtReferencia.Text.Trim(),
 
@@ -937,23 +933,21 @@ namespace Agregados.Forms.Bills
                                                                 materiales = DB.Materiales.Find(IdMaterial);
                                                                 materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
                                                                 //actualiza el estado
-                                                                if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                                if (materiales.CantidadMaterial >= (materiales.Minimos + 2))
                                                                 {
-                                                                    materiales.IdEstado = 11;
+                                                                    materiales.IdEstado = 11; //cantidad buena
                                                                 }
                                                                 else
                                                                 {
-                                                                    if (((materiales.Minimos + 2) > materiales.CantidadMaterial) && materiales.CantidadMaterial > 0)
+                                                                    if (((materiales.Minimos) > materiales.CantidadMaterial) || materiales.CantidadMaterial > 0)
                                                                     {
-                                                                        materiales.IdEstado = 10;
+                                                                        materiales.IdEstado = 10;//cantidad regular
                                                                     }
                                                                     else
                                                                     {
-                                                                        materiales.IdEstado = 9;
+                                                                        materiales.IdEstado = 9;//cantidad sin material
                                                                     }
                                                                 }
-
-
                                                                 DB.Entry(materiales).State = EntityState.Modified;
 
                                                                 if (DB.SaveChanges() > 0)
@@ -995,15 +989,15 @@ namespace Agregados.Forms.Bills
                                         }
                                         else
                                         {
-                                            if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 4) // metodo cheque
+                                            if (Convert.ToInt32(CboxMetodoPago.SelectedValue) == 4) // método cheque
                                             {
-                                                MessageBox.Show("Factura no se puede realizar con el metodo de pago indicado," +
+                                                MessageBox.Show("Factura no se puede realizar con el método de pago indicado," +
                                                     " por favor valide que sea en efectivo, transferencia, o sinpe móvil",
                                                     "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             }
                                             else
                                             {
-                                                MessageBox.Show("Factura no se puede realizar con el metodo de pago indicado," +
+                                                MessageBox.Show("Factura no se puede realizar con el método de pago indicado," +
                                                     " por favor valide que sea en efectivo, transferencia, o sinpe móvil",
                                                     "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             }
@@ -1020,7 +1014,7 @@ namespace Agregados.Forms.Bills
                     }
                     else
                     {
-                        if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 2) // credito => metodo pago pendiente (credito)
+                        if (Convert.ToInt32(CboxTypeBill.SelectedValue) == 2) // credito => método pago pendiente (credito)
                         {
                             if (ValidarFechaLimite())
                             {
@@ -1095,19 +1089,20 @@ namespace Agregados.Forms.Bills
                                                             materiales = DB.Materiales.Find(IdMaterial);
                                                             materiales.CantidadMaterial = materiales.CantidadMaterial + Convert.ToDecimal(Row["CantidadMaterial"]);
 
-                                                            if (materiales.CantidadMaterial > (materiales.Minimos + 2))
+                                                            //actualiza el estado
+                                                            if (materiales.CantidadMaterial >= (materiales.Minimos + 2))
                                                             {
-                                                                materiales.IdEstado = 11;
+                                                                materiales.IdEstado = 11; //cantidad buena
                                                             }
                                                             else
                                                             {
-                                                                if ((materiales.Minimos + 2) > materiales.CantidadMaterial && materiales.CantidadMaterial > 0)
+                                                                if (((materiales.Minimos) > materiales.CantidadMaterial) || materiales.CantidadMaterial > 0)
                                                                 {
-                                                                    materiales.IdEstado = 10;
+                                                                    materiales.IdEstado = 10;//cantidad regular
                                                                 }
                                                                 else
                                                                 {
-                                                                    materiales.IdEstado = 9;
+                                                                    materiales.IdEstado = 9;//cantidad sin material
                                                                 }
                                                             }
 

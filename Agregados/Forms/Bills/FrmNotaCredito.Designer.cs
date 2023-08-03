@@ -39,13 +39,6 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnEmitirNota = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
-            this.CEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CNombreEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CCostoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CFechaFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CConsecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -61,6 +54,13 @@
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
             this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
+            this.CID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CConsecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CFechaFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCostoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNombreEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
@@ -199,70 +199,6 @@
             this.btnVolver.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnVolver.UseVisualStyleBackColor = false;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
-            // 
-            // CEmpleado
-            // 
-            this.CEmpleado.DataPropertyName = "NombreEmpleado";
-            this.CEmpleado.FillWeight = 250F;
-            this.CEmpleado.HeaderText = "Empleado";
-            this.CEmpleado.MinimumWidth = 250;
-            this.CEmpleado.Name = "CEmpleado";
-            this.CEmpleado.ReadOnly = true;
-            this.CEmpleado.Width = 250;
-            // 
-            // CCliente
-            // 
-            this.CCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CCliente.DataPropertyName = "Nombre";
-            this.CCliente.HeaderText = "Cliente";
-            this.CCliente.Name = "CCliente";
-            this.CCliente.ReadOnly = true;
-            // 
-            // CNombreEstado
-            // 
-            this.CNombreEstado.DataPropertyName = "NombreEstado";
-            this.CNombreEstado.FillWeight = 150F;
-            this.CNombreEstado.HeaderText = "Estado";
-            this.CNombreEstado.MinimumWidth = 150;
-            this.CNombreEstado.Name = "CNombreEstado";
-            this.CNombreEstado.ReadOnly = true;
-            this.CNombreEstado.Width = 150;
-            // 
-            // CCostoTotal
-            // 
-            this.CCostoTotal.DataPropertyName = "CostoTotal";
-            this.CCostoTotal.FillWeight = 150F;
-            this.CCostoTotal.HeaderText = "Costo Total";
-            this.CCostoTotal.MinimumWidth = 150;
-            this.CCostoTotal.Name = "CCostoTotal";
-            this.CCostoTotal.ReadOnly = true;
-            this.CCostoTotal.Width = 150;
-            // 
-            // CFechaFactura
-            // 
-            this.CFechaFactura.DataPropertyName = "FechaFactura";
-            this.CFechaFactura.FillWeight = 150F;
-            this.CFechaFactura.HeaderText = "Fecha";
-            this.CFechaFactura.MinimumWidth = 150;
-            this.CFechaFactura.Name = "CFechaFactura";
-            this.CFechaFactura.ReadOnly = true;
-            this.CFechaFactura.Width = 150;
-            // 
-            // CConsecutivo
-            // 
-            this.CConsecutivo.DataPropertyName = "Consecutivo";
-            this.CConsecutivo.HeaderText = "Consecutivo";
-            this.CConsecutivo.MinimumWidth = 100;
-            this.CConsecutivo.Name = "CConsecutivo";
-            this.CConsecutivo.ReadOnly = true;
-            // 
-            // CID
-            // 
-            this.CID.DataPropertyName = "IdFactura";
-            this.CID.HeaderText = "ID Fact";
-            this.CID.Name = "CID";
-            this.CID.ReadOnly = true;
-            this.CID.Visible = false;
             // 
             // dgvFilter
             // 
@@ -481,6 +417,76 @@
             this.tmrFechaHora.Interval = 1000;
             this.tmrFechaHora.Tick += new System.EventHandler(this.tmrFechaHora_Tick);
             // 
+            // CID
+            // 
+            this.CID.DataPropertyName = "IdFactura";
+            this.CID.HeaderText = "ID Fact";
+            this.CID.MinimumWidth = 80;
+            this.CID.Name = "CID";
+            this.CID.ReadOnly = true;
+            this.CID.Visible = false;
+            this.CID.Width = 80;
+            // 
+            // CConsecutivo
+            // 
+            this.CConsecutivo.DataPropertyName = "Consecutivo";
+            this.CConsecutivo.FillWeight = 80F;
+            this.CConsecutivo.HeaderText = "Consecutivo";
+            this.CConsecutivo.MinimumWidth = 80;
+            this.CConsecutivo.Name = "CConsecutivo";
+            this.CConsecutivo.ReadOnly = true;
+            this.CConsecutivo.Width = 80;
+            // 
+            // CFechaFactura
+            // 
+            this.CFechaFactura.DataPropertyName = "FechaFactura";
+            this.CFechaFactura.FillWeight = 110F;
+            this.CFechaFactura.HeaderText = "Fecha";
+            this.CFechaFactura.MinimumWidth = 110;
+            this.CFechaFactura.Name = "CFechaFactura";
+            this.CFechaFactura.ReadOnly = true;
+            this.CFechaFactura.Width = 110;
+            // 
+            // CCostoTotal
+            // 
+            this.CCostoTotal.DataPropertyName = "CostoTotal";
+            this.CCostoTotal.FillWeight = 120F;
+            this.CCostoTotal.HeaderText = "Costo Total";
+            this.CCostoTotal.MinimumWidth = 120;
+            this.CCostoTotal.Name = "CCostoTotal";
+            this.CCostoTotal.ReadOnly = true;
+            this.CCostoTotal.Width = 120;
+            // 
+            // CNombreEstado
+            // 
+            this.CNombreEstado.DataPropertyName = "NombreEstado";
+            this.CNombreEstado.FillWeight = 150F;
+            this.CNombreEstado.HeaderText = "Estado";
+            this.CNombreEstado.MinimumWidth = 150;
+            this.CNombreEstado.Name = "CNombreEstado";
+            this.CNombreEstado.ReadOnly = true;
+            this.CNombreEstado.Width = 150;
+            // 
+            // CCliente
+            // 
+            this.CCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CCliente.DataPropertyName = "Nombre";
+            this.CCliente.FillWeight = 200F;
+            this.CCliente.HeaderText = "Cliente";
+            this.CCliente.MinimumWidth = 120;
+            this.CCliente.Name = "CCliente";
+            this.CCliente.ReadOnly = true;
+            // 
+            // CEmpleado
+            // 
+            this.CEmpleado.DataPropertyName = "NombreEmpleado";
+            this.CEmpleado.FillWeight = 250F;
+            this.CEmpleado.HeaderText = "Empleado";
+            this.CEmpleado.MinimumWidth = 150;
+            this.CEmpleado.Name = "CEmpleado";
+            this.CEmpleado.ReadOnly = true;
+            this.CEmpleado.Width = 150;
+            // 
             // FrmNotaCredito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -526,13 +532,6 @@
         private System.Windows.Forms.Button btnEmitirNota;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CNombreEstado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CCostoTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CFechaFactura;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CConsecutivo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CID;
         private System.Windows.Forms.DataGridView dgvFilter;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel1;
@@ -546,5 +545,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer tmrFechaHora;
         private System.Windows.Forms.NumericUpDown txtTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CConsecutivo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CFechaFactura;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CCostoTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CNombreEstado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CEmpleado;
     }
 }

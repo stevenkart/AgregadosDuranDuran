@@ -804,11 +804,11 @@
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 5;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.96899F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03101F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel5.Controls.Add(this.btnVolver, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnReportPDF, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.BtnVerFact, 4, 0);
@@ -818,7 +818,7 @@
             this.tableLayoutPanel5.Location = new System.Drawing.Point(10, 10);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1176, 85);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
@@ -832,7 +832,7 @@
             this.btnVolver.Image = global::Agregados.Properties.Resources._return;
             this.btnVolver.Location = new System.Drawing.Point(3, 3);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(516, 79);
+            this.btnVolver.Size = new System.Drawing.Size(386, 79);
             this.btnVolver.TabIndex = 6;
             this.btnVolver.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnVolver.UseVisualStyleBackColor = false;
@@ -847,9 +847,9 @@
             this.btnReportPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportPDF.Image = global::Agregados.Properties.Resources.pdf;
             this.btnReportPDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportPDF.Location = new System.Drawing.Point(525, 3);
+            this.btnReportPDF.Location = new System.Drawing.Point(395, 3);
             this.btnReportPDF.Name = "btnReportPDF";
-            this.btnReportPDF.Size = new System.Drawing.Size(159, 79);
+            this.btnReportPDF.Size = new System.Drawing.Size(190, 79);
             this.btnReportPDF.TabIndex = 2;
             this.btnReportPDF.Text = "Export PDF";
             this.btnReportPDF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -865,9 +865,9 @@
             this.BtnVerFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVerFact.Image = global::Agregados.Properties.Resources.factura;
             this.BtnVerFact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerFact.Location = new System.Drawing.Point(1043, 3);
+            this.BtnVerFact.Location = new System.Drawing.Point(983, 3);
             this.BtnVerFact.Name = "BtnVerFact";
-            this.BtnVerFact.Size = new System.Drawing.Size(130, 79);
+            this.BtnVerFact.Size = new System.Drawing.Size(190, 79);
             this.BtnVerFact.TabIndex = 0;
             this.BtnVerFact.Text = "Ver Factura";
             this.BtnVerFact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -883,9 +883,9 @@
             this.BtnVerFacturasList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVerFacturasList.Image = global::Agregados.Properties.Resources.reporte;
             this.BtnVerFacturasList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerFacturasList.Location = new System.Drawing.Point(846, 3);
+            this.BtnVerFacturasList.Location = new System.Drawing.Point(787, 3);
             this.BtnVerFacturasList.Name = "BtnVerFacturasList";
-            this.BtnVerFacturasList.Size = new System.Drawing.Size(191, 79);
+            this.BtnVerFacturasList.Size = new System.Drawing.Size(190, 79);
             this.BtnVerFacturasList.TabIndex = 1;
             this.BtnVerFacturasList.Text = "Ver listas de Facturas";
             this.BtnVerFacturasList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -901,9 +901,9 @@
             this.btnReportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportExcel.Image = global::Agregados.Properties.Resources.excel;
             this.btnReportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportExcel.Location = new System.Drawing.Point(690, 3);
+            this.btnReportExcel.Location = new System.Drawing.Point(591, 3);
             this.btnReportExcel.Name = "btnReportExcel";
-            this.btnReportExcel.Size = new System.Drawing.Size(150, 79);
+            this.btnReportExcel.Size = new System.Drawing.Size(190, 79);
             this.btnReportExcel.TabIndex = 3;
             this.btnReportExcel.Text = "Export Excel";
             this.btnReportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
