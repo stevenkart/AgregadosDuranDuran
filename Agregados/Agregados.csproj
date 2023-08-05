@@ -942,9 +942,7 @@
     </None>
     <None Include="Agregados_TemporaryKey.pfx" />
     <None Include="App.Config" />
-    <Content Include="Forms\Help\Manual de Usuario.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="Forms\Help\Manual de Usuario.pdf" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
