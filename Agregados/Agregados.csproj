@@ -29,7 +29,7 @@
     <ProductName>Control de Inventario &amp; Facturación</ProductName>
     <PublisherName>Steven Carrillo</PublisherName>
     <SuiteName>Steven Carrillo</SuiteName>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
