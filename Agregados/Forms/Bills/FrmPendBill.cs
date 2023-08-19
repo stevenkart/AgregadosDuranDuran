@@ -188,12 +188,13 @@ namespace Agregados.Forms.Bills
             {
                 btnPagar.Visible = true;
                 btnPagar.Enabled = false;
-                MessageBox.Show("No hay datos que mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+  
             }
             else
             {
                 btnPagar.Visible = false;
                 btnPagar.Enabled = false;
+                MessageBox.Show("No hay datos que mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -261,7 +262,7 @@ namespace Agregados.Forms.Bills
 
         private void txtClienteNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = Validaciones.CaracteresTexto(e, false, true);
+            //e.Handled = Validaciones.CaracteresTexto(e, false, true);
         }
 
         private void txtClienteNombre_TextChanged(object sender, EventArgs e)
@@ -638,6 +639,8 @@ namespace Agregados.Forms.Bills
 
         private void limpiar()
         {
+            txtConsecutivo.Text = null;
+            txtClienteNombre.Text = null;
             btnPagar.Visible = false;
             metodo = 0;
             Id = 0;

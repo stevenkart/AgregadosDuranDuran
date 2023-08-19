@@ -638,7 +638,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(829, 24);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Lista deCompras por Pagar";
+            this.label1.Text = "Lista de Compras por Pagar";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel2

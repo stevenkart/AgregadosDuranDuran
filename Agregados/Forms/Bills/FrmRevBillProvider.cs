@@ -44,6 +44,7 @@ namespace Agregados.Forms.Bills
 
         private void FrmRevBillProvider_Load(object sender, EventArgs e)
         {
+
             apertura = BuscarAperturaActual();
             MessageBox.Show("Este apartado permite anular una factura de compra a proveedor, que se haya emitido anteriormente, en el mismo día y apertura de caja actual que se haya emitido con la factura." + Environment.NewLine
                 + "No es posible anular o reversar una facturas de compras de días anteriores al actual o cuando se haya hecho cierre de caja en el día.",
@@ -356,7 +357,7 @@ namespace Agregados.Forms.Bills
                                         cierreApertCajas = null;
                                         materiales = null;
                                         facturas = null;
-                                        Filtrar();
+                                        limpiar();
                                     }
                                     else
                                     {
@@ -417,7 +418,7 @@ namespace Agregados.Forms.Bills
                                             cierreApertCajas = null;
                                             materiales = null;
                                             facturas = null;
-                                            Filtrar();
+                                            limpiar();
                                         }
                                         else
                                         {
@@ -477,7 +478,7 @@ namespace Agregados.Forms.Bills
                                                 cierreApertCajas = null;
                                                 materiales = null;
                                                 facturas = null;
-                                                Filtrar();
+                                                limpiar();
                                             }
                                             else
                                             {
@@ -541,7 +542,7 @@ namespace Agregados.Forms.Bills
                                         cierreApertCajas = null;
                                         materiales = null;
                                         facturas = null;
-                                        Filtrar();
+                                        limpiar();
 
                                     }
                                     else
@@ -570,6 +571,15 @@ namespace Agregados.Forms.Bills
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
+        }
+
+        private void limpiar()
+        {
+            txtClienteNombre.Text = null;
+            txtConsecutivo.Text = null;
+
+            dgvFilter.ClearSelection();
+            Filtrar();
         }
     }
 }

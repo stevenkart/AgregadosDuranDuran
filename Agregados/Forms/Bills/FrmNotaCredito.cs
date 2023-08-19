@@ -327,10 +327,13 @@ namespace Agregados.Forms.Bills
 
         private void limpiar()
         {
+            txtClienteNombre.Text = null;
+            txtConsecutivo.Text = null;
             txtTotal.Value = 0;
             rbEfectivo2.Checked = false;
             rbSinpe2.Checked = false;
             rbSinpeMovil2.Checked = false;
+            Filtrar();
         }
 
         //tiempo loading

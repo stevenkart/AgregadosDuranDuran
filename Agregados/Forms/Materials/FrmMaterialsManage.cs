@@ -1039,9 +1039,9 @@ namespace Agregados.Forms.Materials
             }
             else
             {
-                if (string.IsNullOrEmpty(txtIdMaterialSearch.Text.Trim()) && txtIdMaterialSearch.Text.Count() == 0)
+                if (string.IsNullOrEmpty(txtNameSearch.Text.Trim()) && txtNameSearch.Text.Count() == 0)
                 {
-                    txtNameSearch.Enabled = true;
+                    txtIdMaterialSearch.Enabled = true;
                     CheckChange();
                 }
             }

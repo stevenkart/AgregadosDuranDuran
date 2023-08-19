@@ -273,7 +273,7 @@ namespace Agregados.Forms.Bills
                                         cierreApertCajas = null;
                                         materiales = null;
                                         facturas = null;
-                                        Filtrar();
+                                        limpiar();
                                     }
                                     else
                                     {
@@ -333,7 +333,7 @@ namespace Agregados.Forms.Bills
                                             cierreApertCajas = null;
                                             materiales = null;
                                             facturas = null;
-                                            Filtrar();
+                                            limpiar();
                                         }
                                         else
                                         {
@@ -393,7 +393,7 @@ namespace Agregados.Forms.Bills
                                                 cierreApertCajas = null;
                                                 materiales = null;
                                                 facturas = null;
-                                                Filtrar();
+                                                limpiar();
                                             }
                                             else
                                             {
@@ -453,7 +453,7 @@ namespace Agregados.Forms.Bills
                                                     cierreApertCajas = null;
                                                     materiales = null;
                                                     facturas = null;
-                                                    Filtrar();
+                                                    limpiar();
                                                 }
                                                 else
                                                 {
@@ -529,8 +529,7 @@ namespace Agregados.Forms.Bills
                                         cierreApertCajas = null;
                                         materiales = null;
                                         facturas = null;
-                                        Filtrar();
-
+                                        limpiar();
                                     }
                                     else
                                     {
@@ -643,6 +642,15 @@ namespace Agregados.Forms.Bills
                 Consecutivo = 0;
                 Id = 0;
             }
+        }
+
+        private void limpiar()
+        {
+            txtClienteNombre.Text = null;
+            txtConsecutivo.Text = null;
+
+            dgvFilter.ClearSelection();
+            Filtrar();
         }
     }
 }

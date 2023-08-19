@@ -1,4 +1,5 @@
 ﻿using Agregados.Reports;
+using Agregados.Reports.Facts.FactNow;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -175,7 +176,7 @@ namespace Agregados.Forms.Bills
 
         private void txtClienteNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = Validaciones.CaracteresTexto(e, false, true);
+            //e.Handled = Validaciones.CaracteresTexto(e, false, true);
         }
 
         private void txtClienteNombre_TextChanged(object sender, EventArgs e)
@@ -320,8 +321,7 @@ namespace Agregados.Forms.Bills
                                         }
 
                                         MessageBox.Show("Compra de crédito pagada correctamente!", "Registro de Compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                        using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
+                                        using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                                         {
                                             frm.ShowDialog();
                                         };
@@ -357,7 +357,7 @@ namespace Agregados.Forms.Bills
 
                                         MessageBox.Show("Compra a crédito pagada correctamente!", "Registro de Compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                        using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
+                                        using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                                         {
                                             frm.ShowDialog();
                                         };
@@ -403,7 +403,7 @@ namespace Agregados.Forms.Bills
 
                                         MessageBox.Show("Ticket de Compra pagada correctamente!", "Registro de Compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                        using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
+                                        using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                                         {
                                             frm.ShowDialog();
                                         };
@@ -437,7 +437,7 @@ namespace Agregados.Forms.Bills
 
                                         MessageBox.Show("Factura pagada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                        using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
+                                        using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                                         {
                                             frm.ShowDialog();
                                         };
@@ -482,7 +482,7 @@ namespace Agregados.Forms.Bills
 
                                         MessageBox.Show("Ticket de Compra pagado correctamente!", "Registro de Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                        using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
+                                        using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                                         {
                                             frm.ShowDialog();
                                         };
@@ -516,11 +516,10 @@ namespace Agregados.Forms.Bills
 
                                         MessageBox.Show("Ticket de Compra pagado correctamente!", "Registro de Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                        using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
+                                        using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                                         {
                                             frm.ShowDialog();
                                         };
-
 
                                         fact = null;
                                         limpiar();
