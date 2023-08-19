@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTicketsReports));
             this.dgvFilter = new System.Windows.Forms.DataGridView();
             this.CID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -144,9 +144,9 @@
             this.dgvFilter.MultiSelect = false;
             this.dgvFilter.Name = "dgvFilter";
             this.dgvFilter.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvFilter.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvFilter.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFilter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFilter.Size = new System.Drawing.Size(1170, 141);
             this.dgvFilter.TabIndex = 2;
@@ -380,7 +380,7 @@
             this.btnVolver.Image = global::Agregados.Properties.Resources._return;
             this.btnVolver.Location = new System.Drawing.Point(3, 3);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(386, 79);
+            this.btnVolver.Size = new System.Drawing.Size(385, 79);
             this.btnVolver.TabIndex = 6;
             this.btnVolver.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnVolver.UseVisualStyleBackColor = false;
@@ -395,7 +395,7 @@
             this.btnReportPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportPDF.Image = global::Agregados.Properties.Resources.pdf;
             this.btnReportPDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportPDF.Location = new System.Drawing.Point(395, 3);
+            this.btnReportPDF.Location = new System.Drawing.Point(394, 3);
             this.btnReportPDF.Name = "btnReportPDF";
             this.btnReportPDF.Size = new System.Drawing.Size(190, 79);
             this.btnReportPDF.TabIndex = 2;
@@ -413,9 +413,9 @@
             this.BtnVerFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVerFact.Image = global::Agregados.Properties.Resources.factura;
             this.BtnVerFact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerFact.Location = new System.Drawing.Point(983, 3);
+            this.BtnVerFact.Location = new System.Drawing.Point(982, 3);
             this.BtnVerFact.Name = "BtnVerFact";
-            this.BtnVerFact.Size = new System.Drawing.Size(190, 79);
+            this.BtnVerFact.Size = new System.Drawing.Size(191, 79);
             this.BtnVerFact.TabIndex = 0;
             this.BtnVerFact.Text = "Ver Ticket Compra";
             this.BtnVerFact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -431,7 +431,7 @@
             this.BtnVerFacturasList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVerFacturasList.Image = global::Agregados.Properties.Resources.reporte;
             this.BtnVerFacturasList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerFacturasList.Location = new System.Drawing.Point(787, 3);
+            this.BtnVerFacturasList.Location = new System.Drawing.Point(786, 3);
             this.BtnVerFacturasList.Name = "BtnVerFacturasList";
             this.BtnVerFacturasList.Size = new System.Drawing.Size(190, 79);
             this.BtnVerFacturasList.TabIndex = 1;
@@ -449,7 +449,7 @@
             this.btnReportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportExcel.Image = global::Agregados.Properties.Resources.excel;
             this.btnReportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportExcel.Location = new System.Drawing.Point(591, 3);
+            this.btnReportExcel.Location = new System.Drawing.Point(590, 3);
             this.btnReportExcel.Name = "btnReportExcel";
             this.btnReportExcel.Size = new System.Drawing.Size(190, 79);
             this.btnReportExcel.TabIndex = 3;
@@ -825,6 +825,7 @@
             this.Name = "FrmTicketsReports";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Compras";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTicketsReports_FormClosing);
             this.Load += new System.EventHandler(this.FrmTicketsReports_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).EndInit();

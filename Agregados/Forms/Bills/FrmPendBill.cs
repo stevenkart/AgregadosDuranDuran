@@ -112,12 +112,13 @@ namespace Agregados.Forms.Bills
             {
                 btnPagar.Visible = true;
                 btnPagar.Enabled = false;
-                MessageBox.Show("No hay datos que mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
             else
             {
                 btnPagar.Visible = false;
                 btnPagar.Enabled = false;
+                MessageBox.Show("No hay datos que mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -150,12 +151,13 @@ namespace Agregados.Forms.Bills
             {
                 btnPagar.Visible = true;
                 btnPagar.Enabled = false;
-                MessageBox.Show("No hay datos que mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
             else
             {
                 btnPagar.Visible = false;
                 btnPagar.Enabled = false;
+                MessageBox.Show("No hay datos que mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

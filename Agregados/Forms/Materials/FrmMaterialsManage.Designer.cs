@@ -51,6 +51,12 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvMaterials = new System.Windows.Forms.DataGridView();
+            this.CIdMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNombreMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCantidadMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CMinimos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
@@ -69,12 +75,6 @@
             this.imgDelete = new System.Windows.Forms.PictureBox();
             this.imgClean = new System.Windows.Forms.PictureBox();
             this.imgExit = new System.Windows.Forms.PictureBox();
-            this.CIdMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CNombreMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CCantidadMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CMinimos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -125,7 +125,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChCantBuena, 2, 0);
             this.tableLayoutPanel8.Controls.Add(this.chCantRegular, 3, 0);
@@ -157,7 +157,7 @@
             this.ChCantBuena.Checked = true;
             this.ChCantBuena.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChCantBuena.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChCantBuena.Location = new System.Drawing.Point(806, 7);
+            this.ChCantBuena.Location = new System.Drawing.Point(805, 7);
             this.ChCantBuena.Name = "ChCantBuena";
             this.ChCantBuena.Size = new System.Drawing.Size(147, 22);
             this.ChCantBuena.TabIndex = 0;
@@ -171,7 +171,7 @@
             this.chCantRegular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chCantRegular.AutoSize = true;
             this.chCantRegular.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chCantRegular.Location = new System.Drawing.Point(959, 7);
+            this.chCantRegular.Location = new System.Drawing.Point(958, 7);
             this.chCantRegular.Name = "chCantRegular";
             this.chCantRegular.Size = new System.Drawing.Size(152, 22);
             this.chCantRegular.TabIndex = 1;
@@ -185,9 +185,9 @@
             this.chVacia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chVacia.AutoSize = true;
             this.chVacia.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chVacia.Location = new System.Drawing.Point(1117, 7);
+            this.chVacia.Location = new System.Drawing.Point(1116, 7);
             this.chVacia.Name = "chVacia";
-            this.chVacia.Size = new System.Drawing.Size(150, 22);
+            this.chVacia.Size = new System.Drawing.Size(151, 22);
             this.chVacia.TabIndex = 2;
             this.chVacia.Text = "Sin Material";
             this.chVacia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -383,6 +383,68 @@
             this.dgvMaterials.Size = new System.Drawing.Size(632, 513);
             this.dgvMaterials.TabIndex = 0;
             this.dgvMaterials.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaterials_CellClick);
+            // 
+            // CIdMaterial
+            // 
+            this.CIdMaterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CIdMaterial.DataPropertyName = "IdMaterial";
+            this.CIdMaterial.FillWeight = 50F;
+            this.CIdMaterial.Frozen = true;
+            this.CIdMaterial.HeaderText = "Cód.";
+            this.CIdMaterial.MinimumWidth = 40;
+            this.CIdMaterial.Name = "CIdMaterial";
+            this.CIdMaterial.ReadOnly = true;
+            this.CIdMaterial.Width = 60;
+            // 
+            // CNombreMaterial
+            // 
+            this.CNombreMaterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CNombreMaterial.DataPropertyName = "NombreMaterial";
+            this.CNombreMaterial.FillWeight = 150F;
+            this.CNombreMaterial.HeaderText = "Nombre";
+            this.CNombreMaterial.MinimumWidth = 150;
+            this.CNombreMaterial.Name = "CNombreMaterial";
+            this.CNombreMaterial.ReadOnly = true;
+            // 
+            // CCantidadMaterial
+            // 
+            this.CCantidadMaterial.DataPropertyName = "CantidadMaterial";
+            this.CCantidadMaterial.FillWeight = 160F;
+            this.CCantidadMaterial.HeaderText = "Cantidad Material  m³";
+            this.CCantidadMaterial.MinimumWidth = 160;
+            this.CCantidadMaterial.Name = "CCantidadMaterial";
+            this.CCantidadMaterial.ReadOnly = true;
+            this.CCantidadMaterial.Width = 160;
+            // 
+            // CMinimos
+            // 
+            this.CMinimos.DataPropertyName = "Minimos";
+            this.CMinimos.FillWeight = 170F;
+            this.CMinimos.HeaderText = "Mínimos";
+            this.CMinimos.MinimumWidth = 140;
+            this.CMinimos.Name = "CMinimos";
+            this.CMinimos.ReadOnly = true;
+            this.CMinimos.Width = 140;
+            // 
+            // CPrecio
+            // 
+            this.CPrecio.DataPropertyName = "Precio";
+            this.CPrecio.FillWeight = 170F;
+            this.CPrecio.HeaderText = "Precio";
+            this.CPrecio.MinimumWidth = 160;
+            this.CPrecio.Name = "CPrecio";
+            this.CPrecio.ReadOnly = true;
+            this.CPrecio.Width = 160;
+            // 
+            // CIdEstado
+            // 
+            this.CIdEstado.DataPropertyName = "IdEstado";
+            this.CIdEstado.FillWeight = 130F;
+            this.CIdEstado.HeaderText = "Estado";
+            this.CIdEstado.MinimumWidth = 120;
+            this.CIdEstado.Name = "CIdEstado";
+            this.CIdEstado.ReadOnly = true;
+            this.CIdEstado.Width = 120;
             // 
             // tableLayoutPanel5
             // 
@@ -649,68 +711,6 @@
             this.imgExit.TabStop = false;
             this.imgExit.Click += new System.EventHandler(this.imgExit_Click);
             // 
-            // CIdMaterial
-            // 
-            this.CIdMaterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CIdMaterial.DataPropertyName = "IdMaterial";
-            this.CIdMaterial.FillWeight = 50F;
-            this.CIdMaterial.Frozen = true;
-            this.CIdMaterial.HeaderText = "Cód.";
-            this.CIdMaterial.MinimumWidth = 40;
-            this.CIdMaterial.Name = "CIdMaterial";
-            this.CIdMaterial.ReadOnly = true;
-            this.CIdMaterial.Width = 60;
-            // 
-            // CNombreMaterial
-            // 
-            this.CNombreMaterial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CNombreMaterial.DataPropertyName = "NombreMaterial";
-            this.CNombreMaterial.FillWeight = 150F;
-            this.CNombreMaterial.HeaderText = "Nombre";
-            this.CNombreMaterial.MinimumWidth = 150;
-            this.CNombreMaterial.Name = "CNombreMaterial";
-            this.CNombreMaterial.ReadOnly = true;
-            // 
-            // CCantidadMaterial
-            // 
-            this.CCantidadMaterial.DataPropertyName = "CantidadMaterial";
-            this.CCantidadMaterial.FillWeight = 160F;
-            this.CCantidadMaterial.HeaderText = "Cantidad Material  m³";
-            this.CCantidadMaterial.MinimumWidth = 160;
-            this.CCantidadMaterial.Name = "CCantidadMaterial";
-            this.CCantidadMaterial.ReadOnly = true;
-            this.CCantidadMaterial.Width = 160;
-            // 
-            // CMinimos
-            // 
-            this.CMinimos.DataPropertyName = "Minimos";
-            this.CMinimos.FillWeight = 170F;
-            this.CMinimos.HeaderText = "Mínimos";
-            this.CMinimos.MinimumWidth = 140;
-            this.CMinimos.Name = "CMinimos";
-            this.CMinimos.ReadOnly = true;
-            this.CMinimos.Width = 140;
-            // 
-            // CPrecio
-            // 
-            this.CPrecio.DataPropertyName = "Precio";
-            this.CPrecio.FillWeight = 170F;
-            this.CPrecio.HeaderText = "Precio";
-            this.CPrecio.MinimumWidth = 160;
-            this.CPrecio.Name = "CPrecio";
-            this.CPrecio.ReadOnly = true;
-            this.CPrecio.Width = 160;
-            // 
-            // CIdEstado
-            // 
-            this.CIdEstado.DataPropertyName = "IdEstado";
-            this.CIdEstado.FillWeight = 130F;
-            this.CIdEstado.HeaderText = "Estado";
-            this.CIdEstado.MinimumWidth = 120;
-            this.CIdEstado.Name = "CIdEstado";
-            this.CIdEstado.ReadOnly = true;
-            this.CIdEstado.Width = 120;
-            // 
             // FrmMaterialsManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -723,6 +723,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMaterialsManage";
             this.Text = "Mantenimiento de Materiales";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMaterialsManage_FormClosing);
             this.Load += new System.EventHandler(this.FrmMaterialsManage_Load);
             this.Click += new System.EventHandler(this.FrmMaterialsManage_Click);
