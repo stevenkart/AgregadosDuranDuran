@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Agregados.Forms.Bills
 {
@@ -671,6 +672,12 @@ namespace Agregados.Forms.Bills
                                                 FechaLimiteP = null,
                                                 ReferenciaPago = txtReferencia.Text.Trim(),
 
+
+                                                DetalleNoCobroIVA = null,
+                                                FactProveedor = null,
+                                                PrecioEspecial = 0,
+                                                Descuento = 0,
+
                                                 IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                 IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
                                                 IdEstado = 4,
@@ -786,6 +793,12 @@ namespace Agregados.Forms.Bills
                                                     FechaLimiteP = null,
                                                     ReferenciaPago = txtReferencia.Text.Trim(),
 
+
+                                                    DetalleNoCobroIVA = null,
+                                                    FactProveedor = null,
+                                                    PrecioEspecial = 0,
+                                                    Descuento = 0,
+
                                                     IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                     IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
                                                     IdEstado = 4,
@@ -896,6 +909,11 @@ namespace Agregados.Forms.Bills
                                                         MontoPendiente = 0,
                                                         FechaLimiteP = null,
                                                         ReferenciaPago = txtReferencia.Text.Trim(),
+
+                                                        DetalleNoCobroIVA = null,
+                                                        FactProveedor = null,
+                                                        PrecioEspecial = 0,
+                                                        Descuento = 0,
 
                                                         IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                         IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
@@ -1052,6 +1070,11 @@ namespace Agregados.Forms.Bills
                                                     MontoPendiente = Total,
                                                     FechaLimiteP = Convert.ToDateTime(dateFinal.Value),
                                                     ReferenciaPago = txtReferencia.Text.Trim(),
+
+                                                    DetalleNoCobroIVA = null,
+                                                    FactProveedor = null,
+                                                    PrecioEspecial = 0,
+                                                    Descuento = 0,
 
                                                     IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                     IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),

@@ -30,6 +30,7 @@ namespace Agregados
         public virtual DbSet<CierreApertCajas> CierreApertCajas { get; set; }
         public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<CorreoNotificaciones> CorreoNotificaciones { get; set; }
+        public virtual DbSet<Denominaciones> Denominaciones { get; set; }
         public virtual DbSet<DetalleFacts> DetalleFacts { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
         public virtual DbSet<Facturas> Facturas { get; set; }

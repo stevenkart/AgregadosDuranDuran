@@ -2,6 +2,7 @@
 using Agregados.Forms.Loading;
 using Agregados.Forms.Materials;
 using Agregados.Reports;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,6 +35,9 @@ namespace Agregados.Forms.Bills
 
         //propiedades para validar que item se seleccione y cantidad linea seleccionada
         public int CantidadItem = 0;
+
+        //variable detalle no cobro IVA
+        public string Detalle = null;  
 
         #region PropiedadesDeTotalizacion
         public decimal SubTotal { get; set; } // subtotal
@@ -110,6 +114,9 @@ namespace Agregados.Forms.Bills
 
             lblCantTierra.Visible = false;
             txtCantTierra.Visible = false;
+
+
+            txtDescuento.Enabled = chDescuento.Checked;
 
 
         }
@@ -209,84 +216,172 @@ namespace Agregados.Forms.Bills
         //calcular datos del datatable con IVA
         private void Totalizar()
         {
-            //Este método calcula los valores de
-            //subtotal, impuesto y total para la línea 
-            //no supere el 100%
-
-            decimal SubtotalTemp = 0;
-            decimal TasaImpuestoTemp = 0;
-            decimal TotalTemp = 0;
-            SubTotal = 0;
-            TasaImpuesto = 0;
-            Total = 0;
-
-            if (DtLista.Rows != null)
+            if (txtDescuento.Value > 0 && chDescuento.Checked)
             {
-                foreach (DataRow Row in DtLista.Rows)
-                {
-                    //valida que si IVA es sero, se aplique nuevamente
-                    if (Convert.ToDecimal(Row["IVA"]) == 0)
-                    {
-                        Row["IVA"] = Convert.ToDecimal(Convert.ToDouble(Row["Subtotal"]) * Convert.ToDouble(0.13));
-                        Row["PrecioFinal"] = Convert.ToDecimal(Convert.ToDouble(Row["Subtotal"]) + Convert.ToDouble(Row["IVA"]));
-                    }
-                    SubtotalTemp += Convert.ToDecimal(Row["Subtotal"]);
-                    TasaImpuestoTemp += Convert.ToDecimal(Row["IVA"]);
-                    TotalTemp += Convert.ToDecimal(Row["PrecioFinal"]); 
-                }
-                SubTotal = SubtotalTemp + Convert.ToDecimal(txtTransporte.Value) + Convert.ToDecimal(totalBackHoe.Value) + Convert.ToDecimal(txtTierraTotal.Value);
-                TasaImpuesto = TasaImpuestoTemp + Convert.ToDecimal((Convert.ToDouble(txtTransporte.Value) * 0.13)) + Convert.ToDecimal((Convert.ToDouble(totalBackHoe.Value) * 0.13)) + Convert.ToDecimal((Convert.ToDouble(txtTierraTotal.Value) * 0.13));
-                Total = SubTotal + TasaImpuesto;
-            }
-            else
-            {
+                //Este método calcula los valores de
+                //subtotal, impuesto y total para la línea 
+                //no supere el 100%
+
+                decimal SubtotalTemp = 0;
+                decimal TasaImpuestoTemp = 0;
+                decimal TotalTemp = 0;
                 SubTotal = 0;
                 TasaImpuesto = 0;
                 Total = 0;
+
+                if (DtLista.Rows != null)
+                {
+                    foreach (DataRow Row in DtLista.Rows)
+                    {
+                        //valida que si IVA es sero, se aplique nuevamente
+                        if (Convert.ToDecimal(Row["IVA"]) == 0)
+                        {
+                            Row["IVA"] = Convert.ToDecimal(Convert.ToDouble(Row["Subtotal"]) * Convert.ToDouble(0.13));
+                            Row["PrecioFinal"] = Convert.ToDecimal(Convert.ToDouble(Row["Subtotal"]) + Convert.ToDouble(Row["IVA"]));
+                        }
+                        SubtotalTemp += Convert.ToDecimal(Row["Subtotal"]);
+                        TasaImpuestoTemp += Convert.ToDecimal(Row["IVA"]);
+                        TotalTemp += Convert.ToDecimal(Row["PrecioFinal"]);
+                    }
+                    SubTotal = SubtotalTemp + Convert.ToDecimal(txtTransporte.Value) + Convert.ToDecimal(totalBackHoe.Value) + Convert.ToDecimal(txtTierraTotal.Value);
+                    SubTotal = SubTotal - (SubTotal * (txtDescuento.Value / 100));
+                    TasaImpuesto = TasaImpuestoTemp + Convert.ToDecimal((Convert.ToDouble(txtTransporte.Value) * 0.13)) + Convert.ToDecimal((Convert.ToDouble(totalBackHoe.Value) * 0.13)) + Convert.ToDecimal((Convert.ToDouble(txtTierraTotal.Value) * 0.13));
+                    TasaImpuesto = TasaImpuesto - (TasaImpuesto * (txtDescuento.Value / 100));
+                    Total = SubTotal + TasaImpuesto;
+                    Total = Total - (Total * (txtDescuento.Value / 100));
+                }
+                else
+                {
+                    SubTotal = 0;
+                    TasaImpuesto = 0;
+                    Total = 0;
+                }
+                TxtSubTotal.Text = string.Format("¢ {0:N2}", SubTotal);
+                TxtIVA.Text = string.Format("¢ {0:N2}", TasaImpuesto);
+                TxtTotal.Text = string.Format("¢ {0:N2}", Total);
             }
-            TxtSubTotal.Text = string.Format("¢ {0:N2}", SubTotal);
-            TxtIVA.Text = string.Format("¢ {0:N2}", TasaImpuesto);
-            TxtTotal.Text = string.Format("¢ {0:N2}", Total);
-            
+            else
+            {
+                //Este método calcula los valores de
+                //subtotal, impuesto y total para la línea 
+                //no supere el 100%
+
+                decimal SubtotalTemp = 0;
+                decimal TasaImpuestoTemp = 0;
+                decimal TotalTemp = 0;
+                SubTotal = 0;
+                TasaImpuesto = 0;
+                Total = 0;
+
+                if (DtLista.Rows != null)
+                {
+                    foreach (DataRow Row in DtLista.Rows)
+                    {
+                        //valida que si IVA es sero, se aplique nuevamente
+                        if (Convert.ToDecimal(Row["IVA"]) == 0)
+                        {
+                            Row["IVA"] = Convert.ToDecimal(Convert.ToDouble(Row["Subtotal"]) * Convert.ToDouble(0.13));
+                            Row["PrecioFinal"] = Convert.ToDecimal(Convert.ToDouble(Row["Subtotal"]) + Convert.ToDouble(Row["IVA"]));
+                        }
+                        SubtotalTemp += Convert.ToDecimal(Row["Subtotal"]);
+                        TasaImpuestoTemp += Convert.ToDecimal(Row["IVA"]);
+                        TotalTemp += Convert.ToDecimal(Row["PrecioFinal"]);
+                    }
+                    SubTotal = SubtotalTemp + Convert.ToDecimal(txtTransporte.Value) + Convert.ToDecimal(totalBackHoe.Value) + Convert.ToDecimal(txtTierraTotal.Value);
+                    TasaImpuesto = TasaImpuestoTemp + Convert.ToDecimal((Convert.ToDouble(txtTransporte.Value) * 0.13)) + Convert.ToDecimal((Convert.ToDouble(totalBackHoe.Value) * 0.13)) + Convert.ToDecimal((Convert.ToDouble(txtTierraTotal.Value) * 0.13));
+                    Total = SubTotal + TasaImpuesto;
+                }
+                else
+                {
+                    SubTotal = 0;
+                    TasaImpuesto = 0;
+                    Total = 0;
+                }
+                TxtSubTotal.Text = string.Format("¢ {0:N2}", SubTotal);
+                TxtIVA.Text = string.Format("¢ {0:N2}", TasaImpuesto);
+                TxtTotal.Text = string.Format("¢ {0:N2}", Total);
+            }
         }
 
         //calcular datos del datatable sin IVA
         private void TotalizarSinIVA()
         {
-            //Este método calcula los valores de
-            //subtotal, impuesto y total para la línea 
-            //no supere el 100%
-
-            decimal SubtotalTemp = 0;
-            //decimal TasaImpuestoTemp = 0;
-            decimal TotalTemp = 0;
-            SubTotal = 0;
-            TasaImpuesto = 0;
-            Total = 0;
-
-            if (DtLista.Rows != null)
+            if (txtDescuento.Value > 0 && chDescuento.Checked)
             {
-                foreach (DataRow Row in DtLista.Rows)
-                {
-                    SubtotalTemp += Convert.ToDecimal(Row["Subtotal"]);
-                    Row["IVA"] = Convert.ToDecimal(0);
-                    Row["PrecioFinal"] = Convert.ToDecimal(Row["Subtotal"]);
-                    //TasaImpuestoTemp += Convert.ToDecimal(Row["IVA"]);
-                    TotalTemp += Convert.ToDecimal(Row["PrecioFinal"]);
-                }
-                SubTotal = SubtotalTemp + Convert.ToDecimal(txtTransporte.Value) + Convert.ToDecimal(totalBackHoe.Value) + Convert.ToDecimal(txtTierraTotal.Value);
-                //TasaImpuesto = TasaImpuestoTemp + Convert.ToDecimal((Convert.ToDouble(txtTransporte.Value) * 0.13)) + Convert.ToDecimal((Convert.ToDouble(totalBackHoe.Value) * 0.13)) + Convert.ToDecimal((Convert.ToDouble(txtTierraTotal.Value) * 0.13));
-                Total = SubTotal + TasaImpuesto;
-            }
-            else
-            {
+                //Este método calcula los valores de
+                //subtotal, impuesto y total para la línea 
+                //no supere el 100%
+
+                decimal SubtotalTemp = 0;
+                //decimal TasaImpuestoTemp = 0;
+                decimal TotalTemp = 0;
                 SubTotal = 0;
                 TasaImpuesto = 0;
                 Total = 0;
+
+                if (DtLista.Rows != null)
+                {
+                    foreach (DataRow Row in DtLista.Rows)
+                    {
+                        SubtotalTemp += Convert.ToDecimal(Row["Subtotal"]);
+                        Row["IVA"] = Convert.ToDecimal(0);
+                        Row["PrecioFinal"] = Convert.ToDecimal(Row["Subtotal"]);
+                        //TasaImpuestoTemp += Convert.ToDecimal(Row["IVA"]);
+                        TotalTemp += Convert.ToDecimal(Row["PrecioFinal"]);
+                    }
+                    SubTotal = SubtotalTemp + Convert.ToDecimal(txtTransporte.Value) + Convert.ToDecimal(totalBackHoe.Value) + Convert.ToDecimal(txtTierraTotal.Value);
+                    SubTotal = SubTotal - (SubTotal * (txtDescuento.Value / 100));
+                    //TasaImpuesto = TasaImpuestoTemp + Convert.ToDecimal((Convert.ToDouble(txtTransporte.Value) * 0.13)) + Convert.ToDecimal((Convert.ToDouble(totalBackHoe.Value) * 0.13)) + Convert.ToDecimal((Convert.ToDouble(txtTierraTotal.Value) * 0.13));
+                    Total = SubTotal;
+                    Total = Total - (Total * (txtDescuento.Value / 100));
+                }
+                else
+                {
+                    SubTotal = 0;
+                    TasaImpuesto = 0;
+                    Total = 0;
+                }
+                TxtSubTotal.Text = string.Format("¢ {0:N2}", SubTotal);
+                TxtIVA.Text = string.Format("¢ {0:N2}", TasaImpuesto);
+                TxtTotal.Text = string.Format("¢ {0:N2}", Total);
             }
-            TxtSubTotal.Text = string.Format("¢ {0:N2}", SubTotal);
-            TxtIVA.Text = string.Format("¢ {0:N2}", TasaImpuesto);
-            TxtTotal.Text = string.Format("¢ {0:N2}", Total);
+            else
+            {
+                //Este método calcula los valores de
+                //subtotal, impuesto y total para la línea 
+                //no supere el 100%
+
+                decimal SubtotalTemp = 0;
+                //decimal TasaImpuestoTemp = 0;
+                decimal TotalTemp = 0;
+                SubTotal = 0;
+                TasaImpuesto = 0;
+                Total = 0;
+
+                if (DtLista.Rows != null)
+                {
+                    foreach (DataRow Row in DtLista.Rows)
+                    {
+                        SubtotalTemp += Convert.ToDecimal(Row["Subtotal"]);
+                        Row["IVA"] = Convert.ToDecimal(0);
+                        Row["PrecioFinal"] = Convert.ToDecimal(Row["Subtotal"]);
+                        //TasaImpuestoTemp += Convert.ToDecimal(Row["IVA"]);
+                        TotalTemp += Convert.ToDecimal(Row["PrecioFinal"]);
+                    }
+                    SubTotal = SubtotalTemp + Convert.ToDecimal(txtTransporte.Value) + Convert.ToDecimal(totalBackHoe.Value) + Convert.ToDecimal(txtTierraTotal.Value);
+                    //TasaImpuesto = TasaImpuestoTemp + Convert.ToDecimal((Convert.ToDouble(txtTransporte.Value) * 0.13)) + Convert.ToDecimal((Convert.ToDouble(totalBackHoe.Value) * 0.13)) + Convert.ToDecimal((Convert.ToDouble(txtTierraTotal.Value) * 0.13));
+                    Total = SubTotal;
+                }
+                else
+                {
+                    SubTotal = 0;
+                    TasaImpuesto = 0;
+                    Total = 0;
+                }
+                TxtSubTotal.Text = string.Format("¢ {0:N2}", SubTotal);
+                TxtIVA.Text = string.Format("¢ {0:N2}", TasaImpuesto);
+                TxtTotal.Text = string.Format("¢ {0:N2}", Total);
+            }
         }
 
         //carga Cbox Tipo Factua
@@ -634,6 +729,16 @@ namespace Agregados.Forms.Bills
                     return false;
                 }
             }
+
+            if (CboxIVA.Checked = false && string.IsNullOrEmpty(Detalle))
+            {
+                MessageBox.Show("Se indico que no se cobrará I.V.A., pero no se ha indicado un detalle del ¿Porqué?",
+                    "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnCobroIVA.Focus();
+                return false;
+            }
+
+
             return R;
         }
 
@@ -769,6 +874,11 @@ namespace Agregados.Forms.Bills
                                                         BackHoe = null,
                                                         Tierra = null,
                                                         CantTierra = null,
+
+                                                        DetalleNoCobroIVA = Detalle,
+                                                        FactProveedor = null,
+                                                        PrecioEspecial = 0,
+                                                        Descuento = Convert.ToDecimal(txtDescuento.Value),
 
                                                         IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                         IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
@@ -1051,6 +1161,12 @@ namespace Agregados.Forms.Bills
                                                 Tierra = null,
                                                 CantTierra = null,
 
+
+                                                DetalleNoCobroIVA = Detalle,
+                                                FactProveedor = null,
+                                                PrecioEspecial = 0,
+                                                Descuento = Convert.ToDecimal(txtDescuento.Value),
+
                                                 IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                 IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
                                                 IdEstado = 4,
@@ -1255,6 +1371,11 @@ namespace Agregados.Forms.Bills
                                                                 BackHoe = Convert.ToDecimal(totalBackHoe.Value),
                                                                 Tierra = Convert.ToDecimal(txtTierraTotal.Value),
                                                                 CantTierra = Convert.ToDecimal(txtCantTierra.Text.Trim()),
+
+                                                                DetalleNoCobroIVA = Detalle,
+                                                                FactProveedor = null,
+                                                                PrecioEspecial = 0,
+                                                                Descuento = Convert.ToDecimal(txtDescuento.Value),
 
                                                                 IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                                 IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
@@ -1636,6 +1757,11 @@ namespace Agregados.Forms.Bills
                                                         Tierra = Convert.ToDecimal(txtTierraTotal.Value),
                                                         CantTierra = Convert.ToDecimal(txtCantTierra.Text.Trim()),
 
+                                                        DetalleNoCobroIVA = Detalle,
+                                                        FactProveedor = null,
+                                                        PrecioEspecial = 0,
+                                                        Descuento = Convert.ToDecimal(txtDescuento.Value),
+
                                                         IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                         IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
                                                         IdEstado = 4,
@@ -1944,6 +2070,11 @@ namespace Agregados.Forms.Bills
                                                                     Tierra = null,
                                                                     CantTierra = null,
 
+                                                                    DetalleNoCobroIVA = Detalle,
+                                                                    FactProveedor = null,
+                                                                    PrecioEspecial = 0,
+                                                                    Descuento = Convert.ToDecimal(txtDescuento.Value),
+
                                                                     IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                                     IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
                                                                     IdEstado = 4,
@@ -2225,6 +2356,11 @@ namespace Agregados.Forms.Bills
                                                             Tierra = null,
                                                             CantTierra = null,
 
+                                                            DetalleNoCobroIVA = Detalle,
+                                                            FactProveedor = null,
+                                                            PrecioEspecial = 0,
+                                                            Descuento = Convert.ToDecimal(txtDescuento.Value),
+
                                                             IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                             IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
                                                             IdEstado = 4,
@@ -2434,6 +2570,11 @@ namespace Agregados.Forms.Bills
                                                                         BackHoe = null,
                                                                         Tierra = Convert.ToDecimal(txtTierraTotal.Value),
                                                                         CantTierra = Convert.ToDecimal(txtCantTierra.Text.Trim()),
+
+                                                                        DetalleNoCobroIVA = Detalle,
+                                                                        FactProveedor = null,
+                                                                        PrecioEspecial = 0,
+                                                                        Descuento = Convert.ToDecimal(txtDescuento.Value),
 
                                                                         IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                                         IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
@@ -2814,6 +2955,11 @@ namespace Agregados.Forms.Bills
                                                                 Tierra = Convert.ToDecimal(txtTierraTotal.Value),
                                                                 CantTierra = Convert.ToDecimal(txtCantTierra.Text.Trim()),
 
+                                                                DetalleNoCobroIVA = Detalle,
+                                                                FactProveedor = null,
+                                                                PrecioEspecial = 0,
+                                                                Descuento = Convert.ToDecimal(txtDescuento.Value),
+
                                                                 IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                                 IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
                                                                 IdEstado = 4,
@@ -3136,6 +3282,11 @@ namespace Agregados.Forms.Bills
                                                         Tierra = null,
                                                         CantTierra = null,
 
+                                                        DetalleNoCobroIVA = Detalle,
+                                                        FactProveedor = null,
+                                                        PrecioEspecial = 0,
+                                                        Descuento = Convert.ToDecimal(txtDescuento.Value),
+
                                                         IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                         IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
                                                         IdEstado = 3, //pendiente
@@ -3268,6 +3419,11 @@ namespace Agregados.Forms.Bills
                                                                 BackHoe = Convert.ToDecimal(totalBackHoe.Value),
                                                                 Tierra = Convert.ToDecimal(txtTierraTotal.Value),
                                                                 CantTierra = Convert.ToDecimal(txtCantTierra.Text.Trim()),
+
+                                                                DetalleNoCobroIVA = Detalle,
+                                                                FactProveedor = null,
+                                                                PrecioEspecial = 0,
+                                                                Descuento = Convert.ToDecimal(txtDescuento.Value),
 
                                                                 IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                                 IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
@@ -3636,6 +3792,11 @@ namespace Agregados.Forms.Bills
                                                                         Tierra = Convert.ToDecimal(txtTierraTotal.Value),
                                                                         CantTierra = Convert.ToDecimal(txtCantTierra.Text.Trim()),
 
+                                                                        DetalleNoCobroIVA = Detalle,
+                                                                        FactProveedor = null,
+                                                                        PrecioEspecial = 0,
+                                                                        Descuento = Convert.ToDecimal(txtDescuento.Value),
+
                                                                         IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                                                         IdTipo = Convert.ToInt32(CboxTypeBill.SelectedValue),
                                                                         IdEstado = 3, //pendiente
@@ -3858,10 +4019,13 @@ namespace Agregados.Forms.Bills
             if (CboxIVA.Checked)
             {
                 Totalizar();
+                btnCobroIVA.Enabled = false;
+                Detalle = null;
             }
             else
             {
                 TotalizarSinIVA();
+                btnCobroIVA.Enabled = true;
             }
         }
 
@@ -4285,8 +4449,42 @@ namespace Agregados.Forms.Bills
             e.Handled = Validaciones.CaracteresNumeros(e, true);
         }
 
+        private void btnCobroIVA_Click(object sender, EventArgs e)
+        {
+            Form frmDetalleIVA = new FrmDetalleIVA();
 
+            DialogResult resp = frmDetalleIVA.ShowDialog();
 
+            if (resp == DialogResult.OK)
+            {
+                MessageBox.Show("Se guardó correctamente el detalle del no cobrar el I.V.A.", "Éxito", MessageBoxButtons.OK);
+            }
+        }
 
+        private void chDescuento_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chDescuento.Checked)
+            {
+                txtDescuento.Enabled = chDescuento.Checked;
+            }
+            else
+            {
+                txtDescuento.Enabled = chDescuento.Checked;
+                txtDescuento.Value = 0;
+            }
+          
+        }
+
+        private void txtDescuento_ValueChanged(object sender, EventArgs e)
+        {
+            if (chDescuento.Checked)
+            {
+                Totalizar();
+            }
+            else
+            {
+                TotalizarSinIVA();
+            }
+        }
     }
 }

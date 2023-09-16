@@ -19,20 +19,19 @@
     <PublishUrl>C:\Users\steve\Desktop\Publicaciones APPs\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Background</UpdateMode>
     <UpdateInterval>1</UpdateInterval>
     <UpdateIntervalUnits>Weeks</UpdateIntervalUnits>
     <UpdatePeriodically>true</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>http://update:8080/</UpdateUrl>
     <ProductName>Control de Inventario &amp; Facturación</ProductName>
     <PublisherName>Steven Carrillo</PublisherName>
     <SuiteName>Steven Carrillo</SuiteName>
     <MinimumRequiredVersion>1.0.0.3</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -256,6 +255,9 @@
       <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="Crypto.cs" />
+    <Compile Include="Denominaciones.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
+    </Compile>
     <Compile Include="DetalleFacts.cs">
       <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
@@ -276,6 +278,12 @@
     </Compile>
     <Compile Include="Forms\Bills\FrmBillProviderAdd.Designer.cs">
       <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmDetalleIVA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmDetalleIVA.Designer.cs">
+      <DependentUpon>FrmDetalleIVA.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Bills\FrmNotaCredito.cs">
       <SubType>Form</SubType>
@@ -720,6 +728,9 @@
     <EmbeddedResource Include="Forms\Bills\FrmBillProviderAdd.resx">
       <DependentUpon>FrmBillProviderAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmDetalleIVA.resx">
+      <DependentUpon>FrmDetalleIVA.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmNotaCredito.resx">
       <DependentUpon>FrmNotaCredito.cs</DependentUpon>
     </EmbeddedResource>
@@ -945,6 +956,16 @@
     </None>
     <None Include="Agregados_TemporaryKey.pfx" />
     <None Include="App.Config" />
+    <Content Include="Agregados.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Agregados.edmx</DependentUpon>
+      <LastGenOutput>Agregados.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Agregados.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Agregados.edmx</DependentUpon>
+      <LastGenOutput>Agregados.cs</LastGenOutput>
+    </Content>
     <Content Include="Forms\Help\Manual de Usuario.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -965,16 +986,6 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Agregados.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Agregados.edmx</DependentUpon>
-      <LastGenOutput>Agregados.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Agregados.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Agregados.edmx</DependentUpon>
-      <LastGenOutput>Agregados.cs</LastGenOutput>
-    </Content>
     <Content Include="agregadosIcon.ico" />
     <Content Include="Images\agregadoImg.ico" />
     <Content Include="Images\agregadoImg.jpg" />
@@ -1013,6 +1024,8 @@
     <None Include="Images\IconsReports\listaCierreCaja.png" />
     <None Include="Images\Icons\BusquedaClient\lupa.png" />
     <None Include="Images\Icons\BusquedaClient\cancelar.png" />
+    <Content Include="Images\Icons\DetalleIVA\cancel.png" />
+    <Content Include="Images\Icons\DetalleIVA\floppy-disk.png" />
     <Content Include="Images\MDIPrincipal.jpg" />
   </ItemGroup>
   <ItemGroup>

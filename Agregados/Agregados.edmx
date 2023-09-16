@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CierreApertCajas">
           <Key>
             <PropertyRef Name="IdCierreApert" />
@@ -58,6 +58,25 @@
           <Property Name="Correo" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Contrasennia" Type="varchar" MaxLength="1500" Nullable="false" />
         </EntityType>
+        <EntityType Name="Denominaciones">
+          <Key>
+            <PropertyRef Name="IdDenominacion" />
+          </Key>
+          <Property Name="IdDenominacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MonedasCinco" Type="int" Nullable="false" />
+          <Property Name="MonedasDiez" Type="int" Nullable="false" />
+          <Property Name="MonedasVeinteCinco" Type="int" Nullable="false" />
+          <Property Name="MonedasCincuenta" Type="int" Nullable="false" />
+          <Property Name="MonedasCien" Type="int" Nullable="false" />
+          <Property Name="MonedasQuinientos" Type="int" Nullable="false" />
+          <Property Name="BilleteMil" Type="int" Nullable="false" />
+          <Property Name="BilleteDosMil" Type="int" Nullable="false" />
+          <Property Name="BilleteCincoMil" Type="int" Nullable="false" />
+          <Property Name="BilleteDiezMil" Type="int" Nullable="false" />
+          <Property Name="BilleteVeinteMil" Type="int" Nullable="false" />
+          <Property Name="IdCierreApert" Type="int" Nullable="false" />
+          <Property Name="AperturaCierre" Type="tinyint" Nullable="false" />
+        </EntityType>
         <EntityType Name="DetalleFacts">
           <Key>
             <PropertyRef Name="IdDetalle" />
@@ -95,6 +114,10 @@
           <Property Name="BackHoe" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Tierra" Type="decimal" Precision="18" Scale="2" />
           <Property Name="CantTierra" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DetalleNoCobroIVA" Type="varchar" MaxLength="255" />
+          <Property Name="FactProveedor" Type="varchar" MaxLength="255" />
+          <Property Name="PrecioEspecial" Type="tinyint" Nullable="false" />
+          <Property Name="Descuento" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IdUsuario" Type="int" Nullable="false" />
           <Property Name="IdTipo" Type="int" Nullable="false" />
           <Property Name="IdEstado" Type="int" Nullable="false" />
@@ -216,6 +239,18 @@
             </Principal>
             <Dependent Role="Clientes">
               <PropertyRef Name="IdTipoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDenominacionesApert">
+          <End Role="CierreApertCajas" Type="Self.CierreApertCajas" Multiplicity="1" />
+          <End Role="Denominaciones" Type="Self.Denominaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CierreApertCajas">
+              <PropertyRef Name="IdCierreApert" />
+            </Principal>
+            <Dependent Role="Denominaciones">
+              <PropertyRef Name="IdCierreApert" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -433,6 +468,7 @@
           <EntitySet Name="CierreApertCajas" EntityType="Self.CierreApertCajas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CorreoNotificaciones" EntityType="Self.CorreoNotificaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Denominaciones" EntityType="Self.Denominaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetalleFacts" EntityType="Self.DetalleFacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Facturas" EntityType="Self.Facturas" Schema="dbo" store:Type="Tables" />
@@ -455,6 +491,10 @@
           <AssociationSet Name="FKClientesTipoClientes" Association="Self.FKClientesTipoClientes">
             <End Role="TipoClientes" EntitySet="TipoClientes" />
             <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FKDenominacionesApert" Association="Self.FKDenominacionesApert">
+            <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
+            <End Role="Denominaciones" EntitySet="Denominaciones" />
           </AssociationSet>
           <AssociationSet Name="FKDetalleFacturas" Association="Self.FKDetalleFacturas">
             <End Role="Facturas" EntitySet="Facturas" />
@@ -513,8 +553,7 @@
             <End Role="Vehiculos" EntitySet="Vehiculos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AgregadosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -548,6 +587,7 @@
           <Property Name="Accion" Type="Byte" Nullable="false" />
           <Property Name="IdUsuario" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FKCierreAperUsuario" FromRole="CierreApertCajas" ToRole="Usuarios" />
+          <NavigationProperty Name="Denominaciones" Relationship="Self.FKDenominacionesApert" FromRole="CierreApertCajas" ToRole="Denominaciones" />
           <NavigationProperty Name="Facturas" Relationship="Self.FKFacturasCierreApert" FromRole="CierreApertCajas" ToRole="Facturas" />
         </EntityType>
         <EntityType Name="Clientes">
@@ -575,6 +615,26 @@
           <Property Name="IdCorreo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Contrasennia" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Denominaciones">
+          <Key>
+            <PropertyRef Name="IdDenominacion" />
+          </Key>
+          <Property Name="IdDenominacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MonedasCinco" Type="Int32" Nullable="false" />
+          <Property Name="MonedasDiez" Type="Int32" Nullable="false" />
+          <Property Name="MonedasVeinteCinco" Type="Int32" Nullable="false" />
+          <Property Name="MonedasCincuenta" Type="Int32" Nullable="false" />
+          <Property Name="MonedasCien" Type="Int32" Nullable="false" />
+          <Property Name="MonedasQuinientos" Type="Int32" Nullable="false" />
+          <Property Name="BilleteMil" Type="Int32" Nullable="false" />
+          <Property Name="BilleteDosMil" Type="Int32" Nullable="false" />
+          <Property Name="BilleteCincoMil" Type="Int32" Nullable="false" />
+          <Property Name="BilleteDiezMil" Type="Int32" Nullable="false" />
+          <Property Name="BilleteVeinteMil" Type="Int32" Nullable="false" />
+          <Property Name="IdCierreApert" Type="Int32" Nullable="false" />
+          <Property Name="AperturaCierre" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="CierreApertCajas" Relationship="Self.FKDenominacionesApert" FromRole="Denominaciones" ToRole="CierreApertCajas" />
         </EntityType>
         <EntityType Name="DetalleFacts">
           <Key>
@@ -621,6 +681,9 @@
           <Property Name="BackHoe" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Tierra" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="CantTierra" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DetalleNoCobroIVA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FactProveedor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioEspecial" Type="Byte" Nullable="false" />
           <Property Name="IdUsuario" Type="Int32" Nullable="false" />
           <Property Name="IdTipo" Type="Int32" Nullable="false" />
           <Property Name="IdEstado" Type="Int32" Nullable="false" />
@@ -636,6 +699,7 @@
           <NavigationProperty Name="Proveedores" Relationship="Self.FKFacturasProveedores" FromRole="Facturas" ToRole="Proveedores" />
           <NavigationProperty Name="TiposFacturas" Relationship="Self.FKFacturasTiposFacts" FromRole="Facturas" ToRole="TiposFacturas" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FKFacturasUsuarios" FromRole="Facturas" ToRole="Usuarios" />
+          <Property Name="Descuento" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Materiales">
           <Key>
@@ -739,6 +803,18 @@
             </Principal>
             <Dependent Role="CierreApertCajas">
               <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDenominacionesApert">
+          <End Role="CierreApertCajas" Type="Self.CierreApertCajas" Multiplicity="1" />
+          <End Role="Denominaciones" Type="Self.Denominaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CierreApertCajas">
+              <PropertyRef Name="IdCierreApert" />
+            </Principal>
+            <Dependent Role="Denominaciones">
+              <PropertyRef Name="IdCierreApert" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -938,6 +1014,7 @@
           <EntitySet Name="CierreApertCajas" EntityType="Self.CierreApertCajas" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="CorreoNotificaciones" EntityType="Self.CorreoNotificaciones" />
+          <EntitySet Name="Denominaciones" EntityType="Self.Denominaciones" />
           <EntitySet Name="DetalleFacts" EntityType="Self.DetalleFacts" />
           <EntitySet Name="Estados" EntityType="Self.Estados" />
           <EntitySet Name="Facturas" EntityType="Self.Facturas" />
@@ -952,6 +1029,10 @@
           <AssociationSet Name="FKCierreAperUsuario" Association="Self.FKCierreAperUsuario">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
+          </AssociationSet>
+          <AssociationSet Name="FKDenominacionesApert" Association="Self.FKDenominacionesApert">
+            <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
+            <End Role="Denominaciones" EntitySet="Denominaciones" />
           </AssociationSet>
           <AssociationSet Name="FKFacturasCierreApert" Association="Self.FKFacturasCierreApert">
             <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
@@ -1023,10 +1104,10 @@
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SPCierreCajaPorId" ReturnType="Collection(AgregadosModel.SPCierreCajaPorId_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPFactGenerada" ReturnType="Collection(AgregadosModel.SPFactGenerada_Result)">
-            <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
+          <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPFactPendAll" ReturnType="Collection(AgregadosModel.SPFactPendAll_Result)" />
           <FunctionImport Name="SPFactPendDetalles" ReturnType="Collection(AgregadosModel.SPFactPendDetalles_Result)" />
@@ -1048,7 +1129,7 @@
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SPTicketGenerado" ReturnType="Collection(AgregadosModel.SPTicketGenerado_Result)">
-            <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
+          <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPTicketPendAll" ReturnType="Collection(AgregadosModel.SPTicketPendAll_Result)" />
           <FunctionImport Name="SPTicketPorRangoFechaAll" ReturnType="Collection(AgregadosModel.SPTicketPorRangoFechaAll_Result)">
@@ -1490,6 +1571,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Denominaciones">
+            <EntityTypeMapping TypeName="AgregadosModel.Denominaciones">
+              <MappingFragment StoreEntitySet="Denominaciones">
+                <ScalarProperty Name="IdDenominacion" ColumnName="IdDenominacion" />
+                <ScalarProperty Name="MonedasCinco" ColumnName="MonedasCinco" />
+                <ScalarProperty Name="MonedasDiez" ColumnName="MonedasDiez" />
+                <ScalarProperty Name="MonedasVeinteCinco" ColumnName="MonedasVeinteCinco" />
+                <ScalarProperty Name="MonedasCincuenta" ColumnName="MonedasCincuenta" />
+                <ScalarProperty Name="MonedasCien" ColumnName="MonedasCien" />
+                <ScalarProperty Name="MonedasQuinientos" ColumnName="MonedasQuinientos" />
+                <ScalarProperty Name="BilleteMil" ColumnName="BilleteMil" />
+                <ScalarProperty Name="BilleteDosMil" ColumnName="BilleteDosMil" />
+                <ScalarProperty Name="BilleteCincoMil" ColumnName="BilleteCincoMil" />
+                <ScalarProperty Name="BilleteDiezMil" ColumnName="BilleteDiezMil" />
+                <ScalarProperty Name="BilleteVeinteMil" ColumnName="BilleteVeinteMil" />
+                <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
+                <ScalarProperty Name="AperturaCierre" ColumnName="AperturaCierre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DetalleFacts">
             <EntityTypeMapping TypeName="AgregadosModel.DetalleFacts">
               <MappingFragment StoreEntitySet="DetalleFacts">
@@ -1515,6 +1616,7 @@
           <EntitySetMapping Name="Facturas">
             <EntityTypeMapping TypeName="AgregadosModel.Facturas">
               <MappingFragment StoreEntitySet="Facturas">
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
                 <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
                 <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
@@ -1528,6 +1630,9 @@
                 <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
                 <ScalarProperty Name="Tierra" ColumnName="Tierra" />
                 <ScalarProperty Name="CantTierra" ColumnName="CantTierra" />
+                <ScalarProperty Name="DetalleNoCobroIVA" ColumnName="DetalleNoCobroIVA" />
+                <ScalarProperty Name="FactProveedor" ColumnName="FactProveedor" />
+                <ScalarProperty Name="PrecioEspecial" ColumnName="PrecioEspecial" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />

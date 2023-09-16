@@ -38,6 +38,8 @@ namespace Agregados
 
         public static Forms.Bills.FrmBillAdd MifrmBillAdd = new Forms.Bills.FrmBillAdd();
 
+        //public static Forms.Bills.FrmDetalleIVA MifrmDetalleIVA = new Forms.Bills.FrmDetalleIVA();
+
         public static Forms.Bills.FrmBillProviderAdd MifrmBillProviderAdd = new Forms.Bills.FrmBillProviderAdd();
 
         public static Forms.Bills.FrmRevFacts MifrmRevFacts = new Forms.Bills.FrmRevFacts();

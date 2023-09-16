@@ -33,6 +33,9 @@ namespace Agregados
         public Nullable<decimal> BackHoe { get; set; }
         public Nullable<decimal> Tierra { get; set; }
         public Nullable<decimal> CantTierra { get; set; }
+        public string DetalleNoCobroIVA { get; set; }
+        public string FactProveedor { get; set; }
+        public byte PrecioEspecial { get; set; }
         public int IdUsuario { get; set; }
         public int IdTipo { get; set; }
         public int IdEstado { get; set; }
@@ -40,6 +43,7 @@ namespace Agregados
         public Nullable<int> IdProveedor { get; set; }
         public int IdTipoPago { get; set; }
         public int IdCierreApert { get; set; }
+        public decimal Descuento { get; set; }
     
         public virtual CierreApertCajas CierreApertCajas { get; set; }
         public virtual Clientes Clientes { get; set; }
