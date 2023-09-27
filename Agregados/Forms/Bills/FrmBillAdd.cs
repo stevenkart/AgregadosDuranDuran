@@ -670,7 +670,8 @@ namespace Agregados.Forms.Bills
                 !string.IsNullOrEmpty(TxtIVA.Text.Trim()) &&
                 !string.IsNullOrEmpty(TxtTotal.Text.Trim()) &&
                 CboxTypeBill.SelectedIndex != -1 &&
-                CboxMetodoPago.SelectedIndex != -1
+                CboxMetodoPago.SelectedIndex != -1 &&
+                CboxIVA.Checked
                 )
             {
                 R = true;
@@ -728,16 +729,18 @@ namespace Agregados.Forms.Bills
                     CboxTypeBill.Focus();
                     return false;
                 }
+                if (CboxIVA.Checked = false && Detalle == null)
+                {
+                    MessageBox.Show("Se indicó que no se cobrará I.V.A., pero no se ha indicado un detalle del ¿Porqué?",
+                        "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btnCobroIVA.Focus();
+                    return false;
+                }
+                if (CboxIVA.Checked = true && Detalle != null)
+                {
+                    return true;
+                }
             }
-
-            if (CboxIVA.Checked = false && string.IsNullOrEmpty(Detalle))
-            {
-                MessageBox.Show("Se indico que no se cobrará I.V.A., pero no se ha indicado un detalle del ¿Porqué?",
-                    "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                btnCobroIVA.Focus();
-                return false;
-            }
-
 
             return R;
         }
