@@ -73,6 +73,7 @@
             this.lblFechaHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
+            this.Facturación = new System.Windows.Forms.NotifyIcon(this.components);
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -428,6 +429,14 @@
             // 
             this.tmrFechaHora.Tick += new System.EventHandler(this.tmrFechaHora_Tick);
             // 
+            // Facturación
+            // 
+            this.Facturación.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.Facturación.Icon = ((System.Drawing.Icon)(resources.GetObject("Facturación.Icon")));
+            this.Facturación.Text = "Control Inv. & Facturación";
+            this.Facturación.Visible = true;
+            this.Facturación.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Facturación_MouseDoubleClick);
+            // 
             // FrmPrincipalMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -503,5 +512,6 @@
         private System.Windows.Forms.ToolStripMenuItem respaldoDeDatosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem facturasACréditoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comprasACréditoToolStripMenuItem;
+        private System.Windows.Forms.NotifyIcon Facturación;
     }
 }

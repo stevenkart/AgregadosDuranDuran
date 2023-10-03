@@ -430,6 +430,7 @@
         <Function Name="SPCierreCajaPorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="SPFactCreditoVencidas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SPFactGenerada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Consecutivo" Type="int" Mode="In" />
         </Function>
@@ -1140,6 +1141,7 @@
             <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="SPFactCreditoVencidas" ReturnType="Collection(AgregadosModel.SPFactCreditoVencidas_Result)" />
         </EntityContainer>
         <ComplexType Name="SPCierreCajaPend_Result">
           <Property Type="Int32" Name="IdCierreApert" Nullable="false" />
@@ -1508,6 +1510,12 @@
           <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
           <Property Type="Int32" Name="IdMaterial" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPFactCreditoVencidas_Result">
+          <Property Type="DateTime" Name="FechaActual" Nullable="true" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="Int32" Name="Diferencia" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2156,6 +2164,16 @@
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
                 <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactCreditoVencidas" FunctionName="AgregadosModel.Store.SPFactCreditoVencidas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactCreditoVencidas_Result">
+                <ScalarProperty Name="FechaActual" ColumnName="FechaActual" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="Diferencia" ColumnName="Diferencia" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

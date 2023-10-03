@@ -86,6 +86,20 @@ namespace Agregados.Forms.Bills
             DtListaProvedor = makeDataTableSchema();
 
             aplicarIva = CboxIVA.Checked;
+            checkBox1.Checked = false;
+            if (checkBox1.Checked)
+            {
+                txtFactProveedor.Enabled = true;
+                txtFactProveedor.Text = "";
+            }
+            else
+            {
+                if (checkBox1.Checked == false)
+                {
+                    txtFactProveedor.Enabled = false;
+                    txtFactProveedor.Text = "No Proporcionada";
+                }
+            }
 
         }
 
@@ -674,7 +688,7 @@ namespace Agregados.Forms.Bills
 
 
                                                 DetalleNoCobroIVA = null,
-                                                FactProveedor = null,
+                                                FactProveedor = txtFactProveedor.Text.Trim(),
                                                 PrecioEspecial = 0,
                                                 Descuento = 0,
 
@@ -795,7 +809,7 @@ namespace Agregados.Forms.Bills
 
 
                                                     DetalleNoCobroIVA = null,
-                                                    FactProveedor = null,
+                                                    FactProveedor = txtFactProveedor.Text.Trim(),
                                                     PrecioEspecial = 0,
                                                     Descuento = 0,
 
@@ -911,7 +925,7 @@ namespace Agregados.Forms.Bills
                                                         ReferenciaPago = txtReferencia.Text.Trim(),
 
                                                         DetalleNoCobroIVA = null,
-                                                        FactProveedor = null,
+                                                        FactProveedor = txtFactProveedor.Text.Trim(),
                                                         PrecioEspecial = 0,
                                                         Descuento = 0,
 
@@ -1072,7 +1086,7 @@ namespace Agregados.Forms.Bills
                                                     ReferenciaPago = txtReferencia.Text.Trim(),
 
                                                     DetalleNoCobroIVA = null,
-                                                    FactProveedor = null,
+                                                    FactProveedor = txtFactProveedor.Text.Trim(),
                                                     PrecioEspecial = 0,
                                                     Descuento = 0,
 
@@ -1395,6 +1409,21 @@ namespace Agregados.Forms.Bills
             }
         }
 
-
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                txtFactProveedor.Enabled = true;
+                txtFactProveedor.Text = "";
+            }
+            else
+            {
+                if (checkBox1.Checked == false)
+                {
+                    txtFactProveedor.Enabled = false;
+                    txtFactProveedor.Text = "No Proporcionada";
+                }
+            }
+        }
     }
 }

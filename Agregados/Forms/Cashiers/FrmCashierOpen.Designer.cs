@@ -339,7 +339,7 @@
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel8, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel9, 1, 2);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(493, 10);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(502, 8);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.17812F));
@@ -1134,7 +1134,7 @@
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "FrmCashierOpen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

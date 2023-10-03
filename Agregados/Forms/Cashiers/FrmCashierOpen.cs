@@ -28,6 +28,7 @@ namespace Agregados.Forms.Cashiers
         string Horap;
         byte Accionp;
 
+        
         public int Cinco;
         public int Diez;
         public int VeinteCinco;
@@ -40,6 +41,7 @@ namespace Agregados.Forms.Cashiers
         public int DiezMil;
         public int VeinteMil;
         public int total;
+        
 
         public FrmCashierOpen()
         {
@@ -48,6 +50,8 @@ namespace Agregados.Forms.Cashiers
             cierreApertCajas = new CierreApertCajas();
             apertura = new CierreApertCajas();
             cierre = new CierreApertCajas();
+
+            denominacionApert = new Denominaciones();   
 
             Cinco = 0;
             Diez = 0;

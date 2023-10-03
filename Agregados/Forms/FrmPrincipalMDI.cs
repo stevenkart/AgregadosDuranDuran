@@ -28,6 +28,8 @@ namespace Agregados.Forms
         CierreApertCajas apertura; // valor termporal apertura
         CierreApertCajas cierre; // valor termporal cierre
 
+        Facturas facturas;
+
         public FrmPrincipalMDI()
         {
             InitializeComponent();
@@ -35,6 +37,8 @@ namespace Agregados.Forms
             cierreApertCajas = new CierreApertCajas();
             apertura = new CierreApertCajas();
             cierre = new CierreApertCajas();
+
+            facturas = new Facturas();
 
             abrirCajaToolStripMenuItem.Enabled = false;
             cerrarCajaToolStripMenuItem.Enabled = false;
@@ -237,6 +241,28 @@ namespace Agregados.Forms
 
         }
 
+        private void FactPorVencer5Dias()
+        {
+            var data = DB.SPFactCreditoVencidas().ToList();
+            int vencidas = data.Where((x) => x.Diferencia <= 5 && x.Diferencia > 0).Count();
+            if (vencidas > 0 )
+            {
+                Facturación.BalloonTipTitle = "Facturas por Vencer";
+                Facturación.BalloonTipText = $"Hay un total de {vencidas} que estan pronto a vencer, puedes validarlo en el módulo de facturas.";
+                Facturación.ShowBalloonTip(3000);
+            }
+            else
+            {
+                Facturación.BalloonTipTitle = "Facturas por Vencer";
+                Facturación.BalloonTipText = $"No hay facturas próximas por vencer.";
+                Facturación.ShowBalloonTip(3000);
+               
+            }
+            
+            
+        }
+
+
 
         //carga el fomr
         private void FrmPrincipalMDI_Load(object sender, EventArgs e)
@@ -247,7 +273,10 @@ namespace Agregados.Forms
             tmrFechaHora.Enabled = true;
             lblUsuarioLogueado.Text = $"( {Globals.MyGlobalUser.NombreUsuario} )" + $" {Globals.MyGlobalUser.NombreEmpleado} ";
 
-           
+            FactPorVencer5Dias();
+
+
+
         }
 
         private void abrirCajaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -523,6 +552,13 @@ namespace Agregados.Forms
         {
             Globals.MifrmManualUser = new Help.FrmManualUser();
             Globals.MifrmManualUser.Show();
+        }
+
+        private void Facturación_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ShowInTaskbar = true;
+            Facturación.Visible = false;
+            WindowState = FormWindowState.Maximized;
         }
     }
 }

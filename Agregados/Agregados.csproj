@@ -670,6 +670,9 @@
     <Compile Include="SPCierreCajaPorId_Result.cs">
       <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
+    <Compile Include="SPFactCreditoVencidas_Result.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
+    </Compile>
     <Compile Include="SPFactGenerada_Result.cs">
       <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>

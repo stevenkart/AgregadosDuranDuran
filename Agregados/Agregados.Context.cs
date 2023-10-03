@@ -185,5 +185,10 @@ namespace Agregados
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPTicketReversadasAll_Result>("SPTicketReversadasAll", fechaInicioParameter, fechaFinParameter);
         }
+    
+        public virtual ObjectResult<SPFactCreditoVencidas_Result> SPFactCreditoVencidas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactCreditoVencidas_Result>("SPFactCreditoVencidas");
+        }
     }
 }
