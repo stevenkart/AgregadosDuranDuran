@@ -87,6 +87,9 @@
             this.CTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNombreMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIdMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTotalMont = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnVolver = new System.Windows.Forms.Button();
@@ -108,6 +111,7 @@
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).BeginInit();
+            this.tableLayoutPanel12.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
@@ -268,7 +272,7 @@
             this.btnFiltrarHoy.Name = "btnFiltrarHoy";
             this.btnFiltrarHoy.Size = new System.Drawing.Size(213, 22);
             this.btnFiltrarHoy.TabIndex = 3;
-            this.btnFiltrarHoy.Text = "Filtrar Ventas";
+            this.btnFiltrarHoy.Text = "Filtrar Materiales";
             this.btnFiltrarHoy.UseVisualStyleBackColor = false;
             this.btnFiltrarHoy.Click += new System.EventHandler(this.btnFiltrarHoy_Click);
             // 
@@ -298,7 +302,7 @@
             this.btnCreditoTodas.Name = "btnCreditoTodas";
             this.btnCreditoTodas.Size = new System.Drawing.Size(214, 26);
             this.btnCreditoTodas.TabIndex = 8;
-            this.btnCreditoTodas.Text = "Filtrar a Crédito Todas las Ventas";
+            this.btnCreditoTodas.Text = "Filtrar Todas";
             this.btnCreditoTodas.UseVisualStyleBackColor = false;
             this.btnCreditoTodas.Click += new System.EventHandler(this.btnCreditoTodas_Click);
             // 
@@ -311,7 +315,7 @@
             this.btnCredSinLineas.Name = "btnCredSinLineas";
             this.btnCredSinLineas.Size = new System.Drawing.Size(213, 26);
             this.btnCredSinLineas.TabIndex = 7;
-            this.btnCredSinLineas.Text = "Filtrar a Credito solo BackHoe";
+            this.btnCredSinLineas.Text = "Filtrar solo BackHoe";
             this.btnCredSinLineas.UseVisualStyleBackColor = false;
             this.btnCredSinLineas.Click += new System.EventHandler(this.btnCredSinLineas_Click);
             // 
@@ -324,7 +328,7 @@
             this.btnFiltrarCredito.Name = "btnFiltrarCredito";
             this.btnFiltrarCredito.Size = new System.Drawing.Size(213, 26);
             this.btnFiltrarCredito.TabIndex = 6;
-            this.btnFiltrarCredito.Text = "Filtrar a Crédito Ventas Materiales";
+            this.btnFiltrarCredito.Text = "Filtrar Materiales";
             this.btnFiltrarCredito.UseVisualStyleBackColor = false;
             this.btnFiltrarCredito.Click += new System.EventHandler(this.btnFiltrarCredito_Click);
             // 
@@ -426,7 +430,7 @@
             this.btnFiltrarFechasCorrecta.Name = "btnFiltrarFechasCorrecta";
             this.btnFiltrarFechasCorrecta.Size = new System.Drawing.Size(211, 24);
             this.btnFiltrarFechasCorrecta.TabIndex = 4;
-            this.btnFiltrarFechasCorrecta.Text = "Filtrar Ventas";
+            this.btnFiltrarFechasCorrecta.Text = "Filtrar Materiales";
             this.btnFiltrarFechasCorrecta.UseVisualStyleBackColor = false;
             this.btnFiltrarFechasCorrecta.Click += new System.EventHandler(this.btnFiltrarFechas_Click);
             // 
@@ -530,12 +534,14 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.dgvFilter, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel12, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
-            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1196, 257);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
@@ -599,7 +605,7 @@
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvFilter.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvFilter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFilter.Size = new System.Drawing.Size(1170, 231);
+            this.dgvFilter.Size = new System.Drawing.Size(1170, 181);
             this.dgvFilter.TabIndex = 2;
             this.dgvFilter.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellClick);
             // 
@@ -791,6 +797,46 @@
             this.CIdMaterial.ReadOnly = true;
             this.CIdMaterial.Visible = false;
             // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.ColumnCount = 2;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.97436F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.02564F));
+            this.tableLayoutPanel12.Controls.Add(this.label2, 1, 0);
+            this.tableLayoutPanel12.Controls.Add(this.lblTotalMont, 1, 1);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(13, 200);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 2;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(1170, 44);
+            this.tableLayoutPanel12.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(927, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(240, 26);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Monto Total";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTotalMont
+            // 
+            this.lblTotalMont.AutoSize = true;
+            this.lblTotalMont.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTotalMont.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalMont.Location = new System.Drawing.Point(927, 26);
+            this.lblTotalMont.Name = "lblTotalMont";
+            this.lblTotalMont.Size = new System.Drawing.Size(240, 18);
+            this.lblTotalMont.TabIndex = 1;
+            this.lblTotalMont.Text = "0";
+            this.lblTotalMont.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.tableLayoutPanel5);
@@ -832,7 +878,7 @@
             this.btnVolver.Image = global::Agregados.Properties.Resources._return;
             this.btnVolver.Location = new System.Drawing.Point(3, 3);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(386, 79);
+            this.btnVolver.Size = new System.Drawing.Size(385, 79);
             this.btnVolver.TabIndex = 6;
             this.btnVolver.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnVolver.UseVisualStyleBackColor = false;
@@ -847,7 +893,7 @@
             this.btnReportPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportPDF.Image = global::Agregados.Properties.Resources.pdf;
             this.btnReportPDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportPDF.Location = new System.Drawing.Point(395, 3);
+            this.btnReportPDF.Location = new System.Drawing.Point(394, 3);
             this.btnReportPDF.Name = "btnReportPDF";
             this.btnReportPDF.Size = new System.Drawing.Size(190, 79);
             this.btnReportPDF.TabIndex = 2;
@@ -865,9 +911,9 @@
             this.BtnVerFact.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVerFact.Image = global::Agregados.Properties.Resources.factura;
             this.BtnVerFact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerFact.Location = new System.Drawing.Point(983, 3);
+            this.BtnVerFact.Location = new System.Drawing.Point(982, 3);
             this.BtnVerFact.Name = "BtnVerFact";
-            this.BtnVerFact.Size = new System.Drawing.Size(190, 79);
+            this.BtnVerFact.Size = new System.Drawing.Size(191, 79);
             this.BtnVerFact.TabIndex = 0;
             this.BtnVerFact.Text = "Ver Factura";
             this.BtnVerFact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -883,7 +929,7 @@
             this.BtnVerFacturasList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVerFacturasList.Image = global::Agregados.Properties.Resources.reporte;
             this.BtnVerFacturasList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerFacturasList.Location = new System.Drawing.Point(787, 3);
+            this.BtnVerFacturasList.Location = new System.Drawing.Point(786, 3);
             this.BtnVerFacturasList.Name = "BtnVerFacturasList";
             this.BtnVerFacturasList.Size = new System.Drawing.Size(190, 79);
             this.BtnVerFacturasList.TabIndex = 1;
@@ -901,7 +947,7 @@
             this.btnReportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportExcel.Image = global::Agregados.Properties.Resources.excel;
             this.btnReportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportExcel.Location = new System.Drawing.Point(591, 3);
+            this.btnReportExcel.Location = new System.Drawing.Point(590, 3);
             this.btnReportExcel.Name = "btnReportExcel";
             this.btnReportExcel.Size = new System.Drawing.Size(190, 79);
             this.btnReportExcel.TabIndex = 3;
@@ -942,6 +988,8 @@
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilter)).EndInit();
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.tableLayoutPanel12.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1012,5 +1060,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn CNombreMaterial;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdMaterial;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTotalMont;
     }
 }

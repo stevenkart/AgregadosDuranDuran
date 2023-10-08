@@ -190,7 +190,24 @@ namespace Agregados.Forms.Bills
             {
                 btnPagar.Visible = true;
                 btnPagar.Enabled = false;
-  
+
+                foreach (DataGridViewRow row in dgvFilter.Rows)
+                {
+                    DateTime dt1 = DateTime.Parse(Convert.ToString(row.Cells["CFechaLimiteP"].Value));
+                    DateTime dt2 = DateTime.Now;
+                    var totalDay = (dt1 - dt2).TotalDays;
+                    if (totalDay <= 0)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        if (totalDay > 0 && totalDay <= 3)
+                        {
+                            row.DefaultCellStyle.BackColor = Color.Yellow;
+                        }
+                    }
+                }
             }
             else
             {

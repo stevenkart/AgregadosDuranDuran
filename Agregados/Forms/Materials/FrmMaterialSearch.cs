@@ -154,6 +154,25 @@ namespace Agregados.Forms.Materials
         //load 
         private void FrmMaterialSearch_Load(object sender, EventArgs e)
         {
+            if (accion == 1)
+            {
+                checkBox1.Visible = true;
+                if (checkBox1.Checked)
+                {
+                    TxtPrecioUnitario.Text = 0.ToString();
+                    TxtPrecioUnitario.Enabled = true;
+                }
+                else
+                {
+                    TxtPrecioUnitario.Text = 0.ToString();
+                    TxtPrecioUnitario.Enabled = false;
+                }
+            }
+            else
+            {
+                checkBox1.Visible = false;
+            }
+
             LlenarLista();
         }
         //filtros de busqueda
@@ -410,22 +429,46 @@ namespace Agregados.Forms.Materials
             {
                 if (dgvListaMateriales.SelectedRows.Count == 1)
                 {
+                    if (checkBox1.Checked)
+                    {
+                        NudCantidad.Enabled = true;
+                        TxtPrecioUnitario.Enabled = true;
+                        DataGridViewRow fila = dgvListaMateriales.SelectedRows[0];
+                        NudCantidad.Maximum = Convert.ToInt32(fila.Cells["CCantidadMaterial"].Value);
+                        Cantidad = Convert.ToDecimal(NudCantidad.Value);
+                        PrecioUnitario = Convert.ToDecimal(TxtPrecioUnitario.Text.Trim());
+                        //PrecioUnitario = Convert.ToDecimal(fila.Cells["CPrecio"].Value);
 
-                    NudCantidad.Enabled = true;
-                    DataGridViewRow fila = dgvListaMateriales.SelectedRows[0];
-                    NudCantidad.Maximum = Convert.ToInt32(fila.Cells["CCantidadMaterial"].Value);
-                    Cantidad = Convert.ToDecimal(NudCantidad.Value);
-                    PrecioUnitario = Convert.ToDecimal(fila.Cells["CPrecio"].Value);
+                        //1. Canculo del Subtotal 
+                        SubTotal = Cantidad * PrecioUnitario;
+                        TasaImpuesto = Convert.ToDecimal((Convert.ToDouble(SubTotal) * Convert.ToDouble(0.13)));
+                        Total = Convert.ToDecimal((Convert.ToDouble(SubTotal) * Convert.ToDouble(0.13)) + Convert.ToDouble(SubTotal));
 
-                    //1. Canculo del Subtotal 
-                    SubTotal = Cantidad * PrecioUnitario;
-                    TasaImpuesto = Convert.ToDecimal((Convert.ToDouble(SubTotal) * Convert.ToDouble(0.13)));
-                    Total = Convert.ToDecimal((Convert.ToDouble(SubTotal) * Convert.ToDouble(0.13)) + Convert.ToDouble(SubTotal));
+                        //TxtPrecioUnitario.Text = string.Format("¢ {0:N2}", PrecioUnitario);
+                        TxtSubTotal.Text = string.Format("¢ {0:N2}", SubTotal);
+                        TxtIVA.Text = string.Format("¢ {0:N2}", TasaImpuesto);
+                        TxtTotal.Text = string.Format("¢ {0:N2}", Total);
+                        ActivarSelect();
+                    }
+                    else
+                    {
+                        NudCantidad.Enabled = true;
+                        DataGridViewRow fila = dgvListaMateriales.SelectedRows[0];
+                        NudCantidad.Maximum = Convert.ToInt32(fila.Cells["CCantidadMaterial"].Value);
+                        Cantidad = Convert.ToDecimal(NudCantidad.Value);
+                        PrecioUnitario = Convert.ToDecimal(fila.Cells["CPrecio"].Value);
 
-                    TxtPrecioUnitario.Text = string.Format("¢ {0:N2}", PrecioUnitario);
-                    TxtSubTotal.Text = string.Format("¢ {0:N2}", SubTotal);
-                    TxtIVA.Text = string.Format("¢ {0:N2}", TasaImpuesto);
-                    TxtTotal.Text = string.Format("¢ {0:N2}", Total);
+                        //1. Canculo del Subtotal 
+                        SubTotal = Cantidad * PrecioUnitario;
+                        TasaImpuesto = Convert.ToDecimal((Convert.ToDouble(SubTotal) * Convert.ToDouble(0.13)));
+                        Total = Convert.ToDecimal((Convert.ToDouble(SubTotal) * Convert.ToDouble(0.13)) + Convert.ToDouble(SubTotal));
+
+                        TxtPrecioUnitario.Text = string.Format("¢ {0:N2}", PrecioUnitario);
+                        TxtSubTotal.Text = string.Format("¢ {0:N2}", SubTotal);
+                        TxtIVA.Text = string.Format("¢ {0:N2}", TasaImpuesto);
+                        TxtTotal.Text = string.Format("¢ {0:N2}", Total);
+                        ActivarSelect();
+                    }
                 }
             }
             else
@@ -458,6 +501,8 @@ namespace Agregados.Forms.Materials
                         TxtSubTotal.Text = string.Format("¢ {0:N2}", SubTotal);
                         TxtIVA.Text = string.Format("¢ {0:N2}", TasaImpuesto);
                         TxtTotal.Text = string.Format("¢ {0:N2}", Total);
+
+                        ActivarSelect();
                     }
                 }
             }
@@ -628,7 +673,6 @@ namespace Agregados.Forms.Materials
 
             if (dgvListaMateriales.SelectedRows.Count == 1 && !string.IsNullOrEmpty(TxtPrecioUnitario.Text.Trim()))
             {
-                ActivarSelect();
                 Calcular();
             }
         }
@@ -672,6 +716,26 @@ namespace Agregados.Forms.Materials
             {
                 TxtPrecioUnitario.Text = "0";
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (accion == 1)
+            {
+                if (checkBox1.Checked)
+                {
+                    TxtPrecioUnitario.Text = 0.ToString();
+                    TxtPrecioUnitario.Enabled = true;
+                    ActivarCancel();
+                }
+                else
+                {
+                    TxtPrecioUnitario.Text = 0.ToString();
+                    TxtPrecioUnitario.Enabled = false;
+                    ActivarCancel();
+                }
+            }
+           
         }
     }
 }

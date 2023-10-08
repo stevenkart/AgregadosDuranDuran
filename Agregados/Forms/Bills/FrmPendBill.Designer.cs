@@ -62,16 +62,21 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvFilter = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtFecha = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.CID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CConsecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCostoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNombreEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNombreEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CFechaFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CFechaLimiteP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CSubTotalFact = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIVAFact = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCostoTransporte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CBackHoe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CReferenciaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,11 +89,6 @@
             this.CTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNombreMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CIdMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtFecha = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtDescription = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -159,7 +159,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.86692F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.13308F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 265F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 255F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 256F));
             this.tableLayoutPanel2.Controls.Add(this.label8, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label7, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtClienteNombre, 1, 1);
@@ -184,9 +184,9 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(576, 5);
+            this.label8.Location = new System.Drawing.Point(575, 5);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(250, 18);
+            this.label8.Size = new System.Drawing.Size(251, 18);
             this.label8.TabIndex = 6;
             this.label8.Text = "Filtrar Facturas con Materiales";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -197,7 +197,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(311, 5);
+            this.label7.Location = new System.Drawing.Point(310, 5);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(259, 18);
             this.label7.TabIndex = 4;
@@ -209,7 +209,7 @@
             this.txtClienteNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtClienteNombre.Location = new System.Drawing.Point(141, 39);
             this.txtClienteNombre.Name = "txtClienteNombre";
-            this.txtClienteNombre.Size = new System.Drawing.Size(164, 20);
+            this.txtClienteNombre.Size = new System.Drawing.Size(163, 20);
             this.txtClienteNombre.TabIndex = 3;
             this.txtClienteNombre.TextChanged += new System.EventHandler(this.txtClienteNombre_TextChanged);
             this.txtClienteNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClienteNombre_KeyPress);
@@ -246,7 +246,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(141, 5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(164, 18);
+            this.label3.Size = new System.Drawing.Size(163, 18);
             this.label3.TabIndex = 2;
             this.label3.Text = "Nombre Cliente";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -259,9 +259,9 @@
             this.btnFiltrarHoyTodas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrarHoyTodas.Image = ((System.Drawing.Image)(resources.GetObject("btnFiltrarHoyTodas.Image")));
             this.btnFiltrarHoyTodas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFiltrarHoyTodas.Location = new System.Drawing.Point(576, 31);
+            this.btnFiltrarHoyTodas.Location = new System.Drawing.Point(575, 31);
             this.btnFiltrarHoyTodas.Name = "btnFiltrarHoyTodas";
-            this.btnFiltrarHoyTodas.Size = new System.Drawing.Size(250, 37);
+            this.btnFiltrarHoyTodas.Size = new System.Drawing.Size(251, 37);
             this.btnFiltrarHoyTodas.TabIndex = 7;
             this.btnFiltrarHoyTodas.Text = "Filtrar";
             this.btnFiltrarHoyTodas.UseVisualStyleBackColor = false;
@@ -275,7 +275,7 @@
             this.btnFiltrarHoySoloBackHoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrarHoySoloBackHoe.Image = ((System.Drawing.Image)(resources.GetObject("btnFiltrarHoySoloBackHoe.Image")));
             this.btnFiltrarHoySoloBackHoe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFiltrarHoySoloBackHoe.Location = new System.Drawing.Point(311, 31);
+            this.btnFiltrarHoySoloBackHoe.Location = new System.Drawing.Point(310, 31);
             this.btnFiltrarHoySoloBackHoe.Name = "btnFiltrarHoySoloBackHoe";
             this.btnFiltrarHoySoloBackHoe.Size = new System.Drawing.Size(259, 37);
             this.btnFiltrarHoySoloBackHoe.TabIndex = 5;
@@ -530,11 +530,11 @@
             this.CCostoTotal,
             this.CNombreEmpleado,
             this.CNombreEstado,
+            this.CNombre,
             this.CFechaFactura,
             this.CFechaLimiteP,
             this.CSubTotalFact,
             this.CIVAFact,
-            this.CNombre,
             this.CCostoTransporte,
             this.CBackHoe,
             this.CReferenciaPago,
@@ -571,6 +571,70 @@
             this.dgvFilter.DataSourceChanged += new System.EventHandler(this.dgvFilter_DataSourceChanged);
             this.dgvFilter.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFilter_CellClick);
             // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 2;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.83142F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.16858F));
+            this.tableLayoutPanel8.Controls.Add(this.txtFecha, 1, 1);
+            this.tableLayoutPanel8.Controls.Add(this.label6, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.label5, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.txtDescription, 0, 1);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 234);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 2;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32.43243F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67.56757F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(1080, 74);
+            this.tableLayoutPanel8.TabIndex = 8;
+            // 
+            // txtFecha
+            // 
+            this.txtFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFecha.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.txtFecha.Location = new System.Drawing.Point(854, 38);
+            this.txtFecha.Name = "txtFecha";
+            this.txtFecha.ReadOnly = true;
+            this.txtFecha.Size = new System.Drawing.Size(223, 20);
+            this.txtFecha.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(854, 2);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(223, 18);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Fecha Pago";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 2);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(845, 18);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Detalle";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDescription.Location = new System.Drawing.Point(3, 26);
+            this.txtDescription.MaxLength = 1000;
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(845, 45);
+            this.txtDescription.TabIndex = 1;
+            // 
             // CID
             // 
             this.CID.DataPropertyName = "IdFactura";
@@ -583,8 +647,9 @@
             // 
             this.CConsecutivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.CConsecutivo.DataPropertyName = "Consecutivo";
+            this.CConsecutivo.FillWeight = 80F;
             this.CConsecutivo.HeaderText = "Consecutivo";
-            this.CConsecutivo.MinimumWidth = 100;
+            this.CConsecutivo.MinimumWidth = 80;
             this.CConsecutivo.Name = "CConsecutivo";
             this.CConsecutivo.ReadOnly = true;
             this.CConsecutivo.Width = 117;
@@ -619,24 +684,35 @@
             this.CNombreEstado.ReadOnly = true;
             this.CNombreEstado.Width = 180;
             // 
+            // CNombre
+            // 
+            this.CNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CNombre.DataPropertyName = "Nombre";
+            this.CNombre.FillWeight = 200F;
+            this.CNombre.HeaderText = "Cliente";
+            this.CNombre.MinimumWidth = 150;
+            this.CNombre.Name = "CNombre";
+            this.CNombre.ReadOnly = true;
+            // 
             // CFechaFactura
             // 
             this.CFechaFactura.DataPropertyName = "FechaFactura";
-            this.CFechaFactura.FillWeight = 180F;
+            this.CFechaFactura.FillWeight = 150F;
             this.CFechaFactura.HeaderText = "Fecha";
-            this.CFechaFactura.MinimumWidth = 180;
+            this.CFechaFactura.MinimumWidth = 150;
             this.CFechaFactura.Name = "CFechaFactura";
             this.CFechaFactura.ReadOnly = true;
-            this.CFechaFactura.Width = 180;
+            this.CFechaFactura.Width = 150;
             // 
             // CFechaLimiteP
             // 
             this.CFechaLimiteP.DataPropertyName = "FechaLimiteP";
-            this.CFechaLimiteP.FillWeight = 200F;
+            this.CFechaLimiteP.FillWeight = 150F;
             this.CFechaLimiteP.HeaderText = "Fecha Limite";
-            this.CFechaLimiteP.MinimumWidth = 100;
+            this.CFechaLimiteP.MinimumWidth = 150;
             this.CFechaLimiteP.Name = "CFechaLimiteP";
             this.CFechaLimiteP.ReadOnly = true;
+            this.CFechaLimiteP.Width = 150;
             // 
             // CSubTotalFact
             // 
@@ -653,16 +729,6 @@
             this.CIVAFact.Name = "CIVAFact";
             this.CIVAFact.ReadOnly = true;
             this.CIVAFact.Visible = false;
-            // 
-            // CNombre
-            // 
-            this.CNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CNombre.DataPropertyName = "Nombre";
-            this.CNombre.FillWeight = 200F;
-            this.CNombre.HeaderText = "Cliente";
-            this.CNombre.MinimumWidth = 150;
-            this.CNombre.Name = "CNombre";
-            this.CNombre.ReadOnly = true;
             // 
             // CCostoTransporte
             // 
@@ -760,70 +826,6 @@
             this.CIdMaterial.ReadOnly = true;
             this.CIdMaterial.Visible = false;
             // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.ColumnCount = 2;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.83142F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.16858F));
-            this.tableLayoutPanel8.Controls.Add(this.txtFecha, 1, 1);
-            this.tableLayoutPanel8.Controls.Add(this.label6, 1, 0);
-            this.tableLayoutPanel8.Controls.Add(this.label5, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.txtDescription, 0, 1);
-            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 234);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 2;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32.43243F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67.56757F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(1080, 74);
-            this.tableLayoutPanel8.TabIndex = 8;
-            // 
-            // txtFecha
-            // 
-            this.txtFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFecha.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.txtFecha.Location = new System.Drawing.Point(854, 38);
-            this.txtFecha.Name = "txtFecha";
-            this.txtFecha.ReadOnly = true;
-            this.txtFecha.Size = new System.Drawing.Size(223, 20);
-            this.txtFecha.TabIndex = 3;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(854, 2);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(223, 18);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Fecha Pago";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 2);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(845, 18);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Detalle";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDescription.Location = new System.Drawing.Point(3, 26);
-            this.txtDescription.MaxLength = 1000;
-            this.txtDescription.Multiline = true;
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(845, 45);
-            this.txtDescription.TabIndex = 1;
-            // 
             // FrmPendBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -902,11 +904,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CCostoTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn CNombreEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn CNombreEstado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn CFechaFactura;
         private System.Windows.Forms.DataGridViewTextBoxColumn CFechaLimiteP;
         private System.Windows.Forms.DataGridViewTextBoxColumn CSubTotalFact;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIVAFact;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn CCostoTransporte;
         private System.Windows.Forms.DataGridViewTextBoxColumn CBackHoe;
         private System.Windows.Forms.DataGridViewTextBoxColumn CReferenciaPago;

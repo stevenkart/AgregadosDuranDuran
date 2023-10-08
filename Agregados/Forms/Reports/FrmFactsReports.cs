@@ -155,14 +155,24 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = true;
                 btnReportPDF.Visible = true;
                 valorHoy = 2;
+
+                //para que se muestre el total (monto) de la consulta
+                decimal valor = 0;
+                foreach (var item in finalResult)
+                {
+                    valor += item.CostoTotal;
+                }
+                lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
             }
             else
             {
-                MessageBox.Show("No hay registro de facturas a contado el día de hoy, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No hay registro de facturas el día de hoy, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BtnVerFacturasList.Visible = false;
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
                 valorHoy = 0;
+
+                lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
             }
         }
 
@@ -245,14 +255,24 @@ namespace Agregados.Forms.Reports
                     btnReportExcel.Visible = true;
                     btnReportPDF.Visible = true;
                     valorPorFechas = 2;
+
+                    //para que se muestre el total (monto) de la consulta
+                    decimal valor = 0;
+                    foreach (var item in finalResult)
+                    {
+                        valor += item.CostoTotal;
+                    }
+                    lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
                 }
                 else
                 {
-                    MessageBox.Show("No hay registro de facturas a contado en el rango de fechas indicado, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No hay registro de facturas en el rango de fechas indicado, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BtnVerFacturasList.Visible = false;
                     btnReportExcel.Visible = false;
                     btnReportPDF.Visible = false;
                     valorPorFechas = 0;
+                    
+                    lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
                 }
             }
             else
@@ -294,6 +314,14 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = true;
                 btnReportPDF.Visible = true;
                 valorPendiente = 3;
+
+                //para que se muestre el total (monto) de la consulta
+                decimal valor = 0;
+                foreach (var item in finalResult)
+                {
+                    valor += item.CostoTotal;
+                }
+                lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
             }
             else
             {
@@ -302,6 +330,9 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
                 valorPendiente = 0;
+
+                
+                lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
             }
         }
 
@@ -1717,6 +1748,14 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = true;
                 btnReportPDF.Visible = true;
                 valorPendiente = 1;
+
+                //para que se muestre el total (monto) de la consulta
+                decimal valor = 0;
+                foreach (var item in finalResult)
+                {
+                    valor += item.CostoTotal;
+                }
+                lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
             }
             else
             {
@@ -1725,6 +1764,9 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
                 valorPendiente = 0;
+
+               
+                lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
             }
         }
         private void btnVolver_Click(object sender, EventArgs e)
@@ -1733,7 +1775,6 @@ namespace Agregados.Forms.Reports
             frmPrincipalMDI.Show();
             this.Hide();
         }
-
         private void btnFiltrarHoyTodas_Click(object sender, EventArgs e)
         {
             dgvFilter.ClearSelection();
@@ -1762,7 +1803,6 @@ namespace Agregados.Forms.Reports
 
             finalResult = finalResult.Distinct();
 
-
             dgvFilter.DataSource = finalResult.ToList();
             if (result.ToList().Count > 0)
             {
@@ -1770,14 +1810,24 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = true;
                 btnReportPDF.Visible = true;
                 valorHoy = 3;
+
+                //para que se muestre el total (monto) de la consulta
+                decimal valor = 0;
+                foreach (var item in finalResult)
+                {
+                    valor += item.CostoTotal;
+                }
+                lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
             }
             else
             {
-                MessageBox.Show("No hay registro de facturas a contado el día de hoy, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No hay registro de facturas el día de hoy, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BtnVerFacturasList.Visible = false;
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
                 valorHoy = 0;
+
+                lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
             }
             
         }
@@ -1812,6 +1862,14 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = true;
                 btnReportPDF.Visible = true;
                 valorPendiente = 3; // indica la accion a realizar para ver las facturas list
+
+                //para que se muestre el total (monto) de la consulta
+                decimal valor = 0;
+                foreach (var item in finalResult)
+                {
+                    valor += item.CostoTotal;
+                }
+                lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
             }
             else
             {
@@ -1820,6 +1878,9 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
                 valorPendiente = 0;
+
+                
+                lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
             }
         }
 
@@ -1859,6 +1920,14 @@ namespace Agregados.Forms.Reports
                     BtnVerFacturasList.Visible = true;
                     btnReportExcel.Visible = true;
                     btnReportPDF.Visible = true;
+
+                    //para que se muestre el total (monto) de la consulta
+                    decimal valor = 0;
+                    foreach (var item in finalResult)
+                    {
+                        valor += item.CostoTotal;
+                    }
+                    lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
                 }
                 else
                 {
@@ -1866,6 +1935,9 @@ namespace Agregados.Forms.Reports
                     BtnVerFacturasList.Visible = false;
                     btnReportExcel.Visible = false;
                     btnReportPDF.Visible = false;
+
+                   
+                    lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
                 }
             }
             else
@@ -1910,14 +1982,24 @@ namespace Agregados.Forms.Reports
                     btnReportExcel.Visible = true;
                     btnReportPDF.Visible = true;
                     valorPorFechas = 1;
+
+                    //para que se muestre el total (monto) de la consulta
+                    decimal valor = 0;
+                    foreach (var item in finalResult)
+                    {
+                        valor += item.CostoTotal;
+                    }
+                    lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
                 }
                 else
                 {
-                    MessageBox.Show("No hay registro de facturas a contado en el rango de fechas indicado, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No hay registro de facturas en el rango de fechas indicado, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BtnVerFacturasList.Visible = false;
                     btnReportExcel.Visible = false;
                     btnReportPDF.Visible = false;
                     valorPorFechas = 0;
+                    
+                    lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
                 }
             }
             else
@@ -1961,14 +2043,24 @@ namespace Agregados.Forms.Reports
                     btnReportExcel.Visible = true;
                     btnReportPDF.Visible = true;
                     valorPorFechas = 3;
+
+                    //para que se muestre el total (monto) de la consulta
+                    decimal valor = 0;
+                    foreach (var item in finalResult)
+                    {
+                        valor += item.CostoTotal;
+                    }
+                    lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
                 }
                 else
                 {
-                    MessageBox.Show("No hay registro de facturas a contado en el rango de fechas indicado, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No hay registro de facturas en el rango de fechas indicado, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BtnVerFacturasList.Visible = false;
                     btnReportExcel.Visible = false;
                     btnReportPDF.Visible = false;
                     valorPorFechas = 0;
+
+                    lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
                 }
             }
             else
@@ -2014,14 +2106,24 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = true;
                 btnReportPDF.Visible = true;
                 valorHoy = 1;
+
+                //para que se muestre el total (monto) de la consulta
+                decimal valor = 0;
+                foreach (var item in finalResult)
+                {
+                    valor += item.CostoTotal;
+                }
+                lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
             }
             else
             {
-                MessageBox.Show("No hay registro de facturas a contado el día de hoy, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No hay registro de facturas el día de hoy, puedes revisar las de crédito", "Lista Facturas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BtnVerFacturasList.Visible = false;
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
                 valorHoy = 0;
+
+                lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
             }
         }
     }

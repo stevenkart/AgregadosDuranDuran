@@ -241,25 +241,46 @@ namespace Agregados.Forms
 
         }
 
-        private void FactPorVencer5Dias()
+        private void FactPorVencer2Dias()
         {
             var data = DB.SPFactCreditoVencidas().ToList();
-            int vencidas = data.Where((x) => x.Diferencia <= 5 && x.Diferencia > 0).Count();
+            int vencidas = data.Where((x) => x.Diferencia <= 2 && x.Diferencia > 0).Count();
             if (vencidas > 0 )
             {
                 Facturación.BalloonTipTitle = "Facturas por Vencer";
-                Facturación.BalloonTipText = $"Hay un total de {vencidas} que estan pronto a vencer, puedes validarlo en el módulo de facturas.";
+                Facturación.BalloonTipText = $"Hay un total de {vencidas} que estan pronto a vencer, puedes validarlo en el módulo de facturas por cobrar.";
                 Facturación.ShowBalloonTip(3000);
             }
             else
             {
+                /*
                 Facturación.BalloonTipTitle = "Facturas por Vencer";
                 Facturación.BalloonTipText = $"No hay facturas próximas por vencer.";
                 Facturación.ShowBalloonTip(3000);
+                */
                
+            } 
+        }
+
+        private void FactPorVencidas()
+        {
+            var data = DB.SPFactCreditoVencidas().ToList();
+            int vencidas = data.Where((x) => x.Diferencia < 0).Count();
+            if (vencidas > 0)
+            {
+                Facturación.BalloonTipTitle = "Facturas Vencidas";
+                Facturación.BalloonTipText = $"Hay un total de {vencidas} que están vencidas, puedes validarlo en el módulo de facturas por cobrar.";
+                Facturación.ShowBalloonTip(3000);
             }
-            
-            
+            else
+            {
+                /*
+                Facturación.BalloonTipTitle = "Facturas por Vencer";
+                Facturación.BalloonTipText = $"No hay facturas próximas por vencer.";
+                Facturación.ShowBalloonTip(3000);
+                */
+
+            }
         }
 
 
@@ -273,7 +294,9 @@ namespace Agregados.Forms
             tmrFechaHora.Enabled = true;
             lblUsuarioLogueado.Text = $"( {Globals.MyGlobalUser.NombreUsuario} )" + $" {Globals.MyGlobalUser.NombreEmpleado} ";
 
-            FactPorVencer5Dias();
+            FactPorVencer2Dias();
+
+            FactPorVencidas();
 
 
 
