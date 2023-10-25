@@ -25,17 +25,20 @@ namespace Agregados.Reports.Facts.FactNow
 
         private void FrmPrintTicketRev_Load(object sender, EventArgs e)
         {
-            RptTicketProviderRev rptTicketProviderRev = new RptTicketProviderRev();
-            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptTicketProviderRev"]);
-            rptTicketProviderRev.Load(reportPath);
-           
-            rptTicketProviderRev.Refresh();
-            rptTicketProviderRev.SetParameterValue("@Consecutivo", Consecutivo);
-      
+            //RptTicketProviderRev rptTicketProviderRev = new RptTicketProviderRev();
+            RptTicketProviderRevDup rptTicketProviderRevDup = new RptTicketProviderRevDup();
+            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptTicketProviderRevDup"]);
+            rptTicketProviderRevDup.Load(reportPath);
+
+            rptTicketProviderRevDup.Refresh();
+            //rptTicketProviderRev.SetParameterValue("@Consecutivo", Consecutivo);
+            rptTicketProviderRevDup.SetParameterValue("@Consecutivo", Consecutivo, rptTicketProviderRevDup.Subreports[1].Name.ToString());
+            rptTicketProviderRevDup.SetParameterValue("@Consecutivo", Consecutivo, rptTicketProviderRevDup.Subreports[1].Name.ToString());
 
 
 
-            crystalReportViewer1.ReportSource = rptTicketProviderRev;
+
+            crystalReportViewer1.ReportSource = rptTicketProviderRevDup;
         }
     }
 }

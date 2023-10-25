@@ -506,6 +506,7 @@ namespace Agregados.Forms.Reports
                 }
                 else
                 {
+               
                     using (FrmPrintFact frm = new FrmPrintFact(Consecutivo))
                     {
                         frm.ShowDialog();

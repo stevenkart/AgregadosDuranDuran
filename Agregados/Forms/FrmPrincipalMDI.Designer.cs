@@ -74,10 +74,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tmrFechaHora = new System.Windows.Forms.Timer(this.components);
             this.Facturación = new System.Windows.Forms.NotifyIcon(this.components);
+            this.cambiarFondoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -101,6 +105,7 @@
             // archivoToolStripMenuItem
             // 
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cambiarFondoToolStripMenuItem,
             this.respaldoDeDatosToolStripMenuItem,
             this.abrirCajaToolStripMenuItem,
             this.cerrarCajaToolStripMenuItem,
@@ -417,8 +422,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.BackgroundImage = global::Agregados.Properties.Resources.MDIPrincipal;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
@@ -436,6 +441,24 @@
             this.Facturación.Text = "Control Inv. & Facturación";
             this.Facturación.Visible = true;
             this.Facturación.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Facturación_MouseDoubleClick);
+            // 
+            // cambiarFondoToolStripMenuItem
+            // 
+            this.cambiarFondoToolStripMenuItem.Name = "cambiarFondoToolStripMenuItem";
+            this.cambiarFondoToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.cambiarFondoToolStripMenuItem.Text = "Cambiar Imagen Fondo";
+            this.cambiarFondoToolStripMenuItem.Click += new System.EventHandler(this.cambiarFondoToolStripMenuItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::Agregados.Properties.Resources.MDIPrincipal;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1229, 516);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // FrmPrincipalMDI
             // 
@@ -462,6 +485,8 @@
             this.tableLayoutPanel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -513,5 +538,7 @@
         private System.Windows.Forms.ToolStripMenuItem facturasACréditoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comprasACréditoToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon Facturación;
+        private System.Windows.Forms.ToolStripMenuItem cambiarFondoToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

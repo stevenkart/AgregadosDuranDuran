@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Runtime.Serialization;
@@ -29,6 +30,8 @@ namespace Agregados.Forms
         CierreApertCajas cierre; // valor termporal cierre
 
         Facturas facturas;
+
+        
 
         public FrmPrincipalMDI()
         {
@@ -78,6 +81,7 @@ namespace Agregados.Forms
             {
                 Globals.MifrmInfo.Hide();
             }
+            Globals.Notifications = true;
             this.Hide();
         }
 
@@ -294,12 +298,12 @@ namespace Agregados.Forms
             tmrFechaHora.Enabled = true;
             lblUsuarioLogueado.Text = $"( {Globals.MyGlobalUser.NombreUsuario} )" + $" {Globals.MyGlobalUser.NombreEmpleado} ";
 
-            FactPorVencer2Dias();
-
-            FactPorVencidas();
-
-
-
+            if (Globals.Notifications)
+            {
+                FactPorVencer2Dias();
+                FactPorVencidas();
+                Globals.Notifications = false;
+            }
         }
 
         private void abrirCajaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -379,6 +383,7 @@ namespace Agregados.Forms
             {
                 Globals.MifrmInfo.Hide();
             }
+            Globals.Notifications = true;
             this.Hide();
         }
 
@@ -582,6 +587,23 @@ namespace Agregados.Forms
             ShowInTaskbar = true;
             Facturación.Visible = false;
             WindowState = FormWindowState.Maximized;
+        }
+
+        private void cambiarFondoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files (*.png;*.jpg;*.jpeg;*.gif;*.bmp)|*.png;*.jpg;*.jpeg;*.gif;*.bmp";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Get the selected image file path
+                string imagePath = openFileDialog.FileName;
+
+                // Set the image to your PictureBox or any other control
+                //panel1.BackgroundImage = Image.FromFile(imagePath);
+
+               
+            }
         }
     }
 }

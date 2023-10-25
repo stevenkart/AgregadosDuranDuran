@@ -15,6 +15,8 @@ namespace Agregados
         //el form principal se puede invocar desde cualquier lugar 
         //(login en nuestro caso)
 
+        // boolean para dar o no notificaciones al usuario al momento de loguearse en la app, "true" = dar notificaciones && "false" = no dar notifications
+        public static bool Notifications = true;  
 
         public static Form MyPrincipalForm = new Forms.FrmPrincipalMDI();
 

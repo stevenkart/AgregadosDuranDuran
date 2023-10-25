@@ -24,14 +24,17 @@ namespace Agregados.Reports.Facts.FactNow
 
         private void FrmPrintFactRev_Load(object sender, EventArgs e)
         {
-            RptFactRev rptFactRev = new RptFactRev();
-            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptFactRev"]);
-            rptFactRev.Load(reportPath);
+            //RptFactRev rptFactRev = new RptFactRev();
+            RptFactRevDup rptFactRevDup = new RptFactRevDup();
+            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptFactRevDup"]);
+            rptFactRevDup.Load(reportPath);
 
-            rptFactRev.Refresh();
-            rptFactRev.SetParameterValue("@Consecutivo", Consecutivo);
+            rptFactRevDup.Refresh();
+            //rptFactRevDup.SetParameterValue("@Consecutivo", Consecutivo);
+            rptFactRevDup.SetParameterValue("@Consecutivo", Consecutivo, rptFactRevDup.Subreports[0].Name.ToString());
+            rptFactRevDup.SetParameterValue("@Consecutivo", Consecutivo, rptFactRevDup.Subreports[1].Name.ToString());
 
-            crystalReportViewer1.ReportSource = rptFactRev;
+            crystalReportViewer1.ReportSource = rptFactRevDup;
         }
     }
 }

@@ -27,14 +27,15 @@ namespace Agregados.Reports
 
         private void FrmPrintFact_Load(object sender, EventArgs e)
         {
-            RptFactCreated rptFactCreated = new RptFactCreated();
-            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptFactCreated"]);
-            rptFactCreated.Load(reportPath);
-      
-            rptFactCreated.Refresh();
-            rptFactCreated.SetParameterValue("@Consecutivo", Consecutivo);
+            //RptFactCreated rptFactCreated = new RptFactCreated();
+            RptFactCreateDup RptFactCreateDup = new RptFactCreateDup();
+            string reportPath = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["RptFactCreateDup"]);
+            RptFactCreateDup.Load(reportPath);
 
-            crystalReportViewer1.ReportSource = rptFactCreated;
+            RptFactCreateDup.Refresh();
+            RptFactCreateDup.SetParameterValue("@Consecutivo", Consecutivo, RptFactCreateDup.Subreports[0].Name.ToString());
+            RptFactCreateDup.SetParameterValue("@Consecutivo", Consecutivo, RptFactCreateDup.Subreports[1].Name.ToString());
+            crystalReportViewer1.ReportSource = RptFactCreateDup;
 
         }
 
