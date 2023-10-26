@@ -19,6 +19,19 @@ namespace Agregados.Forms.Help
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Globals.AcercaDe = false;
+            this.Hide();
+
+        }
+
+        private void FrmInfo_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmInfo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Globals.AcercaDe = false;
             this.Hide();
         }
     }

@@ -16,7 +16,14 @@ namespace Agregados
         //(login en nuestro caso)
 
         // boolean para dar o no notificaciones al usuario al momento de loguearse en la app, "true" = dar notificaciones && "false" = no dar notifications
-        public static bool Notifications = true;  
+        public static bool Notifications = true;
+
+        // boolean para dar o no la indicacion de que el form esta abierto y asi no volverlo abrir
+        public static bool AcercaDe = false;
+
+        public static bool Manual = false;
+
+        //forms
 
         public static Form MyPrincipalForm = new Forms.FrmPrincipalMDI();
 

@@ -324,7 +324,9 @@ namespace Agregados.Forms.Bills
                                         MessageBox.Show("Compra de crédito pagada correctamente!", "Registro de Compras", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                                         {
+                                            Cursor.Current = Cursors.WaitCursor;
                                             frm.ShowDialog();
+                                            Cursor.Current = Cursors.Default;
                                         };
 
                                         fact = null;
@@ -360,7 +362,9 @@ namespace Agregados.Forms.Bills
 
                                         using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                                         {
+                                            Cursor.Current = Cursors.WaitCursor;
                                             frm.ShowDialog();
+                                            Cursor.Current = Cursors.Default;
                                         };
 
                                         fact = null;
@@ -406,7 +410,9 @@ namespace Agregados.Forms.Bills
 
                                         using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                                         {
+                                            Cursor.Current = Cursors.WaitCursor;
                                             frm.ShowDialog();
+                                            Cursor.Current = Cursors.Default;
                                         };
 
                                         fact = null;
@@ -440,7 +446,9 @@ namespace Agregados.Forms.Bills
 
                                         using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                                         {
+                                            Cursor.Current = Cursors.WaitCursor;
                                             frm.ShowDialog();
+                                            Cursor.Current = Cursors.Default;
                                         };
 
                                         fact = null;
@@ -485,7 +493,9 @@ namespace Agregados.Forms.Bills
 
                                         using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                                         {
+                                            Cursor.Current = Cursors.WaitCursor;
                                             frm.ShowDialog();
+                                            Cursor.Current = Cursors.Default;
                                         };
 
                                         fact = null;
@@ -519,7 +529,9 @@ namespace Agregados.Forms.Bills
 
                                         using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                                         {
+                                            Cursor.Current = Cursors.WaitCursor;
                                             frm.ShowDialog();
+                                            Cursor.Current = Cursors.Default;
                                         };
 
                                         fact = null;

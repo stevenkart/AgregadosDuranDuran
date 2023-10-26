@@ -784,7 +784,9 @@ namespace Agregados.Forms.Bills
 
                                                     using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                                     {
+                                                        Cursor.Current = Cursors.WaitCursor;
                                                         frm.ShowDialog();
+                                                        Cursor.Current = Cursors.Default;
                                                     };
 
                                                     factura = null;
@@ -902,7 +904,9 @@ namespace Agregados.Forms.Bills
                                                         MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                         using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                                         {
+                                                            Cursor.Current = Cursors.WaitCursor;
                                                             frm.ShowDialog();
+                                                            Cursor.Current = Cursors.Default;
                                                         };
                                                         factura = null;
                                                         limpiar();
@@ -1018,7 +1022,9 @@ namespace Agregados.Forms.Bills
                                                             MessageBox.Show("Ticket de Compra agregada correctamente!", "Registro de Ticket Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                             using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                                             {
+                                                                Cursor.Current = Cursors.WaitCursor;
                                                                 frm.ShowDialog();
+                                                                Cursor.Current = Cursors.Default;
                                                             };
                                                             factura = null;
                                                             limpiar();
@@ -1181,7 +1187,9 @@ namespace Agregados.Forms.Bills
                                                         MessageBox.Show("Factura de Compra agregada correctamente!", "Registro de Factura de Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                         using (FrmPrintTicket frm = new FrmPrintTicket(consecutivo))
                                                         {
+                                                            Cursor.Current = Cursors.WaitCursor;
                                                             frm.ShowDialog();
+                                                            Cursor.Current = Cursors.Default;
                                                         };
                                                         factura = null;
                                                     }

@@ -352,7 +352,9 @@ namespace Agregados.Forms.Bills
                                                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         using (FrmPrintTicketRev frm = new FrmPrintTicketRev(facturas.Consecutivo))
                                         {
+                                            Cursor.Current = Cursors.WaitCursor;
                                             frm.ShowDialog();
+                                            Cursor.Current = Cursors.Default;
                                         };
                                         cierreApertCajas = null;
                                         materiales = null;
@@ -413,7 +415,9 @@ namespace Agregados.Forms.Bills
                                             
                                             using (FrmPrintTicketRev frm = new FrmPrintTicketRev(facturas.Consecutivo))
                                             {
+                                                Cursor.Current = Cursors.WaitCursor;
                                                 frm.ShowDialog();
+                                                Cursor.Current = Cursors.Default;
                                             };
                                             cierreApertCajas = null;
                                             materiales = null;
@@ -473,7 +477,9 @@ namespace Agregados.Forms.Bills
                                                                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                 using (FrmPrintTicketRev frm = new FrmPrintTicketRev(facturas.Consecutivo))
                                                 {
+                                                    Cursor.Current = Cursors.WaitCursor;
                                                     frm.ShowDialog();
+                                                    Cursor.Current = Cursors.Default;
                                                 };
                                                 cierreApertCajas = null;
                                                 materiales = null;
@@ -537,7 +543,9 @@ namespace Agregados.Forms.Bills
                                                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         using (FrmPrintTicketRev frm = new FrmPrintTicketRev(facturas.Consecutivo))
                                         {
+                                            Cursor.Current = Cursors.WaitCursor;
                                             frm.ShowDialog();
+                                            Cursor.Current = Cursors.Default;
                                         };
                                         cierreApertCajas = null;
                                         materiales = null;

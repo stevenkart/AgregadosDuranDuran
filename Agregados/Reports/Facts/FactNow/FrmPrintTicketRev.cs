@@ -32,7 +32,7 @@ namespace Agregados.Reports.Facts.FactNow
 
             rptTicketProviderRevDup.Refresh();
             //rptTicketProviderRev.SetParameterValue("@Consecutivo", Consecutivo);
-            rptTicketProviderRevDup.SetParameterValue("@Consecutivo", Consecutivo, rptTicketProviderRevDup.Subreports[1].Name.ToString());
+            rptTicketProviderRevDup.SetParameterValue("@Consecutivo", Consecutivo, rptTicketProviderRevDup.Subreports[0].Name.ToString());
             rptTicketProviderRevDup.SetParameterValue("@Consecutivo", Consecutivo, rptTicketProviderRevDup.Subreports[1].Name.ToString());
 
 

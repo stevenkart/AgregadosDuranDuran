@@ -62,6 +62,7 @@ namespace Agregados.Forms.Login
             {
                 try
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     frmLoading.ShowDialog(this);
                     if (!string.IsNullOrEmpty(txtUser.Text.Trim()))
                     {
@@ -143,6 +144,7 @@ namespace Agregados.Forms.Login
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw;
                 }
+                finally { Cursor.Current = Cursors.Default; }
             }
         }
 
@@ -175,6 +177,8 @@ namespace Agregados.Forms.Login
             {
                 try
                 {
+                    Cursor.Current = Cursors.WaitCursor;
+
                     frmLoading.ShowDialog(this);
                     if (!string.IsNullOrEmpty(txtPin.Text.Trim()))
                     {
@@ -210,7 +214,7 @@ namespace Agregados.Forms.Login
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw;
-                }
+                } finally { Cursor.Current = Cursors.Default;}
             }
         }
 
@@ -222,6 +226,7 @@ namespace Agregados.Forms.Login
             {
                 try
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     frmLoading.ShowDialog(this);
                     if (!string.IsNullOrEmpty(txtPass.Text.Trim()) || !string.IsNullOrEmpty(txtConfirmPass.Text.Trim()))
                     {
@@ -276,6 +281,7 @@ namespace Agregados.Forms.Login
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw;
                 }
+                finally { Cursor.Current = Cursors.Default; }
             }
 
         }

@@ -502,7 +502,9 @@ namespace Agregados.Forms.Bills
 
                                                             using (FrmPrintFactRev frm = new FrmPrintFactRev(consecutivo))
                                                             {
+                                                                Cursor.Current = Cursors.WaitCursor;
                                                                 frm.ShowDialog();
+                                                                Cursor.Current = Cursors.Default;
                                                             };
 
                                                             factura = null;
@@ -522,7 +524,9 @@ namespace Agregados.Forms.Bills
 
                                                             using (FrmPrintFactRev frm = new FrmPrintFactRev(consecutivo))
                                                             {
+                                                                Cursor.Current = Cursors.WaitCursor;
                                                                 frm.ShowDialog();
+                                                                Cursor.Current = Cursors.Default;
                                                             };
 
                                                             factura = null;
@@ -542,7 +546,9 @@ namespace Agregados.Forms.Bills
 
                                                             using (FrmPrintFactRev frm = new FrmPrintFactRev(consecutivo))
                                                             {
+                                                                Cursor.Current = Cursors.WaitCursor;
                                                                 frm.ShowDialog();
+                                                                Cursor.Current = Cursors.Default;
                                                             };
 
                                                             factura = null;

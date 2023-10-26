@@ -55,6 +55,7 @@
             this.txtMontoVtaCheque = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtMontoVtaCredito = new System.Windows.Forms.TextBox();
+            this.NumMontInicial = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtDetalle = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -116,7 +117,6 @@
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.NumMontInicial = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -261,10 +261,10 @@
             this.txtFecha.BackColor = System.Drawing.SystemColors.Window;
             this.txtFecha.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFecha.Location = new System.Drawing.Point(423, 4);
+            this.txtFecha.Location = new System.Drawing.Point(422, 4);
             this.txtFecha.Name = "txtFecha";
             this.txtFecha.ReadOnly = true;
-            this.txtFecha.Size = new System.Drawing.Size(151, 26);
+            this.txtFecha.Size = new System.Drawing.Size(152, 26);
             this.txtFecha.TabIndex = 5;
             this.txtFecha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -275,7 +275,7 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(291, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 16);
+            this.label5.Size = new System.Drawing.Size(125, 16);
             this.label5.TabIndex = 3;
             this.label5.Text = "Fecha";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -287,7 +287,7 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(291, 181);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(126, 32);
+            this.label9.Size = new System.Drawing.Size(125, 32);
             this.label9.TabIndex = 14;
             this.label9.Text = "Monto Compras por Sinpe Móvil";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -298,10 +298,10 @@
             this.txtMontoCompraSinpe.BackColor = System.Drawing.SystemColors.Window;
             this.txtMontoCompraSinpe.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMontoCompraSinpe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMontoCompraSinpe.Location = new System.Drawing.Point(423, 184);
+            this.txtMontoCompraSinpe.Location = new System.Drawing.Point(422, 184);
             this.txtMontoCompraSinpe.Name = "txtMontoCompraSinpe";
             this.txtMontoCompraSinpe.ReadOnly = true;
-            this.txtMontoCompraSinpe.Size = new System.Drawing.Size(151, 26);
+            this.txtMontoCompraSinpe.Size = new System.Drawing.Size(152, 26);
             this.txtMontoCompraSinpe.TabIndex = 17;
             this.txtMontoCompraSinpe.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -312,7 +312,7 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(291, 119);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(126, 48);
+            this.label8.Size = new System.Drawing.Size(125, 48);
             this.label8.TabIndex = 13;
             this.label8.Text = "Monto Compras por Transferencias";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -323,10 +323,10 @@
             this.txtMontoCompraTransf.BackColor = System.Drawing.SystemColors.Window;
             this.txtMontoCompraTransf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMontoCompraTransf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMontoCompraTransf.Location = new System.Drawing.Point(423, 130);
+            this.txtMontoCompraTransf.Location = new System.Drawing.Point(422, 130);
             this.txtMontoCompraTransf.Name = "txtMontoCompraTransf";
             this.txtMontoCompraTransf.ReadOnly = true;
-            this.txtMontoCompraTransf.Size = new System.Drawing.Size(151, 26);
+            this.txtMontoCompraTransf.Size = new System.Drawing.Size(152, 26);
             this.txtMontoCompraTransf.TabIndex = 16;
             this.txtMontoCompraTransf.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -337,7 +337,7 @@
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(291, 78);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(126, 32);
+            this.label12.Size = new System.Drawing.Size(125, 32);
             this.label12.TabIndex = 21;
             this.label12.Text = "Monto Compras en Efectivo";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -349,10 +349,10 @@
             this.txtMontoCompraEfect.BackColor = System.Drawing.SystemColors.Window;
             this.txtMontoCompraEfect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMontoCompraEfect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMontoCompraEfect.Location = new System.Drawing.Point(423, 81);
+            this.txtMontoCompraEfect.Location = new System.Drawing.Point(422, 81);
             this.txtMontoCompraEfect.Name = "txtMontoCompraEfect";
             this.txtMontoCompraEfect.ReadOnly = true;
-            this.txtMontoCompraEfect.Size = new System.Drawing.Size(151, 26);
+            this.txtMontoCompraEfect.Size = new System.Drawing.Size(152, 26);
             this.txtMontoCompraEfect.TabIndex = 22;
             this.txtMontoCompraEfect.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtMontoCompraEfect.Visible = false;
@@ -365,7 +365,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(291, 283);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(126, 36);
+            this.label4.Size = new System.Drawing.Size(125, 36);
             this.label4.TabIndex = 2;
             this.label4.Text = "Monto Efectivo Final";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -496,6 +496,22 @@
             this.txtMontoVtaCredito.Size = new System.Drawing.Size(157, 26);
             this.txtMontoVtaCredito.TabIndex = 11;
             this.txtMontoVtaCredito.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // NumMontInicial
+            // 
+            this.NumMontInicial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.NumMontInicial.AutoSize = true;
+            this.NumMontInicial.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NumMontInicial.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.NumMontInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NumMontInicial.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.NumMontInicial.Location = new System.Drawing.Point(422, 292);
+            this.NumMontInicial.Name = "NumMontInicial";
+            this.NumMontInicial.Size = new System.Drawing.Size(152, 18);
+            this.NumMontInicial.TabIndex = 23;
+            this.NumMontInicial.Text = "0";
+            this.NumMontInicial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.NumMontInicial.Click += new System.EventHandler(this.NumMontInicial_Click);
             // 
             // groupBox2
             // 
@@ -1346,22 +1362,6 @@
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // NumMontInicial
-            // 
-            this.NumMontInicial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.NumMontInicial.AutoSize = true;
-            this.NumMontInicial.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.NumMontInicial.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.NumMontInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumMontInicial.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.NumMontInicial.Location = new System.Drawing.Point(423, 292);
-            this.NumMontInicial.Name = "NumMontInicial";
-            this.NumMontInicial.Size = new System.Drawing.Size(151, 18);
-            this.NumMontInicial.TabIndex = 23;
-            this.NumMontInicial.Text = "0";
-            this.NumMontInicial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.NumMontInicial.Click += new System.EventHandler(this.NumMontInicial_Click);
             // 
             // FrmCashierClose
             // 

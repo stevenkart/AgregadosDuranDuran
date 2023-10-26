@@ -68,6 +68,8 @@ namespace Agregados.Forms.Login
                     {
                         try
                         {
+                            Cursor.Current = Cursors.WaitCursor;
+
                             frmLoading.ShowDialog(this);
                             string u = txtUser.Text.Trim();
                             string p = encriptar.EncriptarEnUnSentido(txtPassword.Text.Trim());
@@ -97,7 +99,9 @@ namespace Agregados.Forms.Login
                             
                             MessageBox.Show(ex.Message, "Error validación",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                         
+
+                        }finally { 
+                            Cursor.Current = Cursors.Default; 
                         }
                     }  
                 }
@@ -172,6 +176,8 @@ namespace Agregados.Forms.Login
                                 SqlCommand command1 = new SqlCommand(RestoreQuery1, sqlConn);
                                 SqlCommand command2 = new SqlCommand(RestoreQuery2, sqlConn);
 
+                                Cursor.Current = Cursors.WaitCursor;
+
                                 sqlConn.Open();
                                 command1.ExecuteNonQuery();
                                 command2.ExecuteNonQuery();
@@ -187,6 +193,7 @@ namespace Agregados.Forms.Login
                             finally
                             {
                                 sqlConn.Close();
+                                Cursor.Current = Cursors.Default;
                             }
                         }
                         else

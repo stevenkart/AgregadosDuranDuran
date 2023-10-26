@@ -95,10 +95,12 @@ namespace Agregados.Forms
                     facturaciónToolStripMenuItem.Enabled = true;
                     facturasACréditoToolStripMenuItem.Enabled = true;
                     notaDeCréditoToolStripMenuItem.Enabled = true;
-                  
+                    reversiónDeFacturaToolStripMenuItem.Enabled = true;
+
                     facturaciónComprasToolStripMenuItem.Enabled = true;
                     comprasACréditoToolStripMenuItem.Enabled = true;
                     reversiónDeComprasToolStripMenuItem.Enabled = true;
+                    notaDeDébitoToolStripMenuItem.Enabled = true;
 
                     cerrarCajaToolStripMenuItem.Enabled = true;
                     abrirCajaToolStripMenuItem.Enabled = false;
@@ -115,8 +117,6 @@ namespace Agregados.Forms
                         usuariosToolStripMenuItem.Enabled = true;
                         usuariosToolStripMenuItem.Visible = true;
 
-                        reversiónDeFacturaToolStripMenuItem.Enabled = true;
-
                         reportesDeCajaToolStripMenuItem.Enabled = true;
                         reportesDeCajaToolStripMenuItem.Visible = true;
 
@@ -132,8 +132,6 @@ namespace Agregados.Forms
                         usuariosToolStripMenuItem.Enabled = false;
                         usuariosToolStripMenuItem.Visible = false;
 
-                        reversiónDeFacturaToolStripMenuItem.Enabled = false;
-
                         reportesDeCajaToolStripMenuItem.Enabled = false;
                         reportesDeCajaToolStripMenuItem.Visible = false;
                     }
@@ -143,15 +141,15 @@ namespace Agregados.Forms
                     facturaciónToolStripMenuItem.Enabled = false;
                     facturasACréditoToolStripMenuItem.Enabled = false;
                     notaDeCréditoToolStripMenuItem.Enabled = false;
+                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
 
                     facturaciónComprasToolStripMenuItem.Enabled = false;
                     comprasACréditoToolStripMenuItem.Enabled = false;
                     reversiónDeComprasToolStripMenuItem.Enabled = false;
+                    notaDeDébitoToolStripMenuItem.Enabled = false;
 
                     cerrarCajaToolStripMenuItem.Enabled = false;
                     abrirCajaToolStripMenuItem.Enabled = false;
-
-
 
                     respaldoDeDatosToolStripMenuItem.Enabled = false;
                     respaldoDeDatosToolStripMenuItem.Visible = false;
@@ -161,9 +159,6 @@ namespace Agregados.Forms
                     notificacionesToolStripMenuItem.Visible = false;
                     usuariosToolStripMenuItem.Enabled = false;
                     usuariosToolStripMenuItem.Visible = false;
-
-                    reversiónDeFacturaToolStripMenuItem.Visible = false;
-                    reversiónDeFacturaToolStripMenuItem.Enabled = false;
 
                     reportesDeCajaToolStripMenuItem.Enabled = false;
                     reportesDeCajaToolStripMenuItem.Visible = false;
@@ -195,6 +190,7 @@ namespace Agregados.Forms
                 facturaciónComprasToolStripMenuItem.Enabled = false;
                 comprasACréditoToolStripMenuItem.Enabled = false;
                 reversiónDeComprasToolStripMenuItem.Enabled = false;
+                notaDeDébitoToolStripMenuItem.Enabled = false;
 
                 cerrarCajaToolStripMenuItem.Enabled = false;
                 abrirCajaToolStripMenuItem.Enabled = true;
@@ -239,10 +235,7 @@ namespace Agregados.Forms
                     reportesDeCajaToolStripMenuItem.Enabled = false;
                     reportesDeCajaToolStripMenuItem.Visible = false;
                 }
-
-
             }
-
         }
 
         private void FactPorVencer2Dias()
@@ -340,8 +333,16 @@ namespace Agregados.Forms
 
         private void acercaDeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Globals.MifrmInfo = new Help.FrmInfo();
-            Globals.MifrmInfo.Show();
+            if (Globals.AcercaDe)
+            {
+                Globals.MifrmInfo.Focus();
+            }
+            else
+            {
+                Globals.MifrmInfo = new Help.FrmInfo();
+                Globals.MifrmInfo.Show();
+                Globals.AcercaDe = true;
+            }  
         }
 
         private void vehiculosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -578,8 +579,17 @@ namespace Agregados.Forms
 
         private void manualDeUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Globals.MifrmManualUser = new Help.FrmManualUser();
-            Globals.MifrmManualUser.Show();
+            if (Globals.Manual)
+            {
+                Globals.MifrmManualUser.Focus();
+            }
+            else
+            {
+                Globals.MifrmManualUser = new Help.FrmManualUser();
+                Globals.MifrmManualUser.Show();
+                Globals.Manual = true;
+            }
+            
         }
 
         private void Facturación_MouseDoubleClick(object sender, MouseEventArgs e)

@@ -66,6 +66,7 @@ namespace Agregados.Forms.Notifications
             {
                 try
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     if (!string.IsNullOrEmpty(txtNewEmail.Text.Trim()) &&
                         !string.IsNullOrEmpty(txtConfirmEmail.Text.Trim()) &&
                         !string.IsNullOrEmpty(txtPass.Text.Trim()) &&
@@ -126,6 +127,9 @@ namespace Agregados.Forms.Notifications
                 {
                     MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw;
+                } finally
+                {
+                    Cursor.Current = Cursors.Default;
                 }
             }
         }

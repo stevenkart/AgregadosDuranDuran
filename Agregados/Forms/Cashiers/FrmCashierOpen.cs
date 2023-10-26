@@ -135,27 +135,309 @@ namespace Agregados.Forms.Cashiers
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (BuscarCierreAnterior() != null)
+            try
             {
-                //si es diferente nulo, busca y continuar la apertura aqui, si encuentra un cierre anterior
-                //procede a validar si existe una apertura de caja
-                if (BuscarAperturaActual() != null)
+                Cursor.Current = Cursors.WaitCursor;
+                if (BuscarCierreAnterior() != null)
                 {
-                    if (apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario) // si hay apertura y es el mismo usuario
+                    //si es diferente nulo, busca y continuar la apertura aqui, si encuentra un cierre anterior
+                    //procede a validar si existe una apertura de caja
+                    if (BuscarAperturaActual() != null)
                     {
-                        MessageBox.Show("Ya haz realizado la apertura de caja, no es posible tener otra caja abierta simultaneamente.",
-                       "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario) // si hay apertura y es el mismo usuario
+                        {
+                            MessageBox.Show("Ya haz realizado la apertura de caja, no es posible tener otra caja abierta simultaneamente.",
+                           "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ya hay una caja abierta por otro usuario, no es posible tener otra caja abierta simultaneamente.",
+                            "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Ya hay una caja abierta por otro usuario, no es posible tener otra caja abierta simultaneamente.",
-                        "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        decimal Faltante = (cierre.MontoEfectivoUsuarioFin > Convert.ToDecimal(NumMontInicial.Text)) ? (cierre.MontoEfectivoUsuarioFin - Convert.ToDecimal(NumMontInicial.Text)) : 0;
+                        decimal Sobrante = (cierre.MontoEfectivoUsuarioFin < Convert.ToDecimal(NumMontInicial.Text)) ? (Convert.ToDecimal(NumMontInicial.Text) - cierre.MontoEfectivoUsuarioFin) : 0;
+
+                        if (Faltante != 0 || Sobrante != 0)
+                        {
+                            DialogResult pregunta = MessageBox.Show("Posee diferencia de efectivo en caja, por favor valide." + Environment.NewLine +
+                                $"Faltante: ¢ {Faltante} ." + Environment.NewLine +
+                                $"Sobrante: ¢ {Sobrante} ." + Environment.NewLine +
+                                "¿Deseas continuar y abrir caja con la diferencia?"
+                                , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (pregunta == DialogResult.Yes)
+                            {
+                                using (FrmLoading frmLoading = new FrmLoading(Wait))
+                                {
+                                    try
+                                    {
+                                        cierreApertCajas = new CierreApertCajas
+                                        {
+                                            Fecha = Convert.ToDateTime(Fechap),
+                                            Hora = Horap,
+                                            Detalles = txtDetalle.Text.Trim(),
+                                            MontoEfectivoInicio = cierre.MontoEfectivoUsuarioFin,
+                                            MontoEfectivoUsuarioInicio = Convert.ToDecimal(NumMontInicial.Text),
+                                            MontoEfectivoFinal = Convert.ToDecimal(NumMontInicial.Text),
+                                            MontoEfectivoUsuarioFin = 0,
+                                            MontoVentaEfectivo = 0,
+                                            MontoCompraEfectivo = 0,
+                                            MontoTransf = 0,
+                                            MontoCompraTransf = 0,
+                                            MontoSinpe = 0,
+                                            MontoCompraSinpe = 0,
+                                            MontoCheque = 0,
+                                            MontoCredito = 0,
+                                            MontoCompraCredito = 0,
+                                            FaltanteInicio = Faltante,
+                                            SobranteInicio = Sobrante,
+                                            FaltanteFin = 0,
+                                            SobranteFin = 0,
+                                            Accion = Accionp,
+                                            IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                        };
+
+
+                                        DB.CierreApertCajas.Add(cierreApertCajas);
+
+
+                                        if (DB.SaveChanges() > 0)
+                                        {
+                                            MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            apertura = BuscarAperturaActual();
+                                            denominacionApert = new Denominaciones
+                                            {
+
+                                                MonedasCinco = Convert.ToInt32(numCinco.Value),
+                                                MonedasDiez = Convert.ToInt32(numDiez.Value),
+                                                MonedasVeinteCinco = Convert.ToInt32(numVeinteCinco.Value),
+                                                MonedasCincuenta = Convert.ToInt32(numCincuenta.Value),
+                                                MonedasCien = Convert.ToInt32(numCien.Value),
+                                                MonedasQuinientos = Convert.ToInt32(numQuienientos.Value),
+
+
+                                                BilleteMil = Convert.ToInt32(numMil.Value),
+                                                BilleteDosMil = Convert.ToInt32(numDosMil.Value),
+                                                BilleteCincoMil = Convert.ToInt32(numCincoMil.Value),
+                                                BilleteDiezMil = Convert.ToInt32(numDiezMil.Value),
+                                                BilleteVeinteMil = Convert.ToInt32(numVeinteMil.Value),
+
+                                                IdCierreApert = apertura.IdCierreApert,
+                                                AperturaCierre = 1
+                                            };
+                                            DB.Denominaciones.Add(denominacionApert);
+                                            if (DB.SaveChanges() > 0)
+                                            {
+                                                //this.Hide();
+                                                this.DialogResult = DialogResult.OK;
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Apertura de Caja correcta, pero no se guardo detalle de las denominaciones ingresadas", "Error",
+                                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                //this.Hide();
+                                                this.DialogResult = DialogResult.OK;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            //this.Hide();
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        throw;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+
+                            if (Faltante == 0 && Sobrante == 0 && Convert.ToDecimal(NumMontInicial.Text) == 0)
+                            {
+                                using (FrmLoading frmLoading = new FrmLoading(Wait))
+                                {
+                                    try
+                                    {
+                                        cierreApertCajas = new CierreApertCajas
+                                        {
+                                            Fecha = Convert.ToDateTime(Fechap),
+                                            Hora = Horap,
+                                            Detalles = txtDetalle.Text.Trim(),
+                                            MontoEfectivoInicio = cierre.MontoEfectivoUsuarioFin,
+                                            MontoEfectivoUsuarioInicio = Convert.ToDecimal(NumMontInicial.Text),
+                                            MontoEfectivoFinal = Convert.ToDecimal(NumMontInicial.Text),
+                                            MontoEfectivoUsuarioFin = 0,
+                                            MontoVentaEfectivo = 0,
+                                            MontoCompraEfectivo = 0,
+                                            MontoTransf = 0,
+                                            MontoCompraTransf = 0,
+                                            MontoSinpe = 0,
+                                            MontoCompraSinpe = 0,
+                                            MontoCheque = 0,
+                                            MontoCredito = 0,
+                                            MontoCompraCredito = 0,
+                                            FaltanteInicio = Faltante,
+                                            SobranteInicio = Sobrante,
+                                            FaltanteFin = 0,
+                                            SobranteFin = 0,
+                                            Accion = Accionp,
+                                            IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                        };
+
+                                        DB.CierreApertCajas.Add(cierreApertCajas);
+
+
+                                        if (DB.SaveChanges() > 0)
+                                        {
+                                            MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            apertura = BuscarAperturaActual();
+                                            denominacionApert = new Denominaciones
+                                            {
+
+                                                MonedasCinco = Convert.ToInt32(numCinco.Value),
+                                                MonedasDiez = Convert.ToInt32(numDiez.Value),
+                                                MonedasVeinteCinco = Convert.ToInt32(numVeinteCinco.Value),
+                                                MonedasCincuenta = Convert.ToInt32(numCincuenta.Value),
+                                                MonedasCien = Convert.ToInt32(numCien.Value),
+                                                MonedasQuinientos = Convert.ToInt32(numQuienientos.Value),
+
+
+                                                BilleteMil = Convert.ToInt32(numMil.Value),
+                                                BilleteDosMil = Convert.ToInt32(numDosMil.Value),
+                                                BilleteCincoMil = Convert.ToInt32(numCincoMil.Value),
+                                                BilleteDiezMil = Convert.ToInt32(numDiezMil.Value),
+                                                BilleteVeinteMil = Convert.ToInt32(numVeinteMil.Value),
+
+                                                IdCierreApert = apertura.IdCierreApert,
+                                                AperturaCierre = 1
+                                            };
+                                            DB.Denominaciones.Add(denominacionApert);
+                                            if (DB.SaveChanges() > 0)
+                                            {
+                                                //this.Hide();
+                                                this.DialogResult = DialogResult.OK;
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Apertura de Caja correcta, pero no se guardo detalle de las denominaciones ingresadas", "Error",
+                                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                //this.Hide();
+                                                this.DialogResult = DialogResult.OK;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            //this.Hide();
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        throw;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                using (FrmLoading frmLoading = new FrmLoading(Wait))
+                                {
+                                    try
+                                    {
+                                        cierreApertCajas = new CierreApertCajas
+                                        {
+                                            Fecha = Convert.ToDateTime(Fechap),
+                                            Hora = Horap,
+                                            Detalles = txtDetalle.Text.Trim(),
+                                            MontoEfectivoInicio = cierre.MontoEfectivoUsuarioFin,
+                                            MontoEfectivoUsuarioInicio = Convert.ToDecimal(NumMontInicial.Text),
+                                            MontoEfectivoFinal = Convert.ToDecimal(NumMontInicial.Text),
+                                            MontoEfectivoUsuarioFin = 0,
+                                            MontoVentaEfectivo = 0,
+                                            MontoCompraEfectivo = 0,
+                                            MontoTransf = 0,
+                                            MontoCompraTransf = 0,
+                                            MontoSinpe = 0,
+                                            MontoCompraSinpe = 0,
+                                            MontoCheque = 0,
+                                            MontoCredito = 0,
+                                            MontoCompraCredito = 0,
+                                            FaltanteInicio = Faltante,
+                                            SobranteInicio = Sobrante,
+                                            FaltanteFin = 0,
+                                            SobranteFin = 0,
+                                            Accion = Accionp,
+                                            IdUsuario = Globals.MyGlobalUser.IdUsuario,
+                                        };
+
+                                        DB.CierreApertCajas.Add(cierreApertCajas);
+
+                                        if (DB.SaveChanges() > 0)
+                                        {
+                                            MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            apertura = BuscarAperturaActual();
+                                            denominacionApert = new Denominaciones
+                                            {
+
+                                                MonedasCinco = Convert.ToInt32(numCinco.Value),
+                                                MonedasDiez = Convert.ToInt32(numDiez.Value),
+                                                MonedasVeinteCinco = Convert.ToInt32(numVeinteCinco.Value),
+                                                MonedasCincuenta = Convert.ToInt32(numCincuenta.Value),
+                                                MonedasCien = Convert.ToInt32(numCien.Value),
+                                                MonedasQuinientos = Convert.ToInt32(numQuienientos.Value),
+
+
+                                                BilleteMil = Convert.ToInt32(numMil.Value),
+                                                BilleteDosMil = Convert.ToInt32(numDosMil.Value),
+                                                BilleteCincoMil = Convert.ToInt32(numCincoMil.Value),
+                                                BilleteDiezMil = Convert.ToInt32(numDiezMil.Value),
+                                                BilleteVeinteMil = Convert.ToInt32(numVeinteMil.Value),
+
+                                                IdCierreApert = apertura.IdCierreApert,
+                                                AperturaCierre = 1
+                                            };
+                                            DB.Denominaciones.Add(denominacionApert);
+                                            if (DB.SaveChanges() > 0)
+                                            {
+                                                //this.Hide();
+                                                this.DialogResult = DialogResult.OK;
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Apertura de Caja correcta, pero no se guardo detalle de las denominaciones ingresadas", "Error",
+                                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                //this.Hide();
+                                                this.DialogResult = DialogResult.OK;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            //this.Hide();
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        throw;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 else
                 {
-                    decimal Faltante = (cierre.MontoEfectivoUsuarioFin > Convert.ToDecimal(NumMontInicial.Text)) ? (cierre.MontoEfectivoUsuarioFin - Convert.ToDecimal(NumMontInicial.Text)) : 0;
-                    decimal Sobrante = (cierre.MontoEfectivoUsuarioFin < Convert.ToDecimal(NumMontInicial.Text)) ? (Convert.ToDecimal(NumMontInicial.Text) - cierre.MontoEfectivoUsuarioFin) : 0;
+                    //si es nulo, busca y continuar la apertura aqui, sino encuentra un cierre anterior
+                    decimal Faltante = (0 > Convert.ToDecimal(NumMontInicial.Text)) ? (0 - Convert.ToDecimal(NumMontInicial.Text)) : 0;
+                    decimal Sobrante = (0 < Convert.ToDecimal(NumMontInicial.Text)) ? (Convert.ToDecimal(NumMontInicial.Text) - 0) : 0;
 
                     if (Faltante != 0 || Sobrante != 0)
                     {
@@ -163,7 +445,7 @@ namespace Agregados.Forms.Cashiers
                             $"Faltante: ¢ {Faltante} ." + Environment.NewLine +
                             $"Sobrante: ¢ {Sobrante} ." + Environment.NewLine +
                             "¿Deseas continuar y abrir caja con la diferencia?"
-                            , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
 
                         if (pregunta == DialogResult.Yes)
                         {
@@ -176,7 +458,7 @@ namespace Agregados.Forms.Cashiers
                                         Fecha = Convert.ToDateTime(Fechap),
                                         Hora = Horap,
                                         Detalles = txtDetalle.Text.Trim(),
-                                        MontoEfectivoInicio = cierre.MontoEfectivoUsuarioFin,
+                                        MontoEfectivoInicio = 0,
                                         MontoEfectivoUsuarioInicio = Convert.ToDecimal(NumMontInicial.Text),
                                         MontoEfectivoFinal = Convert.ToDecimal(NumMontInicial.Text),
                                         MontoEfectivoUsuarioFin = 0,
@@ -197,14 +479,14 @@ namespace Agregados.Forms.Cashiers
                                         IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                     };
 
-
                                     DB.CierreApertCajas.Add(cierreApertCajas);
-                                    
+
 
                                     if (DB.SaveChanges() > 0)
                                     {
                                         MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         apertura = BuscarAperturaActual();
+
                                         denominacionApert = new Denominaciones
                                         {
 
@@ -255,7 +537,6 @@ namespace Agregados.Forms.Cashiers
                     }
                     else
                     {
-
                         if (Faltante == 0 && Sobrante == 0 && Convert.ToDecimal(NumMontInicial.Text) == 0)
                         {
                             using (FrmLoading frmLoading = new FrmLoading(Wait))
@@ -267,7 +548,7 @@ namespace Agregados.Forms.Cashiers
                                         Fecha = Convert.ToDateTime(Fechap),
                                         Hora = Horap,
                                         Detalles = txtDetalle.Text.Trim(),
-                                        MontoEfectivoInicio = cierre.MontoEfectivoUsuarioFin,
+                                        MontoEfectivoInicio = 0,
                                         MontoEfectivoUsuarioInicio = Convert.ToDecimal(NumMontInicial.Text),
                                         MontoEfectivoFinal = Convert.ToDecimal(NumMontInicial.Text),
                                         MontoEfectivoUsuarioFin = 0,
@@ -289,12 +570,12 @@ namespace Agregados.Forms.Cashiers
                                     };
 
                                     DB.CierreApertCajas.Add(cierreApertCajas);
-                        
 
                                     if (DB.SaveChanges() > 0)
                                     {
                                         MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         apertura = BuscarAperturaActual();
+
                                         denominacionApert = new Denominaciones
                                         {
 
@@ -353,7 +634,7 @@ namespace Agregados.Forms.Cashiers
                                         Fecha = Convert.ToDateTime(Fechap),
                                         Hora = Horap,
                                         Detalles = txtDetalle.Text.Trim(),
-                                        MontoEfectivoInicio = cierre.MontoEfectivoUsuarioFin,
+                                        MontoEfectivoInicio = 0,
                                         MontoEfectivoUsuarioInicio = Convert.ToDecimal(NumMontInicial.Text),
                                         MontoEfectivoFinal = Convert.ToDecimal(NumMontInicial.Text),
                                         MontoEfectivoUsuarioFin = 0,
@@ -373,13 +654,14 @@ namespace Agregados.Forms.Cashiers
                                         Accion = Accionp,
                                         IdUsuario = Globals.MyGlobalUser.IdUsuario,
                                     };
-                                   
+
                                     DB.CierreApertCajas.Add(cierreApertCajas);
 
                                     if (DB.SaveChanges() > 0)
                                     {
                                         MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         apertura = BuscarAperturaActual();
+
                                         denominacionApert = new Denominaciones
                                         {
 
@@ -430,284 +712,16 @@ namespace Agregados.Forms.Cashiers
                     }
                 }
             }
-            else
+            catch (Exception)
             {
-                //si es nulo, busca y continuar la apertura aqui, sino encuentra un cierre anterior
-                decimal Faltante = (0 > Convert.ToDecimal(NumMontInicial.Text)) ? (0 - Convert.ToDecimal(NumMontInicial.Text)) : 0;
-                decimal Sobrante = (0 < Convert.ToDecimal(NumMontInicial.Text)) ? (Convert.ToDecimal(NumMontInicial.Text) - 0) : 0;
 
-                if (Faltante != 0 || Sobrante != 0)
-                {
-                    DialogResult pregunta = MessageBox.Show("Posee diferencia de efectivo en caja, por favor valide." + Environment.NewLine +
-                        $"Faltante: ¢ {Faltante} ." + Environment.NewLine +
-                        $"Sobrante: ¢ {Sobrante} ." + Environment.NewLine +
-                        "¿Deseas continuar y abrir caja con la diferencia?"
-                        , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                throw;
+            } finally
+            {
+                Cursor.Current = Cursors.Default;
 
-                    if (pregunta == DialogResult.Yes)
-                    {
-                        using (FrmLoading frmLoading = new FrmLoading(Wait))
-                        {
-                            try
-                            {
-                                cierreApertCajas = new CierreApertCajas
-                                {
-                                    Fecha = Convert.ToDateTime(Fechap),
-                                    Hora = Horap,
-                                    Detalles = txtDetalle.Text.Trim(),
-                                    MontoEfectivoInicio = 0,
-                                    MontoEfectivoUsuarioInicio = Convert.ToDecimal(NumMontInicial.Text),
-                                    MontoEfectivoFinal = Convert.ToDecimal(NumMontInicial.Text),
-                                    MontoEfectivoUsuarioFin = 0,
-                                    MontoVentaEfectivo = 0,
-                                    MontoCompraEfectivo = 0,
-                                    MontoTransf = 0,
-                                    MontoCompraTransf = 0,
-                                    MontoSinpe = 0,
-                                    MontoCompraSinpe = 0,
-                                    MontoCheque = 0,
-                                    MontoCredito = 0,
-                                    MontoCompraCredito = 0,
-                                    FaltanteInicio = Faltante,
-                                    SobranteInicio = Sobrante,
-                                    FaltanteFin = 0,
-                                    SobranteFin = 0,
-                                    Accion = Accionp,
-                                    IdUsuario = Globals.MyGlobalUser.IdUsuario,
-                                };
-                              
-                                DB.CierreApertCajas.Add(cierreApertCajas);
-
-
-                                if (DB.SaveChanges() > 0)
-                                {
-                                    MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    apertura = BuscarAperturaActual();
-
-                                    denominacionApert = new Denominaciones
-                                    {
-
-                                        MonedasCinco = Convert.ToInt32(numCinco.Value),
-                                        MonedasDiez = Convert.ToInt32(numDiez.Value),
-                                        MonedasVeinteCinco = Convert.ToInt32(numVeinteCinco.Value),
-                                        MonedasCincuenta = Convert.ToInt32(numCincuenta.Value),
-                                        MonedasCien = Convert.ToInt32(numCien.Value),
-                                        MonedasQuinientos = Convert.ToInt32(numQuienientos.Value),
-
-
-                                        BilleteMil = Convert.ToInt32(numMil.Value),
-                                        BilleteDosMil = Convert.ToInt32(numDosMil.Value),
-                                        BilleteCincoMil = Convert.ToInt32(numCincoMil.Value),
-                                        BilleteDiezMil = Convert.ToInt32(numDiezMil.Value),
-                                        BilleteVeinteMil = Convert.ToInt32(numVeinteMil.Value),
-
-                                        IdCierreApert = apertura.IdCierreApert,
-                                        AperturaCierre = 1
-                                    };
-                                    DB.Denominaciones.Add(denominacionApert);
-                                    if (DB.SaveChanges() > 0)
-                                    {
-                                        //this.Hide();
-                                        this.DialogResult = DialogResult.OK;
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Apertura de Caja correcta, pero no se guardo detalle de las denominaciones ingresadas", "Error",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        //this.Hide();
-                                        this.DialogResult = DialogResult.OK;
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    //this.Hide();
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                throw;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (Faltante == 0 && Sobrante == 0 && Convert.ToDecimal(NumMontInicial.Text) == 0)
-                    {
-                        using (FrmLoading frmLoading = new FrmLoading(Wait))
-                        {
-                            try
-                            {
-                                cierreApertCajas = new CierreApertCajas
-                                {
-                                    Fecha = Convert.ToDateTime(Fechap),
-                                    Hora = Horap,
-                                    Detalles = txtDetalle.Text.Trim(),
-                                    MontoEfectivoInicio = 0,
-                                    MontoEfectivoUsuarioInicio = Convert.ToDecimal(NumMontInicial.Text),
-                                    MontoEfectivoFinal = Convert.ToDecimal(NumMontInicial.Text),
-                                    MontoEfectivoUsuarioFin = 0,
-                                    MontoVentaEfectivo = 0,
-                                    MontoCompraEfectivo = 0,
-                                    MontoTransf = 0,
-                                    MontoCompraTransf = 0,
-                                    MontoSinpe = 0,
-                                    MontoCompraSinpe = 0,
-                                    MontoCheque = 0,
-                                    MontoCredito = 0,
-                                    MontoCompraCredito = 0,
-                                    FaltanteInicio = Faltante,
-                                    SobranteInicio = Sobrante,
-                                    FaltanteFin = 0,
-                                    SobranteFin = 0,
-                                    Accion = Accionp,
-                                    IdUsuario = Globals.MyGlobalUser.IdUsuario,
-                                };
-                                
-                                DB.CierreApertCajas.Add(cierreApertCajas);
-
-                                if (DB.SaveChanges() > 0)
-                                {
-                                    MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    apertura = BuscarAperturaActual();
-
-                                    denominacionApert = new Denominaciones
-                                    {
-
-                                        MonedasCinco = Convert.ToInt32(numCinco.Value),
-                                        MonedasDiez = Convert.ToInt32(numDiez.Value),
-                                        MonedasVeinteCinco = Convert.ToInt32(numVeinteCinco.Value),
-                                        MonedasCincuenta = Convert.ToInt32(numCincuenta.Value),
-                                        MonedasCien = Convert.ToInt32(numCien.Value),
-                                        MonedasQuinientos = Convert.ToInt32(numQuienientos.Value),
-
-
-                                        BilleteMil = Convert.ToInt32(numMil.Value),
-                                        BilleteDosMil = Convert.ToInt32(numDosMil.Value),
-                                        BilleteCincoMil = Convert.ToInt32(numCincoMil.Value),
-                                        BilleteDiezMil = Convert.ToInt32(numDiezMil.Value),
-                                        BilleteVeinteMil = Convert.ToInt32(numVeinteMil.Value),
-
-                                        IdCierreApert = apertura.IdCierreApert,
-                                        AperturaCierre = 1
-                                    };
-                                    DB.Denominaciones.Add(denominacionApert);
-                                    if (DB.SaveChanges() > 0)
-                                    {
-                                        //this.Hide();
-                                        this.DialogResult = DialogResult.OK;
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Apertura de Caja correcta, pero no se guardo detalle de las denominaciones ingresadas", "Error",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        //this.Hide();
-                                        this.DialogResult = DialogResult.OK;
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    //this.Hide();
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                throw;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        using (FrmLoading frmLoading = new FrmLoading(Wait))
-                        {
-                            try
-                            {
-                                cierreApertCajas = new CierreApertCajas
-                                {
-                                    Fecha = Convert.ToDateTime(Fechap),
-                                    Hora = Horap,
-                                    Detalles = txtDetalle.Text.Trim(),
-                                    MontoEfectivoInicio = 0,
-                                    MontoEfectivoUsuarioInicio = Convert.ToDecimal(NumMontInicial.Text),
-                                    MontoEfectivoFinal = Convert.ToDecimal(NumMontInicial.Text),
-                                    MontoEfectivoUsuarioFin = 0,
-                                    MontoVentaEfectivo = 0,
-                                    MontoCompraEfectivo = 0,
-                                    MontoTransf = 0,
-                                    MontoCompraTransf = 0,
-                                    MontoSinpe = 0,
-                                    MontoCompraSinpe = 0,
-                                    MontoCheque = 0,
-                                    MontoCredito = 0,
-                                    MontoCompraCredito = 0,
-                                    FaltanteInicio = Faltante,
-                                    SobranteInicio = Sobrante,
-                                    FaltanteFin = 0,
-                                    SobranteFin = 0,
-                                    Accion = Accionp,
-                                    IdUsuario = Globals.MyGlobalUser.IdUsuario,
-                                };
-                               
-                                DB.CierreApertCajas.Add(cierreApertCajas);
-                               
-                                if (DB.SaveChanges() > 0)
-                                {
-                                    MessageBox.Show("Apertura de Caja correcta!", "Apertura de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    apertura = BuscarAperturaActual();
-
-                                    denominacionApert = new Denominaciones
-                                    {
-
-                                        MonedasCinco = Convert.ToInt32(numCinco.Value),
-                                        MonedasDiez = Convert.ToInt32(numDiez.Value),
-                                        MonedasVeinteCinco = Convert.ToInt32(numVeinteCinco.Value),
-                                        MonedasCincuenta = Convert.ToInt32(numCincuenta.Value),
-                                        MonedasCien = Convert.ToInt32(numCien.Value),
-                                        MonedasQuinientos = Convert.ToInt32(numQuienientos.Value),
-
-
-                                        BilleteMil = Convert.ToInt32(numMil.Value),
-                                        BilleteDosMil = Convert.ToInt32(numDosMil.Value),
-                                        BilleteCincoMil = Convert.ToInt32(numCincoMil.Value),
-                                        BilleteDiezMil = Convert.ToInt32(numDiezMil.Value),
-                                        BilleteVeinteMil = Convert.ToInt32(numVeinteMil.Value),
-
-                                        IdCierreApert = apertura.IdCierreApert,
-                                        AperturaCierre = 1
-                                    };
-                                    DB.Denominaciones.Add(denominacionApert);
-                                    if (DB.SaveChanges() > 0)
-                                    {
-                                        //this.Hide();
-                                        this.DialogResult = DialogResult.OK;
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Apertura de Caja correcta, pero no se guardo detalle de las denominaciones ingresadas", "Error",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        //this.Hide();
-                                        this.DialogResult = DialogResult.OK;
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Apertura de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    //this.Hide();
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                throw;
-                            }
-                        }
-                    }
-                }
             }
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

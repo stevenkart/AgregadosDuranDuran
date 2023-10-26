@@ -22,8 +22,11 @@ namespace Agregados.Forms.Help
 
         private void FrmManualUser_Load(object sender, EventArgs e)
         {
+            
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
+
                 //pdfDocument.src = "C:\\Users\\steve\\source\\repos\\Agregados\\Agregados\\Forms\\Help\\report 1.pdf";
                 //string path = Application.StartupPath;
                 string path = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings["AppManual"]);
@@ -37,18 +40,19 @@ namespace Agregados.Forms.Help
                 MessageBox.Show(ex.Message, "Error Al cargar documento",
                                   MessageBoxButtons.OK, MessageBoxIcon.Error);
               
-            }
+            } finally { Cursor.Current = Cursors.Default;}
            
         }
 
         private void btnPdfManualUserExit_Click(object sender, EventArgs e)
         {
+            Globals.Manual = false;
             this.Hide();
         }
 
         private void FrmManualUser_FormClosing(object sender, FormClosingEventArgs e)
         {
-    
+            Globals.Manual = false;
           this.Hide();
         }
 

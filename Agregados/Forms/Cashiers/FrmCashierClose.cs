@@ -126,26 +126,94 @@ namespace Agregados.Forms.Cashiers
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (BuscarAperturaActual() != null && apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario && accion == 1)
+            try
             {
-               
-                //efectivo
-                decimal Faltante = (apertura.MontoEfectivoFinal > Convert.ToDecimal(NumMontInicial.Text) ) ? (apertura.MontoEfectivoFinal - Convert.ToDecimal(NumMontInicial.Text)) : 0;
-                decimal Sobrante = (apertura.MontoEfectivoFinal < Convert.ToDecimal(NumMontInicial.Text)) ? (Convert.ToDecimal(NumMontInicial.Text) - apertura.MontoEfectivoFinal) : 0;
-
-                if (Faltante != 0 || Sobrante != 0)
+                Cursor.Current = Cursors.WaitCursor;
+                if (BuscarAperturaActual() != null && apertura.IdUsuario == Globals.MyGlobalUser.IdUsuario && accion == 1)
                 {
-                    DialogResult pregunta = MessageBox.Show("Posee diferencia de efectivo en caja, por favor valide." + Environment.NewLine +
-                        $"Faltante: ¢ {Faltante} ." + Environment.NewLine +
-                        $"Sobrante: ¢ {Sobrante} ." + Environment.NewLine +
-                        "¿Deseas continuar y cerrar caja con la diferencia?"
-                        , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (pregunta == DialogResult.Yes)
+                    //efectivo
+                    decimal Faltante = (apertura.MontoEfectivoFinal > Convert.ToDecimal(NumMontInicial.Text)) ? (apertura.MontoEfectivoFinal - Convert.ToDecimal(NumMontInicial.Text)) : 0;
+                    decimal Sobrante = (apertura.MontoEfectivoFinal < Convert.ToDecimal(NumMontInicial.Text)) ? (Convert.ToDecimal(NumMontInicial.Text) - apertura.MontoEfectivoFinal) : 0;
+
+                    if (Faltante != 0 || Sobrante != 0)
                     {
+                        DialogResult pregunta = MessageBox.Show("Posee diferencia de efectivo en caja, por favor valide." + Environment.NewLine +
+                            $"Faltante: ¢ {Faltante} ." + Environment.NewLine +
+                            $"Sobrante: ¢ {Sobrante} ." + Environment.NewLine +
+                            "¿Deseas continuar y cerrar caja con la diferencia?"
+                            , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (pregunta == DialogResult.Yes)
+                        {
+                            apertura.FechaSalida = Convert.ToDateTime(Fechap);
+                            apertura.HoraSalida = Horap;
+                            apertura.Detalles = apertura.Detalles + Environment.NewLine + txtDetalle.Text.Trim();
+                            apertura.MontoEfectivoUsuarioFin = Convert.ToDecimal(NumMontInicial.Text);
+                            //lo que son monto por transferencia, cheque y credito 
+                            //sistema los valida automaticamente ya que conforme se facture por ese medio de pago, y no efectivo
+                            //sistema arroja resultado calculado.
+                            apertura.FaltanteFin = Faltante;
+                            apertura.SobranteFin = Sobrante;
+                            apertura.Accion = Accionp;
+
+
+                            DB.Entry(apertura).State = EntityState.Modified;
+
+
+                            if (DB.SaveChanges() > 0)
+                            {
+                                MessageBox.Show("Cierre de Caja correcto!", "Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                                denominacionApert = new Denominaciones
+                                {
+
+                                    MonedasCinco = Convert.ToInt32(numCinco.Value),
+                                    MonedasDiez = Convert.ToInt32(numDiez.Value),
+                                    MonedasVeinteCinco = Convert.ToInt32(numVeinteCinco.Value),
+                                    MonedasCincuenta = Convert.ToInt32(numCincuenta.Value),
+                                    MonedasCien = Convert.ToInt32(numCien.Value),
+                                    MonedasQuinientos = Convert.ToInt32(numQuienientos.Value),
+
+
+                                    BilleteMil = Convert.ToInt32(numMil.Value),
+                                    BilleteDosMil = Convert.ToInt32(numDosMil.Value),
+                                    BilleteCincoMil = Convert.ToInt32(numCincoMil.Value),
+                                    BilleteDiezMil = Convert.ToInt32(numDiezMil.Value),
+                                    BilleteVeinteMil = Convert.ToInt32(numVeinteMil.Value),
+
+                                    IdCierreApert = apertura.IdCierreApert,
+                                    AperturaCierre = 2
+                                };
+                                DB.Denominaciones.Add(denominacionApert);
+                                if (DB.SaveChanges() > 0)
+                                {
+                                    //this.Hide();
+                                    this.DialogResult = DialogResult.OK;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Cierre de Caja correcto, pero no se guardo detalle de las denominaciones ingresadas", "Error",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //this.Hide();
+                                    this.DialogResult = DialogResult.OK;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Cierre de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //this.Hide();
+                            }
+                        }
+                    }
+                    else
+                    {
+
                         apertura.FechaSalida = Convert.ToDateTime(Fechap);
                         apertura.HoraSalida = Horap;
-                        apertura.Detalles = apertura.Detalles + Environment.NewLine + txtDetalle.Text.Trim();
+                        apertura.Detalles = txtDetalle.Text.Trim()
+                                                       + Environment.NewLine + apertura.Detalles;
                         apertura.MontoEfectivoUsuarioFin = Convert.ToDecimal(NumMontInicial.Text);
                         //lo que son monto por transferencia, cheque y credito 
                         //sistema los valida automaticamente ya que conforme se facture por ese medio de pago, y no efectivo
@@ -161,7 +229,6 @@ namespace Agregados.Forms.Cashiers
                         if (DB.SaveChanges() > 0)
                         {
                             MessageBox.Show("Cierre de Caja correcto!", "Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
 
                             denominacionApert = new Denominaciones
                             {
@@ -206,90 +273,89 @@ namespace Agregados.Forms.Cashiers
                 }
                 else
                 {
-
-                    apertura.FechaSalida = Convert.ToDateTime(Fechap);
-                    apertura.HoraSalida = Horap;
-                    apertura.Detalles = txtDetalle.Text.Trim()
-                                                   + Environment.NewLine + apertura.Detalles;
-                    apertura.MontoEfectivoUsuarioFin = Convert.ToDecimal(NumMontInicial.Text);
-                    //lo que son monto por transferencia, cheque y credito 
-                    //sistema los valida automaticamente ya que conforme se facture por ese medio de pago, y no efectivo
-                    //sistema arroja resultado calculado.
-                    apertura.FaltanteFin = Faltante;
-                    apertura.SobranteFin = Sobrante;
-                    apertura.Accion = Accionp;
-
-
-                    DB.Entry(apertura).State = EntityState.Modified;
-
-
-                    if (DB.SaveChanges() > 0)
+                    if (BuscarAperturaActual() != null && apertura.IdUsuario != Globals.MyGlobalUser.IdUsuario && Globals.MyGlobalUser.TipoUsuario == 1 && accion == 2)//usuario admin
                     {
-                        MessageBox.Show("Cierre de Caja correcto!", "Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //efectivo
+                        decimal Faltante = (apertura.MontoEfectivoFinal > Convert.ToDecimal(NumMontInicial.Text)) ? (apertura.MontoEfectivoFinal - Convert.ToDecimal(NumMontInicial.Text)) : 0;
+                        decimal Sobrante = (apertura.MontoEfectivoFinal < Convert.ToDecimal(NumMontInicial.Text)) ? (Convert.ToDecimal(NumMontInicial.Text) - apertura.MontoEfectivoFinal) : 0;
 
-                        denominacionApert = new Denominaciones
+                        if (Faltante != 0 || Sobrante != 0)
                         {
+                            DialogResult pregunta = MessageBox.Show("Posee diferencia de efectivo en caja, por favor valide." + Environment.NewLine +
+                                $"Faltante: ¢ {Faltante} ." + Environment.NewLine +
+                                $"Sobrante: ¢ {Sobrante} ." + Environment.NewLine +
+                                "¿Deseas continuar y cerrar caja con la diferencia?"
+                                , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
 
-                            MonedasCinco = Convert.ToInt32(numCinco.Value),
-                            MonedasDiez = Convert.ToInt32(numDiez.Value),
-                            MonedasVeinteCinco = Convert.ToInt32(numVeinteCinco.Value),
-                            MonedasCincuenta = Convert.ToInt32(numCincuenta.Value),
-                            MonedasCien = Convert.ToInt32(numCien.Value),
-                            MonedasQuinientos = Convert.ToInt32(numQuienientos.Value),
+                            if (pregunta == DialogResult.Yes)
+                            {
+                                apertura.FechaSalida = Convert.ToDateTime(Fechap);
+                                apertura.HoraSalida = Horap;
+                                apertura.Detalles = $"Cierre de Caja Forzado por: {Globals.MyGlobalUser.NombreEmpleado} " + txtDetalle.Text.Trim()
+                                                        + Environment.NewLine + apertura.Detalles;
+                                apertura.MontoEfectivoUsuarioFin = Convert.ToDecimal(NumMontInicial.Text);
+                                //lo que son monto por transferencia, cheque y credito 
+                                //sistema los valida automaticamente ya que conforme se facture por ese medio de pago, y no efectivo
+                                //sistema arroja resultado calculado.
+                                apertura.FaltanteFin = Faltante;
+                                apertura.SobranteFin = Sobrante;
+                                apertura.Accion = Accionp;
 
 
-                            BilleteMil = Convert.ToInt32(numMil.Value),
-                            BilleteDosMil = Convert.ToInt32(numDosMil.Value),
-                            BilleteCincoMil = Convert.ToInt32(numCincoMil.Value),
-                            BilleteDiezMil = Convert.ToInt32(numDiezMil.Value),
-                            BilleteVeinteMil = Convert.ToInt32(numVeinteMil.Value),
+                                DB.Entry(apertura).State = EntityState.Modified;
 
-                            IdCierreApert = apertura.IdCierreApert,
-                            AperturaCierre = 2
-                        };
-                        DB.Denominaciones.Add(denominacionApert);
-                        if (DB.SaveChanges() > 0)
-                        {
-                            //this.Hide();
-                            this.DialogResult = DialogResult.OK;
+
+                                if (DB.SaveChanges() > 0)
+                                {
+                                    MessageBox.Show("Cierre de Caja correcto!", "Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    denominacionApert = new Denominaciones
+                                    {
+
+                                        MonedasCinco = Convert.ToInt32(numCinco.Value),
+                                        MonedasDiez = Convert.ToInt32(numDiez.Value),
+                                        MonedasVeinteCinco = Convert.ToInt32(numVeinteCinco.Value),
+                                        MonedasCincuenta = Convert.ToInt32(numCincuenta.Value),
+                                        MonedasCien = Convert.ToInt32(numCien.Value),
+                                        MonedasQuinientos = Convert.ToInt32(numQuienientos.Value),
+
+
+                                        BilleteMil = Convert.ToInt32(numMil.Value),
+                                        BilleteDosMil = Convert.ToInt32(numDosMil.Value),
+                                        BilleteCincoMil = Convert.ToInt32(numCincoMil.Value),
+                                        BilleteDiezMil = Convert.ToInt32(numDiezMil.Value),
+                                        BilleteVeinteMil = Convert.ToInt32(numVeinteMil.Value),
+
+                                        IdCierreApert = apertura.IdCierreApert,
+                                        AperturaCierre = 2
+                                    };
+                                    DB.Denominaciones.Add(denominacionApert);
+                                    if (DB.SaveChanges() > 0)
+                                    {
+                                        //this.Hide();
+                                        this.DialogResult = DialogResult.OK;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Cierre de Caja correcto, pero no se guardo detalle de las denominaciones ingresadas", "Error",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        //this.Hide();
+                                        this.DialogResult = DialogResult.OK;
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Cierre de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //this.Hide();
+                                }
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Cierre de Caja correcto, pero no se guardo detalle de las denominaciones ingresadas", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            //this.Hide();
-                            this.DialogResult = DialogResult.OK;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Cierre de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //this.Hide();
-                    }
-                }
-            }
-            else
-            {
-                if (BuscarAperturaActual() != null && apertura.IdUsuario != Globals.MyGlobalUser.IdUsuario && Globals.MyGlobalUser.TipoUsuario == 1 && accion==2)//usuario admin
-                {
-                    //efectivo
-                    decimal Faltante = (apertura.MontoEfectivoFinal > Convert.ToDecimal(NumMontInicial.Text)) ? (apertura.MontoEfectivoFinal - Convert.ToDecimal(NumMontInicial.Text)) : 0;
-                    decimal Sobrante = (apertura.MontoEfectivoFinal < Convert.ToDecimal(NumMontInicial.Text)) ? (Convert.ToDecimal(NumMontInicial.Text) - apertura.MontoEfectivoFinal) : 0;
 
-                    if (Faltante != 0 || Sobrante != 0)
-                    {
-                        DialogResult pregunta = MessageBox.Show("Posee diferencia de efectivo en caja, por favor valide." + Environment.NewLine +
-                            $"Faltante: ¢ {Faltante} ." + Environment.NewLine +
-                            $"Sobrante: ¢ {Sobrante} ." + Environment.NewLine +
-                            "¿Deseas continuar y cerrar caja con la diferencia?"
-                            , "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
-
-                        if (pregunta == DialogResult.Yes)
-                        {
                             apertura.FechaSalida = Convert.ToDateTime(Fechap);
                             apertura.HoraSalida = Horap;
-                            apertura.Detalles = $"Cierre de Caja Forzado por: {Globals.MyGlobalUser.NombreEmpleado} " + txtDetalle.Text.Trim() 
-                                                    + Environment.NewLine + apertura.Detalles;
+                            apertura.Detalles = $"Cierre de Caja Forzado por: {Globals.MyGlobalUser.NombreEmpleado} " + txtDetalle.Text.Trim()
+                                                         + Environment.NewLine + apertura.Detalles;
                             apertura.MontoEfectivoUsuarioFin = Convert.ToDecimal(NumMontInicial.Text);
                             //lo que son monto por transferencia, cheque y credito 
                             //sistema los valida automaticamente ya que conforme se facture por ese medio de pago, y no efectivo
@@ -348,72 +414,19 @@ namespace Agregados.Forms.Cashiers
                     }
                     else
                     {
-
-                        apertura.FechaSalida = Convert.ToDateTime(Fechap);
-                        apertura.HoraSalida = Horap;
-                        apertura.Detalles = $"Cierre de Caja Forzado por: {Globals.MyGlobalUser.NombreEmpleado} " + txtDetalle.Text.Trim()
-                                                     + Environment.NewLine + apertura.Detalles;
-                        apertura.MontoEfectivoUsuarioFin = Convert.ToDecimal(NumMontInicial.Text);
-                        //lo que son monto por transferencia, cheque y credito 
-                        //sistema los valida automaticamente ya que conforme se facture por ese medio de pago, y no efectivo
-                        //sistema arroja resultado calculado.
-                        apertura.FaltanteFin = Faltante;
-                        apertura.SobranteFin = Sobrante;
-                        apertura.Accion = Accionp;
-
-
-                        DB.Entry(apertura).State = EntityState.Modified;
-
-
-                        if (DB.SaveChanges() > 0)
-                        {
-                            MessageBox.Show("Cierre de Caja correcto!", "Cierre de Caja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            denominacionApert = new Denominaciones
-                            {
-
-                                MonedasCinco = Convert.ToInt32(numCinco.Value),
-                                MonedasDiez = Convert.ToInt32(numDiez.Value),
-                                MonedasVeinteCinco = Convert.ToInt32(numVeinteCinco.Value),
-                                MonedasCincuenta = Convert.ToInt32(numCincuenta.Value),
-                                MonedasCien = Convert.ToInt32(numCien.Value),
-                                MonedasQuinientos = Convert.ToInt32(numQuienientos.Value),
-
-
-                                BilleteMil = Convert.ToInt32(numMil.Value),
-                                BilleteDosMil = Convert.ToInt32(numDosMil.Value),
-                                BilleteCincoMil = Convert.ToInt32(numCincoMil.Value),
-                                BilleteDiezMil = Convert.ToInt32(numDiezMil.Value),
-                                BilleteVeinteMil = Convert.ToInt32(numVeinteMil.Value),
-
-                                IdCierreApert = apertura.IdCierreApert,
-                                AperturaCierre = 2
-                            };
-                            DB.Denominaciones.Add(denominacionApert);
-                            if (DB.SaveChanges() > 0)
-                            {
-                                //this.Hide();
-                                this.DialogResult = DialogResult.OK;
-                            }
-                            else
-                            {
-                                MessageBox.Show("Cierre de Caja correcto, pero no se guardo detalle de las denominaciones ingresadas", "Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                //this.Hide();
-                                this.DialogResult = DialogResult.OK;
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Cierre de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            //this.Hide();
-                        }
+                        MessageBox.Show("Cierre de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Cierre de Caja no se pudo realizar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
+            catch (Exception)
+            {
+
+                throw;
+            } finally
+            {
+                 Cursor.Current = Cursors.Default;
+            }
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
