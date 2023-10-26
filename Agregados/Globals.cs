@@ -50,6 +50,8 @@ namespace Agregados
 
         public static Forms.Bills.FrmNotaCredito MifrmNotaCredito = new Forms.Bills.FrmNotaCredito();
 
+        public static Forms.Bills.FrmNotaDebito MifrmNotaDebito = new Forms.Bills.FrmNotaDebito();
+
         public static Forms.Bills.FrmPendBill MifrmPendBill = new Forms.Bills.FrmPendBill();
 
         public static Forms.Bills.FrmPendTicketProvider MifrmPendTicketProvider = new Forms.Bills.FrmPendTicketProvider();

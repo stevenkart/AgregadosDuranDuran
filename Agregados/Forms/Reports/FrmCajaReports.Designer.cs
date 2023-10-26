@@ -385,7 +385,7 @@
             this.btnVolver.Image = global::Agregados.Properties.Resources._return;
             this.btnVolver.Location = new System.Drawing.Point(3, 3);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(386, 79);
+            this.btnVolver.Size = new System.Drawing.Size(385, 79);
             this.btnVolver.TabIndex = 6;
             this.btnVolver.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnVolver.UseVisualStyleBackColor = false;
@@ -400,7 +400,7 @@
             this.btnReportPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportPDF.Image = global::Agregados.Properties.Resources.pdf;
             this.btnReportPDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportPDF.Location = new System.Drawing.Point(395, 3);
+            this.btnReportPDF.Location = new System.Drawing.Point(394, 3);
             this.btnReportPDF.Name = "btnReportPDF";
             this.btnReportPDF.Size = new System.Drawing.Size(190, 79);
             this.btnReportPDF.TabIndex = 2;
@@ -418,9 +418,9 @@
             this.BtnVerCierre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVerCierre.Image = global::Agregados.Properties.Resources.cajaRegistradora;
             this.BtnVerCierre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerCierre.Location = new System.Drawing.Point(983, 3);
+            this.BtnVerCierre.Location = new System.Drawing.Point(982, 3);
             this.BtnVerCierre.Name = "BtnVerCierre";
-            this.BtnVerCierre.Size = new System.Drawing.Size(190, 79);
+            this.BtnVerCierre.Size = new System.Drawing.Size(191, 79);
             this.BtnVerCierre.TabIndex = 0;
             this.BtnVerCierre.Text = "Ver Cierre";
             this.BtnVerCierre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -436,7 +436,7 @@
             this.BtnVerCierreList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnVerCierreList.Image = global::Agregados.Properties.Resources.listaCierreCaja;
             this.BtnVerCierreList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVerCierreList.Location = new System.Drawing.Point(787, 3);
+            this.BtnVerCierreList.Location = new System.Drawing.Point(786, 3);
             this.BtnVerCierreList.Name = "BtnVerCierreList";
             this.BtnVerCierreList.Size = new System.Drawing.Size(190, 79);
             this.BtnVerCierreList.TabIndex = 1;
@@ -454,7 +454,7 @@
             this.btnReportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportExcel.Image = global::Agregados.Properties.Resources.excel;
             this.btnReportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportExcel.Location = new System.Drawing.Point(591, 3);
+            this.btnReportExcel.Location = new System.Drawing.Point(590, 3);
             this.btnReportExcel.Name = "btnReportExcel";
             this.btnReportExcel.Size = new System.Drawing.Size(190, 79);
             this.btnReportExcel.TabIndex = 3;
@@ -747,11 +747,12 @@
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1212, 647);
             this.MinimumSize = new System.Drawing.Size(1212, 647);
             this.Name = "FrmCajaReports";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Cierre de Caja";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCajaReports_FormClosing);
             this.Load += new System.EventHandler(this.FrmCajaReports_Load);
             this.panel1.ResumeLayout(false);

@@ -291,6 +291,12 @@
     <Compile Include="Forms\Bills\FrmNotaCredito.Designer.cs">
       <DependentUpon>FrmNotaCredito.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Bills\FrmNotaDebito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bills\FrmNotaDebito.Designer.cs">
+      <DependentUpon>FrmNotaDebito.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Bills\FrmPendBill.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -607,12 +613,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RptFactRevDup.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\Facts\FactNow\RptTicketCreatedDup.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RptTicketCreatedDup.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\Facts\FactNow\RptTicketProviderRev.cs">
       <AutoGen>True</AutoGen>
@@ -640,6 +648,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RptTicketProviderRevDup.rpt</DependentUpon>
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Reports\Facts\TicketFiltered\FrmTicketAnuladas.cs">
       <SubType>Form</SubType>
@@ -761,6 +770,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmNotaCredito.resx">
       <DependentUpon>FrmNotaCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bills\FrmNotaDebito.resx">
+      <DependentUpon>FrmNotaDebito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Bills\FrmPendBill.resx">
       <DependentUpon>FrmPendBill.cs</DependentUpon>
@@ -941,10 +953,12 @@
     <EmbeddedResource Include="Reports\Facts\FactNow\RptFactRevDup.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptFactRevDup.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\RptTicketCreatedDup.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptTicketCreatedDup.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\FactNow\RptTicketProviderRev.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -964,6 +978,7 @@
     <EmbeddedResource Include="Reports\Facts\FactNow\RptTicketProviderRevDup.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptTicketProviderRevDup.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Facts\TicketFiltered\FrmTicketAnuladas.resx">
       <DependentUpon>FrmTicketAnuladas.cs</DependentUpon>

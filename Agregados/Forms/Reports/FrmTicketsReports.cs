@@ -327,6 +327,14 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = true;
                 btnReportPDF.Visible = true;
                 valorHoy = 1;
+
+                //para que se muestre el total (monto) de la consulta
+                decimal valor = 0;
+                foreach (var item in finalResult)
+                {
+                    valor += item.CostoTotal;
+                }
+                lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
             }
             else
             {
@@ -335,6 +343,8 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
                 valorHoy = 0;
+
+                lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
             }
         }
 
@@ -370,6 +380,14 @@ namespace Agregados.Forms.Reports
                     btnReportExcel.Visible = true;
                     btnReportPDF.Visible = true;
                     valorPorFechas = 1;
+
+                    //para que se muestre el total (monto) de la consulta
+                    decimal valor = 0;
+                    foreach (var item in finalResult)
+                    {
+                        valor += item.CostoTotal;
+                    }
+                    lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
                 }
                 else
                 {
@@ -378,6 +396,8 @@ namespace Agregados.Forms.Reports
                     btnReportExcel.Visible = false;
                     btnReportPDF.Visible = false;
                     valorPorFechas = 0;
+
+                    lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
                 }
             }
             else
@@ -417,6 +437,14 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = true;
                 btnReportPDF.Visible = true;
                 valorPendiente = 1; // indica la accion a realizar para ver las facturas list
+
+                //para que se muestre el total (monto) de la consulta
+                decimal valor = 0;
+                foreach (var item in finalResult)
+                {
+                    valor += item.CostoTotal;
+                }
+                lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
             }
             else
             {
@@ -425,6 +453,8 @@ namespace Agregados.Forms.Reports
                 btnReportExcel.Visible = false;
                 btnReportPDF.Visible = false;
                 valorPendiente = 0;
+
+                lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
             }
         }
 
@@ -464,6 +494,14 @@ namespace Agregados.Forms.Reports
                     BtnVerFacturasList.Visible = true;
                     btnReportExcel.Visible = true;
                     btnReportPDF.Visible = true;
+
+                    //para que se muestre el total (monto) de la consulta
+                    decimal valor = 0;
+                    foreach (var item in finalResult)
+                    {
+                        valor += item.CostoTotal;
+                    }
+                    lblTotalMont.Text = string.Format("¢ {0:N2}", valor);
                 }
                 else
                 {
@@ -471,6 +509,8 @@ namespace Agregados.Forms.Reports
                     BtnVerFacturasList.Visible = false;
                     btnReportExcel.Visible = false;
                     btnReportPDF.Visible = false;
+
+                    lblTotalMont.Text = string.Format("¢ {0:N2}", 0);
                 }
             }
             else
@@ -511,14 +551,18 @@ namespace Agregados.Forms.Reports
                 {
                     using (FrmPrintTicketRev frm = new FrmPrintTicketRev(Consecutivo))
                     {
+                        Cursor.Current = Cursors.WaitCursor;
                         frm.ShowDialog();
+                        Cursor.Current = Cursors.Default;
                     };
                 }
                 else
                 {
                     using (FrmPrintTicket frm = new FrmPrintTicket(Consecutivo))
                     {
+                        Cursor.Current = Cursors.WaitCursor;
                         frm.ShowDialog();
+                        Cursor.Current = Cursors.Default;
                     };
                 }
 
@@ -550,7 +594,9 @@ namespace Agregados.Forms.Reports
                 {
                     using (FrmTicketAnuladas frm = new FrmTicketAnuladas(FechaInicial2, FechaFinal2))
                     {
+                        Cursor.Current = Cursors.WaitCursor;
                         frm.ShowDialog();
+                        Cursor.Current = Cursors.Default;
                     };
                 }
             }
@@ -571,7 +617,9 @@ namespace Agregados.Forms.Reports
                         {
                             using (FrmTicketPendAll frm = new FrmTicketPendAll())
                             {
+                                Cursor.Current = Cursors.WaitCursor;
                                 frm.ShowDialog();
+                                Cursor.Current = Cursors.Default;
                             };
                         }
                         break;
@@ -599,7 +647,9 @@ namespace Agregados.Forms.Reports
                         {
                             using (FrmTicketPorFechas frm = new FrmTicketPorFechas(FechaInicial, FechaFinal))
                             {
+                                Cursor.Current = Cursors.WaitCursor;
                                 frm.ShowDialog();
+                                Cursor.Current = Cursors.Default;
                             };
                         }
                         break;
@@ -627,7 +677,9 @@ namespace Agregados.Forms.Reports
                         {
                             using (FrmTicketPorFechas frm = new FrmTicketPorFechas(Hoy, Hoy))
                             {
+                                Cursor.Current = Cursors.WaitCursor;
                                 frm.ShowDialog();
+                                Cursor.Current = Cursors.Default;
                             };
                         }
                         break;
@@ -683,9 +735,13 @@ namespace Agregados.Forms.Reports
 
                                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                                     {
+                                        Cursor.Current = Cursors.WaitCursor;
+                                        
                                         ExcelMapper mapper = new ExcelMapper();
                                         var file = saveFileDialog.FileName;
                                         mapper.Save(file, result, $"ReportCompras", true); //true is for saving .xlsx
+
+                                        Cursor.Current = Cursors.Default;
                                         MessageBox.Show("Se exporto correctamente el documento.",
                                                             "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
@@ -740,9 +796,11 @@ namespace Agregados.Forms.Reports
 
                                             if (saveFileDialog.ShowDialog() == DialogResult.OK)
                                             {
+                                                Cursor.Current = Cursors.WaitCursor;
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
                                                 mapper.Save(file, result, "ReportCompras", true); //true is for saving .xlsx
+                                                Cursor.Current = Cursors.Default;
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }
@@ -801,9 +859,11 @@ namespace Agregados.Forms.Reports
 
                                             if (saveFileDialog.ShowDialog() == DialogResult.OK)
                                             {
+                                                Cursor.Current = Cursors.WaitCursor;
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
                                                 mapper.Save(file, result, "ReportComprasCredito", true); //true is for saving .xlsx
+                                                Cursor.Current = Cursors.Default;
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }
@@ -851,9 +911,11 @@ namespace Agregados.Forms.Reports
 
                                             if (saveFileDialog.ShowDialog() == DialogResult.OK)
                                             {
+                                                Cursor.Current = Cursors.WaitCursor;
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
                                                 mapper.Save(file, result, "ReportComprasAnuladas", true); //true is for saving .xlsx
+                                                Cursor.Current = Cursors.Default;
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }
@@ -937,6 +999,7 @@ namespace Agregados.Forms.Reports
                                     {
                                         diskFileDestinationOptions.DiskFileName = dialog.FileName;
                                     }
+                                    Cursor.Current = Cursors.WaitCursor;
                                     exportOptions = rptTickesPorFechas.ExportOptions;
                                     {
                                         exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
@@ -945,6 +1008,7 @@ namespace Agregados.Forms.Reports
                                         exportOptions.ExportFormatOptions = new PdfRtfWordFormatOptions();
                                     }
                                     rptTickesPorFechas.Export();
+                                    Cursor.Current = Cursors.Default;
 
                                     MessageBox.Show("Se exporto correctamente el documento.",
                                                             "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1005,6 +1069,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 diskFileDestinationOptions.DiskFileName = dialog.FileName;
                                             }
+                                            Cursor.Current = Cursors.WaitCursor;
                                             exportOptions = rptTickesPorFechas.ExportOptions;
                                             {
                                                 exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
@@ -1013,6 +1078,7 @@ namespace Agregados.Forms.Reports
                                                 exportOptions.ExportFormatOptions = new PdfRtfWordFormatOptions();
                                             }
                                             rptTickesPorFechas.Export();
+                                            Cursor.Current = Cursors.Default;
 
                                             MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1074,6 +1140,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 diskFileDestinationOptions.DiskFileName = dialog.FileName;
                                             }
+                                            Cursor.Current = Cursors.WaitCursor;
                                             exportOptions = rptTicketPendAll.ExportOptions;
                                             {
                                                 exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
@@ -1082,6 +1149,7 @@ namespace Agregados.Forms.Reports
                                                 exportOptions.ExportFormatOptions = new PdfRtfWordFormatOptions();
                                             }
                                             rptTicketPendAll.Export();
+                                            Cursor.Current = Cursors.Default;
 
                                             MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1135,6 +1203,7 @@ namespace Agregados.Forms.Reports
                                             {
                                                 diskFileDestinationOptions.DiskFileName = dialog.FileName;
                                             }
+                                            Cursor.Current = Cursors.WaitCursor;
                                             exportOptions = rptTicketAnuladasAll.ExportOptions;
                                             {
                                                 exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
@@ -1143,7 +1212,7 @@ namespace Agregados.Forms.Reports
                                                 exportOptions.ExportFormatOptions = new PdfRtfWordFormatOptions();
                                             }
                                             rptTicketAnuladasAll.Export();
-
+                                            Cursor.Current = Cursors.Default;
                                             MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         }

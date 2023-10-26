@@ -605,5 +605,12 @@ namespace Agregados.Forms
                
             }
         }
+
+        private void notaDeDébitoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globals.MifrmNotaDebito = new Bills.FrmNotaDebito();
+            Globals.MifrmNotaDebito.Show();
+            this.Hide();
+        }
     }
 }

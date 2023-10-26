@@ -966,11 +966,12 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1212, 647);
             this.MinimumSize = new System.Drawing.Size(1212, 647);
             this.Name = "FrmFactsReports";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Facturas";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmFactsReports_FormClosing);
             this.Load += new System.EventHandler(this.FrmFactsReports_Load);
             this.panel1.ResumeLayout(false);

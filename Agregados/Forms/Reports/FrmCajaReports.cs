@@ -366,8 +366,11 @@ namespace Agregados.Forms.Reports
                 {
                     using (FrmCajaPorID frm = new FrmCajaPorID(Id))
                     {
+                        Cursor.Current = Cursors.WaitCursor;
                         frm.ShowDialog();
+                        Cursor.Current = Cursors.Default;
                     };
+                    
                 }
             }
             else
@@ -419,7 +422,9 @@ namespace Agregados.Forms.Reports
                         {
                             using (FrmCajaPorFecha frm = new FrmCajaPorFecha(FechaInicial, FechaFinal))
                             {
+                                Cursor.Current = Cursors.WaitCursor;
                                 frm.ShowDialog();
+                                Cursor.Current = Cursors.Default;
                             };
                         }
                         break;
@@ -447,7 +452,9 @@ namespace Agregados.Forms.Reports
                         {
                             using (FrmCajaPorFecha frm = new FrmCajaPorFecha(Hoy, Hoy))
                             {
+                                Cursor.Current = Cursors.WaitCursor;
                                 frm.ShowDialog();
+                                Cursor.Current = Cursors.Default;
                             };
                         }
                         break;
@@ -497,9 +504,14 @@ namespace Agregados.Forms.Reports
 
                                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                                     {
+                                        Cursor.Current = Cursors.WaitCursor;
+                                                                                
                                         ExcelMapper mapper = new ExcelMapper();
                                         var file = saveFileDialog.FileName;
                                         mapper.Save(file, result, $"ReportCIERRES", true); //true is for saving .xlsx
+
+                                        Cursor.Current = Cursors.Default;
+
                                         MessageBox.Show("Se exporto correctamente el documento.",
                                                             "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
@@ -554,9 +566,14 @@ namespace Agregados.Forms.Reports
 
                                             if (saveFileDialog.ShowDialog() == DialogResult.OK)
                                             {
+                                                Cursor.Current = Cursors.WaitCursor;
+
                                                 ExcelMapper mapper = new ExcelMapper();
                                                 var file = saveFileDialog.FileName;
                                                 mapper.Save(file, result, "ReportCierres", true); //true is for saving .xlsx
+
+                                                Cursor.Current = Cursors.Default;
+
                                                 MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                             }
@@ -660,6 +677,8 @@ namespace Agregados.Forms.Reports
                                     {
                                         diskFileDestinationOptions.DiskFileName = dialog.FileName;
                                     }
+                                    Cursor.Current = Cursors.WaitCursor;
+
                                     exportOptions = rptCajaPorFecha.ExportOptions;
                                     {
                                         exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
@@ -668,6 +687,8 @@ namespace Agregados.Forms.Reports
                                         exportOptions.ExportFormatOptions = new PdfRtfWordFormatOptions();
                                     }
                                     rptCajaPorFecha.Export();
+
+                                    Cursor.Current = Cursors.Default;
 
                                     MessageBox.Show("Se exporto correctamente el documento.",
                                                             "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -728,6 +749,8 @@ namespace Agregados.Forms.Reports
                                             {
                                                 diskFileDestinationOptions.DiskFileName = dialog.FileName;
                                             }
+                                            Cursor.Current = Cursors.WaitCursor;
+
                                             exportOptions = rptCajaPorFecha.ExportOptions;
                                             {
                                                 exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
@@ -736,6 +759,8 @@ namespace Agregados.Forms.Reports
                                                 exportOptions.ExportFormatOptions = new PdfRtfWordFormatOptions();
                                             }
                                             rptCajaPorFecha.Export();
+
+                                            Cursor.Current = Cursors.Default;
 
                                             MessageBox.Show("Se exporto correctamente el documento.",
                                                                     "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);

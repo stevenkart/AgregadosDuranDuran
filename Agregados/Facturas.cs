@@ -44,6 +44,7 @@ namespace Agregados
         public int IdTipoPago { get; set; }
         public int IdCierreApert { get; set; }
         public decimal Descuento { get; set; }
+        public Nullable<int> NotaDebitoIDFact { get; set; }
     
         public virtual CierreApertCajas CierreApertCajas { get; set; }
         public virtual Clientes Clientes { get; set; }

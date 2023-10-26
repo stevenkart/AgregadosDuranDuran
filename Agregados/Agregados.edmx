@@ -125,6 +125,7 @@
           <Property Name="IdProveedor" Type="int" />
           <Property Name="IdTipoPago" Type="int" Nullable="false" />
           <Property Name="IdCierreApert" Type="int" Nullable="false" />
+          <Property Name="NotaDebitoIDFact" Type="int" />
         </EntityType>
         <EntityType Name="Materiales">
           <Key>
@@ -701,6 +702,7 @@
           <NavigationProperty Name="TiposFacturas" Relationship="Self.FKFacturasTiposFacts" FromRole="Facturas" ToRole="TiposFacturas" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FKFacturasUsuarios" FromRole="Facturas" ToRole="Usuarios" />
           <Property Name="Descuento" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="NotaDebitoIDFact" Type="Int32" />
         </EntityType>
         <EntityType Name="Materiales">
           <Key>
@@ -1624,6 +1626,7 @@
           <EntitySetMapping Name="Facturas">
             <EntityTypeMapping TypeName="AgregadosModel.Facturas">
               <MappingFragment StoreEntitySet="Facturas">
+                <ScalarProperty Name="NotaDebitoIDFact" ColumnName="NotaDebitoIDFact" />
                 <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
                 <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
