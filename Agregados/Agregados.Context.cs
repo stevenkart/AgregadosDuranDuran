@@ -70,6 +70,11 @@ namespace Agregados
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPCierreCajaPorId_Result>("SPCierreCajaPorId", iDParameter);
         }
     
+        public virtual ObjectResult<SPFactCreditoVencidas_Result> SPFactCreditoVencidas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactCreditoVencidas_Result>("SPFactCreditoVencidas");
+        }
+    
         public virtual ObjectResult<SPFactGenerada_Result> SPFactGenerada(Nullable<int> consecutivo)
         {
             var consecutivoParameter = consecutivo.HasValue ?
@@ -184,11 +189,6 @@ namespace Agregados
                 new ObjectParameter("fechaFin", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPTicketReversadasAll_Result>("SPTicketReversadasAll", fechaInicioParameter, fechaFinParameter);
-        }
-    
-        public virtual ObjectResult<SPFactCreditoVencidas_Result> SPFactCreditoVencidas()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPFactCreditoVencidas_Result>("SPFactCreditoVencidas");
         }
     }
 }

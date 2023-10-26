@@ -36,6 +36,7 @@ namespace Agregados
         public string DetalleNoCobroIVA { get; set; }
         public string FactProveedor { get; set; }
         public byte PrecioEspecial { get; set; }
+        public decimal Descuento { get; set; }
         public int IdUsuario { get; set; }
         public int IdTipo { get; set; }
         public int IdEstado { get; set; }
@@ -43,7 +44,6 @@ namespace Agregados
         public Nullable<int> IdProveedor { get; set; }
         public int IdTipoPago { get; set; }
         public int IdCierreApert { get; set; }
-        public decimal Descuento { get; set; }
         public Nullable<int> NotaDebitoIDFact { get; set; }
     
         public virtual CierreApertCajas CierreApertCajas { get; set; }

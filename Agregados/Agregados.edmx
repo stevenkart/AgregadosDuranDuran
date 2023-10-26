@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CierreApertCajas">
           <Key>
             <PropertyRef Name="IdCierreApert" />
@@ -555,7 +555,8 @@
             <End Role="Vehiculos" EntitySet="Vehiculos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AgregadosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -686,6 +687,7 @@
           <Property Name="DetalleNoCobroIVA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="FactProveedor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="PrecioEspecial" Type="Byte" Nullable="false" />
+          <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IdUsuario" Type="Int32" Nullable="false" />
           <Property Name="IdTipo" Type="Int32" Nullable="false" />
           <Property Name="IdEstado" Type="Int32" Nullable="false" />
@@ -693,6 +695,7 @@
           <Property Name="IdProveedor" Type="Int32" />
           <Property Name="IdTipoPago" Type="Int32" Nullable="false" />
           <Property Name="IdCierreApert" Type="Int32" Nullable="false" />
+          <Property Name="NotaDebitoIDFact" Type="Int32" />
           <NavigationProperty Name="CierreApertCajas" Relationship="Self.FKFacturasCierreApert" FromRole="Facturas" ToRole="CierreApertCajas" />
           <NavigationProperty Name="Clientes" Relationship="Self.FKFacturasClientes" FromRole="Facturas" ToRole="Clientes" />
           <NavigationProperty Name="DetalleFacts" Relationship="Self.FKDetalleFacturas" FromRole="Facturas" ToRole="DetalleFacts" />
@@ -701,8 +704,6 @@
           <NavigationProperty Name="Proveedores" Relationship="Self.FKFacturasProveedores" FromRole="Facturas" ToRole="Proveedores" />
           <NavigationProperty Name="TiposFacturas" Relationship="Self.FKFacturasTiposFacts" FromRole="Facturas" ToRole="TiposFacturas" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FKFacturasUsuarios" FromRole="Facturas" ToRole="Usuarios" />
-          <Property Name="Descuento" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="NotaDebitoIDFact" Type="Int32" />
         </EntityType>
         <EntityType Name="Materiales">
           <Key>
@@ -1107,10 +1108,11 @@
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SPCierreCajaPorId" ReturnType="Collection(AgregadosModel.SPCierreCajaPorId_Result)">
-          <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SPFactCreditoVencidas" ReturnType="Collection(AgregadosModel.SPFactCreditoVencidas_Result)" />
           <FunctionImport Name="SPFactGenerada" ReturnType="Collection(AgregadosModel.SPFactGenerada_Result)">
-          <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
+            <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPFactPendAll" ReturnType="Collection(AgregadosModel.SPFactPendAll_Result)" />
           <FunctionImport Name="SPFactPendDetalles" ReturnType="Collection(AgregadosModel.SPFactPendDetalles_Result)" />
@@ -1132,7 +1134,7 @@
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SPTicketGenerado" ReturnType="Collection(AgregadosModel.SPTicketGenerado_Result)">
-          <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
+            <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SPTicketPendAll" ReturnType="Collection(AgregadosModel.SPTicketPendAll_Result)" />
           <FunctionImport Name="SPTicketPorRangoFechaAll" ReturnType="Collection(AgregadosModel.SPTicketPorRangoFechaAll_Result)">
@@ -1143,7 +1145,6 @@
             <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="SPFactCreditoVencidas" ReturnType="Collection(AgregadosModel.SPFactCreditoVencidas_Result)" />
         </EntityContainer>
         <ComplexType Name="SPCierreCajaPend_Result">
           <Property Type="Int32" Name="IdCierreApert" Nullable="false" />
@@ -1226,6 +1227,12 @@
           <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
         </ComplexType>
+        <ComplexType Name="SPFactCreditoVencidas_Result">
+          <Property Type="DateTime" Name="FechaActual" Nullable="true" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="Int32" Name="Diferencia" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="SPFactGenerada_Result">
           <Property Type="Int32" Name="Consecutivo" Nullable="false" />
           <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
@@ -1237,6 +1244,7 @@
           <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
           <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
           <Property Type="Decimal" Name="BackHoe1" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="NotaDebitoIDFact" Nullable="true" />
           <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
@@ -1261,6 +1269,7 @@
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
           <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="Int32" Name="NotaDebitoIDFact" Nullable="true" />
           <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
@@ -1285,6 +1294,7 @@
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
           <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="Int32" Name="NotaDebitoIDFact" Nullable="true" />
           <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
@@ -1309,6 +1319,7 @@
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
           <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="Int32" Name="NotaDebitoIDFact" Nullable="true" />
           <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
@@ -1333,6 +1344,7 @@
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
           <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="Int32" Name="NotaDebitoIDFact" Nullable="true" />
           <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
@@ -1357,6 +1369,7 @@
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
           <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="Int32" Name="NotaDebitoIDFact" Nullable="true" />
           <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
@@ -1381,6 +1394,7 @@
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
           <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="Int32" Name="NotaDebitoIDFact" Nullable="true" />
           <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
@@ -1405,6 +1419,7 @@
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="ReferenciaPago" Nullable="true" MaxLength="500" />
           <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
+          <Property Type="Int32" Name="NotaDebitoIDFact" Nullable="true" />
           <Property Type="String" Name="NombreEstado" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="TipoPago" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="NombreEmpleado" Nullable="false" MaxLength="255" />
@@ -1513,12 +1528,6 @@
           <Property Type="String" Name="NombreMaterial" Nullable="false" MaxLength="255" />
           <Property Type="Int32" Name="IdMaterial" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="SPFactCreditoVencidas_Result">
-          <Property Type="DateTime" Name="FechaActual" Nullable="true" />
-          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
-          <Property Type="DateTime" Name="FechaLimiteP" Nullable="true" />
-          <Property Type="Int32" Name="Diferencia" Nullable="true" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1626,8 +1635,6 @@
           <EntitySetMapping Name="Facturas">
             <EntityTypeMapping TypeName="AgregadosModel.Facturas">
               <MappingFragment StoreEntitySet="Facturas">
-                <ScalarProperty Name="NotaDebitoIDFact" ColumnName="NotaDebitoIDFact" />
-                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
                 <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
                 <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
@@ -1644,6 +1651,7 @@
                 <ScalarProperty Name="DetalleNoCobroIVA" ColumnName="DetalleNoCobroIVA" />
                 <ScalarProperty Name="FactProveedor" ColumnName="FactProveedor" />
                 <ScalarProperty Name="PrecioEspecial" ColumnName="PrecioEspecial" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
@@ -1651,6 +1659,7 @@
                 <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
                 <ScalarProperty Name="IdTipoPago" ColumnName="IdTipoPago" />
                 <ScalarProperty Name="IdCierreApert" ColumnName="IdCierreApert" />
+                <ScalarProperty Name="NotaDebitoIDFact" ColumnName="NotaDebitoIDFact" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1835,6 +1844,16 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPFactCreditoVencidas" FunctionName="AgregadosModel.Store.SPFactCreditoVencidas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPFactCreditoVencidas_Result">
+                <ScalarProperty Name="FechaActual" ColumnName="FechaActual" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="Diferencia" ColumnName="Diferencia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPFactGenerada" FunctionName="AgregadosModel.Store.SPFactGenerada">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AgregadosModel.SPFactGenerada_Result">
@@ -1848,6 +1867,7 @@
                 <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
                 <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
                 <ScalarProperty Name="BackHoe1" ColumnName="BackHoe1" />
+                <ScalarProperty Name="NotaDebitoIDFact" ColumnName="NotaDebitoIDFact" />
                 <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
                 <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
                 <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
@@ -1876,6 +1896,7 @@
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
                 <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NotaDebitoIDFact" ColumnName="NotaDebitoIDFact" />
                 <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
                 <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
                 <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
@@ -1904,6 +1925,7 @@
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
                 <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NotaDebitoIDFact" ColumnName="NotaDebitoIDFact" />
                 <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
                 <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
                 <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
@@ -1932,6 +1954,7 @@
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
                 <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NotaDebitoIDFact" ColumnName="NotaDebitoIDFact" />
                 <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
                 <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
                 <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
@@ -1960,6 +1983,7 @@
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
                 <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NotaDebitoIDFact" ColumnName="NotaDebitoIDFact" />
                 <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
                 <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
                 <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
@@ -1988,6 +2012,7 @@
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
                 <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NotaDebitoIDFact" ColumnName="NotaDebitoIDFact" />
                 <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
                 <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
                 <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
@@ -2016,6 +2041,7 @@
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
                 <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NotaDebitoIDFact" ColumnName="NotaDebitoIDFact" />
                 <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
                 <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
                 <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
@@ -2044,6 +2070,7 @@
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="ReferenciaPago" ColumnName="ReferenciaPago" />
                 <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
+                <ScalarProperty Name="NotaDebitoIDFact" ColumnName="NotaDebitoIDFact" />
                 <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
                 <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
                 <ScalarProperty Name="NombreEmpleado" ColumnName="NombreEmpleado" />
@@ -2167,16 +2194,6 @@
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="NombreMaterial" ColumnName="NombreMaterial" />
                 <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SPFactCreditoVencidas" FunctionName="AgregadosModel.Store.SPFactCreditoVencidas">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AgregadosModel.SPFactCreditoVencidas_Result">
-                <ScalarProperty Name="FechaActual" ColumnName="FechaActual" />
-                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
-                <ScalarProperty Name="FechaLimiteP" ColumnName="FechaLimiteP" />
-                <ScalarProperty Name="Diferencia" ColumnName="Diferencia" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

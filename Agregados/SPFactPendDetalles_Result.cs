@@ -23,6 +23,7 @@ namespace Agregados
         public decimal CostoTotal { get; set; }
         public string ReferenciaPago { get; set; }
         public Nullable<System.DateTime> FechaLimiteP { get; set; }
+        public Nullable<int> NotaDebitoIDFact { get; set; }
         public string NombreEstado { get; set; }
         public string TipoPago { get; set; }
         public string NombreEmpleado { get; set; }

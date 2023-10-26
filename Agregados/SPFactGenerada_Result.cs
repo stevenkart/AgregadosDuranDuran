@@ -23,6 +23,7 @@ namespace Agregados
         public string ReferenciaPago { get; set; }
         public Nullable<System.DateTime> FechaLimiteP { get; set; }
         public Nullable<decimal> BackHoe1 { get; set; }
+        public Nullable<int> NotaDebitoIDFact { get; set; }
         public string NombreEstado { get; set; }
         public string TipoPago { get; set; }
         public string NombreEmpleado { get; set; }
