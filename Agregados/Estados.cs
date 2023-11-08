@@ -17,6 +17,7 @@ namespace Agregados
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Estados()
         {
+            this.BitacoraVehiculo = new HashSet<BitacoraVehiculo>();
             this.Clientes = new HashSet<Clientes>();
             this.Facturas = new HashSet<Facturas>();
             this.Materiales = new HashSet<Materiales>();
@@ -28,6 +29,8 @@ namespace Agregados
         public int IdEstado { get; set; }
         public string NombreEstado { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BitacoraVehiculo> BitacoraVehiculo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clientes> Clientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

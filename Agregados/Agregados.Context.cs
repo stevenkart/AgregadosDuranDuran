@@ -27,6 +27,7 @@ namespace Agregados
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<BitacoraVehiculo> BitacoraVehiculo { get; set; }
         public virtual DbSet<CierreApertCajas> CierreApertCajas { get; set; }
         public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<CorreoNotificaciones> CorreoNotificaciones { get; set; }

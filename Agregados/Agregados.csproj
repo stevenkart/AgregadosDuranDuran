@@ -16,7 +16,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\steve\Desktop\Publicaciones APPs\</PublishUrl>
+    <PublishUrl>C:\Users\steve\Desktop\Publicaciones APP\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -31,7 +31,7 @@
     <SuiteName>Steven Carrillo</SuiteName>
     <MinimumRequiredVersion>1.0.0.3</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -61,7 +61,7 @@
     <ApplicationIcon>agregadosIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -244,6 +244,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Agregados.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="BitacoraVehiculo.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
     <Compile Include="CierreApertCajas.cs">
       <DependentUpon>Agregados.tt</DependentUpon>
@@ -434,6 +437,12 @@
     </Compile>
     <Compile Include="Forms\Notifications\FrmNotifications.Designer.cs">
       <DependentUpon>FrmNotifications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Vehicles\FrmBitVehiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Vehicles\FrmBitVehiculos.Designer.cs">
+      <DependentUpon>FrmBitVehiculos.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Vehicles\FrmVehiclesManage.cs">
       <SubType>Form</SubType>
@@ -842,6 +851,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Notifications\FrmNotifications.resx">
       <DependentUpon>FrmNotifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vehicles\FrmBitVehiculos.resx">
+      <DependentUpon>FrmBitVehiculos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Vehicles\FrmVehiclesManage.resx">
       <DependentUpon>FrmVehiclesManage.cs</DependentUpon>

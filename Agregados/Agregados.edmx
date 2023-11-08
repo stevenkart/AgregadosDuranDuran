@@ -5,6 +5,22 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="AgregadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BitacoraVehiculo">
+          <Key>
+            <PropertyRef Name="IdBitacora" />
+          </Key>
+          <Property Name="IdBitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaIngreso" Type="date" Nullable="false" />
+          <Property Name="HoraIngreso" Type="varchar" MaxLength="255" />
+          <Property Name="FechaSalida" Type="date" />
+          <Property Name="HoraSalida" Type="varchar" MaxLength="255" />
+          <Property Name="Motivo" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Solucion" Type="varchar" MaxLength="100" />
+          <Property Name="Mecanico" Type="varchar" MaxLength="150" />
+          <Property Name="CostoReparacion" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IdVehiculo" Type="int" Nullable="false" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="CierreApertCajas">
           <Key>
             <PropertyRef Name="IdCierreApert" />
@@ -204,9 +220,22 @@
           <Property Name="Marca" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Modelo" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Annio" Type="int" Nullable="false" />
+          <Property Name="RtvAlDia" Type="tinyint" Nullable="false" />
           <Property Name="MesRevision" Type="int" Nullable="false" />
           <Property Name="IdEstado" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FKBitacoraEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="BitacoraVehiculo" Type="Self.BitacoraVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="BitacoraVehiculo">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKCierreAperUsuario">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
           <End Role="CierreApertCajas" Type="Self.CierreApertCajas" Multiplicity="*" />
@@ -411,6 +440,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKVehiculosBitacora">
+          <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="1" />
+          <End Role="BitacoraVehiculo" Type="Self.BitacoraVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="IdVehiculo" />
+            </Principal>
+            <Dependent Role="BitacoraVehiculo">
+              <PropertyRef Name="IdVehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKVehiculosEstados">
           <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
           <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="*" />
@@ -467,6 +508,7 @@
           <Parameter Name="fechaFin" Type="date" Mode="In" />
         </Function>
         <EntityContainer Name="AgregadosModelStoreContainer">
+          <EntitySet Name="BitacoraVehiculo" EntityType="Self.BitacoraVehiculo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CierreApertCajas" EntityType="Self.CierreApertCajas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CorreoNotificaciones" EntityType="Self.CorreoNotificaciones" Schema="dbo" store:Type="Tables" />
@@ -482,6 +524,10 @@
           <EntitySet Name="TiposProveedores" EntityType="Self.TiposProveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FKBitacoraEstados" Association="Self.FKBitacoraEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="BitacoraVehiculo" EntitySet="BitacoraVehiculo" />
+          </AssociationSet>
           <AssociationSet Name="FKCierreAperUsuario" Association="Self.FKCierreAperUsuario">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
@@ -550,6 +596,10 @@
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <AssociationSet Name="FKVehiculosBitacora" Association="Self.FKVehiculosBitacora">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="BitacoraVehiculo" EntitySet="BitacoraVehiculo" />
+          </AssociationSet>
           <AssociationSet Name="FKVehiculosEstados" Association="Self.FKVehiculosEstados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Vehiculos" EntitySet="Vehiculos" />
@@ -560,6 +610,24 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AgregadosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BitacoraVehiculo">
+          <Key>
+            <PropertyRef Name="IdBitacora" />
+          </Key>
+          <Property Name="IdBitacora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HoraIngreso" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FechaSalida" Type="DateTime" Precision="0" />
+          <Property Name="HoraSalida" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Motivo" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Solucion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Mecanico" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CostoReparacion" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IdVehiculo" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FKBitacoraEstados" FromRole="BitacoraVehiculo" ToRole="Estados" />
+          <NavigationProperty Name="Vehiculos" Relationship="Self.FKVehiculosBitacora" FromRole="BitacoraVehiculo" ToRole="Vehiculos" />
+        </EntityType>
         <EntityType Name="CierreApertCajas">
           <Key>
             <PropertyRef Name="IdCierreApert" />
@@ -660,6 +728,7 @@
           </Key>
           <Property Name="IdEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreEstado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BitacoraVehiculo" Relationship="Self.FKBitacoraEstados" FromRole="Estados" ToRole="BitacoraVehiculo" />
           <NavigationProperty Name="Clientes" Relationship="Self.FKClientesEstados" FromRole="Estados" ToRole="Clientes" />
           <NavigationProperty Name="Facturas" Relationship="Self.FKFacturasEstados" FromRole="Estados" ToRole="Facturas" />
           <NavigationProperty Name="Materiales" Relationship="Self.FKMaterialesEstados" FromRole="Estados" ToRole="Materiales" />
@@ -794,10 +863,36 @@
           <Property Name="Marca" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Modelo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Annio" Type="Int32" Nullable="false" />
+          <Property Name="RtvAlDia" Type="Byte" Nullable="false" />
           <Property Name="MesRevision" Type="Int32" Nullable="false" />
           <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BitacoraVehiculo" Relationship="Self.FKVehiculosBitacora" FromRole="Vehiculos" ToRole="BitacoraVehiculo" />
           <NavigationProperty Name="Estados" Relationship="Self.FKVehiculosEstados" FromRole="Vehiculos" ToRole="Estados" />
         </EntityType>
+        <Association Name="FKBitacoraEstados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="BitacoraVehiculo" Type="Self.BitacoraVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="BitacoraVehiculo">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKVehiculosBitacora">
+          <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="1" />
+          <End Role="BitacoraVehiculo" Type="Self.BitacoraVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="IdVehiculo" />
+            </Principal>
+            <Dependent Role="BitacoraVehiculo">
+              <PropertyRef Name="IdVehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FKCierreAperUsuario">
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
           <End Role="CierreApertCajas" Type="Self.CierreApertCajas" Multiplicity="*" />
@@ -1015,6 +1110,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AgregadosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BitacoraVehiculo" EntityType="Self.BitacoraVehiculo" />
           <EntitySet Name="CierreApertCajas" EntityType="Self.CierreApertCajas" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="CorreoNotificaciones" EntityType="Self.CorreoNotificaciones" />
@@ -1030,6 +1126,14 @@
           <EntitySet Name="TiposProveedores" EntityType="Self.TiposProveedores" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
           <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" />
+          <AssociationSet Name="FKBitacoraEstados" Association="Self.FKBitacoraEstados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="BitacoraVehiculo" EntitySet="BitacoraVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FKVehiculosBitacora" Association="Self.FKVehiculosBitacora">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="BitacoraVehiculo" EntitySet="BitacoraVehiculo" />
+          </AssociationSet>
           <AssociationSet Name="FKCierreAperUsuario" Association="Self.FKCierreAperUsuario">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
@@ -1534,6 +1638,23 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AgregadosModelStoreContainer" CdmEntityContainer="AgregadosEntities">
+          <EntitySetMapping Name="BitacoraVehiculo">
+            <EntityTypeMapping TypeName="AgregadosModel.BitacoraVehiculo">
+              <MappingFragment StoreEntitySet="BitacoraVehiculo">
+                <ScalarProperty Name="IdBitacora" ColumnName="IdBitacora" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="HoraIngreso" ColumnName="HoraIngreso" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="Solucion" ColumnName="Solucion" />
+                <ScalarProperty Name="Mecanico" ColumnName="Mecanico" />
+                <ScalarProperty Name="CostoReparacion" ColumnName="CostoReparacion" />
+                <ScalarProperty Name="IdVehiculo" ColumnName="IdVehiculo" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CierreApertCajas">
             <EntityTypeMapping TypeName="AgregadosModel.CierreApertCajas">
               <MappingFragment StoreEntitySet="CierreApertCajas">
@@ -1746,6 +1867,7 @@
                 <ScalarProperty Name="Marca" ColumnName="Marca" />
                 <ScalarProperty Name="Modelo" ColumnName="Modelo" />
                 <ScalarProperty Name="Annio" ColumnName="Annio" />
+                <ScalarProperty Name="RtvAlDia" ColumnName="RtvAlDia" />
                 <ScalarProperty Name="MesRevision" ColumnName="MesRevision" />
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
               </MappingFragment>

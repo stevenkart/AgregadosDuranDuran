@@ -55,6 +55,7 @@
             this.dgvVehicles = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtPlaca = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -64,9 +65,10 @@
             this.txtAnnio = new System.Windows.Forms.TextBox();
             this.txtModelo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.CboxStates = new System.Windows.Forms.ComboBox();
             this.CboxMes = new System.Windows.Forms.ComboBox();
             this.txtMarca = new System.Windows.Forms.TextBox();
+            this.CboxRTV = new System.Windows.Forms.ComboBox();
+            this.CboxStates = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.imgAdd = new System.Windows.Forms.PictureBox();
             this.imgUpdate = new System.Windows.Forms.PictureBox();
@@ -76,6 +78,7 @@
             this.CIdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPlaca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CRtvAlDia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CAnnio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CMesRevision = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -130,11 +133,11 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 137F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChBuenEstado, 2, 0);
-            this.tableLayoutPanel8.Controls.Add(this.ChMalEstado, 3, 0);
-            this.tableLayoutPanel8.Controls.Add(this.ChReparacion, 4, 0);
+            this.tableLayoutPanel8.Controls.Add(this.ChMalEstado, 4, 0);
+            this.tableLayoutPanel8.Controls.Add(this.ChReparacion, 3, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -162,7 +165,7 @@
             this.ChBuenEstado.Checked = true;
             this.ChBuenEstado.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChBuenEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChBuenEstado.Location = new System.Drawing.Point(859, 7);
+            this.ChBuenEstado.Location = new System.Drawing.Point(857, 7);
             this.ChBuenEstado.Name = "ChBuenEstado";
             this.ChBuenEstado.Size = new System.Drawing.Size(141, 22);
             this.ChBuenEstado.TabIndex = 0;
@@ -175,14 +178,16 @@
             // 
             this.ChMalEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ChMalEstado.AutoSize = true;
+            this.ChMalEstado.Enabled = false;
             this.ChMalEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChMalEstado.Location = new System.Drawing.Point(1006, 7);
+            this.ChMalEstado.Location = new System.Drawing.Point(1133, 7);
             this.ChMalEstado.Name = "ChMalEstado";
-            this.ChMalEstado.Size = new System.Drawing.Size(123, 22);
+            this.ChMalEstado.Size = new System.Drawing.Size(134, 22);
             this.ChMalEstado.TabIndex = 1;
             this.ChMalEstado.Text = "Mal Estado";
             this.ChMalEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ChMalEstado.UseVisualStyleBackColor = true;
+            this.ChMalEstado.Visible = false;
             this.ChMalEstado.CheckedChanged += new System.EventHandler(this.ChMalEstado_CheckedChanged);
             // 
             // ChReparacion
@@ -190,9 +195,9 @@
             this.ChReparacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ChReparacion.AutoSize = true;
             this.ChReparacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChReparacion.Location = new System.Drawing.Point(1135, 7);
+            this.ChReparacion.Location = new System.Drawing.Point(1004, 7);
             this.ChReparacion.Name = "ChReparacion";
-            this.ChReparacion.Size = new System.Drawing.Size(132, 22);
+            this.ChReparacion.Size = new System.Drawing.Size(123, 22);
             this.ChReparacion.TabIndex = 2;
             this.ChReparacion.Text = "Reparación";
             this.ChReparacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -399,6 +404,7 @@
             this.CIdVehiculo,
             this.CPlaca,
             this.CMarca,
+            this.CRtvAlDia,
             this.CModelo,
             this.CAnnio,
             this.CMesRevision,
@@ -435,6 +441,7 @@
             this.tableLayoutPanel6.ColumnCount = 2;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.42324F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.57677F));
+            this.tableLayoutPanel6.Controls.Add(this.label6, 0, 6);
             this.tableLayoutPanel6.Controls.Add(this.txtPlaca, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.label2, 0, 1);
@@ -444,9 +451,10 @@
             this.tableLayoutPanel6.Controls.Add(this.txtAnnio, 1, 3);
             this.tableLayoutPanel6.Controls.Add(this.txtModelo, 1, 2);
             this.tableLayoutPanel6.Controls.Add(this.label7, 0, 5);
-            this.tableLayoutPanel6.Controls.Add(this.CboxStates, 1, 5);
             this.tableLayoutPanel6.Controls.Add(this.CboxMes, 1, 4);
             this.tableLayoutPanel6.Controls.Add(this.txtMarca, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.CboxRTV, 1, 5);
+            this.tableLayoutPanel6.Controls.Add(this.CboxStates, 1, 6);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -460,6 +468,18 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(491, 507);
             this.tableLayoutPanel6.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(3, 461);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(133, 16);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Estado:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtPlaca
             // 
@@ -561,19 +581,8 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(133, 16);
             this.label7.TabIndex = 12;
-            this.label7.Text = "Estado:";
+            this.label7.Text = "R.T.V.";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // CboxStates
-            // 
-            this.CboxStates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.CboxStates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboxStates.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CboxStates.FormattingEnabled = true;
-            this.CboxStates.Location = new System.Drawing.Point(142, 384);
-            this.CboxStates.Name = "CboxStates";
-            this.CboxStates.Size = new System.Drawing.Size(346, 24);
-            this.CboxStates.TabIndex = 5;
             // 
             // CboxMes
             // 
@@ -595,6 +604,28 @@
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(346, 22);
             this.txtMarca.TabIndex = 1;
+            // 
+            // CboxRTV
+            // 
+            this.CboxRTV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CboxRTV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboxRTV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboxRTV.FormattingEnabled = true;
+            this.CboxRTV.Location = new System.Drawing.Point(142, 384);
+            this.CboxRTV.Name = "CboxRTV";
+            this.CboxRTV.Size = new System.Drawing.Size(346, 24);
+            this.CboxRTV.TabIndex = 14;
+            // 
+            // CboxStates
+            // 
+            this.CboxStates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CboxStates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboxStates.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboxStates.FormattingEnabled = true;
+            this.CboxStates.Location = new System.Drawing.Point(142, 457);
+            this.CboxStates.Name = "CboxStates";
+            this.CboxStates.Size = new System.Drawing.Size(346, 24);
+            this.CboxStates.TabIndex = 5;
             // 
             // tableLayoutPanel7
             // 
@@ -693,6 +724,7 @@
             this.CIdVehiculo.MinimumWidth = 40;
             this.CIdVehiculo.Name = "CIdVehiculo";
             this.CIdVehiculo.ReadOnly = true;
+            this.CIdVehiculo.Visible = false;
             this.CIdVehiculo.Width = 60;
             // 
             // CPlaca
@@ -709,13 +741,24 @@
             // 
             // CMarca
             // 
-            this.CMarca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CMarca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.CMarca.DataPropertyName = "Marca";
             this.CMarca.FillWeight = 180F;
+            this.CMarca.Frozen = true;
             this.CMarca.HeaderText = "Marca";
             this.CMarca.MinimumWidth = 150;
             this.CMarca.Name = "CMarca";
             this.CMarca.ReadOnly = true;
+            this.CMarca.Width = 150;
+            // 
+            // CRtvAlDia
+            // 
+            this.CRtvAlDia.DataPropertyName = "RtvAlDia";
+            this.CRtvAlDia.HeaderText = "R.T.V.";
+            this.CRtvAlDia.MinimumWidth = 25;
+            this.CRtvAlDia.Name = "CRtvAlDia";
+            this.CRtvAlDia.ReadOnly = true;
+            this.CRtvAlDia.Width = 50;
             // 
             // CModelo
             // 
@@ -739,13 +782,13 @@
             // 
             // CMesRevision
             // 
+            this.CMesRevision.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CMesRevision.DataPropertyName = "MesRevision";
             this.CMesRevision.FillWeight = 170F;
             this.CMesRevision.HeaderText = "Mes Revisión Técnica";
             this.CMesRevision.MinimumWidth = 160;
             this.CMesRevision.Name = "CMesRevision";
             this.CMesRevision.ReadOnly = true;
-            this.CMesRevision.Width = 160;
             // 
             // CIdEstado
             // 
@@ -845,9 +888,12 @@
         private System.Windows.Forms.PictureBox imgClean;
         private System.Windows.Forms.PictureBox imgExit;
         private System.Windows.Forms.ComboBox CboxMes;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox CboxRTV;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdVehiculo;
         private System.Windows.Forms.DataGridViewTextBoxColumn CPlaca;
         private System.Windows.Forms.DataGridViewTextBoxColumn CMarca;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CRtvAlDia;
         private System.Windows.Forms.DataGridViewTextBoxColumn CModelo;
         private System.Windows.Forms.DataGridViewTextBoxColumn CAnnio;
         private System.Windows.Forms.DataGridViewTextBoxColumn CMesRevision;
