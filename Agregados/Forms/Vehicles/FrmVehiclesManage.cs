@@ -1581,11 +1581,12 @@ namespace Agregados.Forms.Vehicles
             }
         }
 
-        //DELETE
+        //DELETE -- inactivar porque, puede que tenga bitacora de registro
         private void imgDelete_Click(object sender, EventArgs e)
         {
             if (ValidarCamposRequeridos())
             {
+                /*
                 DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?" + 
                     Environment.NewLine + "Si lo eliminas, no prodras recuperar nuevamente sus datos...",
                     "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1614,6 +1615,41 @@ namespace Agregados.Forms.Vehicles
                                     MessageBox.Show("Vehículo No fue Eliminado, por favor valide", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     vehiculo = null;
                                 }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            throw;
+                        }
+                    }
+                }
+                */
+                DialogResult respuesta = MessageBox.Show("¿Deseas inactivar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
+                            "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (respuesta == DialogResult.Yes)
+                {
+                    using (FrmLoading frmLoading = new FrmLoading(Wait))
+                    {
+                        try
+                        {
+                            vehiculo.IdEstado = 2; //inactivar 
+
+                            DB.Entry(vehiculo).State = EntityState.Modified;
+
+                            if (DB.SaveChanges() > 0)
+                            {
+                                CheckChange();
+                                limpiar();
+                                limpiarBusqueda();
+                                MessageBox.Show("Vehículo inactivado correctamente!, mismo ya no se va a mostrar en la lista", 
+                                    "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                                vehiculo = null;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Vehículo No fue modificado", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                vehiculo = null;
                             }
                         }
                         catch (Exception ex)
