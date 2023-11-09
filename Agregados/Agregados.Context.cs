@@ -44,6 +44,32 @@ namespace Agregados
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Vehiculos> Vehiculos { get; set; }
     
+        public virtual ObjectResult<SPBitacorasVehiculoFechas_Result> SPBitacorasVehiculoFechas(string fechaInicio1, string fechaInicio2, Nullable<int> iD)
+        {
+            var fechaInicio1Parameter = fechaInicio1 != null ?
+                new ObjectParameter("fechaInicio1", fechaInicio1) :
+                new ObjectParameter("fechaInicio1", typeof(string));
+    
+            var fechaInicio2Parameter = fechaInicio2 != null ?
+                new ObjectParameter("fechaInicio2", fechaInicio2) :
+                new ObjectParameter("fechaInicio2", typeof(string));
+    
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPBitacorasVehiculoFechas_Result>("SPBitacorasVehiculoFechas", fechaInicio1Parameter, fechaInicio2Parameter, iDParameter);
+        }
+    
+        public virtual ObjectResult<SPBitacorasVehiculoTop5_Result> SPBitacorasVehiculoTop5(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPBitacorasVehiculoTop5_Result>("SPBitacorasVehiculoTop5", iDParameter);
+        }
+    
         public virtual ObjectResult<SPCierreCajaPend_Result> SPCierreCajaPend()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPCierreCajaPend_Result>("SPCierreCajaPend");

@@ -289,6 +289,8 @@ namespace Agregados.Forms
 
 
             tmrFechaHora.Enabled = true;
+            tmrFotos.Enabled = true;
+
             lblUsuarioLogueado.Text = $"( {Globals.MyGlobalUser.NombreUsuario} )" + $" {Globals.MyGlobalUser.NombreEmpleado} ";
 
             if (Globals.Notifications)
@@ -621,6 +623,18 @@ namespace Agregados.Forms
             Globals.MifrmNotaDebito = new Bills.FrmNotaDebito();
             Globals.MifrmNotaDebito.Show();
             this.Hide();
+        }
+
+        private void tmrFotos_Tick(object sender, EventArgs e)
+        {
+            //asignar al fondo de pantalla cada 10 segundos, uno nuevo 
+
+            Random r = new Random();
+            int index = r.Next(0,7);
+            System.Drawing.Bitmap[] images = { Agregados.Properties.Resources.principal1, Agregados.Properties.Resources.principal2, Agregados.Properties.Resources.principal3,
+                Agregados.Properties.Resources.principal4, Agregados.Properties.Resources.principal5, Agregados.Properties.Resources.principal6,
+                Agregados.Properties.Resources.principal7, Agregados.Properties.Resources.MDIPrincipal};
+            pictureBox1.Image = images[index];
         }
     }
 }

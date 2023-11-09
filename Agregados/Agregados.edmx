@@ -464,6 +464,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SPBitacorasVehiculoFechas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaInicio1" Type="varchar" Mode="In" />
+          <Parameter Name="fechaInicio2" Type="varchar" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPBitacorasVehiculoTop5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SPCierreCajaPend" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SPCierreCajaPorFecha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fechaInicio" Type="date" Mode="In" />
@@ -1206,6 +1214,14 @@
             <End Role="TiposProveedores" EntitySet="TiposProveedores" />
             <End Role="Proveedores" EntitySet="Proveedores" />
           </AssociationSet>
+          <FunctionImport Name="SPBitacorasVehiculoFechas" ReturnType="Collection(AgregadosModel.SPBitacorasVehiculoFechas_Result)">
+            <Parameter Name="fechaInicio1" Mode="In" Type="String" />
+            <Parameter Name="fechaInicio2" Mode="In" Type="String" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPBitacorasVehiculoTop5" ReturnType="Collection(AgregadosModel.SPBitacorasVehiculoTop5_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="SPCierreCajaPend" ReturnType="Collection(AgregadosModel.SPCierreCajaPend_Result)" />
           <FunctionImport Name="SPCierreCajaPorFecha" ReturnType="Collection(AgregadosModel.SPCierreCajaPorFecha_Result)">
             <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
@@ -1250,6 +1266,26 @@
             <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="SPBitacorasVehiculoFechas_Result">
+          <Property Type="Int32" Name="IdBitacora" Nullable="false" />
+          <Property Type="DateTime" Name="FechaIngreso" Nullable="false" />
+          <Property Type="DateTime" Name="FechaSalida" Nullable="true" />
+          <Property Type="String" Name="Motivo" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="Solucion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Mecanico" Nullable="true" MaxLength="150" />
+          <Property Type="Decimal" Name="CostoReparacion" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="IdEstado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SPBitacorasVehiculoTop5_Result">
+          <Property Type="Int32" Name="IdBitacora" Nullable="false" />
+          <Property Type="DateTime" Name="FechaIngreso" Nullable="false" />
+          <Property Type="DateTime" Name="FechaSalida" Nullable="true" />
+          <Property Type="String" Name="Motivo" Nullable="false" MaxLength="1000" />
+          <Property Type="String" Name="Solucion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Mecanico" Nullable="true" MaxLength="150" />
+          <Property Type="Decimal" Name="CostoReparacion" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="IdEstado" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="SPCierreCajaPend_Result">
           <Property Type="Int32" Name="IdCierreApert" Nullable="false" />
           <Property Type="DateTime" Name="Fecha" Nullable="false" />
@@ -1342,6 +1378,7 @@
           <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="Descuento" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
@@ -1368,6 +1405,7 @@
           <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="Descuento" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
@@ -1393,6 +1431,7 @@
           <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="Descuento" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
@@ -1418,6 +1457,7 @@
           <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="Descuento" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
@@ -1443,6 +1483,7 @@
           <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="Descuento" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
@@ -1468,6 +1509,7 @@
           <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="Descuento" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
@@ -1493,6 +1535,7 @@
           <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="Descuento" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
@@ -1518,6 +1561,7 @@
           <Property Type="Decimal" Name="CostoTransporte" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="BackHoe" Nullable="true" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="Decimal" Name="Descuento" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="SubTotalFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="IVAFact" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="18" Scale="2" />
@@ -1873,6 +1917,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPBitacorasVehiculoFechas" FunctionName="AgregadosModel.Store.SPBitacorasVehiculoFechas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPBitacorasVehiculoFechas_Result">
+                <ScalarProperty Name="IdBitacora" ColumnName="IdBitacora" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="Solucion" ColumnName="Solucion" />
+                <ScalarProperty Name="Mecanico" ColumnName="Mecanico" />
+                <ScalarProperty Name="CostoReparacion" ColumnName="CostoReparacion" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPBitacorasVehiculoTop5" FunctionName="AgregadosModel.Store.SPBitacorasVehiculoTop5">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AgregadosModel.SPBitacorasVehiculoTop5_Result">
+                <ScalarProperty Name="IdBitacora" ColumnName="IdBitacora" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="Solucion" ColumnName="Solucion" />
+                <ScalarProperty Name="Mecanico" ColumnName="Mecanico" />
+                <ScalarProperty Name="CostoReparacion" ColumnName="CostoReparacion" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPCierreCajaPend" FunctionName="AgregadosModel.Store.SPCierreCajaPend">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AgregadosModel.SPCierreCajaPend_Result">
@@ -1983,6 +2055,7 @@
                 <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
                 <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
                 <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
                 <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
@@ -2013,6 +2086,7 @@
                 <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
                 <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
                 <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
                 <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
@@ -2042,6 +2116,7 @@
                 <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
                 <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
                 <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
                 <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
@@ -2071,6 +2146,7 @@
                 <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
                 <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
                 <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
                 <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
@@ -2100,6 +2176,7 @@
                 <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
                 <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
                 <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
                 <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
@@ -2129,6 +2206,7 @@
                 <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
                 <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
                 <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
                 <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
@@ -2158,6 +2236,7 @@
                 <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
                 <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
                 <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
                 <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
@@ -2187,6 +2266,7 @@
                 <ScalarProperty Name="CostoTransporte" ColumnName="CostoTransporte" />
                 <ScalarProperty Name="BackHoe" ColumnName="BackHoe" />
                 <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="SubTotalFact" ColumnName="SubTotalFact" />
                 <ScalarProperty Name="IVAFact" ColumnName="IVAFact" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />

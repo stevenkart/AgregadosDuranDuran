@@ -438,6 +438,12 @@
     <Compile Include="Forms\Notifications\FrmNotifications.Designer.cs">
       <DependentUpon>FrmNotifications.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Vehicles\FrmBitVehiculeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Vehicles\FrmBitVehiculeList.Designer.cs">
+      <DependentUpon>FrmBitVehiculeList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Vehicles\FrmBitVehiculos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -704,6 +710,12 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="SPBitacorasVehiculoFechas_Result.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPBitacorasVehiculoTop5_Result.cs">
+      <DependentUpon>Agregados.tt</DependentUpon>
+    </Compile>
     <Compile Include="SPCierreCajaPend_Result.cs">
       <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
@@ -768,6 +780,17 @@
     <Compile Include="Vehiculos.cs">
       <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
+    <Content Include="Images\PagPrincipal\MDIPrincipal.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PagPrincipal\principal1.jpg" />
+    <Content Include="Images\PagPrincipal\principal2.jpg" />
+    <Content Include="Images\PagPrincipal\principal3.jpg" />
+    <Content Include="Images\PagPrincipal\principal4.jpg" />
+    <Content Include="Images\PagPrincipal\principal5.jpg" />
+    <Content Include="Images\PagPrincipal\principal6.jpg" />
+    <Content Include="Images\PagPrincipal\principal7.jpg" />
+    <None Include="Resources\principal1.bmp" />
     <EmbeddedResource Include="Forms\Bills\FrmBillAdd.resx">
       <DependentUpon>FrmBillAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -851,6 +874,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Notifications\FrmNotifications.resx">
       <DependentUpon>FrmNotifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Vehicles\FrmBitVehiculeList.resx">
+      <DependentUpon>FrmBitVehiculeList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Vehicles\FrmBitVehiculos.resx">
       <DependentUpon>FrmBitVehiculos.cs</DependentUpon>
@@ -1098,6 +1124,7 @@
     <None Include="Images\Icons\BusquedaClient\cancelar.png" />
     <Content Include="Images\Icons\DetalleIVA\cancel.png" />
     <Content Include="Images\Icons\DetalleIVA\floppy-disk.png" />
+    <Content Include="Images\Icons\Vehiculos\informacion.png" />
     <Content Include="Images\MDIPrincipal.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

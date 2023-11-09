@@ -23,6 +23,8 @@ namespace Agregados
 
         public static bool Manual = false;
 
+        public static bool Bitacora = false;
+
         //forms
 
         public static Form MyPrincipalForm = new Forms.FrmPrincipalMDI();
@@ -36,6 +38,8 @@ namespace Agregados
         public static Forms.Help.FrmManualUser MifrmManualUser = new Forms.Help.FrmManualUser();
 
         public static Forms.Vehicles.FrmVehiclesManage MifrmVehiclesManage = new Forms.Vehicles.FrmVehiclesManage();
+
+        public static Forms.Vehicles.FrmBitVehiculeList MifrmBitVehiculeList = new Forms.Vehicles.FrmBitVehiculeList(0);
 
         public static Forms.Users.FrmUserManage MifrmUser = new Forms.Users.FrmUserManage();
 

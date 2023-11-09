@@ -25,7 +25,7 @@ namespace Agregados.Forms.Vehicles
         string HorapSalida;
         int ventana = 0;
         int IDbitacora = 0;
-        public FrmBitVehiculos(int valor, int IDVehiculo, int IDBitacora) //valor 1, añadir vehiculos es
+        public FrmBitVehiculos(int valor, int IDVehiculo, int IDBitacora) //valor 1, añadir vehiculos es // 2 cambiar datos segun el estado vehiculo // 3 igual que el 2
         {
             ventana = valor;
             IDbitacora = IDBitacora;
@@ -48,6 +48,8 @@ namespace Agregados.Forms.Vehicles
 
                 txtSolucion.Enabled = false;
                 CostoReparación.Enabled = false;
+
+                txtMecanico.Enabled = false;
 
                 lblVehiculo.Text = $"Placa: {vehiculo.Placa}, Marca: {vehiculo.Marca}, Año: {vehiculo.Annio}" ;
 
@@ -80,6 +82,8 @@ namespace Agregados.Forms.Vehicles
 
                     txtMotivo.Text = bitacoraVehiculo.Motivo.ToString();
                     txtSolucion.Text = bitacoraVehiculo.Solucion.ToString();
+                    txtMecanico.Text = bitacoraVehiculo.Mecanico.ToString();
+                    CostoReparación.Value = Convert.ToDecimal(bitacoraVehiculo.CostoReparacion.ToString());
                     CostoReparación.Enabled = true;
 
                     lblVehiculo.Text = $"Placa: {vehiculo.Placa}, Marca: {vehiculo.Marca}, Año: {vehiculo.Annio}";
@@ -113,6 +117,8 @@ namespace Agregados.Forms.Vehicles
 
                         txtMotivo.Text = bitacoraVehiculo.Motivo.ToString();
                         txtSolucion.Text = bitacoraVehiculo.Solucion.ToString();
+                        txtMecanico.Text = bitacoraVehiculo.Mecanico.ToString();
+                        CostoReparación.Value = Convert.ToDecimal(bitacoraVehiculo.CostoReparacion.ToString());
                         CostoReparación.Enabled = true;
 
                         lblVehiculo.Text = $"Placa: {vehiculo.Placa}, Marca: {vehiculo.Marca}, Año: {vehiculo.Annio}";

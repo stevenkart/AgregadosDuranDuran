@@ -17,6 +17,7 @@ namespace Agregados
         public decimal CostoTransporte { get; set; }
         public Nullable<decimal> BackHoe { get; set; }
         public System.DateTime FechaFactura { get; set; }
+        public decimal Descuento { get; set; }
         public decimal SubTotalFact { get; set; }
         public decimal IVAFact { get; set; }
         public decimal CostoTotal { get; set; }

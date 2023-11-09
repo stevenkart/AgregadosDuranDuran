@@ -260,7 +260,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(341, 20);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Vehículo:";
+            this.label7.Text = "Datos de Vehículo:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9

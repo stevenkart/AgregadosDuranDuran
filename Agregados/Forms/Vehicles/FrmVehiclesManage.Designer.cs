@@ -53,6 +53,14 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvVehicles = new System.Windows.Forms.DataGridView();
+            this.CIdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CPlaca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CRtvAlDia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CAnnio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CMesRevision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
@@ -70,19 +78,12 @@
             this.CboxRTV = new System.Windows.Forms.ComboBox();
             this.CboxStates = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.imgAdd = new System.Windows.Forms.PictureBox();
-            this.imgUpdate = new System.Windows.Forms.PictureBox();
-            this.imgDelete = new System.Windows.Forms.PictureBox();
-            this.imgClean = new System.Windows.Forms.PictureBox();
             this.imgExit = new System.Windows.Forms.PictureBox();
-            this.CIdVehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPlaca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CRtvAlDia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CModelo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CAnnio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CMesRevision = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CIdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imgClean = new System.Windows.Forms.PictureBox();
+            this.imgDelete = new System.Windows.Forms.PictureBox();
+            this.imgUpdate = new System.Windows.Forms.PictureBox();
+            this.imgAdd = new System.Windows.Forms.PictureBox();
+            this.infoCarImage = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -97,11 +98,12 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgAdd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgUpdate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgDelete)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgClean)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgExit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgClean)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgUpdate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgAdd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infoCarImage)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -133,7 +135,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.11531F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 143F));
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChBuenEstado, 2, 0);
             this.tableLayoutPanel8.Controls.Add(this.ChMalEstado, 4, 0);
@@ -165,7 +167,7 @@
             this.ChBuenEstado.Checked = true;
             this.ChBuenEstado.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChBuenEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChBuenEstado.Location = new System.Drawing.Point(857, 7);
+            this.ChBuenEstado.Location = new System.Drawing.Point(853, 7);
             this.ChBuenEstado.Name = "ChBuenEstado";
             this.ChBuenEstado.Size = new System.Drawing.Size(141, 22);
             this.ChBuenEstado.TabIndex = 0;
@@ -180,9 +182,9 @@
             this.ChMalEstado.AutoSize = true;
             this.ChMalEstado.Enabled = false;
             this.ChMalEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChMalEstado.Location = new System.Drawing.Point(1133, 7);
+            this.ChMalEstado.Location = new System.Drawing.Point(1129, 7);
             this.ChMalEstado.Name = "ChMalEstado";
-            this.ChMalEstado.Size = new System.Drawing.Size(134, 22);
+            this.ChMalEstado.Size = new System.Drawing.Size(138, 22);
             this.ChMalEstado.TabIndex = 1;
             this.ChMalEstado.Text = "Mal Estado";
             this.ChMalEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -195,7 +197,7 @@
             this.ChReparacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ChReparacion.AutoSize = true;
             this.ChReparacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChReparacion.Location = new System.Drawing.Point(1004, 7);
+            this.ChReparacion.Location = new System.Drawing.Point(1000, 7);
             this.ChReparacion.Name = "ChReparacion";
             this.ChReparacion.Size = new System.Drawing.Size(123, 22);
             this.ChReparacion.TabIndex = 2;
@@ -300,6 +302,7 @@
             this.txtIdVehicleSearch.Name = "txtIdVehicleSearch";
             this.txtIdVehicleSearch.Size = new System.Drawing.Size(149, 20);
             this.txtIdVehicleSearch.TabIndex = 0;
+            this.txtIdVehicleSearch.Visible = false;
             this.txtIdVehicleSearch.TextChanged += new System.EventHandler(this.txtIdVehicleSearch_TextChanged);
             this.txtIdVehicleSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdVehicleSearch_KeyPress);
             // 
@@ -336,6 +339,7 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Buscar ID Vehículo";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label9.Visible = false;
             // 
             // label10
             // 
@@ -420,6 +424,91 @@
             this.dgvVehicles.Size = new System.Drawing.Size(632, 513);
             this.dgvVehicles.TabIndex = 0;
             this.dgvVehicles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVehicles_CellClick);
+            // 
+            // CIdVehiculo
+            // 
+            this.CIdVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CIdVehiculo.DataPropertyName = "IdVehiculo";
+            this.CIdVehiculo.FillWeight = 50F;
+            this.CIdVehiculo.Frozen = true;
+            this.CIdVehiculo.HeaderText = "Cód.";
+            this.CIdVehiculo.MinimumWidth = 40;
+            this.CIdVehiculo.Name = "CIdVehiculo";
+            this.CIdVehiculo.ReadOnly = true;
+            this.CIdVehiculo.Visible = false;
+            // 
+            // CPlaca
+            // 
+            this.CPlaca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CPlaca.DataPropertyName = "Placa";
+            this.CPlaca.FillWeight = 150F;
+            this.CPlaca.Frozen = true;
+            this.CPlaca.HeaderText = "Placa";
+            this.CPlaca.MinimumWidth = 110;
+            this.CPlaca.Name = "CPlaca";
+            this.CPlaca.ReadOnly = true;
+            this.CPlaca.Width = 110;
+            // 
+            // CMarca
+            // 
+            this.CMarca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CMarca.DataPropertyName = "Marca";
+            this.CMarca.FillWeight = 180F;
+            this.CMarca.Frozen = true;
+            this.CMarca.HeaderText = "Marca";
+            this.CMarca.MinimumWidth = 150;
+            this.CMarca.Name = "CMarca";
+            this.CMarca.ReadOnly = true;
+            this.CMarca.Width = 150;
+            // 
+            // CRtvAlDia
+            // 
+            this.CRtvAlDia.DataPropertyName = "RtvAlDia";
+            this.CRtvAlDia.HeaderText = "R.T.V.";
+            this.CRtvAlDia.MinimumWidth = 25;
+            this.CRtvAlDia.Name = "CRtvAlDia";
+            this.CRtvAlDia.ReadOnly = true;
+            this.CRtvAlDia.Width = 50;
+            // 
+            // CModelo
+            // 
+            this.CModelo.DataPropertyName = "Modelo";
+            this.CModelo.FillWeight = 140F;
+            this.CModelo.HeaderText = "Modelo";
+            this.CModelo.MinimumWidth = 100;
+            this.CModelo.Name = "CModelo";
+            this.CModelo.ReadOnly = true;
+            this.CModelo.Width = 110;
+            // 
+            // CAnnio
+            // 
+            this.CAnnio.DataPropertyName = "Annio";
+            this.CAnnio.FillWeight = 170F;
+            this.CAnnio.HeaderText = "Año";
+            this.CAnnio.MinimumWidth = 140;
+            this.CAnnio.Name = "CAnnio";
+            this.CAnnio.ReadOnly = true;
+            this.CAnnio.Width = 140;
+            // 
+            // CMesRevision
+            // 
+            this.CMesRevision.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CMesRevision.DataPropertyName = "MesRevision";
+            this.CMesRevision.FillWeight = 170F;
+            this.CMesRevision.HeaderText = "Mes Revisión Técnica";
+            this.CMesRevision.MinimumWidth = 160;
+            this.CMesRevision.Name = "CMesRevision";
+            this.CMesRevision.ReadOnly = true;
+            // 
+            // CIdEstado
+            // 
+            this.CIdEstado.DataPropertyName = "IdEstado";
+            this.CIdEstado.FillWeight = 120F;
+            this.CIdEstado.HeaderText = "Estado";
+            this.CIdEstado.MinimumWidth = 80;
+            this.CIdEstado.Name = "CIdEstado";
+            this.CIdEstado.ReadOnly = true;
+            this.CIdEstado.Width = 80;
             // 
             // tableLayoutPanel5
             // 
@@ -631,35 +720,63 @@
             // 
             this.tableLayoutPanel7.ColumnCount = 1;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Controls.Add(this.imgAdd, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.imgUpdate, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.imgDelete, 0, 2);
-            this.tableLayoutPanel7.Controls.Add(this.imgClean, 0, 3);
-            this.tableLayoutPanel7.Controls.Add(this.imgExit, 0, 4);
+            this.tableLayoutPanel7.Controls.Add(this.imgExit, 0, 5);
+            this.tableLayoutPanel7.Controls.Add(this.imgClean, 0, 4);
+            this.tableLayoutPanel7.Controls.Add(this.imgDelete, 0, 3);
+            this.tableLayoutPanel7.Controls.Add(this.imgUpdate, 0, 2);
+            this.tableLayoutPanel7.Controls.Add(this.imgAdd, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.infoCarImage, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(500, 3);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 5;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel7.RowCount = 6;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(129, 507);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
-            // imgAdd
+            // imgExit
             // 
-            this.imgAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imgAdd.Image = global::Agregados.Properties.Resources.addCar;
-            this.imgAdd.Location = new System.Drawing.Point(3, 3);
-            this.imgAdd.Name = "imgAdd";
-            this.imgAdd.Size = new System.Drawing.Size(123, 95);
-            this.imgAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.imgAdd.TabIndex = 17;
-            this.imgAdd.TabStop = false;
-            this.imgAdd.Click += new System.EventHandler(this.imgAdd_Click);
+            this.imgExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgExit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imgExit.Image = global::Agregados.Properties.Resources.exit;
+            this.imgExit.Location = new System.Drawing.Point(3, 423);
+            this.imgExit.Name = "imgExit";
+            this.imgExit.Size = new System.Drawing.Size(123, 81);
+            this.imgExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.imgExit.TabIndex = 21;
+            this.imgExit.TabStop = false;
+            this.imgExit.Click += new System.EventHandler(this.imgExit_Click);
+            // 
+            // imgClean
+            // 
+            this.imgClean.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgClean.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imgClean.Image = global::Agregados.Properties.Resources.clean;
+            this.imgClean.Location = new System.Drawing.Point(3, 339);
+            this.imgClean.Name = "imgClean";
+            this.imgClean.Size = new System.Drawing.Size(123, 78);
+            this.imgClean.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.imgClean.TabIndex = 20;
+            this.imgClean.TabStop = false;
+            this.imgClean.Click += new System.EventHandler(this.imgClean_Click);
+            // 
+            // imgDelete
+            // 
+            this.imgDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imgDelete.Image = global::Agregados.Properties.Resources.delete1;
+            this.imgDelete.Location = new System.Drawing.Point(3, 255);
+            this.imgDelete.Name = "imgDelete";
+            this.imgDelete.Size = new System.Drawing.Size(123, 78);
+            this.imgDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.imgDelete.TabIndex = 19;
+            this.imgDelete.TabStop = false;
+            this.imgDelete.Click += new System.EventHandler(this.imgDelete_Click);
             // 
             // imgUpdate
             // 
@@ -667,138 +784,39 @@
             this.imgUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.imgUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imgUpdate.Image = global::Agregados.Properties.Resources.update;
-            this.imgUpdate.Location = new System.Drawing.Point(3, 104);
+            this.imgUpdate.Location = new System.Drawing.Point(3, 171);
             this.imgUpdate.Name = "imgUpdate";
-            this.imgUpdate.Size = new System.Drawing.Size(123, 95);
+            this.imgUpdate.Size = new System.Drawing.Size(123, 78);
             this.imgUpdate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.imgUpdate.TabIndex = 18;
             this.imgUpdate.TabStop = false;
             this.imgUpdate.Click += new System.EventHandler(this.imgUpdate_Click);
             // 
-            // imgDelete
+            // imgAdd
             // 
-            this.imgDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imgDelete.Image = global::Agregados.Properties.Resources.delete1;
-            this.imgDelete.Location = new System.Drawing.Point(3, 205);
-            this.imgDelete.Name = "imgDelete";
-            this.imgDelete.Size = new System.Drawing.Size(123, 95);
-            this.imgDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.imgDelete.TabIndex = 19;
-            this.imgDelete.TabStop = false;
-            this.imgDelete.Click += new System.EventHandler(this.imgDelete_Click);
+            this.imgAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imgAdd.Image = global::Agregados.Properties.Resources.addCar;
+            this.imgAdd.Location = new System.Drawing.Point(3, 87);
+            this.imgAdd.Name = "imgAdd";
+            this.imgAdd.Size = new System.Drawing.Size(123, 78);
+            this.imgAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.imgAdd.TabIndex = 17;
+            this.imgAdd.TabStop = false;
+            this.imgAdd.Click += new System.EventHandler(this.imgAdd_Click);
             // 
-            // imgClean
+            // infoCarImage
             // 
-            this.imgClean.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgClean.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imgClean.Image = global::Agregados.Properties.Resources.clean;
-            this.imgClean.Location = new System.Drawing.Point(3, 306);
-            this.imgClean.Name = "imgClean";
-            this.imgClean.Size = new System.Drawing.Size(123, 95);
-            this.imgClean.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.imgClean.TabIndex = 20;
-            this.imgClean.TabStop = false;
-            this.imgClean.Click += new System.EventHandler(this.imgClean_Click);
-            // 
-            // imgExit
-            // 
-            this.imgExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgExit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imgExit.Image = global::Agregados.Properties.Resources.exit;
-            this.imgExit.Location = new System.Drawing.Point(3, 407);
-            this.imgExit.Name = "imgExit";
-            this.imgExit.Size = new System.Drawing.Size(123, 97);
-            this.imgExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.imgExit.TabIndex = 21;
-            this.imgExit.TabStop = false;
-            this.imgExit.Click += new System.EventHandler(this.imgExit_Click);
-            // 
-            // CIdVehiculo
-            // 
-            this.CIdVehiculo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CIdVehiculo.DataPropertyName = "IdVehiculo";
-            this.CIdVehiculo.FillWeight = 50F;
-            this.CIdVehiculo.Frozen = true;
-            this.CIdVehiculo.HeaderText = "Cód.";
-            this.CIdVehiculo.MinimumWidth = 40;
-            this.CIdVehiculo.Name = "CIdVehiculo";
-            this.CIdVehiculo.ReadOnly = true;
-            this.CIdVehiculo.Visible = false;
-            this.CIdVehiculo.Width = 60;
-            // 
-            // CPlaca
-            // 
-            this.CPlaca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.CPlaca.DataPropertyName = "Placa";
-            this.CPlaca.FillWeight = 150F;
-            this.CPlaca.Frozen = true;
-            this.CPlaca.HeaderText = "Placa";
-            this.CPlaca.MinimumWidth = 110;
-            this.CPlaca.Name = "CPlaca";
-            this.CPlaca.ReadOnly = true;
-            this.CPlaca.Width = 110;
-            // 
-            // CMarca
-            // 
-            this.CMarca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.CMarca.DataPropertyName = "Marca";
-            this.CMarca.FillWeight = 180F;
-            this.CMarca.Frozen = true;
-            this.CMarca.HeaderText = "Marca";
-            this.CMarca.MinimumWidth = 150;
-            this.CMarca.Name = "CMarca";
-            this.CMarca.ReadOnly = true;
-            this.CMarca.Width = 150;
-            // 
-            // CRtvAlDia
-            // 
-            this.CRtvAlDia.DataPropertyName = "RtvAlDia";
-            this.CRtvAlDia.HeaderText = "R.T.V.";
-            this.CRtvAlDia.MinimumWidth = 25;
-            this.CRtvAlDia.Name = "CRtvAlDia";
-            this.CRtvAlDia.ReadOnly = true;
-            this.CRtvAlDia.Width = 50;
-            // 
-            // CModelo
-            // 
-            this.CModelo.DataPropertyName = "Modelo";
-            this.CModelo.FillWeight = 140F;
-            this.CModelo.HeaderText = "Modelo";
-            this.CModelo.MinimumWidth = 100;
-            this.CModelo.Name = "CModelo";
-            this.CModelo.ReadOnly = true;
-            this.CModelo.Width = 110;
-            // 
-            // CAnnio
-            // 
-            this.CAnnio.DataPropertyName = "Annio";
-            this.CAnnio.FillWeight = 170F;
-            this.CAnnio.HeaderText = "Año";
-            this.CAnnio.MinimumWidth = 140;
-            this.CAnnio.Name = "CAnnio";
-            this.CAnnio.ReadOnly = true;
-            this.CAnnio.Width = 140;
-            // 
-            // CMesRevision
-            // 
-            this.CMesRevision.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CMesRevision.DataPropertyName = "MesRevision";
-            this.CMesRevision.FillWeight = 170F;
-            this.CMesRevision.HeaderText = "Mes Revisión Técnica";
-            this.CMesRevision.MinimumWidth = 160;
-            this.CMesRevision.Name = "CMesRevision";
-            this.CMesRevision.ReadOnly = true;
-            // 
-            // CIdEstado
-            // 
-            this.CIdEstado.DataPropertyName = "IdEstado";
-            this.CIdEstado.FillWeight = 120F;
-            this.CIdEstado.HeaderText = "Estado";
-            this.CIdEstado.MinimumWidth = 80;
-            this.CIdEstado.Name = "CIdEstado";
-            this.CIdEstado.ReadOnly = true;
-            this.CIdEstado.Width = 80;
+            this.infoCarImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.infoCarImage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.infoCarImage.Image = global::Agregados.Properties.Resources.informacion;
+            this.infoCarImage.Location = new System.Drawing.Point(3, 3);
+            this.infoCarImage.Name = "infoCarImage";
+            this.infoCarImage.Size = new System.Drawing.Size(123, 78);
+            this.infoCarImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.infoCarImage.TabIndex = 22;
+            this.infoCarImage.TabStop = false;
+            this.infoCarImage.Click += new System.EventHandler(this.infoCarImage_Click);
             // 
             // FrmVehiclesManage
             // 
@@ -834,11 +852,12 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imgAdd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgUpdate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgDelete)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgClean)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgExit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgClean)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgUpdate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgAdd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infoCarImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -898,5 +917,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CAnnio;
         private System.Windows.Forms.DataGridViewTextBoxColumn CMesRevision;
         private System.Windows.Forms.DataGridViewTextBoxColumn CIdEstado;
+        private System.Windows.Forms.PictureBox infoCarImage;
     }
 }

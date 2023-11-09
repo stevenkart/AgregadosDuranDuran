@@ -274,7 +274,7 @@ namespace Agregados.Forms.Vehicles
             CboxMes.SelectedValue = -1;
             CboxRTV.SelectedValue = -1;
             CboxStates.SelectedValue = -1;
-
+            vehiculo = null;
             ActivarAdd();
 
         }
@@ -1664,6 +1664,25 @@ namespace Agregados.Forms.Vehicles
             e.Handled = Validaciones.CaracteresNumeros(e, true);
         }
 
-    
+        private void infoCarImage_Click(object sender, EventArgs e)
+        {
+            if (vehiculo == null)
+            {
+                MessageBox.Show("Vehículo No existe, o no ha sido seleccionado de la lista", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (Globals.Bitacora)
+                {
+                    Globals.MifrmBitVehiculeList.Focus();
+                }
+                else
+                {
+                    Globals.MifrmBitVehiculeList = new Vehicles.FrmBitVehiculeList(vehiculo.IdVehiculo);
+                    Globals.MifrmBitVehiculeList.Show();
+                    Globals.Bitacora = true;
+                }
+            }
+        }
     }
 }
