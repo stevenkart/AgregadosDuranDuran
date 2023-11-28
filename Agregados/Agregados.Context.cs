@@ -44,6 +44,15 @@ namespace Agregados
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Vehiculos> Vehiculos { get; set; }
     
+        public virtual int SPBitacorasVehiculoDelete(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPBitacorasVehiculoDelete", iDParameter);
+        }
+    
         public virtual ObjectResult<SPBitacorasVehiculoFechas_Result> SPBitacorasVehiculoFechas(string fechaInicio1, string fechaInicio2, Nullable<int> iD)
         {
             var fechaInicio1Parameter = fechaInicio1 != null ?

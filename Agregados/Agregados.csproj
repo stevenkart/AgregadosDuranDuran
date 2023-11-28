@@ -16,7 +16,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\steve\Desktop\Publicaciones APP\</PublishUrl>
+    <PublishUrl>C:\Users\steve\Desktop\Publicaciones APP\v 1.0.0.7\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -31,7 +31,7 @@
     <SuiteName>Steven Carrillo</SuiteName>
     <MinimumRequiredVersion>1.0.0.3</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -780,6 +780,16 @@
     <Compile Include="Vehiculos.cs">
       <DependentUpon>Agregados.tt</DependentUpon>
     </Compile>
+    <Content Include="Agregados.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Agregados.edmx</DependentUpon>
+      <LastGenOutput>Agregados.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Agregados.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Agregados.edmx</DependentUpon>
+      <LastGenOutput>Agregados.cs</LastGenOutput>
+    </Content>
     <Content Include="Images\PagPrincipal\MDIPrincipal.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -790,6 +800,13 @@
     <Content Include="Images\PagPrincipal\principal5.jpg" />
     <Content Include="Images\PagPrincipal\principal6.jpg" />
     <Content Include="Images\PagPrincipal\principal7.jpg" />
+    <EntityDeploy Include="Agregados.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Agregados.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Agregados.edmx.diagram">
+      <DependentUpon>Agregados.edmx</DependentUpon>
+    </None>
     <None Include="Resources\principal1.bmp" />
     <EmbeddedResource Include="Forms\Bills\FrmBillAdd.resx">
       <DependentUpon>FrmBillAdd.cs</DependentUpon>
@@ -1045,25 +1062,8 @@
       <LastGenOutput>RptTicketPendAll.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EntityDeploy Include="Agregados.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Agregados.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Agregados.edmx.diagram">
-      <DependentUpon>Agregados.edmx</DependentUpon>
-    </None>
     <None Include="Agregados_TemporaryKey.pfx" />
     <None Include="App.Config" />
-    <Content Include="Agregados.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Agregados.edmx</DependentUpon>
-      <LastGenOutput>Agregados.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Agregados.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Agregados.edmx</DependentUpon>
-      <LastGenOutput>Agregados.cs</LastGenOutput>
-    </Content>
     <Content Include="Forms\Help\Manual de Usuario.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

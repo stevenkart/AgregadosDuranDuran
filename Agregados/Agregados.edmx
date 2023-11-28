@@ -20,6 +20,7 @@
           <Property Name="CostoReparacion" Type="decimal" Precision="18" Scale="2" />
           <Property Name="IdVehiculo" Type="int" Nullable="false" />
           <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CierreApertCajas">
           <Key>
@@ -222,6 +223,7 @@
           <Property Name="Annio" Type="int" Nullable="false" />
           <Property Name="RtvAlDia" Type="tinyint" Nullable="false" />
           <Property Name="MesRevision" Type="int" Nullable="false" />
+          <Property Name="MarchamoAlDia" Type="tinyint" Nullable="false" />
           <Property Name="IdEstado" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FKBitacoraEstados">
@@ -233,6 +235,30 @@
             </Principal>
             <Dependent Role="BitacoraVehiculo">
               <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKBitacoraUsuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="BitacoraVehiculo" Type="Self.BitacoraVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="BitacoraVehiculo">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKBitacoraVehiculos">
+          <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="1" />
+          <End Role="BitacoraVehiculo" Type="Self.BitacoraVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="IdVehiculo" />
+            </Principal>
+            <Dependent Role="BitacoraVehiculo">
+              <PropertyRef Name="IdVehiculo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -440,18 +466,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKVehiculosBitacora">
-          <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="1" />
-          <End Role="BitacoraVehiculo" Type="Self.BitacoraVehiculo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vehiculos">
-              <PropertyRef Name="IdVehiculo" />
-            </Principal>
-            <Dependent Role="BitacoraVehiculo">
-              <PropertyRef Name="IdVehiculo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FKVehiculosEstados">
           <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
           <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="*" />
@@ -464,6 +478,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SPBitacorasVehiculoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SPBitacorasVehiculoFechas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fechaInicio1" Type="varchar" Mode="In" />
           <Parameter Name="fechaInicio2" Type="varchar" Mode="In" />
@@ -536,6 +553,14 @@
             <End Role="Estados" EntitySet="Estados" />
             <End Role="BitacoraVehiculo" EntitySet="BitacoraVehiculo" />
           </AssociationSet>
+          <AssociationSet Name="FKBitacoraUsuarios" Association="Self.FKBitacoraUsuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="BitacoraVehiculo" EntitySet="BitacoraVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FKBitacoraVehiculos" Association="Self.FKBitacoraVehiculos">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="BitacoraVehiculo" EntitySet="BitacoraVehiculo" />
+          </AssociationSet>
           <AssociationSet Name="FKCierreAperUsuario" Association="Self.FKCierreAperUsuario">
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="CierreApertCajas" EntitySet="CierreApertCajas" />
@@ -604,10 +629,6 @@
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FKVehiculosBitacora" Association="Self.FKVehiculosBitacora">
-            <End Role="Vehiculos" EntitySet="Vehiculos" />
-            <End Role="BitacoraVehiculo" EntitySet="BitacoraVehiculo" />
-          </AssociationSet>
           <AssociationSet Name="FKVehiculosEstados" Association="Self.FKVehiculosEstados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Vehiculos" EntitySet="Vehiculos" />
@@ -633,8 +654,10 @@
           <Property Name="CostoReparacion" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="IdVehiculo" Type="Int32" Nullable="false" />
           <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Estados" Relationship="Self.FKBitacoraEstados" FromRole="BitacoraVehiculo" ToRole="Estados" />
-          <NavigationProperty Name="Vehiculos" Relationship="Self.FKVehiculosBitacora" FromRole="BitacoraVehiculo" ToRole="Vehiculos" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FKBitacoraUsuarios" FromRole="BitacoraVehiculo" ToRole="Usuarios" />
+          <NavigationProperty Name="Vehiculos" Relationship="Self.FKBitacoraVehiculos" FromRole="BitacoraVehiculo" ToRole="Vehiculos" />
         </EntityType>
         <EntityType Name="CierreApertCajas">
           <Key>
@@ -858,6 +881,7 @@
           <Property Name="Identificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TipoUsuario" Type="Int32" Nullable="false" />
           <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BitacoraVehiculo" Relationship="Self.FKBitacoraUsuarios" FromRole="Usuarios" ToRole="BitacoraVehiculo" />
           <NavigationProperty Name="CierreApertCajas" Relationship="Self.FKCierreAperUsuario" FromRole="Usuarios" ToRole="CierreApertCajas" />
           <NavigationProperty Name="Estados" Relationship="Self.FkUsuariosEstados" FromRole="Usuarios" ToRole="Estados" />
           <NavigationProperty Name="Facturas" Relationship="Self.FKFacturasUsuarios" FromRole="Usuarios" ToRole="Facturas" />
@@ -873,8 +897,9 @@
           <Property Name="Annio" Type="Int32" Nullable="false" />
           <Property Name="RtvAlDia" Type="Byte" Nullable="false" />
           <Property Name="MesRevision" Type="Int32" Nullable="false" />
+          <Property Name="MarchamoAlDia" Type="Byte" Nullable="false" />
           <Property Name="IdEstado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BitacoraVehiculo" Relationship="Self.FKVehiculosBitacora" FromRole="Vehiculos" ToRole="BitacoraVehiculo" />
+          <NavigationProperty Name="BitacoraVehiculo" Relationship="Self.FKBitacoraVehiculos" FromRole="Vehiculos" ToRole="BitacoraVehiculo" />
           <NavigationProperty Name="Estados" Relationship="Self.FKVehiculosEstados" FromRole="Vehiculos" ToRole="Estados" />
         </EntityType>
         <Association Name="FKBitacoraEstados">
@@ -889,7 +914,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKVehiculosBitacora">
+        <Association Name="FKBitacoraUsuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="BitacoraVehiculo" Type="Self.BitacoraVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="BitacoraVehiculo">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKBitacoraVehiculos">
           <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="1" />
           <End Role="BitacoraVehiculo" Type="Self.BitacoraVehiculo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1138,7 +1175,11 @@
             <End Role="Estados" EntitySet="Estados" />
             <End Role="BitacoraVehiculo" EntitySet="BitacoraVehiculo" />
           </AssociationSet>
-          <AssociationSet Name="FKVehiculosBitacora" Association="Self.FKVehiculosBitacora">
+          <AssociationSet Name="FKBitacoraUsuarios" Association="Self.FKBitacoraUsuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="BitacoraVehiculo" EntitySet="BitacoraVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FKBitacoraVehiculos" Association="Self.FKBitacoraVehiculos">
             <End Role="Vehiculos" EntitySet="Vehiculos" />
             <End Role="BitacoraVehiculo" EntitySet="BitacoraVehiculo" />
           </AssociationSet>
@@ -1214,6 +1255,9 @@
             <End Role="TiposProveedores" EntitySet="TiposProveedores" />
             <End Role="Proveedores" EntitySet="Proveedores" />
           </AssociationSet>
+          <FunctionImport Name="SPBitacorasVehiculoDelete">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="SPBitacorasVehiculoFechas" ReturnType="Collection(AgregadosModel.SPBitacorasVehiculoFechas_Result)">
             <Parameter Name="fechaInicio1" Mode="In" Type="String" />
             <Parameter Name="fechaInicio2" Mode="In" Type="String" />
@@ -1696,6 +1740,7 @@
                 <ScalarProperty Name="CostoReparacion" ColumnName="CostoReparacion" />
                 <ScalarProperty Name="IdVehiculo" ColumnName="IdVehiculo" />
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1913,10 +1958,12 @@
                 <ScalarProperty Name="Annio" ColumnName="Annio" />
                 <ScalarProperty Name="RtvAlDia" ColumnName="RtvAlDia" />
                 <ScalarProperty Name="MesRevision" ColumnName="MesRevision" />
+                <ScalarProperty Name="MarchamoAlDia" ColumnName="MarchamoAlDia" />
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPBitacorasVehiculoDelete" FunctionName="AgregadosModel.Store.SPBitacorasVehiculoDelete" />
           <FunctionImportMapping FunctionImportName="SPBitacorasVehiculoFechas" FunctionName="AgregadosModel.Store.SPBitacorasVehiculoFechas">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AgregadosModel.SPBitacorasVehiculoFechas_Result">

@@ -104,6 +104,19 @@ namespace Agregados.Forms.Reports
 
         private void FrmTicketsReports_Load(object sender, EventArgs e)
         {
+            DateInicio.MaxDate = DateTime.Now;
+            DateInicio.MinDate = DateTime.Now.AddYears(-6);
+
+            DateFin.MaxDate = DateTime.Now;
+            DateFin.MinDate = DateTime.Now.AddYears(-6);
+
+            DateInicio2.MaxDate = DateTime.Now;
+            DateInicio2.MinDate = DateTime.Now.AddYears(-6);
+
+            DateFin2.MaxDate = DateTime.Now;
+            DateFin2.MinDate = DateTime.Now.AddYears(-6);
+
+
 
             btnFiltrarHoyTodas.Visible = false;
 

@@ -34,6 +34,7 @@ namespace Agregados.Forms.Vehicles
         private void FrmVehiclesManage_Load(object sender, EventArgs e)
         {
             CargarRTV();
+            CargarMarchamo();
             CargarEstados();
             CargarMeses();
             ActivarAdd();
@@ -98,10 +99,15 @@ namespace Agregados.Forms.Vehicles
                     txtAnnio.Text = vehiculo.Annio.ToString();
                     CboxMes.SelectedValue = vehiculo.MesRevision;
                     CboxRTV.SelectedValue = vehiculo.RtvAlDia;
+                    CboxMarchamo.SelectedValue = vehiculo.MarchamoAlDia;
                     CboxStates.SelectedValue = vehiculo.IdEstado;
 
                     ActivarUpdateDelete();
                 }
+            }
+            else
+            {
+                vehiculo = null;
             }
         }
 
@@ -144,10 +150,12 @@ namespace Agregados.Forms.Vehicles
         }//Carga Cbox meses
 
 
+        //Carga Cbox SI O NO RTV
+
         private void CargarRTV()
         {
             //Metodo para crear un DataTable manual sin sentencia SQL a la Base de datos y asi disenar un modelo al comboBox que permita seleccionar los ESTADOS si o no
-            //de RTV AL DIA 
+            //de RTV AL DIA
             //y entonces guarde pero un valor int, y mostrando un valor string 
             DataTable dt = new DataTable();
             dt.Columns.AddRange(new DataColumn[] { new DataColumn("Id", typeof(int)), new DataColumn("D", typeof(string)) });
@@ -158,10 +166,25 @@ namespace Agregados.Forms.Vehicles
             CboxRTV.ValueMember = "Id";
             CboxRTV.DisplayMember = "D";
             CboxRTV.SelectedIndex = -1;
+        }
 
-        }//Carga Cbox meses
+        //Carga Cbox SI O NO Marchamos
 
+        private void CargarMarchamo()
+        {
+            //Metodo para crear un DataTable manual sin sentencia SQL a la Base de datos y asi disenar un modelo al comboBox que permita seleccionar los ESTADOS si o no
+            //de marchamo
+            //y entonces guarde pero un valor int, y mostrando un valor string 
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[] { new DataColumn("Id", typeof(int)), new DataColumn("D", typeof(string)) });
+            dt.Rows.Add(0, "No");
+            dt.Rows.Add(1, "Si");
 
+            CboxMarchamo.DataSource = dt;
+            CboxMarchamo.ValueMember = "Id";
+            CboxMarchamo.DisplayMember = "D";
+            CboxMarchamo.SelectedIndex = -1;
+        }
 
         //tiempo loading
         void Wait()
@@ -208,7 +231,7 @@ namespace Agregados.Forms.Vehicles
                 !string.IsNullOrEmpty(txtAnnio.Text.Trim()) &&
                 CboxMes.SelectedIndex != -1 &&
                 CboxStates.SelectedIndex != -1 &&
-                CboxRTV.SelectedIndex != -1
+                CboxRTV.SelectedIndex != -1 && CboxMarchamo.SelectedIndex != -1
                 )
             {
                 R = true;
@@ -253,6 +276,12 @@ namespace Agregados.Forms.Vehicles
                     CboxRTV.Focus();
                     return false;
                 }
+                if (CboxMarchamo.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Se debe indicar estado del Marchamo", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CboxRTV.Focus();
+                    return false;
+                }
                 if (CboxStates.SelectedIndex == -1)
                 {
                     MessageBox.Show("Debe Seleccionar un estado del Vehículo", "Error de Validación!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -273,9 +302,11 @@ namespace Agregados.Forms.Vehicles
             txtAnnio.Text = null;
             CboxMes.SelectedValue = -1;
             CboxRTV.SelectedValue = -1;
+            CboxMarchamo.SelectedValue = -1;
             CboxStates.SelectedValue = -1;
             vehiculo = null;
             ActivarAdd();
+            dgvVehicles.ClearSelection();
 
         }
         private void limpiarBusqueda()
@@ -314,6 +345,7 @@ namespace Agregados.Forms.Vehicles
                                  (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                  (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
                                  RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
+                                 MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
                              };
                 dgvVehicles.DataSource = result.ToList();
                 limpiar();
@@ -340,6 +372,7 @@ namespace Agregados.Forms.Vehicles
                                      (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                      (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
                                      RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
+                                     MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
                                  };
                     dgvVehicles.DataSource = result.ToList();
                     limpiar();
@@ -366,6 +399,7 @@ namespace Agregados.Forms.Vehicles
                                          (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                          (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
                                          RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
+                                         MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
                                      };
                         dgvVehicles.DataSource = result.ToList();
                         limpiar();
@@ -392,6 +426,7 @@ namespace Agregados.Forms.Vehicles
                                              (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                              (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
                                              RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
+                                             MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
                                          };
                             dgvVehicles.DataSource = result.ToList();
                             limpiar();
@@ -418,6 +453,7 @@ namespace Agregados.Forms.Vehicles
                                                  (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                  (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
                                                  RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
+                                                 MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
                                              };
                                 dgvVehicles.DataSource = result.ToList();
                                 limpiar();
@@ -444,6 +480,7 @@ namespace Agregados.Forms.Vehicles
                                                      (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                      (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
                                                      RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
+                                                     MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
                                                  };
                                     dgvVehicles.DataSource = result.ToList();
                                     limpiar();
@@ -470,6 +507,7 @@ namespace Agregados.Forms.Vehicles
                                                          (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                          (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
                                                          RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
+                                                         MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
                                                      };
                                         dgvVehicles.DataSource = result.ToList();
                                         limpiar();
@@ -490,6 +528,7 @@ namespace Agregados.Forms.Vehicles
                                                              ve.Modelo,
                                                              ve.Annio,
                                                              RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
+                                                             MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
                                                              IdEstado = es.NombreEstado, // se usa Alias para validar el tipo de Estado e indicarlo como string y no el int relacional
                                                                                          //Lambda Expresion para validar tipo de mes y proceder a indicarlo en modo texto
                                                              MesRevision = (ve.MesRevision == 1) ? "Enero" : (ve.MesRevision == 2) ? "Febrero" : (ve.MesRevision == 3) ? "Marzo" :
@@ -550,6 +589,8 @@ namespace Agregados.Forms.Vehicles
                                      (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                      (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                      (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                     MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                     RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                  };
                     dgvVehicles.DataSource = result.ToList();
                     limpiar();
@@ -575,6 +616,8 @@ namespace Agregados.Forms.Vehicles
                                          (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                          (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                          (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                         MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                         RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                      };
                         dgvVehicles.DataSource = result.ToList();
                         limpiar();
@@ -600,6 +643,8 @@ namespace Agregados.Forms.Vehicles
                                              (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                              (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                              (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                             MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                             RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                          };
                             dgvVehicles.DataSource = result.ToList();
                             limpiar();
@@ -625,6 +670,8 @@ namespace Agregados.Forms.Vehicles
                                                  (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                  (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                  (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                 MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                 RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                              };
                                 dgvVehicles.DataSource = result.ToList();
                                 limpiar();
@@ -650,6 +697,8 @@ namespace Agregados.Forms.Vehicles
                                                      (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                      (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                      (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                     MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                     RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                                  };
                                     dgvVehicles.DataSource = result.ToList();
                                     limpiar();
@@ -675,6 +724,8 @@ namespace Agregados.Forms.Vehicles
                                                          (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                          (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                          (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                         MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                         RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                                      };
                                         dgvVehicles.DataSource = result.ToList();
                                         limpiar();
@@ -700,6 +751,8 @@ namespace Agregados.Forms.Vehicles
                                                              (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                              (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                              (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                             MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                             RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                                          };
                                             dgvVehicles.DataSource = result.ToList();
                                             limpiar();
@@ -725,6 +778,8 @@ namespace Agregados.Forms.Vehicles
                                                                  (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                                  (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                                  (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                                 MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                                 RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                                              };
                                                 dgvVehicles.DataSource = result.ToList();
                                                 limpiar();
@@ -773,6 +828,8 @@ namespace Agregados.Forms.Vehicles
                                      (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                      (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                      (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                     MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                     RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                  };
                     dgvVehicles.DataSource = result.ToList();
                     limpiar();
@@ -798,6 +855,8 @@ namespace Agregados.Forms.Vehicles
                                          (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                          (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                          (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                         MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                         RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                      };
                         dgvVehicles.DataSource = result.ToList();
                         limpiar();
@@ -823,6 +882,8 @@ namespace Agregados.Forms.Vehicles
                                              (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                              (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                              (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                             MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                             RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                          };
                             dgvVehicles.DataSource = result.ToList();
                             limpiar();
@@ -848,6 +909,8 @@ namespace Agregados.Forms.Vehicles
                                                  (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                  (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                  (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                 MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                 RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                              };
                                 dgvVehicles.DataSource = result.ToList();
                                 limpiar();
@@ -873,6 +936,8 @@ namespace Agregados.Forms.Vehicles
                                                      (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                      (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                      (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                     MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                     RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                                  };
                                     dgvVehicles.DataSource = result.ToList();
                                     limpiar();
@@ -898,6 +963,8 @@ namespace Agregados.Forms.Vehicles
                                                          (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                          (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                          (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                         MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                         RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                                      };
                                         dgvVehicles.DataSource = result.ToList();
                                         limpiar();
@@ -923,6 +990,8 @@ namespace Agregados.Forms.Vehicles
                                                              (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                              (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                              (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                             MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                             RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                                          };
                                             dgvVehicles.DataSource = result.ToList();
                                             limpiar();
@@ -948,6 +1017,8 @@ namespace Agregados.Forms.Vehicles
                                                                  (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                                  (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                                  (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                                 MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                                 RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                                              };
                                                 dgvVehicles.DataSource = result.ToList();
                                                 limpiar();
@@ -995,6 +1066,8 @@ namespace Agregados.Forms.Vehicles
                                      (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                      (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                      (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                     MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                     RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                  };
                     dgvVehicles.DataSource = result.ToList();
                     limpiar();
@@ -1020,6 +1093,8 @@ namespace Agregados.Forms.Vehicles
                                          (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                          (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                          (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                         MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                         RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                      };
                         dgvVehicles.DataSource = result.ToList();
                         limpiar();
@@ -1045,6 +1120,8 @@ namespace Agregados.Forms.Vehicles
                                              (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                              (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                              (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                             MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                             RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                          };
                             dgvVehicles.DataSource = result.ToList();
                             limpiar();
@@ -1070,6 +1147,8 @@ namespace Agregados.Forms.Vehicles
                                                  (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                  (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                  (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                 MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                 RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                              };
                                 dgvVehicles.DataSource = result.ToList();
                                 limpiar();
@@ -1095,6 +1174,8 @@ namespace Agregados.Forms.Vehicles
                                                      (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                      (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                      (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                     MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                     RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                                  };
                                     dgvVehicles.DataSource = result.ToList();
                                     limpiar();
@@ -1120,6 +1201,8 @@ namespace Agregados.Forms.Vehicles
                                                          (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                          (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                          (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                         MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                         RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                                      };
                                         dgvVehicles.DataSource = result.ToList();
                                         limpiar();
@@ -1145,6 +1228,8 @@ namespace Agregados.Forms.Vehicles
                                                              (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                              (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                              (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                             MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                             RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                                          };
                                             dgvVehicles.DataSource = result.ToList();
                                             limpiar();
@@ -1170,6 +1255,8 @@ namespace Agregados.Forms.Vehicles
                                                                  (ve.MesRevision == 4) ? "Abril" : (ve.MesRevision == 5) ? "Mayo" : (ve.MesRevision == 6) ? "Junio" :
                                                                  (ve.MesRevision == 7) ? "Julio" : (ve.MesRevision == 8) ? "Agosto" : (ve.MesRevision == 9) ? "Septiembre" :
                                                                  (ve.MesRevision == 10) ? "Octubre" : (ve.MesRevision == 11) ? "Noviembre" : (ve.MesRevision == 12) ? "Diciembre" : "",
+                                                                 MarchamoAlDia = (ve.MarchamoAlDia == 0) ? "No" : (ve.MarchamoAlDia == 1) ? "Si" : "N/A",
+                                                                 RtvAlDia = (ve.RtvAlDia == 0) ? "No" : (ve.RtvAlDia == 1) ? "Si" : "N/A",
                                                              };
                                                 dgvVehicles.DataSource = result.ToList();
                                                 limpiar();
@@ -1217,6 +1304,7 @@ namespace Agregados.Forms.Vehicles
                                     Modelo = txtModelo.Text.Trim(),
                                     Annio = Convert.ToInt32(txtAnnio.Text.Trim()),
                                     RtvAlDia = (byte)Convert.ToInt32(CboxRTV.SelectedValue),
+                                    MarchamoAlDia = (byte)Convert.ToInt32(CboxMarchamo.SelectedValue),
                                     MesRevision = Convert.ToInt32(CboxMes.SelectedValue),
                                     IdEstado = Convert.ToInt32(CboxStates.SelectedValue)
                                 };
@@ -1266,6 +1354,7 @@ namespace Agregados.Forms.Vehicles
                                         Modelo = txtModelo.Text.Trim(),
                                         Annio = Convert.ToInt32(txtAnnio.Text.Trim()),
                                         RtvAlDia = (byte)Convert.ToInt32(CboxRTV.SelectedValue),
+                                        MarchamoAlDia = (byte)Convert.ToInt32(CboxMarchamo.SelectedValue),
                                         MesRevision = Convert.ToInt32(CboxMes.SelectedValue),
                                         IdEstado = Convert.ToInt32(CboxStates.SelectedValue)
                                     };
@@ -1324,87 +1413,27 @@ namespace Agregados.Forms.Vehicles
         private void imgUpdate_Click(object sender, EventArgs e)
         {
             int estado = 0;
-            if (ValidarCamposRequeridos())
+            if (vehiculo != null)
             {
-                estado = Convert.ToInt32(CboxStates.SelectedValue);
-                bitacoraVehiculo = DB.BitacoraVehiculo.Where((x) => x.IdEstado == 8 && x.IdVehiculo == vehiculo.IdVehiculo).FirstOrDefault();
-                if (bitacoraVehiculo != null)
+                if (ValidarCamposRequeridos())
                 {
-                    int idBitacora = DB.BitacoraVehiculo.Where((x) => x.IdEstado == 8 && x.IdVehiculo == vehiculo.IdVehiculo).Select((x) => x.IdBitacora).Max();
-                    bitacoraVehiculo = DB.BitacoraVehiculo.Find(idBitacora);
-                }
-                else
-                {
-                    bitacoraVehiculo = null;
-                }
-
-                
-                if (bitacoraVehiculo != null)
-                {
-                    //hay bitacora, se debe modificar
-                    if (Convert.ToInt32(CboxStates.SelectedValue) == 6)
+                    estado = Convert.ToInt32(CboxStates.SelectedValue);
+                    bitacoraVehiculo = DB.BitacoraVehiculo.Where((x) => x.IdEstado == 8 && x.IdVehiculo == vehiculo.IdVehiculo).FirstOrDefault();
+                    if (bitacoraVehiculo != null)
                     {
-                        DialogResult respuesta = MessageBox.Show("¿Deseas modificar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
-                        "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (respuesta == DialogResult.Yes)
-                        {
-                            using (FrmLoading frmLoading = new FrmLoading(Wait))
-                            {
-                                try
-                                {
-                                    vehiculo.Placa = txtPlaca.Text.Trim();
-                                    vehiculo.Marca = txtMarca.Text.Trim();
-                                    vehiculo.Modelo = txtModelo.Text.Trim();
-                                    vehiculo.Annio = Convert.ToInt32(txtAnnio.Text.Trim());
-                                    vehiculo.MesRevision = Convert.ToInt32(CboxMes.SelectedValue);
-                                    vehiculo.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
-
-                                    DB.Entry(vehiculo).State = EntityState.Modified;
-
-                                    if (DB.SaveChanges() > 0)
-                                    {
-                                        IDVehiculo = vehiculo.IdVehiculo;
-                                        Form FrmBitVehiculos = new FrmBitVehiculos(2, IDVehiculo, bitacoraVehiculo.IdBitacora); // 2 para modificar bitacora sacar de reparacion
-
-                                        DialogResult resp = FrmBitVehiculos.ShowDialog();
-
-                                        if (resp == DialogResult.OK)
-                                        {
-                                            CheckChange();
-                                            limpiar();
-                                            limpiarBusqueda();
-                                            MessageBox.Show("Vehículo y Bitácora modificados correctamente!", "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            IDVehiculo = 0;
-                                            vehiculo = null;
-                                        }
-                                        else
-                                        {
-                                            CheckChange();
-                                            limpiar();
-                                            limpiarBusqueda();
-                                            MessageBox.Show("Vehículo modificado correctamente! pero ocurrio un error con la bitácora, puede realizar la modificacion manual de ella",
-                                                "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            IDVehiculo = 0;
-                                            vehiculo = null;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Vehículo No fue modificado", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        vehiculo = null;
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    throw;
-                                }
-                            }
-                        }
+                        int idBitacora = DB.BitacoraVehiculo.Where((x) => x.IdEstado == 8 && x.IdVehiculo == vehiculo.IdVehiculo).Select((x) => x.IdBitacora).Max();
+                        bitacoraVehiculo = DB.BitacoraVehiculo.Find(idBitacora);
                     }
                     else
                     {
-                        if (Convert.ToInt32(CboxStates.SelectedValue) == 8)
+                        bitacoraVehiculo = null;
+                    }
+
+
+                    if (bitacoraVehiculo != null)
+                    {
+                        //hay bitacora, se debe modificar para sacar de reparacion porque el vehiculo queda en estado reparado (buen estado)
+                        if (Convert.ToInt32(CboxStates.SelectedValue) == 6)
                         {
                             DialogResult respuesta = MessageBox.Show("¿Deseas modificar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
                             "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1419,6 +1448,8 @@ namespace Agregados.Forms.Vehicles
                                         vehiculo.Modelo = txtModelo.Text.Trim();
                                         vehiculo.Annio = Convert.ToInt32(txtAnnio.Text.Trim());
                                         vehiculo.MesRevision = Convert.ToInt32(CboxMes.SelectedValue);
+                                        vehiculo.MarchamoAlDia = (byte)Convert.ToInt32(CboxMarchamo.SelectedValue);
+                                        vehiculo.RtvAlDia = (byte)Convert.ToInt32(CboxRTV.SelectedValue);
                                         vehiculo.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
 
                                         DB.Entry(vehiculo).State = EntityState.Modified;
@@ -1426,7 +1457,7 @@ namespace Agregados.Forms.Vehicles
                                         if (DB.SaveChanges() > 0)
                                         {
                                             IDVehiculo = vehiculo.IdVehiculo;
-                                            Form FrmBitVehiculos = new FrmBitVehiculos(2, IDVehiculo, bitacoraVehiculo.IdBitacora); // 2 para modificar bitacora sacar de reparacion si fuera el caso
+                                            Form FrmBitVehiculos = new FrmBitVehiculos(2, IDVehiculo, bitacoraVehiculo.IdBitacora); // 2 para modificar bitacora sacar de reparacion
 
                                             DialogResult resp = FrmBitVehiculos.ShowDialog();
 
@@ -1463,59 +1494,79 @@ namespace Agregados.Forms.Vehicles
                                     }
                                 }
                             }
-
                         }
-                    }
-                }
-                else //bitacora vacia, esta en buen estado
-                {   
-                    if (Convert.ToInt32(CboxStates.SelectedValue) == 6)
-                    {
-                        DialogResult respuesta = MessageBox.Show("¿Deseas modificar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
-                       "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (respuesta == DialogResult.Yes)
+                        else
                         {
-                            using (FrmLoading frmLoading = new FrmLoading(Wait))
+                            //hay bitacora, se debe modificar para que  quede aun en reparacion porque el vehiculo queda en estado de reparacion
+                            if (Convert.ToInt32(CboxStates.SelectedValue) == 8)
                             {
-                                try
+                                DialogResult respuesta = MessageBox.Show("¿Deseas modificar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
+                                "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (respuesta == DialogResult.Yes)
                                 {
-
-                                    vehiculo.Placa = txtPlaca.Text.Trim();
-                                    vehiculo.Marca = txtMarca.Text.Trim();
-                                    vehiculo.Modelo = txtModelo.Text.Trim();
-                                    vehiculo.Annio = Convert.ToInt32(txtAnnio.Text.Trim());
-                                    vehiculo.MesRevision = Convert.ToInt32(CboxMes.SelectedValue);
-                                    vehiculo.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
-
-                                    DB.Entry(vehiculo).State = EntityState.Modified;
-
-                                    if (DB.SaveChanges() > 0)
-                                    {                              
-                                        CheckChange();
-                                        limpiar();
-                                        limpiarBusqueda();
-                                        MessageBox.Show("Vehículo modificado correctamente!", "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        IDVehiculo = 0;
-                                        vehiculo = null;
-
-                                    }
-                                    else
+                                    using (FrmLoading frmLoading = new FrmLoading(Wait))
                                     {
-                                        MessageBox.Show("Vehículo No fue modificado", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        vehiculo = null;
+                                        try
+                                        {
+                                            vehiculo.Placa = txtPlaca.Text.Trim();
+                                            vehiculo.Marca = txtMarca.Text.Trim();
+                                            vehiculo.Modelo = txtModelo.Text.Trim();
+                                            vehiculo.Annio = Convert.ToInt32(txtAnnio.Text.Trim());
+                                            vehiculo.MesRevision = Convert.ToInt32(CboxMes.SelectedValue);
+                                            vehiculo.MarchamoAlDia = (byte)Convert.ToInt32(CboxMarchamo.SelectedValue);
+                                            vehiculo.RtvAlDia = (byte)Convert.ToInt32(CboxRTV.SelectedValue);
+                                            vehiculo.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
+
+                                            DB.Entry(vehiculo).State = EntityState.Modified;
+
+                                            if (DB.SaveChanges() > 0)
+                                            {
+                                                IDVehiculo = vehiculo.IdVehiculo;
+                                                Form FrmBitVehiculos = new FrmBitVehiculos(3, IDVehiculo, bitacoraVehiculo.IdBitacora); // 3 para modificar bitacora sacar de reparacion si fuera el caso
+
+                                                DialogResult resp = FrmBitVehiculos.ShowDialog();
+
+                                                if (resp == DialogResult.OK)
+                                                {
+                                                    CheckChange();
+                                                    limpiar();
+                                                    limpiarBusqueda();
+                                                    MessageBox.Show("Vehículo y Bitácora modificados correctamente!", "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    IDVehiculo = 0;
+                                                    vehiculo = null;
+                                                }
+                                                else
+                                                {
+                                                    CheckChange();
+                                                    limpiar();
+                                                    limpiarBusqueda();
+                                                    MessageBox.Show("Vehículo modificado correctamente! pero ocurrio un error con la bitácora, puede realizar la modificacion manual de ella",
+                                                        "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    IDVehiculo = 0;
+                                                    vehiculo = null;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Vehículo No fue modificado", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                vehiculo = null;
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            throw;
+                                        }
                                     }
                                 }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    throw;
-                                }
+
                             }
                         }
                     }
                     else
                     {
-                        if (Convert.ToInt32(CboxStates.SelectedValue) == 8) // no hay bitacora abierta y se pasa de bueno a reparacion, se apertura una nueva bitacora
+                        //bitacora vacia, esta en buen estado no se procede a abrir bitacora ni modificar una ya que no posee
+                        if (Convert.ToInt32(CboxStates.SelectedValue) == 6)
                         {
                             DialogResult respuesta = MessageBox.Show("¿Deseas modificar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
                            "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1525,42 +1576,27 @@ namespace Agregados.Forms.Vehicles
                                 {
                                     try
                                     {
+
                                         vehiculo.Placa = txtPlaca.Text.Trim();
                                         vehiculo.Marca = txtMarca.Text.Trim();
                                         vehiculo.Modelo = txtModelo.Text.Trim();
                                         vehiculo.Annio = Convert.ToInt32(txtAnnio.Text.Trim());
                                         vehiculo.MesRevision = Convert.ToInt32(CboxMes.SelectedValue);
+                                        vehiculo.MarchamoAlDia = (byte)Convert.ToInt32(CboxMarchamo.SelectedValue);
+                                        vehiculo.RtvAlDia = (byte)Convert.ToInt32(CboxRTV.SelectedValue);
                                         vehiculo.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
 
                                         DB.Entry(vehiculo).State = EntityState.Modified;
 
                                         if (DB.SaveChanges() > 0)
                                         {
-                                            IDVehiculo = vehiculo.IdVehiculo;
-                                            
-                                            Form FrmBitVehiculos = new FrmBitVehiculos(1, IDVehiculo, 0);
+                                            CheckChange();
+                                            limpiar();
+                                            limpiarBusqueda();
+                                            MessageBox.Show("Vehículo modificado correctamente!", "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            IDVehiculo = 0;
+                                            vehiculo = null;
 
-                                            DialogResult resp = FrmBitVehiculos.ShowDialog();
-
-                                            if (resp == DialogResult.OK)
-                                            {
-                                                CheckChange();
-                                                limpiar();
-                                                limpiarBusqueda();
-                                                MessageBox.Show("Vehículo y Bitácora modificados correctamente!", "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                IDVehiculo = 0;
-                                                vehiculo = null;
-                                            }
-                                            else
-                                            {
-                                                CheckChange();
-                                                limpiar();
-                                                limpiarBusqueda();
-                                                MessageBox.Show("Vehículo modificado correctamente! pero ocurrio un error con la bitácora, puede realizar la modificacion manual de ella",
-                                                    "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                IDVehiculo = 0;
-                                                vehiculo = null;
-                                            }
                                         }
                                         else
                                         {
@@ -1575,93 +1611,205 @@ namespace Agregados.Forms.Vehicles
                                     }
                                 }
                             }
-                        }                    
+                        }
+                        else
+                        {
+                            // no hay bitacora abierta y se pasa de bueno a reparacion, se apertura una nueva bitacora
+                            if (Convert.ToInt32(CboxStates.SelectedValue) == 8)
+                            {
+                                DialogResult respuesta = MessageBox.Show("¿Deseas modificar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
+                               "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (respuesta == DialogResult.Yes)
+                                {
+                                    using (FrmLoading frmLoading = new FrmLoading(Wait))
+                                    {
+                                        try
+                                        {
+                                            vehiculo.Placa = txtPlaca.Text.Trim();
+                                            vehiculo.Marca = txtMarca.Text.Trim();
+                                            vehiculo.Modelo = txtModelo.Text.Trim();
+                                            vehiculo.Annio = Convert.ToInt32(txtAnnio.Text.Trim());
+                                            vehiculo.MesRevision = Convert.ToInt32(CboxMes.SelectedValue);
+                                            vehiculo.MarchamoAlDia = (byte)Convert.ToInt32(CboxMarchamo.SelectedValue);
+                                            vehiculo.RtvAlDia = (byte)Convert.ToInt32(CboxRTV.SelectedValue);
+                                            vehiculo.IdEstado = Convert.ToInt32(CboxStates.SelectedValue);
+
+                                            DB.Entry(vehiculo).State = EntityState.Modified;
+
+                                            if (DB.SaveChanges() > 0)
+                                            {
+                                                IDVehiculo = vehiculo.IdVehiculo;
+
+                                                Form FrmBitVehiculos = new FrmBitVehiculos(1, IDVehiculo, 0); //1 para abrir nueva linea bitacora
+
+                                                DialogResult resp = FrmBitVehiculos.ShowDialog();
+
+                                                if (resp == DialogResult.OK)
+                                                {
+                                                    CheckChange();
+                                                    limpiar();
+                                                    limpiarBusqueda();
+                                                    MessageBox.Show("Vehículo y Bitácora modificados correctamente!", "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    IDVehiculo = 0;
+                                                    vehiculo = null;
+                                                }
+                                                else
+                                                {
+                                                    CheckChange();
+                                                    limpiar();
+                                                    limpiarBusqueda();
+                                                    MessageBox.Show("Vehículo modificado correctamente! pero ocurrio un error con la bitácora, puede realizar la modificacion manual de ella",
+                                                        "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    IDVehiculo = 0;
+                                                    vehiculo = null;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Vehículo No fue modificado", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                vehiculo = null;
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            throw;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
-                }                
+                }
             }
+            else
+            {
+                MessageBox.Show("Vehículo No existe, o no ha sido seleccionado de la lista", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         //DELETE -- inactivar porque, puede que tenga bitacora de registro
         private void imgDelete_Click(object sender, EventArgs e)
         {
-            if (ValidarCamposRequeridos())
+            if (vehiculo != null)
             {
-                /*
-                DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?" + 
-                    Environment.NewLine + "Si lo eliminas, no prodras recuperar nuevamente sus datos...",
-                    "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (respuesta == DialogResult.Yes)
+                if (ValidarCamposRequeridos())
                 {
-                    using (FrmLoading frmLoading = new FrmLoading(Wait))
+
+                    DialogResult respuesta = MessageBox.Show("¿Deseas eliminar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?" +
+                        Environment.NewLine + "Tambien se eliminará los datos de la bitácora que tenga el vehículo." +
+                        Environment.NewLine + "Si lo eliminas, no prodras recuperar nuevamente sus datos...",
+                        "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (respuesta == DialogResult.Yes)
                     {
-                        try
+                        using (FrmLoading frmLoading = new FrmLoading(Wait))
                         {
-                            if (vehiculo == null)
+                            try
                             {
-                                MessageBox.Show("Vehículo No existe, o no ha sido seleccionado de la lista", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                if (vehiculo == null)
+                                {
+                                    MessageBox.Show("Vehículo No existe, o no ha sido seleccionado de la lista", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                else
+                                {
+                                    var result = DB.SPBitacorasVehiculoTop5(vehiculo.IdVehiculo).ToList();
+                                    if (result.ToList().Count > 0)
+                                    {
+                                        var resultDelete = DB.SPBitacorasVehiculoDelete(vehiculo.IdVehiculo); // metodo Porcedimiento almacenado para eliminar bitacora del vehiculo
+                                        if (resultDelete < 0)
+                                        {
+                                            DB.SaveChanges();
+                                            DB.Vehiculos.Remove(vehiculo); // metodo para eliminar el vehiculo, dato de la BD
+                                            if (DB.SaveChanges() > 0)
+                                            {
+                                                limpiar();
+                                                CheckChange();
+                                                limpiarBusqueda();
+                                                MessageBox.Show("Vehículo Eliminado Correctamente!", "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                vehiculo = null;
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Registro de la bitácora del vehículo se eliminó. pero ocurrio un error al eliminar el registro de vehículo",
+                                                    "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Ocurrio un error al eliminar el registro de vehículo",
+                                                   "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        } 
+                                    }
+                                    else
+                                    {
+                                        DB.Vehiculos.Remove(vehiculo); // metodo para eliminar el vehiculo, dato de la BD
+                                        if (DB.SaveChanges() > 0)
+                                        {
+                                            limpiar();
+                                            CheckChange();
+                                            limpiarBusqueda();
+                                            MessageBox.Show("Vehículo Eliminado Correctamente!", "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            vehiculo = null;
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Vehículo No fue Eliminado, por favor valide", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    
+                                }
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                DB.Vehiculos.Remove(vehiculo); // metodo para eliminar el vehiculo, dato de la BD
+                                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                throw;
+                            }
+                        }
+                    }
+                    /*
+                    DialogResult respuesta = MessageBox.Show("¿Deseas inactivar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
+                                "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        using (FrmLoading frmLoading = new FrmLoading(Wait))
+                        {
+                            try
+                            {
+                                vehiculo.IdEstado = 2; //inactivar 
+
+                                DB.Entry(vehiculo).State = EntityState.Modified;
+
                                 if (DB.SaveChanges() > 0)
                                 {
                                     CheckChange();
+                                    limpiar();
                                     limpiarBusqueda();
-                                    MessageBox.Show("Vehículo Eliminado Correctamente!", "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.Show("Vehículo inactivado correctamente!, mismo ya no se va a mostrar en la lista", 
+                                        "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                                     vehiculo = null;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Vehículo No fue Eliminado, por favor valide", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("Vehículo No fue modificado", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     vehiculo = null;
                                 }
                             }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            throw;
-                        }
-                    }
-                }
-                */
-                DialogResult respuesta = MessageBox.Show("¿Deseas inactivar el vehículo con la placa " + $"{txtPlaca.Text.Trim()} ?",
-                            "Registro de Vehículos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (respuesta == DialogResult.Yes)
-                {
-                    using (FrmLoading frmLoading = new FrmLoading(Wait))
-                    {
-                        try
-                        {
-                            vehiculo.IdEstado = 2; //inactivar 
-
-                            DB.Entry(vehiculo).State = EntityState.Modified;
-
-                            if (DB.SaveChanges() > 0)
+                            catch (Exception ex)
                             {
-                                CheckChange();
-                                limpiar();
-                                limpiarBusqueda();
-                                MessageBox.Show("Vehículo inactivado correctamente!, mismo ya no se va a mostrar en la lista", 
-                                    "Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Information); 
-                                vehiculo = null;
-                            }
-                            else
-                            {
-                                MessageBox.Show("Vehículo No fue modificado", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                vehiculo = null;
+                                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                throw;
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            throw;
-                        }
-                    }
+                    }*/
+
                 }
             }
+            else
+            {
+                MessageBox.Show("Vehículo No existe, o no ha sido seleccionado de la lista", "Error Registro de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
 
 
         //Validaciones de campos

@@ -64,6 +64,7 @@ namespace Agregados.Forms.Bills
 
             //actualizamos a nivel de sistema la caja
             cierreApertCajas = BuscarAperturaActual();
+            dateFinal.MinDate = DateTime.Now.AddDays(2);
 
             tmrFechaHora.Enabled = true;
             lblUsuarioLogueado.Text = $"( {Globals.MyGlobalUser.NombreUsuario} )" + $" {Globals.MyGlobalUser.NombreEmpleado} ";

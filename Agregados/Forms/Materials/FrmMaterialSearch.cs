@@ -512,6 +512,7 @@ namespace Agregados.Forms.Materials
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+            this.Hide();
         }
 
         private void btnSeleccionar_Click(object sender, EventArgs e)

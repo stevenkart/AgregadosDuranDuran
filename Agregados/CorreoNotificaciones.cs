@@ -65,6 +65,5 @@ namespace Agregados
             return R;
 
         }
-
     }
 }

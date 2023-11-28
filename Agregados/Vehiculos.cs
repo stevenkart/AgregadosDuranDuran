@@ -27,6 +27,7 @@ namespace Agregados
         public int Annio { get; set; }
         public byte RtvAlDia { get; set; }
         public int MesRevision { get; set; }
+        public byte MarchamoAlDia { get; set; }
         public int IdEstado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

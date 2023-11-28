@@ -81,6 +81,12 @@ namespace Agregados.Forms.Reports
 
         private void FrmCajaReports_Load(object sender, EventArgs e)
         {
+            DateInicio.MaxDate = DateTime.Now;
+            DateInicio.MinDate = DateTime.Now.AddYears(-6);
+
+            DateFin.MaxDate = DateTime.Now;
+            DateFin.MinDate = DateTime.Now.AddYears(-6);
+
             btnFiltrarHoyTodas.Visible = false;
 
 

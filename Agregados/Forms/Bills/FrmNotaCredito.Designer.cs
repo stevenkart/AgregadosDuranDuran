@@ -499,7 +499,6 @@
             this.Name = "FrmNotaCredito";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Notas de Crédito";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmNotaCredito_FormClosing);
             this.Load += new System.EventHandler(this.FrmNotaCredito_Load);
             this.tableLayoutPanel2.ResumeLayout(false);

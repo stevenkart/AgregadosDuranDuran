@@ -25,8 +25,10 @@ namespace Agregados
         public Nullable<decimal> CostoReparacion { get; set; }
         public int IdVehiculo { get; set; }
         public int IdEstado { get; set; }
+        public int IdUsuario { get; set; }
     
         public virtual Estados Estados { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
         public virtual Vehiculos Vehiculos { get; set; }
     }
 }

@@ -765,7 +765,6 @@
             this.Name = "FrmPendTicketProvider";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cuentas Por Pagar Pendientes (Ticket de Compra Pendientes)";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPendTicketProvider_FormClosing);
             this.Load += new System.EventHandler(this.FrmPendTicketProvider_Load);
             this.tableLayoutPanel5.ResumeLayout(false);

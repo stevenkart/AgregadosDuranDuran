@@ -358,7 +358,6 @@
             this.Name = "FrmRevBillProvider";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reversión de Compras";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmRevBillProvider_FormClosing);
             this.Load += new System.EventHandler(this.FrmRevBillProvider_Load);
             this.tableLayoutPanel2.ResumeLayout(false);

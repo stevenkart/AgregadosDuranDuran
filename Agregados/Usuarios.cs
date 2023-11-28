@@ -17,6 +17,7 @@ namespace Agregados
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuarios()
         {
+            this.BitacoraVehiculo = new HashSet<BitacoraVehiculo>();
             this.CierreApertCajas = new HashSet<CierreApertCajas>();
             this.Facturas = new HashSet<Facturas>();
         }
@@ -31,6 +32,8 @@ namespace Agregados
         public int TipoUsuario { get; set; }
         public int IdEstado { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BitacoraVehiculo> BitacoraVehiculo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CierreApertCajas> CierreApertCajas { get; set; }
         public virtual Estados Estados { get; set; }
